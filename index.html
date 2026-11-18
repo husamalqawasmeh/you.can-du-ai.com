@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>You Can Du AI</title>
+<meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>You Can Du AI</h1>
+  <nav>
+    <button data-tab="test" class="active">Take a test</button>
+    <button data-tab="questions">Questions</button>
+    <button data-tab="library">Knowledge library</button>
+    <button data-tab="history">History</button>
+    <button data-tab="data">Data</button>
+  </nav>
+</header>
+
+<main>
+  <!-- TEST -->
+  <section id="test" class="tab">
+    <form id="test-config" class="card">
+      <h2>Set up your test</h2>
+      <label>How many questions? <input type="number" name="count" min="1" value="10" required></label>
+      <fieldset><legend>Topics (none = all)</legend><div id="cfg-topics" class="checks"></div></fieldset>
+      <fieldset><legend>Question types (none = all)</legend><div class="checks">
+        <label><input type="checkbox" name="type" value="mcq"> Multiple choice</label>
+        <label><input type="checkbox" name="type" value="tf"> True / False</label>
+        <label><input type="checkbox" name="type" value="short"> Short answer</label>
+      </div></fieldset>
+      <fieldset><legend>Difficulty (none = all)</legend><div class="checks">
+        <label><input type="checkbox" name="difficulty" value="easy"> Easy</label>
+        <label><input type="checkbox" name="difficulty" value="medium"> Medium</label>
+        <label><input type="checkbox" name="difficulty" value="hard"> Hard</label>
+      </div></fieldset>
+      <p id="match-count" class="muted"></p>
+      <button type="submit" class="primary">Start test</button>
+    </form>
+    <form id="test-run" hidden></form>
+    <div id="test-result" hidden></div>
+  </section>
+
+  <!-- QUESTIONS -->
+  <section id="questions" class="tab" hidden>
+    <form id="q-form" class="card">
+      <h2>Add a question</h2>
+      <div class="row">
+        <label>Topic <select name="topic" class="topic-select" required></select></label>
+        <label>Type <select name="type">
+          <option value="mcq">Multiple choice</option><option value="tf">True / False</option><option value="short">Short answer</option>
+        </select></label>
+        <label>Difficulty <select name="difficulty">
+          <option>easy</option><option selected>medium</option><option>hard</option>
+        </select></label>
+      </div>
+      <label>Question <textarea name="prompt" rows="2" required></textarea></label>
+      <label class="for-mcq">Options (one per line) <textarea name="options" rows="4"></textarea></label>
+      <label>Correct answer <input name="answer" required>
+        <small class="muted">Multiple choice: the exact option text. True/False: True or False. Short answer: separate accepted answers with |</small></label>
+      <label>Explanation (optional) <textarea name="explanation" rows="2"></textarea></label>
+      <label>Source (optional) <select name="sourceId" class="source-select"></select></label>
+      <button class="primary">Add question</button>
+    </form>
+    <div class="card">
+      <h2>Question bank <span id="q-total" class="muted"></span></h2>
+      <div class="row">
+        <label>Filter by topic <select id="q-filter-topic"><option value="">All topics</option></select></label>
+        <label>Search <input id="q-search" type="search"></label>
+      </div>
+      <ul id="q-list" class="list"></ul>
+    </div>
+  </section>
+
+  <!-- LIBRARY -->
+  <section id="library" class="tab" hidden>
+    <div class="grid">
+      <form id="topic-form" class="card">
+        <h2>Topics</h2>
+        <div class="row"><input name="name" placeholder="New topic, e.g. AI Networking" required><button class="primary">Add</button></div>
+        <ul id="topic-list" class="list"></ul>
+      </form>
+      <form id="source-form" class="card">
+        <h2>Add a site or source</h2>
+        <label>Title <input name="title" required></label>
+        <label>URL <input name="url" type="url" placeholder="https://"></label>
+        <div class="row">
+          <label>Type <select name="type"><option>Website</option><option>Paper</option><option>Docs</option><option>Book</option><option>Video</option><option>Course</option><option>Other</option></select></label>
+          <label>Topic <select name="topic" class="topic-select" required></select></label>
+        </div>
+        <label>Notes <textarea name="notes" rows="2"></textarea></label>
+        <button class="primary">Add source</button>
+      </form>
+    </div>
+    <form id="note-form" class="card">
+      <h2>Add knowledge</h2>
+      <div class="row">
+        <label>Title <input name="title" required></label>
+        <label>Topic <select name="topic" class="topic-select" required></select></label>
+        <label>Source <select name="sourceId" class="source-select"></select></label>
+      </div>
+      <label>What you learned <textarea name="body" rows="4" required></textarea></label>
+      <button class="primary">Save knowledge</button>
+    </form>
+    <div class="card">
+      <h2>Knowledge base</h2>
+      <label>Filter by topic <select id="lib-filter-topic"><option value="">All topics</option></select></label>
+      <h3>Knowledge</h3><ul id="note-list" class="list"></ul>
+      <h3>Sources</h3><ul id="source-list" class="list"></ul>
+    </div>
+  </section>
+
+  <!-- HISTORY -->
+  <section id="history" class="tab" hidden>
+    <div class="card"><h2>Test history</h2><ul id="history-list" class="list"></ul></div>
+  </section>
+
+  <!-- DATA -->
+  <section id="data" class="tab" hidden>
+    <div class="card">
+      <h2>Your data</h2>
+      <p>Everything you add is saved in this browser. Export a backup regularly, and import it to move your knowledge base to another device.</p>
+      <p id="data-stats" class="muted"></p>
+      <div class="row">
+        <button id="export-btn" class="primary">Export backup (JSON)</button>
+        <label class="button">Import backup<input id="import-file" type="file" accept="application/json,.json" hidden></label>
+      </div>
+      <p class="muted">Import merges with what you have: items with the same id are replaced by the imported copy.</p>
+    </div>
+  </section>
+</main>
+<script type="module" src="app.js"></script>
+</body>
+</html>

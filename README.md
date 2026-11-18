@@ -1,0 +1,25 @@
+# you.can-du-ai.com
+
+A knowledge-training site for AI topics: AI hardware, sizing, generative AI, LLMs, AI engineering and AI development.
+
+- **Knowledge library**: add topics, sites and sources, and the things you learn.
+- **Question bank**: a growing set of multiple-choice, true/false and short-answer questions. It starts with 40 seed questions.
+- **Tests**: choose how many questions, the types, the topics and the difficulty. Results are saved to History.
+- **Data**: export your knowledge base as JSON, or import a backup.
+
+It is a static site: plain HTML and JavaScript, no build step. Your data is saved in the browser's localStorage, and `seed.json` is merged in on every load.
+
+## Run locally
+
+```
+npm start      # serves on http://localhost:3000
+npm test       # logic self-check and seed validation
+```
+
+## Add questions for everyone
+
+Questions you add in the browser stay in your browser. To share questions with every visitor, add them to `seed.json` (give each one a unique `id`), then commit and push.
+
+## Deploy
+
+The site deploys to GitHub Pages through `.github/workflows/pages.yml` on every push to `main`.
