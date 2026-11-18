@@ -45,4 +45,5 @@ small { display: block; }
 .question p { margin: 0 0 6px; font-weight: 600; }
 .question label { margin: 2px 0; }
 .good { color: var(--good); } .bad { color: var(--bad); }
+.prewrap { white-space: pre-wrap; margin-bottom: 12px; overflow-wrap: anywhere; }
 .score { font-size: 2rem; font-weight: 700; margin: 0; }

@@ -1,63 +1,1657 @@
 {
-  "topics": ["AI Hardware", "AI Sizing", "Generative AI", "LLMs", "AI Engineering", "AI Development"],
+  "topics": [
+    "AI Hardware",
+    "AI Sizing",
+    "Generative AI",
+    "LLMs",
+    "AI Engineering",
+    "AI Development",
+    "Frontier Labs"
+  ],
   "sources": [
-    { "id": "src-1", "topic": "LLMs", "type": "Paper", "title": "Attention Is All You Need (Transformer)", "url": "https://arxiv.org/abs/1706.03762", "notes": "The original Transformer paper." },
-    { "id": "src-2", "topic": "AI Sizing", "type": "Paper", "title": "Training Compute-Optimal Large Language Models (Chinchilla)", "url": "https://arxiv.org/abs/2203.15556", "notes": "Compute-optimal tokens-per-parameter scaling." },
-    { "id": "src-3", "topic": "LLMs", "type": "Paper", "title": "LoRA: Low-Rank Adaptation of Large Language Models", "url": "https://arxiv.org/abs/2106.09685", "notes": "Parameter-efficient fine-tuning." },
-    { "id": "src-4", "topic": "AI Development", "type": "Docs", "title": "Hugging Face Transformers documentation", "url": "https://huggingface.co/docs/transformers", "notes": "Library docs for training and inference." },
-    { "id": "src-5", "topic": "Generative AI", "type": "Paper", "title": "Denoising Diffusion Probabilistic Models", "url": "https://arxiv.org/abs/2006.11239", "notes": "Foundational diffusion model paper." },
-    { "id": "src-6", "topic": "AI Engineering", "type": "Paper", "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks", "url": "https://arxiv.org/abs/2005.11401", "notes": "The original RAG paper." }
+    {
+      "id": "src-1",
+      "topic": "LLMs",
+      "type": "Paper",
+      "title": "Attention Is All You Need (Transformer)",
+      "url": "https://arxiv.org/abs/1706.03762",
+      "notes": "The original Transformer paper.",
+      "lang": "en"
+    },
+    {
+      "id": "src-2",
+      "topic": "AI Sizing",
+      "type": "Paper",
+      "title": "Training Compute-Optimal Large Language Models (Chinchilla)",
+      "url": "https://arxiv.org/abs/2203.15556",
+      "notes": "Compute-optimal tokens-per-parameter scaling.",
+      "lang": "en"
+    },
+    {
+      "id": "src-3",
+      "topic": "LLMs",
+      "type": "Paper",
+      "title": "LoRA: Low-Rank Adaptation of Large Language Models",
+      "url": "https://arxiv.org/abs/2106.09685",
+      "notes": "Parameter-efficient fine-tuning.",
+      "lang": "en"
+    },
+    {
+      "id": "src-4",
+      "topic": "AI Development",
+      "type": "Docs",
+      "title": "Hugging Face Transformers documentation",
+      "url": "https://huggingface.co/docs/transformers",
+      "notes": "Library docs for training and inference.",
+      "lang": "en"
+    },
+    {
+      "id": "src-5",
+      "topic": "Generative AI",
+      "type": "Paper",
+      "title": "Denoising Diffusion Probabilistic Models",
+      "url": "https://arxiv.org/abs/2006.11239",
+      "notes": "Foundational diffusion model paper.",
+      "lang": "en"
+    },
+    {
+      "id": "src-6",
+      "topic": "AI Engineering",
+      "type": "Paper",
+      "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "url": "https://arxiv.org/abs/2005.11401",
+      "notes": "The original RAG paper.",
+      "lang": "en"
+    },
+    {
+      "id": "src-7",
+      "topic": "LLMs",
+      "type": "Course",
+      "title": "Hugging Face LLM Course",
+      "url": "https://huggingface.co/learn/llm-course",
+      "notes": "Free hands-on course: transformers, tokenizers, fine-tuning.",
+      "lang": "en"
+    },
+    {
+      "id": "src-8",
+      "topic": "LLMs",
+      "type": "Video",
+      "title": "Andrej Karpathy: Neural Networks Zero to Hero",
+      "url": "https://karpathy.ai/zero-to-hero.html",
+      "notes": "Builds backprop, GPT and tokenizers from scratch in code.",
+      "lang": "en"
+    },
+    {
+      "id": "src-9",
+      "topic": "LLMs",
+      "type": "Course",
+      "title": "Stanford CS25: Transformers United",
+      "url": "https://web.stanford.edu/class/cs25/",
+      "notes": "Lecture series on transformer research by leading researchers.",
+      "lang": "en"
+    },
+    {
+      "id": "src-10",
+      "topic": "LLMs",
+      "type": "Website",
+      "title": "The Illustrated Transformer (Jay Alammar)",
+      "url": "https://jalammar.github.io/illustrated-transformer/",
+      "notes": "Visual explanation of attention and the transformer.",
+      "lang": "en"
+    },
+    {
+      "id": "src-11",
+      "topic": "LLMs",
+      "type": "Website",
+      "title": "Lil'Log (Lilian Weng)",
+      "url": "https://lilianweng.github.io/",
+      "notes": "In-depth surveys: agents, hallucination, diffusion, RLHF.",
+      "lang": "en"
+    },
+    {
+      "id": "src-12",
+      "topic": "LLMs",
+      "type": "Paper",
+      "title": "Training language models to follow instructions with human feedback (InstructGPT)",
+      "url": "https://arxiv.org/abs/2203.02155",
+      "notes": "The RLHF recipe behind instruction-tuned chat models.",
+      "lang": "en"
+    },
+    {
+      "id": "src-13",
+      "topic": "AI Hardware",
+      "type": "Book",
+      "title": "How to Scale Your Model (Google DeepMind)",
+      "url": "https://jax-ml.github.io/scaling-book/",
+      "notes": "Free textbook: rooflines, TPUs/GPUs, parallelism for training and inference.",
+      "lang": "en"
+    },
+    {
+      "id": "src-14",
+      "topic": "AI Hardware",
+      "type": "Website",
+      "title": "NVIDIA Technical Blog",
+      "url": "https://developer.nvidia.com/blog",
+      "notes": "Official deep dives on GPU architectures, CUDA, TensorRT, NVLink.",
+      "lang": "en"
+    },
+    {
+      "id": "src-15",
+      "topic": "AI Hardware",
+      "type": "Docs",
+      "title": "NVIDIA Blackwell Architecture",
+      "url": "https://www.nvidia.com/en-us/data-center/technologies/blackwell-architecture/",
+      "notes": "Official overview of the Blackwell GPU generation.",
+      "lang": "en"
+    },
+    {
+      "id": "src-16",
+      "topic": "AI Hardware",
+      "type": "Docs",
+      "title": "Google Cloud TPU documentation",
+      "url": "https://cloud.google.com/tpu/docs",
+      "notes": "TPU architecture, versions and how to use them.",
+      "lang": "en"
+    },
+    {
+      "id": "src-17",
+      "topic": "AI Hardware",
+      "type": "Book",
+      "title": "The Ultra-Scale Playbook (Hugging Face)",
+      "url": "https://huggingface.co/spaces/nanotron/ultrascale-playbook",
+      "notes": "Training LLMs on GPU clusters: data, tensor, pipeline parallelism, ZeRO.",
+      "lang": "en"
+    },
+    {
+      "id": "src-18",
+      "topic": "AI Hardware",
+      "type": "Website",
+      "title": "MLCommons MLPerf benchmarks",
+      "url": "https://mlcommons.org/benchmarks/",
+      "notes": "Industry-standard training and inference benchmarks for AI hardware.",
+      "lang": "en"
+    },
+    {
+      "id": "src-19",
+      "topic": "AI Hardware",
+      "type": "Paper",
+      "title": "FlashAttention: Fast and Memory-Efficient Exact Attention",
+      "url": "https://arxiv.org/abs/2205.14135",
+      "notes": "IO-aware attention algorithm.",
+      "lang": "en"
+    },
+    {
+      "id": "src-20",
+      "topic": "AI Sizing",
+      "type": "Website",
+      "title": "Transformer Math 101 (EleutherAI)",
+      "url": "https://blog.eleuther.ai/transformer-math/",
+      "notes": "Compute and memory formulas for training and inference.",
+      "lang": "en"
+    },
+    {
+      "id": "src-21",
+      "topic": "AI Sizing",
+      "type": "Website",
+      "title": "Transformer Inference Arithmetic (kipply)",
+      "url": "https://kipp.ly/transformer-inference-arithmetic/",
+      "notes": "KV cache, memory-bound vs compute-bound inference latency math.",
+      "lang": "en"
+    },
+    {
+      "id": "src-22",
+      "topic": "AI Sizing",
+      "type": "Paper",
+      "title": "Scaling Laws for Neural Language Models (Kaplan et al.)",
+      "url": "https://arxiv.org/abs/2001.08361",
+      "notes": "Power-law relationships between loss, model size, data and compute.",
+      "lang": "en"
+    },
+    {
+      "id": "src-23",
+      "topic": "AI Sizing",
+      "type": "Docs",
+      "title": "Hugging Face model memory estimator",
+      "url": "https://huggingface.co/docs/accelerate/usage_guides/model_size_estimator",
+      "notes": "Estimate memory needed to load a model.",
+      "lang": "en"
+    },
+    {
+      "id": "src-24",
+      "topic": "Generative AI",
+      "type": "Course",
+      "title": "Google Machine Learning Crash Course",
+      "url": "https://developers.google.com/machine-learning/crash-course",
+      "notes": "Free course including LLM and generative AI modules.",
+      "lang": "en"
+    },
+    {
+      "id": "src-25",
+      "topic": "Generative AI",
+      "type": "Course",
+      "title": "DeepLearning.AI short courses",
+      "url": "https://www.deeplearning.ai/short-courses/",
+      "notes": "Free short courses: prompting, RAG, agents, fine-tuning, vLLM serving.",
+      "lang": "en"
+    },
+    {
+      "id": "src-26",
+      "topic": "Generative AI",
+      "type": "Course",
+      "title": "Hugging Face Diffusion Models Course",
+      "url": "https://huggingface.co/learn/diffusion-course",
+      "notes": "Theory and practice of diffusion models.",
+      "lang": "en"
+    },
+    {
+      "id": "src-27",
+      "topic": "AI Engineering",
+      "type": "Book",
+      "title": "AI Engineering (Chip Huyen, O'Reilly)",
+      "url": "https://www.oreilly.com/library/view/ai-engineering/9781098166298/",
+      "notes": "Building apps on foundation models: evaluation, RAG, agents, inference.",
+      "lang": "en"
+    },
+    {
+      "id": "src-28",
+      "topic": "AI Engineering",
+      "type": "Website",
+      "title": "Building Effective Agents (Anthropic)",
+      "url": "https://www.anthropic.com/engineering/building-effective-agents",
+      "notes": "Workflow and agent patterns for LLM systems.",
+      "lang": "en"
+    },
+    {
+      "id": "src-29",
+      "topic": "AI Engineering",
+      "type": "Docs",
+      "title": "Anthropic prompt engineering guide",
+      "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",
+      "notes": "Official prompting techniques.",
+      "lang": "en"
+    },
+    {
+      "id": "src-30",
+      "topic": "AI Engineering",
+      "type": "Website",
+      "title": "OpenAI Cookbook",
+      "url": "https://cookbook.openai.com",
+      "notes": "Practical code examples for LLM apps.",
+      "lang": "en"
+    },
+    {
+      "id": "src-31",
+      "topic": "AI Engineering",
+      "type": "Docs",
+      "title": "vLLM documentation",
+      "url": "https://docs.vllm.ai",
+      "notes": "High-throughput LLM serving engine (PagedAttention, continuous batching).",
+      "lang": "en"
+    },
+    {
+      "id": "src-32",
+      "topic": "AI Engineering",
+      "type": "Website",
+      "title": "Patterns for Building LLM-based Systems (Eugene Yan)",
+      "url": "https://eugeneyan.com/writing/llm-patterns/",
+      "notes": "Evals, RAG, fine-tuning, caching, guardrails, defensive UX, feedback.",
+      "lang": "en"
+    },
+    {
+      "id": "src-33",
+      "topic": "AI Development",
+      "type": "Docs",
+      "title": "PyTorch tutorials",
+      "url": "https://pytorch.org/tutorials/",
+      "notes": "Official tutorials for building and training models.",
+      "lang": "en"
+    },
+    {
+      "id": "src-34",
+      "topic": "AI Development",
+      "type": "Course",
+      "title": "fast.ai Practical Deep Learning",
+      "url": "https://course.fast.ai",
+      "notes": "Free practical deep learning course.",
+      "lang": "en"
+    },
+    {
+      "id": "src-35",
+      "topic": "AI Development",
+      "type": "Docs",
+      "title": "Rules of Machine Learning (Google)",
+      "url": "https://developers.google.com/machine-learning/guides/rules-of-ml",
+      "notes": "Best practices for ML engineering.",
+      "lang": "en"
+    },
+    {
+      "id": "src-36",
+      "topic": "AI Development",
+      "type": "Course",
+      "title": "Made With ML",
+      "url": "https://madewithml.com",
+      "notes": "MLOps: design, develop, deploy and iterate on ML systems.",
+      "lang": "en"
+    },
+    {
+      "id": "src-37",
+      "topic": "Frontier Labs",
+      "type": "Website",
+      "title": "OpenAI Research",
+      "url": "https://openai.com/research",
+      "notes": "Research releases, system cards and model announcements.",
+      "lang": "en"
+    },
+    {
+      "id": "src-38",
+      "topic": "Frontier Labs",
+      "type": "Website",
+      "title": "Anthropic Research",
+      "url": "https://www.anthropic.com/research",
+      "notes": "Alignment, interpretability and Claude model research.",
+      "lang": "en"
+    },
+    {
+      "id": "src-39",
+      "topic": "Frontier Labs",
+      "type": "Website",
+      "title": "Google DeepMind Research",
+      "url": "https://deepmind.google/research/",
+      "notes": "Gemini, AlphaFold and other research publications.",
+      "lang": "en"
+    },
+    {
+      "id": "src-40",
+      "topic": "Frontier Labs",
+      "type": "Website",
+      "title": "Meta AI Research",
+      "url": "https://ai.meta.com/research/",
+      "notes": "Llama models and FAIR research.",
+      "lang": "en"
+    },
+    {
+      "id": "src-41",
+      "topic": "Frontier Labs",
+      "type": "Website",
+      "title": "Google Research",
+      "url": "https://research.google/",
+      "notes": "Research blog and publications across ML.",
+      "lang": "en"
+    },
+    {
+      "id": "src-42",
+      "topic": "Frontier Labs",
+      "type": "Website",
+      "title": "Microsoft Research: AI",
+      "url": "https://www.microsoft.com/en-us/research/research-area/artificial-intelligence/",
+      "notes": "AI research publications and blog.",
+      "lang": "en"
+    },
+    {
+      "id": "src-43",
+      "topic": "Frontier Labs",
+      "type": "Website",
+      "title": "Mistral AI news",
+      "url": "https://mistral.ai/news",
+      "notes": "Open-weight and commercial model releases.",
+      "lang": "en"
+    },
+    {
+      "id": "src-44",
+      "topic": "Frontier Labs",
+      "type": "Website",
+      "title": "xAI news",
+      "url": "https://x.ai/news",
+      "notes": "Grok model announcements.",
+      "lang": "en"
+    },
+    {
+      "id": "src-45",
+      "topic": "Frontier Labs",
+      "type": "Website",
+      "title": "DeepSeek (GitHub)",
+      "url": "https://github.com/deepseek-ai",
+      "notes": "Open-weight models and technical reports (V3, R1).",
+      "lang": "en"
+    },
+    {
+      "id": "src-46",
+      "topic": "Frontier Labs",
+      "type": "Website",
+      "title": "Qwen blog (Alibaba)",
+      "url": "https://qwenlm.github.io/",
+      "notes": "Qwen open model family releases.",
+      "lang": "en"
+    },
+    {
+      "id": "src-47",
+      "topic": "AI Hardware",
+      "type": "Website",
+      "title": "NVIDIA Research",
+      "url": "https://research.nvidia.com/",
+      "notes": "NVIDIA research publications.",
+      "lang": "en"
+    },
+    {
+      "id": "src-48",
+      "topic": "AI Hardware",
+      "type": "Course",
+      "title": "NVIDIA Deep Learning Institute (DLI)",
+      "url": "https://www.nvidia.com/en-us/training/",
+      "notes": "Self-paced and instructor-led courses; some free (e.g. Generative AI Explained).",
+      "lang": "en"
+    },
+    {
+      "id": "src-49",
+      "topic": "AI Hardware",
+      "type": "Slides",
+      "title": "NVIDIA On-Demand (GTC sessions and slides)",
+      "url": "https://www.nvidia.com/en-us/on-demand/",
+      "notes": "Recorded GTC talks, many with downloadable slide decks.",
+      "lang": "en"
+    },
+    {
+      "id": "src-50",
+      "topic": "AI Hardware",
+      "type": "Docs",
+      "title": "NVIDIA Deep Learning Performance Guide",
+      "url": "https://docs.nvidia.com/deeplearning/performance/",
+      "notes": "GPU performance background: math vs memory bound, Tensor Core usage.",
+      "lang": "en"
+    },
+    {
+      "id": "src-51",
+      "topic": "AI Hardware",
+      "type": "PDF",
+      "title": "NVIDIA H100 (Hopper) Architecture Whitepaper",
+      "url": "https://resources.nvidia.com/en-us-tensor-core/gtc22-whitepaper-hopper",
+      "notes": "Official whitepaper: Transformer Engine, FP8, NVLink 4, HBM3.",
+      "lang": "en"
+    },
+    {
+      "id": "src-52",
+      "topic": "AI Hardware",
+      "type": "Docs",
+      "title": "AMD Instinct accelerators",
+      "url": "https://www.amd.com/en/products/accelerators/instinct.html",
+      "notes": "AMD data-center GPUs for AI.",
+      "lang": "en"
+    },
+    {
+      "id": "src-53",
+      "topic": "AI Hardware",
+      "type": "Website",
+      "title": "Cerebras blog",
+      "url": "https://www.cerebras.ai/blog",
+      "notes": "Wafer-scale AI hardware and fast inference.",
+      "lang": "en"
+    },
+    {
+      "id": "src-54",
+      "topic": "LLMs",
+      "type": "Slides",
+      "title": "Stanford CS224N lecture slides (PDF)",
+      "url": "https://web.stanford.edu/class/cs224n/slides/",
+      "notes": "NLP with deep learning: attention, transformers, pretraining, RLHF.",
+      "lang": "en"
+    },
+    {
+      "id": "src-55",
+      "topic": "LLMs",
+      "type": "Slides",
+      "title": "Stanford CS336: Language Modeling from Scratch",
+      "url": "https://stanford-cs336.github.io/spring2025/",
+      "notes": "Lecture PDFs and code: tokenizers, kernels, parallelism, scaling laws, alignment.",
+      "lang": "en"
+    },
+    {
+      "id": "src-56",
+      "topic": "Generative AI",
+      "type": "PDF",
+      "title": "Stanford AI Index Report 2025",
+      "url": "https://hai.stanford.edu/ai-index/2025-ai-index-report",
+      "notes": "Annual data-driven report on AI progress, cost, adoption and policy.",
+      "lang": "en"
+    },
+    {
+      "id": "src-57",
+      "topic": "Generative AI",
+      "type": "Slides",
+      "title": "State of AI Report",
+      "url": "https://www.stateof.ai/",
+      "notes": "Annual slide deck on AI research, industry and policy.",
+      "lang": "en"
+    },
+    {
+      "id": "src-58",
+      "topic": "AI Development",
+      "type": "Slides",
+      "title": "MIT 6.S191 Introduction to Deep Learning",
+      "url": "https://introtodeeplearning.com/",
+      "notes": "Lecture slides and videos, updated yearly.",
+      "lang": "en"
+    },
+    {
+      "id": "src-59",
+      "topic": "AI Engineering",
+      "type": "Slides",
+      "title": "Berkeley CS294 LLM Agents course",
+      "url": "https://rdi.berkeley.edu/llm-agents/f24",
+      "notes": "Lecture slides and videos on LLM agents.",
+      "lang": "en"
+    },
+    {
+      "id": "src-60",
+      "topic": "AI Development",
+      "type": "PDF",
+      "title": "Dive into Deep Learning (d2l.ai)",
+      "url": "https://d2l.ai",
+      "notes": "Free interactive book with code; PDF available.",
+      "lang": "en"
+    },
+    {
+      "id": "src-61",
+      "topic": "AI Development",
+      "type": "PDF",
+      "title": "Deep Learning (Goodfellow, Bengio, Courville)",
+      "url": "https://www.deeplearningbook.org",
+      "notes": "Classic deep learning textbook, free online.",
+      "lang": "en"
+    },
+    {
+      "id": "src-62",
+      "topic": "AI Development",
+      "type": "PDF",
+      "title": "Understanding Deep Learning (Simon Prince)",
+      "url": "https://udlbook.github.io/udlbook/",
+      "notes": "Free PDF textbook with slides and notebooks.",
+      "lang": "en"
+    },
+    {
+      "id": "src-63",
+      "topic": "AI Development",
+      "type": "Website",
+      "title": "أكاديمية حسوب: مقالات الذكاء الاصطناعي",
+      "url": "https://academy.hsoub.com/programming/artificial-intelligence/",
+      "notes": "مقالات ودروس عربية في الذكاء الاصطناعي وتعلم الآلة.",
+      "lang": "ar"
+    },
+    {
+      "id": "src-64",
+      "topic": "AI Development",
+      "type": "Course",
+      "title": "أكاديمية حسوب: دورة الذكاء الاصطناعي",
+      "url": "https://academy.hsoub.com/learn/artificial-intelligence/",
+      "notes": "دورة عربية مدفوعة: تعلم الآلة والتعلم العميق عبر مشاريع عملية.",
+      "lang": "ar"
+    },
+    {
+      "id": "src-65",
+      "topic": "AI Development",
+      "type": "Course",
+      "title": "إدراك (Edraak)",
+      "url": "https://www.edraak.org",
+      "notes": "منصة مساقات عربية مجانية.",
+      "lang": "ar"
+    },
+    {
+      "id": "src-66",
+      "topic": "AI Engineering",
+      "type": "Course",
+      "title": "أكاديمية Arabic.AI",
+      "url": "https://academy.arabic.ai",
+      "notes": "دورات عربية مجانية في البرمجة والذكاء الاصطناعي.",
+      "lang": "ar"
+    },
+    {
+      "id": "src-67",
+      "topic": "Generative AI",
+      "type": "Course",
+      "title": "المنتور: الذكاء الاصطناعي للمبتدئين",
+      "url": "https://almentor.net/en/courses/AI-for-Beginners",
+      "notes": "دورة عربية تغطي الذكاء الاصطناعي التوليدي وكتابة الأوامر.",
+      "lang": "ar"
+    },
+    {
+      "id": "src-68",
+      "topic": "Generative AI",
+      "type": "Website",
+      "title": "البوابة الرسمية لحكومة الإمارات: موارد الذكاء الاصطناعي",
+      "url": "https://u.ae/ar/about-the-uae/digital-uae/digital-technology/artificial-intelligence/ai-resources",
+      "notes": "منشورات عربية عن فرص الذكاء الاصطناعي ومخاطره.",
+      "lang": "ar"
+    },
+    {
+      "id": "src-69",
+      "topic": "Frontier Labs",
+      "type": "Website",
+      "title": "سدايا (SDAIA)",
+      "url": "https://sdaia.gov.sa",
+      "notes": "الهيئة السعودية للبيانات والذكاء الاصطناعي، مطوّرة نموذج علّام.",
+      "lang": "ar"
+    },
+    {
+      "id": "src-70",
+      "topic": "LLMs",
+      "type": "Website",
+      "title": "Open Arabic LLM Leaderboard",
+      "url": "https://huggingface.co/spaces/OALL/Open-Arabic-LLM-Leaderboard",
+      "notes": "لوحة تقييم نماذج اللغة العربية الكبيرة.",
+      "lang": "ar"
+    },
+    {
+      "id": "src-71",
+      "topic": "LLMs",
+      "type": "Paper",
+      "title": "Jais and Jais-chat: Arabic-Centric Foundation LLMs",
+      "url": "https://arxiv.org/abs/2308.16149",
+      "notes": "ورقة نموذج جيس العربي.",
+      "lang": "ar"
+    },
+    {
+      "id": "src-72",
+      "topic": "LLMs",
+      "type": "Paper",
+      "title": "ALLaM: Large Language Models for Arabic and English",
+      "url": "https://arxiv.org/abs/2407.15390",
+      "notes": "ورقة نموذج علّام من سدايا.",
+      "lang": "ar"
+    },
+    {
+      "id": "src-73",
+      "topic": "AI Development",
+      "type": "Course",
+      "title": "Google News Initiative: مقدمة في تعلم الآلة",
+      "url": "https://newsinitiative.withgoogle.com/ar-sa/resources/trainings/introduction-to-machine-learning/",
+      "notes": "درس عربي مجاني في أساسيات تعلم الآلة.",
+      "lang": "ar"
+    },
+    {
+      "id": "src-74",
+      "topic": "Frontier Labs",
+      "type": "Website",
+      "title": "MBZUAI (جامعة محمد بن زايد للذكاء الاصطناعي)",
+      "url": "https://mbzuai.ac.ae",
+      "notes": "جامعة بحثية في الذكاء الاصطناعي، شاركت في تطوير جيس.",
+      "lang": "ar"
+    }
   ],
   "notes": [
-    { "id": "note-1", "topic": "AI Sizing", "title": "Weight memory rule of thumb", "body": "Weight memory = parameters x bytes per parameter. FP32 = 4 B, FP16/BF16 = 2 B, INT8 = 1 B, INT4 = 0.5 B. A 7B model in FP16 needs about 14 GB just for weights; add KV cache and runtime overhead for inference.", "sourceId": "" },
-    { "id": "note-2", "topic": "AI Sizing", "title": "Training compute rule of thumb", "body": "Training FLOPs are approximately 6 x N x D, where N = parameters and D = training tokens. Chinchilla suggests about 20 tokens per parameter for compute-optimal training.", "sourceId": "src-2" },
-    { "id": "note-3", "topic": "AI Hardware", "title": "Why decoding is memory-bound", "body": "At small batch sizes each generated token needs all weights read from memory, but does little math per byte. Memory bandwidth (HBM), not peak FLOPs, usually limits tokens per second.", "sourceId": "" }
+    {
+      "id": "note-1",
+      "topic": "AI Sizing",
+      "title": "Weight memory rule of thumb",
+      "body": "Weight memory = parameters x bytes per parameter. FP32 = 4 B, FP16/BF16 = 2 B, INT8 = 1 B, INT4 = 0.5 B. A 7B model in FP16 needs about 14 GB just for weights; add KV cache and runtime overhead for inference.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-2",
+      "topic": "AI Sizing",
+      "title": "Training compute rule of thumb",
+      "body": "Training FLOPs are approximately 6 x N x D, where N = parameters and D = training tokens. Chinchilla suggests about 20 tokens per parameter for compute-optimal training.",
+      "sourceId": "src-2"
+    },
+    {
+      "id": "note-3",
+      "topic": "AI Hardware",
+      "title": "Why decoding is memory-bound",
+      "body": "At small batch sizes each generated token needs all weights read from memory, but does little math per byte. Memory bandwidth (HBM), not peak FLOPs, usually limits tokens per second.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-4",
+      "topic": "AI Hardware",
+      "title": "Roofline model",
+      "body": "Arithmetic intensity = FLOPs / bytes moved. If it is above the hardware ratio (peak FLOPs / memory bandwidth) the work is compute-bound; below it, memory-bound. Large-batch training is usually compute-bound; small-batch decoding is memory-bound.",
+      "sourceId": "src-13"
+    },
+    {
+      "id": "note-5",
+      "topic": "AI Sizing",
+      "title": "Inference compute per token",
+      "body": "A forward pass costs about 2 x N FLOPs per token (N = parameters). Training costs about 6 x N per token because the backward pass is about twice the forward pass.",
+      "sourceId": "src-20"
+    },
+    {
+      "id": "note-6",
+      "topic": "AI Sizing",
+      "title": "KV cache size",
+      "body": "Per token, the KV cache stores a key and a value for every layer: about 2 x layers x (kv heads x head dim) x bytes per value. Multiply by context length and batch size. Grouped-query attention shrinks it by sharing KV heads.",
+      "sourceId": "src-21"
+    },
+    {
+      "id": "note-7",
+      "topic": "AI Engineering",
+      "title": "Workflows vs agents",
+      "body": "Workflows orchestrate LLMs and tools through predefined code paths (prompt chaining, routing, parallelization). Agents let the LLM dynamically direct its own steps and tool use. Start with the simplest option that works.",
+      "sourceId": "src-28"
+    },
+    {
+      "id": "note-8",
+      "topic": "AI Engineering",
+      "title": "PagedAttention and continuous batching",
+      "body": "vLLM stores the KV cache in fixed-size blocks, like OS memory pages, which cuts fragmentation and allows more concurrent requests. Continuous batching adds new requests as soon as others finish instead of waiting for the whole batch.",
+      "sourceId": "src-31"
+    }
   ],
   "questions": [
-    { "id": "q-hw-1", "topic": "AI Hardware", "type": "mcq", "difficulty": "easy", "prompt": "Which processor type is most commonly used to train large neural networks?", "options": ["CPU", "GPU", "FPGA", "DSP"], "answer": "GPU", "explanation": "GPUs offer massive parallel matrix-math throughput, which dominates neural network training." },
-    { "id": "q-hw-2", "topic": "AI Hardware", "type": "tf", "difficulty": "easy", "prompt": "HBM stands for High Bandwidth Memory.", "answer": "True", "explanation": "HBM is stacked DRAM placed next to the accelerator die to provide very high memory bandwidth." },
-    { "id": "q-hw-3", "topic": "AI Hardware", "type": "mcq", "difficulty": "medium", "prompt": "Which NVIDIA interconnect provides high-bandwidth direct GPU-to-GPU communication?", "options": ["PCIe", "NVLink", "SATA", "USB4"], "answer": "NVLink", "explanation": "NVLink (and NVSwitch) gives far more GPU-to-GPU bandwidth than PCIe." },
-    { "id": "q-hw-4", "topic": "AI Hardware", "type": "mcq", "difficulty": "medium", "prompt": "What is Google's custom accelerator designed for machine learning called?", "options": ["TPU", "NPU-X", "Gaudi", "Inferentia"], "answer": "TPU", "explanation": "The Tensor Processing Unit (TPU) is Google's ML ASIC. Gaudi is Intel's; Inferentia is AWS's." },
-    { "id": "q-hw-5", "topic": "AI Hardware", "type": "short", "difficulty": "medium", "prompt": "Name the 16-bit number format with 8 exponent bits and 7 mantissa bits widely used for training.", "answer": "bfloat16|bf16|brain float 16", "explanation": "bfloat16 keeps FP32's exponent range with fewer mantissa bits, which makes training stable at 16 bits." },
-    { "id": "q-hw-6", "topic": "AI Hardware", "type": "mcq", "difficulty": "hard", "prompt": "For LLM token generation at small batch sizes, performance is usually limited by:", "options": ["Peak compute FLOPs", "Memory bandwidth", "Disk I/O", "Network latency"], "answer": "Memory bandwidth", "explanation": "Each decode step reads all the weights but does little math per byte, so it is memory-bandwidth bound." },
-    { "id": "q-hw-7", "topic": "AI Hardware", "type": "tf", "difficulty": "medium", "prompt": "Tensor Cores are specialized GPU units for matrix multiply-accumulate operations.", "answer": "True", "explanation": "Tensor Cores speed up mixed-precision matrix math (GEMMs), the core operation of deep learning." },
-
-    { "id": "q-sz-1", "topic": "AI Sizing", "type": "mcq", "difficulty": "easy", "prompt": "About how much memory do the weights of a 7B-parameter model take in FP16?", "options": ["3.5 GB", "7 GB", "14 GB", "28 GB"], "answer": "14 GB", "explanation": "7B parameters x 2 bytes = 14 GB." },
-    { "id": "q-sz-2", "topic": "AI Sizing", "type": "mcq", "difficulty": "medium", "prompt": "About how much memory do the weights of a 70B model take when quantized to 4 bits?", "options": ["17.5 GB", "35 GB", "70 GB", "140 GB"], "answer": "35 GB", "explanation": "70B x 0.5 bytes = 35 GB, before KV cache and overhead." },
-    { "id": "q-sz-3", "topic": "AI Sizing", "type": "short", "difficulty": "easy", "prompt": "How many bytes does one parameter take in FP32?", "answer": "4|four", "explanation": "32 bits = 4 bytes." },
-    { "id": "q-sz-4", "topic": "AI Sizing", "type": "mcq", "difficulty": "hard", "prompt": "Which rule of thumb estimates transformer training compute (N = parameters, D = tokens)?", "options": ["2 x N x D", "6 x N x D", "N^2 x D", "12 x N"], "answer": "6 x N x D", "explanation": "About 2ND FLOPs for the forward pass and 4ND for the backward pass." },
-    { "id": "q-sz-5", "topic": "AI Sizing", "type": "tf", "difficulty": "medium", "prompt": "KV cache memory grows linearly with context length and batch size.", "answer": "True", "explanation": "The KV cache stores keys and values per layer, per token and per sequence." },
-    { "id": "q-sz-6", "topic": "AI Sizing", "type": "mcq", "difficulty": "hard", "prompt": "Mixed-precision training with Adam needs roughly how many bytes per parameter for weights, gradients and optimizer states (excluding activations)?", "options": ["2", "4", "8", "16"], "answer": "16", "explanation": "2 (FP16 weights) + 2 (gradients) + 12 (FP32 master weights plus two Adam moments) = 16 bytes." },
-    { "id": "q-sz-7", "topic": "AI Sizing", "type": "mcq", "difficulty": "medium", "prompt": "Chinchilla scaling suggests compute-optimal training uses roughly how many tokens per parameter?", "options": ["1", "5", "20", "200"], "answer": "20", "explanation": "Hoffmann et al. (2022) found about 20 tokens per parameter is compute-optimal." },
-
-    { "id": "q-ga-1", "topic": "Generative AI", "type": "mcq", "difficulty": "easy", "prompt": "Which model family generates images by iteratively removing noise?", "options": ["Diffusion models", "Decision trees", "k-means", "RNNs"], "answer": "Diffusion models", "explanation": "Diffusion models learn to reverse a gradual noising process." },
-    { "id": "q-ga-2", "topic": "Generative AI", "type": "tf", "difficulty": "easy", "prompt": "A GAN consists of a generator and a discriminator.", "answer": "True", "explanation": "The two networks are trained against each other." },
-    { "id": "q-ga-3", "topic": "Generative AI", "type": "short", "difficulty": "medium", "prompt": "What does RAG stand for?", "answer": "retrieval-augmented generation|retrieval augmented generation", "explanation": "RAG retrieves relevant documents and adds them to the prompt to ground the answer." },
-    { "id": "q-ga-4", "topic": "Generative AI", "type": "mcq", "difficulty": "medium", "prompt": "In generative AI, a 'hallucination' is:", "options": ["Confident output not grounded in facts or the source", "A GPU memory error", "A data augmentation technique", "A type of loss function"], "answer": "Confident output not grounded in facts or the source", "explanation": "Models can produce fluent but false content." },
-    { "id": "q-ga-5", "topic": "Generative AI", "type": "mcq", "difficulty": "medium", "prompt": "Raising the sampling temperature generally makes outputs:", "options": ["More random and diverse", "More deterministic", "Shorter", "Faster to generate"], "answer": "More random and diverse", "explanation": "Higher temperature flattens the token probability distribution." },
-    { "id": "q-ga-6", "topic": "Generative AI", "type": "tf", "difficulty": "hard", "prompt": "VAEs are trained with a reconstruction loss plus a KL-divergence term on the latent distribution.", "answer": "True", "explanation": "This is the evidence lower bound (ELBO) objective." },
-
-    { "id": "q-llm-1", "topic": "LLMs", "type": "mcq", "difficulty": "easy", "prompt": "Which architecture underlies most modern LLMs?", "options": ["Transformer", "CNN", "LSTM", "Random forest"], "answer": "Transformer", "explanation": "Introduced in 'Attention Is All You Need' (2017)." },
-    { "id": "q-llm-2", "topic": "LLMs", "type": "short", "difficulty": "easy", "prompt": "What is the basic unit of text an LLM reads and generates called?", "answer": "token|tokens", "explanation": "Text is split into tokens (often subword pieces) by a tokenizer." },
-    { "id": "q-llm-3", "topic": "LLMs", "type": "mcq", "difficulty": "medium", "prompt": "Standard self-attention cost grows with sequence length n as:", "options": ["O(n)", "O(n log n)", "O(n^2)", "O(1)"], "answer": "O(n^2)", "explanation": "Every token attends to every other token." },
-    { "id": "q-llm-4", "topic": "LLMs", "type": "tf", "difficulty": "medium", "prompt": "Decoder-only models like GPT are pretrained with a next-token prediction objective.", "answer": "True", "explanation": "Causal language modeling predicts each token from the tokens before it." },
-    { "id": "q-llm-5", "topic": "LLMs", "type": "mcq", "difficulty": "medium", "prompt": "What does RLHF stand for?", "options": ["Reinforcement Learning from Human Feedback", "Recurrent Layer High-Frequency", "Regularized Linear Hidden Features", "Reward Learning for Hardware Fitting"], "answer": "Reinforcement Learning from Human Feedback", "explanation": "RLHF aligns a model using a reward model trained on human preferences." },
-    { "id": "q-llm-6", "topic": "LLMs", "type": "mcq", "difficulty": "hard", "prompt": "How does LoRA fine-tune a model?", "options": ["Adds trainable low-rank matrices while freezing the base weights", "Retrains all weights at lower precision", "Removes attention heads", "Distills into a smaller model"], "answer": "Adds trainable low-rank matrices while freezing the base weights", "explanation": "Only the small low-rank adapters are trained, which cuts memory and storage." },
-    { "id": "q-llm-7", "topic": "LLMs", "type": "mcq", "difficulty": "hard", "prompt": "What is the purpose of positional encodings such as RoPE?", "options": ["To give the model information about token order", "To compress the vocabulary", "To regularize training", "To quantize the weights"], "answer": "To give the model information about token order", "explanation": "Attention alone does not see order, so position information must be injected." },
-
-    { "id": "q-eng-1", "topic": "AI Engineering", "type": "mcq", "difficulty": "easy", "prompt": "In AI applications, embeddings are:", "options": ["Dense vectors that represent meaning", "Compressed model weights", "HTML tags", "GPU drivers"], "answer": "Dense vectors that represent meaning", "explanation": "Similar content maps to nearby vectors." },
-    { "id": "q-eng-2", "topic": "AI Engineering", "type": "mcq", "difficulty": "medium", "prompt": "Which type of database is optimized for similarity search over embeddings?", "options": ["Vector database", "Graph database", "Time-series database", "Key-value cache"], "answer": "Vector database", "explanation": "Vector databases use approximate nearest-neighbour indexes such as HNSW." },
-    { "id": "q-eng-3", "topic": "AI Engineering", "type": "tf", "difficulty": "medium", "prompt": "Prompt caching can reduce latency and cost when many requests share the same prompt prefix.", "answer": "True", "explanation": "The shared prefix is processed once and reused." },
-    { "id": "q-eng-4", "topic": "AI Engineering", "type": "mcq", "difficulty": "medium", "prompt": "Which metric measures the fraction of all relevant documents that appear in the top-k retrieved results?", "options": ["Recall@k", "Precision@k", "BLEU", "Perplexity"], "answer": "Recall@k", "explanation": "Precision@k is the fraction of the top-k results that are relevant." },
-    { "id": "q-eng-5", "topic": "AI Engineering", "type": "short", "difficulty": "hard", "prompt": "What is the technique called that lets an LLM call external functions or APIs through structured output?", "answer": "tool use|function calling|tool calling", "explanation": "The model emits a structured call, the app runs it, and the result is fed back to the model." },
-    { "id": "q-eng-6", "topic": "AI Engineering", "type": "mcq", "difficulty": "hard", "prompt": "Why use chunk overlap when splitting documents for RAG?", "options": ["To keep context that spans chunk boundaries", "To reduce storage", "To speed up tokenization", "To prevent prompt injection"], "answer": "To keep context that spans chunk boundaries", "explanation": "Overlap stops sentences or ideas from being cut in half." },
-
-    { "id": "q-dev-1", "topic": "AI Development", "type": "mcq", "difficulty": "easy", "prompt": "Which data split is kept aside for the final, unbiased evaluation?", "options": ["Training set", "Validation set", "Test set", "Augmented set"], "answer": "Test set", "explanation": "The validation set is used for tuning; the test set is touched only at the end." },
-    { "id": "q-dev-2", "topic": "AI Development", "type": "tf", "difficulty": "easy", "prompt": "Overfitting means a model does well on its training data but poorly on new data.", "answer": "True", "explanation": "The model memorizes noise instead of learning patterns that generalize." },
-    { "id": "q-dev-3", "topic": "AI Development", "type": "mcq", "difficulty": "medium", "prompt": "Which optimizer is most commonly used to train transformers?", "options": ["AdamW", "Plain SGD without momentum", "L-BFGS", "Genetic algorithm"], "answer": "AdamW", "explanation": "AdamW is Adam with decoupled weight decay." },
-    { "id": "q-dev-4", "topic": "AI Development", "type": "mcq", "difficulty": "medium", "prompt": "What is the main purpose of learning-rate warmup?", "options": ["To stabilize early training", "To reduce model size", "To increase the batch size", "To replace regularization"], "answer": "To stabilize early training", "explanation": "Starting with a small learning rate avoids large, unstable updates while the optimizer statistics settle." },
-    { "id": "q-dev-5", "topic": "AI Development", "type": "tf", "difficulty": "medium", "prompt": "Data leakage happens when information from the test set influences training, which inflates scores.", "answer": "True", "explanation": "Leakage makes offline metrics look better than real-world performance." },
-    { "id": "q-dev-6", "topic": "AI Development", "type": "mcq", "difficulty": "hard", "prompt": "What does gradient (activation) checkpointing trade?", "options": ["Extra compute for less activation memory", "Accuracy for speed", "Disk space for network bandwidth", "Less compute for more memory"], "answer": "Extra compute for less activation memory", "explanation": "Activations are recomputed during the backward pass instead of being stored." },
-    { "id": "q-dev-7", "topic": "AI Development", "type": "short", "difficulty": "medium", "prompt": "What is the technique called where a small model is trained to imitate a large model?", "answer": "knowledge distillation|distillation|model distillation", "explanation": "The student learns from the teacher's outputs or logits." }
+    {
+      "id": "q-hw-1",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which processor type is most commonly used to train large neural networks?",
+      "options": [
+        "CPU",
+        "GPU",
+        "FPGA",
+        "DSP"
+      ],
+      "answer": "GPU",
+      "explanation": "GPUs offer massive parallel matrix-math throughput, which dominates neural network training."
+    },
+    {
+      "id": "q-hw-2",
+      "topic": "AI Hardware",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "HBM stands for High Bandwidth Memory.",
+      "answer": "True",
+      "explanation": "HBM is stacked DRAM placed next to the accelerator die to provide very high memory bandwidth."
+    },
+    {
+      "id": "q-hw-3",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which NVIDIA interconnect provides high-bandwidth direct GPU-to-GPU communication?",
+      "options": [
+        "PCIe",
+        "NVLink",
+        "SATA",
+        "USB4"
+      ],
+      "answer": "NVLink",
+      "explanation": "NVLink (and NVSwitch) gives far more GPU-to-GPU bandwidth than PCIe."
+    },
+    {
+      "id": "q-hw-4",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is Google's custom accelerator designed for machine learning called?",
+      "options": [
+        "TPU",
+        "NPU-X",
+        "Gaudi",
+        "Inferentia"
+      ],
+      "answer": "TPU",
+      "explanation": "The Tensor Processing Unit (TPU) is Google's ML ASIC. Gaudi is Intel's; Inferentia is AWS's."
+    },
+    {
+      "id": "q-hw-5",
+      "topic": "AI Hardware",
+      "type": "short",
+      "difficulty": "medium",
+      "prompt": "Name the 16-bit number format with 8 exponent bits and 7 mantissa bits widely used for training.",
+      "answer": "bfloat16|bf16|brain float 16",
+      "explanation": "bfloat16 keeps FP32's exponent range with fewer mantissa bits, which makes training stable at 16 bits."
+    },
+    {
+      "id": "q-hw-6",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "For LLM token generation at small batch sizes, performance is usually limited by:",
+      "options": [
+        "Peak compute FLOPs",
+        "Memory bandwidth",
+        "Disk I/O",
+        "Network latency"
+      ],
+      "answer": "Memory bandwidth",
+      "explanation": "Each decode step reads all the weights but does little math per byte, so it is memory-bandwidth bound."
+    },
+    {
+      "id": "q-hw-7",
+      "topic": "AI Hardware",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Tensor Cores are specialized GPU units for matrix multiply-accumulate operations.",
+      "answer": "True",
+      "explanation": "Tensor Cores speed up mixed-precision matrix math (GEMMs), the core operation of deep learning."
+    },
+    {
+      "id": "q-sz-1",
+      "topic": "AI Sizing",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "About how much memory do the weights of a 7B-parameter model take in FP16?",
+      "options": [
+        "3.5 GB",
+        "7 GB",
+        "14 GB",
+        "28 GB"
+      ],
+      "answer": "14 GB",
+      "explanation": "7B parameters x 2 bytes = 14 GB."
+    },
+    {
+      "id": "q-sz-2",
+      "topic": "AI Sizing",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "About how much memory do the weights of a 70B model take when quantized to 4 bits?",
+      "options": [
+        "17.5 GB",
+        "35 GB",
+        "70 GB",
+        "140 GB"
+      ],
+      "answer": "35 GB",
+      "explanation": "70B x 0.5 bytes = 35 GB, before KV cache and overhead."
+    },
+    {
+      "id": "q-sz-3",
+      "topic": "AI Sizing",
+      "type": "short",
+      "difficulty": "easy",
+      "prompt": "How many bytes does one parameter take in FP32?",
+      "answer": "4|four",
+      "explanation": "32 bits = 4 bytes."
+    },
+    {
+      "id": "q-sz-4",
+      "topic": "AI Sizing",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Which rule of thumb estimates transformer training compute (N = parameters, D = tokens)?",
+      "options": [
+        "2 x N x D",
+        "6 x N x D",
+        "N^2 x D",
+        "12 x N"
+      ],
+      "answer": "6 x N x D",
+      "explanation": "About 2ND FLOPs for the forward pass and 4ND for the backward pass."
+    },
+    {
+      "id": "q-sz-5",
+      "topic": "AI Sizing",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "KV cache memory grows linearly with context length and batch size.",
+      "answer": "True",
+      "explanation": "The KV cache stores keys and values per layer, per token and per sequence."
+    },
+    {
+      "id": "q-sz-6",
+      "topic": "AI Sizing",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Mixed-precision training with Adam needs roughly how many bytes per parameter for weights, gradients and optimizer states (excluding activations)?",
+      "options": [
+        "2",
+        "4",
+        "8",
+        "16"
+      ],
+      "answer": "16",
+      "explanation": "2 (FP16 weights) + 2 (gradients) + 12 (FP32 master weights plus two Adam moments) = 16 bytes."
+    },
+    {
+      "id": "q-sz-7",
+      "topic": "AI Sizing",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Chinchilla scaling suggests compute-optimal training uses roughly how many tokens per parameter?",
+      "options": [
+        "1",
+        "5",
+        "20",
+        "200"
+      ],
+      "answer": "20",
+      "explanation": "Hoffmann et al. (2022) found about 20 tokens per parameter is compute-optimal."
+    },
+    {
+      "id": "q-ga-1",
+      "topic": "Generative AI",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which model family generates images by iteratively removing noise?",
+      "options": [
+        "Diffusion models",
+        "Decision trees",
+        "k-means",
+        "RNNs"
+      ],
+      "answer": "Diffusion models",
+      "explanation": "Diffusion models learn to reverse a gradual noising process."
+    },
+    {
+      "id": "q-ga-2",
+      "topic": "Generative AI",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "A GAN consists of a generator and a discriminator.",
+      "answer": "True",
+      "explanation": "The two networks are trained against each other."
+    },
+    {
+      "id": "q-ga-3",
+      "topic": "Generative AI",
+      "type": "short",
+      "difficulty": "medium",
+      "prompt": "What does RAG stand for?",
+      "answer": "retrieval-augmented generation|retrieval augmented generation",
+      "explanation": "RAG retrieves relevant documents and adds them to the prompt to ground the answer."
+    },
+    {
+      "id": "q-ga-4",
+      "topic": "Generative AI",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "In generative AI, a 'hallucination' is:",
+      "options": [
+        "Confident output not grounded in facts or the source",
+        "A GPU memory error",
+        "A data augmentation technique",
+        "A type of loss function"
+      ],
+      "answer": "Confident output not grounded in facts or the source",
+      "explanation": "Models can produce fluent but false content."
+    },
+    {
+      "id": "q-ga-5",
+      "topic": "Generative AI",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Raising the sampling temperature generally makes outputs:",
+      "options": [
+        "More random and diverse",
+        "More deterministic",
+        "Shorter",
+        "Faster to generate"
+      ],
+      "answer": "More random and diverse",
+      "explanation": "Higher temperature flattens the token probability distribution."
+    },
+    {
+      "id": "q-ga-6",
+      "topic": "Generative AI",
+      "type": "tf",
+      "difficulty": "hard",
+      "prompt": "VAEs are trained with a reconstruction loss plus a KL-divergence term on the latent distribution.",
+      "answer": "True",
+      "explanation": "This is the evidence lower bound (ELBO) objective."
+    },
+    {
+      "id": "q-llm-1",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which architecture underlies most modern LLMs?",
+      "options": [
+        "Transformer",
+        "CNN",
+        "LSTM",
+        "Random forest"
+      ],
+      "answer": "Transformer",
+      "explanation": "Introduced in 'Attention Is All You Need' (2017)."
+    },
+    {
+      "id": "q-llm-2",
+      "topic": "LLMs",
+      "type": "short",
+      "difficulty": "easy",
+      "prompt": "What is the basic unit of text an LLM reads and generates called?",
+      "answer": "token|tokens",
+      "explanation": "Text is split into tokens (often subword pieces) by a tokenizer."
+    },
+    {
+      "id": "q-llm-3",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Standard self-attention cost grows with sequence length n as:",
+      "options": [
+        "O(n)",
+        "O(n log n)",
+        "O(n^2)",
+        "O(1)"
+      ],
+      "answer": "O(n^2)",
+      "explanation": "Every token attends to every other token."
+    },
+    {
+      "id": "q-llm-4",
+      "topic": "LLMs",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Decoder-only models like GPT are pretrained with a next-token prediction objective.",
+      "answer": "True",
+      "explanation": "Causal language modeling predicts each token from the tokens before it."
+    },
+    {
+      "id": "q-llm-5",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What does RLHF stand for?",
+      "options": [
+        "Reinforcement Learning from Human Feedback",
+        "Recurrent Layer High-Frequency",
+        "Regularized Linear Hidden Features",
+        "Reward Learning for Hardware Fitting"
+      ],
+      "answer": "Reinforcement Learning from Human Feedback",
+      "explanation": "RLHF aligns a model using a reward model trained on human preferences."
+    },
+    {
+      "id": "q-llm-6",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "How does LoRA fine-tune a model?",
+      "options": [
+        "Adds trainable low-rank matrices while freezing the base weights",
+        "Retrains all weights at lower precision",
+        "Removes attention heads",
+        "Distills into a smaller model"
+      ],
+      "answer": "Adds trainable low-rank matrices while freezing the base weights",
+      "explanation": "Only the small low-rank adapters are trained, which cuts memory and storage."
+    },
+    {
+      "id": "q-llm-7",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "What is the purpose of positional encodings such as RoPE?",
+      "options": [
+        "To give the model information about token order",
+        "To compress the vocabulary",
+        "To regularize training",
+        "To quantize the weights"
+      ],
+      "answer": "To give the model information about token order",
+      "explanation": "Attention alone does not see order, so position information must be injected."
+    },
+    {
+      "id": "q-eng-1",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "In AI applications, embeddings are:",
+      "options": [
+        "Dense vectors that represent meaning",
+        "Compressed model weights",
+        "HTML tags",
+        "GPU drivers"
+      ],
+      "answer": "Dense vectors that represent meaning",
+      "explanation": "Similar content maps to nearby vectors."
+    },
+    {
+      "id": "q-eng-2",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which type of database is optimized for similarity search over embeddings?",
+      "options": [
+        "Vector database",
+        "Graph database",
+        "Time-series database",
+        "Key-value cache"
+      ],
+      "answer": "Vector database",
+      "explanation": "Vector databases use approximate nearest-neighbour indexes such as HNSW."
+    },
+    {
+      "id": "q-eng-3",
+      "topic": "AI Engineering",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Prompt caching can reduce latency and cost when many requests share the same prompt prefix.",
+      "answer": "True",
+      "explanation": "The shared prefix is processed once and reused."
+    },
+    {
+      "id": "q-eng-4",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which metric measures the fraction of all relevant documents that appear in the top-k retrieved results?",
+      "options": [
+        "Recall@k",
+        "Precision@k",
+        "BLEU",
+        "Perplexity"
+      ],
+      "answer": "Recall@k",
+      "explanation": "Precision@k is the fraction of the top-k results that are relevant."
+    },
+    {
+      "id": "q-eng-5",
+      "topic": "AI Engineering",
+      "type": "short",
+      "difficulty": "hard",
+      "prompt": "What is the technique called that lets an LLM call external functions or APIs through structured output?",
+      "answer": "tool use|function calling|tool calling",
+      "explanation": "The model emits a structured call, the app runs it, and the result is fed back to the model."
+    },
+    {
+      "id": "q-eng-6",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Why use chunk overlap when splitting documents for RAG?",
+      "options": [
+        "To keep context that spans chunk boundaries",
+        "To reduce storage",
+        "To speed up tokenization",
+        "To prevent prompt injection"
+      ],
+      "answer": "To keep context that spans chunk boundaries",
+      "explanation": "Overlap stops sentences or ideas from being cut in half."
+    },
+    {
+      "id": "q-dev-1",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which data split is kept aside for the final, unbiased evaluation?",
+      "options": [
+        "Training set",
+        "Validation set",
+        "Test set",
+        "Augmented set"
+      ],
+      "answer": "Test set",
+      "explanation": "The validation set is used for tuning; the test set is touched only at the end."
+    },
+    {
+      "id": "q-dev-2",
+      "topic": "AI Development",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "Overfitting means a model does well on its training data but poorly on new data.",
+      "answer": "True",
+      "explanation": "The model memorizes noise instead of learning patterns that generalize."
+    },
+    {
+      "id": "q-dev-3",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which optimizer is most commonly used to train transformers?",
+      "options": [
+        "AdamW",
+        "Plain SGD without momentum",
+        "L-BFGS",
+        "Genetic algorithm"
+      ],
+      "answer": "AdamW",
+      "explanation": "AdamW is Adam with decoupled weight decay."
+    },
+    {
+      "id": "q-dev-4",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is the main purpose of learning-rate warmup?",
+      "options": [
+        "To stabilize early training",
+        "To reduce model size",
+        "To increase the batch size",
+        "To replace regularization"
+      ],
+      "answer": "To stabilize early training",
+      "explanation": "Starting with a small learning rate avoids large, unstable updates while the optimizer statistics settle."
+    },
+    {
+      "id": "q-dev-5",
+      "topic": "AI Development",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Data leakage happens when information from the test set influences training, which inflates scores.",
+      "answer": "True",
+      "explanation": "Leakage makes offline metrics look better than real-world performance."
+    },
+    {
+      "id": "q-dev-6",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "What does gradient (activation) checkpointing trade?",
+      "options": [
+        "Extra compute for less activation memory",
+        "Accuracy for speed",
+        "Disk space for network bandwidth",
+        "Less compute for more memory"
+      ],
+      "answer": "Extra compute for less activation memory",
+      "explanation": "Activations are recomputed during the backward pass instead of being stored."
+    },
+    {
+      "id": "q-dev-7",
+      "topic": "AI Development",
+      "type": "short",
+      "difficulty": "medium",
+      "prompt": "What is the technique called where a small model is trained to imitate a large model?",
+      "answer": "knowledge distillation|distillation|model distillation",
+      "explanation": "The student learns from the teacher's outputs or logits."
+    },
+    {
+      "id": "q-hw-8",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "How does FlashAttention speed up attention?",
+      "options": [
+        "By approximating attention with low-rank matrices",
+        "By tiling to cut reads and writes between HBM and on-chip SRAM",
+        "By running attention on the CPU",
+        "By pruning attention heads"
+      ],
+      "answer": "By tiling to cut reads and writes between HBM and on-chip SRAM",
+      "explanation": "It is IO-aware: it computes exact attention in tiles that fit in fast SRAM and never writes the full attention matrix to HBM.",
+      "sourceId": "src-19"
+    },
+    {
+      "id": "q-hw-9",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "In the roofline model, an operation is compute-bound when its arithmetic intensity is ___ the hardware's FLOPs-per-byte ratio.",
+      "options": [
+        "Higher than",
+        "Lower than",
+        "Exactly half of",
+        "Unrelated to"
+      ],
+      "answer": "Higher than",
+      "explanation": "Above the ridge point, memory keeps up and peak FLOPs is the limit.",
+      "sourceId": "src-13"
+    },
+    {
+      "id": "q-hw-10",
+      "topic": "AI Hardware",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "MLPerf is a suite of industry benchmarks for AI training and inference performance, run by MLCommons.",
+      "answer": "True",
+      "explanation": "MLPerf results are the standard way to compare AI hardware systems.",
+      "sourceId": "src-18"
+    },
+    {
+      "id": "q-hw-11",
+      "topic": "AI Hardware",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "NVIDIA's Transformer Engine, which uses FP8 precision, was first introduced with the Hopper (H100) architecture.",
+      "answer": "True",
+      "explanation": "Hopper introduced the Transformer Engine; Blackwell extended it to lower precisions such as FP4.",
+      "sourceId": "src-51"
+    },
+    {
+      "id": "q-hw-12",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "In data-parallel training, what does ZeRO (as described in the Ultra-Scale Playbook) do?",
+      "options": [
+        "Compresses activations to zero bits",
+        "Shards optimizer states, gradients and parameters across GPUs",
+        "Removes the need for gradients",
+        "Splits each layer across GPUs (tensor parallelism)"
+      ],
+      "answer": "Shards optimizer states, gradients and parameters across GPUs",
+      "explanation": "Plain data parallelism replicates everything on each GPU; ZeRO partitions it to save memory.",
+      "sourceId": "src-17"
+    },
+    {
+      "id": "q-sz-8",
+      "topic": "AI Sizing",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "About how many FLOPs does an inference forward pass cost per token for a model with N parameters?",
+      "options": [
+        "N",
+        "2 x N",
+        "6 x N",
+        "N^2"
+      ],
+      "answer": "2 x N",
+      "explanation": "Each parameter takes part in about one multiply and one add per token.",
+      "sourceId": "src-20"
+    },
+    {
+      "id": "q-sz-9",
+      "topic": "AI Sizing",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "The Kaplan et al. scaling laws found that language model loss scales with model size, data and compute as a:",
+      "options": [
+        "Power law",
+        "Step function",
+        "Exponential increase",
+        "Random walk"
+      ],
+      "answer": "Power law",
+      "explanation": "Loss falls smoothly as a power law in each factor when the others are not bottlenecks.",
+      "sourceId": "src-22"
+    },
+    {
+      "id": "q-sz-10",
+      "topic": "AI Sizing",
+      "type": "tf",
+      "difficulty": "hard",
+      "prompt": "Grouped-query attention (GQA) reduces KV cache memory by letting several query heads share the same key/value heads.",
+      "answer": "True",
+      "explanation": "Fewer KV heads means proportionally less KV cache per token.",
+      "sourceId": "src-21"
+    },
+    {
+      "id": "q-sz-11",
+      "topic": "AI Sizing",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "When sizing GPU memory for LLM serving, what usually grows with the number of concurrent users and the context length?",
+      "options": [
+        "Model weights",
+        "KV cache",
+        "Tokenizer vocabulary",
+        "CUDA kernel size"
+      ],
+      "answer": "KV cache",
+      "explanation": "Weights are fixed; the KV cache scales with tokens in flight.",
+      "sourceId": "src-21"
+    },
+    {
+      "id": "q-llm-8",
+      "topic": "LLMs",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "The InstructGPT paper reported that outputs from a 1.3B-parameter InstructGPT model were preferred by human raters over the 175B GPT-3.",
+      "answer": "True",
+      "explanation": "Alignment with RLHF mattered more than raw size for following instructions.",
+      "sourceId": "src-12"
+    },
+    {
+      "id": "q-llm-9",
+      "topic": "LLMs",
+      "type": "short",
+      "difficulty": "medium",
+      "prompt": "What tokenization algorithm, used by GPT models, repeatedly merges the most frequent pair of symbols?",
+      "answer": "byte pair encoding|bpe|byte-pair encoding",
+      "explanation": "BPE builds a subword vocabulary by iteratively merging frequent pairs.",
+      "sourceId": "src-8"
+    },
+    {
+      "id": "q-llm-10",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Why do transformers use multi-head attention instead of a single attention head?",
+      "options": [
+        "To remove all parameters",
+        "To attend to information from different representation subspaces at once",
+        "To avoid needing positional information",
+        "To make training sequential"
+      ],
+      "answer": "To attend to information from different representation subspaces at once",
+      "explanation": "Each head can learn different relationships, such as syntax or coreference.",
+      "sourceId": "src-10"
+    },
+    {
+      "id": "q-llm-11",
+      "topic": "LLMs",
+      "type": "short",
+      "difficulty": "easy",
+      "prompt": "In Karpathy's Zero to Hero series, what is the name of the tiny autograd engine built in the first lecture?",
+      "answer": "micrograd",
+      "explanation": "micrograd implements backpropagation over a scalar computation graph.",
+      "sourceId": "src-8"
+    },
+    {
+      "id": "q-llm-12",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which organization developed the ALLaM Arabic-English language models?",
+      "options": [
+        "SDAIA (Saudi Data and AI Authority)",
+        "OpenAI",
+        "Mistral AI",
+        "NVIDIA"
+      ],
+      "answer": "SDAIA (Saudi Data and AI Authority)",
+      "explanation": "ALLaM is described in arXiv 2407.15390.",
+      "sourceId": "src-72"
+    },
+    {
+      "id": "q-llm-13",
+      "topic": "LLMs",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Jais is an Arabic-centric open generative LLM developed by Inception (G42), MBZUAI and Cerebras.",
+      "answer": "True",
+      "explanation": "Jais and Jais-chat are described in arXiv 2308.16149.",
+      "sourceId": "src-71"
+    },
+    {
+      "id": "q-ga-7",
+      "topic": "Generative AI",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Latent diffusion models (such as Stable Diffusion) run the diffusion process in the compressed latent space of an autoencoder rather than directly on pixels.",
+      "answer": "True",
+      "explanation": "Working in latent space makes high-resolution generation much cheaper.",
+      "sourceId": "src-26"
+    },
+    {
+      "id": "q-ga-8",
+      "topic": "Generative AI",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "What does classifier-free guidance do in a text-to-image diffusion model?",
+      "options": [
+        "Removes the need for a text encoder",
+        "Pushes generations to follow the prompt more closely",
+        "Trains a separate image classifier",
+        "Speeds up sampling by skipping steps"
+      ],
+      "answer": "Pushes generations to follow the prompt more closely",
+      "explanation": "It mixes conditional and unconditional predictions; a higher guidance scale means stronger prompt adherence, often with less diversity.",
+      "sourceId": "src-26"
+    },
+    {
+      "id": "q-ga-9",
+      "topic": "Generative AI",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which technique gives a model a few worked examples inside the prompt?",
+      "options": [
+        "Few-shot prompting",
+        "Fine-tuning",
+        "Pretraining",
+        "Quantization"
+      ],
+      "answer": "Few-shot prompting",
+      "explanation": "The examples show the expected format and behavior without any training.",
+      "sourceId": "src-29"
+    },
+    {
+      "id": "q-eng-7",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "According to Anthropic's \"Building Effective Agents\", what distinguishes an agent from a workflow?",
+      "options": [
+        "An agent always uses multiple models",
+        "An agent lets the LLM dynamically direct its own process and tool use",
+        "A workflow cannot call tools",
+        "An agent never needs a prompt"
+      ],
+      "answer": "An agent lets the LLM dynamically direct its own process and tool use",
+      "explanation": "Workflows follow predefined code paths; agents decide their own steps.",
+      "sourceId": "src-28"
+    },
+    {
+      "id": "q-eng-8",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What problem does vLLM's PagedAttention solve?",
+      "options": [
+        "Slow tokenization",
+        "Wasted memory and fragmentation in the KV cache",
+        "Training instability",
+        "Missing GPU drivers"
+      ],
+      "answer": "Wasted memory and fragmentation in the KV cache",
+      "explanation": "It allocates the KV cache in blocks like OS memory pages, so more requests fit in memory.",
+      "sourceId": "src-31"
+    },
+    {
+      "id": "q-eng-9",
+      "topic": "AI Engineering",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Continuous batching improves serving throughput by adding new requests to the running batch as soon as others finish.",
+      "answer": "True",
+      "explanation": "Static batching waits for the slowest sequence; continuous batching keeps the GPU busy.",
+      "sourceId": "src-31"
+    },
+    {
+      "id": "q-eng-10",
+      "topic": "AI Engineering",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Indirect prompt injection happens when malicious instructions arrive through content the model reads, such as retrieved documents or emails.",
+      "answer": "True",
+      "explanation": "Treat retrieved content as untrusted data and defend at the model, prompt and system level.",
+      "sourceId": "src-27"
+    },
+    {
+      "id": "q-eng-11",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which LLM-system pattern validates and filters model outputs (for example, schema checks or safety filters) before they reach users?",
+      "options": [
+        "Guardrails",
+        "Pretraining",
+        "Tokenization",
+        "Distillation"
+      ],
+      "answer": "Guardrails",
+      "explanation": "Guardrails are a core pattern alongside evals, RAG, caching and defensive UX.",
+      "sourceId": "src-32"
+    },
+    {
+      "id": "q-dev-8",
+      "topic": "AI Development",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "Rule #1 of Google's Rules of ML is: do not be afraid to launch a product without machine learning.",
+      "answer": "True",
+      "explanation": "Heuristics can get a product working; add ML once you have data.",
+      "sourceId": "src-35"
+    },
+    {
+      "id": "q-dev-9",
+      "topic": "AI Development",
+      "type": "short",
+      "difficulty": "medium",
+      "prompt": "In PyTorch, which method do you call on the loss tensor to compute gradients?",
+      "answer": "backward|loss.backward()|.backward()|backward()",
+      "explanation": "autograd fills .grad on every tensor that has requires_grad=True.",
+      "sourceId": "src-33"
+    },
+    {
+      "id": "q-dev-10",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Starting from a pretrained model and adapting it to a new task is called:",
+      "options": [
+        "Transfer learning",
+        "Data leakage",
+        "Early stopping",
+        "Dropout"
+      ],
+      "answer": "Transfer learning",
+      "explanation": "It needs far less data and compute than training from scratch.",
+      "sourceId": "src-34"
+    },
+    {
+      "id": "q-fr-1",
+      "topic": "Frontier Labs",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which company develops the Llama family of open-weight models?",
+      "options": [
+        "Meta",
+        "Mistral AI",
+        "Anthropic",
+        "xAI"
+      ],
+      "answer": "Meta",
+      "explanation": "Llama models are released by Meta AI.",
+      "sourceId": "src-40"
+    },
+    {
+      "id": "q-fr-2",
+      "topic": "Frontier Labs",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which lab develops the Gemini models?",
+      "options": [
+        "Google DeepMind",
+        "OpenAI",
+        "DeepSeek",
+        "Cerebras"
+      ],
+      "answer": "Google DeepMind",
+      "explanation": "Gemini is Google DeepMind's multimodal model family.",
+      "sourceId": "src-39"
+    },
+    {
+      "id": "q-fr-3",
+      "topic": "Frontier Labs",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which company develops the Claude models?",
+      "options": [
+        "Anthropic",
+        "Meta",
+        "Alibaba",
+        "Microsoft"
+      ],
+      "answer": "Anthropic",
+      "explanation": "Claude is built by Anthropic.",
+      "sourceId": "src-38"
+    },
+    {
+      "id": "q-fr-4",
+      "topic": "Frontier Labs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "The Qwen open model family comes from which company?",
+      "options": [
+        "Alibaba",
+        "Baidu",
+        "Tencent",
+        "Samsung"
+      ],
+      "answer": "Alibaba",
+      "explanation": "Qwen is developed by Alibaba Cloud.",
+      "sourceId": "src-46"
+    }
   ]
 }

@@ -53,8 +53,10 @@ function render() {
   // library
   const lt = $('#lib-filter-topic').value;
   const byTopic = x => !lt || x.topic === lt;
-  $('#note-list').innerHTML = db.notes.filter(byTopic).map(n => `<li><div><strong>${esc(n.title)}</strong> <span class="tag">${esc(n.topic)}${sourceTitle(n.sourceId) ? ' · ' + esc(sourceTitle(n.sourceId)) : ''}</span><div>${esc(n.body)}</div></div><button class="del" data-del="notes" data-id="${esc(n.id)}">Delete</button></li>`).join('') || '<li class="muted">Nothing yet.</li>';
-  $('#source-list').innerHTML = db.sources.filter(byTopic).map(s => `<li><div>${/^https?:\/\//i.test(s.url) ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>` : esc(s.title)} <span class="tag">${esc(s.type)} · ${esc(s.topic)}</span>${s.notes ? `<div class="muted">${esc(s.notes)}</div>` : ''}</div><button class="del" data-del="sources" data-id="${esc(s.id)}">Delete</button></li>`).join('') || '<li class="muted">Nothing yet.</li>';
+  $('#note-list').innerHTML = db.notes.filter(byTopic).map(n => `<li dir="auto"><div><strong>${esc(n.title)}</strong> <span class="tag">${esc(n.topic)}${sourceTitle(n.sourceId) ? ' · ' + esc(sourceTitle(n.sourceId)) : ''}</span><div>${esc(n.body)}</div></div><button class="del" data-del="notes" data-id="${esc(n.id)}">Delete</button></li>`).join('') || '<li class="muted">Nothing yet.</li>';
+  const st = $('#lib-filter-type').value, sl = $('#lib-filter-lang').value;
+  const srcs = db.sources.filter(s => byTopic(s) && (!st || s.type === st) && (!sl || (s.lang || 'en') === sl));
+  $('#source-list').innerHTML = srcs.map(s => `<li dir="auto"><div>${/^https?:\/\//i.test(s.url) ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>` : esc(s.title)} <span class="tag">${esc(s.type)} · ${esc(s.topic)}${s.lang === 'ar' ? ' · العربية' : ''}</span>${s.notes ? `<div class="muted">${esc(s.notes)}</div>` : ''}</div><button class="del" data-del="sources" data-id="${esc(s.id)}">Delete</button></li>`).join('') || '<li class="muted">Nothing yet.</li>';
 
   // questions
   const qt = $('#q-filter-topic').value, term = $('#q-search').value.toLowerCase();
@@ -68,7 +70,7 @@ function render() {
   $('#data-stats').textContent = `${db.topics.length} topics · ${db.sources.length} sources · ${db.notes.length} knowledge entries · ${db.questions.length} questions · ${db.results.length} test results`;
 }
 
-$('#lib-filter-topic').onchange = render;
+$('#lib-filter-topic').onchange = $('#lib-filter-type').onchange = $('#lib-filter-lang').onchange = render;
 $('#q-filter-topic').onchange = render;
 $('#q-search').oninput = render;
 
@@ -197,6 +199,52 @@ $('#test-run').onsubmit = e => {
   $('#new-test').onclick = resetTest;
   save();
   out.scrollIntoView();
+};
+
+// ---------- YouTube summary (Gemini reads the video from its URL; YouTube blocks direct transcript fetches from browsers) ----------
+const YT_KEY = 'ycda-gemini'; // kept outside db so it never ends up in exports
+const ytForm = $('#yt-form');
+try { const s = JSON.parse(localStorage.getItem(YT_KEY)) || {}; if (s.key) ytForm.key.value = s.key; if (s.model) ytForm.model.value = s.model; } catch {}
+let ytLast = null;
+
+ytForm.onsubmit = async e => {
+  e.preventDefault();
+  const d = trimAll(formData(ytForm));
+  if (!/^https:\/\/(www\.|m\.)?(youtube\.com\/(watch\?|shorts\/|live\/)|youtu\.be\/)/i.test(d.url)) return alert('Please paste a youtube.com or youtu.be link.');
+  try { localStorage.setItem(YT_KEY, JSON.stringify({ key: d.key, model: d.model })); } catch {}
+  const ask = d.mode === 'transcript'
+    ? `Transcribe this video's speech, then write a summary and 5-10 key points. Use these headings: Title, Transcript, Summary, Key points.`
+    : `Write a clear summary of this video for a learner, then 5-10 key points and any important numbers or definitions. Use these headings: Title, Summary, Key points.`;
+  const status = $('#yt-status'), btn = ytForm.querySelector('button');
+  status.textContent = 'Working… long videos can take a minute.'; btn.disabled = true; $('#yt-result').hidden = true;
+  try {
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(d.model)}:generateContent`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-goog-api-key': d.key },
+      body: JSON.stringify({ contents: [{ parts: [{ file_data: { file_uri: d.url } }, { text: `${ask} Write the answer in ${d.lang}. Plain text, no markdown symbols.` }] }] }),
+    });
+    const j = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(j.error?.message || `HTTP ${res.status}`);
+    const text = (j.candidates?.[0]?.content?.parts ?? []).map(p => p.text || '').join('').trim();
+    if (!text) throw new Error('Gemini returned no text (the video may be private, too long, or blocked).');
+    ytLast = { url: d.url, topic: d.topic, lang: d.lang === 'Arabic' ? 'ar' : 'en', text };
+    $('#yt-text').textContent = text;
+    $('#yt-result').hidden = false; status.textContent = '';
+  } catch (err) {
+    status.textContent = 'Failed: ' + err.message;
+  } finally { btn.disabled = false; }
+};
+
+$('#yt-save').onclick = () => {
+  if (!ytLast) return;
+  const { url, topic, lang, text } = ytLast;
+  const title = (text.match(/^\s*(?:Title|العنوان)\s*[:：]?\s*\n?\s*(.+)$/im)?.[1] || 'YouTube video').trim().slice(0, 150);
+  let src = db.sources.find(s => s.url === url);
+  if (!src) db.sources.push(src = { id: uid(), title, url, type: 'Video', topic, lang, notes: 'Summarized from YouTube.' });
+  db.notes.push({ id: uid(), topic, title: `Video summary: ${title}`, body: text, sourceId: src.id });
+  ytLast = null; $('#yt-result').hidden = true;
+  save();
+  alert('Saved to the knowledge library.');
 };
 
 // ---------- export / import ----------
