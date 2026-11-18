@@ -3,7 +3,8 @@ import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed } from './q
 const KEY = 'ycda-db-v1';
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
-const uid = () => crypto.randomUUID();
+// randomUUID only exists on HTTPS/localhost; fall back so plain-http visits still work
+const uid = () => crypto.randomUUID?.() ?? Date.now().toString(36) + Math.random().toString(36).slice(2);
 const TYPE = { mcq: 'Multiple choice', tf: 'True / False', short: 'Short answer' };
 
 let db;
