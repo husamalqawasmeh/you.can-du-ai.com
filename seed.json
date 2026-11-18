@@ -6,7 +6,10 @@
     "LLMs",
     "AI Engineering",
     "AI Development",
-    "Frontier Labs"
+    "Frontier Labs",
+    "Harnesses",
+    "CLI",
+    "Context Engineering"
   ],
   "sources": [
     {
@@ -674,6 +677,168 @@
       "url": "https://mbzuai.ac.ae",
       "notes": "جامعة بحثية في الذكاء الاصطناعي، شاركت في تطوير جيس.",
       "lang": "ar"
+    },
+    {
+      "id": "src-75",
+      "topic": "Context Engineering",
+      "type": "Website",
+      "title": "Effective context engineering for AI agents (Anthropic)",
+      "url": "https://www.anthropic.com/research/effective-context-engineering-for-ai-agents",
+      "notes": "Context as a finite resource: compaction, note-taking, sub-agents, just-in-time retrieval.",
+      "lang": "en"
+    },
+    {
+      "id": "src-76",
+      "topic": "Context Engineering",
+      "type": "Website",
+      "title": "Context Engineering for AI Agents: Lessons from Building Manus",
+      "url": "https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus",
+      "notes": "KV-cache hit rate, stable prefixes, file system as memory.",
+      "lang": "en"
+    },
+    {
+      "id": "src-77",
+      "topic": "Context Engineering",
+      "type": "Website",
+      "title": "Context engineering for agents (LangChain)",
+      "url": "https://www.langchain.com/blog/context-engineering-for-agents",
+      "notes": "Write, select, compress and isolate context.",
+      "lang": "en"
+    },
+    {
+      "id": "src-78",
+      "topic": "Context Engineering",
+      "type": "Website",
+      "title": "How Long Contexts Fail (Drew Breunig)",
+      "url": "https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html",
+      "notes": "Context poisoning, distraction, confusion and clash.",
+      "lang": "en"
+    },
+    {
+      "id": "src-79",
+      "topic": "Context Engineering",
+      "type": "Paper",
+      "title": "Lost in the Middle: How Language Models Use Long Contexts",
+      "url": "https://arxiv.org/abs/2307.03172",
+      "notes": "Models use information at the start and end of the context best.",
+      "lang": "en"
+    },
+    {
+      "id": "src-80",
+      "topic": "Context Engineering",
+      "type": "Website",
+      "title": "Context Rot (Chroma research)",
+      "url": "https://www.trychroma.com/research/context-rot",
+      "notes": "How LLM performance degrades as input length grows.",
+      "lang": "en"
+    },
+    {
+      "id": "src-81",
+      "topic": "Harnesses",
+      "type": "Website",
+      "title": "Effective harnesses for long-running agents (Anthropic)",
+      "url": "https://www.anthropic.com/research/effective-harnesses-for-long-running-agents",
+      "notes": "Designing the scaffolding that lets agents work across many context windows.",
+      "lang": "en"
+    },
+    {
+      "id": "src-82",
+      "topic": "Harnesses",
+      "type": "Docs",
+      "title": "Claude Agent SDK",
+      "url": "https://platform.claude.com/docs/en/api/agent-sdk/overview",
+      "notes": "The agent harness behind Claude Code, as a library.",
+      "lang": "en"
+    },
+    {
+      "id": "src-83",
+      "topic": "Harnesses",
+      "type": "Docs",
+      "title": "Model Context Protocol (MCP)",
+      "url": "https://modelcontextprotocol.io",
+      "notes": "Open protocol for connecting AI apps to tools and data.",
+      "lang": "en"
+    },
+    {
+      "id": "src-84",
+      "topic": "Harnesses",
+      "type": "Website",
+      "title": "EleutherAI LM Evaluation Harness",
+      "url": "https://github.com/EleutherAI/lm-evaluation-harness",
+      "notes": "Standard framework for evaluating language models on benchmarks.",
+      "lang": "en"
+    },
+    {
+      "id": "src-85",
+      "topic": "Harnesses",
+      "type": "Website",
+      "title": "SWE-bench",
+      "url": "https://www.swebench.com",
+      "notes": "Benchmark: can agents resolve real GitHub issues?",
+      "lang": "en"
+    },
+    {
+      "id": "src-86",
+      "topic": "Harnesses",
+      "type": "Website",
+      "title": "Terminal-Bench",
+      "url": "https://www.tbench.ai",
+      "notes": "Benchmark for agents doing real tasks in a terminal.",
+      "lang": "en"
+    },
+    {
+      "id": "src-87",
+      "topic": "CLI",
+      "type": "Docs",
+      "title": "Claude Code documentation",
+      "url": "https://code.claude.com/docs/en/overview",
+      "notes": "Anthropic agentic coding tool for the terminal and IDEs.",
+      "lang": "en"
+    },
+    {
+      "id": "src-88",
+      "topic": "CLI",
+      "type": "Docs",
+      "title": "Claude Code best practices",
+      "url": "https://code.claude.com/docs/en/best-practices",
+      "notes": "CLAUDE.md, planning, context management, headless mode.",
+      "lang": "en"
+    },
+    {
+      "id": "src-89",
+      "topic": "CLI",
+      "type": "Website",
+      "title": "OpenAI Codex CLI",
+      "url": "https://github.com/openai/codex",
+      "notes": "Open-source coding agent that runs in the terminal.",
+      "lang": "en"
+    },
+    {
+      "id": "src-90",
+      "topic": "CLI",
+      "type": "Website",
+      "title": "Google Gemini CLI",
+      "url": "https://github.com/google-gemini/gemini-cli",
+      "notes": "Open-source AI agent for the terminal.",
+      "lang": "en"
+    },
+    {
+      "id": "src-91",
+      "topic": "CLI",
+      "type": "Website",
+      "title": "Aider",
+      "url": "https://aider.chat",
+      "notes": "Open-source AI pair programming in the terminal.",
+      "lang": "en"
+    },
+    {
+      "id": "src-92",
+      "topic": "CLI",
+      "type": "Docs",
+      "title": "AGENTS.md",
+      "url": "https://agents.md",
+      "notes": "Open format for giving coding agents project instructions.",
+      "lang": "en"
     }
   ],
   "notes": [
@@ -732,6 +897,27 @@
       "title": "PagedAttention and continuous batching",
       "body": "vLLM stores the KV cache in fixed-size blocks, like OS memory pages, which cuts fragmentation and allows more concurrent requests. Continuous batching adds new requests as soon as others finish instead of waiting for the whole batch.",
       "sourceId": "src-31"
+    },
+    {
+      "id": "note-9",
+      "topic": "Context Engineering",
+      "title": "What context engineering is",
+      "body": "Context engineering is choosing everything that goes into the model's context at each step: system instructions, tool definitions, retrieved documents, memory and message history. Context is a finite budget, and quality drops as it fills (context rot), so aim for the smallest set of high-signal tokens. Techniques: compaction (summarize history), structured note-taking outside the context, sub-agents with clean contexts, and just-in-time retrieval through tools.",
+      "sourceId": "src-75"
+    },
+    {
+      "id": "note-10",
+      "topic": "Harnesses",
+      "title": "What an agent harness is",
+      "body": "The harness is the software around the model: it runs the agent loop (model -> tool call -> run tool -> feed result back), defines the tools, manages context and memory, enforces permissions and sandboxing, and decides when to stop. The same model can perform very differently in different harnesses. \"Evaluation harness\" means something else: a framework for running benchmarks against models, such as EleutherAI's lm-evaluation-harness.",
+      "sourceId": "src-81"
+    },
+    {
+      "id": "note-11",
+      "topic": "CLI",
+      "title": "AI coding CLIs",
+      "body": "Terminal agents (Claude Code, Codex CLI, Gemini CLI, Aider) read and edit files, run commands and tests, and use git. They load project instructions from files such as CLAUDE.md or AGENTS.md, ask permission for risky actions, and can run non-interactively in scripts and CI (for example claude -p \"prompt\").",
+      "sourceId": "src-87"
     }
   ],
   "questions": [
@@ -1652,6 +1838,304 @@
       "answer": "Alibaba",
       "explanation": "Qwen is developed by Alibaba Cloud.",
       "sourceId": "src-46"
+    },
+    {
+      "id": "q-ce-1",
+      "topic": "Context Engineering",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is context engineering?",
+      "options": [
+        "Curating everything the model sees at each step: instructions, tools, data and history",
+        "Training a model on longer documents",
+        "Increasing the context window size in hardware",
+        "Encrypting prompts"
+      ],
+      "answer": "Curating everything the model sees at each step: instructions, tools, data and history",
+      "explanation": "It goes beyond writing one prompt: it manages the whole context window over a multi-step task.",
+      "sourceId": "src-75"
+    },
+    {
+      "id": "q-ce-2",
+      "topic": "Context Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "The \"Lost in the Middle\" paper found that LLMs use information best when it is placed:",
+      "options": [
+        "At the beginning or end of the context",
+        "Exactly in the middle",
+        "Spread evenly",
+        "Inside tool definitions only"
+      ],
+      "answer": "At the beginning or end of the context",
+      "explanation": "Accuracy drops for relevant facts buried in the middle of a long context.",
+      "sourceId": "src-79"
+    },
+    {
+      "id": "q-ce-3",
+      "topic": "Context Engineering",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "\"Context rot\" refers to model performance degrading as the amount of input in the context grows.",
+      "answer": "True",
+      "explanation": "Longer contexts are not free: recall and reasoning get worse as tokens accumulate.",
+      "sourceId": "src-80"
+    },
+    {
+      "id": "q-ce-4",
+      "topic": "Context Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "When an agent nears its context limit, what does compaction do?",
+      "options": [
+        "Summarizes the history and continues in a fresh context with that summary",
+        "Deletes the system prompt",
+        "Switches to a smaller model",
+        "Compresses the model weights"
+      ],
+      "answer": "Summarizes the history and continues in a fresh context with that summary",
+      "explanation": "Compaction keeps key decisions and state while dropping redundant tool output.",
+      "sourceId": "src-75"
+    },
+    {
+      "id": "q-ce-5",
+      "topic": "Context Engineering",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "In just-in-time retrieval, an agent keeps lightweight references (like file paths) and loads the data with tools only when needed.",
+      "answer": "True",
+      "explanation": "This avoids filling the context with data up front.",
+      "sourceId": "src-75"
+    },
+    {
+      "id": "q-ce-6",
+      "topic": "Context Engineering",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Why does the Manus team advise keeping the prompt prefix stable and the context append-only?",
+      "options": [
+        "To maximize the KV-cache hit rate, which cuts latency and cost",
+        "To make the model forget old tools",
+        "To bypass rate limits",
+        "To reduce model size"
+      ],
+      "answer": "To maximize the KV-cache hit rate, which cuts latency and cost",
+      "explanation": "Any change early in the prompt invalidates the cached prefix for everything after it.",
+      "sourceId": "src-76"
+    },
+    {
+      "id": "q-ce-7",
+      "topic": "Context Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which failure is it when a hallucination or error enters the context and is then repeatedly referenced?",
+      "options": [
+        "Context poisoning",
+        "Context compaction",
+        "Prompt caching",
+        "Tokenization"
+      ],
+      "answer": "Context poisoning",
+      "explanation": "Drew Breunig lists poisoning, distraction, confusion and clash as the ways long contexts fail.",
+      "sourceId": "src-78"
+    },
+    {
+      "id": "q-ce-8",
+      "topic": "Context Engineering",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "Using sub-agents with their own clean context windows can keep the main agent's context focused.",
+      "answer": "True",
+      "explanation": "Sub-agents explore deeply and return only a condensed result.",
+      "sourceId": "src-77"
+    },
+    {
+      "id": "q-har-1",
+      "topic": "Harnesses",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "In AI agents, what is the \"harness\"?",
+      "options": [
+        "The software around the model that runs the loop, tools, context and permissions",
+        "The GPU power cable",
+        "The model's weights",
+        "The training dataset"
+      ],
+      "answer": "The software around the model that runs the loop, tools, context and permissions",
+      "explanation": "The model decides; the harness executes tool calls, manages state and enforces limits.",
+      "sourceId": "src-81"
+    },
+    {
+      "id": "q-har-2",
+      "topic": "Harnesses",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "A basic agent loop is: the model requests a tool call, the harness runs it, the result is added to the context, and this repeats until the task is done.",
+      "answer": "True",
+      "explanation": "This loop is the core of most agent harnesses.",
+      "sourceId": "src-82"
+    },
+    {
+      "id": "q-har-3",
+      "topic": "Harnesses",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is the Model Context Protocol (MCP)?",
+      "options": [
+        "An open protocol for connecting AI applications to tools and data sources",
+        "A GPU interconnect",
+        "A tokenization format",
+        "A fine-tuning method"
+      ],
+      "answer": "An open protocol for connecting AI applications to tools and data sources",
+      "explanation": "MCP standardizes how hosts discover and call tools, resources and prompts from servers.",
+      "sourceId": "src-83"
+    },
+    {
+      "id": "q-har-4",
+      "topic": "Harnesses",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is EleutherAI's lm-evaluation-harness used for?",
+      "options": [
+        "Running standard benchmarks against language models",
+        "Serving models in production",
+        "Labeling training data",
+        "Compressing models"
+      ],
+      "answer": "Running standard benchmarks against language models",
+      "explanation": "An evaluation harness is a different meaning of \"harness\" from an agent harness.",
+      "sourceId": "src-84"
+    },
+    {
+      "id": "q-har-5",
+      "topic": "Harnesses",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What does SWE-bench measure?",
+      "options": [
+        "Whether a system can resolve real GitHub issues so that the tests pass",
+        "GPU training throughput",
+        "Translation quality",
+        "Image generation quality"
+      ],
+      "answer": "Whether a system can resolve real GitHub issues so that the tests pass",
+      "explanation": "Tasks come from real open-source repositories, checked by their unit tests.",
+      "sourceId": "src-85"
+    },
+    {
+      "id": "q-har-6",
+      "topic": "Harnesses",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Sandboxing in an agent harness (restricting file system and network access) limits the damage a wrong or manipulated agent action can do.",
+      "answer": "True",
+      "explanation": "Permissions and sandboxes are the main safety layer around tool execution.",
+      "sourceId": "src-82"
+    },
+    {
+      "id": "q-har-7",
+      "topic": "Harnesses",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "For agents that work across many context windows, what does Anthropic recommend the harness keep outside the context?",
+      "options": [
+        "Progress notes and state files (plus git history) that the next session reads",
+        "The full raw transcript pasted into every prompt",
+        "Nothing: start each session from scratch",
+        "The model weights"
+      ],
+      "answer": "Progress notes and state files (plus git history) that the next session reads",
+      "explanation": "A fresh session can pick up where the last one stopped by reading persistent artifacts.",
+      "sourceId": "src-81"
+    },
+    {
+      "id": "q-cli-1",
+      "topic": "CLI",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which company makes Claude Code, an agentic coding tool that runs in the terminal?",
+      "options": [
+        "Anthropic",
+        "OpenAI",
+        "Google",
+        "Meta"
+      ],
+      "answer": "Anthropic",
+      "explanation": "Claude Code reads code, edits files and runs commands.",
+      "sourceId": "src-87"
+    },
+    {
+      "id": "q-cli-2",
+      "topic": "CLI",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Codex CLI, an open-source terminal coding agent, comes from which company?",
+      "options": [
+        "OpenAI",
+        "Anthropic",
+        "Mistral",
+        "Alibaba"
+      ],
+      "answer": "OpenAI",
+      "explanation": "Its source is on GitHub at openai/codex.",
+      "sourceId": "src-89"
+    },
+    {
+      "id": "q-cli-3",
+      "topic": "CLI",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "Gemini CLI is an open-source AI agent from Google that runs in the terminal.",
+      "answer": "True",
+      "explanation": "Its source is on GitHub at google-gemini/gemini-cli.",
+      "sourceId": "src-90"
+    },
+    {
+      "id": "q-cli-4",
+      "topic": "CLI",
+      "type": "short",
+      "difficulty": "medium",
+      "prompt": "What file in a project root does Claude Code read for project instructions and memory?",
+      "answer": "CLAUDE.md|claude.md",
+      "explanation": "It holds commands, conventions and context the agent should always know.",
+      "sourceId": "src-88"
+    },
+    {
+      "id": "q-cli-5",
+      "topic": "CLI",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is AGENTS.md?",
+      "options": [
+        "An open format file that gives coding agents project instructions",
+        "A license file",
+        "A GPU configuration file",
+        "A Python package manifest"
+      ],
+      "answer": "An open format file that gives coding agents project instructions",
+      "explanation": "Several coding agents read it, like a README written for agents.",
+      "sourceId": "src-92"
+    },
+    {
+      "id": "q-cli-6",
+      "topic": "CLI",
+      "type": "short",
+      "difficulty": "hard",
+      "prompt": "Which Claude Code flag runs a single prompt non-interactively, prints the result and exits (useful in scripts and CI)?",
+      "answer": "-p|--print",
+      "explanation": "For example: claude -p \"explain this project\".",
+      "sourceId": "src-88"
+    },
+    {
+      "id": "q-cli-7",
+      "topic": "CLI",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "Aider is an open-source AI pair-programming tool that works in the terminal with your git repository.",
+      "answer": "True",
+      "explanation": "Aider edits files and commits changes with descriptive messages.",
+      "sourceId": "src-91"
     }
   ]
 }
