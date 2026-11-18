@@ -205,6 +205,9 @@ $('#test-run').onsubmit = e => {
 const YT_KEY = 'ycda-gemini'; // kept outside db so it never ends up in exports
 const ytForm = $('#yt-form');
 try { const s = JSON.parse(localStorage.getItem(YT_KEY)) || {}; if (s.key) ytForm.key.value = s.key; if (s.model) ytForm.model.value = s.model; } catch {}
+// config.local.js is gitignored, so this only fills the key on your own machine, never on the public site.
+if (!ytForm.key.value && ['localhost', '127.0.0.1'].includes(location.hostname))
+  import('./config.local.js').then(m => { if (m.GEMINI_API_KEY && !ytForm.key.value) ytForm.key.value = m.GEMINI_API_KEY; }).catch(() => {});
 let ytLast = null;
 
 ytForm.onsubmit = async e => {
@@ -225,7 +228,7 @@ ytForm.onsubmit = async e => {
     });
     const j = await res.json().catch(() => ({}));
     if (!res.ok) throw new Error(j.error?.message || `HTTP ${res.status}`);
-    const text = (j.candidates?.[0]?.content?.parts ?? []).map(p => p.text || '').join('').trim();
+    const text = (j.candidates?.[0]?.content?.parts ?? []).filter(p => !p.thought).map(p => p.text || '').join('').trim();
     if (!text) throw new Error('Gemini returned no text (the video may be private, too long, or blocked).');
     ytLast = { url: d.url, topic: d.topic, lang: d.lang === 'Arabic' ? 'ar' : 'en', text };
     $('#yt-text').textContent = text;
