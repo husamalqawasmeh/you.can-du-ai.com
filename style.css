@@ -90,3 +90,13 @@ nav button.locked::after { content: " 🔒"; font-size: .75em; }
 .iv-list > li { padding: 6px 0; border-top: 1px solid var(--border); }
 .iv-list > li:first-child { border-top: 0; }
 .iv-follow { color: var(--muted); margin-top: 2px; }
+.match { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(40px, 14vw, 140px); row-gap: 8px; margin: 8px 0; }
+.match-lines { position: absolute; inset: 0; pointer-events: none; overflow: visible; }
+.match-lines line { stroke: var(--accent); stroke-width: 2.5; }
+.match-lines line.ok { stroke: var(--good); }
+.match-lines line.bad { stroke: var(--bad); stroke-dasharray: 6 4; }
+.match-col { display: flex; flex-direction: column; gap: 6px; }
+.match-col button { text-align: start; background: var(--raised); border-color: var(--border-strong); font-size: .88rem; }
+.match-col button.sel { outline: 2px solid var(--accent); }
+.match-col button.linked { border-color: var(--accent); }
+.match-actions { grid-column: 1 / -1; align-items: center; }

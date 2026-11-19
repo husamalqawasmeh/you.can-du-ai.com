@@ -14,6 +14,13 @@
     { "q": "How do you use AI in your day-to-day work?", "followup": "Why do you trust its output, and how do you check it?" },
     { "q": "What is the difference between a graph database and a vector database?", "followup": "Why would you use both together in one AI system, for example in GraphRAG?" },
     { "q": "Have you used Hugging Face, and how?", "followup": "Why did you choose those models, datasets or Spaces, and how did you evaluate them?" },
-    { "q": "What is FLOPS?", "followup": "Why can peak FLOPS be misleading when choosing a GPU for LLM inference?" }
+    { "q": "What is FLOPS?", "followup": "Why can peak FLOPS be misleading when choosing a GPU for LLM inference?" },
+    { "q": "Connect each AI model to the company that makes it.", "followup": "Why would you choose an open-weight model over a closed one, or the other way round?",
+      "match": [
+        ["Claude Opus", "Anthropic"], ["ChatGPT (GPT)", "OpenAI"], ["MAI", "Microsoft"], ["Phi", "Microsoft"],
+        ["Kimi", "Moonshot AI"], ["DeepSeek-R1", "DeepSeek"], ["Grok", "xAI"], ["Qwen", "Alibaba"],
+        ["Mistral Large", "Mistral AI"], ["Llama", "Meta"], ["Gemini", "Google"], ["Gemma", "Google"],
+        ["Command", "Cohere"], ["Falcon", "TII (UAE)"], ["Jais", "Inception (G42) / MBZUAI"], ["ALLaM", "SDAIA"]
+      ] }
   ]
 }

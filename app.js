@@ -507,10 +507,50 @@ $('#yt-save').onclick = () => {
 // ---------- interview prep (questions in interview.json) ----------
 async function loadInterview() {
   let p;
-  try { p = await (await fetch('interview.json?v=4')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
-  $('#iv-list').innerHTML = p.questions.map(q => `<li><strong>${esc(q.q)}</strong>${q.followup ? `<div class="iv-follow">↳ ${esc(q.followup)}</div>` : ''}</li>`).join('');
+  try { p = await (await fetch('interview.json?v=5')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
+  $('#iv-list').innerHTML = p.questions.map((q, qi) => `<li><strong>${esc(q.q)}</strong>${q.match ? matchHtml(q.match, qi) : ''}${q.followup ? `<div class="iv-follow">↳ ${esc(q.followup)}</div>` : ''}</li>`).join('');
+  document.querySelectorAll('.match').forEach(el => setupMatch(el, p.questions[+el.dataset.q].match));
 }
 loadInterview();
+
+// ---------- matching exercise: click a model, then its vendor, to draw a line ----------
+const shuffle = a => pickQuestions(a, { count: a.length }); // reuses the Fisher-Yates shuffle
+function matchHtml(pairs, qi) {
+  const vendors = shuffle([...new Set(pairs.map(p => p[1]))]);
+  return `<div class="match" data-q="${qi}"><svg class="match-lines" aria-hidden="true"></svg>
+    <div class="match-col">${shuffle(pairs.map((p, i) => i)).map(i => `<button type="button" data-l="${i}">${esc(pairs[i][0])}</button>`).join('')}</div>
+    <div class="match-col">${vendors.map(v => `<button type="button" data-r="${esc(v)}">${esc(v)}</button>`).join('')}</div>
+    <div class="row match-actions"><button type="button" class="primary" data-act="check">Check</button><button type="button" data-act="show">Show answers</button><button type="button" data-act="reset">Reset</button><span class="match-score" role="status"></span></div></div>`;
+}
+function setupMatch(el, pairs) {
+  const links = new Map(); // model index -> vendor
+  let sel = null, marks = null; // marks: Map index -> 'ok' | 'bad' after Check
+  const svg = el.querySelector('svg'), L = i => el.querySelector(`[data-l="${i}"]`), R = v => [...el.querySelectorAll('[data-r]')].find(b => b.dataset.r === v);
+  function draw() {
+    const box = el.getBoundingClientRect();
+    svg.setAttribute('width', box.width); svg.setAttribute('height', box.height);
+    svg.innerHTML = [...links].map(([i, v]) => {
+      const a = L(i).getBoundingClientRect(), b = R(v).getBoundingClientRect();
+      const cls = marks?.get(i) || '';
+      return `<line class="${cls}" x1="${a.right - box.left}" y1="${a.top + a.height / 2 - box.top}" x2="${b.left - box.left}" y2="${b.top + b.height / 2 - box.top}"/>`;
+    }).join('');
+    el.querySelectorAll('[data-l]').forEach(b => { b.classList.toggle('sel', +b.dataset.l === sel); b.classList.toggle('linked', links.has(+b.dataset.l)); });
+  }
+  el.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.l !== undefined) { sel = +b.dataset.l; links.delete(sel); marks = null; }
+    else if (b.dataset.r !== undefined && sel !== null) { links.set(sel, b.dataset.r); sel = null; marks = null; }
+    else if (b.dataset.act === 'reset') { links.clear(); sel = null; marks = null; el.querySelector('.match-score').textContent = ''; }
+    else if (b.dataset.act === 'show') { pairs.forEach((p, i) => links.set(i, p[1])); marks = new Map(pairs.map((p, i) => [i, 'ok'])); sel = null; el.querySelector('.match-score').textContent = 'All correct answers shown.'; }
+    else if (b.dataset.act === 'check') {
+      marks = new Map([...links].map(([i, v]) => [i, pairs[i][1] === v ? 'ok' : 'bad']));
+      const ok = [...marks.values()].filter(m => m === 'ok').length;
+      el.querySelector('.match-score').textContent = `${ok} of ${pairs.length} correct` + (links.size < pairs.length ? ` (${pairs.length - links.size} not connected)` : '');
+    }
+    draw();
+  });
+  new ResizeObserver(draw).observe(el);
+}
 
 // ---------- site improvement suggestions (GitHub issues keep the owner's email off the public page) ----------
 $('#improve-form').onsubmit = e => {
