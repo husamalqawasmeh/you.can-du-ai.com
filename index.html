@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You Can Du AI</title>
 <meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
-<link rel="stylesheet" href="style.css?v=11">
+<link rel="stylesheet" href="style.css?v=14">
 </head>
 <body>
 <header>
@@ -20,6 +20,7 @@
     <button data-tab="youtube">YouTube summary</button>
     <button data-tab="data">Admin functions</button>
     <button data-tab="suggestions">Learning Suggestions</button>
+    <button data-tab="interview">Interview prep</button>
     <button data-tab="improve">Site improvement Suggestions</button>
   </nav>
   <details id="ai-settings">
@@ -49,6 +50,7 @@
       <button type="button" class="home-card" data-goto="library"><strong>Knowledge library</strong><span>Curated sites, papers, slides and Arabic sources, plus your notes.</span></button>
       <button type="button" class="home-card" data-goto="youtube"><strong>YouTube summary</strong><span>Turn any YouTube video into a summary or transcript.</span></button>
       <button type="button" class="home-card" data-goto="suggestions"><strong>Learning Suggestions</strong><span>Your personal study plan, based on your test results.</span></button>
+      <button type="button" class="home-card" data-goto="interview"><strong>Interview prep</strong><span>Answers to "show me your repos, sites, tools, automations, chatbots".</span></button>
     </div>
   </section>
   <!-- CHAT -->
@@ -204,6 +206,12 @@
     <div id="suggest-body"></div>
   </section>
 
+  <!-- INTERVIEW PREP -->
+  <section id="interview" class="tab" hidden>
+    <div class="card"><h2>Interview prep: show your work</h2><p class="muted">Common interview questions, each with a short answer to say and live links to show.</p><div id="iv-chips" class="row"></div></div>
+    <div id="iv-body"></div>
+  </section>
+
   <!-- SITE IMPROVEMENT -->
   <section id="improve" class="tab" hidden>
     <form id="improve-form" class="card">
@@ -264,6 +272,6 @@
     </div>
   </section>
 </main>
-<script type="module" src="app.js?v=11"></script>
+<script type="module" src="app.js?v=14"></script>
 </body>
 </html>

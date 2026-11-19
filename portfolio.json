@@ -1,0 +1,86 @@
+{
+  "github": "husamalqawasmeh",
+  "questions": [
+    {
+      "id": "repos",
+      "q": "Show me your GitHub repositories.",
+      "say": "All my public work is on GitHub. The list below is pulled live, so it is always current. Highlights: this site (you.can-du-ai.com), CatMsg (a Flutter + Firebase chat app), and D.U.AI (an automated daily AI news digest).",
+      "live": "github",
+      "items": []
+    },
+    {
+      "id": "sites",
+      "q": "Show me websites you have created.",
+      "say": "I build and deploy my own sites under the can-du-ai.com domain, managed through Cloudflare DNS. Each one is live; open any link.",
+      "items": [
+        { "title": "You Can Du AI", "url": "https://you.can-du-ai.com", "desc": "This AI training site: knowledge library, question bank, configurable tests, AI tutor, AI course generator with PDF slides, YouTube summaries. Static site on GitHub Pages, auto-deployed by GitHub Actions.", "tags": ["JavaScript", "Gemini API", "GitHub Pages"] },
+        { "title": "Can-Du-AI", "url": "https://can-du-ai.com", "desc": "Main Can-Du-AI website.", "tags": ["Cloudflare Pages"] },
+        { "title": "CatMsg (PurrCord)", "url": "https://cats.can-du-ai.com", "desc": "Cat-themed, Discord-style messaging app.", "tags": ["Flutter", "Firebase", "Dart"] },
+        { "title": "Quran reader", "url": "https://quran.can-du-ai.com", "desc": "Arabic Quran reading site.", "tags": ["Arabic / RTL", "Cloudflare"] },
+        { "title": "Medical Suppliers Inventory", "url": "https://med.can-du-ai.com", "desc": "Inventory web app for medical supplies.", "tags": ["Web app"] }
+      ]
+    },
+    {
+      "id": "tools",
+      "q": "Show me the tools you use.",
+      "say": "I work AI-first: coding agents for building, frontier and local models for the AI features, and cloud platforms for deployment.",
+      "items": [
+        { "title": "AI coding agents", "desc": "Claude Code (Anthropic), OpenAI Codex, Cursor, VS Code.", "tags": ["Agents"] },
+        { "title": "Models and AI platforms", "desc": "Claude, Google Gemini API and Google AI Studio, OpenRouter, Groq, DeepSeek and other APIs.", "tags": ["LLMs"] },
+        { "title": "Local AI", "desc": "Ollama and LM Studio for running open models on my own machine.", "tags": ["Local LLMs"] },
+        { "title": "Languages and frameworks", "desc": "JavaScript/TypeScript, Python, Dart/Flutter, Astro, Node.js, uv.", "tags": ["Code"] },
+        { "title": "Cloud and deployment", "desc": "GitHub, GitHub Actions and Pages, Cloudflare (Pages, Workers, Wrangler, DNS), Firebase, Google Cloud SDK, Docker.", "tags": ["DevOps"] },
+        { "title": "Media", "desc": "FFmpeg for audio and video processing.", "tags": ["Media"] }
+      ]
+    },
+    {
+      "id": "skills",
+      "q": "Show me the AI skills and extensions you have installed.",
+      "say": "I extend my coding agent with skills, plugins and MCP servers so it can do more than write code: research the web, drive a browser, build knowledge graphs and render video.",
+      "items": [
+        { "title": "graphify (skill)", "desc": "Turns code, documents, papers or images into a queryable knowledge graph.", "tags": ["Claude Code skill"] },
+        { "title": "HyperFrames (skill)", "desc": "Makes and renders videos from HTML: explainers, title cards, captions.", "tags": ["Claude Code skill"] },
+        { "title": "Context7 (skill)", "desc": "Pulls up-to-date library documentation into the agent's context.", "tags": ["Claude Code skill"] },
+        { "title": "ponytail (skill)", "desc": "Lean-engineering mode: smallest complete change, plus code review and audit commands.", "tags": ["Claude Code skill"] },
+        { "title": "OpenAI Codex plugin", "desc": "Lets Claude Code hand tasks to Codex for a second opinion.", "tags": ["Plugin"] },
+        { "title": "Android reverse-engineering plugin", "desc": "Decompiles APKs and traces API calls.", "tags": ["Plugin"] },
+        { "title": "Design plugin", "desc": "Design critique, accessibility review, UX copy and handoff specs.", "tags": ["Plugin"] },
+        { "title": "MCP servers", "desc": "Perplexity (research), Firecrawl (web scraping), Playwright and Claude in Chrome (browser automation).", "tags": ["MCP"] }
+      ]
+    },
+    {
+      "id": "automation",
+      "q": "Show me something you automated.",
+      "say": "I automate the repetitive parts: content collection, publishing and deployment, so the work runs without me.",
+      "items": [
+        { "title": "D.U.AI: Daily Update of AI", "url": "https://github.com/husamalqawasmeh/daily-update-of-ai", "desc": "Collects AI news from TechCrunch, MIT Technology Review and MIT News RSS feeds and picks up to eight unique stories from the past 48 hours for a one-page digest, with an owner-only admin.", "tags": ["TypeScript", "RSS", "Scheduled"] },
+        { "title": "Test-and-deploy pipeline", "url": "https://github.com/husamalqawasmeh/you.can-du-ai.com/actions", "desc": "Every push runs the self-tests and, if they pass, deploys this site to GitHub Pages automatically.", "tags": ["GitHub Actions", "CI/CD"] },
+        { "title": "YouTube to summary", "url": "https://you.can-du-ai.com", "desc": "Paste a YouTube link; Gemini watches the video and writes a summary or transcript in English or Arabic, saved to the knowledge library.", "tags": ["Gemini", "Video AI"] },
+        { "title": "AI course generator", "url": "https://you.can-du-ai.com", "desc": "Name any subject and get lessons, a PDF slide deck and a graded test in one step.", "tags": ["Gemini", "JSON output"] }
+      ]
+    },
+    {
+      "id": "chatbots",
+      "q": "Show me a chatbot you built.",
+      "say": "The AI tutor on this site is mine: a bilingual chatbot that answers AI questions and files each saved answer under the right topic by itself.",
+      "items": [
+        { "title": "Ask AI tutor", "url": "https://you.can-du-ai.com", "desc": "Multi-turn chatbot with a tutor system prompt, English and Arabic replies, and one-click saving; a second model call classifies each answer into the matching knowledge topic.", "tags": ["Gemini API", "Chatbot", "Classification"] }
+      ]
+    },
+    {
+      "id": "proud",
+      "q": "Tell me about a project you are proud of.",
+      "say": "You Can Du AI. I designed it as a learning platform for AI engineers: 100+ curated sources including Arabic ones, 90+ verified questions, configurable tests, personal study plans from test results, an AI tutor, AI-generated courses with PDF slides, and automated test-and-deploy. It has no backend: everything runs in the browser, and each visitor uses their own AI key.",
+      "items": [
+        { "title": "Live site", "url": "https://you.can-du-ai.com", "desc": "Open it and try a test or the AI tutor.", "tags": [] },
+        { "title": "Source code", "url": "https://github.com/husamalqawasmeh/you.can-du-ai.com", "desc": "Plain HTML/JS, self-tests in test.mjs.", "tags": [] }
+      ]
+    },
+    {
+      "id": "daily",
+      "q": "How do you use AI in your day-to-day work?",
+      "say": "I treat AI as a team: a coding agent builds and tests, research tools gather sources, and I review, decide and ship. I keep secrets out of code, test before deploying, and verify AI output against primary sources.",
+      "items": []
+    }
+  ]
+}

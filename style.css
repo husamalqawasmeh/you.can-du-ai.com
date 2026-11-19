@@ -75,3 +75,9 @@ small { display: block; }
 .home-card { text-align: start; background: var(--card); padding: 12px; display: flex; flex-direction: column; gap: 4px; }
 .home-card span { color: var(--muted); font-size: .9rem; }
 .home-card:hover { border-color: var(--accent); }
+#iv-chips button { font-size: .85rem; }
+.iv-say { border-inline-start: 3px solid var(--accent); padding: 4px 10px; margin: 0 0 8px; }
+.iv-items { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; }
+.iv-items li { border: 1px solid var(--border); border-radius: 6px; padding: 8px; background: var(--bg); }
+.iv-items .tag { display: block; margin-top: 4px; }
+a { color: var(--accent); }
