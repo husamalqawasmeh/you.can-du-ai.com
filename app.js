@@ -1,7 +1,11 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats } from './quiz.js';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, idHash, keyHash } from './quiz.js';
 import { ADMIN_HASH } from './admin-hash.js';
 
-const KEY = 'ycda-db-v1';
+const ADMIN_EMAIL = 'admin@can-du-ai.com';
+const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
+const USER_KEY = 'ycda-user';
+let user = null, students = {};
+let KEY = 'ycda-db-v1-guest'; // becomes per-student after sign-in
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 // randomUUID only exists on HTTPS/localhost; fall back so plain-http visits still work
@@ -20,6 +24,11 @@ function save() {
 
 // ---------- tabs ----------
 function showTab(name) {
+  if (!user && !PUBLIC_TABS.has(name)) {
+    name = 'home';
+    $('#signin-msg').textContent = 'Please sign in with your student ID and passkey to use this part of the site.';
+    $('#signin-form').sid.focus();
+  }
   document.querySelectorAll('nav button').forEach(x => x.classList.toggle('active', x.dataset.tab === name));
   document.querySelectorAll('.tab').forEach(t => t.hidden = t.id !== name);
 }
@@ -471,10 +480,10 @@ $('#yt-save').onclick = () => {
 // ---------- interview prep (portfolio.json; GitHub repos load live so the list never goes stale) ----------
 async function loadInterview() {
   let p;
-  try { p = await (await fetch('portfolio.json?v=1')).json(); } catch { $('#iv-body').innerHTML = '<p class="muted">Could not load the portfolio.</p>'; return; }
+  try { p = await (await fetch('portfolio.json?v=2')).json(); } catch { $('#iv-body').innerHTML = '<p class="muted">Could not load the portfolio.</p>'; return; }
   const item = it => `<li dir="auto"><strong>${it.url ? `<a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.title)}</a>` : esc(it.title)}</strong>${it.desc ? `<div>${esc(it.desc)}</div>` : ''}${it.tags?.length ? `<span class="tag">${it.tags.map(esc).join(' · ')}</span>` : ''}</li>`;
   $('#iv-chips').innerHTML = p.questions.map(q => `<button type="button" data-iv="${esc(q.id)}">${esc(q.q)}</button>`).join('');
-  $('#iv-body').innerHTML = p.questions.map(q => `<div class="card" id="iv-${esc(q.id)}"><h2>${esc(q.q)}</h2><p class="iv-say"><strong>Say:</strong> ${esc(q.say)}</p><ul class="iv-items" ${q.live === 'github' ? 'id="iv-github-list"' : ''}>${q.items.map(item).join('')}</ul></div>`).join('');
+  $('#iv-body').innerHTML = p.questions.map(q => `<div class="card" id="iv-${esc(q.id)}"><h2>${esc(q.q)}</h2><p class="iv-say"><strong>Say:</strong> ${esc(q.say)}</p>${q.note ? `<p class="muted"><em>Tip: ${esc(q.note)}</em></p>` : ''}<ul class="iv-items" ${q.live === 'github' ? 'id="iv-github-list"' : ''}>${q.items.map(item).join('')}</ul></div>`).join('');
   $('#iv-chips').onclick = e => { const id = e.target.dataset?.iv; if (id) $('#iv-' + id).scrollIntoView({ behavior: 'smooth' }); };
   if (p.github) {
     const box = $('#iv-github-list');
@@ -549,7 +558,46 @@ $('#import-file').onchange = async e => {
   alert('Import complete.');
 };
 
+// ---------- student sign-in (static site: hashes in students.json, passkeys issued by manage-students.mjs) ----------
+// shortcut: client-side check, fine for a learning site; a determined developer could bypass it. Upgrade to server auth before gating anything sensitive.
+function syncUser() {
+  $('#signin-form').hidden = !!user;
+  $('#user-box').hidden = !user;
+  if (user) $('#user-id').textContent = user.id;
+  document.querySelectorAll('nav button').forEach(b => b.classList.toggle('locked', !user && !PUBLIC_TABS.has(b.dataset.tab)));
+}
+$('#signin-form').onsubmit = async e => {
+  e.preventDefault();
+  const f = e.target, msg = $('#signin-msg');
+  if (!crypto.subtle) return msg.textContent = 'Sign-in works only on the secure https:// address of this site.';
+  const id = normId(f.sid.value), ih = await idHash(id), kh = await keyHash(id, f.passkey.value);
+  if (!students[ih] || students[ih] !== kh) { msg.textContent = 'Student ID or passkey is not correct.'; f.passkey.select(); return; }
+  try { localStorage.setItem(USER_KEY, JSON.stringify({ id, ih, kh })); } catch {}
+  location.reload();
+};
+$('#signout').onclick = () => { try { localStorage.removeItem(USER_KEY); } catch {} location.reload(); };
+const MAIL = {
+  request: ['Passkey request - You Can Du AI', 'Hello,\n\nPlease send me a passkey for You Can Du AI.\n\nStudent ID: {id}\nFull name: \n'],
+  reset: ['Passkey reset - You Can Du AI', 'Hello,\n\nI need a new passkey for You Can Du AI.\n\nStudent ID: {id}\n'],
+  question: ['Question - You Can Du AI', 'Hello,\n\nMy question:\n\n\nStudent ID: {id}\n'],
+};
+document.addEventListener('click', e => {
+  const a = e.target.closest('[data-mail]'); if (!a) return;
+  e.preventDefault();
+  const [subject, body] = MAIL[a.dataset.mail];
+  const id = user?.id || $('#signin-form').sid.value.trim() || '';
+  location.href = `mailto:${ADMIN_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body.replace('{id}', id))}`;
+});
+
 // ---------- start ----------
+try { students = await (await fetch('students.json?t=' + Date.now())).json(); } catch {}
+try { const u = JSON.parse(localStorage.getItem(USER_KEY)); if (u?.ih && students[u.ih] && students[u.ih] === u.kh) user = u; } catch {}
+if (user) {
+  KEY = 'ycda-db-v1:' + user.ih.slice(0, 16);
+  // one-time move of progress saved before sign-in existed
+  try { if (!localStorage.getItem(KEY) && localStorage.getItem('ycda-db-v1')) { localStorage.setItem(KEY, localStorage.getItem('ycda-db-v1')); localStorage.removeItem('ycda-db-v1'); } } catch {}
+}
+syncUser();
 db = load();
 let seed = {};
 try { seed = await (await fetch('seed.json')).json(); } catch { /* offline: run with what's saved */ }

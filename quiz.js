@@ -44,6 +44,17 @@ export function grade(qs, answers) {
   return { correct, total: qs.length, pct: qs.length ? Math.round((100 * correct) / qs.length) : 0 };
 }
 
+// Student sign-in: only hashes are published. students.json maps sha256("id:"+id) -> sha256("key:"+id+":"+passkey).
+// Shared by the browser and manage-students.mjs (Node has the same Web Crypto API).
+export const normId = s => String(s ?? '').trim().toLowerCase();
+export const normKey = s => String(s ?? '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+export async function sha256hex(s) {
+  const b = await globalThis.crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
+  return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join('');
+}
+export const idHash = id => sha256hex('id:' + normId(id));
+export const keyHash = (id, key) => sha256hex('key:' + normId(id) + ':' + normKey(key));
+
 // Per-topic [correct, total] for one test.
 export function scoreByTopic(qs, answers) {
   const out = {};

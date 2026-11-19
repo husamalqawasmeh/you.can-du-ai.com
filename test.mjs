@@ -1,7 +1,7 @@
 // Self-check: node test.mjs
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats } from './quiz.js';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, idHash, keyHash } from './quiz.js';
 
 const qs = [
   { id: 'a', topic: 'LLMs', type: 'mcq', difficulty: 'easy', answer: 'Transformer' },
@@ -34,6 +34,15 @@ assert.deepEqual(bt, { LLMs: [1, 2], 'AI Hardware': [0, 1] });
 const st = topicStats([{ byTopic: bt }, { byTopic: { LLMs: [2, 2] } }, { /* old result without byTopic */ }]);
 assert.deepEqual(st.map(s => [s.topic, s.pct]), [['AI Hardware', 0], ['LLMs', 75]]);
 assert.deepEqual(topicStats([]), []);
+
+// student sign-in hashing: case/space/dash-insensitive, and different per student
+assert.equal(await idHash(' S123 '), await idHash('s123'));
+assert.equal(await keyHash(' S123 ', 'abcd-efgh-jk'), await keyHash('s123', 'ABCDEFGHJK'));
+assert.notEqual(await keyHash('s123', 'ABCDEFGHJK'), await keyHash('s124', 'ABCDEFGHJK'));
+assert.notEqual(await keyHash('s123', 'ABCDEFGHJK'), await keyHash('s123', 'ABCDEFGHJM'));
+assert.match(await idHash('x'), /^[0-9a-f]{64}$/);
+const students = JSON.parse(readFileSync(new URL('./students.json', import.meta.url)));
+for (const [k, v] of Object.entries(students)) assert.ok(/^[0-9a-f]{64}$/.test(k) && /^[0-9a-f]{64}$/.test(v), 'students.json must hold only hashes');
 
 // AI-generated question cleanup
 assert.equal(normalizeQuestion({ type: 'tf', difficulty: 'easy', prompt: 'p', answer: 'true' }).answer, 'True');

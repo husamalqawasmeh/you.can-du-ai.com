@@ -2,3 +2,5 @@ node_modules/
 .env
 config.local.js
 admin-password.local.txt
+*.local.json
+*.local.txt

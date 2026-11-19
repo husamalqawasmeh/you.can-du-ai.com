@@ -5,11 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You Can Du AI</title>
 <meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
-<link rel="stylesheet" href="style.css?v=14">
+<link rel="stylesheet" href="style.css?v=16">
 </head>
 <body>
 <header>
-  <h1>You Can Du AI</h1>
+  <div class="topbar"><h1>You Can Du AI</h1>
+    <span id="user-box" hidden>Signed in as <strong id="user-id"></strong> <button type="button" id="signout">Sign out</button></span></div>
   <nav>
     <button data-tab="home" class="active">Home</button>
     <button data-tab="chat">Ask AI</button>
@@ -17,7 +18,7 @@
     <button data-tab="courses">Courses</button>
     <button data-tab="questions">Questions</button>
     <button data-tab="library">Knowledge library</button>
-    <button data-tab="youtube">YouTube summary</button>
+    <button data-tab="youtube">Video Transcribe and Summary</button>
     <button data-tab="data">Admin functions</button>
     <button data-tab="suggestions">Learning Suggestions</button>
     <button data-tab="interview">Interview prep</button>
@@ -29,16 +30,26 @@
       <label>Gemini API key <input id="ai-key" type="password" autocomplete="off"></label>
       <label>Model <input id="ai-model" value="gemini-4-hydrogen"></label>
     </div>
-    <small class="muted">Used by Ask AI, Courses and YouTube summary. Get a free key at <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a>. It is stored only in this browser, sent only to Google, and never included in backups.</small>
+    <small class="muted">Used by Ask AI, Courses and Video Transcribe and Summary. Get a free key at <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a>. It is stored only in this browser, sent only to Google, and never included in backups.</small>
   </details>
 </header>
 
 <main>
   <!-- HOME -->
   <section id="home" class="tab">
+    <form id="signin-form" class="card signin" hidden>
+      <h2>Student sign in</h2>
+      <div class="row">
+        <label>Student ID <input name="sid" autocomplete="username" required></label>
+        <label>Passkey <input name="passkey" type="password" autocomplete="current-password" required placeholder="XXXX-XXXX-XX"></label>
+        <button class="primary">Sign in</button>
+      </div>
+      <p id="signin-msg" class="bad" role="alert"></p>
+      <p class="muted">New student or no passkey? <a href="#" data-mail="request">Request a passkey</a> · Forgot it? <a href="#" data-mail="reset">Reset my passkey</a> · <a href="#" data-mail="question">Email the admin a question</a></p>
+    </form>
     <div class="card hero">
       <h2>Welcome to You Can Du AI</h2>
-      <p dir="rtl" lang="ar" class="ar-welcome">أهلاً بك! تعلّم الذكاء الاصطناعي واختبر معرفتك، بالعربية والإنجليزية.</p>
+      <p dir="rtl" lang="ar" class="ar-welcome">أهلاً بك! تعلّم الذكاء الاصطناعي واختبر معرفتك.</p>
       <p>Learn AI step by step, from GPUs and model sizing to LLMs, agents and context engineering. Read curated sources, ask the AI tutor, build your own courses, and test yourself.</p>
       <p id="home-stats" class="muted"></p>
       <div class="row"><button type="button" class="primary" data-goto="test">Take a test</button><button type="button" data-goto="chat">Ask the AI tutor</button></div>
@@ -48,7 +59,7 @@
       <button type="button" class="home-card" data-goto="test"><strong>Take a test</strong><span>Choose topics, question types, difficulty and how many questions.</span></button>
       <button type="button" class="home-card" data-goto="courses"><strong>Courses</strong><span>Create a full course on any subject, with PDF slides and a test.</span></button>
       <button type="button" class="home-card" data-goto="library"><strong>Knowledge library</strong><span>Curated sites, papers, slides and Arabic sources, plus your notes.</span></button>
-      <button type="button" class="home-card" data-goto="youtube"><strong>YouTube summary</strong><span>Turn any YouTube video into a summary or transcript.</span></button>
+      <button type="button" class="home-card" data-goto="youtube"><strong>Video Transcribe and Summary</strong><span>Turn any YouTube video into a summary or transcript.</span></button>
       <button type="button" class="home-card" data-goto="suggestions"><strong>Learning Suggestions</strong><span>Your personal study plan, based on your test results.</span></button>
       <button type="button" class="home-card" data-goto="interview"><strong>Interview prep</strong><span>Answers to "show me your repos, sites, tools, automations, chatbots".</span></button>
     </div>
@@ -180,7 +191,7 @@
   <!-- YOUTUBE -->
   <section id="youtube" class="tab" hidden>
     <form id="yt-form" class="card">
-      <h2>Summarize a YouTube video</h2>
+      <h2>Video Transcribe and Summary</h2>
       <p class="muted">Paste a public YouTube link. Google Gemini watches the video and writes the summary (uses the Gemini key in AI settings at the top).</p>
       <label>YouTube URL <input name="url" type="url" placeholder="https://www.youtube.com/watch?v=..." required></label>
       <div class="row">
@@ -272,6 +283,6 @@
     </div>
   </section>
 </main>
-<script type="module" src="app.js?v=14"></script>
+<script type="module" src="app.js?v=16"></script>
 </body>
 </html>

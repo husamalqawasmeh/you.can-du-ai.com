@@ -81,3 +81,8 @@ small { display: block; }
 .iv-items li { border: 1px solid var(--border); border-radius: 6px; padding: 8px; background: var(--bg); }
 .iv-items .tag { display: block; margin-top: 4px; }
 a { color: var(--accent); }
+.topbar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; }
+#user-box { font-size: .9rem; color: var(--muted); }
+#user-box button { font-size: .8rem; padding: 2px 8px; margin-inline-start: 6px; }
+.signin { border-color: var(--accent); }
+nav button.locked::after { content: " 🔒"; font-size: .75em; }

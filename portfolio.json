@@ -77,6 +77,50 @@
       ]
     },
     {
+      "id": "strategy",
+      "q": "Have you been part of creating an AI strategy?",
+      "say": "Yes. My approach: start from business problems, not models; map where AI fits by department; rank use cases by value and feasibility; pilot one, measure, then scale with governance. Example: [name the organization, the goal, your role, and the result].",
+      "note": "Replace the bracket with a real example before the interview. Use STAR: Situation, Task, Action, Result.",
+      "items": [
+        { "title": "Can-Du-AI product portfolio", "url": "https://can-du-ai.com", "desc": "My own strategy in practice: one domain, a family of focused AI products (learning, messaging, inventory, news digest), each shipped small and improved from feedback.", "tags": ["Strategy", "Portfolio"] },
+        { "title": "Frameworks I draw on", "url": "https://www.anthropic.com/engineering/building-effective-agents", "desc": "Start with the simplest workflow that works, add autonomy only where it pays off; evaluate with real data before scaling.", "tags": ["Agents", "Governance"] }
+      ]
+    },
+    {
+      "id": "pm",
+      "q": "Have you been a project manager on an AI project?",
+      "say": "Yes. I ran You Can Du AI end to end: gathered requirements, broke them into features, prioritized, built with AI coding agents, tested every change automatically, and shipped continuously to production on GitHub Pages with a custom domain and HTTPS. [Add any team or client AI project you managed: scope, team size, timeline, outcome.]",
+      "note": "Interviewers like numbers: team size, timeline, budget, users, time saved.",
+      "items": [
+        { "title": "You Can Du AI delivery history", "url": "https://github.com/husamalqawasmeh/you.can-du-ai.com/commits/main", "desc": "Every feature as a tested, deployed commit: requirements to production.", "tags": ["Delivery", "CI/CD"] },
+        { "title": "Feedback loop", "url": "https://github.com/husamalqawasmeh/you.can-du-ai.com/issues", "desc": "Users submit improvement suggestions as GitHub issues, which feed the backlog.", "tags": ["Backlog", "Users"] }
+      ]
+    },
+    {
+      "id": "news",
+      "q": "Can you recall some recent AI news you read or explored?",
+      "say": "A few I explored hands-on: Gemini's API can now watch a public YouTube video straight from its URL, which I used to build video summaries; context engineering, meaning managing what goes into an agent's context window, has become a core skill for building agents; and open Arabic LLMs such as Jais and ALLaM now have their own public leaderboard. I follow the news daily through my own D.U.AI digest.",
+      "note": "Check the latest headlines the morning of the interview and swap in one from this week.",
+      "items": [
+        { "title": "D.U.AI daily digest (my automation)", "url": "https://github.com/husamalqawasmeh/daily-update-of-ai", "desc": "Collects the latest AI stories from TechCrunch, MIT Technology Review and MIT News.", "tags": ["Daily"] },
+        { "title": "Gemini video understanding (YouTube URLs)", "url": "https://ai.google.dev/gemini-api/docs/video-understanding", "desc": "Pass a YouTube link and the model analyzes the video.", "tags": ["Google"] },
+        { "title": "Effective context engineering for AI agents", "url": "https://www.anthropic.com/research/effective-context-engineering-for-ai-agents", "desc": "Why context is a finite resource and how agents manage it.", "tags": ["Anthropic"] },
+        { "title": "Open Arabic LLM Leaderboard", "url": "https://huggingface.co/spaces/OALL/Open-Arabic-LLM-Leaderboard", "desc": "Benchmarks Arabic models such as Jais, ALLaM and Falcon.", "tags": ["Arabic AI"] },
+        { "title": "Stanford AI Index", "url": "https://hai.stanford.edu/ai-index/2025-ai-index-report", "desc": "Annual, data-driven picture of AI progress, cost and adoption.", "tags": ["Report"] }
+      ]
+    },
+    {
+      "id": "admire",
+      "q": "Is there a feature, product, tool or invention you really admire, and why?",
+      "say": "AI coding agents that can be extended with skills and the Model Context Protocol. What I admire is the design: instead of one giant model doing everything, an open protocol lets the agent plug into browsers, research tools, documentation and my own workflows. It changed how I work: I describe the outcome, the agent builds and tests it, and I review and decide.",
+      "note": "Pick the one you can talk about with genuine enthusiasm; a concrete 'it changed how I work' story lands best.",
+      "items": [
+        { "title": "Model Context Protocol (MCP)", "url": "https://modelcontextprotocol.io", "desc": "Open standard that connects AI apps to tools and data.", "tags": ["Open standard"] },
+        { "title": "Claude Code", "url": "https://code.claude.com/docs/en/overview", "desc": "The agentic coding tool I use daily, extended with skills and plugins.", "tags": ["Agent"] },
+        { "title": "FlashAttention (runner-up)", "url": "https://arxiv.org/abs/2205.14135", "desc": "An elegant insight: rearranging the attention computation around memory speed made transformers much faster with exact results.", "tags": ["Research"] }
+      ]
+    },
+    {
       "id": "daily",
       "q": "How do you use AI in your day-to-day work?",
       "say": "I treat AI as a team: a coding agent builds and tests, research tools gather sources, and I review, decide and ship. I keep secrets out of code, test before deploying, and verify AI output against primary sources.",
