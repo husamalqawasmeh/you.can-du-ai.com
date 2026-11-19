@@ -22,18 +22,9 @@ npm test       # logic self-check and seed validation
 
 Questions you add in the browser stay in your browser. To share questions with every visitor, add them to `seed.json` (give each one a unique `id`), then commit and push.
 
-## Students and passkeys
+## Students
 
-Students sign in on the Home page with a student ID and passkey. Home, Interview prep and Site improvement stay public.
-
-```
-node manage-students.mjs add S12345 "Student Name"   # prints a new passkey once: send it to the student
-node manage-students.mjs reset S12345                # new passkey; the old one stops working
-node manage-students.mjs remove S12345               # revoke access
-node manage-students.mjs list                        # your private roster (students.local.json)
-```
-
-Then commit and push `students.json`. It holds only hashes, so student IDs and passkeys never appear in the public code. Students email the admin address (`ADMIN_EMAIL` in `app.js`) to request a passkey or a reset.
+Students enter a student ID on the Home page: any 4 to 10 letters or digits, with no passkey. Each ID keeps its own tests, history, notes and courses, saved in that browser. Home, Interview prep and Site improvement stay public. Questions go to the admin address (`ADMIN_EMAIL` in `app.js`).
 
 ## Admin password
 

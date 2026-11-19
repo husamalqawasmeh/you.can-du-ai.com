@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You Can Du AI</title>
 <meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
-<link rel="stylesheet" href="style.css?v=27">
+<link rel="stylesheet" href="style.css?v=28">
 </head>
 <body>
 <header>
@@ -40,12 +40,11 @@
     <form id="signin-form" class="card signin" hidden>
       <h2>Student sign in</h2>
       <div class="row">
-        <label>Student ID <input name="sid" autocomplete="username" required></label>
-        <label>Passkey <input name="passkey" type="password" autocomplete="current-password" required placeholder="XXXX-XXXX-XX"></label>
+        <label>Student ID <input name="sid" autocomplete="username" required minlength="4" maxlength="10" pattern="[A-Za-z0-9]{4,10}" placeholder="4 to 10 letters or digits"></label>
         <button class="primary">Sign in</button>
       </div>
       <p id="signin-msg" class="bad" role="alert"></p>
-      <p class="muted">New student or no passkey? <a href="#" data-mail="request">Request a passkey</a> · Forgot it? <a href="#" data-mail="reset">Reset my passkey</a> · <a href="#" data-mail="question">Email the admin a question</a></p>
+      <p class="muted">Enter your student ID to start; your progress is saved under it on this device. Questions? <a href="#" data-mail="question">Email the admin</a></p>
     </form>
     <div class="card hero">
       <h2>Welcome to You Can Du AI</h2>
@@ -280,6 +279,6 @@
     </div>
   </section>
 </main>
-<script type="module" src="app.js?v=27"></script>
+<script type="module" src="app.js?v=28"></script>
 </body>
 </html>

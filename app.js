@@ -1,10 +1,10 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, idHash, keyHash } from './quiz.js';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId } from './quiz.js';
 import { ADMIN_HASH } from './admin-hash.js';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
 const USER_KEY = 'ycda-user';
-let user = null, students = {};
+let user = null;
 let KEY = 'ycda-db-v1-guest'; // becomes per-student after sign-in
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
@@ -26,7 +26,7 @@ function save() {
 function showTab(name) {
   if (!user && !PUBLIC_TABS.has(name)) {
     name = 'home';
-    $('#signin-msg').textContent = 'Please sign in with your student ID and passkey to use this part of the site.';
+    $('#signin-msg').textContent = 'Please enter your student ID to use this part of the site.';
     $('#signin-form').sid.focus();
   }
   document.querySelectorAll('nav button').forEach(x => x.classList.toggle('active', x.dataset.tab === name));
@@ -613,27 +613,22 @@ $('#import-file').onchange = async e => {
   alert('Import complete.');
 };
 
-// ---------- student sign-in (static site: hashes in students.json, passkeys issued by manage-students.mjs) ----------
-// shortcut: client-side check, fine for a learning site; a determined developer could bypass it. Upgrade to server auth before gating anything sensitive.
+// ---------- student ID sign-in (no passkey): any 4-10 letter/digit ID; progress saved per ID in this browser ----------
 function syncUser() {
   $('#signin-form').hidden = !!user;
   $('#user-box').hidden = !user;
   if (user) $('#user-id').textContent = user.id;
   document.querySelectorAll('nav button').forEach(b => b.classList.toggle('locked', !user && !PUBLIC_TABS.has(b.dataset.tab)));
 }
-$('#signin-form').onsubmit = async e => {
+$('#signin-form').onsubmit = e => {
   e.preventDefault();
   const f = e.target, msg = $('#signin-msg');
-  if (!crypto.subtle) return msg.textContent = 'Sign-in works only on the secure https:// address of this site.';
-  const id = normId(f.sid.value), ih = await idHash(id), kh = await keyHash(id, f.passkey.value);
-  if (!students[ih] || students[ih] !== kh) { msg.textContent = 'Student ID or passkey is not correct.'; f.passkey.select(); return; }
-  try { localStorage.setItem(USER_KEY, JSON.stringify({ id, ih, kh })); } catch {}
+  if (!validStudentId(f.sid.value)) { msg.textContent = 'Student ID must be 4 to 10 letters or digits only (no spaces or symbols).'; f.sid.select(); return; }
+  try { localStorage.setItem(USER_KEY, JSON.stringify({ id: normId(f.sid.value) })); } catch {}
   location.reload();
 };
 $('#signout').onclick = () => { try { localStorage.removeItem(USER_KEY); } catch {} location.reload(); };
 const MAIL = {
-  request: ['Passkey request - You Can Du AI', 'Hello,\n\nPlease send me a passkey for You Can Du AI.\n\nStudent ID: {id}\nFull name: \n'],
-  reset: ['Passkey reset - You Can Du AI', 'Hello,\n\nI need a new passkey for You Can Du AI.\n\nStudent ID: {id}\n'],
   question: ['Question - You Can Du AI', 'Hello,\n\nMy question:\n\n\nStudent ID: {id}\n'],
 };
 document.addEventListener('click', e => {
@@ -645,10 +640,9 @@ document.addEventListener('click', e => {
 });
 
 // ---------- start ----------
-try { students = await (await fetch('students.json?t=' + Date.now())).json(); } catch {}
-try { const u = JSON.parse(localStorage.getItem(USER_KEY)); if (u?.ih && students[u.ih] && students[u.ih] === u.kh) user = u; } catch {}
+try { const u = JSON.parse(localStorage.getItem(USER_KEY)); if (validStudentId(u?.id)) user = { id: normId(u.id) }; } catch {}
 if (user) {
-  KEY = 'ycda-db-v1:' + user.ih.slice(0, 16);
+  KEY = 'ycda-db-v1:id:' + user.id;
   // one-time move of progress saved before sign-in existed
   try { if (!localStorage.getItem(KEY) && localStorage.getItem('ycda-db-v1')) { localStorage.setItem(KEY, localStorage.getItem('ycda-db-v1')); localStorage.removeItem('ycda-db-v1'); } } catch {}
 }
