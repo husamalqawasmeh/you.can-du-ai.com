@@ -85,7 +85,7 @@
       "followup": "Why can benchmark results be misleading (contamination, saturation, different setups), and how would you benchmark for your own use case?"
     },
     {
-      "q": "Define these 116 AI and tech terms.",
+      "q": "Define these 118 AI and tech terms.",
       "followup": "Why does it matter to explain technical terms simply to non-technical stakeholders, and which of these do you use most in your work?",
       "terms": [
         [
@@ -461,6 +461,14 @@
           "A model whose trained weights are published so anyone can download and run it."
         ],
         [
+          "Permissive license (Apache 2.0, MIT)",
+          "An open-source license that lets you use, change and sell the code, even in closed-source products, as long as you keep the copyright and license notices. Apache 2.0 also grants contributors' patent rights; MIT is shorter and has no explicit patent grant."
+        ],
+        [
+          "Copyleft license (GPL, AGPL)",
+          "An open-source license that lets you use and change the code, but if you distribute software built on it you must release the combined work under the same license, with source code. AGPL also applies when the software is offered as a network service (e.g. SaaS)."
+        ],
+        [
           "API (Application Programming Interface)",
           "A defined way for software to request services from other software, such as calling an LLM over the web."
         ],
@@ -553,10 +561,6 @@
           "Hypothetical AI that matches or exceeds humans across most cognitive tasks."
         ]
       ]
-    },
-    {
-      "q": "What is the difference between permissive open-source licenses (such as Apache 2.0 or MIT) and copyleft licenses (such as GPL or AGPL)?",
-      "followup": "Why does the license matter when you use open-weight models or open-source libraries in a commercial product?"
     },
     {
       "q": "Connect each AI model to the company that makes it.",
