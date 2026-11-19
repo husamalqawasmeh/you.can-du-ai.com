@@ -1,0 +1,17 @@
+{
+  "questions": [
+    { "q": "Show me your GitHub repositories.", "followup": "Why did you build this one, and what would you do differently today?" },
+    { "q": "Show me websites you have created.", "followup": "Why did you choose that tech stack and hosting?" },
+    { "q": "Show me the tools you use.", "followup": "Why these tools over the alternatives?" },
+    { "q": "Show me the AI skills and extensions you have installed.", "followup": "Why did you need each one, and how did it change the way you work?" },
+    { "q": "Show me something you automated.", "followup": "Why was it worth automating, and how much time or effort does it save?" },
+    { "q": "Show me a chatbot you built.", "followup": "Why did you design it that way, and how do you handle wrong answers?" },
+    { "q": "Tell me about a project you are proud of.", "followup": "Why are you proud of it, and what was the hardest part?" },
+    { "q": "Have you been part of creating an AI strategy?", "followup": "Why did the organization need it, and how was success measured?" },
+    { "q": "Have you been a project manager on an AI project?", "followup": "Why did the project succeed or struggle, and what did you learn?" },
+    { "q": "Can you recall some recent AI news you read or explored?", "followup": "Why does it matter, and how could it affect our business?" },
+    { "q": "Is there a feature, product, tool or invention you really admire?", "followup": "Why that one over the others, and how would you improve it?" },
+    { "q": "How do you use AI in your day-to-day work?", "followup": "Why do you trust its output, and how do you check it?" },
+    { "q": "What is the difference between a graph database and a vector database?", "followup": "Why would you use both together in one AI system, for example in GraphRAG?" }
+  ]
+}

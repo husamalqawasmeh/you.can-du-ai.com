@@ -477,23 +477,11 @@ $('#yt-save').onclick = () => {
   alert('Saved to the knowledge library.');
 };
 
-// ---------- interview prep (portfolio.json; GitHub repos load live so the list never goes stale) ----------
+// ---------- interview prep (questions in interview.json) ----------
 async function loadInterview() {
   let p;
-  try { p = await (await fetch('portfolio.json?v=2')).json(); } catch { $('#iv-body').innerHTML = '<p class="muted">Could not load the portfolio.</p>'; return; }
-  const item = it => `<li dir="auto"><strong>${it.url ? `<a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.title)}</a>` : esc(it.title)}</strong>${it.desc ? `<div>${esc(it.desc)}</div>` : ''}${it.tags?.length ? `<span class="tag">${it.tags.map(esc).join(' · ')}</span>` : ''}</li>`;
-  $('#iv-chips').innerHTML = p.questions.map(q => `<button type="button" data-iv="${esc(q.id)}">${esc(q.q)}</button>`).join('');
-  $('#iv-body').innerHTML = p.questions.map(q => `<div class="card" id="iv-${esc(q.id)}"><h2>${esc(q.q)}</h2><p class="iv-say"><strong>Say:</strong> ${esc(q.say)}</p>${q.note ? `<p class="muted"><em>Tip: ${esc(q.note)}</em></p>` : ''}<ul class="iv-items" ${q.live === 'github' ? 'id="iv-github-list"' : ''}>${q.items.map(item).join('')}</ul></div>`).join('');
-  $('#iv-chips').onclick = e => { const id = e.target.dataset?.iv; if (id) $('#iv-' + id).scrollIntoView({ behavior: 'smooth' }); };
-  if (p.github) {
-    const box = $('#iv-github-list');
-    try {
-      const repos = await (await fetch(`https://api.github.com/users/${encodeURIComponent(p.github)}/repos?per_page=100&sort=pushed`)).json();
-      if (!Array.isArray(repos)) throw 0;
-      box.innerHTML = repos.filter(r => !r.fork && r.size > 0).map(r => item({ title: r.name, url: r.html_url, desc: r.description || '', tags: [r.language, r.homepage && 'live site', 'updated ' + r.pushed_at.slice(0, 10)].filter(Boolean) })).join('')
-        + item({ title: `All repositories on GitHub`, url: `https://github.com/${p.github}?tab=repositories`, desc: 'Full profile', tags: [] });
-    } catch { box.innerHTML = item({ title: 'My GitHub profile', url: `https://github.com/${p.github}?tab=repositories`, desc: 'Could not load the live list right now; open the profile instead.', tags: [] }); }
-  }
+  try { p = await (await fetch('interview.json?v=2')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
+  $('#iv-list').innerHTML = p.questions.map(q => `<li><strong>${esc(q.q)}</strong>${q.followup ? `<div class="iv-follow">↳ ${esc(q.followup)}</div>` : ''}</li>`).join('');
 }
 loadInterview();
 
