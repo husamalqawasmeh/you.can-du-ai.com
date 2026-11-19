@@ -55,6 +55,30 @@ export function scoreByTopic(qs, answers) {
   return out;
 }
 
+// Proficiency estimate. items = [topic, difficulty, correct 0/1] per answered question.
+// Score is weighted by difficulty (easy 1, medium 2, hard 3); "Expert" also needs proven skill on hard questions.
+const DIFF_W = { easy: 1, medium: 2, hard: 3 };
+export const resultItems = (qs, answers) => qs.map((q, i) => [q.topic, q.difficulty, isCorrect(q, answers[i]) ? 1 : 0]);
+export function proficiency(items) {
+  if (!items?.length) return null;
+  let got = 0, max = 0, hardN = 0, hardOk = 0;
+  for (const [, d, c] of items) {
+    const w = DIFF_W[d] || 2; max += w; if (c) got += w;
+    if (d === 'hard') { hardN++; if (c) hardOk++; }
+  }
+  const pct = Math.round((100 * got) / max);
+  let level = pct < 40 ? 'Beginner' : pct < 65 ? 'Intermediate' : pct < 85 ? 'Advanced' : 'Expert';
+  if (level === 'Expert' && (hardN < 5 || hardOk / hardN < 0.7)) level = 'Advanced';
+  const confidence = items.length < 10 ? 'low' : items.length < 30 ? 'medium' : 'high';
+  return { pct, level, answered: items.length, confidence };
+}
+// Proficiency per topic, weakest first.
+export function topicProficiency(items) {
+  const by = {};
+  for (const it of items) (by[it[0]] ??= []).push(it);
+  return Object.entries(by).map(([topic, its]) => ({ topic, ...proficiency(its) })).sort((a, b) => a.pct - b.pct);
+}
+
 // Accuracy per topic across all saved results, weakest first.
 export function topicStats(results) {
   const agg = {};
@@ -76,6 +100,7 @@ export function mergeSeed(db, seed) {
   }
   db.results ??= [];
   db.courses ??= [];
+  db.objectives ??= { selected: [], custom: [] };
   db.seedRemoved ??= [];
   // honour deletions of seed items
   for (const key of ['sources', 'notes', 'questions']) db[key] = db[key].filter(x => !db.seedRemoved.includes(x.id));

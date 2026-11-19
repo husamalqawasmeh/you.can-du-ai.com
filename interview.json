@@ -15,6 +15,8 @@
     { "q": "What is the difference between a graph database and a vector database?", "followup": "Why would you use both together in one AI system, for example in GraphRAG?" },
     { "q": "Have you used Hugging Face, and how?", "followup": "Why did you choose those models, datasets or Spaces, and how did you evaluate them?" },
     { "q": "What is FLOPS?", "followup": "Why can peak FLOPS be misleading when choosing a GPU for LLM inference?" },
+    { "q": "What chunking strategies or approaches do you know for RAG (for example fixed-size, recursive, sentence- or document-structure-based, semantic, overlap, parent-child)?", "followup": "Why would you choose one chunking strategy over another, and how do chunk size and overlap affect retrieval quality and cost?" },
+    { "q": "What are the different types of RAG architectures and strategies (for example naive RAG, advanced RAG with re-ranking and query rewriting, hybrid search, GraphRAG, agentic RAG, multimodal RAG)?", "followup": "Why would you pick a particular RAG architecture for a use case, and how would you evaluate whether it works?" },
     { "q": "Connect each AI model to the company that makes it.", "followup": "Why would you choose an open-weight model over a closed one, or the other way round?",
       "match": [
         ["Claude Opus", "Anthropic"], ["ChatGPT (GPT)", "OpenAI"], ["MAI", "Microsoft"], ["Phi", "Microsoft"],

@@ -1,0 +1,120 @@
+{
+  "checked": "2026-11-19",
+  "howToRegister": [
+    "Create a free account with the vendor (AWS, Microsoft, Google, NVIDIA, Databricks or Oracle).",
+    "Open the official exam page below and choose Register or Schedule exam.",
+    "Pick online-proctored (from home) or a test center, then a date and time.",
+    "Pay with a card or a voucher. Prices are in USD, plus tax; some vendors price by country.",
+    "Before an online exam: run the vendor's system check, and prepare a webcam, a quiet room, a clear desk and a government photo ID."
+  ],
+  "whatToBuy": [
+    "Required: the exam voucher (the registration fee shown for each exam).",
+    "Optional: an official practice exam. Microsoft's practice assessments are free; AWS and others sell official practice exams.",
+    "Optional: a paid prep course or book, only if the free vendor training is not enough for you.",
+    "For online proctoring: a working webcam and microphone, and a stable internet connection.",
+    "Tip: watch for vendor discount campaigns, free exam vouchers at vendor events, and retake offers."
+  ],
+  "certs": [
+    {
+      "vendor": "AWS", "name": "AWS Certified AI Practitioner", "code": "AIF-C01", "level": "Foundational",
+      "cost": "$100", "duration": "90 minutes", "questions": "65",
+      "prerequisites": "None. Aimed at anyone familiar with AI/ML on AWS, including non-technical roles.",
+      "topics": ["Fundamentals of AI and ML", "Fundamentals of generative AI", "Applications of foundation models", "Guidelines for responsible AI", "Security, compliance and governance for AI solutions"],
+      "prep": [{ "title": "AWS Skill Builder: free exam prep for AI Practitioner", "url": "https://skillbuilder.aws" }],
+      "url": "https://aws.amazon.com/certification/certified-ai-practitioner/"
+    },
+    {
+      "vendor": "AWS", "name": "AWS Certified Machine Learning Engineer – Associate", "code": "MLA-C01", "level": "Associate",
+      "cost": "$150", "duration": "130 minutes", "questions": "See official page",
+      "prerequisites": "None required. Recommended: about 1 year building, deploying and maintaining ML solutions on AWS (e.g. Amazon SageMaker).",
+      "topics": ["Data preparation for ML", "ML model development", "Deployment and orchestration of ML workflows", "ML solution monitoring, maintenance and security"],
+      "note": "AWS also lists a newer version, MLA-C02, in beta (170 minutes, $75 beta price). Check which version is current before you book.",
+      "prep": [{ "title": "AWS Skill Builder: ML Engineer Associate exam prep", "url": "https://skillbuilder.aws" }],
+      "url": "https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/"
+    },
+    {
+      "vendor": "AWS", "name": "AWS Certified Generative AI Developer – Professional", "code": "See official page", "level": "Professional",
+      "cost": "See official page", "duration": "See official page", "questions": "See official page",
+      "prerequisites": "Professional level: hands-on experience building generative AI applications on AWS (for example with Amazon Bedrock).",
+      "topics": ["Building generative AI applications on AWS", "Foundation model integration and RAG", "Security, governance and operations of generative AI apps"],
+      "prep": [{ "title": "AWS Skill Builder", "url": "https://skillbuilder.aws" }],
+      "url": "https://aws.amazon.com/certification/certified-generative-ai-developer-professional/"
+    },
+    {
+      "vendor": "Microsoft", "name": "Microsoft Certified: Azure AI Fundamentals", "code": "AI-901 (replaces AI-900, retired June 30, 2026)", "level": "Fundamentals",
+      "cost": "Priced by country (about $99 in the US)", "duration": "See official page", "questions": "See official page",
+      "prerequisites": "None. For beginners, technical or non-technical.",
+      "topics": ["AI workloads and responsible AI principles", "Machine learning fundamentals on Azure", "Computer vision, natural language and speech workloads", "Generative AI workloads on Azure"],
+      "note": "If you passed AI-900 before June 30, 2026, you already hold this certification.",
+      "prep": [{ "title": "Microsoft Learn: free learning paths and free practice assessment", "url": "https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-fundamentals/" }],
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/exams/ai-901/"
+    },
+    {
+      "vendor": "Microsoft", "name": "Microsoft Certified: Azure AI Apps and Agents Developer Associate", "code": "AI-103 (replaces AI-102, retired June 30, 2026)", "level": "Associate",
+      "cost": "Priced by country (about $165 in the US)", "duration": "120 minutes", "questions": "See official page",
+      "prerequisites": "Experience developing AI solutions on Azure with Python or C#.",
+      "topics": ["Designing and building AI apps and agents on Azure", "Generative AI and retrieval (RAG) solutions", "Vision, language and speech services", "Responsible AI, security and monitoring"],
+      "note": "This is a new credential, not a renamed AI-102: plan for the full exam even if you hold AI-102.",
+      "prep": [{ "title": "Microsoft Learn: free learning paths and practice assessment", "url": "https://learn.microsoft.com/en-us/credentials/certifications/exams/ai-103/" }],
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/exams/ai-103/"
+    },
+    {
+      "vendor": "Google Cloud", "name": "Generative AI Leader", "code": "GAL", "level": "Foundational",
+      "cost": "$99 + tax", "duration": "90 minutes", "questions": "50–60 multiple choice",
+      "prerequisites": "None. For business and technical leaders.",
+      "topics": ["Fundamentals of generative AI", "Google Cloud's generative AI offerings", "Techniques to improve model output", "Business strategies for successful generative AI solutions"],
+      "prep": [{ "title": "Google Skills / Cloud Skills Boost: Generative AI Leader learning path", "url": "https://www.cloudskillsboost.google" }],
+      "url": "https://cloud.google.com/learn/certification/generative-ai-leader"
+    },
+    {
+      "vendor": "Google Cloud", "name": "Professional Machine Learning Engineer", "code": "PMLE", "level": "Professional",
+      "cost": "$200 + tax", "duration": "2 hours", "questions": "50–60 multiple choice",
+      "prerequisites": "Recommended: 3+ years of industry experience, including 1+ year designing and managing solutions on Google Cloud.",
+      "topics": ["Architecting low-code AI solutions", "Collaborating to manage data and models", "Scaling prototypes into ML models", "Serving and scaling models", "Automating and orchestrating ML pipelines", "Monitoring AI solutions"],
+      "prep": [{ "title": "Google Skills / Cloud Skills Boost: ML Engineer learning path", "url": "https://www.cloudskillsboost.google" }],
+      "url": "https://cloud.google.com/learn/certification/machine-learning-engineer"
+    },
+    {
+      "vendor": "NVIDIA", "name": "NVIDIA-Certified Associate: Generative AI LLMs", "code": "NCA-GENL", "level": "Associate",
+      "cost": "$125", "duration": "1 hour", "questions": "50–60 multiple choice",
+      "prerequisites": "A basic understanding of generative AI and large language models.",
+      "topics": ["Core machine learning and AI knowledge (30%)", "Software development (24%)", "Experimentation (22%)", "Data analysis and visualization (14%)", "Trustworthy AI (10%)"],
+      "note": "Valid for two years; recertify by retaking the exam.",
+      "prep": [{ "title": "NVIDIA Deep Learning Institute (some courses free)", "url": "https://www.nvidia.com/en-us/training/" }],
+      "url": "https://www.nvidia.com/en-us/learn/certification/generative-ai-llm-associate/"
+    },
+    {
+      "vendor": "NVIDIA", "name": "NVIDIA-Certified Associate: AI Infrastructure and Operations", "code": "NCA-AIIO", "level": "Associate",
+      "cost": "$125", "duration": "1 hour", "questions": "50",
+      "prerequisites": "A basic understanding of data center infrastructure.",
+      "topics": ["Essential AI knowledge", "AI infrastructure (GPUs, networking, storage)", "AI operations (management and monitoring)"],
+      "prep": [{ "title": "NVIDIA Deep Learning Institute", "url": "https://www.nvidia.com/en-us/training/" }],
+      "url": "https://www.nvidia.com/en-us/learn/certification/ai-infrastructure-operations-associate/"
+    },
+    {
+      "vendor": "NVIDIA", "name": "NVIDIA-Certified Professional: Generative AI LLMs", "code": "NCP-GENL", "level": "Professional",
+      "cost": "$200", "duration": "120 minutes", "questions": "60–70",
+      "prerequisites": "2–3 years of practical AI/ML experience with LLMs: transformers, prompt engineering, distributed parallelism, parameter-efficient fine-tuning, RAG and evaluation; Python (C++ helpful).",
+      "topics": ["LLM architecture and fine-tuning", "Distributed training and GPU optimization", "Prompt engineering and RAG", "Evaluation and hallucination mitigation", "Deployment and performance profiling"],
+      "prep": [{ "title": "NVIDIA Deep Learning Institute", "url": "https://www.nvidia.com/en-us/training/" }],
+      "url": "https://www.nvidia.com/en-us/learn/certification/generative-ai-llm-professional/"
+    },
+    {
+      "vendor": "Databricks", "name": "Databricks Certified Generative AI Engineer Associate", "code": "GenAI Engineer Associate", "level": "Associate",
+      "cost": "$200", "duration": "90 minutes", "questions": "45 scored",
+      "prerequisites": "None, but related training is highly recommended.",
+      "topics": ["Designing generative AI applications", "Data preparation", "Application development", "Assembling and deploying applications", "Governance", "Evaluation and monitoring"],
+      "prep": [{ "title": "Databricks Academy (free self-paced courses)", "url": "https://www.databricks.com/learn/training/home" }],
+      "url": "https://www.databricks.com/learn/certification/genai-engineer-associate"
+    },
+    {
+      "vendor": "Oracle", "name": "OCI Generative AI Professional", "code": "1Z0-1127", "level": "Professional",
+      "cost": "See official page (Oracle sometimes runs free-exam campaigns)", "duration": "See official page", "questions": "See official page",
+      "prerequisites": "Basic understanding of machine learning and generative AI, and of Oracle Cloud Infrastructure.",
+      "topics": ["LLM fundamentals", "OCI Generative AI service", "Building RAG apps with OCI Generative AI and LangChain"],
+      "note": "Oracle also offers OCI AI Foundations Associate (1Z0-1122) as an entry-level exam, historically free or low-cost.",
+      "prep": [{ "title": "Oracle MyLearn: free OCI learning paths", "url": "https://mylearn.oracle.com" }],
+      "url": "https://education.oracle.com"
+    }
+  ]
+}

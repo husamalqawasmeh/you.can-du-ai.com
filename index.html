@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You Can Du AI</title>
 <meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
-<link rel="stylesheet" href="style.css?v=29">
+<link rel="stylesheet" href="style.css?v=30">
 </head>
 <body>
 <header>
@@ -16,6 +16,7 @@
     <button data-tab="chat">Ask the AI Tutor</button>
     <button data-tab="test">Take a test</button>
     <button data-tab="courses">Courses</button>
+    <button data-tab="certs">AI Certifications</button>
     <button data-tab="questions">Questions</button>
     <button data-tab="library">Knowledge library</button>
     <button data-tab="youtube">Video Transcribe and Summary</button>
@@ -54,6 +55,7 @@
       <button type="button" class="home-card" data-goto="chat"><strong>Ask the AI Tutor</strong><span>Ask any AI question and save the answers to your library.</span></button>
       <button type="button" class="home-card" data-goto="test"><strong>Take a test</strong><span>Choose topics, question types, difficulty and how many questions.</span></button>
       <button type="button" class="home-card" data-goto="courses"><strong>Courses</strong><span>Create a full course on any subject, with PDF slides and a test.</span></button>
+      <button type="button" class="home-card" data-goto="certs"><strong>AI Certifications</strong><span>Exams from AWS, Microsoft, Google, NVIDIA and more: cost, topics, prerequisites, free prep.</span></button>
       <button type="button" class="home-card" data-goto="library"><strong>Knowledge library</strong><span>Curated sites, papers, slides and Arabic sources, plus your notes.</span></button>
       <button type="button" class="home-card" data-goto="youtube"><strong>Video Transcribe and Summary</strong><span>Turn any YouTube video into a summary or transcript.</span></button>
       <button type="button" class="home-card" data-goto="suggestions"><strong>Learning Suggestions</strong><span>Your personal study plan, based on your test results.</span></button>
@@ -70,6 +72,7 @@
         <label>Your question <textarea id="chat-input" rows="2" required placeholder="e.g. How much GPU memory do I need to serve a 70B model to 50 users?"></textarea></label>
         <div class="row">
           <button class="primary">Ask</button>
+          <label>Answer level <select id="chat-level"><option>Beginner</option><option selected>Intermediate</option><option>Advanced</option></select></label>
           <button type="button" id="chat-clear">New chat</button>
         </div>
       </form>
@@ -90,9 +93,11 @@
         <label>Test questions <input name="questions" type="number" min="3" max="30" value="10" required></label>
         <label>Language <select name="lang"><option>English</option><option>Arabic</option></select></label>
       </div>
+      <p id="gen-objectives" class="muted"></p>
       <button class="primary">Create course</button>
       <p id="gen-status" class="muted" role="status"></p>
     </form>
+    <div class="card objectives-panel"></div>
     <div class="card"><h2>Your AI-created courses</h2><div id="gen-list"></div></div>
     <datalist id="topic-datalist"></datalist>
   </section>
@@ -208,9 +213,27 @@
     </div>
   </section>
 
+  <!-- CERTIFICATIONS -->
+  <section id="certs" class="tab" hidden>
+    <div class="card"><h2>AI exams and certifications</h2>
+      <p class="muted">Prices, prerequisites and topics change often: always confirm on the official page before you pay. <span id="certs-checked"></span></p>
+      <div class="row">
+        <label>Vendor <select id="cert-vendor"><option value="">All vendors</option></select></label>
+        <label>Level (difficulty) <select id="cert-level"><option value="">All levels</option><option>Foundational</option><option>Fundamentals</option><option>Associate</option><option>Professional</option></select></label>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="card"><h2>How to register</h2><ol id="certs-register" class="advice"></ol></div>
+      <div class="card"><h2>What to buy</h2><ul id="certs-buy" class="advice"></ul></div>
+    </div>
+    <div id="certs-list"></div>
+  </section>
+
   <!-- SUGGESTIONS -->
   <section id="suggestions" class="tab" hidden>
+    <div class="card"><div class="row"><label>Practice difficulty <select id="practice-diff"><option value="">Mixed</option><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option></select></label></div></div>
     <div id="suggest-body"></div>
+    <div class="card objectives-panel"></div>
   </section>
 
   <!-- INTERVIEW PREP -->
@@ -279,6 +302,6 @@
     </div>
   </section>
 </main>
-<script type="module" src="app.js?v=29"></script>
+<script type="module" src="app.js?v=30"></script>
 </body>
 </html>

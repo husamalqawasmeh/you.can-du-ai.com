@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId } from './quiz.js?v=29';
-import { ADMIN_HASH } from './admin-hash.js?v=29';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency } from './quiz.js?v=30';
+import { ADMIN_HASH } from './admin-hash.js?v=30';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -92,6 +92,7 @@ function render() {
   $('#course-list').innerHTML = db.sources.filter(s => s.type === 'Course').map(s => `<li dir="auto"><div>${/^https?:\/\//i.test(s.url) ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>` : esc(s.title)} <span class="tag">${esc(s.topic)}${s.lang === 'ar' ? ' · العربية' : ''}</span>${s.notes ? `<div class="muted">${esc(s.notes)}</div>` : ''}</div><button class="del" data-del="sources" data-id="${esc(s.id)}">Delete</button></li>`).join('') || '<li class="muted">No courses yet.</li>';
 
   renderSuggestions();
+  renderObjectives();
 
   // history
   $('#history-list').innerHTML = db.results.slice().reverse().map(r => `<li><div><strong>${r.pct}%</strong> (${r.correct}/${r.total}) <span class="tag">${new Date(r.date).toLocaleString()} · ${esc(r.topics.join(', ') || 'All topics')}</span></div></li>`).join('') || '<li class="muted">No tests taken yet.</li>';
@@ -119,6 +120,12 @@ function renderSuggestions() {
   const practice = (t, label = 'Practice this topic', diff = '') => `<button type="button" class="primary" data-practice="${esc(t)}" data-diff="${diff}">${label}</button>`;
   const weak = stats.filter(s => s.pct < 70), strong = stats.filter(s => s.pct >= 70);
   let html = '';
+  const items = db.results.flatMap(r => r.items ?? []);
+  const prof = proficiency(items);
+  if (prof) html += `<div class="card"><h2>Your estimated proficiency: <span class="lvl lvl-${prof.level.toLowerCase()}">${prof.level}</span></h2>
+    <p class="muted">${prof.pct}% score weighted by difficulty, from ${prof.answered} answered questions (confidence: ${prof.confidence}). Levels: Beginner &lt;40%, Intermediate &lt;65%, Advanced &lt;85%, Expert 85%+ with strong results on hard questions.</p>
+    <table class="prof"><thead><tr><th>Topic</th><th>Level</th><th>Weighted score</th><th>Answered</th></tr></thead><tbody>${topicProficiency(items).map(t =>
+      `<tr><td>${esc(t.topic)}</td><td><span class="lvl lvl-${t.level.toLowerCase()}">${t.level}</span></td><td>${t.pct}%</td><td>${t.answered}</td></tr>`).join('')}</tbody></table></div>`;
   if (!stats.length) html += `<div class="card"><h2>Start here</h2><p>Take a test and your personal study plan will appear here, based on your results.</p><button type="button" class="primary" data-goto="test">Take a test</button></div>`;
   if (weak.length) html += `<div class="card"><h2>Focus on these topics</h2>` + weak.map(s =>
     `<div class="sugg"><h3>${esc(s.topic)} <span class="bad">${s.pct}%</span> <span class="tag">${s.correct}/${s.total} correct so far</span></h3>${topicAdvice(s.topic)}${practice(s.topic)}</div>`).join('') + '</div>';
@@ -131,10 +138,77 @@ $('#suggest-body').onclick = e => {
   const b = e.target.closest('button'); if (!b) return;
   if (b.dataset.goto) return showTab(b.dataset.goto);
   const t = b.dataset.practice; if (!t) return;
-  let qs = pickQuestions(db.questions, { topics: [t], difficulties: b.dataset.diff ? [b.dataset.diff] : [], count: 10 });
+  const diff = b.dataset.diff || $('#practice-diff').value;
+  let qs = pickQuestions(db.questions, { topics: [t], difficulties: diff ? [diff] : [], count: 10 });
   if (!qs.length) qs = pickQuestions(db.questions, { topics: [t], count: 10 }); // no hard questions yet: use any
   startTest(qs, { topics: [t] });
 };
+
+// ---------- learning objectives (saved per student ID; shown in Learning Suggestions and Courses) ----------
+const OBJECTIVES = {
+  'Foundations': ['Understand how neural networks learn', 'Explain transformers and attention', 'Understand tokens, embeddings and context windows', 'Know the difference between ML, deep learning and generative AI', 'Understand training versus inference', 'Learn the math behind AI (linear algebra, probability)'],
+  'AI hardware and sizing': ['Size GPU memory for an LLM', 'Choose GPUs for training versus inference', 'Understand FLOPS, memory bandwidth and the roofline model', 'Estimate training cost and time', 'Plan an on-premises AI cluster', 'Compare GPUs, TPUs and other accelerators', 'Understand quantization trade-offs'],
+  'LLMs and generative AI': ['Write effective prompts', 'Fine-tune a model with LoRA', 'Build a RAG application', 'Evaluate LLM outputs', 'Reduce hallucinations', 'Create images with diffusion models', 'Understand RLHF and alignment', 'Run open models locally (Ollama, LM Studio)'],
+  'AI engineering': ['Build an AI agent that uses tools', 'Connect tools with MCP', 'Master context engineering', 'Serve models with vLLM', 'Deploy an AI app to the cloud', 'Monitor AI apps in production', 'Secure AI apps against prompt injection', 'Control AI costs'],
+  'AI development': ['Train a model in PyTorch', 'Prepare and clean datasets', 'Use Hugging Face models and datasets', 'Set up MLOps pipelines', 'Use AI coding agents and CLIs'],
+  'Career': ['Pass an AI certification exam', 'Prepare for AI job interviews', 'Build an AI portfolio', 'Lead an AI strategy for my organization', 'Manage an AI project', 'Learn AI in Arabic'],
+};
+function objectivesHtml() {
+  const sel = new Set(db.objectives.selected);
+  const box = (o, custom) => `<label class="obj"><input type="checkbox" data-obj="${esc(o)}" ${sel.has(o) ? 'checked' : ''}> ${esc(o)}${custom ? ` <button type="button" class="del" data-obj-del="${esc(o)}" aria-label="Remove ${esc(o)}">✕</button>` : ''}</label>`;
+  return `<h2>My learning objectives <span class="tag">${sel.size} chosen · saved to your student ID</span></h2>
+    <p class="muted">Tick what you want to achieve. Courses you create are shaped around your objectives.</p>
+    ${Object.entries(OBJECTIVES).map(([g, list]) => `<fieldset><legend>${esc(g)}</legend><div class="obj-grid">${list.map(o => box(o)).join('')}</div></fieldset>`).join('')}
+    <fieldset><legend>My own objectives</legend><div class="obj-grid">${db.objectives.custom.map(o => box(o, true)).join('') || '<span class="muted">None yet.</span>'}</div>
+      <div class="row obj-add"><input class="obj-new" maxlength="120" placeholder="Add your own objective, e.g. Build a chatbot for my team" aria-label="New objective"><button type="button" class="primary" data-obj-add>Add</button></div></fieldset>`;
+}
+function renderObjectives() {
+  document.querySelectorAll('.objectives-panel').forEach(p => { p.innerHTML = objectivesHtml(); });
+  const n = db.objectives.selected.length;
+  $('#gen-objectives').textContent = n ? `Your ${n} learning objective${n === 1 ? '' : 's'} will guide this course (change them below).` : 'Tip: choose learning objectives below and your courses will be shaped around them.';
+}
+document.addEventListener('change', e => {
+  const o = e.target.dataset?.obj; if (o === undefined) return;
+  const s = new Set(db.objectives.selected);
+  e.target.checked ? s.add(o) : s.delete(o);
+  db.objectives.selected = [...s]; save();
+});
+document.addEventListener('click', e => {
+  const del = e.target.closest('[data-obj-del]'), add = e.target.closest('[data-obj-add]');
+  if (del) { const o = del.dataset.objDel; db.objectives.custom = db.objectives.custom.filter(x => x !== o); db.objectives.selected = db.objectives.selected.filter(x => x !== o); save(); }
+  if (add) {
+    const input = add.parentElement.querySelector('.obj-new'), o = input.value.trim().replace(/\s+/g, ' ');
+    if (!o) return;
+    const all = [...Object.values(OBJECTIVES).flat(), ...db.objectives.custom];
+    if (all.some(x => x.toLowerCase() === o.toLowerCase())) return alert('That objective is already in the list.');
+    db.objectives.custom.push(o); db.objectives.selected.push(o); save();
+  }
+});
+document.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.classList?.contains('obj-new')) { e.preventDefault(); e.target.parentElement.querySelector('[data-obj-add]').click(); } });
+
+// ---------- AI certifications (certs.json) ----------
+async function loadCerts() {
+  let c;
+  try { c = await (await fetch('certs.json?v=1')).json(); } catch { $('#certs-list').innerHTML = '<p class="muted">Could not load certifications.</p>'; return; }
+  $('#certs-checked').textContent = `Last checked: ${c.checked}.`;
+  $('#certs-register').innerHTML = c.howToRegister.map(s => `<li>${esc(s)}</li>`).join('');
+  $('#certs-buy').innerHTML = c.whatToBuy.map(s => `<li>${esc(s)}</li>`).join('');
+  $('#cert-vendor').innerHTML += [...new Set(c.certs.map(x => x.vendor))].map(v => opt(v)).join('');
+  const row = (k, v) => v ? `<tr><th>${k}</th><td>${esc(v)}</td></tr>` : '';
+  const show = () => {
+    const v = $('#cert-vendor').value, l = $('#cert-level').value;
+    const list = c.certs.filter(x => (!v || x.vendor === v) && (!l || x.level === l));
+    $('#certs-list').innerHTML = list.map(x => `<details class="card cert"><summary><strong>${esc(x.name)}</strong> <span class="tag">${esc(x.vendor)} · ${esc(x.level)} · ${esc(x.cost)}</span></summary>
+      <table class="cert-facts">${row('Exam code', x.code)}${row('Level', x.level)}${row('Cost', x.cost)}${row('Duration', x.duration)}${row('Questions', x.questions)}${row('Prerequisites', x.prerequisites)}</table>
+      <h4>Modules and topics</h4><ul class="advice">${x.topics.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
+      ${x.note ? `<p class="muted"><em>${esc(x.note)}</em></p>` : ''}
+      <h4>Vendor courses and free material</h4><ul class="advice">${x.prep.map(p => `<li><a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.title)}</a></li>`).join('')}</ul>
+      <p><a class="button primary" href="${esc(x.url)}" target="_blank" rel="noopener">Official page: details and registration</a></p></details>`).join('') || '<p class="muted">No exams match these filters.</p>';
+  };
+  $('#cert-vendor').onchange = $('#cert-level').onchange = show;
+  show();
+}
+loadCerts();
 
 $('#lib-filter-topic').onchange =$('#lib-filter-type').onchange = $('#lib-filter-lang').onchange = render;
 $('#q-filter-topic').onchange = render;
@@ -255,9 +329,13 @@ $('#test-run').onsubmit = e => {
   const { qs, cfg } = current;
   const answers = qs.map((_, i) => f.get(`a${i}`) ?? '');
   const g = grade(qs, answers);
-  db.results.push({ id: uid(), date: new Date().toISOString(), topics: cfg.topics, ...g, byTopic: scoreByTopic(qs, answers) });
+  const items = resultItems(qs, answers);
+  db.results.push({ id: uid(), date: new Date().toISOString(), topics: cfg.topics, ...g, byTopic: scoreByTopic(qs, answers), items });
+  const pTest = proficiency(items), pAll = proficiency(db.results.flatMap(r => r.items ?? []));
   const out = $('#test-result');
-  out.innerHTML = `<div class="card"><h2>Your result</h2><p class="score">${g.pct}%</p><p>${g.correct} of ${g.total} correct.</p>` +
+  out.innerHTML = `<div class="card"><h2>Your result</h2><p class="score">${g.pct}%</p><p>${g.correct} of ${g.total} correct.</p>
+    <p>Estimated proficiency on this test: <span class="lvl lvl-${pTest.level.toLowerCase()}">${pTest.level}</span> <span class="tag">${pTest.pct}% weighted by difficulty</span></p>
+    <p>Overall, from all your tests: <span class="lvl lvl-${pAll.level.toLowerCase()}">${pAll.level}</span> <span class="tag">${pAll.answered} questions answered · confidence ${pAll.confidence} · details in Learning Suggestions</span></p>` +
     qs.map((q, i) => {
       const ok = isCorrect(q, answers[i]);
       const src = sourceTitle(q.sourceId);
@@ -340,7 +418,7 @@ $('#chat-form').onsubmit = async e => {
   chat.push({ role: 'user', parts: [{ text: q }] }); chatInput.value = ''; renderChat();
   status.textContent = 'Thinking…'; btn.disabled = true;
   try {
-    chat.push({ role: 'model', parts: [{ text: await gemini({ system_instruction: { parts: [{ text: TUTOR }] }, contents: chat }) }] });
+    chat.push({ role: 'model', parts: [{ text: await gemini({ system_instruction: { parts: [{ text: `${TUTOR}\n- Pitch every answer at ${$('#chat-level').value} level: Beginner = plain words, analogies, no math; Intermediate = key terms and simple numbers; Advanced = precise technical depth, formulas and trade-offs.` }] }, contents: chat }) }] });
     status.textContent = '';
   } catch (err) {
     if (err.message === 'BLOCKED') { chat.push({ role: 'model', parts: [{ text: /[؀-ۿ]/.test(q) ? REFUSE_AR : REFUSE_EN }] }); status.textContent = ''; }
@@ -388,7 +466,8 @@ genForm.onsubmit = async e => {
   const nMod = Math.min(12, Math.max(2, +d.modules || 5)), nQ = Math.min(30, Math.max(3, +d.questions || 10));
   const status = $('#gen-status'), btn = genForm.querySelector('button');
   status.textContent = 'Writing your course… this can take a minute.'; btn.disabled = true;
-  const prompt = `Create a ${d.level} course about: ${d.subject}.
+  const goals = db.objectives.selected;
+  const prompt = `Create a ${d.level} course about: ${d.subject}.${goals.length ? `\nThe learner's personal objectives (shape examples and emphasis around those that relate to this subject): ${goals.join('; ')}.` : ''}
 Write all text in ${d.lang}. Be factually accurate; prefer well-established facts.
 Return only JSON with this shape:
 {"title": string, "description": string (2-3 sentences),
@@ -507,7 +586,7 @@ $('#yt-save').onclick = () => {
 // ---------- interview prep (questions in interview.json) ----------
 async function loadInterview() {
   let p;
-  try { p = await (await fetch('interview.json?v=5')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
+  try { p = await (await fetch('interview.json?v=6')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
   $('#iv-list').innerHTML = p.questions.map((q, qi) => `<li><strong>${esc(q.q)}</strong>${q.match ? matchHtml(q.match, qi) : ''}${q.followup ? `<div class="iv-follow">↳ ${esc(q.followup)}</div>` : ''}</li>`).join('');
   document.querySelectorAll('.match').forEach(el => setupMatch(el, p.questions[+el.dataset.q].match));
 }
@@ -601,6 +680,8 @@ $('#import-file').onchange = async e => {
   if (!data || typeof data !== 'object' || !['questions', 'sources', 'notes', 'topics'].some(k => Array.isArray(data[k])))
     return alert('That file does not look like a You Can Du AI backup.');
   for (const t of data.topics ?? []) if (typeof t === 'string' && !db.topics.includes(t)) db.topics.push(t);
+  if (data.objectives && Array.isArray(data.objectives.selected) && Array.isArray(data.objectives.custom))
+    db.objectives = { selected: data.objectives.selected.map(String), custom: data.objectives.custom.map(String) };
   for (const k of ['questions', 'sources', 'notes', 'results', 'courses']) {
     const incoming = (data[k] ?? []).filter(x => x && typeof x === 'object' && x.id &&
       (k !== 'questions' || normalizeQuestion(x)) && (k !== 'courses' || Array.isArray(x.modules)));

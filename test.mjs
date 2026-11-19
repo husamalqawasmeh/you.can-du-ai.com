@@ -1,7 +1,7 @@
 // Self-check: node test.mjs
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, validStudentId } from './quiz.js';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, validStudentId, proficiency, resultItems, topicProficiency } from './quiz.js';
 
 const qs = [
   { id: 'a', topic: 'LLMs', type: 'mcq', difficulty: 'easy', answer: 'Transformer' },
@@ -34,6 +34,18 @@ assert.deepEqual(bt, { LLMs: [1, 2], 'AI Hardware': [0, 1] });
 const st = topicStats([{ byTopic: bt }, { byTopic: { LLMs: [2, 2] } }, { /* old result without byTopic */ }]);
 assert.deepEqual(st.map(s => [s.topic, s.pct]), [['AI Hardware', 0], ['LLMs', 75]]);
 assert.deepEqual(topicStats([]), []);
+
+// proficiency estimate
+assert.equal(proficiency([]), null);
+assert.deepEqual(proficiency([['A', 'easy', 1], ['A', 'hard', 0]]), { pct: 25, level: 'Beginner', answered: 2, confidence: 'low' }); // 1 of 4 weighted points
+assert.equal(proficiency([['A', 'medium', 1], ['A', 'medium', 0]]).level, 'Intermediate'); // 50%
+assert.equal(proficiency(Array(10).fill(['A', 'easy', 1])).level, 'Advanced'); // 100% but no hard questions: not Expert
+const hardAce = [...Array(5).fill(['A', 'hard', 1]), ...Array(25).fill(['A', 'medium', 1])];
+assert.deepEqual(proficiency(hardAce), { pct: 100, level: 'Expert', answered: 30, confidence: 'high' });
+assert.equal(proficiency([...Array(5).fill(['A', 'hard', 0]), ...Array(40).fill(['A', 'easy', 1])]).level, 'Advanced'); // 73% weighted
+const qsP = [{ topic: 'T', difficulty: 'hard', type: 'tf', answer: 'True' }, { topic: 'U', difficulty: 'easy', type: 'tf', answer: 'True' }];
+assert.deepEqual(resultItems(qsP, ['True', 'False']), [['T', 'hard', 1], ['U', 'easy', 0]]);
+assert.deepEqual(topicProficiency(resultItems(qsP, ['True', 'False'])).map(t => [t.topic, t.level]), [['U', 'Beginner'], ['T', 'Advanced']]); // one hard answer is not enough for Expert
 
 // student ID sign-in: 4-10 letters/digits only, case-insensitive
 for (const ok of ['1234', 'AB12cd', ' s123 ', 'abcdefghij', '0000000000']) assert.ok(validStudentId(ok), `should accept "${ok}"`);

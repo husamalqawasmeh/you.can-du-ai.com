@@ -100,3 +100,15 @@ nav button.locked::after { content: " 🔒"; font-size: .75em; }
 .match-col button.sel { outline: 2px solid var(--accent); }
 .match-col button.linked { border-color: var(--accent); }
 .match-actions { grid-column: 1 / -1; align-items: center; }
+.lvl { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: .85em; font-weight: 600; border: 1px solid currentColor; }
+.lvl-beginner { color: var(--bad); } .lvl-intermediate { color: #d97706; } .lvl-advanced { color: var(--accent); } .lvl-expert { color: var(--good); }
+table.prof, table.cert-facts { border-collapse: collapse; width: 100%; font-size: .9rem; margin-top: 6px; }
+table.prof th, table.prof td, table.cert-facts th, table.cert-facts td { text-align: start; padding: 4px 8px; border-top: 1px solid var(--border); vertical-align: top; }
+table.cert-facts th { width: 9em; color: var(--muted); font-weight: 500; }
+.obj-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 2px 12px; }
+.obj { margin: 2px 0; font-size: .9rem; }
+.obj .del { padding: 0 6px; margin-inline-start: 4px; }
+.obj-add { margin-top: 6px; } .obj-add input { flex: 1 1 240px; }
+.cert summary { cursor: pointer; }
+.cert h4 { margin: 10px 0 4px; }
+a.button { text-decoration: none; }
