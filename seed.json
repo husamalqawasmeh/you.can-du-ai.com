@@ -2909,6 +2909,1668 @@
       "answer": "False",
       "explanation": "Always test on your own data with your own evals.",
       "sourceId": "src-112"
+    },
+    {
+      "id": "q2-1",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What does GPU stand for?",
+      "options": [
+        "Graphics Processing Unit",
+        "General Processing Unit",
+        "Global Power Unit",
+        "Graph Parallel Utility"
+      ],
+      "answer": "Graphics Processing Unit",
+      "explanation": "GPUs were built for graphics; their parallel cores suit AI math.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-2",
+      "topic": "AI Hardware",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "NVIDIA's Blackwell GPU generation succeeds the Hopper generation.",
+      "answer": "True",
+      "explanation": "Hopper (H100/H200) was followed by Blackwell (B200/GB200).",
+      "sourceId": "src-15"
+    },
+    {
+      "id": "q2-3",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which company manufactures most leading-edge AI chips for NVIDIA, AMD and Apple?",
+      "options": [
+        "TSMC",
+        "ASML",
+        "Intel",
+        "Samsung Electronics only"
+      ],
+      "answer": "TSMC",
+      "explanation": "TSMC is the largest contract chip maker; ASML builds the machines chip makers use.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-4",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is AMD's data-center AI accelerator line called?",
+      "options": [
+        "Instinct",
+        "Ryzen",
+        "Radeon Pro",
+        "Epyc"
+      ],
+      "answer": "Instinct",
+      "explanation": "Epyc is AMD's server CPU line; Instinct is its AI GPU line.",
+      "sourceId": "src-52"
+    },
+    {
+      "id": "q2-5",
+      "topic": "AI Hardware",
+      "type": "short",
+      "difficulty": "medium",
+      "prompt": "Which standard bus connects GPUs to the CPU in most servers and PCs?",
+      "answer": "pcie|pci express|pci-e",
+      "explanation": "NVLink is faster but used mainly GPU-to-GPU.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-6",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Why is HBM memory stacked right next to the GPU chip?",
+      "options": [
+        "Short, wide connections give very high memory bandwidth",
+        "It is cheaper than regular memory",
+        "It stores data permanently",
+        "It replaces the need for cooling"
+      ],
+      "answer": "Short, wide connections give very high memory bandwidth",
+      "explanation": "AI workloads are often limited by memory bandwidth.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-7",
+      "topic": "AI Hardware",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "CPUs usually have far fewer cores than GPUs, but each CPU core is more flexible.",
+      "answer": "True",
+      "explanation": "GPUs trade per-core flexibility for massive parallelism.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-8",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is InfiniBand mainly used for in AI clusters?",
+      "options": [
+        "High-speed, low-latency networking between servers",
+        "Storing model weights",
+        "Cooling GPUs",
+        "Power distribution"
+      ],
+      "answer": "High-speed, low-latency networking between servers",
+      "explanation": "Multi-node training needs fast inter-server communication.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-9",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Which 8-bit floating-point format, supported by Hopper and Blackwell Tensor Cores, halves memory versus FP16?",
+      "options": [
+        "FP8",
+        "FP64",
+        "TF32",
+        "INT32"
+      ],
+      "answer": "FP8",
+      "explanation": "FP8 is used for faster training and inference with the Transformer Engine.",
+      "sourceId": "src-51"
+    },
+    {
+      "id": "q2-10",
+      "topic": "AI Sizing",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "About how much memory do the weights of a 13B-parameter model need in FP16?",
+      "options": [
+        "6.5 GB",
+        "13 GB",
+        "26 GB",
+        "52 GB"
+      ],
+      "answer": "26 GB",
+      "explanation": "13B x 2 bytes = 26 GB.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-11",
+      "topic": "AI Sizing",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "About how much memory do the weights of an 8B-parameter model need in INT8?",
+      "options": [
+        "4 GB",
+        "8 GB",
+        "16 GB",
+        "32 GB"
+      ],
+      "answer": "8 GB",
+      "explanation": "8B x 1 byte = 8 GB.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-12",
+      "topic": "AI Sizing",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Doubling the context length roughly doubles the KV cache memory per sequence.",
+      "answer": "True",
+      "explanation": "The KV cache grows linearly with the number of tokens.",
+      "sourceId": "src-21"
+    },
+    {
+      "id": "q2-13",
+      "topic": "AI Sizing",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Using the 6 x N x D rule, about how many FLOPs does training a 1B-parameter model on 20B tokens take?",
+      "options": [
+        "1.2 x 10^19",
+        "1.2 x 10^20",
+        "1.2 x 10^21",
+        "2 x 10^19"
+      ],
+      "answer": "1.2 x 10^20",
+      "explanation": "6 x 1e9 x 2e10 = 1.2e20.",
+      "sourceId": "src-20"
+    },
+    {
+      "id": "q2-14",
+      "topic": "AI Sizing",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "A 70B model in FP16 has about 140 GB of weights. What is the minimum number of 80 GB GPUs needed just to hold the weights?",
+      "options": [
+        "1",
+        "2",
+        "4",
+        "8"
+      ],
+      "answer": "2",
+      "explanation": "140 GB does not fit in 80 GB, so at least 2 GPUs (more for KV cache and overhead).",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-15",
+      "topic": "AI Sizing",
+      "type": "short",
+      "difficulty": "easy",
+      "prompt": "How many bytes does one parameter take in BF16?",
+      "answer": "2|two",
+      "explanation": "BF16 is a 16-bit (2-byte) format.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-16",
+      "topic": "AI Sizing",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which technique splits the matrices inside each layer across several GPUs to reduce per-GPU memory?",
+      "options": [
+        "Tensor parallelism",
+        "Data parallelism",
+        "Early stopping",
+        "Dropout"
+      ],
+      "answer": "Tensor parallelism",
+      "explanation": "Pipeline parallelism splits layers; tensor parallelism splits within layers.",
+      "sourceId": "src-17"
+    },
+    {
+      "id": "q2-17",
+      "topic": "AI Sizing",
+      "type": "tf",
+      "difficulty": "hard",
+      "prompt": "Plain data parallelism reduces the memory each GPU needs for the model weights.",
+      "answer": "False",
+      "explanation": "Each GPU still holds a full copy; ZeRO/FSDP sharding is needed to cut that.",
+      "sourceId": "src-17"
+    },
+    {
+      "id": "q2-18",
+      "topic": "AI Sizing",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Why should you not size GPU memory at exactly 100% of weights plus KV cache?",
+      "options": [
+        "Runtime overhead and load spikes need headroom",
+        "GPUs cannot use more than 50%",
+        "Weights shrink during inference",
+        "It makes the model less accurate"
+      ],
+      "answer": "Runtime overhead and load spikes need headroom",
+      "explanation": "Frameworks, activations and bursts need extra room; plan headroom.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-19",
+      "topic": "Generative AI",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "In a GAN, what is the discriminator's job?",
+      "options": [
+        "To tell real data from generated data",
+        "To generate new images",
+        "To compress the dataset",
+        "To label training data"
+      ],
+      "answer": "To tell real data from generated data",
+      "explanation": "The generator improves by trying to fool the discriminator.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-20",
+      "topic": "Generative AI",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Using more denoising steps in a diffusion model usually improves quality but makes generation slower.",
+      "answer": "True",
+      "explanation": "Fewer steps are faster but can reduce detail.",
+      "sourceId": "src-26"
+    },
+    {
+      "id": "q2-21",
+      "topic": "Generative AI",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What does it mean to \"ground\" an LLM's answer?",
+      "options": [
+        "Tie it to verifiable sources or data",
+        "Make it shorter",
+        "Translate it",
+        "Run it on a local GPU"
+      ],
+      "answer": "Tie it to verifiable sources or data",
+      "explanation": "Grounding (e.g. with RAG) reduces hallucinations.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-22",
+      "topic": "Generative AI",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is a deepfake?",
+      "options": [
+        "Synthetic media that realistically shows a real person saying or doing things they did not",
+        "A very deep neural network",
+        "A corrupted dataset",
+        "A fake benchmark score"
+      ],
+      "answer": "Synthetic media that realistically shows a real person saying or doing things they did not",
+      "explanation": "Deepfakes raise consent, fraud and misinformation concerns.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-23",
+      "topic": "Generative AI",
+      "type": "short",
+      "difficulty": "medium",
+      "prompt": "What is the term for a hidden signal embedded in AI-generated content so it can later be identified?",
+      "answer": "watermark|watermarking|watermarks",
+      "explanation": "Watermarks help label AI-generated media.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-24",
+      "topic": "Generative AI",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "With top-p sampling at p = 0.9, which tokens can be sampled?",
+      "options": [
+        "The smallest set of tokens whose probabilities add up to 0.9",
+        "Only the single most likely token",
+        "The 90 most likely tokens",
+        "Any token in the vocabulary"
+      ],
+      "answer": "The smallest set of tokens whose probabilities add up to 0.9",
+      "explanation": "Top-p adapts the candidate set to the model's confidence.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-25",
+      "topic": "Generative AI",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "Setting temperature to 0 makes a model's output nearly deterministic.",
+      "answer": "True",
+      "explanation": "The model then almost always picks the most likely token.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-26",
+      "topic": "Generative AI",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "What is a latent space in models like VAEs and latent diffusion?",
+      "options": [
+        "A compressed representation where similar items lie close together",
+        "Unused GPU memory",
+        "The model's training logs",
+        "A database of prompts"
+      ],
+      "answer": "A compressed representation where similar items lie close together",
+      "explanation": "Generation happens in this compact space, then is decoded.",
+      "sourceId": "src-26"
+    },
+    {
+      "id": "q2-27",
+      "topic": "Generative AI",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which model family is best known for generating images by gradually removing noise?",
+      "options": [
+        "Diffusion models",
+        "Decision trees",
+        "Linear regression",
+        "Recommender systems"
+      ],
+      "answer": "Diffusion models",
+      "explanation": "Stable Diffusion and FLUX are examples.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-28",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What does GPT stand for?",
+      "options": [
+        "Generative Pre-trained Transformer",
+        "General Purpose Tokenizer",
+        "Graph Processing Technique",
+        "Guided Prompt Template"
+      ],
+      "answer": "Generative Pre-trained Transformer",
+      "explanation": "Pre-trained on large text, then adapted.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-29",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "BERT is mainly which kind of model?",
+      "options": [
+        "An encoder-only transformer for understanding tasks",
+        "A decoder-only chatbot",
+        "A diffusion image model",
+        "A reinforcement learning agent"
+      ],
+      "answer": "An encoder-only transformer for understanding tasks",
+      "explanation": "BERT is used for classification, search and embeddings.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-30",
+      "topic": "LLMs",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Decoder-only LLMs generate text one token at a time, from left to right.",
+      "answer": "True",
+      "explanation": "Each new token is predicted from the tokens before it.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-31",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "In a Mixture-of-Experts (MoE) model, how many experts are typically active for each token?",
+      "options": [
+        "Only a few, chosen by a router",
+        "All of them",
+        "None",
+        "Exactly one hundred"
+      ],
+      "answer": "Only a few, chosen by a router",
+      "explanation": "This gives large total capacity with lower compute per token.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-32",
+      "topic": "LLMs",
+      "type": "short",
+      "difficulty": "medium",
+      "prompt": "Which alignment method learns directly from preference pairs without a separate reward model?",
+      "answer": "dpo|direct preference optimization",
+      "explanation": "DPO simplifies RLHF.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-33",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "What does grouped-query attention (GQA) mainly reduce during inference?",
+      "options": [
+        "KV cache size and memory bandwidth",
+        "Vocabulary size",
+        "Training data needs",
+        "The number of layers"
+      ],
+      "answer": "KV cache size and memory bandwidth",
+      "explanation": "Query heads share key/value heads.",
+      "sourceId": "src-21"
+    },
+    {
+      "id": "q2-34",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is a system prompt?",
+      "options": [
+        "Instructions that set the model's role and behavior for the conversation",
+        "The operating system's login screen",
+        "A list of GPU drivers",
+        "The user's first question"
+      ],
+      "answer": "Instructions that set the model's role and behavior for the conversation",
+      "explanation": "It frames every later turn.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-35",
+      "topic": "LLMs",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Larger context windows completely remove the need for RAG.",
+      "answer": "False",
+      "explanation": "Long contexts cost more and models can miss facts in the middle; retrieval still helps.",
+      "sourceId": "src-79"
+    },
+    {
+      "id": "q2-36",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is an open-weight model?",
+      "options": [
+        "A model whose trained weights can be downloaded and run",
+        "A model with no weights",
+        "A model that only runs in a browser",
+        "A model trained on open books only"
+      ],
+      "answer": "A model whose trained weights can be downloaded and run",
+      "explanation": "Examples include Llama, Qwen, Gemma and Mistral open models.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-37",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What does cosine similarity measure between two embeddings?",
+      "options": [
+        "How closely their directions match, as a measure of semantic similarity",
+        "Their file size",
+        "The number of shared letters",
+        "The time to compute them"
+      ],
+      "answer": "How closely their directions match, as a measure of semantic similarity",
+      "explanation": "Values near 1 mean very similar meaning.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-38",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What does hybrid search combine?",
+      "options": [
+        "Keyword search (like BM25) and vector search",
+        "Two different GPUs",
+        "Images and audio",
+        "Training and inference"
+      ],
+      "answer": "Keyword search (like BM25) and vector search",
+      "explanation": "Keywords catch exact terms; vectors catch meaning.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-39",
+      "topic": "AI Engineering",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Re-ranking improves RAG by re-scoring the top retrieved results with a stronger model.",
+      "answer": "True",
+      "explanation": "A cross-encoder re-ranker often lifts answer quality.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-40",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Why use structured outputs (for example JSON schema mode)?",
+      "options": [
+        "So the application can reliably parse the model's response",
+        "To make answers longer",
+        "To hide the answer from users",
+        "To train the model"
+      ],
+      "answer": "So the application can reliably parse the model's response",
+      "explanation": "Schema-constrained output avoids fragile text parsing.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-41",
+      "topic": "AI Engineering",
+      "type": "short",
+      "difficulty": "hard",
+      "prompt": "Which graph-based approximate nearest-neighbor index, with multiple layers, is common in vector databases (abbreviation)?",
+      "answer": "hnsw|hierarchical navigable small world",
+      "explanation": "HNSW gives fast, accurate similarity search.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-42",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is semantic caching in LLM apps?",
+      "options": [
+        "Reusing earlier answers for questions with similar meaning",
+        "Storing the model on disk",
+        "Caching images in the browser",
+        "Saving GPU drivers"
+      ],
+      "answer": "Reusing earlier answers for questions with similar meaning",
+      "explanation": "It cuts cost and latency for repeated questions.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-43",
+      "topic": "AI Engineering",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "Streaming shows tokens as they are generated, which makes the app feel faster.",
+      "answer": "True",
+      "explanation": "Time-to-first-token matters for user experience.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-44",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Which is the best defense against indirect prompt injection in a RAG or agent app?",
+      "options": [
+        "Treat retrieved content as untrusted data, limit tool permissions and require approval for risky actions",
+        "Use a longer system prompt only",
+        "Turn up the temperature",
+        "Retrieve more documents"
+      ],
+      "answer": "Treat retrieved content as untrusted data, limit tool permissions and require approval for risky actions",
+      "explanation": "Layered defenses matter; no single prompt is enough.",
+      "sourceId": "src-27"
+    },
+    {
+      "id": "q2-45",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "How should an app handle HTTP 429 (rate limit) errors from an LLM API?",
+      "options": [
+        "Retry with exponential backoff",
+        "Retry immediately in a tight loop",
+        "Switch off the app",
+        "Ignore the error"
+      ],
+      "answer": "Retry with exponential backoff",
+      "explanation": "Back off, then retry, to respect provider limits.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-46",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What kind of data does supervised learning use?",
+      "options": [
+        "Labeled examples (inputs with known answers)",
+        "Only unlabeled data",
+        "Only rewards",
+        "No data"
+      ],
+      "answer": "Labeled examples (inputs with known answers)",
+      "explanation": "Classification and regression are supervised tasks.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-47",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which is an example of unsupervised learning?",
+      "options": [
+        "Clustering customers into groups",
+        "Predicting house prices from labeled sales",
+        "Spam detection with labeled emails",
+        "Grading exams with answer keys"
+      ],
+      "answer": "Clustering customers into groups",
+      "explanation": "Unsupervised learning finds structure without labels.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-48",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is the validation set mainly used for?",
+      "options": [
+        "Tuning hyperparameters and choosing between models",
+        "Final unbiased reporting",
+        "Training the weights",
+        "Storing backups"
+      ],
+      "answer": "Tuning hyperparameters and choosing between models",
+      "explanation": "The test set is kept for the final evaluation.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-49",
+      "topic": "AI Development",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Early stopping halts training when performance on the validation set stops improving.",
+      "answer": "True",
+      "explanation": "It is a simple guard against overfitting.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-50",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is the formula for precision?",
+      "options": [
+        "TP / (TP + FP)",
+        "TP / (TP + FN)",
+        "(TP + TN) / total",
+        "FP / (FP + TN)"
+      ],
+      "answer": "TP / (TP + FP)",
+      "explanation": "Recall is TP / (TP + FN).",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-51",
+      "topic": "AI Development",
+      "type": "short",
+      "difficulty": "medium",
+      "prompt": "Which metric is the harmonic mean of precision and recall?",
+      "answer": "f1|f1 score|f1-score|f-score",
+      "explanation": "F1 balances precision and recall.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-52",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Why can accuracy be misleading on an imbalanced dataset?",
+      "options": [
+        "A model can score high by always predicting the majority class",
+        "Accuracy cannot be computed",
+        "It always reports 0%",
+        "It only works for images"
+      ],
+      "answer": "A model can score high by always predicting the majority class",
+      "explanation": "Use precision, recall, F1 or class weights.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-53",
+      "topic": "AI Development",
+      "type": "tf",
+      "difficulty": "hard",
+      "prompt": "Batch normalization normalizes layer inputs across a mini-batch to stabilize and speed up training.",
+      "answer": "True",
+      "explanation": "Transformers usually use layer normalization instead.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-54",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is a hyperparameter?",
+      "options": [
+        "A setting chosen before training, like the learning rate",
+        "A weight learned during training",
+        "A type of GPU",
+        "A row in the dataset"
+      ],
+      "answer": "A setting chosen before training, like the learning rate",
+      "explanation": "Weights are learned; hyperparameters are set.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-55",
+      "topic": "Frontier Labs",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which company makes the Grok models?",
+      "options": [
+        "xAI",
+        "OpenAI",
+        "Google",
+        "Meta"
+      ],
+      "answer": "xAI",
+      "explanation": "Grok is integrated with X.",
+      "sourceId": "src-44"
+    },
+    {
+      "id": "q2-56",
+      "topic": "Frontier Labs",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "In which country is DeepSeek based?",
+      "options": [
+        "China",
+        "United States",
+        "France",
+        "United Kingdom"
+      ],
+      "answer": "China",
+      "explanation": "DeepSeek is known for low-cost open-weight models.",
+      "sourceId": "src-45"
+    },
+    {
+      "id": "q2-57",
+      "topic": "Frontier Labs",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "In which country is Mistral AI based?",
+      "options": [
+        "France",
+        "Germany",
+        "Canada",
+        "Japan"
+      ],
+      "answer": "France",
+      "explanation": "Mistral is a leading European AI lab.",
+      "sourceId": "src-43"
+    },
+    {
+      "id": "q2-58",
+      "topic": "Frontier Labs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which company develops the Phi family of small language models?",
+      "options": [
+        "Microsoft",
+        "Apple",
+        "Alibaba",
+        "Anthropic"
+      ],
+      "answer": "Microsoft",
+      "explanation": "Phi models show strong results at small sizes.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-59",
+      "topic": "Frontier Labs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which company releases the Gemma open models?",
+      "options": [
+        "Google",
+        "Meta",
+        "xAI",
+        "Cohere"
+      ],
+      "answer": "Google",
+      "explanation": "Gemma shares research with Gemini.",
+      "sourceId": "src-39"
+    },
+    {
+      "id": "q2-60",
+      "topic": "Frontier Labs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which company makes the Kimi models?",
+      "options": [
+        "Moonshot AI",
+        "Baidu",
+        "Tencent",
+        "DeepSeek"
+      ],
+      "answer": "Moonshot AI",
+      "explanation": "Kimi is known for long context.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-61",
+      "topic": "Frontier Labs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which company develops the Command family of enterprise models?",
+      "options": [
+        "Cohere",
+        "OpenAI",
+        "Mistral AI",
+        "Microsoft"
+      ],
+      "answer": "Cohere",
+      "explanation": "Cohere focuses on enterprise and RAG use cases.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-62",
+      "topic": "Frontier Labs",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "The Falcon models were developed by the Technology Innovation Institute (TII) in Abu Dhabi.",
+      "answer": "True",
+      "explanation": "TII also co-launched the Open Arabic LLM Leaderboard.",
+      "sourceId": "src-70"
+    },
+    {
+      "id": "q2-63",
+      "topic": "Frontier Labs",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "How are Meta's Llama models released?",
+      "options": [
+        "As open-weight models anyone can download",
+        "Only inside a paid API",
+        "Only on Meta's own phones",
+        "They are not released"
+      ],
+      "answer": "As open-weight models anyone can download",
+      "explanation": "License terms apply, but weights are downloadable.",
+      "sourceId": "src-40"
+    },
+    {
+      "id": "q2-64",
+      "topic": "Harnesses",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "In an agent harness, what does the stop condition decide?",
+      "options": [
+        "When the agent loop ends (task done, step limit or error)",
+        "Which GPU to use",
+        "The model's temperature",
+        "The user's password"
+      ],
+      "answer": "When the agent loop ends (task done, step limit or error)",
+      "explanation": "Without stop conditions, agents can loop forever.",
+      "sourceId": "src-81"
+    },
+    {
+      "id": "q2-65",
+      "topic": "Harnesses",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "The same model can perform very differently in different harnesses.",
+      "answer": "True",
+      "explanation": "Tools, context management and prompts in the harness matter a lot.",
+      "sourceId": "src-81"
+    },
+    {
+      "id": "q2-66",
+      "topic": "Harnesses",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Why do harnesses ask the user for permission before some actions?",
+      "options": [
+        "So a human approves risky actions like deleting files or running commands",
+        "To slow the model down on purpose",
+        "To collect user data",
+        "Because models cannot read files"
+      ],
+      "answer": "So a human approves risky actions like deleting files or running commands",
+      "explanation": "Human-in-the-loop approval limits damage from mistakes.",
+      "sourceId": "src-82"
+    },
+    {
+      "id": "q2-67",
+      "topic": "Harnesses",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What does Terminal-Bench evaluate?",
+      "options": [
+        "AI agents completing real tasks in a terminal",
+        "Keyboard typing speed",
+        "GPU temperatures",
+        "Image quality"
+      ],
+      "answer": "AI agents completing real tasks in a terminal",
+      "explanation": "It tests end-to-end agent ability in a shell.",
+      "sourceId": "src-86"
+    },
+    {
+      "id": "q2-68",
+      "topic": "Harnesses",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Why set a maximum number of steps for an agent?",
+      "options": [
+        "To prevent endless loops and runaway costs",
+        "To make answers longer",
+        "To increase accuracy automatically",
+        "To train the model faster"
+      ],
+      "answer": "To prevent endless loops and runaway costs",
+      "explanation": "Step limits are a basic safety and cost control.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-69",
+      "topic": "Harnesses",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "How do sub-agents help a harness on big tasks?",
+      "options": [
+        "They work in separate clean contexts and return condensed results",
+        "They train new models",
+        "They replace the need for tools",
+        "They share one context window"
+      ],
+      "answer": "They work in separate clean contexts and return condensed results",
+      "explanation": "This keeps the main agent's context focused.",
+      "sourceId": "src-75"
+    },
+    {
+      "id": "q2-70",
+      "topic": "Harnesses",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "An evaluation harness and an agent harness mean the same thing.",
+      "answer": "False",
+      "explanation": "An eval harness runs benchmarks; an agent harness runs the agent loop.",
+      "sourceId": "src-84"
+    },
+    {
+      "id": "q2-71",
+      "topic": "Harnesses",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Why do harnesses record traces or logs of each step?",
+      "options": [
+        "To debug, audit and evaluate what the agent did",
+        "To make the model smarter",
+        "To save GPU memory",
+        "To hide errors"
+      ],
+      "answer": "To debug, audit and evaluate what the agent did",
+      "explanation": "Traces show which tool calls led to an outcome.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-72",
+      "topic": "Harnesses",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is sandboxed execution in an agent harness?",
+      "options": [
+        "Running code or commands in an isolated environment with limited access",
+        "Running on the fastest GPU",
+        "Running without any logs",
+        "Running only in the browser"
+      ],
+      "answer": "Running code or commands in an isolated environment with limited access",
+      "explanation": "Isolation limits what a wrong action can affect.",
+      "sourceId": "src-82"
+    },
+    {
+      "id": "q2-73",
+      "topic": "CLI",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What does CLI stand for?",
+      "options": [
+        "Command-Line Interface",
+        "Central Logic Integrator",
+        "Cloud Library Index",
+        "Code Language Interpreter"
+      ],
+      "answer": "Command-Line Interface",
+      "explanation": "You type commands in a terminal.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-74",
+      "topic": "CLI",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "In AI coding CLIs like Claude Code, what are slash commands?",
+      "options": [
+        "Shortcuts typed with a leading / to run built-in or custom actions",
+        "Comments in code",
+        "File paths",
+        "Error messages"
+      ],
+      "answer": "Shortcuts typed with a leading / to run built-in or custom actions",
+      "explanation": "For example /help or a custom /review command.",
+      "sourceId": "src-88"
+    },
+    {
+      "id": "q2-75",
+      "topic": "CLI",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "AI coding CLIs can run tests and shell commands, usually after asking for permission.",
+      "answer": "True",
+      "explanation": "Permission modes control what runs without asking.",
+      "sourceId": "src-87"
+    },
+    {
+      "id": "q2-76",
+      "topic": "CLI",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What does running an AI CLI in headless mode mean?",
+      "options": [
+        "Running it non-interactively, for example in scripts or CI",
+        "Running it without a monitor",
+        "Running it without internet",
+        "Running it on a phone"
+      ],
+      "answer": "Running it non-interactively, for example in scripts or CI",
+      "explanation": "Example: claude -p \"prompt\".",
+      "sourceId": "src-88"
+    },
+    {
+      "id": "q2-77",
+      "topic": "CLI",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which git command shows changes that are not yet staged?",
+      "options": [
+        "git diff",
+        "git push",
+        "git clone",
+        "git init"
+      ],
+      "answer": "git diff",
+      "explanation": "git diff --staged shows staged changes.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-78",
+      "topic": "CLI",
+      "type": "short",
+      "difficulty": "easy",
+      "prompt": "Which command installs a Node.js project's dependencies listed in package.json?",
+      "answer": "npm install|npm i|npm ci",
+      "explanation": "npm ci does a clean install from the lock file.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-79",
+      "topic": "CLI",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What are hooks in Claude Code?",
+      "options": [
+        "Commands that run automatically at events, such as before or after a tool is used",
+        "Fishing tools",
+        "Keyboard shortcuts only",
+        "Error codes"
+      ],
+      "answer": "Commands that run automatically at events, such as before or after a tool is used",
+      "explanation": "Hooks enforce rules like formatting or blocking risky commands.",
+      "sourceId": "src-87"
+    },
+    {
+      "id": "q2-80",
+      "topic": "CLI",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Why commit your work to git before letting an AI agent make big changes?",
+      "options": [
+        "So you can easily review and undo its changes",
+        "Because agents cannot read uncommitted files",
+        "To make the agent faster",
+        "To delete old files"
+      ],
+      "answer": "So you can easily review and undo its changes",
+      "explanation": "Version control is your safety net.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-81",
+      "topic": "CLI",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What do MCP servers add to an AI coding CLI?",
+      "options": [
+        "New tools and data sources the agent can use",
+        "More GPU memory",
+        "A new programming language",
+        "Faster internet"
+      ],
+      "answer": "New tools and data sources the agent can use",
+      "explanation": "For example browser control, docs search or databases.",
+      "sourceId": "src-83"
+    },
+    {
+      "id": "q2-82",
+      "topic": "Context Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is structured note-taking for agents?",
+      "options": [
+        "The agent writes notes to files outside its context so it can remember later",
+        "Writing prompts in a notebook",
+        "Logging GPU usage",
+        "Highlighting text in PDFs"
+      ],
+      "answer": "The agent writes notes to files outside its context so it can remember later",
+      "explanation": "Notes persist across context resets.",
+      "sourceId": "src-75"
+    },
+    {
+      "id": "q2-83",
+      "topic": "Context Engineering",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Putting every available document into the prompt always improves answers.",
+      "answer": "False",
+      "explanation": "Irrelevant context distracts the model and costs more.",
+      "sourceId": "src-78"
+    },
+    {
+      "id": "q2-84",
+      "topic": "Context Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is \"context distraction\"?",
+      "options": [
+        "The context grows so long that the model over-focuses on it instead of its training knowledge",
+        "The user changes topic",
+        "The GPU overheats",
+        "The tokenizer fails"
+      ],
+      "answer": "The context grows so long that the model over-focuses on it instead of its training knowledge",
+      "explanation": "One of the ways long contexts fail.",
+      "sourceId": "src-78"
+    },
+    {
+      "id": "q2-85",
+      "topic": "Context Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is \"context clash\"?",
+      "options": [
+        "Conflicting information inside the same context",
+        "Two users typing at once",
+        "A network timeout",
+        "Two GPUs disagreeing"
+      ],
+      "answer": "Conflicting information inside the same context",
+      "explanation": "Conflicts confuse the model's answer.",
+      "sourceId": "src-78"
+    },
+    {
+      "id": "q2-86",
+      "topic": "Context Engineering",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Why do tool definitions count against the context budget?",
+      "options": [
+        "They use tokens, and too many tools make tool selection harder",
+        "They are stored on the GPU",
+        "They are free and unlimited",
+        "They are only read once a day"
+      ],
+      "answer": "They use tokens, and too many tools make tool selection harder",
+      "explanation": "Load only the tools a task needs.",
+      "sourceId": "src-75"
+    },
+    {
+      "id": "q2-87",
+      "topic": "Context Engineering",
+      "type": "short",
+      "difficulty": "medium",
+      "prompt": "What is the technique called of summarizing older conversation turns to free up context space?",
+      "answer": "compaction|context compaction|summarization|summarisation",
+      "explanation": "Compaction keeps key facts while dropping detail.",
+      "sourceId": "src-75"
+    },
+    {
+      "id": "q2-88",
+      "topic": "Context Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What does isolating context with sub-agents mean?",
+      "options": [
+        "Each sub-agent works in its own context window on part of the task",
+        "Deleting the context",
+        "Encrypting the prompt",
+        "Running agents offline"
+      ],
+      "answer": "Each sub-agent works in its own context window on part of the task",
+      "explanation": "Isolation prevents one task's details from crowding another.",
+      "sourceId": "src-77"
+    },
+    {
+      "id": "q2-89",
+      "topic": "Context Engineering",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Putting key instructions at the start or end of a long prompt can help the model follow them.",
+      "answer": "True",
+      "explanation": "Models use information in the middle of long contexts less reliably.",
+      "sourceId": "src-79"
+    },
+    {
+      "id": "q2-90",
+      "topic": "Context Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "In RAG, why retrieve only the top few relevant chunks rather than the whole knowledge base?",
+      "options": [
+        "To give the model just enough high-signal context",
+        "Because the database is broken",
+        "To make answers random",
+        "Because models cannot read text"
+      ],
+      "answer": "To give the model just enough high-signal context",
+      "explanation": "Less but better context usually wins.",
+      "sourceId": "src-75"
+    },
+    {
+      "id": "q2-91",
+      "topic": "Agents & MCP",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which message format does MCP use?",
+      "options": [
+        "JSON-RPC 2.0",
+        "SOAP XML",
+        "CSV files",
+        "Plain email"
+      ],
+      "answer": "JSON-RPC 2.0",
+      "explanation": "Requests, responses and notifications are JSON-RPC messages.",
+      "sourceId": "src-93"
+    },
+    {
+      "id": "q2-92",
+      "topic": "Agents & MCP",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which of these is an example of an MCP host?",
+      "options": [
+        "An AI app such as Claude Code or an IDE",
+        "A GPU",
+        "A vector embedding",
+        "A DNS record"
+      ],
+      "answer": "An AI app such as Claude Code or an IDE",
+      "explanation": "Hosts contain clients that connect to servers.",
+      "sourceId": "src-93"
+    },
+    {
+      "id": "q2-93",
+      "topic": "Agents & MCP",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "In MCP, each client keeps a one-to-one connection with a single server.",
+      "answer": "True",
+      "explanation": "A host can run many clients, one per server.",
+      "sourceId": "src-93"
+    },
+    {
+      "id": "q2-94",
+      "topic": "Agents & MCP",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "In the evaluator-optimizer pattern, what happens?",
+      "options": [
+        "One LLM generates, another evaluates and gives feedback, in a loop",
+        "One model trains another from scratch",
+        "A human writes every answer",
+        "The model optimizes GPU clocks"
+      ],
+      "answer": "One LLM generates, another evaluates and gives feedback, in a loop",
+      "explanation": "Useful when clear evaluation criteria exist.",
+      "sourceId": "src-28"
+    },
+    {
+      "id": "q2-95",
+      "topic": "Agents & MCP",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is the routing pattern?",
+      "options": [
+        "Classifying an input and sending it to a specialized prompt, tool or model",
+        "Choosing a network cable",
+        "Sending every request to all models",
+        "Rotating API keys"
+      ],
+      "answer": "Classifying an input and sending it to a specialized prompt, tool or model",
+      "explanation": "Example: send billing questions to a billing flow.",
+      "sourceId": "src-28"
+    },
+    {
+      "id": "q2-96",
+      "topic": "Agents & MCP",
+      "type": "short",
+      "difficulty": "medium",
+      "prompt": "What is agent memory that persists across sessions usually called (two words)?",
+      "answer": "long-term memory|long term memory|longterm memory",
+      "explanation": "Short-term memory is the current context.",
+      "sourceId": "src-99"
+    },
+    {
+      "id": "q2-97",
+      "topic": "Agents & MCP",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "What is \"tool poisoning\" in MCP?",
+      "options": [
+        "Malicious instructions hidden in a tool's description or metadata",
+        "A tool that runs slowly",
+        "Deleting a tool by mistake",
+        "A broken network cable"
+      ],
+      "answer": "Malicious instructions hidden in a tool's description or metadata",
+      "explanation": "Only install trusted servers and review tool descriptions.",
+      "sourceId": "src-93"
+    },
+    {
+      "id": "q2-98",
+      "topic": "Agents & MCP",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "Agents usually use more tokens than a single LLM call for the same request.",
+      "answer": "True",
+      "explanation": "Each loop step adds model calls and tool results.",
+      "sourceId": "src-28"
+    },
+    {
+      "id": "q2-99",
+      "topic": "Agents & MCP",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is a handoff in a multi-agent system?",
+      "options": [
+        "Passing control of the task or conversation to another agent",
+        "Shaking hands with the user",
+        "Restarting the server",
+        "Switching GPUs"
+      ],
+      "answer": "Passing control of the task or conversation to another agent",
+      "explanation": "The OpenAI Agents SDK has handoffs as a core concept.",
+      "sourceId": "src-96"
+    },
+    {
+      "id": "q2-100",
+      "topic": "Evals",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is regression testing for prompts and LLM apps?",
+      "options": [
+        "Re-running the eval suite after changes to catch quality drops",
+        "Fitting a regression line",
+        "Testing GPU speed",
+        "Deleting old prompts"
+      ],
+      "answer": "Re-running the eval suite after changes to catch quality drops",
+      "explanation": "Run it in CI before every release.",
+      "sourceId": "src-101"
+    },
+    {
+      "id": "q2-101",
+      "topic": "Evals",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "A clear rubric makes LLM-as-a-judge grading more consistent.",
+      "answer": "True",
+      "explanation": "Specific criteria reduce vague, noisy scores.",
+      "sourceId": "src-104"
+    },
+    {
+      "id": "q2-102",
+      "topic": "Evals",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "In RAG evaluation, what does context precision measure?",
+      "options": [
+        "Whether the retrieved chunks are relevant, with relevant ones ranked high",
+        "How fast retrieval is",
+        "How long the answer is",
+        "The cost per query"
+      ],
+      "answer": "Whether the retrieved chunks are relevant, with relevant ones ranked high",
+      "explanation": "Low precision means noisy context.",
+      "sourceId": "src-105"
+    },
+    {
+      "id": "q2-103",
+      "topic": "Evals",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "In RAG evaluation, what does context recall measure?",
+      "options": [
+        "Whether the retrieved context contains all the information needed",
+        "How many users recalled the answer",
+        "The model's memory size",
+        "The number of chunks stored"
+      ],
+      "answer": "Whether the retrieved context contains all the information needed",
+      "explanation": "Low recall means missing facts.",
+      "sourceId": "src-105"
+    },
+    {
+      "id": "q2-104",
+      "topic": "Evals",
+      "type": "short",
+      "difficulty": "medium",
+      "prompt": "What is adversarial testing to find unsafe or harmful model behavior called?",
+      "answer": "red teaming|red-teaming|redteaming",
+      "explanation": "Tools like promptfoo support automated red-teaming.",
+      "sourceId": "src-106"
+    },
+    {
+      "id": "q2-105",
+      "topic": "Evals",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is A/B testing of an LLM feature?",
+      "options": [
+        "Comparing two versions on live users to see which performs better",
+        "Testing on two GPUs",
+        "Grading answers A or B",
+        "Translating between two languages"
+      ],
+      "answer": "Comparing two versions on live users to see which performs better",
+      "explanation": "An online evaluation method.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-106",
+      "topic": "Evals",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Why run several samples per eval case for LLMs?",
+      "options": [
+        "Outputs are non-deterministic, so one sample can mislead",
+        "To use up the budget",
+        "Because the first sample is always wrong",
+        "To train the model"
+      ],
+      "answer": "Outputs are non-deterministic, so one sample can mislead",
+      "explanation": "Average over samples for stable scores.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-107",
+      "topic": "Evals",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Where a code-based check (like JSON schema or regex) can capture a requirement, it should be preferred over an LLM judge.",
+      "answer": "True",
+      "explanation": "Code checks are cheap, fast and deterministic.",
+      "sourceId": "src-102"
+    },
+    {
+      "id": "q2-108",
+      "topic": "Evals",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What does inter-annotator agreement measure?",
+      "options": [
+        "How consistently different human labelers agree",
+        "How fast annotators work",
+        "The model's accuracy",
+        "The number of labels"
+      ],
+      "answer": "How consistently different human labelers agree",
+      "explanation": "Low agreement means the task or rubric is unclear.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-109",
+      "topic": "Benchmarking",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is SWE-bench Verified?",
+      "options": [
+        "A human-validated subset of SWE-bench tasks",
+        "A GPU benchmark",
+        "A math benchmark",
+        "An image benchmark"
+      ],
+      "answer": "A human-validated subset of SWE-bench tasks",
+      "explanation": "Verification removed unclear or unfair tasks.",
+      "sourceId": "src-85"
+    },
+    {
+      "id": "q2-110",
+      "topic": "Benchmarking",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What does ARC-AGI test?",
+      "options": [
+        "Abstract reasoning puzzles that are easy for humans but hard for AI",
+        "Typing speed",
+        "Translation quality",
+        "GPU throughput"
+      ],
+      "answer": "Abstract reasoning puzzles that are easy for humans but hard for AI",
+      "explanation": "It targets generalization to new problems.",
+      "sourceId": "src-115"
+    },
+    {
+      "id": "q2-111",
+      "topic": "Benchmarking",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is Humanity's Last Exam?",
+      "options": [
+        "A benchmark of very hard expert-level questions across many subjects",
+        "A school final exam",
+        "A typing test",
+        "A hardware stress test"
+      ],
+      "answer": "A benchmark of very hard expert-level questions across many subjects",
+      "explanation": "Built to stay hard as models improve.",
+      "sourceId": "src-116"
+    },
+    {
+      "id": "q2-112",
+      "topic": "Benchmarking",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Different prompting setups, such as few-shot versus zero-shot, can change benchmark scores.",
+      "answer": "True",
+      "explanation": "Compare results only under the same setup.",
+      "sourceId": "src-112"
+    },
+    {
+      "id": "q2-113",
+      "topic": "Benchmarking",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What does MLPerf Training measure?",
+      "options": [
+        "How long systems take to train models to a target quality",
+        "How smart a chatbot is",
+        "Model file size",
+        "The number of parameters"
+      ],
+      "answer": "How long systems take to train models to a target quality",
+      "explanation": "It compares hardware and software systems.",
+      "sourceId": "src-18"
+    },
+    {
+      "id": "q2-114",
+      "topic": "Benchmarking",
+      "type": "short",
+      "difficulty": "medium",
+      "prompt": "What is the name (abbreviation) of Stanford's holistic evaluation framework for language models?",
+      "answer": "helm",
+      "explanation": "Holistic Evaluation of Language Models.",
+      "sourceId": "src-112"
+    },
+    {
+      "id": "q2-115",
+      "topic": "Benchmarking",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Why do benchmark makers keep some test sets private or held out?",
+      "options": [
+        "To reduce contamination and overfitting to the benchmark",
+        "To save storage",
+        "Because the questions are wrong",
+        "To make scores higher"
+      ],
+      "answer": "To reduce contamination and overfitting to the benchmark",
+      "explanation": "Public test sets can leak into training data.",
+      "sourceId": "src-114"
+    },
+    {
+      "id": "q2-116",
+      "topic": "Benchmarking",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What does the GSM8K benchmark test?",
+      "options": [
+        "Grade-school math word problems",
+        "Image classification",
+        "Speech recognition",
+        "Chip manufacturing"
+      ],
+      "answer": "Grade-school math word problems",
+      "explanation": "It checks multi-step arithmetic reasoning.",
+      "sourceId": ""
+    },
+    {
+      "id": "q2-117",
+      "topic": "Benchmarking",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "Tokens per second is a common performance metric for LLM inference.",
+      "answer": "True",
+      "explanation": "Along with time-to-first-token and latency.",
+      "sourceId": ""
     }
   ]
 }

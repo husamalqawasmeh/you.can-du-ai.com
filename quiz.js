@@ -1,7 +1,8 @@
 // Pure logic shared by the browser app and the node self-check (test.mjs).
 
-export function filterQuestions(questions, { types = [], topics = [], difficulties = [] }) {
+export function filterQuestions(questions, { types = [], topics = [], difficulties = [], exclude = null }) {
   return questions.filter(q =>
+    !exclude?.has(q.id) &&
     (!types.length || types.includes(q.type)) &&
     (!topics.length || topics.includes(q.topic)) &&
     (!difficulties.length || difficulties.includes(q.difficulty)));
@@ -58,7 +59,9 @@ export function scoreByTopic(qs, answers) {
 // Proficiency estimate. items = [topic, difficulty, correct 0/1] per answered question.
 // Score is weighted by difficulty (easy 1, medium 2, hard 3); "Expert" also needs proven skill on hard questions.
 const DIFF_W = { easy: 1, medium: 2, hard: 3 };
-export const resultItems = (qs, answers) => qs.map((q, i) => [q.topic, q.difficulty, isCorrect(q, answers[i]) ? 1 : 0]);
+export const resultItems = (qs, answers) => qs.map((q, i) => [q.topic, q.difficulty, isCorrect(q, answers[i]) ? 1 : 0, q.id]);
+// IDs of questions this student has answered correctly at least once (so tests can skip them).
+export const masteredIds = results => new Set(results.flatMap(r => r.items ?? []).filter(it => it[2] && it[3]).map(it => it[3]));
 export function proficiency(items) {
   if (!items?.length) return null;
   let got = 0, max = 0, hardN = 0, hardOk = 0;

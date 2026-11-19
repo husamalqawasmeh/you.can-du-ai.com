@@ -85,7 +85,7 @@
       "followup": "Why can benchmark results be misleading (contamination, saturation, different setups), and how would you benchmark for your own use case?"
     },
     {
-      "q": "Define these 106 AI and tech terms.",
+      "q": "Define these 116 AI and tech terms.",
       "followup": "Why does it matter to explain technical terms simply to non-technical stakeholders, and which of these do you use most in your work?",
       "terms": [
         [
@@ -477,6 +477,26 @@
           "The package manager for Node.js (JavaScript): installs and manages libraries and runs project scripts."
         ],
         [
+          "pip",
+          "The package installer for Python: installs libraries from PyPI, e.g. pip install torch."
+        ],
+        [
+          "curl",
+          "A command-line tool for sending HTTP requests and transferring data, often used to test APIs."
+        ],
+        [
+          "Linux",
+          "A free, open-source operating system family; it runs most servers, cloud machines and AI training clusters."
+        ],
+        [
+          "WSL (Windows Subsystem for Linux)",
+          "A Windows feature that runs a real Linux environment inside Windows, popular for AI and developer tools."
+        ],
+        [
+          "WINE",
+          "A compatibility layer that lets Windows programs run on Linux and macOS without a Windows license (the name stands for \"Wine Is Not an Emulator\")."
+        ],
+        [
           "Django",
           "A high-level Python web framework for building web apps quickly, with a database ORM, admin panel and security features built in."
         ],
@@ -487,6 +507,26 @@
         [
           "Julia",
           "A high-performance programming language for scientific and numerical computing, with Python-like syntax and near-C speed."
+        ],
+        [
+          "JavaScript",
+          "The programming language of the web: runs in every browser and, with Node.js, on servers."
+        ],
+        [
+          "JSON (JavaScript Object Notation)",
+          "A lightweight text format for structured data using key-value pairs and lists; the standard format for APIs and LLM structured outputs."
+        ],
+        [
+          "YAML",
+          "A human-friendly data format that uses indentation instead of brackets; common for configuration files such as CI pipelines and Kubernetes."
+        ],
+        [
+          "Markdown",
+          "A simple text formatting syntax (# headings, **bold**, - lists) that converts to HTML; used in README files, docs and chat apps."
+        ],
+        [
+          "PostgreSQL (Postgres)",
+          "A powerful open-source relational database; with the pgvector extension it can also store and search embeddings."
         ],
         [
           "Docker / container",
@@ -513,6 +553,10 @@
           "Hypothetical AI that matches or exceeds humans across most cognitive tasks."
         ]
       ]
+    },
+    {
+      "q": "What is the difference between permissive open-source licenses (such as Apache 2.0 or MIT) and copyleft licenses (such as GPL or AGPL)?",
+      "followup": "Why does the license matter when you use open-weight models or open-source libraries in a commercial product?"
     },
     {
       "q": "Connect each AI model to the company that makes it.",

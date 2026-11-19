@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency } from './quiz.js?v=32';
-import { ADMIN_HASH } from './admin-hash.js?v=32';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds } from './quiz.js?v=33';
+import { ADMIN_HASH } from './admin-hash.js?v=33';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -139,8 +139,10 @@ $('#suggest-body').onclick = e => {
   if (b.dataset.goto) return showTab(b.dataset.goto);
   const t = b.dataset.practice; if (!t) return;
   const diff = b.dataset.diff || $('#practice-diff').value;
-  let qs = pickQuestions(db.questions, { topics: [t], difficulties: diff ? [diff] : [], count: 10 });
-  if (!qs.length) qs = pickQuestions(db.questions, { topics: [t], count: 10 }); // no hard questions yet: use any
+  const exclude = masteredIds(db.results);
+  let qs = pickQuestions(db.questions, { topics: [t], difficulties: diff ? [diff] : [], count: 10, exclude });
+  if (!qs.length) qs = pickQuestions(db.questions, { topics: [t], count: 10, exclude }); // none left at that difficulty: any new ones
+  if (!qs.length) return alert(`You have answered every ${t} question correctly. Well done! Try another topic, or create a course to get new questions.`);
   startTest(qs, { topics: [t] });
 };
 
@@ -306,11 +308,12 @@ qForm.onsubmit = e => {
 const cfgForm = $('#test-config');
 function readConfig() {
   const all = name => [...cfgForm.querySelectorAll(`input[name=${name}]:checked`)].map(i => i.value);
-  return { count: +cfgForm.count.value, topics: all('topic'), types: all('type'), difficulties: all('difficulty') };
+  return { count: +cfgForm.count.value, topics: all('topic'), types: all('type'), difficulties: all('difficulty'), exclude: cfgForm.includeMastered.checked ? null : masteredIds(db.results) };
 }
 function updateMatchCount() {
-  const n = filterQuestions(db.questions, readConfig()).length;
-  $('#match-count').textContent = `${n} question${n === 1 ? '' : 's'} match these settings.`;
+  const cfg = readConfig(), n = filterQuestions(db.questions, cfg).length;
+  const hidden = cfg.exclude ? filterQuestions(db.questions, { ...cfg, exclude: null }).length - n : 0;
+  $('#match-count').textContent = `${n} question${n === 1 ? '' : 's'} match these settings` + (hidden ? ` (${hidden} you already answered correctly are skipped).` : '.');
 }
 cfgForm.addEventListener('change', updateMatchCount);
 
@@ -319,7 +322,9 @@ cfgForm.onsubmit = e => {
   e.preventDefault();
   const cfg = readConfig();
   const qs = pickQuestions(db.questions, cfg);
-  if (!qs.length) return alert('No questions match these settings. Widen the filters or add questions.');
+  if (!qs.length) return alert(cfg.exclude && filterQuestions(db.questions, { ...cfg, exclude: null }).length
+    ? 'You have already answered every matching question correctly. Choose other topics, or tick "Include questions I already answered correctly".'
+    : 'No questions match these settings. Widen the filters or add questions.');
   if (qs.length < cfg.count && !confirm(`Only ${qs.length} questions match. Start with ${qs.length}?`)) return;
   startTest(qs, cfg);
 };
@@ -566,7 +571,8 @@ $('#gen-list').onclick = e => {
   const id = e.target.dataset?.courseTest;
   if (!id) return;
   const c = db.courses.find(x => x.id === id);
-  const qs = pickQuestions(db.questions.filter(q => q.courseId === id), { count: 1000 });
+  const own = db.questions.filter(q => q.courseId === id), fresh = pickQuestions(own, { count: 1000, exclude: masteredIds(db.results) });
+  const qs = fresh.length ? fresh : pickQuestions(own, { count: 1000 }); // all mastered: allow a full review
   if (qs.length) startTest(qs, { topics: [c.topic] });
 };
 
@@ -608,7 +614,7 @@ $('#yt-save').onclick = () => {
 // ---------- interview prep (questions in interview.json) ----------
 async function loadInterview() {
   let p;
-  try { p = await (await fetch('interview.json?v=9')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
+  try { p = await (await fetch('interview.json?v=12')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
   $('#iv-list').innerHTML = p.questions.map((q, qi) => `<li><strong>${esc(q.q)}</strong>${q.match ? matchHtml(q.match, qi) : ''}${q.terms ? termsHtml(q.terms) : ''}${q.followup ? `<div class="iv-follow">↳ ${esc(q.followup)}</div>` : ''}</li>`).join('');
   document.querySelectorAll('.match').forEach(el => setupMatch(el, p.questions[+el.dataset.q].match));
 }

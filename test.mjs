@@ -1,7 +1,7 @@
 // Self-check: node test.mjs
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, validStudentId, proficiency, resultItems, topicProficiency } from './quiz.js';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, validStudentId, proficiency, resultItems, topicProficiency, masteredIds } from './quiz.js';
 
 const qs = [
   { id: 'a', topic: 'LLMs', type: 'mcq', difficulty: 'easy', answer: 'Transformer' },
@@ -44,7 +44,14 @@ const hardAce = [...Array(5).fill(['A', 'hard', 1]), ...Array(25).fill(['A', 'me
 assert.deepEqual(proficiency(hardAce), { pct: 100, level: 'Expert', answered: 30, confidence: 'high' });
 assert.equal(proficiency([...Array(5).fill(['A', 'hard', 0]), ...Array(40).fill(['A', 'easy', 1])]).level, 'Advanced'); // 73% weighted
 const qsP = [{ topic: 'T', difficulty: 'hard', type: 'tf', answer: 'True' }, { topic: 'U', difficulty: 'easy', type: 'tf', answer: 'True' }];
-assert.deepEqual(resultItems(qsP, ['True', 'False']), [['T', 'hard', 1], ['U', 'easy', 0]]);
+assert.deepEqual(resultItems(qsP, ['True', 'False']), [['T', 'hard', 1, undefined], ['U', 'easy', 0, undefined]]);
+
+// never repeat questions answered correctly
+const mastered = masteredIds([{ items: [['LLMs', 'easy', 1, 'a'], ['LLMs', 'hard', 0, 'b']] }, { items: [['X', 'easy', 1, 'c']] }, {}, { items: [['X', 'easy', 1]] }]);
+assert.deepEqual([...mastered].sort(), ['a', 'c']); // wrong answers and old items without ids are not mastered
+assert.deepEqual(filterQuestions(qs, { exclude: mastered }).map(q => q.id), ['b']);
+assert.deepEqual(pickQuestions(qs, { count: 5, exclude: new Set(['a', 'b', 'c']) }), []);
+assert.equal(filterQuestions(qs, {}).length, 3); // no exclude = everything
 assert.deepEqual(topicProficiency(resultItems(qsP, ['True', 'False'])).map(t => [t.topic, t.level]), [['U', 'Beginner'], ['T', 'Advanced']]); // one hard answer is not enough for Expert
 
 // student ID sign-in: 4-10 letters/digits only, case-insensitive
