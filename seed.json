@@ -839,6 +839,186 @@
       "url": "https://agents.md",
       "notes": "Open format for giving coding agents project instructions.",
       "lang": "en"
+    },
+    {
+      "id": "src-mv-hub",
+      "topic": "Generative AI",
+      "type": "Course",
+      "title": "Maven Lightning Lessons (all free AI sessions)",
+      "url": "https://maven.com/lightning-lessons?topic=AI",
+      "notes": "Hub of free short live sessions on AI; new ones are added weekly.",
+      "lang": "en"
+    },
+    {
+      "id": "src-mv-e87a2d",
+      "topic": "AI Sizing",
+      "type": "Video",
+      "title": "Maven: How Trillion-Parameter Models Are Served, From Scratch",
+      "url": "https://maven.com/p/e87a2d/how-trillion-parameter-models-are-served-from-scratch",
+      "notes": "Free Maven Lightning Lesson (live, often with a recording). Register on Maven to join or watch.",
+      "lang": "en"
+    },
+    {
+      "id": "src-mv-55594e",
+      "topic": "AI Engineering",
+      "type": "Video",
+      "title": "Maven: Inferencing for AI Applications",
+      "url": "https://maven.com/p/55594e/inferencing-for-ai-applications",
+      "notes": "Free Maven Lightning Lesson (live, often with a recording). Register on Maven to join or watch.",
+      "lang": "en"
+    },
+    {
+      "id": "src-mv-a8a163",
+      "topic": "AI Hardware",
+      "type": "Video",
+      "title": "Maven: Free Ways to Use NVIDIA GPUs + Path to Certification",
+      "url": "https://maven.com/p/a8a163/free-ways-to-use-nvidia-gp-us-path-to-certification-17-11",
+      "notes": "Free Maven Lightning Lesson (live, often with a recording). Register on Maven to join or watch.",
+      "lang": "en"
+    },
+    {
+      "id": "src-mv-73729f",
+      "topic": "AI Development",
+      "type": "Video",
+      "title": "Maven: Deploy ML Models: From Lab to Production",
+      "url": "https://maven.com/p/73729f/deploy-ml-models-from-lab-to-production",
+      "notes": "Free Maven Lightning Lesson (live, often with a recording). Register on Maven to join or watch.",
+      "lang": "en"
+    },
+    {
+      "id": "src-mv-de7f90",
+      "topic": "CLI",
+      "type": "Video",
+      "title": "Maven: Build a Second Brain with Claude Code",
+      "url": "https://maven.com/p/de7f90/build-a-second-brain-with-claude-code",
+      "notes": "Free Maven Lightning Lesson (live, often with a recording). Register on Maven to join or watch.",
+      "lang": "en"
+    },
+    {
+      "id": "src-mv-4ace89",
+      "topic": "CLI",
+      "type": "Video",
+      "title": "Maven: Build a Business in 60 Minutes with Claude Design + Claude Code",
+      "url": "https://maven.com/p/4ace89/build-a-business-in-60-mins-with-claude-design-claude-code",
+      "notes": "Free Maven Lightning Lesson (live, often with a recording). Register on Maven to join or watch.",
+      "lang": "en"
+    },
+    {
+      "id": "src-mv-913769",
+      "topic": "CLI",
+      "type": "Video",
+      "title": "Maven: Agentic Coding for World-Class Design: 3D, Motion, Immersion",
+      "url": "https://maven.com/p/913769/agentic-coding-for-world-class-design-3d-motion-immersion",
+      "notes": "Free Maven Lightning Lesson (live, often with a recording). Register on Maven to join or watch.",
+      "lang": "en"
+    },
+    {
+      "id": "src-mv-1677e8",
+      "topic": "Context Engineering",
+      "type": "Video",
+      "title": "Maven: How to Build a Second Brain for Agents (Continuous Learning)",
+      "url": "https://maven.com/p/1677e8/how-to-build-second-brain-for-agents-continuous-learning",
+      "notes": "Free Maven Lightning Lesson (live, often with a recording). Register on Maven to join or watch.",
+      "lang": "en"
+    },
+    {
+      "id": "src-mv-81cf3c",
+      "topic": "Harnesses",
+      "type": "Video",
+      "title": "Maven: Build Your First Claude Agent with a Brain",
+      "url": "https://maven.com/p/81cf3c/build-your-first-claude-agent-with-brain-like-top-0-1-do",
+      "notes": "Free Maven Lightning Lesson (live, often with a recording). Register on Maven to join or watch.",
+      "lang": "en"
+    },
+    {
+      "id": "src-mv-26d88e",
+      "topic": "Harnesses",
+      "type": "Video",
+      "title": "Maven: Build a Claude Agent That Onboards Clients for Your Team",
+      "url": "https://maven.com/p/26d88e/build-a-claude-agent-that-onboards-clients-for-your-team",
+      "notes": "Free Maven Lightning Lesson (live, often with a recording). Register on Maven to join or watch.",
+      "lang": "en"
+    },
+    {
+      "id": "src-mv-c1e0ea",
+      "topic": "AI Engineering",
+      "type": "Video",
+      "title": "Maven: Build a Team of AI Agents in Claude Cowork (Live Demo)",
+      "url": "https://maven.com/p/c1e0ea/build-a-team-of-ai-agents-in-claude-cowork-live-demo",
+      "notes": "Free Maven Lightning Lesson (live, often with a recording). Register on Maven to join or watch.",
+      "lang": "en"
+    },
+    {
+      "id": "src-mv-366eef",
+      "topic": "AI Engineering",
+      "type": "Video",
+      "title": "Maven: Build Your First Lead-Gen AI Agent (Claude Cowork)",
+      "url": "https://maven.com/p/366eef/build-your-first-lead-gen-ai-agent-claude-cowork",
+      "notes": "Free Maven Lightning Lesson (live, often with a recording). Register on Maven to join or watch.",
+      "lang": "en"
+    },
+    {
+      "id": "src-mv-b35e97",
+      "topic": "AI Engineering",
+      "type": "Video",
+      "title": "Maven: Build AI Agents That Run Your Daily Operations",
+      "url": "https://maven.com/p/b35e97/build-ai-agents-that-run-your-daily-operations",
+      "notes": "Free Maven Lightning Lesson (live, often with a recording). Register on Maven to join or watch.",
+      "lang": "en"
+    },
+    {
+      "id": "src-mv-73492d",
+      "topic": "AI Engineering",
+      "type": "Video",
+      "title": "Maven: From Customer Brief to Working AI Pilot: A Live FDE Build",
+      "url": "https://maven.com/p/73492d/from-customer-brief-to-working-ai-pilot-a-live-fde-build",
+      "notes": "Free Maven Lightning Lesson (live, often with a recording). Register on Maven to join or watch.",
+      "lang": "en"
+    },
+    {
+      "id": "src-mv-bcfe60",
+      "topic": "AI Development",
+      "type": "Video",
+      "title": "Maven: Build Your Product Factory with AI Agents",
+      "url": "https://maven.com/p/bcfe60/build-your-product-factory-with-ai-agents",
+      "notes": "Free Maven Lightning Lesson (live, often with a recording). Register on Maven to join or watch.",
+      "lang": "en"
+    },
+    {
+      "id": "src-mv-c1896f",
+      "topic": "Generative AI",
+      "type": "Video",
+      "title": "Maven: AI Product Sense: What to Build When Anything Can Be Built",
+      "url": "https://maven.com/p/c1896f/ai-product-sense-what-to-build-when-anything-can-be-built",
+      "notes": "Free Maven Lightning Lesson (live, often with a recording). Register on Maven to join or watch.",
+      "lang": "en"
+    },
+    {
+      "id": "src-mv-12b9fd",
+      "topic": "Generative AI",
+      "type": "Video",
+      "title": "Maven: Problems Worth Solving with AI and Your Bigger Roadmap",
+      "url": "https://maven.com/p/12b9fd/problems-worth-solving-with-ai-and-your-bigger-roadmap",
+      "notes": "Free Maven Lightning Lesson (live, often with a recording). Register on Maven to join or watch.",
+      "lang": "en"
+    },
+    {
+      "id": "src-mv-fbc498",
+      "topic": "Generative AI",
+      "type": "Video",
+      "title": "Maven: From Cognitive Surrender to Agency: Your Judgment with AI",
+      "url": "https://maven.com/p/fbc498/from-cognitive-surrender-to-agency-your-judgment-with-ai",
+      "notes": "Free Maven Lightning Lesson (live, often with a recording). Register on Maven to join or watch.",
+      "lang": "en"
+    },
+    {
+      "id": "src-mv-395ea3",
+      "topic": "Generative AI",
+      "type": "Video",
+      "title": "Maven: AI-Ready Design Systems: What Changes for UI and UX",
+      "url": "https://maven.com/p/395ea3/ai-ready-design-systems-what-changes-for-ui-and-ux",
+      "notes": "Free Maven Lightning Lesson (live, often with a recording). Register on Maven to join or watch.",
+      "lang": "en"
     }
   ],
   "notes": [
