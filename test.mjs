@@ -1,7 +1,7 @@
 // Self-check: node test.mjs
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed } from './quiz.js';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion } from './quiz.js';
 
 const qs = [
   { id: 'a', topic: 'LLMs', type: 'mcq', difficulty: 'easy', answer: 'Transformer' },
@@ -28,6 +28,16 @@ assert.deepEqual(db.questions.map(q => q.id), ['a', 'c']);
 assert.ok(db.questions[0].mine, 'user copy kept');
 assert.deepEqual(db.topics, ['X']);
 
+// AI-generated question cleanup
+assert.equal(normalizeQuestion({ type: 'tf', difficulty: 'easy', prompt: 'p', answer: 'true' }).answer, 'True');
+assert.equal(normalizeQuestion({ type: 'mcq', difficulty: 'hard', prompt: 'p', options: ['GPU', 'CPU'], answer: 'gpu' }).answer, 'GPU');
+assert.equal(normalizeQuestion({ type: 'mcq', difficulty: 'hard', prompt: 'p', options: ['GPU', 'CPU'], answer: 'TPU' }), null);
+assert.equal(normalizeQuestion({ type: 'tf', difficulty: 'easy', prompt: 'p', answer: 'maybe' }), null);
+assert.equal(normalizeQuestion({ type: 'essay', difficulty: 'easy', prompt: 'p', answer: 'x' }), null);
+assert.equal(normalizeQuestion({ type: 'short', difficulty: 'extreme', prompt: 'p', answer: 'x' }), null);
+assert.equal(normalizeQuestion(null), null);
+assert.deepEqual(mergeSeed({}, {}).courses, []);
+
 // validate seed file
 const seed = JSON.parse(readFileSync(new URL('./seed.json', import.meta.url)));
 const ids = new Set();
@@ -38,5 +48,6 @@ for (const q of seed.questions) {
   assert.ok(['easy', 'medium', 'hard'].includes(q.difficulty), `${q.id} difficulty`);
   if (q.type === 'mcq') assert.ok(q.options.includes(q.answer), `${q.id} answer not in options`);
   if (q.type === 'tf') assert.ok(['True', 'False'].includes(q.answer), `${q.id} tf answer`);
+  assert.ok(normalizeQuestion(q), `${q.id} fails normalizeQuestion`);
 }
 console.log(`ok — ${seed.questions.length} seed questions valid`);

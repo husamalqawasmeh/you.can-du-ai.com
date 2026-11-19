@@ -24,6 +24,21 @@ export function isCorrect(q, given) {
   return norm(given) === norm(q.answer);
 }
 
+// Fixes harmless casing differences, then checks the question is usable in a test (used for AI-made and imported questions).
+export function normalizeQuestion(q) {
+  if (!q || typeof q !== 'object') return null;
+  q = { ...q, answer: String(q.answer ?? '').trim(), prompt: String(q.prompt ?? '').trim() };
+  if (q.type === 'tf') q.answer = /^true$/i.test(q.answer) ? 'True' : /^false$/i.test(q.answer) ? 'False' : q.answer;
+  if (q.type === 'mcq' && Array.isArray(q.options)) {
+    q.options = q.options.map(String);
+    q.answer = q.options.find(o => o.toLowerCase() === q.answer.toLowerCase()) ?? q.answer;
+  }
+  const ok = ['mcq', 'tf', 'short'].includes(q.type) && ['easy', 'medium', 'hard'].includes(q.difficulty) && q.prompt && q.answer &&
+    (q.type !== 'tf' || ['True', 'False'].includes(q.answer)) &&
+    (q.type !== 'mcq' || (q.options?.length >= 2 && q.options.includes(q.answer)));
+  return ok ? q : null;
+}
+
 export function grade(qs, answers) {
   const correct = qs.filter((q, i) => isCorrect(q, answers[i])).length;
   return { correct, total: qs.length, pct: qs.length ? Math.round((100 * correct) / qs.length) : 0 };
@@ -41,6 +56,7 @@ export function mergeSeed(db, seed) {
     for (const x of seed[key] ?? []) if (!have.has(x.id)) db[key].push(x);
   }
   db.results ??= [];
+  db.courses ??= [];
   db.seedRemoved ??= [];
   // honour deletions of seed items
   for (const key of ['sources', 'notes', 'questions']) db[key] = db[key].filter(x => !db.seedRemoved.includes(x.id));

@@ -1,4 +1,4 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed } from './quiz.js';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion } from './quiz.js';
 
 const KEY = 'ycda-db-v1';
 const $ = s => document.querySelector(s);
@@ -18,10 +18,11 @@ function save() {
 }
 
 // ---------- tabs ----------
-document.querySelectorAll('nav button').forEach(b => b.onclick = () => {
-  document.querySelectorAll('nav button').forEach(x => x.classList.toggle('active', x === b));
-  document.querySelectorAll('.tab').forEach(t => t.hidden = t.id !== b.dataset.tab);
-});
+function showTab(name) {
+  document.querySelectorAll('nav button').forEach(x => x.classList.toggle('active', x.dataset.tab === name));
+  document.querySelectorAll('.tab').forEach(t => t.hidden = t.id !== name);
+}
+document.querySelectorAll('nav button').forEach(b => b.onclick = () => showTab(b.dataset.tab));
 
 // ---------- rendering ----------
 const opt = (v, label = v) => `<option value="${esc(v)}">${esc(label)}</option>`;
@@ -65,6 +66,18 @@ function render() {
   $('#q-total').textContent = `(${db.questions.length} total)`;
   $('#q-list').innerHTML = qs.map(q => `<li><div>${esc(q.prompt)}<div class="tag">${esc(q.topic)} · ${TYPE[q.type]} · ${esc(q.difficulty)} · Answer: ${esc(q.answer)}</div></div><button class="del" data-del="questions" data-id="${esc(q.id)}">Delete</button></li>`).join('') || '<li class="muted">No questions match.</li>';
 
+  // courses
+  $('#topic-datalist').innerHTML = topicOpts;
+  $('#gen-list').innerHTML = db.courses.slice().reverse().map(c => {
+    const n = db.questions.filter(q => q.courseId === c.id).length;
+    return `<details class="course" dir="auto"><summary>${esc(c.title)} <span class="tag">${esc(c.topic)} · ${esc(c.level)} · ${c.modules.length} lessons · ${n} questions</span></summary>
+      <p>${esc(c.description)}</p>
+      ${c.modules.map((m, i) => `<h4>Lesson ${i + 1}: ${esc(m.title)}</h4><div class="prewrap">${esc(m.content)}</div>`).join('')}
+      <div class="actions"><button type="button" class="primary" data-course-test="${esc(c.id)}" ${n ? '' : 'disabled'}>Take the course test</button>
+      <button type="button" class="del" data-del="courses" data-id="${esc(c.id)}">Delete course</button></div></details>`;
+  }).join('') || '<p class="muted">No courses created yet.</p>';
+  $('#course-list').innerHTML = db.sources.filter(s => s.type === 'Course').map(s => `<li dir="auto"><div>${/^https?:\/\//i.test(s.url) ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>` : esc(s.title)} <span class="tag">${esc(s.topic)}${s.lang === 'ar' ? ' · العربية' : ''}</span>${s.notes ? `<div class="muted">${esc(s.notes)}</div>` : ''}</div><button class="del" data-del="sources" data-id="${esc(s.id)}">Delete</button></li>`).join('') || '<li class="muted">No courses yet.</li>';
+
   // history
   $('#history-list').innerHTML = db.results.slice().reverse().map(r => `<li><div><strong>${r.pct}%</strong> (${r.correct}/${r.total}) <span class="tag">${new Date(r.date).toLocaleString()} · ${esc(r.topics.join(', ') || 'All topics')}</span></div></li>`).join('') || '<li class="muted">No tests taken yet.</li>';
 
@@ -88,6 +101,7 @@ document.addEventListener('click', e => {
     if (!confirm('Delete this item?')) return;
     const { del, id } = b.dataset;
     db[del] = db[del].filter(x => x.id !== id);
+    if (del === 'courses') db.questions = db.questions.filter(q => q.courseId !== id);
     db.seedRemoved.push(id); // so the seed doesn't bring it back
   }
   save();
@@ -159,6 +173,11 @@ cfgForm.onsubmit = e => {
   const qs = pickQuestions(db.questions, cfg);
   if (!qs.length) return alert('No questions match these settings. Widen the filters or add questions.');
   if (qs.length < cfg.count && !confirm(`Only ${qs.length} questions match. Start with ${qs.length}?`)) return;
+  startTest(qs, cfg);
+};
+
+function startTest(qs, cfg) {
+  showTab('test');
   current = { cfg, qs };
   const run = $('#test-run');
   run.innerHTML = `<div class="card"><h2>Test: ${qs.length} questions</h2>` + qs.map((q, i) => {
@@ -171,7 +190,7 @@ cfgForm.onsubmit = e => {
   cfgForm.hidden = true; $('#test-result').hidden = true; run.hidden = false;
   $('#cancel-test').onclick = resetTest;
   run.scrollIntoView();
-};
+}
 
 function resetTest() {
   current = null;
@@ -202,35 +221,134 @@ $('#test-run').onsubmit = e => {
   out.scrollIntoView();
 };
 
-// ---------- YouTube summary (Gemini reads the video from its URL; YouTube blocks direct transcript fetches from browsers) ----------
-const YT_KEY = 'ycda-gemini'; // kept outside db so it never ends up in exports
-const ytForm = $('#yt-form');
-try { const s = JSON.parse(localStorage.getItem(YT_KEY)) || {}; if (s.key) ytForm.key.value = s.key; if (s.model) ytForm.model.value = s.model; } catch {}
+// ---------- Gemini (shared by chat, courses and YouTube) ----------
+const AI_KEY = 'ycda-gemini'; // kept outside db so it never ends up in exports
+const aiKey = $('#ai-key'), aiModel = $('#ai-model');
+try { const s = JSON.parse(localStorage.getItem(AI_KEY)) || {}; if (s.key) aiKey.value = s.key; if (s.model) aiModel.value = s.model; } catch {}
 // config.local.js is gitignored, so this only fills the key on your own machine, never on the public site.
-if (!ytForm.key.value && ['localhost', '127.0.0.1'].includes(location.hostname))
-  import('./config.local.js').then(m => { if (m.GEMINI_API_KEY && !ytForm.key.value) ytForm.key.value = m.GEMINI_API_KEY; }).catch(() => {});
+if (!aiKey.value && ['localhost', '127.0.0.1'].includes(location.hostname))
+  import('./config.local.js').then(m => { if (m.GEMINI_API_KEY && !aiKey.value) aiKey.value = m.GEMINI_API_KEY; }).catch(() => {});
+const saveAi = () => { try { localStorage.setItem(AI_KEY, JSON.stringify({ key: aiKey.value.trim(), model: aiModel.value.trim() })); } catch {} };
+aiKey.onchange = aiModel.onchange = saveAi;
+
+async function gemini(body) {
+  const key = aiKey.value.trim(), model = aiModel.value.trim() || 'gemini-4-hydrogen';
+  if (!key) { $('#ai-settings').open = true; aiKey.focus(); throw new Error('Add your Gemini API key in "AI settings" at the top of the page.'); }
+  saveAi();
+  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key }, body: JSON.stringify(body),
+  });
+  const j = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(j.error?.message || `HTTP ${res.status}`);
+  const text = (j.candidates?.[0]?.content?.parts ?? []).filter(p => !p.thought).map(p => p.text || '').join('').trim();
+  if (!text) throw new Error('Gemini returned no answer. Try again or rephrase.');
+  return text;
+}
+
+// ---------- Ask AI ----------
+const TUTOR = 'You are a patient tutor on AI: AI hardware, GPU/TPU sizing, generative AI, LLMs, AI engineering, AI development, agent harnesses, AI CLIs and context engineering. Answer accurately and clearly, with numbers and worked examples where useful. Say when you are unsure. Reply in the language of the question. Plain text, no markdown symbols.';
+const chat = [];
+const chatInput = $('#chat-input');
+function renderChat() {
+  $('#chat-log').innerHTML = chat.map((m, i) => m.role === 'user'
+    ? `<div class="msg user" dir="auto">${esc(m.parts[0].text)}</div>`
+    : `<div class="msg bot" dir="auto">${esc(m.parts[0].text)}<br><button type="button" data-chat-save="${i}">Save to knowledge library</button></div>`).join('');
+}
+$('#chat-form').onsubmit = async e => {
+  e.preventDefault();
+  const q = chatInput.value.trim(), status = $('#chat-status'), btn = e.target.querySelector('button.primary');
+  if (!q) return;
+  chat.push({ role: 'user', parts: [{ text: q }] }); chatInput.value = ''; renderChat();
+  status.textContent = 'Thinking…'; btn.disabled = true;
+  try {
+    chat.push({ role: 'model', parts: [{ text: await gemini({ system_instruction: { parts: [{ text: TUTOR }] }, contents: chat }) }] });
+    status.textContent = '';
+  } catch (err) {
+    chat.pop(); chatInput.value = q; status.textContent = 'Failed: ' + err.message;
+  } finally { btn.disabled = false; renderChat(); }
+};
+chatInput.onkeydown = e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); $('#chat-form').requestSubmit(); } };
+$('#chat-clear').onclick = () => { chat.length = 0; renderChat(); $('#chat-status').textContent = ''; };
+$('#chat-log').onclick = e => {
+  const i = e.target.dataset?.chatSave;
+  if (i === undefined) return;
+  const question = chat[i - 1]?.parts[0].text ?? 'AI tutor answer';
+  db.notes.push({ id: uid(), topic: $('#chat-topic').value, title: question.slice(0, 120), body: chat[i].parts[0].text, sourceId: '' });
+  save();
+  e.target.textContent = 'Saved ✓'; e.target.disabled = true;
+};
+
+// ---------- Courses ----------
+$('#course-add-form').onsubmit = e => {
+  e.preventDefault();
+  const d = trimAll(formData(e.target));
+  if (!d.title && !d.url) return alert('Enter a course name, a link, or both.');
+  let title = d.title;
+  if (!title) { try { const u = new URL(d.url); title = u.hostname.replace(/^www\./, '') + u.pathname.replace(/\/$/, ''); } catch { title = d.url; } }
+  if (d.url && db.sources.some(s => s.url === d.url)) return alert('That link is already in the library.');
+  db.sources.push({ id: uid(), type: 'Course', title, url: d.url, topic: d.topic, notes: d.notes, lang: /[؀-ۿ]/.test(title) ? 'ar' : 'en' });
+  e.target.reset(); save();
+};
+
+const genForm = $('#gen-form');
+genForm.onsubmit = async e => {
+  e.preventDefault();
+  const d = trimAll(formData(genForm));
+  const nMod = Math.min(12, Math.max(2, +d.modules || 5)), nQ = Math.min(30, Math.max(3, +d.questions || 10));
+  const status = $('#gen-status'), btn = genForm.querySelector('button');
+  status.textContent = 'Writing your course… this can take a minute.'; btn.disabled = true;
+  const prompt = `Create a ${d.level} course about: ${d.subject}.
+Write all text in ${d.lang}. Be factually accurate; prefer well-established facts.
+Return only JSON with this shape:
+{"title": string, "description": string (2-3 sentences),
+ "modules": [{"title": string, "content": string}] — exactly ${nMod} lessons; each content is 200-400 words of plain-text teaching with concrete examples and numbers,
+ "questions": [{"type": "mcq"|"tf"|"short", "difficulty": "easy"|"medium"|"hard", "prompt": string, "options": [4 strings, only for mcq], "answer": string, "explanation": string}] — exactly ${nQ} questions that test the lessons, mixing types and difficulties.
+Rules: for "tf" the answer is exactly "True" or "False"; for "mcq" the answer must equal one option exactly; for "short" the answer lists accepted answers separated by "|" (e.g. "bfloat16|bf16").`;
+  try {
+    const text = await gemini({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { responseMimeType: 'application/json' } });
+    let c;
+    try { c = JSON.parse(text); } catch { throw new Error('The AI reply was not valid course data. Please try again.'); }
+    const modules = (Array.isArray(c.modules) ? c.modules : []).filter(m => m?.title && m?.content).map(m => ({ title: String(m.title), content: String(m.content) }));
+    if (!modules.length) throw new Error('The AI returned no lessons. Please try again.');
+    const topic = d.topic;
+    if (!db.topics.includes(topic)) db.topics.push(topic);
+    const course = { id: uid(), title: String(c.title || d.subject), description: String(c.description || ''), topic, level: d.level, lang: d.lang === 'Arabic' ? 'ar' : 'en', modules, created: new Date().toISOString() };
+    const qs = (Array.isArray(c.questions) ? c.questions : []).map(normalizeQuestion).filter(Boolean)
+      .map(q => ({ id: uid(), topic, type: q.type, difficulty: q.difficulty, prompt: q.prompt, ...(q.type === 'mcq' && { options: q.options }), answer: q.answer, explanation: String(q.explanation || ''), courseId: course.id }));
+    db.courses.push(course);
+    db.questions.push(...qs);
+    save();
+    genForm.subject.value = '';
+    status.textContent = `Created "${course.title}": ${modules.length} lessons, ${qs.length} test questions.`;
+    $('#gen-list details')?.setAttribute('open', '');
+  } catch (err) {
+    status.textContent = 'Failed: ' + err.message;
+  } finally { btn.disabled = false; }
+};
+
+$('#gen-list').onclick = e => {
+  const id = e.target.dataset?.courseTest;
+  if (!id) return;
+  const c = db.courses.find(x => x.id === id);
+  const qs = pickQuestions(db.questions.filter(q => q.courseId === id), { count: 1000 });
+  if (qs.length) startTest(qs, { topics: [c.topic] });
+};
+
+// ---------- YouTube summary (Gemini reads the video from its URL; YouTube blocks direct transcript fetches from browsers) ----------
+const ytForm = $('#yt-form');
 let ytLast = null;
 
 ytForm.onsubmit = async e => {
   e.preventDefault();
   const d = trimAll(formData(ytForm));
   if (!/^https:\/\/(www\.|m\.)?(youtube\.com\/(watch\?|shorts\/|live\/)|youtu\.be\/)/i.test(d.url)) return alert('Please paste a youtube.com or youtu.be link.');
-  try { localStorage.setItem(YT_KEY, JSON.stringify({ key: d.key, model: d.model })); } catch {}
   const ask = d.mode === 'transcript'
     ? `Transcribe this video's speech, then write a summary and 5-10 key points. Use these headings: Title, Transcript, Summary, Key points.`
     : `Write a clear summary of this video for a learner, then 5-10 key points and any important numbers or definitions. Use these headings: Title, Summary, Key points.`;
   const status = $('#yt-status'), btn = ytForm.querySelector('button');
   status.textContent = 'Working… long videos can take a minute.'; btn.disabled = true; $('#yt-result').hidden = true;
   try {
-    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(d.model)}:generateContent`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-goog-api-key': d.key },
-      body: JSON.stringify({ contents: [{ parts: [{ file_data: { file_uri: d.url } }, { text: `${ask} Write the answer in ${d.lang}. Plain text, no markdown symbols.` }] }] }),
-    });
-    const j = await res.json().catch(() => ({}));
-    if (!res.ok) throw new Error(j.error?.message || `HTTP ${res.status}`);
-    const text = (j.candidates?.[0]?.content?.parts ?? []).filter(p => !p.thought).map(p => p.text || '').join('').trim();
-    if (!text) throw new Error('Gemini returned no text (the video may be private, too long, or blocked).');
+    const text = await gemini({ contents: [{ parts: [{ file_data: { file_uri: d.url } }, { text: `${ask} Write the answer in ${d.lang}. Plain text, no markdown symbols.` }] }] });
     ytLast = { url: d.url, topic: d.topic, lang: d.lang === 'Arabic' ? 'ar' : 'en', text };
     $('#yt-text').textContent = text;
     $('#yt-result').hidden = false; status.textContent = '';
@@ -269,9 +387,9 @@ $('#import-file').onchange = async e => {
   if (!data || typeof data !== 'object' || !['questions', 'sources', 'notes', 'topics'].some(k => Array.isArray(data[k])))
     return alert('That file does not look like a You Can Du AI backup.');
   for (const t of data.topics ?? []) if (typeof t === 'string' && !db.topics.includes(t)) db.topics.push(t);
-  for (const k of ['questions', 'sources', 'notes', 'results']) {
+  for (const k of ['questions', 'sources', 'notes', 'results', 'courses']) {
     const incoming = (data[k] ?? []).filter(x => x && typeof x === 'object' && x.id &&
-      (k !== 'questions' || (TYPE[x.type] && x.prompt && x.answer && (x.type !== 'mcq' || Array.isArray(x.options)))));
+      (k !== 'questions' || normalizeQuestion(x)) && (k !== 'courses' || Array.isArray(x.modules)));
     const ids = new Set(incoming.map(x => x.id));
     db[k] = db[k].filter(x => !ids.has(x.id)).concat(incoming);
   }

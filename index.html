@@ -5,22 +5,70 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You Can Du AI</title>
 <meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
-<link rel="stylesheet" href="style.css?v=2">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 <header>
   <h1>You Can Du AI</h1>
   <nav>
+    <button data-tab="chat">Ask AI</button>
     <button data-tab="test" class="active">Take a test</button>
+    <button data-tab="history">History</button>
+    <button data-tab="courses">Courses</button>
     <button data-tab="questions">Questions</button>
     <button data-tab="library">Knowledge library</button>
     <button data-tab="youtube">YouTube summary</button>
-    <button data-tab="history">History</button>
     <button data-tab="data">Data</button>
   </nav>
+  <details id="ai-settings">
+    <summary>AI settings (Gemini key)</summary>
+    <div class="row">
+      <label>Gemini API key <input id="ai-key" type="password" autocomplete="off"></label>
+      <label>Model <input id="ai-model" value="gemini-4-hydrogen"></label>
+    </div>
+    <small class="muted">Used by Ask AI, Courses and YouTube summary. Get a free key at <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a>. It is stored only in this browser, sent only to Google, and never included in backups.</small>
+  </details>
 </header>
 
 <main>
+  <!-- CHAT -->
+  <section id="chat" class="tab" hidden>
+    <div class="card">
+      <h2>Ask the AI tutor</h2>
+      <p class="muted">Ask anything about AI, in English or Arabic. You can save any answer to your knowledge library.</p>
+      <div id="chat-log" aria-live="polite"></div>
+      <form id="chat-form">
+        <label>Your question <textarea id="chat-input" rows="2" required placeholder="e.g. How much GPU memory do I need to serve a 70B model to 50 users?"></textarea></label>
+        <div class="row">
+          <label>Save answers under topic <select id="chat-topic" class="topic-select"></select></label>
+          <button class="primary">Ask</button>
+          <button type="button" id="chat-clear">New chat</button>
+        </div>
+      </form>
+      <p id="chat-status" class="muted" role="status"></p>
+    </div>
+  </section>
+
+  <!-- COURSES -->
+  <section id="courses" class="tab" hidden>
+    <form id="gen-form" class="card">
+      <h2>Create a course with AI</h2>
+      <p class="muted">Name any subject. AI writes the lessons and a test, which are added to your question bank.</p>
+      <label>Course subject <input name="subject" required placeholder="e.g. Sizing GPU clusters for LLM inference"></label>
+      <div class="row">
+        <label>Topic (pick or type a new one) <input name="topic" list="topic-datalist" required></label>
+        <label>Level <select name="level"><option>Beginner</option><option selected>Intermediate</option><option>Advanced</option></select></label>
+        <label>Lessons <input name="modules" type="number" min="2" max="12" value="5" required></label>
+        <label>Test questions <input name="questions" type="number" min="3" max="30" value="10" required></label>
+        <label>Language <select name="lang"><option>English</option><option>Arabic</option></select></label>
+      </div>
+      <button class="primary">Create course</button>
+      <p id="gen-status" class="muted" role="status"></p>
+    </form>
+    <div class="card"><h2>Your AI-created courses</h2><div id="gen-list"></div></div>
+    <datalist id="topic-datalist"></datalist>
+  </section>
+
   <!-- TEST -->
   <section id="test" class="tab">
     <form id="test-config" class="card">
@@ -96,6 +144,18 @@
         <button class="primary">Add source</button>
       </form>
     </div>
+    <div class="grid">
+      <form id="course-add-form" class="card">
+        <h2>Add a course</h2>
+        <p class="muted">Enter a course name, a link, or both.</p>
+        <label>Course name <input name="title"></label>
+        <label>Link <input name="url" type="url" placeholder="https://"></label>
+        <label>Topic <select name="topic" class="topic-select" required></select></label>
+        <label>Notes (optional) <input name="notes"></label>
+        <button class="primary">Add course</button>
+      </form>
+      <div class="card"><h2>Course library</h2><ul id="course-list" class="list"></ul></div>
+    </div>
     <form id="note-form" class="card">
       <h2>Add knowledge</h2>
       <div class="row">
@@ -122,7 +182,7 @@
   <section id="youtube" class="tab" hidden>
     <form id="yt-form" class="card">
       <h2>Summarize a YouTube video</h2>
-      <p class="muted">Paste a public YouTube link. Google Gemini watches the video and writes the summary, using your own free Gemini API key from <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a>. The key is stored only in this browser, sent only to Google, and never included in backups.</p>
+      <p class="muted">Paste a public YouTube link. Google Gemini watches the video and writes the summary (uses the Gemini key in AI settings at the top).</p>
       <label>YouTube URL <input name="url" type="url" placeholder="https://www.youtube.com/watch?v=..." required></label>
       <div class="row">
         <label>Output <select name="mode">
@@ -131,10 +191,6 @@
         </select></label>
         <label>Language <select name="lang"><option value="English">English</option><option value="Arabic">Arabic</option></select></label>
         <label>Topic <select name="topic" class="topic-select" required></select></label>
-      </div>
-      <div class="row">
-        <label>Gemini API key <input name="key" type="password" autocomplete="off" required></label>
-        <label>Model <input name="model" value="gemini-4-hydrogen" required></label>
       </div>
       <button class="primary">Summarize</button>
       <p id="yt-status" class="muted" role="status"></p>
@@ -165,6 +221,6 @@
     </div>
   </section>
 </main>
-<script type="module" src="app.js?v=2"></script>
+<script type="module" src="app.js?v=4"></script>
 </body>
 </html>
