@@ -24,6 +24,7 @@ function showTab(name) {
   document.querySelectorAll('.tab').forEach(t => t.hidden = t.id !== name);
 }
 document.querySelectorAll('nav button').forEach(b => b.onclick = () => showTab(b.dataset.tab));
+$('#home').onclick = e => { const b = e.target.closest('[data-goto]'); if (b) showTab(b.dataset.goto); };
 
 // ---------- rendering ----------
 const opt = (v, label = v) => `<option value="${esc(v)}">${esc(label)}</option>`;
@@ -71,10 +72,12 @@ function render() {
   $('#topic-datalist').innerHTML = topicOpts;
   $('#gen-list').innerHTML = db.courses.slice().reverse().map(c => {
     const n = db.questions.filter(q => q.courseId === c.id).length;
-    return `<details class="course" dir="auto"><summary>${esc(c.title)} <span class="tag">${esc(c.topic)} · ${esc(c.level)} · ${c.modules.length} lessons · ${n} questions</span></summary>
+    const slides = courseSlides(c);
+    return `<details class="course" dir="auto"><summary>${esc(c.title)} <span class="tag">${esc(c.topic)} · ${esc(c.level)} · ${slides.length} slides · ${n} questions</span></summary>
       <p>${esc(c.description)}</p>
-      ${c.modules.map((m, i) => `<h4>Lesson ${i + 1}: ${esc(m.title)}</h4><div class="prewrap">${esc(m.content)}</div>`).join('')}
-      <div class="actions"><button type="button" class="primary" data-course-test="${esc(c.id)}" ${n ? '' : 'disabled'}>Take the course test</button>
+      <div class="slide-strip">${slides.map((s, i) => `<div class="mini-slide"><span class="tag">${i + 1}</span><strong>${esc(s.title)}</strong><ul>${s.bullets.map(b => `<li>${esc(b)}</li>`).join('')}</ul></div>`).join('')}</div>
+      <div class="actions"><button type="button" class="primary" data-course-slides="${esc(c.id)}">Download PDF slides</button>
+      <button type="button" data-course-test="${esc(c.id)}" ${n ? '' : 'disabled'}>Take the course test</button>
       <button type="button" class="del" data-del="courses" data-id="${esc(c.id)}">Delete course</button></div></details>`;
   }).join('') || '<p class="muted">No courses created yet.</p>';
   $('#course-list').innerHTML = db.sources.filter(s => s.type === 'Course').map(s => `<li dir="auto"><div>${/^https?:\/\//i.test(s.url) ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>` : esc(s.title)} <span class="tag">${esc(s.topic)}${s.lang === 'ar' ? ' · العربية' : ''}</span>${s.notes ? `<div class="muted">${esc(s.notes)}</div>` : ''}</div><button class="del" data-del="sources" data-id="${esc(s.id)}">Delete</button></li>`).join('') || '<li class="muted">No courses yet.</li>';
@@ -84,7 +87,8 @@ function render() {
   // history
   $('#history-list').innerHTML = db.results.slice().reverse().map(r => `<li><div><strong>${r.pct}%</strong> (${r.correct}/${r.total}) <span class="tag">${new Date(r.date).toLocaleString()} · ${esc(r.topics.join(', ') || 'All topics')}</span></div></li>`).join('') || '<li class="muted">No tests taken yet.</li>';
 
-  $('#data-stats').textContent = `${db.topics.length} topics · ${db.sources.length} sources · ${db.notes.length} knowledge entries · ${db.questions.length} questions · ${db.results.length} test results`;
+  $('#home-stats').textContent = `${db.questions.length} questions · ${db.topics.length} topics · ${db.sources.length} sources · ${db.courses.length} of your own courses`;
+  $('#data-stats').textContent =`${db.topics.length} topics · ${db.sources.length} sources · ${db.notes.length} knowledge entries · ${db.questions.length} questions · ${db.results.length} test results`;
 }
 
 // ---------- learning suggestions ----------
@@ -353,6 +357,7 @@ Write all text in ${d.lang}. Be factually accurate; prefer well-established fact
 Return only JSON with this shape:
 {"title": string, "description": string (2-3 sentences),
  "modules": [{"title": string, "content": string}] — exactly ${nMod} lessons; each content is 200-400 words of plain-text teaching with concrete examples and numbers,
+ "slides": [{"title": string, "bullets": [3-5 short strings]}] — a slide deck teaching the whole course: about 3 slides per lesson, in lesson order, each bullet under 20 words,
  "questions": [{"type": "mcq"|"tf"|"short", "difficulty": "easy"|"medium"|"hard", "prompt": string, "options": [4 strings, only for mcq], "answer": string, "explanation": string}] — exactly ${nQ} questions that test the lessons, mixing types and difficulties.
 Rules: for "tf" the answer is exactly "True" or "False"; for "mcq" the answer must equal one option exactly; for "short" the answer lists accepted answers separated by "|" (e.g. "bfloat16|bf16").`;
   try {
@@ -363,7 +368,9 @@ Rules: for "tf" the answer is exactly "True" or "False"; for "mcq" the answer mu
     if (!modules.length) throw new Error('The AI returned no lessons. Please try again.');
     const topic = d.topic;
     if (!db.topics.includes(topic)) db.topics.push(topic);
-    const course = { id: uid(), title: String(c.title || d.subject), description: String(c.description || ''), topic, level: d.level, lang: d.lang === 'Arabic' ? 'ar' : 'en', modules, created: new Date().toISOString() };
+    const slides = (Array.isArray(c.slides) ? c.slides : []).filter(s => s?.title && Array.isArray(s.bullets))
+      .map(s => ({ title: String(s.title), bullets: s.bullets.map(String).filter(Boolean).slice(0, 6) }));
+    const course = { id: uid(), title: String(c.title || d.subject), description: String(c.description || ''), topic, level: d.level, lang: d.lang === 'Arabic' ? 'ar' : 'en', modules, slides, created: new Date().toISOString() };
     const qs = (Array.isArray(c.questions) ? c.questions : []).map(normalizeQuestion).filter(Boolean)
       .map(q => ({ id: uid(), topic, type: q.type, difficulty: q.difficulty, prompt: q.prompt, ...(q.type === 'mcq' && { options: q.options }), answer: q.answer, explanation: String(q.explanation || ''), courseId: course.id }));
     db.courses.push(course);
@@ -377,7 +384,48 @@ Rules: for "tf" the answer is exactly "True" or "False"; for "mcq" the answer mu
   } finally { btn.disabled = false; }
 };
 
+// Slides: AI-written for new courses; older courses (no slides saved) are split from lesson text, ~4 sentences per slide.
+function courseSlides(c) {
+  if (Array.isArray(c.slides) && c.slides.length) return c.slides;
+  return c.modules.flatMap((m, i) => {
+    const sents = m.content.split(/(?<=[.!?؟])\s+/).map(s => s.trim()).filter(Boolean);
+    const out = [];
+    for (let k = 0; k < sents.length; k += 4) out.push({ title: `Lesson ${i + 1}: ${m.title}${k ? ' (cont.)' : ''}`, bullets: sents.slice(k, k + 4) });
+    return out.length ? out : [{ title: `Lesson ${i + 1}: ${m.title}`, bullets: [] }];
+  });
+}
+
+function openSlides(c) {
+  const slides = courseSlides(c);
+  const ar = c.lang === 'ar';
+  const page = s => `<section class="slide">${s}</section>`;
+  const html = `<!doctype html><html lang="${ar ? 'ar' : 'en'}" dir="${ar ? 'rtl' : 'ltr'}"><head><meta charset="utf-8"><title>${esc(c.title)}</title>
+<style>
+@page { size: 13.333in 7.5in; margin: 0; }
+* { box-sizing: border-box; } body { margin: 0; font-family: system-ui, "Segoe UI", Tahoma, sans-serif; background: #e9eaf0; color: #1b1e28; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.bar { position: sticky; top: 0; background: #1b1e28; color: #fff; padding: 10px 16px; display: flex; gap: 12px; align-items: center; z-index: 1; }
+.bar button { font: inherit; padding: 6px 14px; border-radius: 6px; border: 0; background: #818cf8; color: #11131a; cursor: pointer; }
+.slide { width: 13.333in; height: 7.5in; margin: 16px auto; background: #fff; padding: 0.7in 0.9in; display: flex; flex-direction: column; justify-content: center; page-break-after: always; break-after: page; overflow: hidden; border-top: 0.18in solid #4f46e5; }
+.slide h1 { font-size: 44pt; margin: 0 0 18pt; color: #4f46e5; } .slide h2 { font-size: 30pt; margin: 0 0 20pt; color: #4f46e5; }
+.slide p { font-size: 20pt; line-height: 1.4; margin: 0 0 10pt; } .slide ul { font-size: 20pt; line-height: 1.45; margin: 0; padding-inline-start: 1.1em; } .slide li { margin-bottom: 10pt; }
+.meta { color: #626a7d; font-size: 16pt; }
+@media screen and (max-width: 1320px) { .slide { zoom: 0.6; } }
+@media screen and (max-width: 800px) { .slide { zoom: 0.3; } }
+@media print { body { background: #fff; } .bar { display: none; } .slide { margin: 0; zoom: 1; } }
+</style></head><body>
+<div class="bar"><button onclick="print()">Download PDF</button><span>In the print window choose <b>Save as PDF</b>.</span></div>
+${page(`<h1>${esc(c.title)}</h1><p>${esc(c.description)}</p><p class="meta">${esc(c.topic)} · ${esc(c.level)} · You Can Du AI</p>`)}
+${slides.map(s => page(`<h2>${esc(s.title)}</h2><ul>${s.bullets.map(b => `<li>${esc(b)}</li>`).join('')}</ul>`)).join('\n')}
+</body></html>`;
+  const w = window.open('', '_blank');
+  if (!w) return alert('Please allow pop-ups for this site to open the slides.');
+  w.document.write(html); w.document.close();
+  setTimeout(() => w.print(), 400);
+}
+
 $('#gen-list').onclick = e => {
+  const sid = e.target.dataset?.courseSlides;
+  if (sid) return openSlides(db.courses.find(x => x.id === sid));
   const id = e.target.dataset?.courseTest;
   if (!id) return;
   const c = db.courses.find(x => x.id === id);
