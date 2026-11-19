@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You Can Du AI</title>
 <meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 <header>
@@ -13,7 +13,6 @@
   <nav>
     <button data-tab="chat">Ask AI</button>
     <button data-tab="test" class="active">Take a test</button>
-    <button data-tab="history">History</button>
     <button data-tab="courses">Courses</button>
     <button data-tab="questions">Questions</button>
     <button data-tab="library">Knowledge library</button>
@@ -40,7 +39,6 @@
       <form id="chat-form">
         <label>Your question <textarea id="chat-input" rows="2" required placeholder="e.g. How much GPU memory do I need to serve a 70B model to 50 users?"></textarea></label>
         <div class="row">
-          <label>Save answers under topic <select id="chat-topic" class="topic-select"></select></label>
           <button class="primary">Ask</button>
           <button type="button" id="chat-clear">New chat</button>
         </div>
@@ -90,6 +88,7 @@
     </form>
     <form id="test-run" hidden></form>
     <div id="test-result" hidden></div>
+    <div class="card"><h2>Test history</h2><ul id="history-list" class="list"></ul></div>
   </section>
 
   <!-- QUESTIONS -->
@@ -202,13 +201,16 @@
     </div>
   </section>
 
-  <!-- HISTORY -->
-  <section id="history" class="tab" hidden>
-    <div class="card"><h2>Test history</h2><ul id="history-list" class="list"></ul></div>
-  </section>
-
-  <!-- DATA -->
+  <!-- ADMIN -->
   <section id="data" class="tab" hidden>
+    <form id="admin-lock" class="card">
+      <h2>Admin functions</h2>
+      <label>Admin password <input name="pw" type="password" autocomplete="current-password" required></label>
+      <button class="primary">Unlock</button>
+      <p id="admin-msg" class="bad" role="alert"></p>
+    </form>
+    <div id="admin-body" hidden>
+    <p><button type="button" id="admin-logout">Lock admin</button></p>
     <div class="card">
       <h2>Data: backup and restore</h2>
       <p>Everything you add is saved in this browser. Export a backup regularly, and import it to move your knowledge base to another device.</p>
@@ -219,8 +221,9 @@
       </div>
       <p class="muted">Import merges with what you have: items with the same id are replaced by the imported copy.</p>
     </div>
+    </div>
   </section>
 </main>
-<script type="module" src="app.js?v=4"></script>
+<script type="module" src="app.js?v=6"></script>
 </body>
 </html>

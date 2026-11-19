@@ -1,4 +1,5 @@
 import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion } from './quiz.js';
+import { ADMIN_HASH } from './admin-hash.js';
 
 const KEY = 'ycda-db-v1';
 const $ = s => document.querySelector(s);
@@ -269,13 +270,24 @@ $('#chat-form').onsubmit = async e => {
 };
 chatInput.onkeydown = e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); $('#chat-form').requestSubmit(); } };
 $('#chat-clear').onclick = () => { chat.length = 0; renderChat(); $('#chat-status').textContent = ''; };
-$('#chat-log').onclick = e => {
+// The AI picks the best existing topic; falls back to Generative AI (or the first topic) if its reply isn't a known topic.
+async function pickTopic(question, answer) {
+  const fallback = db.topics.includes('Generative AI') ? 'Generative AI' : db.topics[0];
+  try {
+    const reply = await gemini({ contents: [{ parts: [{ text: `Topics:\n${db.topics.join('\n')}\n\nWhich ONE topic above best fits this question and answer? Reply with the topic name exactly, nothing else.\n\nQuestion: ${question}\n\nAnswer: ${answer.slice(0, 1500)}` }] }] });
+    const r = reply.trim().replace(/^["'*\s]+|["'*.\s]+$/g, '').toLowerCase();
+    return db.topics.find(t => t.toLowerCase() === r) ?? fallback;
+  } catch { return fallback; }
+}
+$('#chat-log').onclick = async e => {
   const i = e.target.dataset?.chatSave;
   if (i === undefined) return;
-  const question = chat[i - 1]?.parts[0].text ?? 'AI tutor answer';
-  db.notes.push({ id: uid(), topic: $('#chat-topic').value, title: question.slice(0, 120), body: chat[i].parts[0].text, sourceId: '' });
+  const btn = e.target, question = chat[i - 1]?.parts[0].text ?? 'AI tutor answer', answer = chat[i].parts[0].text;
+  btn.disabled = true; btn.textContent = 'Saving…';
+  const topic = await pickTopic(question, answer);
+  db.notes.push({ id: uid(), topic, title: question.slice(0, 120), body: answer, sourceId: '' });
   save();
-  e.target.textContent = 'Saved ✓'; e.target.disabled = true;
+  btn.textContent = `Saved to ${topic} ✓`;
 };
 
 // ---------- Courses ----------
@@ -368,6 +380,25 @@ $('#yt-save').onclick = () => {
   save();
   alert('Saved to the knowledge library.');
 };
+
+// ---------- admin lock ----------
+// shortcut: client-side gate only (a static site has no server); it keeps visitors out of the UI, not a determined developer. Upgrade to real auth if admin ever touches shared data.
+const sha256 = async s => [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)))].map(b => b.toString(16).padStart(2, '0')).join('');
+function syncAdmin() {
+  let open = false;
+  try { open = sessionStorage.getItem('ycda-admin') === ADMIN_HASH; } catch {}
+  $('#admin-lock').hidden = open; $('#admin-body').hidden = !open;
+}
+$('#admin-lock').onsubmit = async e => {
+  e.preventDefault();
+  const msg = $('#admin-msg');
+  if (!crypto.subtle) return msg.textContent = 'Admin works only on the secure https:// address of this site.';
+  if (await sha256(e.target.pw.value) !== ADMIN_HASH) { msg.textContent = 'Wrong password.'; e.target.pw.select(); return; }
+  try { sessionStorage.setItem('ycda-admin', ADMIN_HASH); } catch {}
+  e.target.reset(); msg.textContent = ''; syncAdmin();
+};
+$('#admin-logout').onclick = () => { try { sessionStorage.removeItem('ycda-admin'); } catch {} syncAdmin(); };
+syncAdmin();
 
 // ---------- export / import ----------
 $('#export-btn').onclick = () => {
