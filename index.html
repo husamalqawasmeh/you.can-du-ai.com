@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You Can Du AI</title>
 <meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
-<link rel="stylesheet" href="style.css?v=30">
+<link rel="stylesheet" href="style.css?v=31">
 </head>
 <body>
 <header>
@@ -17,6 +17,7 @@
     <button data-tab="test">Take a test</button>
     <button data-tab="courses">Courses</button>
     <button data-tab="certs">AI Certifications</button>
+    <button data-tab="tools">AI Tools Dictionary</button>
     <button data-tab="questions">Questions</button>
     <button data-tab="library">Knowledge library</button>
     <button data-tab="youtube">Video Transcribe and Summary</button>
@@ -55,6 +56,7 @@
       <button type="button" class="home-card" data-goto="chat"><strong>Ask the AI Tutor</strong><span>Ask any AI question and save the answers to your library.</span></button>
       <button type="button" class="home-card" data-goto="test"><strong>Take a test</strong><span>Choose topics, question types, difficulty and how many questions.</span></button>
       <button type="button" class="home-card" data-goto="courses"><strong>Courses</strong><span>Create a full course on any subject, with PDF slides and a test.</span></button>
+      <button type="button" class="home-card" data-goto="tools"><strong>AI Tools Dictionary</strong><span>66 AI tools: company, what it does, cost, pros and cons.</span></button>
       <button type="button" class="home-card" data-goto="certs"><strong>AI Certifications</strong><span>Exams from AWS, Microsoft, Google, NVIDIA and more: cost, topics, prerequisites, free prep.</span></button>
       <button type="button" class="home-card" data-goto="library"><strong>Knowledge library</strong><span>Curated sites, papers, slides and Arabic sources, plus your notes.</span></button>
       <button type="button" class="home-card" data-goto="youtube"><strong>Video Transcribe and Summary</strong><span>Turn any YouTube video into a summary or transcript.</span></button>
@@ -213,6 +215,20 @@
     </div>
   </section>
 
+  <!-- TOOLS DICTIONARY -->
+  <section id="tools" class="tab" hidden>
+    <div class="card"><h2>AI tools dictionary</h2>
+      <p class="muted">What each tool does, who makes it, how it is priced, and its pros and cons. Prices change often: check the tool's site for current plans. <span id="tools-checked"></span></p>
+      <div class="row">
+        <label>Search <input id="tool-q" type="search" placeholder="Name, company or feature"></label>
+        <label>Category <select id="tool-cat"><option value="">All categories</option></select></label>
+        <label>Cost <select id="tool-cost"><option value="">Any cost</option><option value="free">Has a free option</option><option value="freemium">Freemium</option><option value="paid">Paid / subscription</option><option value="usage">Pay-per-use</option></select></label>
+      </div>
+      <p id="tools-count" class="muted"></p>
+    </div>
+    <div id="tools-list" class="tools-grid"></div>
+  </section>
+
   <!-- CERTIFICATIONS -->
   <section id="certs" class="tab" hidden>
     <div class="card"><h2>AI exams and certifications</h2>
@@ -302,6 +318,6 @@
     </div>
   </section>
 </main>
-<script type="module" src="app.js?v=30"></script>
+<script type="module" src="app.js?v=31"></script>
 </body>
 </html>

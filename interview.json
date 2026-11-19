@@ -17,6 +17,10 @@
     { "q": "What is FLOPS?", "followup": "Why can peak FLOPS be misleading when choosing a GPU for LLM inference?" },
     { "q": "What chunking strategies or approaches do you know for RAG (for example fixed-size, recursive, sentence- or document-structure-based, semantic, overlap, parent-child)?", "followup": "Why would you choose one chunking strategy over another, and how do chunk size and overlap affect retrieval quality and cost?" },
     { "q": "What are the different types of RAG architectures and strategies (for example naive RAG, advanced RAG with re-ranking and query rewriting, hybrid search, GraphRAG, agentic RAG, multimodal RAG)?", "followup": "Why would you pick a particular RAG architecture for a use case, and how would you evaluate whether it works?" },
+    { "q": "What is MCP (Model Context Protocol) and how does it work: hosts, clients and servers; tools, resources and prompts?", "followup": "Why use MCP instead of building a custom integration for every tool, and what security risks does it bring?" },
+    { "q": "What is an AI agent, and which agent patterns do you know (ReAct, orchestrator-workers, evaluator-optimizer, multi-agent handoffs)?", "followup": "Why and when would you choose a simple fixed workflow over a fully autonomous agent?" },
+    { "q": "How do you evaluate an LLM application (evals)?", "followup": "Why can't you rely on public benchmarks alone, and how do you make sure an LLM-as-a-judge is trustworthy?" },
+    { "q": "Which benchmarks do you know for LLMs and for AI hardware, and what does each one measure?", "followup": "Why can benchmark results be misleading (contamination, saturation, different setups), and how would you benchmark for your own use case?" },
     { "q": "Connect each AI model to the company that makes it.", "followup": "Why would you choose an open-weight model over a closed one, or the other way round?",
       "match": [
         ["Claude Opus", "Anthropic"], ["ChatGPT (GPT)", "OpenAI"], ["MAI", "Microsoft"], ["Phi", "Microsoft"],

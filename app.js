@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency } from './quiz.js?v=30';
-import { ADMIN_HASH } from './admin-hash.js?v=30';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency } from './quiz.js?v=31';
+import { ADMIN_HASH } from './admin-hash.js?v=31';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -209,6 +209,28 @@ async function loadCerts() {
   show();
 }
 loadCerts();
+
+// ---------- AI tools dictionary (tools.json) ----------
+async function loadTools() {
+  let d;
+  try { d = await (await fetch('tools.json?v=1')).json(); } catch { $('#tools-list').innerHTML = '<p class="muted">Could not load the tools.</p>'; return; }
+  $('#tools-checked').textContent = `Last checked: ${d.checked}.`;
+  $('#tool-cat').innerHTML += [...new Set(d.tools.map(t => t.category))].sort().map(c => opt(c)).join('');
+  const costKind = c => { c = c.toLowerCase(); return { free: /free|open/.test(c) && !/freemium/.test(c), freemium: /freemium|free tier|free app|free to try/.test(c), paid: /subscription|paid|licen|included/.test(c), usage: /pay-per-use|api/.test(c) }; };
+  const show = () => {
+    const q = $('#tool-q').value.trim().toLowerCase(), cat = $('#tool-cat').value, cost = $('#tool-cost').value;
+    const list = d.tools.filter(t => (!cat || t.category === cat) && (!cost || costKind(t.cost)[cost]) &&
+      (!q || [t.name, t.company, t.category, t.does].join(' ').toLowerCase().includes(q)));
+    $('#tools-count').textContent = `${list.length} of ${d.tools.length} tools`;
+    $('#tools-list').innerHTML = list.map(t => `<article class="tool"><h3><a href="${esc(t.url)}" target="_blank" rel="noopener">${esc(t.name)}</a></h3>
+      <span class="tag">${esc(t.company)} · ${esc(t.category)}</span><span class="cost">${esc(t.cost)}</span><div>${esc(t.does)}</div>
+      <div class="pc"><div><strong class="good">Pros</strong><ul>${t.pros.map(p => `<li>${esc(p)}</li>`).join('')}</ul></div><div><strong class="bad">Cons</strong><ul>${t.cons.map(p => `<li>${esc(p)}</li>`).join('')}</ul></div></div></article>`).join('')
+      || '<p class="muted">No tools match.</p>';
+  };
+  $('#tool-q').oninput = $('#tool-cat').onchange = $('#tool-cost').onchange = show;
+  show();
+}
+loadTools();
 
 $('#lib-filter-topic').onchange =$('#lib-filter-type').onchange = $('#lib-filter-lang').onchange = render;
 $('#q-filter-topic').onchange = render;
@@ -586,7 +608,7 @@ $('#yt-save').onclick = () => {
 // ---------- interview prep (questions in interview.json) ----------
 async function loadInterview() {
   let p;
-  try { p = await (await fetch('interview.json?v=6')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
+  try { p = await (await fetch('interview.json?v=7')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
   $('#iv-list').innerHTML = p.questions.map((q, qi) => `<li><strong>${esc(q.q)}</strong>${q.match ? matchHtml(q.match, qi) : ''}${q.followup ? `<div class="iv-follow">↳ ${esc(q.followup)}</div>` : ''}</li>`).join('');
   document.querySelectorAll('.match').forEach(el => setupMatch(el, p.questions[+el.dataset.q].match));
 }

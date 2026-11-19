@@ -9,7 +9,10 @@
     "Frontier Labs",
     "Harnesses",
     "CLI",
-    "Context Engineering"
+    "Context Engineering",
+    "Agents & MCP",
+    "Evals",
+    "Benchmarking"
   ],
   "sources": [
     {
@@ -1019,6 +1022,222 @@
       "url": "https://maven.com/p/395ea3/ai-ready-design-systems-what-changes-for-ui-and-ux",
       "notes": "Free Maven Lightning Lesson (live, often with a recording). Register on Maven to join or watch.",
       "lang": "en"
+    },
+    {
+      "id": "src-93",
+      "topic": "Agents & MCP",
+      "type": "Docs",
+      "title": "MCP specification",
+      "url": "https://modelcontextprotocol.io/specification",
+      "notes": "The official protocol spec: hosts, clients, servers, tools, resources, prompts, transports.",
+      "lang": "en"
+    },
+    {
+      "id": "src-94",
+      "topic": "Agents & MCP",
+      "type": "Website",
+      "title": "Introducing the Model Context Protocol (Anthropic)",
+      "url": "https://www.anthropic.com/news/model-context-protocol",
+      "notes": "Why MCP was created and what problem it solves.",
+      "lang": "en"
+    },
+    {
+      "id": "src-95",
+      "topic": "Agents & MCP",
+      "type": "Website",
+      "title": "MCP reference servers (GitHub)",
+      "url": "https://github.com/modelcontextprotocol/servers",
+      "notes": "Example and community MCP servers to learn from.",
+      "lang": "en"
+    },
+    {
+      "id": "src-96",
+      "topic": "Agents & MCP",
+      "type": "Docs",
+      "title": "OpenAI Agents SDK",
+      "url": "https://openai.github.io/openai-agents-python/",
+      "notes": "Agents, tools, handoffs, guardrails and tracing.",
+      "lang": "en"
+    },
+    {
+      "id": "src-97",
+      "topic": "Agents & MCP",
+      "type": "Docs",
+      "title": "Google Agent Development Kit (ADK)",
+      "url": "https://google.github.io/adk-docs/",
+      "notes": "Framework for building multi-agent systems.",
+      "lang": "en"
+    },
+    {
+      "id": "src-98",
+      "topic": "Agents & MCP",
+      "type": "Website",
+      "title": "Agent2Agent (A2A) protocol",
+      "url": "https://a2a-protocol.org",
+      "notes": "Open protocol for agents to communicate with other agents.",
+      "lang": "en"
+    },
+    {
+      "id": "src-99",
+      "topic": "Agents & MCP",
+      "type": "Website",
+      "title": "LLM Powered Autonomous Agents (Lilian Weng)",
+      "url": "https://lilianweng.github.io/posts/2023-06-23-agent/",
+      "notes": "Classic overview: planning, memory and tool use.",
+      "lang": "en"
+    },
+    {
+      "id": "src-100",
+      "topic": "Agents & MCP",
+      "type": "Paper",
+      "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+      "url": "https://arxiv.org/abs/2210.03629",
+      "notes": "The reason-act loop behind most tool-using agents.",
+      "lang": "en"
+    },
+    {
+      "id": "src-101",
+      "topic": "Evals",
+      "type": "Website",
+      "title": "Your AI Product Needs Evals (Hamel Husain)",
+      "url": "https://hamel.dev/blog/posts/evals/",
+      "notes": "Practical guide: error analysis, unit tests, LLM judges.",
+      "lang": "en"
+    },
+    {
+      "id": "src-102",
+      "topic": "Evals",
+      "type": "Website",
+      "title": "Task-specific LLM evals that do and don't work (Eugene Yan)",
+      "url": "https://eugeneyan.com/writing/evals/",
+      "notes": "Which metrics work for classification, summarization, translation and more.",
+      "lang": "en"
+    },
+    {
+      "id": "src-103",
+      "topic": "Evals",
+      "type": "Docs",
+      "title": "Create strong empirical evaluations (Anthropic docs)",
+      "url": "https://docs.anthropic.com/en/docs/test-and-evaluate/develop-tests",
+      "notes": "Define success criteria and build test cases.",
+      "lang": "en"
+    },
+    {
+      "id": "src-104",
+      "topic": "Evals",
+      "type": "Paper",
+      "title": "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena",
+      "url": "https://arxiv.org/abs/2306.05685",
+      "notes": "How well LLM judges agree with humans, and their biases.",
+      "lang": "en"
+    },
+    {
+      "id": "src-105",
+      "topic": "Evals",
+      "type": "Docs",
+      "title": "Ragas: RAG evaluation",
+      "url": "https://docs.ragas.io",
+      "notes": "Metrics such as faithfulness, answer relevancy and context precision/recall.",
+      "lang": "en"
+    },
+    {
+      "id": "src-106",
+      "topic": "Evals",
+      "type": "Website",
+      "title": "promptfoo",
+      "url": "https://www.promptfoo.dev",
+      "notes": "Open-source tool to test prompts and models, including red-teaming.",
+      "lang": "en"
+    },
+    {
+      "id": "src-107",
+      "topic": "Evals",
+      "type": "Website",
+      "title": "DeepEval",
+      "url": "https://deepeval.com",
+      "notes": "Open-source LLM evaluation framework, unit-test style.",
+      "lang": "en"
+    },
+    {
+      "id": "src-108",
+      "topic": "Evals",
+      "type": "Website",
+      "title": "OpenAI Evals (GitHub)",
+      "url": "https://github.com/openai/evals",
+      "notes": "Framework and registry of evals for LLMs.",
+      "lang": "en"
+    },
+    {
+      "id": "src-109",
+      "topic": "Benchmarking",
+      "type": "Paper",
+      "title": "MMLU: Measuring Massive Multitask Language Understanding",
+      "url": "https://arxiv.org/abs/2009.03300",
+      "notes": "Knowledge benchmark across 57 subjects.",
+      "lang": "en"
+    },
+    {
+      "id": "src-110",
+      "topic": "Benchmarking",
+      "type": "Paper",
+      "title": "GPQA: A Graduate-Level Google-Proof Q&A Benchmark",
+      "url": "https://arxiv.org/abs/2311.12022",
+      "notes": "Hard expert-written science questions.",
+      "lang": "en"
+    },
+    {
+      "id": "src-111",
+      "topic": "Benchmarking",
+      "type": "Paper",
+      "title": "Evaluating LLMs Trained on Code (HumanEval)",
+      "url": "https://arxiv.org/abs/2107.03374",
+      "notes": "Code benchmark and the pass@k metric.",
+      "lang": "en"
+    },
+    {
+      "id": "src-112",
+      "topic": "Benchmarking",
+      "type": "Website",
+      "title": "Stanford HELM",
+      "url": "https://crfm.stanford.edu/helm/",
+      "notes": "Holistic evaluation of language models across many scenarios and metrics.",
+      "lang": "en"
+    },
+    {
+      "id": "src-113",
+      "topic": "Benchmarking",
+      "type": "Website",
+      "title": "LMArena (Chatbot Arena)",
+      "url": "https://lmarena.ai",
+      "notes": "Crowdsourced pairwise human votes ranking models.",
+      "lang": "en"
+    },
+    {
+      "id": "src-114",
+      "topic": "Benchmarking",
+      "type": "Website",
+      "title": "Epoch AI Benchmarking Hub",
+      "url": "https://epoch.ai/benchmarks",
+      "notes": "Independent results of models on major benchmarks.",
+      "lang": "en"
+    },
+    {
+      "id": "src-115",
+      "topic": "Benchmarking",
+      "type": "Website",
+      "title": "ARC Prize (ARC-AGI)",
+      "url": "https://arcprize.org",
+      "notes": "Abstract reasoning benchmark that is easy for humans and hard for AI.",
+      "lang": "en"
+    },
+    {
+      "id": "src-116",
+      "topic": "Benchmarking",
+      "type": "Website",
+      "title": "Humanity's Last Exam",
+      "url": "https://lastexam.ai",
+      "notes": "Very hard expert questions across many fields.",
+      "lang": "en"
     }
   ],
   "notes": [
@@ -1098,6 +1317,34 @@
       "title": "AI coding CLIs",
       "body": "Terminal agents (Claude Code, Codex CLI, Gemini CLI, Aider) read and edit files, run commands and tests, and use git. They load project instructions from files such as CLAUDE.md or AGENTS.md, ask permission for risky actions, and can run non-interactively in scripts and CI (for example claude -p \"prompt\").",
       "sourceId": "src-87"
+    },
+    {
+      "id": "note-12",
+      "topic": "Agents & MCP",
+      "title": "MCP in one page",
+      "body": "MCP (Model Context Protocol) is an open standard for connecting AI applications to tools and data. Roles: the HOST is the AI app (e.g. Claude Code, an IDE); inside it, a CLIENT keeps a 1:1 connection to each SERVER; a server exposes capabilities. Server primitives: TOOLS (functions the model can call), RESOURCES (data the app can read, like files or records) and PROMPTS (reusable templates). Clients can offer SAMPLING (a server asks the client's model for a completion) and ROOTS. Transports: stdio for local servers, Streamable HTTP for remote ones. Messages use JSON-RPC 2.0. Why it matters: write a tool once and use it in any MCP host, instead of a custom integration per app. Risks: untrusted servers, tool poisoning and prompt injection, so apply least privilege and require user approval for risky actions.",
+      "sourceId": "src-93"
+    },
+    {
+      "id": "note-13",
+      "topic": "Agents & MCP",
+      "title": "Agent patterns",
+      "body": "An agent is an LLM that decides its own next steps and tool calls in a loop (ReAct: think, act, observe). Simpler WORKFLOWS follow fixed code paths. Common patterns: prompt chaining, routing, parallelization, orchestrator-workers (a lead model splits work and delegates), evaluator-optimizer (one model critiques, another improves), and multi-agent handoffs. Building blocks: tools, memory (short-term context plus long-term stores), planning, guardrails and tracing. Start with the simplest design that works; add autonomy only when it pays off. A2A is a protocol for agents to talk to other agents; MCP connects an agent to tools.",
+      "sourceId": "src-99"
+    },
+    {
+      "id": "note-14",
+      "topic": "Evals",
+      "title": "How to evaluate an LLM app",
+      "body": "1) Do error analysis: read many real outputs and list the failure modes. 2) Build a golden dataset of representative inputs with expected outputs or grading criteria. 3) Pick metrics per task: code-based checks (exact match, JSON schema, unit tests, regex) where possible; LLM-as-a-judge for open-ended quality; human review for the hardest cases. 4) Calibrate any LLM judge against human labels before trusting it, and watch for position, verbosity and self-preference bias. 5) For RAG, score retrieval (context precision/recall) and generation (faithfulness, answer relevance) separately. 6) Run offline evals in CI before every release, and online evals and monitoring on live traffic. Tools: promptfoo, DeepEval, Ragas, OpenAI Evals.",
+      "sourceId": "src-101"
+    },
+    {
+      "id": "note-15",
+      "topic": "Benchmarking",
+      "title": "Reading benchmarks wisely",
+      "body": "Model benchmarks: MMLU (knowledge, 57 subjects), GPQA (graduate-level, Google-proof science), HumanEval (code, pass@k), SWE-bench (fixing real GitHub issues), ARC-AGI (abstract reasoning), Humanity's Last Exam (frontier expert questions), LMArena (human preference votes, Elo-style ratings), HELM (many scenarios and metrics). Hardware benchmarks: MLPerf Training and Inference measure system speed on standard workloads. Pitfalls: contamination (test data leaked into training), saturation (top models all near 100%), prompt and setup differences between labs, and the gap between benchmark tasks and your real use case. Always confirm with your own evals on your own data.",
+      "sourceId": "src-114"
     }
   ],
   "questions": [
@@ -2316,6 +2563,352 @@
       "answer": "True",
       "explanation": "Aider edits files and commits changes with descriptive messages.",
       "sourceId": "src-91"
+    },
+    {
+      "id": "q-mcp-1",
+      "topic": "Agents & MCP",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "In MCP, which component exposes tools, resources and prompts?",
+      "options": [
+        "The server",
+        "The host",
+        "The model",
+        "The browser"
+      ],
+      "answer": "The server",
+      "explanation": "The host is the AI app; its client connects to servers, which expose capabilities.",
+      "sourceId": "src-93"
+    },
+    {
+      "id": "q-mcp-2",
+      "topic": "Agents & MCP",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which are the three main primitives an MCP server can expose?",
+      "options": [
+        "Tools, resources and prompts",
+        "Models, datasets and GPUs",
+        "Agents, chains and vectors",
+        "Users, roles and tokens"
+      ],
+      "answer": "Tools, resources and prompts",
+      "explanation": "Tools are callable functions, resources are readable data, prompts are reusable templates.",
+      "sourceId": "src-93"
+    },
+    {
+      "id": "q-mcp-3",
+      "topic": "Agents & MCP",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "MCP servers can run locally over stdio or remotely over HTTP.",
+      "answer": "True",
+      "explanation": "stdio suits local servers; Streamable HTTP suits remote ones.",
+      "sourceId": "src-93"
+    },
+    {
+      "id": "q-mcp-4",
+      "topic": "Agents & MCP",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "What does the MCP \"sampling\" feature let a server do?",
+      "options": [
+        "Ask the client's model to generate a completion",
+        "Download random training data",
+        "Sample GPU temperatures",
+        "Select a random tool"
+      ],
+      "answer": "Ask the client's model to generate a completion",
+      "explanation": "The server requests an LLM completion through the client, which keeps control and can ask the user to approve.",
+      "sourceId": "src-93"
+    },
+    {
+      "id": "q-mcp-5",
+      "topic": "Agents & MCP",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "The ReAct approach interleaves which two things?",
+      "options": [
+        "Reasoning traces and actions (tool calls)",
+        "Training and inference",
+        "Encoding and decoding",
+        "Pretraining and fine-tuning"
+      ],
+      "answer": "Reasoning traces and actions (tool calls)",
+      "explanation": "The model thinks, acts, observes the result, then continues.",
+      "sourceId": "src-100"
+    },
+    {
+      "id": "q-mcp-6",
+      "topic": "Agents & MCP",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "In the orchestrator-workers pattern, what does the orchestrator do?",
+      "options": [
+        "Breaks the task into subtasks and delegates them to worker LLMs",
+        "Trains the worker models",
+        "Only checks spelling",
+        "Serves the model on GPUs"
+      ],
+      "answer": "Breaks the task into subtasks and delegates them to worker LLMs",
+      "explanation": "It then combines the workers' results.",
+      "sourceId": "src-28"
+    },
+    {
+      "id": "q-mcp-7",
+      "topic": "Agents & MCP",
+      "type": "short",
+      "difficulty": "medium",
+      "prompt": "What is the open protocol (introduced by Google in 2025) that lets AI agents communicate with other agents?",
+      "answer": "a2a|agent2agent|agent-to-agent|agent to agent",
+      "explanation": "A2A connects agents to agents; MCP connects agents to tools and data.",
+      "sourceId": "src-98"
+    },
+    {
+      "id": "q-mcp-8",
+      "topic": "Agents & MCP",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which security principle best limits the damage a compromised or manipulated agent can do?",
+      "options": [
+        "Least privilege: give it only the tools and permissions it needs",
+        "Give it admin rights so it never fails",
+        "Use a bigger model",
+        "Hide its logs"
+      ],
+      "answer": "Least privilege: give it only the tools and permissions it needs",
+      "explanation": "Combine with sandboxing and human approval for risky actions.",
+      "sourceId": "src-93"
+    },
+    {
+      "id": "q-mcp-9",
+      "topic": "Agents & MCP",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "An AI agent lets the LLM decide its own next steps and tool calls, instead of following a fixed code path.",
+      "answer": "True",
+      "explanation": "Fixed code paths are called workflows.",
+      "sourceId": "src-28"
+    },
+    {
+      "id": "q-ev-1",
+      "topic": "Evals",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is a golden dataset in LLM evaluation?",
+      "options": [
+        "Representative inputs with expected outputs or grading criteria",
+        "The model's training data",
+        "A list of GPU prices",
+        "Logs of user logins"
+      ],
+      "answer": "Representative inputs with expected outputs or grading criteria",
+      "explanation": "It lets you measure quality consistently before each release.",
+      "sourceId": "src-101"
+    },
+    {
+      "id": "q-ev-2",
+      "topic": "Evals",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which is a known bias of LLM-as-a-judge evaluators?",
+      "options": [
+        "Position bias: favoring the answer shown first",
+        "Always preferring the shortest answer",
+        "Refusing to grade code",
+        "Grading only in French"
+      ],
+      "answer": "Position bias: favoring the answer shown first",
+      "explanation": "Also verbosity bias (longer answers) and self-enhancement bias (own outputs).",
+      "sourceId": "src-104"
+    },
+    {
+      "id": "q-ev-3",
+      "topic": "Evals",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Offline evals run on a fixed dataset before release; online evals measure quality on live traffic.",
+      "answer": "True",
+      "explanation": "Use both: offline to catch regressions, online to see real behavior.",
+      "sourceId": "src-101"
+    },
+    {
+      "id": "q-ev-4",
+      "topic": "Evals",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "In RAG evaluation, what does \"faithfulness\" measure?",
+      "options": [
+        "Whether the answer is supported by the retrieved context",
+        "How fast the answer was generated",
+        "How many documents are in the index",
+        "The user's satisfaction score"
+      ],
+      "answer": "Whether the answer is supported by the retrieved context",
+      "explanation": "An unfaithful answer adds claims the sources do not support.",
+      "sourceId": "src-105"
+    },
+    {
+      "id": "q-ev-5",
+      "topic": "Evals",
+      "type": "tf",
+      "difficulty": "hard",
+      "prompt": "Exact-match scoring is a reliable metric for open-ended text generation like summaries.",
+      "answer": "False",
+      "explanation": "Many different wordings can be correct; use rubric-based or judge-based scoring instead.",
+      "sourceId": "src-102"
+    },
+    {
+      "id": "q-ev-6",
+      "topic": "Evals",
+      "type": "short",
+      "difficulty": "medium",
+      "prompt": "What is the practice called of reading many real model outputs to find and categorize failure modes?",
+      "answer": "error analysis|error-analysis",
+      "explanation": "It tells you which evals to build first.",
+      "sourceId": "src-101"
+    },
+    {
+      "id": "q-ev-7",
+      "topic": "Evals",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Why should you compare an LLM judge's grades with human labels before relying on it?",
+      "options": [
+        "To confirm the judge agrees with human judgment on your task",
+        "To make the judge faster",
+        "To reduce token costs to zero",
+        "Because judges cannot read text"
+      ],
+      "answer": "To confirm the judge agrees with human judgment on your task",
+      "explanation": "A judge that disagrees with experts gives misleading scores.",
+      "sourceId": "src-104"
+    },
+    {
+      "id": "q-ev-8",
+      "topic": "Evals",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What does pairwise evaluation ask the evaluator to do?",
+      "options": [
+        "Choose the better of two outputs",
+        "Count the words",
+        "Translate the output",
+        "Delete bad outputs"
+      ],
+      "answer": "Choose the better of two outputs",
+      "explanation": "Pointwise evaluation scores one output at a time.",
+      "sourceId": "src-104"
+    },
+    {
+      "id": "q-bm-1",
+      "topic": "Benchmarking",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What does the MMLU benchmark measure?",
+      "options": [
+        "Knowledge across 57 subjects with multiple-choice questions",
+        "GPU training speed",
+        "Image generation quality",
+        "Speech recognition accuracy"
+      ],
+      "answer": "Knowledge across 57 subjects with multiple-choice questions",
+      "explanation": "Subjects range from math and law to medicine and history.",
+      "sourceId": "src-109"
+    },
+    {
+      "id": "q-bm-2",
+      "topic": "Benchmarking",
+      "type": "short",
+      "difficulty": "medium",
+      "prompt": "Which metric gives the probability that at least one of k generated code samples passes the unit tests?",
+      "answer": "pass@k|pass at k",
+      "explanation": "Introduced with the HumanEval code benchmark.",
+      "sourceId": "src-111"
+    },
+    {
+      "id": "q-bm-3",
+      "topic": "Benchmarking",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is benchmark contamination?",
+      "options": [
+        "Test questions leaking into a model's training data, inflating its score",
+        "Dust in the data center",
+        "A model refusing to answer",
+        "Using too few GPUs"
+      ],
+      "answer": "Test questions leaking into a model's training data, inflating its score",
+      "explanation": "Contaminated results overstate real ability.",
+      "sourceId": "src-114"
+    },
+    {
+      "id": "q-bm-4",
+      "topic": "Benchmarking",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "How does LMArena (Chatbot Arena) rank models?",
+      "options": [
+        "Crowdsourced pairwise human votes turned into Elo-style ratings",
+        "Counting model parameters",
+        "Measuring GPU power use",
+        "Exact-match on a fixed test set"
+      ],
+      "answer": "Crowdsourced pairwise human votes turned into Elo-style ratings",
+      "explanation": "Users compare two anonymous answers and pick the better one.",
+      "sourceId": "src-113"
+    },
+    {
+      "id": "q-bm-5",
+      "topic": "Benchmarking",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "GPQA contains graduate-level science questions designed to be hard to answer even with web search.",
+      "answer": "True",
+      "explanation": "That is why it is called \"Google-proof\".",
+      "sourceId": "src-110"
+    },
+    {
+      "id": "q-bm-6",
+      "topic": "Benchmarking",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "What does it mean when a benchmark is \"saturated\"?",
+      "options": [
+        "Top models score near the maximum, so it no longer separates them",
+        "The dataset is too large to download",
+        "It only runs on one GPU type",
+        "It has no questions left"
+      ],
+      "answer": "Top models score near the maximum, so it no longer separates them",
+      "explanation": "Harder benchmarks then replace it.",
+      "sourceId": "src-114"
+    },
+    {
+      "id": "q-bm-7",
+      "topic": "Benchmarking",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What does MLPerf Inference measure?",
+      "options": [
+        "How fast systems run standard AI workloads (throughput and latency)",
+        "How smart a chatbot is",
+        "How many users a website has",
+        "How accurate a translation is"
+      ],
+      "answer": "How fast systems run standard AI workloads (throughput and latency)",
+      "explanation": "It compares hardware and software systems, not model intelligence.",
+      "sourceId": "src-18"
+    },
+    {
+      "id": "q-bm-8",
+      "topic": "Benchmarking",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "A high public benchmark score guarantees a model will perform well on your specific task.",
+      "answer": "False",
+      "explanation": "Always test on your own data with your own evals.",
+      "sourceId": "src-112"
     }
   ]
 }

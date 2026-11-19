@@ -112,3 +112,10 @@ table.cert-facts th { width: 9em; color: var(--muted); font-weight: 500; }
 .cert summary { cursor: pointer; }
 .cert h4 { margin: 10px 0 4px; }
 a.button { text-decoration: none; }
+.tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+.tool { background: var(--raised); border: 1px solid var(--border-strong); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 6px; }
+.tool h3 { margin: 0; font-size: 1rem; }
+.tool .cost { align-self: flex-start; font-size: .78rem; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent); }
+.tool ul { margin: 0; padding-inline-start: 18px; font-size: .88rem; }
+.tool .pc { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.tool .pc strong { font-size: .8rem; }
