@@ -119,3 +119,10 @@ a.button { text-decoration: none; }
 .tool ul { margin: 0; padding-inline-start: 18px; font-size: .88rem; }
 .tool .pc { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .tool .pc strong { font-size: .8rem; }
+.iv-terms { columns: 4 170px; column-gap: 20px; margin: 6px 0; padding-inline-start: 2.2em; font-size: .88rem; }
+.iv-terms li { break-inside: avoid; }
+.iv-answers { margin: 6px 0; border: 1px solid var(--border-strong); border-radius: 8px; padding: 6px 10px; background: var(--raised); }
+.iv-answers summary { cursor: pointer; font-weight: 600; color: var(--accent); }
+.iv-answers dl { margin: 8px 0 0; }
+.iv-answers dt { font-weight: 600; margin-top: 8px; }
+.iv-answers dd { margin: 2px 0 0 1.2em; color: var(--muted); }

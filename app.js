@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency } from './quiz.js?v=31';
-import { ADMIN_HASH } from './admin-hash.js?v=31';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency } from './quiz.js?v=32';
+import { ADMIN_HASH } from './admin-hash.js?v=32';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -608,11 +608,16 @@ $('#yt-save').onclick = () => {
 // ---------- interview prep (questions in interview.json) ----------
 async function loadInterview() {
   let p;
-  try { p = await (await fetch('interview.json?v=7')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
-  $('#iv-list').innerHTML = p.questions.map((q, qi) => `<li><strong>${esc(q.q)}</strong>${q.match ? matchHtml(q.match, qi) : ''}${q.followup ? `<div class="iv-follow">↳ ${esc(q.followup)}</div>` : ''}</li>`).join('');
+  try { p = await (await fetch('interview.json?v=9')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
+  $('#iv-list').innerHTML = p.questions.map((q, qi) => `<li><strong>${esc(q.q)}</strong>${q.match ? matchHtml(q.match, qi) : ''}${q.terms ? termsHtml(q.terms) : ''}${q.followup ? `<div class="iv-follow">↳ ${esc(q.followup)}</div>` : ''}</li>`).join('');
   document.querySelectorAll('.match').forEach(el => setupMatch(el, p.questions[+el.dataset.q].match));
 }
 loadInterview();
+
+// Terms list is always visible; the definitions stay collapsed until the learner opens them.
+const termsHtml = terms => `<ol class="iv-terms">${terms.map(t => `<li>${esc(t[0])}</li>`).join('')}</ol>
+  <details class="iv-answers"><summary>Show the answers (${terms.length} definitions)</summary>
+  <dl>${terms.map(([t, d], i) => `<dt>${i + 1}. ${esc(t)}</dt><dd>${esc(d)}</dd>`).join('')}</dl></details>`;
 
 // ---------- matching exercise: click a model, then its vendor, to draw a line ----------
 const shuffle = a => pickQuestions(a, { count: a.length }); // reuses the Fisher-Yates shuffle
