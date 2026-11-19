@@ -1,4 +1,4 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion } from './quiz.js';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats } from './quiz.js';
 import { ADMIN_HASH } from './admin-hash.js';
 
 const KEY = 'ycda-db-v1';
@@ -79,13 +79,52 @@ function render() {
   }).join('') || '<p class="muted">No courses created yet.</p>';
   $('#course-list').innerHTML = db.sources.filter(s => s.type === 'Course').map(s => `<li dir="auto"><div>${/^https?:\/\//i.test(s.url) ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>` : esc(s.title)} <span class="tag">${esc(s.topic)}${s.lang === 'ar' ? ' · العربية' : ''}</span>${s.notes ? `<div class="muted">${esc(s.notes)}</div>` : ''}</div><button class="del" data-del="sources" data-id="${esc(s.id)}">Delete</button></li>`).join('') || '<li class="muted">No courses yet.</li>';
 
+  renderSuggestions();
+
   // history
   $('#history-list').innerHTML = db.results.slice().reverse().map(r => `<li><div><strong>${r.pct}%</strong> (${r.correct}/${r.total}) <span class="tag">${new Date(r.date).toLocaleString()} · ${esc(r.topics.join(', ') || 'All topics')}</span></div></li>`).join('') || '<li class="muted">No tests taken yet.</li>';
 
   $('#data-stats').textContent = `${db.topics.length} topics · ${db.sources.length} sources · ${db.notes.length} knowledge entries · ${db.questions.length} questions · ${db.results.length} test results`;
 }
 
-$('#lib-filter-topic').onchange = $('#lib-filter-type').onchange = $('#lib-filter-lang').onchange = render;
+// ---------- learning suggestions ----------
+const link = s => /^https?:\/\//i.test(s.url) ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>` : esc(s.title);
+function topicAdvice(topic) {
+  const notes = db.notes.filter(n => n.topic === topic).slice(0, 3);
+  const srcs = db.sources.filter(s => s.topic === topic && s.type !== 'Course').slice(0, 3);
+  const courses = [...db.sources.filter(s => s.topic === topic && s.type === 'Course').slice(0, 2), ...db.courses.filter(c => c.topic === topic).slice(0, 2)];
+  const items = [
+    ...notes.map(n => `<li dir="auto">Read note: <strong>${esc(n.title)}</strong></li>`),
+    ...srcs.map(s => `<li dir="auto">Read: ${link(s)} <span class="tag">${esc(s.type)}</span></li>`),
+    ...courses.map(c => `<li dir="auto">Course: ${c.modules ? `<strong>${esc(c.title)}</strong> <span class="tag">your AI course</span>` : link(c)}</li>`),
+  ];
+  return items.length ? `<ul class="advice">${items.join('')}</ul>` : '';
+}
+function renderSuggestions() {
+  const stats = topicStats(db.results).filter(s => db.topics.includes(s.topic));
+  const tested = new Set(stats.map(s => s.topic));
+  const untested = db.topics.filter(t => !tested.has(t) && db.questions.some(q => q.topic === t));
+  const practice = (t, label = 'Practice this topic', diff = '') => `<button type="button" class="primary" data-practice="${esc(t)}" data-diff="${diff}">${label}</button>`;
+  const weak = stats.filter(s => s.pct < 70), strong = stats.filter(s => s.pct >= 70);
+  let html = '';
+  if (!stats.length) html += `<div class="card"><h2>Start here</h2><p>Take a test and your personal study plan will appear here, based on your results.</p><button type="button" class="primary" data-goto="test">Take a test</button></div>`;
+  if (weak.length) html += `<div class="card"><h2>Focus on these topics</h2>` + weak.map(s =>
+    `<div class="sugg"><h3>${esc(s.topic)} <span class="bad">${s.pct}%</span> <span class="tag">${s.correct}/${s.total} correct so far</span></h3>${topicAdvice(s.topic)}${practice(s.topic)}</div>`).join('') + '</div>';
+  if (strong.length) html += `<div class="card"><h2>Doing well — level up</h2>` + strong.map(s =>
+    `<div class="sugg"><h3>${esc(s.topic)} <span class="good">${s.pct}%</span> <span class="tag">${s.correct}/${s.total}</span></h3>${practice(s.topic, 'Try hard questions', 'hard')}</div>`).join('') + '</div>';
+  if (untested.length) html += `<div class="card"><h2>Not tried yet</h2><div class="row">` + untested.map(t => practice(t, `Try ${t}`)).join('') + '</div></div>';
+  $('#suggest-body').innerHTML = html;
+}
+$('#suggest-body').onclick = e => {
+  const b = e.target.closest('button'); if (!b) return;
+  if (b.dataset.goto) return showTab(b.dataset.goto);
+  const t = b.dataset.practice; if (!t) return;
+  let qs = pickQuestions(db.questions, { topics: [t], difficulties: b.dataset.diff ? [b.dataset.diff] : [], count: 10 });
+  if (!qs.length) qs = pickQuestions(db.questions, { topics: [t], count: 10 }); // no hard questions yet: use any
+  startTest(qs, { topics: [t] });
+};
+
+$('#lib-filter-topic').onchange =$('#lib-filter-type').onchange = $('#lib-filter-lang').onchange = render;
 $('#q-filter-topic').onchange = render;
 $('#q-search').oninput = render;
 
@@ -204,7 +243,7 @@ $('#test-run').onsubmit = e => {
   const { qs, cfg } = current;
   const answers = qs.map((_, i) => f.get(`a${i}`) ?? '');
   const g = grade(qs, answers);
-  db.results.push({ id: uid(), date: new Date().toISOString(), topics: cfg.topics, ...g });
+  db.results.push({ id: uid(), date: new Date().toISOString(), topics: cfg.topics, ...g, byTopic: scoreByTopic(qs, answers) });
   const out = $('#test-result');
   out.innerHTML = `<div class="card"><h2>Your result</h2><p class="score">${g.pct}%</p><p>${g.correct} of ${g.total} correct.</p>` +
     qs.map((q, i) => {

@@ -44,6 +44,21 @@ export function grade(qs, answers) {
   return { correct, total: qs.length, pct: qs.length ? Math.round((100 * correct) / qs.length) : 0 };
 }
 
+// Per-topic [correct, total] for one test.
+export function scoreByTopic(qs, answers) {
+  const out = {};
+  qs.forEach((q, i) => { const s = (out[q.topic] ??= [0, 0]); s[0] += isCorrect(q, answers[i]) ? 1 : 0; s[1]++; });
+  return out;
+}
+
+// Accuracy per topic across all saved results, weakest first.
+export function topicStats(results) {
+  const agg = {};
+  for (const r of results) for (const [t, [c, n]] of Object.entries(r.byTopic ?? {})) { const a = (agg[t] ??= [0, 0]); a[0] += c; a[1] += n; }
+  return Object.entries(agg).map(([topic, [correct, total]]) => ({ topic, correct, total, pct: Math.round((100 * correct) / total) }))
+    .sort((a, b) => a.pct - b.pct || b.total - a.total);
+}
+
 // Adds seed items the user doesn't have yet (by id), so seed updates reach existing users without overwriting their data.
 export function mergeSeed(db, seed) {
   for (const key of ['topics', 'sources', 'notes', 'questions']) {
