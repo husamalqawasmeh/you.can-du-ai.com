@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You Can Du AI</title>
 <meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
-<link rel="stylesheet" href="style.css?v=21">
+<link rel="stylesheet" href="style.css?v=22">
 </head>
 <body>
 <header>
@@ -13,7 +13,7 @@
     <span id="user-box" hidden>Signed in as <strong id="user-id"></strong> <button type="button" id="signout">Sign out</button></span></div>
   <nav>
     <button data-tab="home" class="active">Home</button>
-    <button data-tab="chat">Ask AI</button>
+    <button data-tab="chat">Ask the AI Tutor</button>
     <button data-tab="test">Take a test</button>
     <button data-tab="courses">Courses</button>
     <button data-tab="questions">Questions</button>
@@ -30,7 +30,7 @@
       <label>Gemini API key <input id="ai-key" type="password" autocomplete="off"></label>
       <label>Model <input id="ai-model" value="gemini-4-hydrogen"></label>
     </div>
-    <small class="muted">Used by Ask AI, Courses and Video Transcribe and Summary. Get a free key at <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a>. It is stored only in this browser, sent only to Google, and never included in backups.</small>
+    <small class="muted">Used by Ask the AI Tutor, Courses and Video Transcribe and Summary. Get a free key at <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a>. It is stored only in this browser, sent only to Google, and never included in backups.</small>
   </details>
 </header>
 
@@ -54,7 +54,7 @@
       <p id="home-stats" class="muted"></p>
     </div>
     <div class="home-grid">
-      <button type="button" class="home-card" data-goto="chat"><strong>Ask AI</strong><span>Ask any AI question and save the answers to your library.</span></button>
+      <button type="button" class="home-card" data-goto="chat"><strong>Ask the AI Tutor</strong><span>Ask any AI question and save the answers to your library.</span></button>
       <button type="button" class="home-card" data-goto="test"><strong>Take a test</strong><span>Choose topics, question types, difficulty and how many questions.</span></button>
       <button type="button" class="home-card" data-goto="courses"><strong>Courses</strong><span>Create a full course on any subject, with PDF slides and a test.</span></button>
       <button type="button" class="home-card" data-goto="library"><strong>Knowledge library</strong><span>Curated sites, papers, slides and Arabic sources, plus your notes.</span></button>
@@ -282,6 +282,6 @@
     </div>
   </section>
 </main>
-<script type="module" src="app.js?v=21"></script>
+<script type="module" src="app.js?v=22"></script>
 </body>
 </html>
