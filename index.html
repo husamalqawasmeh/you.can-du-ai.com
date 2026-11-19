@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You Can Du AI</title>
 <meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
-<link rel="stylesheet" href="style.css?v=8">
+<link rel="stylesheet" href="style.css?v=9">
 </head>
 <body>
 <header>
@@ -19,6 +19,7 @@
     <button data-tab="youtube">YouTube summary</button>
     <button data-tab="data">Admin functions</button>
     <button data-tab="suggestions">Suggestions</button>
+    <button data-tab="improve">Site improvement Suggestions</button>
   </nav>
   <details id="ai-settings">
     <summary>AI settings (Gemini key)</summary>
@@ -184,6 +185,18 @@
     <div id="suggest-body"></div>
   </section>
 
+  <!-- SITE IMPROVEMENT -->
+  <section id="improve" class="tab" hidden>
+    <form id="improve-form" class="card">
+      <h2>Suggest an improvement to this site</h2>
+      <p class="muted">Ideas, missing topics, wrong answers, bugs: all welcome. Your suggestion opens as a GitHub issue (free GitHub account needed) so the site owner can track it.</p>
+      <label>Type <select name="kind"><option>New feature</option><option>New topic or source</option><option>Wrong or unclear question</option><option>Bug</option><option>Other</option></select></label>
+      <label>Short title <input name="title" required maxlength="120"></label>
+      <label>Details <textarea name="details" rows="5" required maxlength="4000" dir="auto"></textarea></label>
+      <button class="primary">Send suggestion</button>
+    </form>
+  </section>
+
   <!-- ADMIN -->
   <section id="data" class="tab" hidden>
     <form id="admin-lock" class="card">
@@ -232,6 +245,6 @@
     </div>
   </section>
 </main>
-<script type="module" src="app.js?v=8"></script>
+<script type="module" src="app.js?v=9"></script>
 </body>
 </html>

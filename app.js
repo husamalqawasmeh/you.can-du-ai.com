@@ -420,6 +420,18 @@ $('#yt-save').onclick = () => {
   alert('Saved to the knowledge library.');
 };
 
+// ---------- site improvement suggestions (GitHub issues keep the owner's email off the public page) ----------
+$('#improve-form').onsubmit = e => {
+  e.preventDefault();
+  const d = trimAll(formData(e.target));
+  const url = 'https://github.com/husamalqawasmeh/you.can-du-ai.com/issues/new?' + new URLSearchParams({
+    title: `[${d.kind}] ${d.title}`.slice(0, 150),
+    body: `${d.details.slice(0, 4000)}\n\n---\nSent from the Site improvement Suggestions page.`,
+  });
+  window.open(url, '_blank', 'noopener');
+  e.target.reset();
+};
+
 // ---------- admin lock ----------
 // shortcut: client-side gate only (a static site has no server); it keeps visitors out of the UI, not a determined developer. Upgrade to real auth if admin ever touches shared data.
 const sha256 = async s => [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)))].map(b => b.toString(16).padStart(2, '0')).join('');
