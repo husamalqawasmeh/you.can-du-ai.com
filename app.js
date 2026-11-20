@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=37';
-import { ADMIN_HASH } from './admin-hash.js?v=37';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=38';
+import { ADMIN_HASH } from './admin-hash.js?v=38';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -56,7 +56,7 @@ function render() {
   $('#cfg-topics').innerHTML = db.topics.map(t =>
     `<label><input type="checkbox" name="topic" value="${esc(t)}" ${checked.has(t) ? 'checked' : ''}> ${esc(t)}</label>`).join('');
   const vChecked = new Set([...document.querySelectorAll('#cfg-vendors input:checked')].map(i => i.value));
-  $('#cfg-vendors').innerHTML = Object.keys(VENDORS).map(v => [v, filterQuestions(db.questions, { vendors: [v] }).length]).filter(([, n]) => n)
+  $('#cfg-vendors').innerHTML = `<label><input type="checkbox" name="vendorAll" ${vChecked.size && !vChecked.has('') ? '' : 'checked'} value=""> <strong>All / Any</strong></label>` + Object.keys(VENDORS).map(v => [v, filterQuestions(db.questions, { vendors: [v] }).length]).filter(([, n]) => n)
     .map(([v, n]) => `<label><input type="checkbox" name="vendor" value="${esc(v)}" ${vChecked.has(v) ? 'checked' : ''}> ${esc(v)} (${n})</label>`).join('');
   updateMatchCount();
 
@@ -318,7 +318,13 @@ function updateMatchCount() {
   const hidden = cfg.exclude ? filterQuestions(db.questions, { ...cfg, exclude: null }).length - n : 0;
   $('#match-count').textContent = `${n} question${n === 1 ? '' : 's'} match these settings` + (hidden ? ` (${hidden} you already answered correctly are skipped).` : '.');
 }
-cfgForm.addEventListener('change', updateMatchCount);
+// "All / Any" vendor box: ticking it clears the vendors; ticking a vendor clears it; no vendor ticked = All again.
+cfgForm.addEventListener('change', e => {
+  const all = cfgForm.querySelector('[name=vendorAll]'), vs = [...cfgForm.querySelectorAll('[name=vendor]')];
+  if (e.target === all) { all.checked = true; vs.forEach(v => { v.checked = false; }); }
+  else if (e.target.name === 'vendor') all.checked = !vs.some(v => v.checked);
+  updateMatchCount();
+});
 
 let current = null;
 cfgForm.onsubmit = e => {
