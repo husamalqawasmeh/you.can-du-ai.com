@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=57';
-import { ADMIN_HASH } from './admin-hash.js?v=57';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=59';
+import { ADMIN_HASH } from './admin-hash.js?v=59';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -235,16 +235,22 @@ async function loadTools() {
     const freeKind = c => c === 'Free' ? 0 : /open|self-hosted/i.test(c) ? 1 : /bring your own/i.test(c) ? 2 : 3;
     // inside a cost level: free kinds in FREE order; plain 'Freemium' before 'Freemium; ...' variants
     const sub = (a, b) => rank(a) === 0 ? freeKind(a.cost) - freeKind(b.cost) : rank(a) === 1 ? (a.cost !== 'Freemium') - (b.cost !== 'Freemium') || a.cost.localeCompare(b.cost) : 0;
+    // broad domain per category (unknown categories fall into Other)
+    const DOMAINS = [['LLMs and assistants', ['Chat assistant', 'Search / research', 'AI agent', 'Local AI', 'Model gateway']], ['Coding and app building', ['Coding', 'App builder']],
+      ['Image and design', ['Image', 'Design']], ['Video', ['Video']], ['Voice and audio', ['Audio / voice', 'Meetings']], ['Database', ['Vector database']],
+      ['Developer and infrastructure', ['Developer platform', 'Framework', 'Model serving', 'MLOps', 'Cloud AI platform', 'Automation']],
+      ['Business and productivity', ['Productivity', 'Writing', 'Presentations', 'Social media', 'Legal', 'Careers', 'Utilities']]];
+    const domainOf = t => { const i = DOMAINS.findIndex(([, cs]) => cs.includes(t.category)); return i < 0 ? DOMAINS.length : i; };
     const by = f => (a, b) => f(a, b) || a.name.localeCompare(b.name);
     const sorts = { az: by(() => 0), za: (a, b) => b.name.localeCompare(a.name), free: by((a, b) => rank(a) - rank(b) || sub(a, b)), paid: by((a, b) => rank(b) - rank(a) || sub(a, b)),
-      vendor: by((a, b) => a.company.localeCompare(b.company)), type: by((a, b) => a.category.localeCompare(b.category)),
+      vendor: by((a, b) => a.company.localeCompare(b.company)), type: by((a, b) => a.category.localeCompare(b.category)), domain: by((a, b) => domainOf(a) - domainOf(b)),
       new: by((a, b) => (b.released || 0) - (a.released || 0)), old: by((a, b) => (a.released || 9999) - (b.released || 9999)) };
     if (sorts[$('#tool-sort').value]) list.sort(sorts[$('#tool-sort').value]);
     $('#tools-count').textContent = `${list.length} of ${d.tools.length} tools`;
     // Collapsed groups that follow the sort: letter for name sorts, cost level, vendor, release year, or type (default).
     const COST = ['Free / open source', 'Freemium / free tier', 'Pay-per-use', 'Subscription / paid'];
     const costGroup = t => rank(t) === 0 ? FREE[freeKind(t.cost)] : rank(t) === 1 ? t.cost : COST[rank(t)];
-    const key = { az: t => t.name[0].toUpperCase(), za: t => t.name[0].toUpperCase(), free: t => costGroup(t), paid: t => costGroup(t), vendor: t => t.company, new: t => 'Released ' + (t.released || 'year unknown'), old: t => 'Released ' + (t.released || 'year unknown') }[$('#tool-sort').value] || (t => t.category);
+    const key = { az: t => t.name[0].toUpperCase(), za: t => t.name[0].toUpperCase(), free: t => costGroup(t), paid: t => costGroup(t), vendor: t => t.company, domain: t => DOMAINS[domainOf(t)]?.[0] ?? 'Other', new: t => 'Released ' + (t.released || 'year unknown'), old: t => 'Released ' + (t.released || 'year unknown') }[$('#tool-sort').value] || (t => t.category);
     const groups = new Map();
     for (const t of list) { const k = key(t); groups.has(k) ? groups.get(k).push(t) : groups.set(k, [t]); }
     const open = new Set([...document.querySelectorAll('#tools-list details[open]')].map(x => x.dataset.g));
