@@ -134,6 +134,15 @@ table.cert-facts th { width: 9em; color: var(--muted); font-weight: 500; }
 .cert h4 { margin: 10px 0 4px; }
 a.button { text-decoration: none; }
 .brand { color: var(--accent); }
+/* Collapsible full-width boxes (Knowledge library) */
+.fold > summary { cursor: pointer; list-style: none; display: flex; align-items: center; gap: 8px; }
+.fold > summary::-webkit-details-marker { display: none; }
+.fold > summary::before { content: '▸'; color: var(--accent); transition: transform .15s; }
+.fold[open] > summary::before { transform: rotate(90deg); }
+.fold > summary > h2, .fold > summary > h3 { margin: 0; }
+.fold[open] > summary { margin-bottom: 10px; }
+.fold.sub { margin-top: 8px; }
+@media (prefers-reduced-motion: reduce) { .fold > summary::before { transition: none; } }
 /* Tools: one full-width box per tool. Left half: name row + description row. Right half: Pros | Cons spanning both rows.
    Fixed half/quarter columns keep Pros and Cons starting at the same x on every box. */
 .tools-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }

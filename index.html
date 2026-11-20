@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You Can Du AI</title>
 <meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
-<link rel="stylesheet" href="style.css?v=45">
+<link rel="stylesheet" href="style.css?v=46">
 </head>
 <body>
 <header>
@@ -130,36 +130,41 @@
   </section>
 
 
-  <!-- LIBRARY -->
+  <!-- LIBRARY: every box full width, collapsed until opened -->
   <section id="library" class="tab" hidden>
-    <div class="grid">
-      <form id="topic-form" class="card">
-        <h2>Topics</h2>
+    <details class="card fold">
+      <summary><h2>Topics</h2></summary>
+      <form id="topic-form">
         <div class="row"><input name="name" placeholder="New topic, e.g. AI Networking" required><button class="primary">Add</button></div>
         <ul id="topic-list" class="list"></ul>
       </form>
-      <div class="card"><h2>Course library</h2><ul id="course-list" class="list"></ul></div>
-    </div>
-    <form id="note-form" class="card">
-      <h2>Add knowledge</h2>
-      <div class="row">
-        <label>Title <input name="title" required></label>
-        <label>Topic <select name="topic" class="topic-select" required></select></label>
-        <label>Source <select name="sourceId" class="source-select"></select></label>
-      </div>
-      <label>What you learned <textarea name="body" rows="4" required></textarea></label>
-      <button class="primary">Save knowledge</button>
-    </form>
-    <div class="card">
-      <h2>Knowledge base</h2>
+    </details>
+    <details class="card fold">
+      <summary><h2>Course library</h2></summary>
+      <ul id="course-list" class="list"></ul>
+    </details>
+    <details class="card fold">
+      <summary><h2>Add knowledge</h2></summary>
+      <form id="note-form">
+        <div class="row">
+          <label>Title <input name="title" required></label>
+          <label>Topic <select name="topic" class="topic-select" required></select></label>
+          <label>Source <select name="sourceId" class="source-select"></select></label>
+        </div>
+        <label>What you learned <textarea name="body" rows="4" required></textarea></label>
+        <button class="primary">Save knowledge</button>
+      </form>
+    </details>
+    <details class="card fold">
+      <summary><h2>Knowledge base</h2></summary>
       <div class="row">
         <label>Filter by topic <select id="lib-filter-topic"><option value="">All topics</option></select></label>
         <label>Source type <select id="lib-filter-type"><option value="">All types</option><option>Website</option><option>Paper</option><option>Docs</option><option>Book</option><option>Video</option><option>Course</option><option>Slides</option><option>PDF</option><option>Other</option></select></label>
         <label>Language <select id="lib-filter-lang"><option value="">All languages</option><option value="en">English</option><option value="ar">Arabic</option></select></label>
       </div>
-      <h3>Knowledge</h3><ul id="note-list" class="list"></ul>
-      <h3>Sources</h3><ul id="source-list" class="list"></ul>
-    </div>
+      <details class="fold sub"><summary><h3>Knowledge</h3></summary><ul id="note-list" class="list"></ul></details>
+      <details class="fold sub"><summary><h3>Sources</h3></summary><ul id="source-list" class="list"></ul></details>
+    </details>
   </section>
 
   <!-- YOUTUBE -->
@@ -323,6 +328,6 @@
     </div>
   </section>
 </main>
-<script type="module" src="app.js?v=45"></script>
+<script type="module" src="app.js?v=46"></script>
 </body>
 </html>
