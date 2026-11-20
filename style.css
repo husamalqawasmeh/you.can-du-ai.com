@@ -151,7 +151,7 @@ a.button { text-decoration: none; }
 .tool-does { grid-column: 1; }
 .tool .pc { grid-column: 2; grid-row: 1 / span 2; }
 .tool h3 { margin: 0; font-size: 1rem; }
-.tool .cost { font-size: .78rem; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent); }
+.tool .cost { margin-inline-start: auto; font-size: .78rem; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent); }
 @media (max-width: 700px) { .tool { grid-template-columns: 1fr; } .tool .pc { grid-column: 1; grid-row: auto; } }
 .tool ul { margin: 0; padding-inline-start: 18px; font-size: .88rem; }
 .tool .pc { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
