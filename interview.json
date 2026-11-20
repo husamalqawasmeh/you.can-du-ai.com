@@ -89,6 +89,10 @@
       "followup": "Why did Google walk away from Project Maven, and what does that tell you about ethics and employee pressure when AI is used for defense?"
     },
     {
+      "q": "Name a research paper that had a high impact on AI or generative AI, and explain what it contributed.",
+      "followup": "Why was that paper a turning point, and how does its idea show up in the AI tools you use today?"
+    },
+    {
       "q": "Define these 118 AI and tech terms.",
       "followup": "Why does it matter to explain technical terms simply to non-technical stakeholders, and which of these do you use most in your work?",
       "terms": [
