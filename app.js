@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=55';
-import { ADMIN_HASH } from './admin-hash.js?v=55';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=56';
+import { ADMIN_HASH } from './admin-hash.js?v=56';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -252,6 +252,7 @@ async function loadTools() {
       <span class="tag">${esc(t.company)} · ${esc(t.category)}${t.released ? ` · since ${t.released}` : ''}</span><span class="cost">${esc(t.cost)}</span></div><div class="tool-does">${esc(t.does)}</div>
       <div class="pc"><div><strong class="good">Pros</strong><ul>${t.pros.map(p => `<li>${esc(p)}</li>`).join('')}</ul></div><div><strong class="bad">Cons</strong><ul>${t.cons.map(p => `<li>${esc(p)}</li>`).join('')}</ul></div></div></article>`;
     // a search opens every group so matches are visible; otherwise keep whatever the user had open
+    $('#tools-list').classList.toggle('letters', /^(az|za)$/.test($('#tool-sort').value)); // A–Z / Z–A: letter grid
     $('#tools-list').innerHTML = [...groups].map(([g, ts]) => `<details class="card fold" data-g="${esc(g)}"${q || open.has(g) ? ' open' : ''}>
       <summary><h3>${esc(g)} <span class="tag">${ts.length} tool${ts.length === 1 ? '' : 's'}</span></h3></summary><div class="tools-grid">${ts.map(card).join('')}</div></details>`).join('')
       || '<p class="muted">No tools match.</p>';
