@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=43';
-import { ADMIN_HASH } from './admin-hash.js?v=43';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=44';
+import { ADMIN_HASH } from './admin-hash.js?v=44';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -625,7 +625,7 @@ $('#yt-save').onclick = () => {
 // ---------- interview prep (questions in interview.json) ----------
 async function loadInterview() {
   let p;
-  try { p = await (await fetch('interview.json?v=23')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
+  try { p = await (await fetch('interview.json?v=24')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
   // admin-added bank questions go after the open questions, before the exercises
   const k = p.questions.findIndex(q => q.match || q.terms || q.companies);
   p.questions.splice(k < 0 ? p.questions.length : k, 0, ...ivAdded());
@@ -668,10 +668,18 @@ loadIvBank();
 const companiesHtml = (cs, unit = 'products') => cs.map(([c, ps]) => `<details class="iv-answers"><summary>${esc(c)} (${ps.length} ${unit})</summary>
   <dl>${ps.map(([p, d]) => `<dt>${esc(p)}</dt><dd>${esc(d)}</dd>`).join('')}</dl></details>`).join('');
 
-// Terms list is always visible; the definitions stay collapsed until the learner opens them.
-const termsHtml = terms => `<ol class="iv-terms">${terms.map(t => `<li>${esc(t[0])}</li>`).join('')}</ol>
-  <details class="iv-answers"><summary>Show the answers (${terms.length} definitions)</summary>
-  <dl>${terms.map(([t, d], i) => `<dt>${i + 1}. ${esc(t)}</dt><dd>${esc(d)}</dd>`).join('')}</dl></details>`;
+// Terms come in groups [[group, [[term, definition], ...]], ...]; terms are always visible, each group's definitions stay collapsed.
+// Numbering runs across all groups.
+function termsHtml(groups) {
+  let n = 0;
+  return groups.map(([g, terms]) => {
+    const start = n + 1; n += terms.length;
+    return `<h4 class="iv-group">${esc(g)} <span class="tag">${terms.length} terms</span></h4>
+  <ol class="iv-terms" start="${start}">${terms.map(t => `<li>${esc(t[0])}</li>`).join('')}</ol>
+  <details class="iv-answers"><summary>Show the answers (${terms.length})</summary>
+  <dl>${terms.map(([t, d], i) => `<dt>${start + i}. ${esc(t)}</dt><dd>${esc(d)}</dd>`).join('')}</dl></details>`;
+  }).join('');
+}
 
 // ---------- matching exercise: click a model, then its vendor, to draw a line ----------
 const shuffle = a => pickQuestions(a, { count: a.length }); // reuses the Fisher-Yates shuffle
