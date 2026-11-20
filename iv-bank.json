@@ -1,0 +1,392 @@
+{
+  "note": "Candidate interview questions written from themes in 2026 AI interview guides. Admins add them to Interview prep from Admin functions.",
+  "checked": "2026-11-20",
+  "sources": [
+    "https://github.com/amitshekhariitbhu/ai-engineering-interview-questions",
+    "https://letsdatascience.com/blog/50-llm-and-ai-engineer-interview-questions-for-2026",
+    "https://www.datainterview.com/blog/llms-and-transformers-interview-questions",
+    "https://prachub.com/resources/machine-learning-interview-questions-guide-2026",
+    "https://www.productdrills.com/blog/ai-pm-interview-questions-2026",
+    "https://superml.org/tutorials/ai-product-manager-interview-questions"
+  ],
+  "questions": [
+    {
+      "id": "bank-rag-and-retrieval-1",
+      "category": "RAG and retrieval",
+      "q": "How would you build a RAG system for a company's internal documents, end to end?",
+      "followup": "Which part of that pipeline is most likely to fail first, and how would you notice?"
+    },
+    {
+      "id": "bank-rag-and-retrieval-2",
+      "category": "RAG and retrieval",
+      "q": "How do you evaluate a RAG pipeline? Which metrics would you track?",
+      "followup": "Why measure retrieval quality and answer quality separately?"
+    },
+    {
+      "id": "bank-rag-and-retrieval-3",
+      "category": "RAG and retrieval",
+      "q": "A RAG chatbot gives a wrong answer. How do you tell whether the retriever or the model is at fault?",
+      "followup": "Why is this diagnosis the first step before changing anything?"
+    },
+    {
+      "id": "bank-rag-and-retrieval-4",
+      "category": "RAG and retrieval",
+      "q": "When would you choose RAG, and when fine-tuning?",
+      "followup": "Why is fine-tuning a poor way to add facts that change often?"
+    },
+    {
+      "id": "bank-rag-and-retrieval-5",
+      "category": "RAG and retrieval",
+      "q": "How do you choose an embedding model and a vector database?",
+      "followup": "Why might a smaller embedding model be the better choice?"
+    },
+    {
+      "id": "bank-rag-and-retrieval-6",
+      "category": "RAG and retrieval",
+      "q": "What is hybrid search, and when does it beat pure vector search?",
+      "followup": "Why do exact keywords still matter for things like product codes and names?"
+    },
+    {
+      "id": "bank-rag-and-retrieval-7",
+      "category": "RAG and retrieval",
+      "q": "How would you handle documents that contain tables, images and scanned pages?",
+      "followup": "Why does document parsing quality limit the whole RAG system?"
+    },
+    {
+      "id": "bank-rag-and-retrieval-8",
+      "category": "RAG and retrieval",
+      "q": "How do you keep a RAG index fresh when source documents change daily?",
+      "followup": "Why is deleting outdated chunks as important as adding new ones?"
+    },
+    {
+      "id": "bank-rag-and-retrieval-9",
+      "category": "RAG and retrieval",
+      "q": "How would you enforce document permissions so users only retrieve what they are allowed to see?",
+      "followup": "Why must access control happen at retrieval time, not only in the prompt?"
+    },
+    {
+      "id": "bank-llm-fundamentals-1",
+      "category": "LLM fundamentals",
+      "q": "Explain how a transformer works to someone non-technical, then to an engineer.",
+      "followup": "Why is the ability to explain at two levels valuable on a team?"
+    },
+    {
+      "id": "bank-llm-fundamentals-2",
+      "category": "LLM fundamentals",
+      "q": "What is the KV cache, and why does it matter for inference speed and memory?",
+      "followup": "Why does a long context window increase serving cost?"
+    },
+    {
+      "id": "bank-llm-fundamentals-3",
+      "category": "LLM fundamentals",
+      "q": "What do temperature and top-p do, and how would you set them for a coding assistant?",
+      "followup": "Why would you use different settings for creative writing?"
+    },
+    {
+      "id": "bank-llm-fundamentals-4",
+      "category": "LLM fundamentals",
+      "q": "What causes hallucinations, and what techniques reduce them?",
+      "followup": "Why can no technique remove hallucinations completely?"
+    },
+    {
+      "id": "bank-llm-fundamentals-5",
+      "category": "LLM fundamentals",
+      "q": "Compare encoder-only, decoder-only and encoder-decoder models, with an example of each.",
+      "followup": "Why did decoder-only models come to dominate generative AI?"
+    },
+    {
+      "id": "bank-llm-fundamentals-6",
+      "category": "LLM fundamentals",
+      "q": "What is positional encoding, and why do many models use RoPE?",
+      "followup": "Why does position information matter for long contexts?"
+    },
+    {
+      "id": "bank-llm-fundamentals-7",
+      "category": "LLM fundamentals",
+      "q": "How does tokenization affect cost, multilingual performance and arithmetic?",
+      "followup": "Why can the same sentence cost more tokens in Arabic than in English?"
+    },
+    {
+      "id": "bank-llm-fundamentals-8",
+      "category": "LLM fundamentals",
+      "q": "What are the trade-offs of quantizing a model to 4 bits?",
+      "followup": "Why does quantization make local and edge deployment possible?"
+    },
+    {
+      "id": "bank-llm-fundamentals-9",
+      "category": "LLM fundamentals",
+      "q": "What is Mixture of Experts, and why does it make large models cheaper to run?",
+      "followup": "Why do MoE models still need a lot of memory?"
+    },
+    {
+      "id": "bank-fine-tuning-and-alignment-1",
+      "category": "Fine-tuning and alignment",
+      "q": "Walk me through fine-tuning an open-weight model with LoRA.",
+      "followup": "Why does LoRA need far less GPU memory than full fine-tuning?"
+    },
+    {
+      "id": "bank-fine-tuning-and-alignment-2",
+      "category": "Fine-tuning and alignment",
+      "q": "How do you build and clean a fine-tuning dataset?",
+      "followup": "Why does data quality matter more than data quantity here?"
+    },
+    {
+      "id": "bank-fine-tuning-and-alignment-3",
+      "category": "Fine-tuning and alignment",
+      "q": "Compare RLHF and DPO.",
+      "followup": "Why has DPO become popular for smaller teams?"
+    },
+    {
+      "id": "bank-fine-tuning-and-alignment-4",
+      "category": "Fine-tuning and alignment",
+      "q": "What is catastrophic forgetting, and how do you prevent it?",
+      "followup": "Why should you test general skills after fine-tuning, not only the target task?"
+    },
+    {
+      "id": "bank-fine-tuning-and-alignment-5",
+      "category": "Fine-tuning and alignment",
+      "q": "How do you decide whether fine-tuning actually improved the model?",
+      "followup": "Why do you need a held-out evaluation set before you start?"
+    },
+    {
+      "id": "bank-agents-and-tool-use-1",
+      "category": "Agents and tool use",
+      "q": "Design an AI agent that books meetings using a calendar API. What can go wrong?",
+      "followup": "Why must risky actions require human confirmation?"
+    },
+    {
+      "id": "bank-agents-and-tool-use-2",
+      "category": "Agents and tool use",
+      "q": "How do you decide when an agent should stop?",
+      "followup": "Why are step limits and budgets needed even with a smart model?"
+    },
+    {
+      "id": "bank-agents-and-tool-use-3",
+      "category": "Agents and tool use",
+      "q": "When is a simple workflow better than an autonomous agent?",
+      "followup": "Why do many production systems start as fixed workflows?"
+    },
+    {
+      "id": "bank-agents-and-tool-use-4",
+      "category": "Agents and tool use",
+      "q": "How would you defend an agent against prompt injection from web pages or emails?",
+      "followup": "Why is it dangerous to let retrieved content give instructions?"
+    },
+    {
+      "id": "bank-agents-and-tool-use-5",
+      "category": "Agents and tool use",
+      "q": "Explain MCP and how it differs from writing custom tool integrations.",
+      "followup": "Why does a shared protocol help an AI tools ecosystem?"
+    },
+    {
+      "id": "bank-agents-and-tool-use-6",
+      "category": "Agents and tool use",
+      "q": "How do you design tool descriptions and schemas so the model calls tools correctly?",
+      "followup": "Why are clear tool names and error messages part of prompt design?"
+    },
+    {
+      "id": "bank-agents-and-tool-use-7",
+      "category": "Agents and tool use",
+      "q": "How would you debug an agent that loops or repeats the same tool call?",
+      "followup": "Why is tracing every step essential for agents?"
+    },
+    {
+      "id": "bank-agents-and-tool-use-8",
+      "category": "Agents and tool use",
+      "q": "Single agent or multi-agent: how do you choose?",
+      "followup": "Why does adding more agents often add cost and failure points?"
+    },
+    {
+      "id": "bank-agents-and-tool-use-9",
+      "category": "Agents and tool use",
+      "q": "How do you give an agent memory across sessions?",
+      "followup": "Why is deciding what to forget as important as what to remember?"
+    },
+    {
+      "id": "bank-evals-and-quality-1",
+      "category": "Evals and quality",
+      "q": "How would you build an eval set for a new LLM feature?",
+      "followup": "Why should real user failures feed back into the eval set?"
+    },
+    {
+      "id": "bank-evals-and-quality-2",
+      "category": "Evals and quality",
+      "q": "What is LLM-as-a-judge, and what are its biases?",
+      "followup": "Why should you check the judge against human ratings?"
+    },
+    {
+      "id": "bank-evals-and-quality-3",
+      "category": "Evals and quality",
+      "q": "How do you run A/B tests for an LLM feature in production?",
+      "followup": "Why are offline evals not enough on their own?"
+    },
+    {
+      "id": "bank-evals-and-quality-4",
+      "category": "Evals and quality",
+      "q": "How do you detect regressions when you switch to a new model version?",
+      "followup": "Why can a \"better\" model still break your product?"
+    },
+    {
+      "id": "bank-evals-and-quality-5",
+      "category": "Evals and quality",
+      "q": "Which public benchmarks do you trust, and what are their limits?",
+      "followup": "Why is benchmark contamination a growing problem?"
+    },
+    {
+      "id": "bank-system-design-and-production-1",
+      "category": "System design and production",
+      "q": "Design a customer-support chatbot for a bank.",
+      "followup": "Why do regulated industries need extra guardrails and audit logs?"
+    },
+    {
+      "id": "bank-system-design-and-production-2",
+      "category": "System design and production",
+      "q": "Design an enterprise search assistant for 100,000 employees.",
+      "followup": "Why do caching and access control dominate the design at that scale?"
+    },
+    {
+      "id": "bank-system-design-and-production-3",
+      "category": "System design and production",
+      "q": "How do you reduce LLM cost without hurting quality?",
+      "followup": "Why is routing easy requests to a smaller model so effective?"
+    },
+    {
+      "id": "bank-system-design-and-production-4",
+      "category": "System design and production",
+      "q": "How do you reduce latency for a chat application?",
+      "followup": "Why does streaming improve how fast the app feels?"
+    },
+    {
+      "id": "bank-system-design-and-production-5",
+      "category": "System design and production",
+      "q": "What do you monitor for an LLM application in production?",
+      "followup": "Why do you need to log prompts and outputs, and how do you protect PII in them?"
+    },
+    {
+      "id": "bank-system-design-and-production-6",
+      "category": "System design and production",
+      "q": "How do you size GPUs for serving a 70B-parameter model?",
+      "followup": "Why does memory, not compute, usually decide the GPU count?"
+    },
+    {
+      "id": "bank-system-design-and-production-7",
+      "category": "System design and production",
+      "q": "How would you handle PII and sensitive data in prompts?",
+      "followup": "Why is redaction before the model call safer than after?"
+    },
+    {
+      "id": "bank-system-design-and-production-8",
+      "category": "System design and production",
+      "q": "How do you handle rate limits and outages from an LLM provider?",
+      "followup": "Why is a fallback model part of a reliable design?"
+    },
+    {
+      "id": "bank-ml-and-deep-learning-basics-1",
+      "category": "ML and deep learning basics",
+      "q": "Explain the bias-variance trade-off with an example.",
+      "followup": "Why does more data usually help high-variance models?"
+    },
+    {
+      "id": "bank-ml-and-deep-learning-basics-2",
+      "category": "ML and deep learning basics",
+      "q": "What is the vanishing gradient problem, and how is it solved?",
+      "followup": "Why did residual connections make very deep networks trainable?"
+    },
+    {
+      "id": "bank-ml-and-deep-learning-basics-3",
+      "category": "ML and deep learning basics",
+      "q": "Compare batch normalization and layer normalization.",
+      "followup": "Why do transformers use layer normalization?"
+    },
+    {
+      "id": "bank-ml-and-deep-learning-basics-4",
+      "category": "ML and deep learning basics",
+      "q": "How do you handle an imbalanced dataset?",
+      "followup": "Why can accuracy be a misleading metric here?"
+    },
+    {
+      "id": "bank-ml-and-deep-learning-basics-5",
+      "category": "ML and deep learning basics",
+      "q": "Precision vs recall: when would you prefer each?",
+      "followup": "Why does a fraud detector usually favour recall?"
+    },
+    {
+      "id": "bank-ml-and-deep-learning-basics-6",
+      "category": "ML and deep learning basics",
+      "q": "Design a recommendation system for an online store.",
+      "followup": "Why is the cold-start problem hard, and how do you handle it?"
+    },
+    {
+      "id": "bank-product-strategy-and-responsible-ai-1",
+      "category": "Product, strategy and responsible AI",
+      "q": "How do you decide whether a problem actually needs AI?",
+      "followup": "Why can a simple rule beat a model?"
+    },
+    {
+      "id": "bank-product-strategy-and-responsible-ai-2",
+      "category": "Product, strategy and responsible AI",
+      "q": "How would you measure the success of an AI feature after launch?",
+      "followup": "Why are business metrics and model metrics both needed?"
+    },
+    {
+      "id": "bank-product-strategy-and-responsible-ai-3",
+      "category": "Product, strategy and responsible AI",
+      "q": "Build, buy, or use an API: how do you decide for an AI capability?",
+      "followup": "Why does the answer change as the product scales?"
+    },
+    {
+      "id": "bank-product-strategy-and-responsible-ai-4",
+      "category": "Product, strategy and responsible AI",
+      "q": "How would you run a responsible-AI review before launch?",
+      "followup": "Why is \"we will be careful about bias\" not a real plan?"
+    },
+    {
+      "id": "bank-product-strategy-and-responsible-ai-5",
+      "category": "Product, strategy and responsible AI",
+      "q": "An AI hiring tool shows bias against a group. What do you do?",
+      "followup": "Why is pausing the feature sometimes the right call?"
+    },
+    {
+      "id": "bank-product-strategy-and-responsible-ai-6",
+      "category": "Product, strategy and responsible AI",
+      "q": "How do you design the user experience around model mistakes?",
+      "followup": "Why should users be able to see sources and correct the AI?"
+    },
+    {
+      "id": "bank-product-strategy-and-responsible-ai-7",
+      "category": "Product, strategy and responsible AI",
+      "q": "How do you explain AI risks and limits to executives?",
+      "followup": "Why do clear limits build more trust than big promises?"
+    },
+    {
+      "id": "bank-product-strategy-and-responsible-ai-8",
+      "category": "Product, strategy and responsible AI",
+      "q": "What AI regulations should a product team know about (for example the EU AI Act)?",
+      "followup": "Why does the risk level of a use case change your obligations?"
+    },
+    {
+      "id": "bank-behavioral-and-experience-1",
+      "category": "Behavioral and experience",
+      "q": "Tell me about an AI project that failed. What did you learn?",
+      "followup": "Why do interviewers value honest failure stories?"
+    },
+    {
+      "id": "bank-behavioral-and-experience-2",
+      "category": "Behavioral and experience",
+      "q": "Tell me about a time you shipped an AI feature under uncertainty.",
+      "followup": "Why is managing uncertainty a core skill for AI roles?"
+    },
+    {
+      "id": "bank-behavioral-and-experience-3",
+      "category": "Behavioral and experience",
+      "q": "How do you keep up with fast-moving AI research and tools?",
+      "followup": "Why is filtering the hype as important as reading the news?"
+    },
+    {
+      "id": "bank-behavioral-and-experience-4",
+      "category": "Behavioral and experience",
+      "q": "Describe a time you disagreed with a technical decision about AI.",
+      "followup": "Why do data and quick experiments resolve such disagreements best?"
+    }
+  ]
+}

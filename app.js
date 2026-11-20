@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds } from './quiz.js?v=35';
-import { ADMIN_HASH } from './admin-hash.js?v=35';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds } from './quiz.js?v=36';
+import { ADMIN_HASH } from './admin-hash.js?v=36';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -614,11 +614,44 @@ $('#yt-save').onclick = () => {
 // ---------- interview prep (questions in interview.json) ----------
 async function loadInterview() {
   let p;
-  try { p = await (await fetch('interview.json?v=21')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
+  try { p = await (await fetch('interview.json?v=22')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
+  // admin-added bank questions go after the open questions, before the exercises
+  const k = p.questions.findIndex(q => q.match || q.terms || q.companies);
+  p.questions.splice(k < 0 ? p.questions.length : k, 0, ...ivAdded());
   $('#iv-list').innerHTML = p.questions.map((q, qi) => `<li><strong>${esc(q.q)}</strong>${q.match ? matchHtml(q.match, qi) : ''}${q.terms ? termsHtml(q.terms) : ''}${q.companies ? companiesHtml(q.companies, q.unit) : ''}${q.followup ? `<div class="iv-follow">↳ ${esc(q.followup)}</div>` : ''}</li>`).join('');
   document.querySelectorAll('.match').forEach(el => setupMatch(el, p.questions[+el.dataset.q].match));
 }
 loadInterview();
+
+// ---------- admin: interview question bank (iv-bank.json); added questions are saved in this browser ----------
+// shortcut: additions live in this browser's localStorage only; move to a shared database if other visitors must see them.
+const IV_KEY = 'ycda-iv-added';
+function ivAdded() { try { return JSON.parse(localStorage.getItem(IV_KEY)) || []; } catch { return []; } }
+let ivBank = [];
+async function loadIvBank() {
+  try { ivBank = (await (await fetch('iv-bank.json?v=1')).json()).questions; } catch { $('#ivbank').innerHTML = '<p class="muted">Could not load the question bank.</p>'; return; }
+  renderIvBank();
+}
+function renderIvBank() {
+  const have = new Set(ivAdded().map(q => q.id)), by = {};
+  const open = new Set([...document.querySelectorAll('#ivbank details[open]')].map(d => d.dataset.cat));
+  for (const q of ivBank) (by[q.category] ??= []).push(q);
+  $('#ivbank').innerHTML = Object.entries(by).map(([c, qs]) => `<details class="iv-answers" data-cat="${esc(c)}"${open.has(c) ? ' open' : ''}>
+    <summary>${esc(c)} (${qs.filter(q => have.has(q.id)).length} of ${qs.length} added)</summary>
+    <ul class="list">${qs.map(q => `<li><div>${esc(q.q)}<div class="tag">↳ ${esc(q.followup)}</div></div>
+      <button type="button"${have.has(q.id) ? '' : ' class="primary"'} data-ivadd="${esc(q.id)}">${have.has(q.id) ? 'Remove' : 'Add'}</button></li>`).join('')}</ul></details>`).join('');
+}
+$('#ivbank').addEventListener('click', e => {
+  const id = e.target.closest('[data-ivadd]')?.dataset.ivadd;
+  if (!id) return;
+  let list = ivAdded();
+  if (list.some(q => q.id === id)) list = list.filter(q => q.id !== id);
+  else { const q = ivBank.find(q => q.id === id); list.push({ id: q.id, q: q.q, followup: q.followup }); }
+  try { localStorage.setItem(IV_KEY, JSON.stringify(list)); } catch { return alert('Could not save in this browser.'); }
+  renderIvBank();
+  loadInterview();
+});
+loadIvBank();
 
 // One collapsed answer box per company: [company, [[product, what it is], ...]].
 const companiesHtml = (cs, unit = 'products') => cs.map(([c, ps]) => `<details class="iv-answers"><summary>${esc(c)} (${ps.length} ${unit})</summary>
