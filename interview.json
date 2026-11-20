@@ -93,7 +93,7 @@
       "followup": "Why was that paper a turning point, and how does its idea show up in the AI tools you use today?"
     },
     {
-      "q": "Define these 118 AI and tech terms.",
+      "q": "Define these 124 AI and tech terms.",
       "followup": "Why does it matter to explain technical terms simply to non-technical stakeholders, and which of these do you use most in your work?",
       "terms": [
         [
@@ -371,6 +371,30 @@
         [
           "Context engineering",
           "Curating everything that goes into a model's context at each step: instructions, tools, data and history."
+        ],
+        [
+          "Harness (agent harness)",
+          "The software around a model that turns it into a working agent: it runs the loop, provides tools, manages context and memory, and enforces permissions (for example Claude Code or Codex CLI)."
+        ],
+        [
+          "Loop engineering",
+          "Designing the agent loop itself: how the model plans, acts, checks the result and decides to continue or stop, including retries, feedback and stopping conditions."
+        ],
+        [
+          "Swarm engineering",
+          "Designing systems where many AI agents work together, each with a role, handing tasks to one another and coordinating to reach a shared goal."
+        ],
+        [
+          "Semantic / semantics",
+          "About meaning rather than exact wording; semantic search, for example, finds text with the same meaning even when the words differ."
+        ],
+        [
+          "v0 (Vercel)",
+          "Vercel's AI tool that generates web user interfaces and full-stack apps (React, Next.js) from a text prompt or image."
+        ],
+        [
+          "D1 (Cloudflare)",
+          "Cloudflare's serverless SQL database, built on SQLite, used with Cloudflare Workers."
         ],
         [
           "Guardrails",
