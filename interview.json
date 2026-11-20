@@ -57,6 +57,14 @@
       "followup": "Why did you choose those models, datasets or Spaces, and how did you evaluate them?"
     },
     {
+      "q": "What is LangChain, and how do LangGraph and LangSmith fit with it?",
+      "followup": "When would you skip LangChain and call the model API directly, and why?"
+    },
+    {
+      "q": "Name the main parts of the Hugging Face ecosystem (for example Hub, Spaces, Transformers, Datasets, PEFT, TGI, smolagents) and what each is for.",
+      "followup": "How would you take an open model from the Hub to a production API?"
+    },
+    {
       "q": "What is FLOPS?",
       "followup": "Why can peak FLOPS be misleading when choosing a GPU for LLM inference?"
     },

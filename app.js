@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=64';
-import { ADMIN_HASH } from './admin-hash.js?v=64';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=65';
+import { ADMIN_HASH } from './admin-hash.js?v=65';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -226,7 +226,7 @@ loadCerts();
 // ---------- AI tools dictionary (tools.json) ----------
 async function loadTools() {
   let d;
-  try { d = await (await fetch('tools.json?v=2')).json(); } catch { $('#tools-list').innerHTML = '<p class="muted">Could not load the tools.</p>'; return; }
+  try { d = await (await fetch('tools.json?v=3')).json(); } catch { $('#tools-list').innerHTML = '<p class="muted">Could not load the tools.</p>'; return; }
   $('#tools-checked').textContent = `Last checked: ${d.checked}.`;
   $('#tool-cat').innerHTML += [...new Set(d.tools.map(t => t.category))].sort().map(c => opt(c)).join('');
   const costKind = c => { c = c.toLowerCase(); return { free: /free|open/.test(c) && !/freemium/.test(c), freemium: /freemium|free tier|free app|free to try/.test(c), paid: /subscription|paid|licen|included/.test(c), usage: /pay-per-use|api/.test(c) }; };
@@ -677,7 +677,7 @@ $('#yt-save').onclick = () => {
 // ---------- interview prep (questions in interview.json) ----------
 async function loadInterview() {
   let p;
-  try { p = await (await fetch('interview.json?v=28')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
+  try { p = await (await fetch('interview.json?v=29')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
   // admin-added bank questions go after the open questions, before the exercises
   const k = p.questions.findIndex(q => q.match || q.terms || q.companies);
   p.questions.splice(k < 0 ? p.questions.length : k, 0, ...ivAdded());

@@ -5653,6 +5653,166 @@
       "answer": "MMLU → Knowledge across 57 subjects; SWE-bench → Fixing real GitHub issues; GSM8K → Grade-school math word problems; HumanEval → Writing Python functions; MLPerf → AI hardware training and inference speed",
       "explanation": "Know what each benchmark tests before trusting a score.",
       "sourceId": ""
+    },
+    {
+      "id": "q3-71",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is LangChain?",
+      "options": [
+        "An open-source framework for building LLM apps and agents",
+        "A blockchain for AI models",
+        "A GPU made by NVIDIA",
+        "A vector database"
+      ],
+      "answer": "An open-source framework for building LLM apps and agents",
+      "explanation": "LangChain gives building blocks (models, prompts, tools, retrievers) and hundreds of integrations.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-72",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which LangChain product is used to trace, debug and evaluate LLM apps?",
+      "options": [
+        "LangSmith",
+        "LangGraph",
+        "LangServe",
+        "LCEL"
+      ],
+      "answer": "LangSmith",
+      "explanation": "LangSmith records every step of a run and lets you test prompts against datasets.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-73",
+      "topic": "Agents & MCP",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "How does LangGraph model an agent workflow?",
+      "options": [
+        "As a graph of nodes and edges that share state and can loop",
+        "As one long prompt",
+        "As a SQL query",
+        "As a fixed straight-line chain only"
+      ],
+      "answer": "As a graph of nodes and edges that share state and can loop",
+      "explanation": "Nodes are steps (LLM calls, tools), edges decide what runs next, and cycles allow agent loops.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-74",
+      "topic": "Agents & MCP",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "In LangGraph, what lets a run pause (for example for human approval) and resume later, even after a crash?",
+      "options": [
+        "Checkpointers that save the graph state",
+        "A larger context window",
+        "Temperature set to 0",
+        "Embeddings"
+      ],
+      "answer": "Checkpointers that save the graph state",
+      "explanation": "A checkpointer saves state after each step, which enables memory, human-in-the-loop and time travel.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-75",
+      "topic": "Evals",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "LangSmith can trace and evaluate apps that are not built with LangChain.",
+      "answer": "True",
+      "explanation": "LangSmith has SDKs and OpenTelemetry support for any code, not only LangChain.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-76",
+      "topic": "Agents & MCP",
+      "type": "fill",
+      "difficulty": "easy",
+      "prompt": "The LangChain library for building stateful, multi-step agents as graphs is called ___.",
+      "answer": "LangGraph",
+      "explanation": "LangGraph adds loops, state and persistence on top of LangChain building blocks.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-77",
+      "topic": "AI Development",
+      "type": "match",
+      "difficulty": "medium",
+      "prompt": "Connect each part of the LangChain family to its role.",
+      "pairs": [
+        [
+          "LangChain",
+          "Building blocks and integrations for LLM apps"
+        ],
+        [
+          "LangGraph",
+          "Stateful agent workflows as graphs"
+        ],
+        [
+          "LangSmith",
+          "Tracing, evaluation and monitoring"
+        ],
+        [
+          "LCEL",
+          "Joining steps with the | pipe operator"
+        ]
+      ],
+      "answer": "LangChain → Building blocks and integrations for LLM apps; LangGraph → Stateful agent workflows as graphs; LangSmith → Tracing, evaluation and monitoring; LCEL → Joining steps with the | pipe operator",
+      "explanation": "LangChain builds, LangGraph orchestrates, LangSmith observes and evaluates.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-78",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which Hugging Face library builds small agents that write their actions as Python code?",
+      "options": [
+        "smolagents",
+        "Diffusers",
+        "Tokenizers",
+        "Accelerate"
+      ],
+      "answer": "smolagents",
+      "explanation": "The smolagents CodeAgent writes and runs Python instead of JSON tool calls.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-79",
+      "topic": "AI Development",
+      "type": "match",
+      "difficulty": "medium",
+      "prompt": "Connect each Hugging Face part to what it does.",
+      "pairs": [
+        [
+          "Hub",
+          "Hosts models and datasets"
+        ],
+        [
+          "Spaces",
+          "Hosts demo apps"
+        ],
+        [
+          "Transformers",
+          "Loads and runs pretrained models"
+        ],
+        [
+          "Datasets",
+          "Loads and shares datasets"
+        ],
+        [
+          "PEFT",
+          "Parameter-efficient fine-tuning such as LoRA"
+        ]
+      ],
+      "answer": "Hub → Hosts models and datasets; Spaces → Hosts demo apps; Transformers → Loads and runs pretrained models; Datasets → Loads and shares datasets; PEFT → Parameter-efficient fine-tuning such as LoRA",
+      "explanation": "The Hub stores things; the libraries load, train and serve them.",
+      "sourceId": ""
     }
   ]
 }

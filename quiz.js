@@ -15,12 +15,13 @@ export const VENDORS = {
   Intel: /\bintel\b|gaudi|\bxeon\b|openvino/i,
   Apple: /\bapple\b|\bmlx\b|core ml/i,
   IBM: /\bibm\b|granite|watsonx/i,
-  'Hugging Face': /hugging ?face|\bhf hub\b|transformers library/i,
+  'Hugging Face': /hugging ?face|smolagents|\bhf hub\b|transformers library/i,
   xAI: /\bxai\b|\bgrok\b|colossus/i,
   'Mistral AI': /mistral|le chat|codestral/i,
   DeepSeek: /deepseek/i,
   Alibaba: /alibaba|\bqwen/i,
   Cohere: /\bcohere\b/i,
+  LangChain: /langchain|langgraph|langsmith|\blcel\b/i,
 };
 const qText = q => [q.prompt, q.answer, ...(q.options ?? []), q.explanation ?? ''].join(' ');
 export const vendorsOf = q => Object.keys(VENDORS).filter(v => VENDORS[v].test(qText(q)));

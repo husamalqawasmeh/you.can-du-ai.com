@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-20",
+  "checked": "2026-11-21",
   "tools": [
     {
       "name": "ChatGPT",
@@ -804,8 +804,8 @@
       "name": "LangChain",
       "company": "LangChain",
       "category": "Framework",
-      "does": "Framework for building LLM apps and agents (chains, tools, RAG); LangGraph for agent workflows.",
-      "cost": "Open source; paid LangSmith",
+      "does": "Open-source framework for building LLM apps and agents: models, prompts, tools, retrievers and many integrations. Part of the LangChain family with LangGraph and LangSmith.",
+      "cost": "Free (open source)",
       "pros": [
         "Many integrations",
         "Large community"
@@ -1411,6 +1411,74 @@
       ],
       "url": "https://tinywow.com",
       "released": 2021
+    },
+    {
+      "name": "LangGraph",
+      "company": "LangChain",
+      "category": "Framework",
+      "does": "Library for stateful, multi-step agents built as graphs of nodes and edges, with loops, memory, checkpoints and human-in-the-loop.",
+      "cost": "Free (open source); paid cloud",
+      "pros": [
+        "Fine control over agent flow",
+        "Persistence and resume built in"
+      ],
+      "cons": [
+        "More code than simple chains",
+        "Graph concepts take time to learn"
+      ],
+      "url": "https://www.langchain.com/langgraph",
+      "released": 2024
+    },
+    {
+      "name": "LangSmith",
+      "company": "LangChain",
+      "category": "MLOps",
+      "does": "Platform to trace, debug, evaluate and monitor LLM apps and agents, with datasets, prompt testing and deployment.",
+      "cost": "Free tier; paid plans",
+      "pros": [
+        "Works with or without LangChain",
+        "Clear step-by-step traces"
+      ],
+      "cons": [
+        "Paid per seat and trace volume",
+        "Cloud-hosted unless you buy self-hosting"
+      ],
+      "url": "https://www.langchain.com/langsmith",
+      "released": 2023
+    },
+    {
+      "name": "Transformers (Hugging Face)",
+      "company": "Hugging Face",
+      "category": "Framework",
+      "does": "Python library that loads and runs thousands of pretrained models for text, vision and audio in a few lines.",
+      "cost": "Free (open source)",
+      "pros": [
+        "Huge model coverage",
+        "Pipelines make first use easy"
+      ],
+      "cons": [
+        "Large dependency",
+        "Not the fastest for production serving"
+      ],
+      "url": "https://huggingface.co/docs/transformers",
+      "released": 2019
+    },
+    {
+      "name": "smolagents",
+      "company": "Hugging Face",
+      "category": "Framework",
+      "does": "Small library for agents that write their actions as Python code, working with open or API models.",
+      "cost": "Free (open source)",
+      "pros": [
+        "Very small and readable",
+        "Works with any model"
+      ],
+      "cons": [
+        "Fewer features than bigger frameworks",
+        "Code-running agents need a sandbox"
+      ],
+      "url": "https://huggingface.co/docs/smolagents",
+      "released": 2024
     }
   ]
 }
