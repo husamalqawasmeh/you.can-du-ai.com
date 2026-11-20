@@ -106,7 +106,10 @@ nav button.locked::after { content: " 🔒"; font-size: .75em; }
 .match-lines line { stroke: var(--accent); stroke-width: 2.5; }
 .match-lines line.ok { stroke: var(--good); }
 .match-lines line.bad { stroke: var(--bad); stroke-dasharray: 6 4; }
-.match-col { display: flex; flex-direction: column; gap: 6px; }
+/* Both columns share one grid, so a connected pair on the same row lines up and its line is straight (rows set in app.js). */
+.match-col { display: contents; }
+.match [data-l] { grid-column: 1; }
+.match [data-r] { grid-column: 2; }
 .match-col button { text-align: start; background: var(--raised); border-color: var(--border-strong); font-size: .88rem; }
 .match-col button.sel { outline: 2px solid var(--accent); }
 .match-col button.linked { border-color: var(--accent); }

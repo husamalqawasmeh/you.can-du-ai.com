@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=42';
-import { ADMIN_HASH } from './admin-hash.js?v=42';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=43';
+import { ADMIN_HASH } from './admin-hash.js?v=43';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -686,7 +686,23 @@ function setupMatch(el, pairs) {
   const links = new Map(); // model index -> vendor
   let sel = null, marks = null; // marks: Map index -> 'ok' | 'bad' after Check
   const svg = el.querySelector('svg'), L = i => el.querySelector(`[data-l="${i}"]`), R = v => [...el.querySelectorAll('[data-r]')].find(b => b.dataset.r === v);
+  // Connected pairs move to the top rows (in the order they were made), each pair on one row; the rest keep their shuffled order below.
+  function layout() {
+    let row = 1;
+    const placed = new Set();
+    for (const [i, v] of links) {
+      L(i).style.gridRow = row;
+      const r = R(v);
+      if (!placed.has(r)) { r.style.gridRow = row; placed.add(r); } // a shared answer (same vendor twice) stays on its first row
+      row++;
+    }
+    let lr = row, rr = row;
+    el.querySelectorAll('[data-l]').forEach(b => { if (!links.has(+b.dataset.l)) b.style.gridRow = lr++; });
+    el.querySelectorAll('[data-r]').forEach(b => { if (!placed.has(b)) b.style.gridRow = rr++; });
+    el.querySelector('.match-actions').style.gridRow = Math.max(lr, rr);
+  }
   function draw() {
+    layout();
     const box = el.getBoundingClientRect();
     svg.setAttribute('width', box.width); svg.setAttribute('height', box.height);
     svg.innerHTML = [...links].map(([i, v]) => {
