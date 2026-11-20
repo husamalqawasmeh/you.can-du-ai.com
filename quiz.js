@@ -46,8 +46,14 @@ export function pickQuestions(questions, opts, rand = Math.random) {
 const norm = s => String(s ?? '').trim().toLowerCase().replace(/\s+/g, ' ');
 
 // shortcut: short answers are exact match against "|"-separated accepted answers; upgrade to fuzzy/LLM grading if too strict.
+// match: q.pairs = [[left, right], ...]; given = JSON array of the right item chosen for each left item (all must be right).
+// fill: the prompt has a ___ blank; graded like short answer.
 export function isCorrect(q, given) {
-  if (q.type === 'short') return String(q.answer).split('|').map(norm).includes(norm(given));
+  if (q.type === 'match') {
+    let g; try { g = JSON.parse(given || '[]'); } catch { return false; }
+    return Array.isArray(g) && q.pairs.every((p, k) => norm(g[k]) === norm(p[1]));
+  }
+  if (q.type === 'short' || q.type === 'fill') return String(q.answer).split('|').map(norm).includes(norm(given));
   return norm(given) === norm(q.answer);
 }
 
@@ -60,8 +66,14 @@ export function normalizeQuestion(q) {
     q.options = q.options.map(String);
     q.answer = q.options.find(o => o.toLowerCase() === q.answer.toLowerCase()) ?? q.answer;
   }
-  const ok = ['mcq', 'tf', 'short'].includes(q.type) && ['easy', 'medium', 'hard'].includes(q.difficulty) && q.prompt && q.answer &&
+  if (q.type === 'match' && Array.isArray(q.pairs)) {
+    q.pairs = q.pairs.filter(p => Array.isArray(p) && p.length === 2).map(p => p.map(s => String(s).trim()));
+    q.answer ||= q.pairs.map(p => `${p[0]} → ${p[1]}`).join('; ');
+  }
+  const ok = ['mcq', 'tf', 'short', 'fill', 'match'].includes(q.type) && ['easy', 'medium', 'hard'].includes(q.difficulty) && q.prompt && q.answer &&
     (q.type !== 'tf' || ['True', 'False'].includes(q.answer)) &&
+    (q.type !== 'fill' || q.prompt.includes('___')) &&
+    (q.type !== 'match' || (q.pairs?.length >= 2 && q.pairs.every(p => p[0] && p[1]))) &&
     (q.type !== 'mcq' || (q.options?.length >= 2 && q.options.includes(q.answer)));
   return ok ? q : null;
 }

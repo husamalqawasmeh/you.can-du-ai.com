@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You Can Du AI</title>
 <meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
-<link rel="stylesheet" href="style.css?v=56">
+<link rel="stylesheet" href="style.css?v=57">
 </head>
 <body>
 <header>
@@ -115,6 +115,8 @@
         <label><input type="checkbox" name="type" value="mcq"> Multiple choice</label>
         <label><input type="checkbox" name="type" value="tf"> True / False</label>
         <label><input type="checkbox" name="type" value="short"> Short answer</label>
+        <label><input type="checkbox" name="type" value="fill"> Fill in the blank</label>
+        <label><input type="checkbox" name="type" value="match"> Matching (connect lines)</label>
       </div></fieldset>
       <fieldset><legend>Difficulty (none = all)</legend><div class="checks">
         <label><input type="checkbox" name="difficulty" value="easy"> Easy</label>
@@ -288,16 +290,16 @@
       <div class="row">
         <label>Topic <select name="topic" class="topic-select" required></select></label>
         <label>Type <select name="type">
-          <option value="mcq">Multiple choice</option><option value="tf">True / False</option><option value="short">Short answer</option>
+          <option value="mcq">Multiple choice</option><option value="tf">True / False</option><option value="short">Short answer</option><option value="fill">Fill in the blank</option><option value="match">Matching</option>
         </select></label>
         <label>Difficulty <select name="difficulty">
           <option>easy</option><option selected>medium</option><option>hard</option>
         </select></label>
       </div>
       <label>Question <textarea name="prompt" rows="2" required></textarea></label>
-      <label class="for-mcq">Options (one per line) <textarea name="options" rows="4"></textarea></label>
+      <label class="for-mcq"><span class="opt-help">Options (one per line)</span> <textarea name="options" rows="4"></textarea></label>
       <label>Correct answer <input name="answer" required>
-        <small class="muted">Multiple choice: the exact option text. True/False: True or False. Short answer: separate accepted answers with |</small></label>
+        <small class="muted">Multiple choice: the exact option text. True/False: True or False. Short answer and fill in the blank: separate accepted answers with |. Fill in the blank: put ___ (three underscores) in the question where the word goes. Matching: leave empty.</small></label>
       <label>Explanation (optional) <textarea name="explanation" rows="2"></textarea></label>
       <label>Source (optional) <select name="sourceId" class="source-select"></select></label>
       <button class="primary">Add question</button>
@@ -307,7 +309,7 @@
       <div class="row">
         <label>Filter by topic <select id="q-filter-topic"><option value="">All topics</option></select></label>
         <label>Difficulty <select id="q-filter-diff"><option value="">All levels</option><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option></select></label>
-        <label>Format <select id="q-filter-type"><option value="">All formats</option><option value="mcq">Multiple choice</option><option value="tf">True / False</option><option value="short">Short answer</option></select></label>
+        <label>Format <select id="q-filter-type"><option value="">All formats</option><option value="mcq">Multiple choice</option><option value="tf">True / False</option><option value="short">Short answer</option><option value="fill">Fill in the blank</option><option value="match">Matching</option></select></label>
         <label>Search <input id="q-search" type="search"></label>
       </div>
       <ul id="q-list" class="list"></ul>
@@ -330,6 +332,6 @@
     </div>
   </section>
 </main>
-<script type="module" src="app.js?v=56"></script>
+<script type="module" src="app.js?v=57"></script>
 </body>
 </html>

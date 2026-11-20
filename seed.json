@@ -5337,6 +5337,322 @@
       "answer": "The basic version is free; you pay for premium features, higher limits or business plans",
       "explanation": "Free + premium: ChatGPT, Claude and Gemini all have free tiers with paid plans for more usage and features. Open source is different: the code itself is free to use and modify.",
       "sourceId": ""
+    },
+    {
+      "id": "q3-53",
+      "topic": "LLMs",
+      "type": "fill",
+      "difficulty": "easy",
+      "prompt": "The basic unit of text that a language model reads and writes is called a ___.",
+      "answer": "token|tokens",
+      "explanation": "A token is often a word or part of a word.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-54",
+      "topic": "LLMs",
+      "type": "fill",
+      "difficulty": "medium",
+      "prompt": "The maximum number of tokens a model can consider at once is its ___ window.",
+      "answer": "context",
+      "explanation": "The context window covers input plus output.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-55",
+      "topic": "LLMs",
+      "type": "fill",
+      "difficulty": "medium",
+      "prompt": "The 2017 paper that introduced the Transformer is called \"Attention Is All You ___\".",
+      "answer": "Need",
+      "explanation": "Vaswani et al., Google, 2017.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-56",
+      "topic": "Generative AI",
+      "type": "fill",
+      "difficulty": "easy",
+      "prompt": "When a model confidently states something false, it is called a ___.",
+      "answer": "hallucination|hallucinations",
+      "explanation": "Grounding with RAG and asking for sources reduces it.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-57",
+      "topic": "Context Engineering",
+      "type": "fill",
+      "difficulty": "easy",
+      "prompt": "RAG stands for Retrieval-Augmented ___.",
+      "answer": "Generation",
+      "explanation": "Relevant documents are retrieved and added to the prompt.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-58",
+      "topic": "Context Engineering",
+      "type": "fill",
+      "difficulty": "medium",
+      "prompt": "Splitting documents into smaller pieces before embedding them is called ___.",
+      "answer": "chunking",
+      "explanation": "Chunk size and overlap strongly affect retrieval quality.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-59",
+      "topic": "Agents & MCP",
+      "type": "fill",
+      "difficulty": "easy",
+      "prompt": "MCP stands for Model ___ Protocol.",
+      "answer": "Context",
+      "explanation": "An open standard from Anthropic for connecting AI apps to tools and data.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-60",
+      "topic": "AI Hardware",
+      "type": "fill",
+      "difficulty": "easy",
+      "prompt": "NVIDIA's platform for programming its GPUs is called ___.",
+      "answer": "CUDA",
+      "explanation": "CUDA launched in 2007.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-61",
+      "topic": "AI Hardware",
+      "type": "fill",
+      "difficulty": "medium",
+      "prompt": "The stacked memory placed next to data-center GPUs for very high bandwidth is called ___.",
+      "answer": "HBM|High Bandwidth Memory",
+      "explanation": "H100 uses HBM3; Blackwell uses HBM3e.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-62",
+      "topic": "AI Development",
+      "type": "fill",
+      "difficulty": "medium",
+      "prompt": "LoRA stands for Low-Rank ___.",
+      "answer": "Adaptation",
+      "explanation": "LoRA trains small low-rank matrices instead of all the weights.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-63",
+      "topic": "Evals",
+      "type": "fill",
+      "difficulty": "medium",
+      "prompt": "Using one LLM to grade another model's answers is called LLM-as-a-___.",
+      "answer": "judge",
+      "explanation": "Check the judge against human ratings for bias.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-64",
+      "topic": "CLI",
+      "type": "fill",
+      "difficulty": "easy",
+      "prompt": "The command-line tool used to install Python packages is called ___.",
+      "answer": "pip|pip3",
+      "explanation": "Example: pip install requests.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-65",
+      "topic": "Frontier Labs",
+      "type": "match",
+      "difficulty": "easy",
+      "prompt": "Connect each AI model to the company that makes it.",
+      "pairs": [
+        [
+          "Claude",
+          "Anthropic"
+        ],
+        [
+          "GPT",
+          "OpenAI"
+        ],
+        [
+          "Gemini",
+          "Google"
+        ],
+        [
+          "Llama",
+          "Meta"
+        ],
+        [
+          "Grok",
+          "xAI"
+        ],
+        [
+          "Qwen",
+          "Alibaba"
+        ]
+      ],
+      "answer": "Claude → Anthropic; GPT → OpenAI; Gemini → Google; Llama → Meta; Grok → xAI; Qwen → Alibaba",
+      "explanation": "Claude by Anthropic, GPT by OpenAI, Gemini by Google, Llama by Meta, Grok by xAI, Qwen by Alibaba.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-66",
+      "topic": "AI Hardware",
+      "type": "match",
+      "difficulty": "medium",
+      "prompt": "Connect each chip to the company that designs it.",
+      "pairs": [
+        [
+          "H100",
+          "NVIDIA"
+        ],
+        [
+          "MI300X",
+          "AMD"
+        ],
+        [
+          "TPU",
+          "Google"
+        ],
+        [
+          "Trainium",
+          "Amazon (AWS)"
+        ],
+        [
+          "Gaudi",
+          "Intel"
+        ],
+        [
+          "Maia",
+          "Microsoft"
+        ]
+      ],
+      "answer": "H100 → NVIDIA; MI300X → AMD; TPU → Google; Trainium → Amazon (AWS); Gaudi → Intel; Maia → Microsoft",
+      "explanation": "Each big cloud now designs its own AI chip alongside NVIDIA and AMD GPUs.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-67",
+      "topic": "Generative AI",
+      "type": "match",
+      "difficulty": "easy",
+      "prompt": "Connect each generative AI tool to what it creates.",
+      "pairs": [
+        [
+          "Midjourney",
+          "Images"
+        ],
+        [
+          "Sora",
+          "Video"
+        ],
+        [
+          "Suno",
+          "Music"
+        ],
+        [
+          "ElevenLabs",
+          "Voice"
+        ],
+        [
+          "GitHub Copilot",
+          "Code"
+        ]
+      ],
+      "answer": "Midjourney → Images; Sora → Video; Suno → Music; ElevenLabs → Voice; GitHub Copilot → Code",
+      "explanation": "Different models specialize in different media.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-68",
+      "topic": "LLMs",
+      "type": "match",
+      "difficulty": "medium",
+      "prompt": "Connect each abbreviation to what it stands for.",
+      "pairs": [
+        [
+          "RAG",
+          "Retrieval-Augmented Generation"
+        ],
+        [
+          "RLHF",
+          "Reinforcement Learning from Human Feedback"
+        ],
+        [
+          "MoE",
+          "Mixture of Experts"
+        ],
+        [
+          "PEFT",
+          "Parameter-Efficient Fine-Tuning"
+        ],
+        [
+          "KV cache",
+          "Key-value cache"
+        ]
+      ],
+      "answer": "RAG → Retrieval-Augmented Generation; RLHF → Reinforcement Learning from Human Feedback; MoE → Mixture of Experts; PEFT → Parameter-Efficient Fine-Tuning; KV cache → Key-value cache",
+      "explanation": "Common terms in LLM training and serving.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-69",
+      "topic": "Agents & MCP",
+      "type": "match",
+      "difficulty": "medium",
+      "prompt": "Connect each MCP part to its role.",
+      "pairs": [
+        [
+          "Host",
+          "The AI app the user works in"
+        ],
+        [
+          "Client",
+          "Keeps one connection to a server"
+        ],
+        [
+          "Server",
+          "Exposes tools, resources and prompts"
+        ],
+        [
+          "Tool",
+          "An action the model can call"
+        ]
+      ],
+      "answer": "Host → The AI app the user works in; Client → Keeps one connection to a server; Server → Exposes tools, resources and prompts; Tool → An action the model can call",
+      "explanation": "MCP has hosts, clients and servers; servers expose tools, resources and prompts.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-70",
+      "topic": "Benchmarking",
+      "type": "match",
+      "difficulty": "hard",
+      "prompt": "Connect each benchmark to what it measures.",
+      "pairs": [
+        [
+          "MMLU",
+          "Knowledge across 57 subjects"
+        ],
+        [
+          "SWE-bench",
+          "Fixing real GitHub issues"
+        ],
+        [
+          "GSM8K",
+          "Grade-school math word problems"
+        ],
+        [
+          "HumanEval",
+          "Writing Python functions"
+        ],
+        [
+          "MLPerf",
+          "AI hardware training and inference speed"
+        ]
+      ],
+      "answer": "MMLU → Knowledge across 57 subjects; SWE-bench → Fixing real GitHub issues; GSM8K → Grade-school math word problems; HumanEval → Writing Python functions; MLPerf → AI hardware training and inference speed",
+      "explanation": "Know what each benchmark tests before trusting a score.",
+      "sourceId": ""
     }
   ]
 }

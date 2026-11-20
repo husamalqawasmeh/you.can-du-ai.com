@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=56';
-import { ADMIN_HASH } from './admin-hash.js?v=56';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=57';
+import { ADMIN_HASH } from './admin-hash.js?v=57';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -10,7 +10,7 @@ const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 // randomUUID only exists on HTTPS/localhost; fall back so plain-http visits still work
 const uid = () => crypto.randomUUID?.() ?? Date.now().toString(36) + Math.random().toString(36).slice(2);
-const TYPE = { mcq: 'Multiple choice', tf: 'True / False', short: 'Short answer' };
+const TYPE = { mcq: 'Multiple choice', tf: 'True / False', short: 'Short answer', fill: 'Fill in the blank', match: 'Matching' };
 
 let db;
 function load() {
@@ -308,7 +308,12 @@ $('#note-form').onsubmit = e => {
 };
 
 const qForm = $('#q-form');
-const syncQType = () => { qForm.querySelector('.for-mcq').hidden = qForm.type.value !== 'mcq'; };
+const syncQType = () => {
+  const t = qForm.type.value;
+  qForm.querySelector('.for-mcq').hidden = t !== 'mcq' && t !== 'match';
+  qForm.querySelector('.opt-help').textContent = t === 'match' ? 'Pairs to match, one per line: left item = right item' : 'Options (one per line)';
+  qForm.answer.required = t !== 'match';
+};
 qForm.type.onchange = syncQType; syncQType();
 
 qForm.onsubmit = e => {
@@ -322,6 +327,12 @@ qForm.onsubmit = e => {
     if (!match) return alert('The correct answer must be one of the options, written exactly.');
     q.answer = match;
   }
+  if (q.type === 'match') {
+    q.pairs = d.options.split('\n').map(s => s.split('=').map(x => x.trim())).filter(p => p.length === 2 && p[0] && p[1]);
+    if (q.pairs.length < 2) return alert('Give at least two pairs, one per line, like: GPU = NVIDIA');
+    q.answer = q.pairs.map(p => `${p[0]} → ${p[1]}`).join('; ');
+  }
+  if (q.type === 'fill' && !q.prompt.includes('___')) return alert('Put ___ (three underscores) in the question where the missing word goes.');
   if (q.type === 'tf') {
     const a = q.answer.toLowerCase();
     if (a !== 'true' && a !== 'false') return alert('For True / False, the answer must be True or False.');
@@ -369,11 +380,16 @@ function startTest(qs, cfg) {
   const run = $('#test-run');
   run.innerHTML = `<div class="card"><h2>Test: ${qs.length} questions</h2>` + qs.map((q, i) => {
     const choices = q.type === 'mcq' ? q.options : q.type === 'tf' ? ['True', 'False'] : null;
-    const input = choices
+    const input = q.type === 'match' ? `${matchHtml(q.pairs, i, true)}<input type="hidden" name="a${i}">`
+      : q.type === 'fill' ? ''
+      : choices
       ? choices.map(c => `<label><input type="radio" name="a${i}" value="${esc(c)}"> ${esc(c)}</label>`).join('')
       : `<input name="a${i}" autocomplete="off" aria-label="Your answer">`;
-    return `<div class="question"><p>${i + 1}. ${esc(q.prompt)}</p><div class="tag">${esc(q.topic)} · ${esc(q.difficulty)}</div>${input}</div>`;
+    // fill in the blank: the ___ in the statement becomes the text box
+    const prompt = q.type === 'fill' ? esc(q.prompt).replace('___', `<input class="blank" name="a${i}" autocomplete="off" aria-label="Missing word">`) : esc(q.prompt);
+    return `<div class="question"><p>${i + 1}. ${prompt}</p><div class="tag">${esc(q.topic)} · ${esc(q.difficulty)}</div>${input}</div>`;
   }).join('') + `<button class="primary">Submit answers</button> <button type="button" id="cancel-test">Cancel</button></div>`;
+  run.querySelectorAll('.match').forEach(el => { const i = +el.dataset.q; setupMatch(el, qs[i].pairs, links => { run.elements['a' + i].value = JSON.stringify(qs[i].pairs.map((p, k) => links.get(k) ?? '')); }); });
   cfgForm.hidden = true; $('#test-result').hidden = true; run.hidden = false;
   $('#cancel-test').onclick = resetTest;
   run.scrollIntoView();
@@ -399,9 +415,10 @@ $('#test-run').onsubmit = e => {
     <p>Overall, from all your tests: <span class="lvl lvl-${pAll.level.toLowerCase()}">${pAll.level}</span> <span class="tag">${pAll.answered} questions answered · confidence ${pAll.confidence} · details in Learning Suggestions</span></p>` +
     qs.map((q, i) => {
       const ok = isCorrect(q, answers[i]);
+      const shown = q.type === 'match' ? matchAnswerText(q, answers[i]) : answers[i];
       const src = sourceTitle(q.sourceId);
       return `<div class="question"><p>${i + 1}. ${esc(q.prompt)}</p>
-        <div class="${ok ? 'good' : 'bad'}">${ok ? '✓ Correct' : '✗ Incorrect'} — your answer: ${esc(answers[i] || '(blank)')}</div>
+        <div class="${ok ? 'good' : 'bad'}">${ok ? '✓ Correct' : '✗ Incorrect'} — your answer: ${esc(shown || '(blank)')}</div>
         ${ok ? '' : `<div>Correct answer: <strong>${esc(q.answer.split('|')[0])}</strong></div>`}
         ${q.explanation ? `<div class="muted">${esc(q.explanation)}</div>` : ''}
         ${src ? `<div class="tag">Source: ${esc(src)}</div>` : ''}</div>`;
@@ -706,14 +723,20 @@ function termsHtml(groups) {
 
 // ---------- matching exercise: click a model, then its vendor, to draw a line ----------
 const shuffle = a => pickQuestions(a, { count: a.length }); // reuses the Fisher-Yates shuffle
-function matchHtml(pairs, qi) {
+function matchHtml(pairs, qi, test = false) {
   const vendors = shuffle([...new Set(pairs.map(p => p[1]))]);
   return `<div class="match" data-q="${qi}"><svg class="match-lines" aria-hidden="true"></svg>
     <div class="match-col">${shuffle(pairs.map((p, i) => i)).map(i => `<button type="button" data-l="${i}">${esc(pairs[i][0])}</button>`).join('')}</div>
     <div class="match-col">${vendors.map(v => `<button type="button" data-r="${esc(v)}">${esc(v)}</button>`).join('')}</div>
-    <div class="row match-actions"><button type="button" class="primary" data-act="check">Check</button><button type="button" data-act="show">Show answers</button><button type="button" data-act="reset">Reset</button><span class="match-score" role="status"></span></div></div>`;
+    ${test ? '' : '<div class="row match-actions"><button type="button" class="primary" data-act="check">Check</button><button type="button" data-act="show">Show answers</button><button type="button" data-act="reset">Reset</button><span class="match-score" role="status"></span></div>'}</div>`;
 }
-function setupMatch(el, pairs) {
+// in a test the match has no Check / Show answers buttons, so the answers stay hidden until you submit
+// Your matching answer as text, e.g. 'GPU → NVIDIA; TPU → (not connected)'.
+function matchAnswerText(q, given) {
+  let g = []; try { g = JSON.parse(given || '[]'); } catch {}
+  return g.some(Boolean) ? q.pairs.map((p, k) => `${p[0]} → ${g[k] || '(not connected)'}`).join('; ') : '';
+}
+function setupMatch(el, pairs, onChange) {
   const links = new Map(); // model index -> vendor
   let sel = null, marks = null; // marks: Map index -> 'ok' | 'bad' after Check
   const svg = el.querySelector('svg'), L = i => el.querySelector(`[data-l="${i}"]`), R = v => [...el.querySelectorAll('[data-r]')].find(b => b.dataset.r === v);
@@ -730,7 +753,7 @@ function setupMatch(el, pairs) {
     let lr = row, rr = row;
     el.querySelectorAll('[data-l]').forEach(b => { if (!links.has(+b.dataset.l)) b.style.gridRow = lr++; });
     el.querySelectorAll('[data-r]').forEach(b => { if (!placed.has(b)) b.style.gridRow = rr++; });
-    el.querySelector('.match-actions').style.gridRow = Math.max(lr, rr);
+    const acts = el.querySelector('.match-actions'); if (acts) acts.style.gridRow = Math.max(lr, rr);
   }
   function draw() {
     layout();
@@ -755,6 +778,7 @@ function setupMatch(el, pairs) {
       el.querySelector('.match-score').textContent = `${ok} of ${pairs.length} correct` + (links.size < pairs.length ? ` (${pairs.length - links.size} not connected)` : '');
     }
     draw();
+    onChange?.(links);
   });
   new ResizeObserver(draw).observe(el);
 }

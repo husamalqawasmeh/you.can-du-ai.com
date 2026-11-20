@@ -73,6 +73,18 @@ assert.equal(normalizeQuestion({ type: 'tf', difficulty: 'easy', prompt: 'p', an
 assert.equal(normalizeQuestion({ type: 'essay', difficulty: 'easy', prompt: 'p', answer: 'x' }), null);
 assert.equal(normalizeQuestion({ type: 'short', difficulty: 'extreme', prompt: 'p', answer: 'x' }), null);
 assert.equal(normalizeQuestion(null), null);
+
+// fill in the blank and matching
+const fq = { type: 'fill', difficulty: 'easy', prompt: 'RAG is Retrieval-Augmented ___.', answer: 'Generation' };
+assert.ok(isCorrect(fq, ' generation ')); assert.ok(!isCorrect(fq, 'Gen'));
+assert.equal(normalizeQuestion({ ...fq, prompt: 'no blank here' }), null);
+const mq = normalizeQuestion({ type: 'match', difficulty: 'easy', prompt: 'p', pairs: [['GPU', 'NVIDIA'], ['TPU', 'Google']] });
+assert.equal(mq.answer, 'GPU → NVIDIA; TPU → Google');
+assert.ok(isCorrect(mq, JSON.stringify(['NVIDIA', 'Google'])));
+assert.ok(!isCorrect(mq, JSON.stringify(['Google', 'NVIDIA'])));
+assert.ok(!isCorrect(mq, JSON.stringify(['NVIDIA', '']))); // every pair must be connected
+assert.ok(!isCorrect(mq, 'not json'));
+assert.equal(normalizeQuestion({ type: 'match', difficulty: 'easy', prompt: 'p', pairs: [['GPU', 'NVIDIA']] }), null); // needs 2+ pairs
 assert.deepEqual(mergeSeed({}, {}).courses, []);
 
 // validate seed file
@@ -81,7 +93,9 @@ const ids = new Set();
 for (const q of seed.questions) {
   assert.ok(!ids.has(q.id), `dup id ${q.id}`); ids.add(q.id);
   assert.ok(seed.topics.includes(q.topic), `${q.id} unknown topic`);
-  assert.ok(['mcq', 'tf', 'short'].includes(q.type), `${q.id} type`);
+  assert.ok(['mcq', 'tf', 'short', 'fill', 'match'].includes(q.type), `${q.id} type`);
+  if (q.type === 'fill') assert.ok(q.prompt.includes('___'), `${q.id} fill needs ___`);
+  if (q.type === 'match') assert.ok(new Set(q.pairs.map(p => p[1])).size === q.pairs.length, `${q.id} match answers must be unique`);
   assert.ok(['easy', 'medium', 'hard'].includes(q.difficulty), `${q.id} difficulty`);
   if (q.type === 'mcq') assert.ok(q.options.includes(q.answer), `${q.id} answer not in options`);
   if (q.type === 'tf') assert.ok(['True', 'False'].includes(q.answer), `${q.id} tf answer`);
