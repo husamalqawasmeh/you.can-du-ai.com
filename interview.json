@@ -97,6 +97,221 @@
       "followup": "Does it work across remote servers, and how does it connect to them and run tasks on many hosts at once?"
     },
     {
+      "q": "Name examples of automation software, then pick one and talk about it: what it automates, how it works and how you have used it (or would use it).",
+      "followup": "Why would you choose that tool over the alternatives, and where would you add AI or a human check to the workflow?",
+      "unit": "tools",
+      "companies": [
+        [
+          "Workflow and app integration (no-code / low-code)",
+          [
+            [
+              "Zapier",
+              "Connects thousands of web apps with trigger-action \"Zaps\"; now adds AI steps and agents."
+            ],
+            [
+              "Make (formerly Integromat)",
+              "Visual scenario builder for multi-step workflows with branching and data mapping."
+            ],
+            [
+              "n8n",
+              "Open-source, self-hostable workflow tool with strong AI-agent and LLM nodes."
+            ],
+            [
+              "Microsoft Power Automate",
+              "Automation for Microsoft 365, desktop RPA and cloud flows."
+            ],
+            [
+              "IFTTT",
+              "Simple \"if this then that\" applets for consumer apps and smart-home devices."
+            ],
+            [
+              "Pipedream",
+              "Developer-focused workflows that mix no-code steps with Node.js or Python code."
+            ]
+          ]
+        ],
+        [
+          "AI agent and LLM workflow builders",
+          [
+            [
+              "LangChain / LangGraph",
+              "Frameworks for building LLM apps and stateful, multi-step agent graphs."
+            ],
+            [
+              "CrewAI",
+              "Framework for teams of role-based AI agents that work together."
+            ],
+            [
+              "Microsoft AutoGen",
+              "Framework for multi-agent conversations and task solving."
+            ],
+            [
+              "OpenAI Agents SDK",
+              "SDK for agents with tools, handoffs and guardrails."
+            ],
+            [
+              "Claude Agent SDK / Claude Code",
+              "Anthropic's agent harness for coding and general automation."
+            ],
+            [
+              "Flowise / Langflow",
+              "Drag-and-drop visual builders for LLM chains and agents."
+            ],
+            [
+              "Dify",
+              "Open-source platform for building and operating LLM apps and agent workflows."
+            ]
+          ]
+        ],
+        [
+          "RPA (Robotic Process Automation)",
+          [
+            [
+              "UiPath",
+              "Leading RPA platform: software robots that click and type in apps like a person, plus AI agents."
+            ],
+            [
+              "Automation Anywhere",
+              "Cloud RPA platform with AI-powered document processing."
+            ],
+            [
+              "Blue Prism (SS&C)",
+              "Enterprise RPA with a strong focus on governance and security."
+            ],
+            [
+              "Power Automate Desktop",
+              "Microsoft's desktop RPA for Windows apps."
+            ]
+          ]
+        ],
+        [
+          "IT and infrastructure automation",
+          [
+            [
+              "Ansible",
+              "Agentless automation over SSH using YAML playbooks for configuration and deployment."
+            ],
+            [
+              "Terraform / OpenTofu",
+              "Infrastructure as code: declare cloud resources and apply the changes."
+            ],
+            [
+              "Puppet",
+              "Agent-based configuration management that keeps servers in a desired state."
+            ],
+            [
+              "Chef",
+              "Configuration management written as Ruby \"recipes\"."
+            ],
+            [
+              "SaltStack (Salt)",
+              "Fast, event-driven configuration management and remote execution."
+            ],
+            [
+              "Kubernetes operators",
+              "Controllers that automate deploying and running apps on Kubernetes."
+            ]
+          ]
+        ],
+        [
+          "CI/CD and DevOps pipelines",
+          [
+            [
+              "GitHub Actions",
+              "Workflows triggered by repository events to test, build and deploy code."
+            ],
+            [
+              "GitLab CI/CD",
+              "Pipelines built into GitLab, defined in .gitlab-ci.yml."
+            ],
+            [
+              "Jenkins",
+              "Open-source automation server with a huge plugin ecosystem."
+            ],
+            [
+              "Argo CD",
+              "GitOps tool that keeps Kubernetes clusters in sync with a Git repository."
+            ],
+            [
+              "CircleCI",
+              "Hosted CI/CD service."
+            ]
+          ]
+        ],
+        [
+          "Data pipelines and workflow orchestration",
+          [
+            [
+              "Apache Airflow",
+              "Schedules and monitors data pipelines written as Python DAGs."
+            ],
+            [
+              "Prefect",
+              "Python-native workflow orchestration with retries and observability."
+            ],
+            [
+              "Dagster",
+              "Asset-based data orchestration."
+            ],
+            [
+              "Temporal",
+              "Durable execution engine for long-running, fault-tolerant workflows."
+            ],
+            [
+              "Apache NiFi",
+              "Visual tool for moving and transforming data between systems."
+            ]
+          ]
+        ],
+        [
+          "Browser and testing automation",
+          [
+            [
+              "Playwright",
+              "Microsoft's library to drive Chromium, Firefox and WebKit for testing and scraping."
+            ],
+            [
+              "Selenium",
+              "The classic browser automation standard (WebDriver)."
+            ],
+            [
+              "Puppeteer",
+              "Google's Node.js library to control Chrome."
+            ],
+            [
+              "Cypress",
+              "End-to-end testing framework for web apps."
+            ]
+          ]
+        ],
+        [
+          "Business process and marketing automation",
+          [
+            [
+              "ServiceNow",
+              "IT service management and enterprise workflow automation."
+            ],
+            [
+              "Salesforce Flow / Agentforce",
+              "Automates CRM processes and runs AI agents inside Salesforce."
+            ],
+            [
+              "HubSpot Workflows",
+              "Marketing, sales and service automation."
+            ],
+            [
+              "Camunda",
+              "BPMN-based process orchestration engine."
+            ],
+            [
+              "Appian / Pega",
+              "Low-code platforms for business process management."
+            ]
+          ]
+        ]
+      ]
+    },
+    {
       "q": "Choose one AI company (for example Google, OpenAI, Anthropic, Microsoft or NVIDIA) and list as many of its products as you can.",
       "followup": "Which of those products would you use in a real project, and why?",
       "companies": [
