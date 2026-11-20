@@ -134,6 +134,7 @@ table.cert-facts th { width: 9em; color: var(--muted); font-weight: 500; }
 .cert h4 { margin: 10px 0 4px; }
 a.button { text-decoration: none; }
 .brand { color: var(--accent); }
+.sort-row { margin-top: 8px; }
 /* Collapsible full-width boxes (Knowledge library) */
 .fold > summary { cursor: pointer; list-style: none; display: flex; align-items: center; gap: 8px; }
 .fold > summary::-webkit-details-marker { display: none; }

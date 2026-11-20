@@ -1,77 +1,1416 @@
 {
-  "checked": "2026-11-19",
+  "checked": "2026-11-20",
   "tools": [
-    { "name": "ChatGPT", "company": "OpenAI", "category": "Chat assistant", "does": "General AI assistant: chat, writing, analysis, images, voice, web search and agents.", "cost": "Freemium", "pros": ["Very broad features", "Large ecosystem of GPTs and integrations"], "cons": ["Best features need a paid plan", "Can state wrong facts confidently"], "url": "https://chatgpt.com" },
-    { "name": "Claude", "company": "Anthropic", "category": "Chat assistant", "does": "AI assistant strong at writing, analysis, long documents and coding.", "cost": "Freemium", "pros": ["Strong writing and reasoning", "Handles long documents well"], "cons": ["Usage limits on lower plans", "Fewer built-in media tools than some rivals"], "url": "https://claude.ai" },
-    { "name": "Gemini", "company": "Google", "category": "Chat assistant", "does": "Google's AI assistant, connected to Search, Gmail, Docs and YouTube.", "cost": "Freemium", "pros": ["Deep Google integration", "Strong multimodal input (images, video)"], "cons": ["Best models on paid plans", "Integration value depends on using Google apps"], "url": "https://gemini.google.com" },
-    { "name": "Microsoft Copilot", "company": "Microsoft", "category": "Chat assistant", "does": "AI assistant in Windows, Edge, Bing and Microsoft apps.", "cost": "Freemium", "pros": ["Built into Windows and Edge", "Web-grounded answers"], "cons": ["Office integration needs a Microsoft 365 plan", "Several Copilot brands can be confusing"], "url": "https://copilot.microsoft.com" },
-    { "name": "Grok", "company": "xAI", "category": "Chat assistant", "does": "AI assistant integrated with X (Twitter), with real-time post search.", "cost": "Freemium", "pros": ["Real-time information from X", "Fast model updates"], "cons": ["Closely tied to the X platform", "Fewer enterprise features"], "url": "https://grok.com" },
-    { "name": "Meta AI", "company": "Meta", "category": "Chat assistant", "does": "AI assistant inside WhatsApp, Instagram, Facebook and Messenger, built on Llama.", "cost": "Free", "pros": ["Free and inside apps people already use", "Built on open-weight Llama models"], "cons": ["Fewer power-user features", "Availability varies by country"], "url": "https://www.meta.ai" },
-    { "name": "DeepSeek", "company": "DeepSeek", "category": "Chat assistant", "does": "Chat app and low-cost API for DeepSeek's open-weight reasoning models.", "cost": "Free app; pay-per-use API", "pros": ["Strong reasoning at low cost", "Open-weight models you can self-host"], "cons": ["Data stored in China may not suit some organizations", "Fewer integrations"], "url": "https://www.deepseek.com" },
-    { "name": "Le Chat", "company": "Mistral AI", "category": "Chat assistant", "does": "Mistral's assistant with web search, documents and code.", "cost": "Freemium", "pros": ["European provider (EU data options)", "Fast responses"], "cons": ["Smaller ecosystem", "Fewer third-party integrations"], "url": "https://chat.mistral.ai" },
-    { "name": "Perplexity", "company": "Perplexity AI", "category": "Search / research", "does": "AI answer engine that searches the web and cites its sources.", "cost": "Freemium", "pros": ["Citations for every answer", "Good for quick research"], "cons": ["Quality depends on the sources it finds", "Advanced modes need a paid plan"], "url": "https://www.perplexity.ai" },
-    { "name": "Kimi", "company": "Moonshot AI", "category": "Chat assistant", "does": "AI assistant known for long-context reading and open-weight models.", "cost": "Freemium", "pros": ["Very long context", "Open-weight model releases"], "cons": ["Less known outside China", "Fewer English-language resources"], "url": "https://www.kimi.com" },
-    { "name": "Qwen Chat", "company": "Alibaba", "category": "Chat assistant", "does": "Chat app for Alibaba's Qwen models, many of them open-weight.", "cost": "Free app; pay-per-use API", "pros": ["Strong open-weight model family", "Good multilingual support"], "cons": ["Smaller app ecosystem in the West", "Data residency considerations"], "url": "https://chat.qwen.ai" },
-    { "name": "NotebookLM", "company": "Google", "category": "Search / research", "does": "Research notebook that answers only from the documents you upload, and makes audio overviews.", "cost": "Freemium", "pros": ["Answers grounded in your own sources", "Audio overviews of documents"], "cons": ["Limited to the sources you add", "Fewer export options"], "url": "https://notebooklm.google.com" },
-
-    { "name": "Claude Code", "company": "Anthropic", "category": "Coding", "does": "Agentic coding tool in the terminal and IDEs: reads code, edits files, runs commands and tests.", "cost": "Subscription or pay-per-use API", "pros": ["Handles multi-step tasks end to end", "Extensible with skills, plugins and MCP"], "cons": ["Usage costs can grow on big tasks", "Changes still need human review"], "url": "https://code.claude.com/docs/en/overview" },
-    { "name": "GitHub Copilot", "company": "GitHub (Microsoft)", "category": "Coding", "does": "AI pair programmer in VS Code, JetBrains and GitHub: completions, chat and coding agent.", "cost": "Freemium", "pros": ["Works in the most popular editors", "Tight GitHub integration"], "cons": ["Suggestions need review", "Best models on paid tiers"], "url": "https://github.com/features/copilot" },
-    { "name": "Cursor", "company": "Anysphere", "category": "Coding", "does": "AI-first code editor (VS Code-based) with chat, multi-file edits and agents.", "cost": "Freemium", "pros": ["Very smooth editor experience", "Understands the whole codebase"], "cons": ["Usage limits and pricing changes", "Separate editor to adopt"], "url": "https://cursor.com" },
-    { "name": "OpenAI Codex", "company": "OpenAI", "category": "Coding", "does": "Coding agent in the terminal (open-source CLI), IDE and cloud.", "cost": "Included with ChatGPT plans or API", "pros": ["Open-source CLI", "Can run tasks in the cloud"], "cons": ["Best experience needs a paid plan", "Agent output needs review"], "url": "https://github.com/openai/codex" },
-    { "name": "Gemini CLI", "company": "Google", "category": "Coding", "does": "Open-source AI agent for the terminal, powered by Gemini.", "cost": "Free tier; pay-per-use API", "pros": ["Open source", "Generous free usage"], "cons": ["Newer, still maturing", "Quality varies by task"], "url": "https://github.com/google-gemini/gemini-cli" },
-    { "name": "Windsurf", "company": "Cognition", "category": "Coding", "does": "AI code editor with an agent that plans and edits across files.", "cost": "Freemium", "pros": ["Agentic multi-file editing", "Free tier available"], "cons": ["Ownership and roadmap changed in 2025", "Credit-based limits"], "url": "https://windsurf.com" },
-    { "name": "Aider", "company": "Open source", "category": "Coding", "does": "AI pair programming in the terminal that edits files and commits to git.", "cost": "Free (bring your own API key)", "pros": ["Open source, works with many models", "Clean git commits"], "cons": ["Terminal only", "You pay for the model API"], "url": "https://aider.chat" },
-    { "name": "Replit Agent", "company": "Replit", "category": "App builder", "does": "Builds and deploys full apps in the browser from a prompt.", "cost": "Freemium", "pros": ["Idea to deployed app quickly", "No local setup"], "cons": ["Costs grow with usage", "Less control than local development"], "url": "https://replit.com" },
-    { "name": "Lovable", "company": "Lovable", "category": "App builder", "does": "Creates web apps from chat, with a database and deployment.", "cost": "Freemium", "pros": ["Fast prototypes for non-developers", "Exports code to GitHub"], "cons": ["Complex apps need a developer", "Credit limits"], "url": "https://lovable.dev" },
-    { "name": "v0", "company": "Vercel", "category": "App builder", "does": "Generates React and Next.js user interfaces and apps from prompts.", "cost": "Freemium", "pros": ["High-quality UI code", "One-click deploy on Vercel"], "cons": ["Best inside the Vercel/Next.js stack", "Credit limits"], "url": "https://v0.app" },
-    { "name": "Bolt.new", "company": "StackBlitz", "category": "App builder", "does": "Builds, runs and deploys full-stack web apps in the browser from prompts.", "cost": "Freemium", "pros": ["Runs everything in the browser", "Quick prototypes"], "cons": ["Token limits", "Larger projects get harder to manage"], "url": "https://bolt.new" },
-
-    { "name": "Midjourney", "company": "Midjourney", "category": "Image", "does": "Generates artistic, high-quality images from text prompts.", "cost": "Subscription", "pros": ["Excellent aesthetic quality", "Strong style control"], "cons": ["No free tier", "Less precise with text in images"], "url": "https://www.midjourney.com" },
-    { "name": "GPT Image (in ChatGPT)", "company": "OpenAI", "category": "Image", "does": "Creates and edits images by chatting in ChatGPT or through the API.", "cost": "Freemium; API pay-per-use", "pros": ["Follows detailed instructions well", "Good text rendering in images"], "cons": ["Can be slow", "Content restrictions"], "url": "https://chatgpt.com" },
-    { "name": "Stable Diffusion", "company": "Stability AI", "category": "Image", "does": "Open image-generation models you can run locally or in apps.", "cost": "Open models; paid API/licenses for some uses", "pros": ["Runs on your own GPU", "Huge community of add-ons"], "cons": ["Setup takes effort", "License terms vary by model"], "url": "https://stability.ai" },
-    { "name": "Adobe Firefly", "company": "Adobe", "category": "Image", "does": "Image and design generation built into Photoshop, Illustrator and Express.", "cost": "Freemium; included in Creative Cloud", "pros": ["Inside Adobe tools designers already use", "Designed to be commercially safe"], "cons": ["Credit limits", "Best with an Adobe subscription"], "url": "https://firefly.adobe.com" },
-    { "name": "FLUX", "company": "Black Forest Labs", "category": "Image", "does": "Image-generation models, some open-weight, known for realism and prompt accuracy.", "cost": "Open models; paid API", "pros": ["High realism", "Open-weight versions"], "cons": ["Needs a strong GPU locally", "Licenses differ between versions"], "url": "https://bfl.ai" },
-    { "name": "Ideogram", "company": "Ideogram", "category": "Image", "does": "Image generator known for accurate text inside images (logos, posters).", "cost": "Freemium", "pros": ["Very good typography", "Easy to use"], "cons": ["Limited free generations", "Fewer editing tools"], "url": "https://ideogram.ai" },
-    { "name": "Canva AI", "company": "Canva", "category": "Design", "does": "AI design tools in Canva: images, writing, presentations and editing.", "cost": "Freemium", "pros": ["Very easy for non-designers", "Templates plus AI in one place"], "cons": ["Best AI features on paid plans", "Less control than pro design tools"], "url": "https://www.canva.com" },
-
-    { "name": "Sora", "company": "OpenAI", "category": "Video", "does": "Generates video clips from text and images.", "cost": "Included with some ChatGPT plans", "pros": ["High-quality video generation", "Easy prompt-to-video"], "cons": ["Usage limits", "Availability varies by country"], "url": "https://openai.com/sora" },
-    { "name": "Veo", "company": "Google", "category": "Video", "does": "Google's video-generation model, available in Gemini, Flow and Vertex AI.", "cost": "Paid plans; pay-per-use API", "pros": ["Realistic motion, native audio", "Available through Google Cloud"], "cons": ["Best access on paid plans", "Short clip lengths"], "url": "https://deepmind.google/models/veo/" },
-    { "name": "Runway", "company": "Runway", "category": "Video", "does": "AI video generation and editing tools for creators.", "cost": "Freemium", "pros": ["Many video tools in one place", "Popular with creators"], "cons": ["Credits run out fast", "Learning curve"], "url": "https://runwayml.com" },
-    { "name": "Kling", "company": "Kuaishou", "category": "Video", "does": "Text- and image-to-video generation.", "cost": "Freemium", "pros": ["Strong motion quality", "Free credits"], "cons": ["Queues at busy times", "Data residency considerations"], "url": "https://klingai.com" },
-    { "name": "Synthesia", "company": "Synthesia", "category": "Video", "does": "Creates presenter videos with AI avatars for training and communications.", "cost": "Subscription", "pros": ["No camera or studio needed", "Many languages"], "cons": ["Avatars can feel artificial", "Paid plans for most uses"], "url": "https://www.synthesia.io" },
-    { "name": "HeyGen", "company": "HeyGen", "category": "Video", "does": "AI avatar videos and video translation with lip-sync.", "cost": "Freemium", "pros": ["Good video translation", "Custom avatars"], "cons": ["Credit-based pricing", "Watermarks on free plan"], "url": "https://www.heygen.com" },
-
-    { "name": "ElevenLabs", "company": "ElevenLabs", "category": "Audio / voice", "does": "Realistic text-to-speech, voice cloning and dubbing.", "cost": "Freemium", "pros": ["Very natural voices", "Many languages including Arabic"], "cons": ["Character limits", "Voice cloning needs careful consent"], "url": "https://elevenlabs.io" },
-    { "name": "Suno", "company": "Suno", "category": "Audio / voice", "does": "Generates songs with vocals from a text prompt.", "cost": "Freemium", "pros": ["Complete songs in seconds", "Easy to use"], "cons": ["Commercial use needs a paid plan", "Copyright questions in the industry"], "url": "https://suno.com" },
-    { "name": "Whisper", "company": "OpenAI", "category": "Audio / voice", "does": "Open-source speech-to-text model for transcription and translation.", "cost": "Free (open source); paid API", "pros": ["Accurate, many languages", "Runs locally"], "cons": ["Needs setup to run locally", "No live meeting features by itself"], "url": "https://github.com/openai/whisper" },
-    { "name": "Otter.ai", "company": "Otter.ai", "category": "Meetings", "does": "Transcribes and summarizes meetings in Zoom, Teams and Google Meet.", "cost": "Freemium", "pros": ["Automatic meeting notes", "Searchable transcripts"], "cons": ["Free minutes are limited", "Best accuracy in English"], "url": "https://otter.ai" },
-    { "name": "Fireflies.ai", "company": "Fireflies.ai", "category": "Meetings", "does": "AI meeting assistant: records, transcribes and summarizes calls.", "cost": "Freemium", "pros": ["Integrates with CRMs and tools", "Action-item summaries"], "cons": ["Bot joining calls can bother attendees", "Advanced features paid"], "url": "https://fireflies.ai" },
-
-    { "name": "Microsoft 365 Copilot", "company": "Microsoft", "category": "Productivity", "does": "AI inside Word, Excel, PowerPoint, Outlook and Teams, grounded in your work data.", "cost": "Paid add-on / business plans", "pros": ["Works across your Office files and mail", "Enterprise security controls"], "cons": ["Costly per user", "Value depends on how well data is organized"], "url": "https://www.microsoft.com/microsoft-365/copilot" },
-    { "name": "Gemini for Google Workspace", "company": "Google", "category": "Productivity", "does": "Gemini inside Gmail, Docs, Sheets, Slides and Meet.", "cost": "Included in many Workspace plans", "pros": ["Native in Google apps", "Helps draft and summarize"], "cons": ["Features vary by plan", "Admin setup for organizations"], "url": "https://workspace.google.com/solutions/ai/" },
-    { "name": "Notion AI", "company": "Notion Labs", "category": "Productivity", "does": "AI writing, search and Q&A across your Notion workspace.", "cost": "Included in paid plans", "pros": ["Searches all your notes and docs", "Good for teams already on Notion"], "cons": ["Only as useful as your Notion content", "Requires a paid plan"], "url": "https://www.notion.com/product/ai" },
-    { "name": "Grammarly", "company": "Grammarly (Superhuman)", "category": "Writing", "does": "AI writing assistant for grammar, tone and rewriting everywhere you type.", "cost": "Freemium", "pros": ["Works in most apps and browsers", "Great for clear English"], "cons": ["Advanced rewriting is paid", "Mainly for English"], "url": "https://www.grammarly.com" },
-    { "name": "Gamma", "company": "Gamma", "category": "Presentations", "does": "Creates presentations, documents and web pages from a prompt.", "cost": "Freemium", "pros": ["Fast good-looking decks", "Exports to PowerPoint and PDF"], "cons": ["Credit limits", "Less fine control than PowerPoint"], "url": "https://gamma.app" },
-
-    { "name": "Hugging Face", "company": "Hugging Face", "category": "Developer platform", "does": "Hub for open models, datasets and demo apps (Spaces), plus the Transformers library.", "cost": "Free; paid compute and enterprise", "pros": ["The largest open-model hub", "Huge community and docs"], "cons": ["Model quality varies widely", "Check each model's license"], "url": "https://huggingface.co" },
-    { "name": "LangChain", "company": "LangChain", "category": "Framework", "does": "Framework for building LLM apps and agents (chains, tools, RAG); LangGraph for agent workflows.", "cost": "Open source; paid LangSmith", "pros": ["Many integrations", "Large community"], "cons": ["Abstractions can feel heavy", "Fast-changing APIs"], "url": "https://www.langchain.com" },
-    { "name": "LlamaIndex", "company": "LlamaIndex", "category": "Framework", "does": "Framework for connecting LLMs to your data: ingestion, indexing and RAG.", "cost": "Open source; paid cloud", "pros": ["Strong for RAG and documents", "Good data connectors"], "cons": ["Learning curve", "Overlaps with other frameworks"], "url": "https://www.llamaindex.ai" },
-    { "name": "Ollama", "company": "Ollama", "category": "Local AI", "does": "Runs open models (Llama, Qwen, Gemma and more) on your own computer with one command.", "cost": "Free (open source)", "pros": ["Private and offline", "Very easy setup"], "cons": ["Needs a capable GPU or Mac for big models", "Slower than cloud for large models"], "url": "https://ollama.com" },
-    { "name": "LM Studio", "company": "Element Labs", "category": "Local AI", "does": "Desktop app to download, chat with and serve local models.", "cost": "Free", "pros": ["Friendly graphical interface", "OpenAI-compatible local server"], "cons": ["Limited by your hardware", "Not open source"], "url": "https://lmstudio.ai" },
-    { "name": "vLLM", "company": "Open source", "category": "Model serving", "does": "High-throughput engine for serving LLMs (PagedAttention, continuous batching).", "cost": "Free (open source)", "pros": ["Excellent GPU throughput", "OpenAI-compatible API"], "cons": ["Needs GPU infrastructure", "Operational know-how required"], "url": "https://docs.vllm.ai" },
-    { "name": "NVIDIA NIM", "company": "NVIDIA", "category": "Model serving", "does": "Prebuilt, optimized containers for running AI models on NVIDIA GPUs.", "cost": "Free to try; NVIDIA AI Enterprise license for production", "pros": ["Optimized performance on NVIDIA GPUs", "Standard APIs"], "cons": ["Tied to NVIDIA hardware", "Production licensing cost"], "url": "https://www.nvidia.com/en-us/ai-data-science/products/nim-microservices/" },
-    { "name": "PyTorch", "company": "PyTorch Foundation (Linux Foundation)", "category": "Framework", "does": "The most widely used deep-learning framework for research and production.", "cost": "Free (open source)", "pros": ["Industry standard for AI research", "Huge ecosystem"], "cons": ["Production deployment needs extra tools", "GPU setup can be tricky"], "url": "https://pytorch.org" },
-    { "name": "TensorFlow", "company": "Google", "category": "Framework", "does": "Deep-learning framework with strong production and mobile tooling.", "cost": "Free (open source)", "pros": ["Mature deployment tools (TF Lite, Serving)", "Good documentation"], "cons": ["Less popular than PyTorch for new research", "Steeper learning curve"], "url": "https://www.tensorflow.org" },
-    { "name": "Weights & Biases", "company": "Weights & Biases (CoreWeave)", "category": "MLOps", "does": "Experiment tracking, model evaluation and LLM observability.", "cost": "Freemium", "pros": ["Great experiment dashboards", "Widely used in ML teams"], "cons": ["Costs grow for large teams", "Another platform to manage"], "url": "https://wandb.ai" },
-    { "name": "Pinecone", "company": "Pinecone", "category": "Vector database", "does": "Managed vector database for semantic search and RAG.", "cost": "Freemium", "pros": ["Fully managed, scales easily", "Simple API"], "cons": ["Cloud only", "Costs grow with data size"], "url": "https://www.pinecone.io" },
-    { "name": "Chroma", "company": "Chroma", "category": "Vector database", "does": "Open-source embedding database, easy to start with for RAG.", "cost": "Free (open source); paid cloud", "pros": ["Very easy to start", "Runs locally"], "cons": ["Fewer enterprise features than managed options", "Self-hosting at scale needs work"], "url": "https://www.trychroma.com" },
-    { "name": "n8n", "company": "n8n", "category": "Automation", "does": "Workflow automation with AI agent nodes; self-hostable.", "cost": "Free self-hosted; paid cloud", "pros": ["Self-host for privacy", "Hundreds of integrations"], "cons": ["Setup for self-hosting", "Complex flows get hard to maintain"], "url": "https://n8n.io" },
-    { "name": "Zapier", "company": "Zapier", "category": "Automation", "does": "No-code automation across thousands of apps, with AI steps and agents.", "cost": "Freemium", "pros": ["Huge app catalog", "No code needed"], "cons": ["Gets expensive at scale", "Cloud only"], "url": "https://zapier.com" },
-    { "name": "Amazon Bedrock", "company": "AWS", "category": "Cloud AI platform", "does": "Managed access to many foundation models (Claude, Llama, Mistral, Amazon Nova) with agents and RAG.", "cost": "Pay-per-use", "pros": ["Many models behind one API", "AWS security and compliance"], "cons": ["AWS learning curve", "Costs need monitoring"], "url": "https://aws.amazon.com/bedrock/" },
-    { "name": "Azure AI Foundry", "company": "Microsoft", "category": "Cloud AI platform", "does": "Build, evaluate and deploy AI apps and agents with OpenAI and other models on Azure.", "cost": "Pay-per-use", "pros": ["Enterprise-ready with Azure security", "OpenAI models plus many others"], "cons": ["Azure complexity", "Quotas and regions vary"], "url": "https://ai.azure.com" },
-    { "name": "Google Vertex AI", "company": "Google", "category": "Cloud AI platform", "does": "Google Cloud platform for Gemini and other models, training, tuning and MLOps.", "cost": "Pay-per-use", "pros": ["Full ML lifecycle in one place", "Native Gemini access"], "cons": ["Google Cloud learning curve", "Costs need monitoring"], "url": "https://cloud.google.com/vertex-ai" },
-    { "name": "OpenRouter", "company": "OpenRouter", "category": "Model gateway", "does": "One API to access hundreds of models from many providers.", "cost": "Pay-per-use", "pros": ["Switch models easily", "Single bill"], "cons": ["Extra hop between you and the provider", "Provider policies differ"], "url": "https://openrouter.ai" },
-    { "name": "Groq", "company": "Groq", "category": "Model serving", "does": "Very fast inference for open models on custom LPU chips, via API.", "cost": "Free tier; pay-per-use", "pros": ["Extremely fast responses", "Low cost for open models"], "cons": ["Mostly open models only", "Rate limits on free tier"], "url": "https://groq.com" },
-    { "name": "MCP (Model Context Protocol)", "company": "Open standard (started by Anthropic)", "category": "Developer platform", "does": "Open protocol for connecting AI apps to tools and data sources.", "cost": "Free (open standard)", "pros": ["Write a tool once, use it in many AI apps", "Growing ecosystem"], "cons": ["Security of third-party servers must be checked", "Still evolving"], "url": "https://modelcontextprotocol.io" }
+    {
+      "name": "ChatGPT",
+      "company": "OpenAI",
+      "category": "Chat assistant",
+      "does": "General AI assistant: chat, writing, analysis, images, voice, web search and agents.",
+      "cost": "Freemium",
+      "pros": [
+        "Very broad features",
+        "Large ecosystem of GPTs and integrations"
+      ],
+      "cons": [
+        "Best features need a paid plan",
+        "Can state wrong facts confidently"
+      ],
+      "url": "https://chatgpt.com",
+      "released": 2022
+    },
+    {
+      "name": "Claude",
+      "company": "Anthropic",
+      "category": "Chat assistant",
+      "does": "AI assistant strong at writing, analysis, long documents and coding.",
+      "cost": "Freemium",
+      "pros": [
+        "Strong writing and reasoning",
+        "Handles long documents well"
+      ],
+      "cons": [
+        "Usage limits on lower plans",
+        "Fewer built-in media tools than some rivals"
+      ],
+      "url": "https://claude.ai",
+      "released": 2023
+    },
+    {
+      "name": "Gemini",
+      "company": "Google",
+      "category": "Chat assistant",
+      "does": "Google's AI assistant, connected to Search, Gmail, Docs and YouTube.",
+      "cost": "Freemium",
+      "pros": [
+        "Deep Google integration",
+        "Strong multimodal input (images, video)"
+      ],
+      "cons": [
+        "Best models on paid plans",
+        "Integration value depends on using Google apps"
+      ],
+      "url": "https://gemini.google.com",
+      "released": 2023
+    },
+    {
+      "name": "Microsoft Copilot",
+      "company": "Microsoft",
+      "category": "Chat assistant",
+      "does": "AI assistant in Windows, Edge, Bing and Microsoft apps.",
+      "cost": "Freemium",
+      "pros": [
+        "Built into Windows and Edge",
+        "Web-grounded answers"
+      ],
+      "cons": [
+        "Office integration needs a Microsoft 365 plan",
+        "Several Copilot brands can be confusing"
+      ],
+      "url": "https://copilot.microsoft.com",
+      "released": 2023
+    },
+    {
+      "name": "Grok",
+      "company": "xAI",
+      "category": "Chat assistant",
+      "does": "AI assistant integrated with X (Twitter), with real-time post search.",
+      "cost": "Freemium",
+      "pros": [
+        "Real-time information from X",
+        "Fast model updates"
+      ],
+      "cons": [
+        "Closely tied to the X platform",
+        "Fewer enterprise features"
+      ],
+      "url": "https://grok.com",
+      "released": 2023
+    },
+    {
+      "name": "Meta AI",
+      "company": "Meta",
+      "category": "Chat assistant",
+      "does": "AI assistant inside WhatsApp, Instagram, Facebook and Messenger, built on Llama.",
+      "cost": "Free",
+      "pros": [
+        "Free and inside apps people already use",
+        "Built on open-weight Llama models"
+      ],
+      "cons": [
+        "Fewer power-user features",
+        "Availability varies by country"
+      ],
+      "url": "https://www.meta.ai",
+      "released": 2023
+    },
+    {
+      "name": "DeepSeek",
+      "company": "DeepSeek",
+      "category": "Chat assistant",
+      "does": "Chat app and low-cost API for DeepSeek's open-weight reasoning models.",
+      "cost": "Free app; pay-per-use API",
+      "pros": [
+        "Strong reasoning at low cost",
+        "Open-weight models you can self-host"
+      ],
+      "cons": [
+        "Data stored in China may not suit some organizations",
+        "Fewer integrations"
+      ],
+      "url": "https://www.deepseek.com",
+      "released": 2023
+    },
+    {
+      "name": "Le Chat",
+      "company": "Mistral AI",
+      "category": "Chat assistant",
+      "does": "Mistral's assistant with web search, documents and code.",
+      "cost": "Freemium",
+      "pros": [
+        "European provider (EU data options)",
+        "Fast responses"
+      ],
+      "cons": [
+        "Smaller ecosystem",
+        "Fewer third-party integrations"
+      ],
+      "url": "https://chat.mistral.ai",
+      "released": 2024
+    },
+    {
+      "name": "Perplexity",
+      "company": "Perplexity AI",
+      "category": "Search / research",
+      "does": "AI answer engine that searches the web and cites its sources.",
+      "cost": "Freemium",
+      "pros": [
+        "Citations for every answer",
+        "Good for quick research"
+      ],
+      "cons": [
+        "Quality depends on the sources it finds",
+        "Advanced modes need a paid plan"
+      ],
+      "url": "https://www.perplexity.ai",
+      "released": 2022
+    },
+    {
+      "name": "Kimi",
+      "company": "Moonshot AI",
+      "category": "Chat assistant",
+      "does": "AI assistant known for long-context reading and open-weight models.",
+      "cost": "Freemium",
+      "pros": [
+        "Very long context",
+        "Open-weight model releases"
+      ],
+      "cons": [
+        "Less known outside China",
+        "Fewer English-language resources"
+      ],
+      "url": "https://www.kimi.com",
+      "released": 2023
+    },
+    {
+      "name": "Qwen Chat",
+      "company": "Alibaba",
+      "category": "Chat assistant",
+      "does": "Chat app for Alibaba's Qwen models, many of them open-weight.",
+      "cost": "Free app; pay-per-use API",
+      "pros": [
+        "Strong open-weight model family",
+        "Good multilingual support"
+      ],
+      "cons": [
+        "Smaller app ecosystem in the West",
+        "Data residency considerations"
+      ],
+      "url": "https://chat.qwen.ai",
+      "released": 2023
+    },
+    {
+      "name": "NotebookLM",
+      "company": "Google",
+      "category": "Search / research",
+      "does": "Research notebook that answers only from the documents you upload, and makes audio overviews.",
+      "cost": "Freemium",
+      "pros": [
+        "Answers grounded in your own sources",
+        "Audio overviews of documents"
+      ],
+      "cons": [
+        "Limited to the sources you add",
+        "Fewer export options"
+      ],
+      "url": "https://notebooklm.google.com",
+      "released": 2023
+    },
+    {
+      "name": "Claude Code",
+      "company": "Anthropic",
+      "category": "Coding",
+      "does": "Agentic coding tool in the terminal and IDEs: reads code, edits files, runs commands and tests.",
+      "cost": "Subscription or pay-per-use API",
+      "pros": [
+        "Handles multi-step tasks end to end",
+        "Extensible with skills, plugins and MCP"
+      ],
+      "cons": [
+        "Usage costs can grow on big tasks",
+        "Changes still need human review"
+      ],
+      "url": "https://code.claude.com/docs/en/overview",
+      "released": 2025
+    },
+    {
+      "name": "GitHub Copilot",
+      "company": "GitHub (Microsoft)",
+      "category": "Coding",
+      "does": "AI pair programmer in VS Code, JetBrains and GitHub: completions, chat and coding agent.",
+      "cost": "Freemium",
+      "pros": [
+        "Works in the most popular editors",
+        "Tight GitHub integration"
+      ],
+      "cons": [
+        "Suggestions need review",
+        "Best models on paid tiers"
+      ],
+      "url": "https://github.com/features/copilot",
+      "released": 2021
+    },
+    {
+      "name": "Cursor",
+      "company": "Anysphere",
+      "category": "Coding",
+      "does": "AI-first code editor (VS Code-based) with chat, multi-file edits and agents.",
+      "cost": "Freemium",
+      "pros": [
+        "Very smooth editor experience",
+        "Understands the whole codebase"
+      ],
+      "cons": [
+        "Usage limits and pricing changes",
+        "Separate editor to adopt"
+      ],
+      "url": "https://cursor.com",
+      "released": 2023
+    },
+    {
+      "name": "OpenAI Codex",
+      "company": "OpenAI",
+      "category": "Coding",
+      "does": "Coding agent in the terminal (open-source CLI), IDE and cloud.",
+      "cost": "Included with ChatGPT plans or API",
+      "pros": [
+        "Open-source CLI",
+        "Can run tasks in the cloud"
+      ],
+      "cons": [
+        "Best experience needs a paid plan",
+        "Agent output needs review"
+      ],
+      "url": "https://github.com/openai/codex",
+      "released": 2025
+    },
+    {
+      "name": "Gemini CLI",
+      "company": "Google",
+      "category": "Coding",
+      "does": "Open-source AI agent for the terminal, powered by Gemini.",
+      "cost": "Free tier; pay-per-use API",
+      "pros": [
+        "Open source",
+        "Generous free usage"
+      ],
+      "cons": [
+        "Newer, still maturing",
+        "Quality varies by task"
+      ],
+      "url": "https://github.com/google-gemini/gemini-cli",
+      "released": 2025
+    },
+    {
+      "name": "Windsurf",
+      "company": "Cognition",
+      "category": "Coding",
+      "does": "AI code editor with an agent that plans and edits across files.",
+      "cost": "Freemium",
+      "pros": [
+        "Agentic multi-file editing",
+        "Free tier available"
+      ],
+      "cons": [
+        "Ownership and roadmap changed in 2025",
+        "Credit-based limits"
+      ],
+      "url": "https://windsurf.com",
+      "released": 2024
+    },
+    {
+      "name": "Aider",
+      "company": "Open source",
+      "category": "Coding",
+      "does": "AI pair programming in the terminal that edits files and commits to git.",
+      "cost": "Free (bring your own API key)",
+      "pros": [
+        "Open source, works with many models",
+        "Clean git commits"
+      ],
+      "cons": [
+        "Terminal only",
+        "You pay for the model API"
+      ],
+      "url": "https://aider.chat",
+      "released": 2023
+    },
+    {
+      "name": "Replit Agent",
+      "company": "Replit",
+      "category": "App builder",
+      "does": "Builds and deploys full apps in the browser from a prompt.",
+      "cost": "Freemium",
+      "pros": [
+        "Idea to deployed app quickly",
+        "No local setup"
+      ],
+      "cons": [
+        "Costs grow with usage",
+        "Less control than local development"
+      ],
+      "url": "https://replit.com",
+      "released": 2024
+    },
+    {
+      "name": "Lovable",
+      "company": "Lovable",
+      "category": "App builder",
+      "does": "Creates web apps from chat, with a database and deployment.",
+      "cost": "Freemium",
+      "pros": [
+        "Fast prototypes for non-developers",
+        "Exports code to GitHub"
+      ],
+      "cons": [
+        "Complex apps need a developer",
+        "Credit limits"
+      ],
+      "url": "https://lovable.dev",
+      "released": 2024
+    },
+    {
+      "name": "v0",
+      "company": "Vercel",
+      "category": "App builder",
+      "does": "Generates React and Next.js user interfaces and apps from prompts.",
+      "cost": "Freemium",
+      "pros": [
+        "High-quality UI code",
+        "One-click deploy on Vercel"
+      ],
+      "cons": [
+        "Best inside the Vercel/Next.js stack",
+        "Credit limits"
+      ],
+      "url": "https://v0.app",
+      "released": 2023
+    },
+    {
+      "name": "Bolt.new",
+      "company": "StackBlitz",
+      "category": "App builder",
+      "does": "Builds, runs and deploys full-stack web apps in the browser from prompts.",
+      "cost": "Freemium",
+      "pros": [
+        "Runs everything in the browser",
+        "Quick prototypes"
+      ],
+      "cons": [
+        "Token limits",
+        "Larger projects get harder to manage"
+      ],
+      "url": "https://bolt.new",
+      "released": 2024
+    },
+    {
+      "name": "Midjourney",
+      "company": "Midjourney",
+      "category": "Image",
+      "does": "Generates artistic, high-quality images from text prompts.",
+      "cost": "Subscription",
+      "pros": [
+        "Excellent aesthetic quality",
+        "Strong style control"
+      ],
+      "cons": [
+        "No free tier",
+        "Less precise with text in images"
+      ],
+      "url": "https://www.midjourney.com",
+      "released": 2022
+    },
+    {
+      "name": "GPT Image (in ChatGPT)",
+      "company": "OpenAI",
+      "category": "Image",
+      "does": "Creates and edits images by chatting in ChatGPT or through the API.",
+      "cost": "Freemium; API pay-per-use",
+      "pros": [
+        "Follows detailed instructions well",
+        "Good text rendering in images"
+      ],
+      "cons": [
+        "Can be slow",
+        "Content restrictions"
+      ],
+      "url": "https://chatgpt.com",
+      "released": 2025
+    },
+    {
+      "name": "Stable Diffusion",
+      "company": "Stability AI",
+      "category": "Image",
+      "does": "Open image-generation models you can run locally or in apps.",
+      "cost": "Open models; paid API/licenses for some uses",
+      "pros": [
+        "Runs on your own GPU",
+        "Huge community of add-ons"
+      ],
+      "cons": [
+        "Setup takes effort",
+        "License terms vary by model"
+      ],
+      "url": "https://stability.ai",
+      "released": 2022
+    },
+    {
+      "name": "Adobe Firefly",
+      "company": "Adobe",
+      "category": "Image",
+      "does": "Image and design generation built into Photoshop, Illustrator and Express.",
+      "cost": "Freemium; included in Creative Cloud",
+      "pros": [
+        "Inside Adobe tools designers already use",
+        "Designed to be commercially safe"
+      ],
+      "cons": [
+        "Credit limits",
+        "Best with an Adobe subscription"
+      ],
+      "url": "https://firefly.adobe.com",
+      "released": 2023
+    },
+    {
+      "name": "FLUX",
+      "company": "Black Forest Labs",
+      "category": "Image",
+      "does": "Image-generation models, some open-weight, known for realism and prompt accuracy.",
+      "cost": "Open models; paid API",
+      "pros": [
+        "High realism",
+        "Open-weight versions"
+      ],
+      "cons": [
+        "Needs a strong GPU locally",
+        "Licenses differ between versions"
+      ],
+      "url": "https://bfl.ai",
+      "released": 2024
+    },
+    {
+      "name": "Ideogram",
+      "company": "Ideogram",
+      "category": "Image",
+      "does": "Image generator known for accurate text inside images (logos, posters).",
+      "cost": "Freemium",
+      "pros": [
+        "Very good typography",
+        "Easy to use"
+      ],
+      "cons": [
+        "Limited free generations",
+        "Fewer editing tools"
+      ],
+      "url": "https://ideogram.ai",
+      "released": 2023
+    },
+    {
+      "name": "Canva AI",
+      "company": "Canva",
+      "category": "Design",
+      "does": "AI design tools in Canva: images, writing, presentations and editing.",
+      "cost": "Freemium",
+      "pros": [
+        "Very easy for non-designers",
+        "Templates plus AI in one place"
+      ],
+      "cons": [
+        "Best AI features on paid plans",
+        "Less control than pro design tools"
+      ],
+      "url": "https://www.canva.com",
+      "released": 2023
+    },
+    {
+      "name": "Sora",
+      "company": "OpenAI",
+      "category": "Video",
+      "does": "Generates video clips from text and images.",
+      "cost": "Included with some ChatGPT plans",
+      "pros": [
+        "High-quality video generation",
+        "Easy prompt-to-video"
+      ],
+      "cons": [
+        "Usage limits",
+        "Availability varies by country"
+      ],
+      "url": "https://openai.com/sora",
+      "released": 2024
+    },
+    {
+      "name": "Veo",
+      "company": "Google",
+      "category": "Video",
+      "does": "Google's video-generation model, available in Gemini, Flow and Vertex AI.",
+      "cost": "Paid plans; pay-per-use API",
+      "pros": [
+        "Realistic motion, native audio",
+        "Available through Google Cloud"
+      ],
+      "cons": [
+        "Best access on paid plans",
+        "Short clip lengths"
+      ],
+      "url": "https://deepmind.google/models/veo/",
+      "released": 2024
+    },
+    {
+      "name": "Runway",
+      "company": "Runway",
+      "category": "Video",
+      "does": "AI video generation and editing tools for creators.",
+      "cost": "Freemium",
+      "pros": [
+        "Many video tools in one place",
+        "Popular with creators"
+      ],
+      "cons": [
+        "Credits run out fast",
+        "Learning curve"
+      ],
+      "url": "https://runwayml.com",
+      "released": 2018
+    },
+    {
+      "name": "Kling",
+      "company": "Kuaishou",
+      "category": "Video",
+      "does": "Text- and image-to-video generation.",
+      "cost": "Freemium",
+      "pros": [
+        "Strong motion quality",
+        "Free credits"
+      ],
+      "cons": [
+        "Queues at busy times",
+        "Data residency considerations"
+      ],
+      "url": "https://klingai.com",
+      "released": 2024
+    },
+    {
+      "name": "Synthesia",
+      "company": "Synthesia",
+      "category": "Video",
+      "does": "Creates presenter videos with AI avatars for training and communications.",
+      "cost": "Subscription",
+      "pros": [
+        "No camera or studio needed",
+        "Many languages"
+      ],
+      "cons": [
+        "Avatars can feel artificial",
+        "Paid plans for most uses"
+      ],
+      "url": "https://www.synthesia.io",
+      "released": 2017
+    },
+    {
+      "name": "HeyGen",
+      "company": "HeyGen",
+      "category": "Video",
+      "does": "AI avatar videos and video translation with lip-sync.",
+      "cost": "Freemium",
+      "pros": [
+        "Good video translation",
+        "Custom avatars"
+      ],
+      "cons": [
+        "Credit-based pricing",
+        "Watermarks on free plan"
+      ],
+      "url": "https://www.heygen.com",
+      "released": 2022
+    },
+    {
+      "name": "ElevenLabs",
+      "company": "ElevenLabs",
+      "category": "Audio / voice",
+      "does": "Realistic text-to-speech, voice cloning and dubbing.",
+      "cost": "Freemium",
+      "pros": [
+        "Very natural voices",
+        "Many languages including Arabic"
+      ],
+      "cons": [
+        "Character limits",
+        "Voice cloning needs careful consent"
+      ],
+      "url": "https://elevenlabs.io",
+      "released": 2023
+    },
+    {
+      "name": "Suno",
+      "company": "Suno",
+      "category": "Audio / voice",
+      "does": "Generates songs with vocals from a text prompt.",
+      "cost": "Freemium",
+      "pros": [
+        "Complete songs in seconds",
+        "Easy to use"
+      ],
+      "cons": [
+        "Commercial use needs a paid plan",
+        "Copyright questions in the industry"
+      ],
+      "url": "https://suno.com",
+      "released": 2023
+    },
+    {
+      "name": "Whisper",
+      "company": "OpenAI",
+      "category": "Audio / voice",
+      "does": "Open-source speech-to-text model for transcription and translation.",
+      "cost": "Free (open source); paid API",
+      "pros": [
+        "Accurate, many languages",
+        "Runs locally"
+      ],
+      "cons": [
+        "Needs setup to run locally",
+        "No live meeting features by itself"
+      ],
+      "url": "https://github.com/openai/whisper",
+      "released": 2022
+    },
+    {
+      "name": "Otter.ai",
+      "company": "Otter.ai",
+      "category": "Meetings",
+      "does": "Transcribes and summarizes meetings in Zoom, Teams and Google Meet.",
+      "cost": "Freemium",
+      "pros": [
+        "Automatic meeting notes",
+        "Searchable transcripts"
+      ],
+      "cons": [
+        "Free minutes are limited",
+        "Best accuracy in English"
+      ],
+      "url": "https://otter.ai",
+      "released": 2016
+    },
+    {
+      "name": "Fireflies.ai",
+      "company": "Fireflies.ai",
+      "category": "Meetings",
+      "does": "AI meeting assistant: records, transcribes and summarizes calls.",
+      "cost": "Freemium",
+      "pros": [
+        "Integrates with CRMs and tools",
+        "Action-item summaries"
+      ],
+      "cons": [
+        "Bot joining calls can bother attendees",
+        "Advanced features paid"
+      ],
+      "url": "https://fireflies.ai",
+      "released": 2019
+    },
+    {
+      "name": "Microsoft 365 Copilot",
+      "company": "Microsoft",
+      "category": "Productivity",
+      "does": "AI inside Word, Excel, PowerPoint, Outlook and Teams, grounded in your work data.",
+      "cost": "Paid add-on / business plans",
+      "pros": [
+        "Works across your Office files and mail",
+        "Enterprise security controls"
+      ],
+      "cons": [
+        "Costly per user",
+        "Value depends on how well data is organized"
+      ],
+      "url": "https://www.microsoft.com/microsoft-365/copilot",
+      "released": 2023
+    },
+    {
+      "name": "Gemini for Google Workspace",
+      "company": "Google",
+      "category": "Productivity",
+      "does": "Gemini inside Gmail, Docs, Sheets, Slides and Meet.",
+      "cost": "Included in many Workspace plans",
+      "pros": [
+        "Native in Google apps",
+        "Helps draft and summarize"
+      ],
+      "cons": [
+        "Features vary by plan",
+        "Admin setup for organizations"
+      ],
+      "url": "https://workspace.google.com/solutions/ai/",
+      "released": 2023
+    },
+    {
+      "name": "Notion AI",
+      "company": "Notion Labs",
+      "category": "Productivity",
+      "does": "AI writing, search and Q&A across your Notion workspace.",
+      "cost": "Included in paid plans",
+      "pros": [
+        "Searches all your notes and docs",
+        "Good for teams already on Notion"
+      ],
+      "cons": [
+        "Only as useful as your Notion content",
+        "Requires a paid plan"
+      ],
+      "url": "https://www.notion.com/product/ai",
+      "released": 2023
+    },
+    {
+      "name": "Grammarly",
+      "company": "Grammarly (Superhuman)",
+      "category": "Writing",
+      "does": "AI writing assistant for grammar, tone and rewriting everywhere you type.",
+      "cost": "Freemium",
+      "pros": [
+        "Works in most apps and browsers",
+        "Great for clear English"
+      ],
+      "cons": [
+        "Advanced rewriting is paid",
+        "Mainly for English"
+      ],
+      "url": "https://www.grammarly.com",
+      "released": 2009
+    },
+    {
+      "name": "Gamma",
+      "company": "Gamma",
+      "category": "Presentations",
+      "does": "Creates presentations, documents and web pages from a prompt.",
+      "cost": "Freemium",
+      "pros": [
+        "Fast good-looking decks",
+        "Exports to PowerPoint and PDF"
+      ],
+      "cons": [
+        "Credit limits",
+        "Less fine control than PowerPoint"
+      ],
+      "url": "https://gamma.app",
+      "released": 2022
+    },
+    {
+      "name": "Hugging Face",
+      "company": "Hugging Face",
+      "category": "Developer platform",
+      "does": "Hub for open models, datasets and demo apps (Spaces), plus the Transformers library.",
+      "cost": "Free; paid compute and enterprise",
+      "pros": [
+        "The largest open-model hub",
+        "Huge community and docs"
+      ],
+      "cons": [
+        "Model quality varies widely",
+        "Check each model's license"
+      ],
+      "url": "https://huggingface.co",
+      "released": 2016
+    },
+    {
+      "name": "LangChain",
+      "company": "LangChain",
+      "category": "Framework",
+      "does": "Framework for building LLM apps and agents (chains, tools, RAG); LangGraph for agent workflows.",
+      "cost": "Open source; paid LangSmith",
+      "pros": [
+        "Many integrations",
+        "Large community"
+      ],
+      "cons": [
+        "Abstractions can feel heavy",
+        "Fast-changing APIs"
+      ],
+      "url": "https://www.langchain.com",
+      "released": 2022
+    },
+    {
+      "name": "LlamaIndex",
+      "company": "LlamaIndex",
+      "category": "Framework",
+      "does": "Framework for connecting LLMs to your data: ingestion, indexing and RAG.",
+      "cost": "Open source; paid cloud",
+      "pros": [
+        "Strong for RAG and documents",
+        "Good data connectors"
+      ],
+      "cons": [
+        "Learning curve",
+        "Overlaps with other frameworks"
+      ],
+      "url": "https://www.llamaindex.ai",
+      "released": 2022
+    },
+    {
+      "name": "Ollama",
+      "company": "Ollama",
+      "category": "Local AI",
+      "does": "Runs open models (Llama, Qwen, Gemma and more) on your own computer with one command.",
+      "cost": "Free (open source)",
+      "pros": [
+        "Private and offline",
+        "Very easy setup"
+      ],
+      "cons": [
+        "Needs a capable GPU or Mac for big models",
+        "Slower than cloud for large models"
+      ],
+      "url": "https://ollama.com",
+      "released": 2023
+    },
+    {
+      "name": "LM Studio",
+      "company": "Element Labs",
+      "category": "Local AI",
+      "does": "Desktop app to download, chat with and serve local models.",
+      "cost": "Free",
+      "pros": [
+        "Friendly graphical interface",
+        "OpenAI-compatible local server"
+      ],
+      "cons": [
+        "Limited by your hardware",
+        "Not open source"
+      ],
+      "url": "https://lmstudio.ai",
+      "released": 2023
+    },
+    {
+      "name": "vLLM",
+      "company": "Open source",
+      "category": "Model serving",
+      "does": "High-throughput engine for serving LLMs (PagedAttention, continuous batching).",
+      "cost": "Free (open source)",
+      "pros": [
+        "Excellent GPU throughput",
+        "OpenAI-compatible API"
+      ],
+      "cons": [
+        "Needs GPU infrastructure",
+        "Operational know-how required"
+      ],
+      "url": "https://docs.vllm.ai",
+      "released": 2023
+    },
+    {
+      "name": "NVIDIA NIM",
+      "company": "NVIDIA",
+      "category": "Model serving",
+      "does": "Prebuilt, optimized containers for running AI models on NVIDIA GPUs.",
+      "cost": "Free to try; NVIDIA AI Enterprise license for production",
+      "pros": [
+        "Optimized performance on NVIDIA GPUs",
+        "Standard APIs"
+      ],
+      "cons": [
+        "Tied to NVIDIA hardware",
+        "Production licensing cost"
+      ],
+      "url": "https://www.nvidia.com/en-us/ai-data-science/products/nim-microservices/",
+      "released": 2024
+    },
+    {
+      "name": "PyTorch",
+      "company": "PyTorch Foundation (Linux Foundation)",
+      "category": "Framework",
+      "does": "The most widely used deep-learning framework for research and production.",
+      "cost": "Free (open source)",
+      "pros": [
+        "Industry standard for AI research",
+        "Huge ecosystem"
+      ],
+      "cons": [
+        "Production deployment needs extra tools",
+        "GPU setup can be tricky"
+      ],
+      "url": "https://pytorch.org",
+      "released": 2016
+    },
+    {
+      "name": "TensorFlow",
+      "company": "Google",
+      "category": "Framework",
+      "does": "Deep-learning framework with strong production and mobile tooling.",
+      "cost": "Free (open source)",
+      "pros": [
+        "Mature deployment tools (TF Lite, Serving)",
+        "Good documentation"
+      ],
+      "cons": [
+        "Less popular than PyTorch for new research",
+        "Steeper learning curve"
+      ],
+      "url": "https://www.tensorflow.org",
+      "released": 2015
+    },
+    {
+      "name": "Weights & Biases",
+      "company": "Weights & Biases (CoreWeave)",
+      "category": "MLOps",
+      "does": "Experiment tracking, model evaluation and LLM observability.",
+      "cost": "Freemium",
+      "pros": [
+        "Great experiment dashboards",
+        "Widely used in ML teams"
+      ],
+      "cons": [
+        "Costs grow for large teams",
+        "Another platform to manage"
+      ],
+      "url": "https://wandb.ai",
+      "released": 2017
+    },
+    {
+      "name": "Pinecone",
+      "company": "Pinecone",
+      "category": "Vector database",
+      "does": "Managed vector database for semantic search and RAG.",
+      "cost": "Freemium",
+      "pros": [
+        "Fully managed, scales easily",
+        "Simple API"
+      ],
+      "cons": [
+        "Cloud only",
+        "Costs grow with data size"
+      ],
+      "url": "https://www.pinecone.io",
+      "released": 2021
+    },
+    {
+      "name": "Chroma",
+      "company": "Chroma",
+      "category": "Vector database",
+      "does": "Open-source embedding database, easy to start with for RAG.",
+      "cost": "Free (open source); paid cloud",
+      "pros": [
+        "Very easy to start",
+        "Runs locally"
+      ],
+      "cons": [
+        "Fewer enterprise features than managed options",
+        "Self-hosting at scale needs work"
+      ],
+      "url": "https://www.trychroma.com",
+      "released": 2023
+    },
+    {
+      "name": "n8n",
+      "company": "n8n",
+      "category": "Automation",
+      "does": "Workflow automation with AI agent nodes; self-hostable.",
+      "cost": "Free self-hosted; paid cloud",
+      "pros": [
+        "Self-host for privacy",
+        "Hundreds of integrations"
+      ],
+      "cons": [
+        "Setup for self-hosting",
+        "Complex flows get hard to maintain"
+      ],
+      "url": "https://n8n.io",
+      "released": 2019
+    },
+    {
+      "name": "Zapier",
+      "company": "Zapier",
+      "category": "Automation",
+      "does": "No-code automation across thousands of apps, with AI steps and agents.",
+      "cost": "Freemium",
+      "pros": [
+        "Huge app catalog",
+        "No code needed"
+      ],
+      "cons": [
+        "Gets expensive at scale",
+        "Cloud only"
+      ],
+      "url": "https://zapier.com",
+      "released": 2011
+    },
+    {
+      "name": "Amazon Bedrock",
+      "company": "AWS",
+      "category": "Cloud AI platform",
+      "does": "Managed access to many foundation models (Claude, Llama, Mistral, Amazon Nova) with agents and RAG.",
+      "cost": "Pay-per-use",
+      "pros": [
+        "Many models behind one API",
+        "AWS security and compliance"
+      ],
+      "cons": [
+        "AWS learning curve",
+        "Costs need monitoring"
+      ],
+      "url": "https://aws.amazon.com/bedrock/",
+      "released": 2023
+    },
+    {
+      "name": "Azure AI Foundry",
+      "company": "Microsoft",
+      "category": "Cloud AI platform",
+      "does": "Build, evaluate and deploy AI apps and agents with OpenAI and other models on Azure.",
+      "cost": "Pay-per-use",
+      "pros": [
+        "Enterprise-ready with Azure security",
+        "OpenAI models plus many others"
+      ],
+      "cons": [
+        "Azure complexity",
+        "Quotas and regions vary"
+      ],
+      "url": "https://ai.azure.com",
+      "released": 2024
+    },
+    {
+      "name": "Google Vertex AI",
+      "company": "Google",
+      "category": "Cloud AI platform",
+      "does": "Google Cloud platform for Gemini and other models, training, tuning and MLOps.",
+      "cost": "Pay-per-use",
+      "pros": [
+        "Full ML lifecycle in one place",
+        "Native Gemini access"
+      ],
+      "cons": [
+        "Google Cloud learning curve",
+        "Costs need monitoring"
+      ],
+      "url": "https://cloud.google.com/vertex-ai",
+      "released": 2021
+    },
+    {
+      "name": "OpenRouter",
+      "company": "OpenRouter",
+      "category": "Model gateway",
+      "does": "One API to access hundreds of models from many providers.",
+      "cost": "Pay-per-use",
+      "pros": [
+        "Switch models easily",
+        "Single bill"
+      ],
+      "cons": [
+        "Extra hop between you and the provider",
+        "Provider policies differ"
+      ],
+      "url": "https://openrouter.ai",
+      "released": 2023
+    },
+    {
+      "name": "Groq",
+      "company": "Groq",
+      "category": "Model serving",
+      "does": "Very fast inference for open models on custom LPU chips, via API.",
+      "cost": "Free tier; pay-per-use",
+      "pros": [
+        "Extremely fast responses",
+        "Low cost for open models"
+      ],
+      "cons": [
+        "Mostly open models only",
+        "Rate limits on free tier"
+      ],
+      "url": "https://groq.com",
+      "released": 2024
+    },
+    {
+      "name": "MCP (Model Context Protocol)",
+      "company": "Open standard (started by Anthropic)",
+      "category": "Developer platform",
+      "does": "Open protocol for connecting AI apps to tools and data sources.",
+      "cost": "Free (open standard)",
+      "pros": [
+        "Write a tool once, use it in many AI apps",
+        "Growing ecosystem"
+      ],
+      "cons": [
+        "Security of third-party servers must be checked",
+        "Still evolving"
+      ],
+      "url": "https://modelcontextprotocol.io",
+      "released": 2024
+    },
+    {
+      "name": "Manus",
+      "company": "Manus AI",
+      "category": "AI agent",
+      "does": "General AI agent that plans and carries out multi-step tasks: research, reports, slides, websites and data analysis.",
+      "cost": "Freemium",
+      "pros": [
+        "Handles long tasks end to end",
+        "Shows each step it takes"
+      ],
+      "cons": [
+        "Credits run out quickly",
+        "Results need checking"
+      ],
+      "url": "https://manus.im",
+      "released": 2025
+    },
+    {
+      "name": "Claude Cowork",
+      "company": "Anthropic",
+      "category": "AI agent",
+      "does": "Agent mode in the Claude desktop app that works with your files and apps to complete office tasks for you.",
+      "cost": "Included in paid plans",
+      "pros": [
+        "Works on real files and folders",
+        "Uses Claude connectors and skills"
+      ],
+      "cons": [
+        "Needs a paid Claude plan",
+        "Newer product, still evolving"
+      ],
+      "url": "https://claude.com",
+      "released": 2026
+    },
+    {
+      "name": "OpenClaw",
+      "company": "Open source",
+      "category": "AI agent",
+      "does": "Open-source personal AI agent you run yourself; it connects to chat apps and tools and can act on your behalf.",
+      "cost": "Free (open source)",
+      "pros": [
+        "Self-hosted and customizable",
+        "Works with many models"
+      ],
+      "cons": [
+        "You manage setup and security",
+        "Broad permissions carry risk"
+      ],
+      "url": "https://github.com/openclaw/openclaw",
+      "released": 2025
+    },
+    {
+      "name": "Google Opal",
+      "company": "Google",
+      "category": "App builder",
+      "does": "Google Labs tool for building and sharing small AI-powered mini apps from plain-language prompts, with no code.",
+      "cost": "Free",
+      "pros": [
+        "No coding needed",
+        "Easy to share apps"
+      ],
+      "cons": [
+        "Experimental Labs product",
+        "Limited to simple workflows"
+      ],
+      "url": "https://opal.google",
+      "released": 2025
+    },
+    {
+      "name": "Base44",
+      "company": "Wix",
+      "category": "App builder",
+      "does": "Builds full web apps with a database, login and hosting from a text prompt.",
+      "cost": "Freemium",
+      "pros": [
+        "Backend included, no setup",
+        "Fast from idea to working app"
+      ],
+      "cons": [
+        "Lock-in to its platform",
+        "Complex apps need more control"
+      ],
+      "url": "https://base44.com",
+      "released": 2025
+    },
+    {
+      "name": "CrewAI",
+      "company": "CrewAI",
+      "category": "Framework",
+      "does": "Python framework and platform for building teams of role-based AI agents that work together on tasks.",
+      "cost": "Free (open source); paid enterprise",
+      "pros": [
+        "Simple role/task model",
+        "Large community"
+      ],
+      "cons": [
+        "Multi-agent runs can be costly",
+        "Debugging agent teams is hard"
+      ],
+      "url": "https://www.crewai.com",
+      "released": 2023
+    },
+    {
+      "name": "Dify",
+      "company": "LangGenius",
+      "category": "Developer platform",
+      "does": "Open-source platform for building LLM apps, RAG chatbots and agent workflows with a visual editor.",
+      "cost": "Open source; paid cloud",
+      "pros": [
+        "Visual workflows plus API",
+        "Self-hostable"
+      ],
+      "cons": [
+        "Many features to learn",
+        "Self-hosting needs upkeep"
+      ],
+      "url": "https://dify.ai",
+      "released": 2023
+    },
+    {
+      "name": "Pipecat",
+      "company": "Daily",
+      "category": "Framework",
+      "does": "Open-source Python framework for building real-time voice and multimodal AI agents.",
+      "cost": "Free (open source)",
+      "pros": [
+        "Low-latency voice pipelines",
+        "Works with many speech and LLM providers"
+      ],
+      "cons": [
+        "Developer-only tool",
+        "Real-time systems are complex to tune"
+      ],
+      "url": "https://www.pipecat.ai",
+      "released": 2024
+    },
+    {
+      "name": "Postiz",
+      "company": "Postiz",
+      "category": "Social media",
+      "does": "Open-source social media scheduler with AI help for writing posts, plus analytics across many networks.",
+      "cost": "Free self-hosted; paid cloud",
+      "pros": [
+        "Many social networks in one place",
+        "Can be driven by AI agents"
+      ],
+      "cons": [
+        "Self-hosting takes effort",
+        "Fewer features than big paid tools"
+      ],
+      "url": "https://postiz.com",
+      "released": 2024
+    },
+    {
+      "name": "Harvey",
+      "company": "Harvey",
+      "category": "Legal",
+      "does": "AI platform built for law firms and legal teams: research, drafting, contract review and regulatory tracking.",
+      "cost": "Paid add-on / business plans",
+      "pros": [
+        "Built for legal workflows",
+        "Enterprise security"
+      ],
+      "cons": [
+        "Enterprise pricing only",
+        "Lawyers must still verify output"
+      ],
+      "url": "https://www.harvey.ai",
+      "released": 2022
+    },
+    {
+      "name": "Jobright",
+      "company": "Jobright",
+      "category": "Careers",
+      "does": "AI job-search copilot that matches you to jobs, tailors your resume and helps you apply.",
+      "cost": "Freemium",
+      "pros": [
+        "Personalized job matches",
+        "Saves time on applications"
+      ],
+      "cons": [
+        "Best features are paid",
+        "Job coverage varies by country"
+      ],
+      "url": "https://jobright.ai",
+      "released": 2023
+    },
+    {
+      "name": "Teal",
+      "company": "Teal",
+      "category": "Careers",
+      "does": "Resume builder and job tracker with AI to tailor resumes and cover letters to each job.",
+      "cost": "Freemium",
+      "pros": [
+        "Strong job tracker",
+        "Resume tailoring per job"
+      ],
+      "cons": [
+        "AI features mostly paid",
+        "Focused on the US job market"
+      ],
+      "url": "https://www.tealhq.com",
+      "released": 2019
+    },
+    {
+      "name": "Writesonic",
+      "company": "Writesonic",
+      "category": "Writing",
+      "does": "AI writing and SEO platform for blog posts, marketing copy and search visibility.",
+      "cost": "Freemium",
+      "pros": [
+        "SEO-focused tools",
+        "Many content templates"
+      ],
+      "cons": [
+        "Output can sound generic",
+        "Credits limit heavy use"
+      ],
+      "url": "https://writesonic.com",
+      "released": 2020
+    },
+    {
+      "name": "Rytr",
+      "company": "Rytr",
+      "category": "Writing",
+      "does": "Simple, low-cost AI writing assistant with templates for emails, ads and posts.",
+      "cost": "Freemium",
+      "pros": [
+        "Cheap and easy",
+        "Many languages and tones"
+      ],
+      "cons": [
+        "Short-form focus",
+        "Less capable than top chat assistants"
+      ],
+      "url": "https://rytr.me",
+      "released": 2021
+    },
+    {
+      "name": "Sudowrite",
+      "company": "Sudowrite",
+      "category": "Writing",
+      "does": "AI writing partner for fiction authors: brainstorming, describing scenes and drafting chapters.",
+      "cost": "Subscription",
+      "pros": [
+        "Built for storytelling",
+        "Keeps your story bible in context"
+      ],
+      "cons": [
+        "Paid only after the trial",
+        "Not for business writing"
+      ],
+      "url": "https://www.sudowrite.com",
+      "released": 2020
+    },
+    {
+      "name": "Lex",
+      "company": "Lex",
+      "category": "Writing",
+      "does": "Clean AI-assisted word processor for drafting, editing and getting feedback on writing.",
+      "cost": "Freemium",
+      "pros": [
+        "Distraction-free editor",
+        "Helpful AI feedback"
+      ],
+      "cons": [
+        "Fewer features than Google Docs or Word",
+        "Advanced models need a paid plan"
+      ],
+      "url": "https://lex.page",
+      "released": 2022
+    },
+    {
+      "name": "TinyWow",
+      "company": "TinyWow",
+      "category": "Utilities",
+      "does": "Free website with many small tools: PDF conversion, image editing and AI writing helpers.",
+      "cost": "Free",
+      "pros": [
+        "No sign-up for most tools",
+        "Many tools in one place"
+      ],
+      "cons": [
+        "Ads on the site",
+        "Basic compared with paid apps"
+      ],
+      "url": "https://tinywow.com",
+      "released": 2021
+    }
   ]
 }

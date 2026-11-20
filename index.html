@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You Can Du AI</title>
 <meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
-<link rel="stylesheet" href="style.css?v=49">
+<link rel="stylesheet" href="style.css?v=50">
 </head>
 <body>
 <header>
@@ -55,7 +55,7 @@
       <button type="button" class="home-card" data-goto="chat"><strong>Ask the AI Tutor</strong><span>Ask any AI question and save the answers to your library.</span></button>
       <button type="button" class="home-card" data-goto="test"><strong>Take a test</strong><span>Choose topics, question types, difficulty and how many questions.</span></button>
       <button type="button" class="home-card" data-goto="courses"><strong>Build Your Dream AI Course</strong><span>Create a full course on any subject, with PDF slides and a test.</span></button>
-      <button type="button" class="home-card" data-goto="tools"><strong>AI Tools Dictionary</strong><span>66 AI tools: company, what it does, cost, pros and cons.</span></button>
+      <button type="button" class="home-card" data-goto="tools"><strong>AI Tools Dictionary</strong><span>83 AI tools: company, what it does, cost, pros and cons.</span></button>
       <button type="button" class="home-card" data-goto="certs"><strong>AI Certification</strong><span>Exams from AWS, Microsoft, Google, NVIDIA and more: cost, topics, prerequisites, free prep.</span></button>
       <button type="button" class="home-card" data-goto="library"><strong>Knowledge library</strong><span>Curated sites, papers, slides and Arabic sources, plus your notes.</span></button>
       <button type="button" class="home-card" data-goto="youtube"><strong>Video Speech to Text - Transcribe &amp; Summarize</strong><span>Turn any YouTube video into a summary or transcript.</span></button>
@@ -200,8 +200,8 @@
         <label>Search <input id="tool-q" type="search" placeholder="Name, company or feature"></label>
         <label>Category <select id="tool-cat"><option value="">All categories</option></select></label>
         <label>Cost <select id="tool-cost"><option value="">Any cost</option><option value="free">Has a free option</option><option value="freemium">Freemium</option><option value="paid">Paid / subscription</option><option value="usage">Pay-per-use</option></select></label>
-        <label>Sort by <select id="tool-sort"><option value="">Default order</option><option value="az">Name (A–Z)</option><option value="za">Name (Z–A)</option><option value="free">Cost: free first</option><option value="paid">Cost: paid first</option><option value="vendor">Vendor (A–Z)</option><option value="type">Type / category (A–Z)</option></select></label>
       </div>
+      <label class="sort-row">Sort by <select id="tool-sort"><option value="">Default order</option><option value="az">Name (A–Z)</option><option value="za">Name (Z–A)</option><option value="free">Cost: free first</option><option value="paid">Cost: paid first</option><option value="vendor">Vendor (A–Z)</option><option value="type">Type / category (A–Z)</option><option value="new">Release date: newest first</option><option value="old">Release date: oldest first</option></select></label>
       <p id="tools-count" class="muted"></p>
     </div>
     <div id="tools-list"></div>
@@ -330,6 +330,6 @@
     </div>
   </section>
 </main>
-<script type="module" src="app.js?v=49"></script>
+<script type="module" src="app.js?v=50"></script>
 </body>
 </html>
