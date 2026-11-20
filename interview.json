@@ -85,6 +85,10 @@
       "followup": "Why can benchmark results be misleading (contamination, saturation, different setups), and how would you benchmark for your own use case?"
     },
     {
+      "q": "What is \"Tron\", and how does it relate to Project Maven, Google, and the Maven Smart System?",
+      "followup": "Why did Google walk away from Project Maven, and what does that tell you about ethics and employee pressure when AI is used for defense?"
+    },
+    {
       "q": "Define these 118 AI and tech terms.",
       "followup": "Why does it matter to explain technical terms simply to non-technical stakeholders, and which of these do you use most in your work?",
       "terms": [
