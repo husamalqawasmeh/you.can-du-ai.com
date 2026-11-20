@@ -5273,6 +5273,22 @@
       "answer": "Anthropic",
       "explanation": "It works in the terminal, IDE, desktop and web.",
       "sourceId": ""
+    },
+    {
+      "id": "q3-49",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "EUV lithography machines, needed to make the most advanced chips such as AI GPUs, print chip patterns with light of about which wavelength?",
+      "options": [
+        "13.5 nm",
+        "193 nm",
+        "365 nm",
+        "1,000 nm"
+      ],
+      "answer": "13.5 nm",
+      "explanation": "ASML is the only maker of EUV machines. They create 13.5 nm light from tin plasma and use mirrors in a vacuum; each machine costs well over $150 million.",
+      "sourceId": ""
     }
   ]
 }

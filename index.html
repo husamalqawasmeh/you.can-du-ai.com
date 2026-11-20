@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You Can Du AI</title>
 <meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
-<link rel="stylesheet" href="style.css?v=44">
+<link rel="stylesheet" href="style.css?v=45">
 </head>
 <body>
 <header>
@@ -15,12 +15,11 @@
     <button data-tab="home" class="active">Home</button>
     <button data-tab="chat">Ask the AI Tutor</button>
     <button data-tab="test">Take a test</button>
-    <button data-tab="courses">Courses</button>
-    <button data-tab="certs">AI Certifications</button>
+    <button data-tab="courses">BYD course</button>
     <button data-tab="tools">AI Tools Dictionary</button>
-    <button data-tab="questions">Questions</button>
+    <button data-tab="certs">AI Certification</button>
     <button data-tab="library">Knowledge library</button>
-    <button data-tab="youtube">Video Transcribe and Summary</button>
+    <button data-tab="youtube">Video S-to-T</button>
     <button data-tab="data">Admin functions</button>
     <button data-tab="suggestions">Learning Suggestions</button>
     <button data-tab="interview">Interview prep</button>
@@ -49,7 +48,7 @@
       <p class="muted">Enter your student ID to start; your progress is saved under it on this device. Questions? <a href="#" data-mail="question">Email the admin</a></p>
     </form>
     <div class="card hero">
-      <h2>Welcome to You Can Du AI</h2>
+      <h2>WELCOME TO <strong><em class="brand">You.can-du-ai</em></strong> dot com</h2>
       <p>Learn AI step by step, from GPUs and model sizing to LLMs, agents and context engineering. Read curated sources, ask the AI tutor, build your own courses, and test yourself.</p>
     </div>
     <div class="home-grid">
@@ -57,9 +56,9 @@
       <button type="button" class="home-card" data-goto="test"><strong>Take a test</strong><span>Choose topics, question types, difficulty and how many questions.</span></button>
       <button type="button" class="home-card" data-goto="courses"><strong>Build your own course</strong><span>Create a full course on any subject, with PDF slides and a test.</span></button>
       <button type="button" class="home-card" data-goto="tools"><strong>AI Tools Dictionary</strong><span>66 AI tools: company, what it does, cost, pros and cons.</span></button>
-      <button type="button" class="home-card" data-goto="certs"><strong>AI Certifications</strong><span>Exams from AWS, Microsoft, Google, NVIDIA and more: cost, topics, prerequisites, free prep.</span></button>
+      <button type="button" class="home-card" data-goto="certs"><strong>AI Certification</strong><span>Exams from AWS, Microsoft, Google, NVIDIA and more: cost, topics, prerequisites, free prep.</span></button>
       <button type="button" class="home-card" data-goto="library"><strong>Knowledge library</strong><span>Curated sites, papers, slides and Arabic sources, plus your notes.</span></button>
-      <button type="button" class="home-card" data-goto="youtube"><strong>Video Transcribe and Summary</strong><span>Turn any YouTube video into a summary or transcript.</span></button>
+      <button type="button" class="home-card" data-goto="youtube"><strong>Video Speech to Text - Transcribe and Summarize</strong><span>Turn any YouTube video into a summary or transcript.</span></button>
       <button type="button" class="home-card" data-goto="suggestions"><strong>Learning Suggestions</strong><span>Your personal study plan, based on your test results.</span></button>
       <button type="button" class="home-card" data-goto="interview"><strong>Interview prep</strong><span>Practice questions with follow-ups: repos, sites, tools, automations, chatbots.</span></button>
     </div>
@@ -130,38 +129,6 @@
     <div class="card"><h2>Test history</h2><ul id="history-list" class="list"></ul></div>
   </section>
 
-  <!-- QUESTIONS -->
-  <section id="questions" class="tab" hidden>
-    <form id="q-form" class="card">
-      <h2>Add a question</h2>
-      <div class="row">
-        <label>Topic <select name="topic" class="topic-select" required></select></label>
-        <label>Type <select name="type">
-          <option value="mcq">Multiple choice</option><option value="tf">True / False</option><option value="short">Short answer</option>
-        </select></label>
-        <label>Difficulty <select name="difficulty">
-          <option>easy</option><option selected>medium</option><option>hard</option>
-        </select></label>
-      </div>
-      <label>Question <textarea name="prompt" rows="2" required></textarea></label>
-      <label class="for-mcq">Options (one per line) <textarea name="options" rows="4"></textarea></label>
-      <label>Correct answer <input name="answer" required>
-        <small class="muted">Multiple choice: the exact option text. True/False: True or False. Short answer: separate accepted answers with |</small></label>
-      <label>Explanation (optional) <textarea name="explanation" rows="2"></textarea></label>
-      <label>Source (optional) <select name="sourceId" class="source-select"></select></label>
-      <button class="primary">Add question</button>
-    </form>
-    <div class="card">
-      <h2>Question bank <span id="q-total" class="muted"></span></h2>
-      <div class="row">
-        <label>Filter by topic <select id="q-filter-topic"><option value="">All topics</option></select></label>
-        <label>Difficulty <select id="q-filter-diff"><option value="">All levels</option><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option></select></label>
-        <label>Format <select id="q-filter-type"><option value="">All formats</option><option value="mcq">Multiple choice</option><option value="tf">True / False</option><option value="short">Short answer</option></select></label>
-        <label>Search <input id="q-search" type="search"></label>
-      </div>
-      <ul id="q-list" class="list"></ul>
-    </div>
-  </section>
 
   <!-- LIBRARY -->
   <section id="library" class="tab" hidden>
@@ -309,6 +276,35 @@
         <button class="primary">Add course</button>
       </form>
     </div>
+    <form id="q-form" class="card">
+      <h2>Add a question</h2>
+      <div class="row">
+        <label>Topic <select name="topic" class="topic-select" required></select></label>
+        <label>Type <select name="type">
+          <option value="mcq">Multiple choice</option><option value="tf">True / False</option><option value="short">Short answer</option>
+        </select></label>
+        <label>Difficulty <select name="difficulty">
+          <option>easy</option><option selected>medium</option><option>hard</option>
+        </select></label>
+      </div>
+      <label>Question <textarea name="prompt" rows="2" required></textarea></label>
+      <label class="for-mcq">Options (one per line) <textarea name="options" rows="4"></textarea></label>
+      <label>Correct answer <input name="answer" required>
+        <small class="muted">Multiple choice: the exact option text. True/False: True or False. Short answer: separate accepted answers with |</small></label>
+      <label>Explanation (optional) <textarea name="explanation" rows="2"></textarea></label>
+      <label>Source (optional) <select name="sourceId" class="source-select"></select></label>
+      <button class="primary">Add question</button>
+    </form>
+    <div class="card">
+      <h2>Question bank <span id="q-total" class="muted"></span></h2>
+      <div class="row">
+        <label>Filter by topic <select id="q-filter-topic"><option value="">All topics</option></select></label>
+        <label>Difficulty <select id="q-filter-diff"><option value="">All levels</option><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option></select></label>
+        <label>Format <select id="q-filter-type"><option value="">All formats</option><option value="mcq">Multiple choice</option><option value="tf">True / False</option><option value="short">Short answer</option></select></label>
+        <label>Search <input id="q-search" type="search"></label>
+      </div>
+      <ul id="q-list" class="list"></ul>
+    </div>
     <div class="card">
       <h2>Interview question bank</h2>
       <p class="muted">Candidate questions gathered from AI interview guides. Click <strong>Add</strong> to put one on the Interview prep list. Added questions are saved in this browser.</p>
@@ -327,6 +323,6 @@
     </div>
   </section>
 </main>
-<script type="module" src="app.js?v=44"></script>
+<script type="module" src="app.js?v=45"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=44';
-import { ADMIN_HASH } from './admin-hash.js?v=44';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=45';
+import { ADMIN_HASH } from './admin-hash.js?v=45';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -229,8 +229,8 @@ async function loadTools() {
     const list = d.tools.filter(t => (!cat || t.category === cat) && (!cost || costKind(t.cost)[cost]) &&
       (!q || [t.name, t.company, t.category, t.does].join(' ').toLowerCase().includes(q)));
     $('#tools-count').textContent = `${list.length} of ${d.tools.length} tools`;
-    $('#tools-list').innerHTML = list.map(t => `<article class="tool"><h3><a href="${esc(t.url)}" target="_blank" rel="noopener">${esc(t.name)}</a></h3>
-      <span class="tag">${esc(t.company)} · ${esc(t.category)}</span><span class="cost">${esc(t.cost)}</span><div>${esc(t.does)}</div>
+    $('#tools-list').innerHTML = list.map(t => `<article class="tool"><div class="tool-head"><h3><a href="${esc(t.url)}" target="_blank" rel="noopener">${esc(t.name)}</a></h3>
+      <span class="tag">${esc(t.company)} · ${esc(t.category)}</span><span class="cost">${esc(t.cost)}</span></div><div class="tool-does">${esc(t.does)}</div>
       <div class="pc"><div><strong class="good">Pros</strong><ul>${t.pros.map(p => `<li>${esc(p)}</li>`).join('')}</ul></div><div><strong class="bad">Cons</strong><ul>${t.cons.map(p => `<li>${esc(p)}</li>`).join('')}</ul></div></div></article>`).join('')
       || '<p class="muted">No tools match.</p>';
   };
@@ -625,7 +625,7 @@ $('#yt-save').onclick = () => {
 // ---------- interview prep (questions in interview.json) ----------
 async function loadInterview() {
   let p;
-  try { p = await (await fetch('interview.json?v=24')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
+  try { p = await (await fetch('interview.json?v=25')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
   // admin-added bank questions go after the open questions, before the exercises
   const k = p.questions.findIndex(q => q.match || q.terms || q.companies);
   p.questions.splice(k < 0 ? p.questions.length : k, 0, ...ivAdded());

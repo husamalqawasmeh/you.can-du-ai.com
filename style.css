@@ -133,10 +133,17 @@ table.cert-facts th { width: 9em; color: var(--muted); font-weight: 500; }
 @media (max-width: 560px) { .cert-group { grid-template-columns: 1fr; } }
 .cert h4 { margin: 10px 0 4px; }
 a.button { text-decoration: none; }
-.tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
-.tool { background: var(--raised); border: 1px solid var(--border-strong); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 6px; }
+.brand { color: var(--accent); }
+/* Tools: one full-width box per tool. Left half: name row + description row. Right half: Pros | Cons spanning both rows.
+   Fixed half/quarter columns keep Pros and Cons starting at the same x on every box. */
+.tools-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+.tool { background: var(--raised); border: 1px solid var(--border-strong); border-radius: 10px; padding: 12px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto 1fr; gap: 6px 20px; }
+.tool-head { grid-column: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.tool-does { grid-column: 1; }
+.tool .pc { grid-column: 2; grid-row: 1 / span 2; }
 .tool h3 { margin: 0; font-size: 1rem; }
-.tool .cost { align-self: flex-start; font-size: .78rem; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent); }
+.tool .cost { font-size: .78rem; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent); }
+@media (max-width: 700px) { .tool { grid-template-columns: 1fr; } .tool .pc { grid-column: 1; grid-row: auto; } }
 .tool ul { margin: 0; padding-inline-start: 18px; font-size: .88rem; }
 .tool .pc { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .tool .pc strong { font-size: .8rem; }
