@@ -558,7 +558,7 @@
       ]
     },
     {
-      "q": "Define these 124 AI and tech terms.",
+      "q": "Define these 125 AI and tech terms.",
       "followup": "Why does it matter to explain technical terms simply to non-technical stakeholders, and which of these do you use most in your work?",
       "terms": [
         [
@@ -1036,6 +1036,10 @@
         [
           "Docker / container",
           "Packaging an app with everything it needs so it runs the same way on any machine."
+        ],
+        [
+          "Red Hat OpenShift",
+          "Red Hat's enterprise Kubernetes platform for building, deploying and running containerized apps (including AI workloads through OpenShift AI) on-premises or in any cloud."
         ],
         [
           "CNAME (DNS record)",
