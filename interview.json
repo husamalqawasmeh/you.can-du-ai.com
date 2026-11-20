@@ -93,6 +93,467 @@
       "followup": "Why was that paper a turning point, and how does its idea show up in the AI tools you use today?"
     },
     {
+      "q": "Choose one AI company (for example Google, OpenAI, Anthropic, Microsoft or NVIDIA) and list as many of its products as you can.",
+      "followup": "Which of those products would you use in a real project, and why?",
+      "companies": [
+        [
+          "OpenAI",
+          [
+            [
+              "ChatGPT",
+              "Chat assistant app (web, desktop, mobile) with Free, Plus, Pro, Team and Enterprise plans."
+            ],
+            [
+              "GPT models (GPT-5 family, GPT-4o)",
+              "Flagship language and multimodal models."
+            ],
+            [
+              "o-series reasoning models",
+              "Models that think step by step before answering (o1, o3, o4-mini)."
+            ],
+            [
+              "gpt-oss",
+              "Open-weight language models."
+            ],
+            [
+              "OpenAI API / Platform",
+              "Developer API, including the Responses API and Assistants API."
+            ],
+            [
+              "Agents SDK",
+              "Framework for building multi-agent workflows."
+            ],
+            [
+              "Codex",
+              "Coding agent (CLI, IDE and cloud)."
+            ],
+            [
+              "Sora",
+              "Text-to-video model and app."
+            ],
+            [
+              "GPT Image / DALL·E",
+              "Image generation models."
+            ],
+            [
+              "Whisper and TTS / Realtime API",
+              "Speech-to-text, text-to-speech and live voice conversations."
+            ],
+            [
+              "Embeddings (text-embedding-3)",
+              "Vector embeddings for search and RAG."
+            ],
+            [
+              "Deep Research",
+              "Agent that researches the web and writes cited reports."
+            ],
+            [
+              "ChatGPT Agent / Operator",
+              "Agent that uses a browser to complete tasks."
+            ],
+            [
+              "ChatGPT Atlas",
+              "Web browser with ChatGPT built in."
+            ],
+            [
+              "Custom GPTs and GPT Store",
+              "User-built ChatGPT versions with their own instructions and tools."
+            ]
+          ]
+        ],
+        [
+          "Google",
+          [
+            [
+              "Gemini app",
+              "Chat assistant (web, Android, iOS), with Google AI Pro and Ultra plans."
+            ],
+            [
+              "Gemini models (Pro, Flash, Flash-Lite)",
+              "Flagship multimodal model family."
+            ],
+            [
+              "Gemma",
+              "Open-weight models."
+            ],
+            [
+              "Google AI Studio and Gemini API",
+              "Free studio and API for developers."
+            ],
+            [
+              "Vertex AI",
+              "Google Cloud enterprise ML and generative AI platform (Model Garden, Agent Builder)."
+            ],
+            [
+              "Gemini CLI and Gemini Code Assist",
+              "Coding agent in the terminal and assistant in the IDE."
+            ],
+            [
+              "Jules",
+              "Asynchronous coding agent."
+            ],
+            [
+              "NotebookLM",
+              "Research notebook that answers from your sources and makes audio overviews."
+            ],
+            [
+              "Imagen",
+              "Text-to-image model."
+            ],
+            [
+              "Veo",
+              "Text-to-video model."
+            ],
+            [
+              "Lyria",
+              "Music generation model."
+            ],
+            [
+              "Gemini for Workspace",
+              "AI in Gmail, Docs, Sheets, Slides and Meet."
+            ],
+            [
+              "AI Overviews / AI Mode in Search",
+              "Generative answers in Google Search."
+            ],
+            [
+              "TPU (Tensor Processing Unit)",
+              "Custom AI chips offered through Google Cloud."
+            ],
+            [
+              "TensorFlow, JAX, Keras",
+              "Machine learning frameworks."
+            ],
+            [
+              "Agent Development Kit (ADK) and A2A",
+              "Framework for building agents and the Agent2Agent protocol."
+            ]
+          ]
+        ],
+        [
+          "Anthropic",
+          [
+            [
+              "Claude app",
+              "Chat assistant (web, desktop, mobile) with Free, Pro, Max, Team and Enterprise plans."
+            ],
+            [
+              "Claude models (Opus, Sonnet, Haiku)",
+              "Model family from most capable to fastest and cheapest."
+            ],
+            [
+              "Claude API / Claude Developer Platform",
+              "Developer API with tool use, prompt caching and batch processing."
+            ],
+            [
+              "Claude Code",
+              "Agentic coding tool for the terminal, IDE, desktop and web."
+            ],
+            [
+              "Claude Agent SDK",
+              "Framework for building agents on the same harness as Claude Code."
+            ],
+            [
+              "MCP (Model Context Protocol)",
+              "Open standard Anthropic created for connecting AI to tools and data."
+            ],
+            [
+              "Artifacts",
+              "Interactive documents, apps and pages created in Claude."
+            ],
+            [
+              "Projects",
+              "Workspaces with shared files and instructions."
+            ],
+            [
+              "Computer use",
+              "Lets Claude operate a computer through screenshots, mouse and keyboard."
+            ],
+            [
+              "Claude in Chrome",
+              "Browser extension that lets Claude act in web pages."
+            ],
+            [
+              "Agent Skills",
+              "Packaged instructions and scripts Claude loads for specific tasks."
+            ],
+            [
+              "Claude for Enterprise / Education",
+              "Business and university plans with admin and security controls."
+            ]
+          ]
+        ],
+        [
+          "Microsoft",
+          [
+            [
+              "Microsoft Copilot",
+              "Consumer AI assistant (Windows, web, mobile)."
+            ],
+            [
+              "Microsoft 365 Copilot",
+              "AI in Word, Excel, PowerPoint, Outlook and Teams."
+            ],
+            [
+              "GitHub Copilot",
+              "AI coding assistant and coding agent."
+            ],
+            [
+              "Azure AI Foundry",
+              "Platform to build, evaluate and deploy AI apps and agents."
+            ],
+            [
+              "Azure OpenAI Service",
+              "OpenAI models hosted on Azure."
+            ],
+            [
+              "Copilot Studio",
+              "Low-code builder for custom copilots and agents."
+            ],
+            [
+              "Phi",
+              "Small open-weight language models."
+            ],
+            [
+              "MAI models",
+              "Microsoft AI in-house models (text, voice, image)."
+            ],
+            [
+              "Semantic Kernel and AutoGen",
+              "SDKs for building AI apps and multi-agent systems."
+            ],
+            [
+              "Maia",
+              "Custom AI accelerator chip for Azure."
+            ]
+          ]
+        ],
+        [
+          "Meta",
+          [
+            [
+              "Llama",
+              "Open-weight model family."
+            ],
+            [
+              "Meta AI",
+              "Assistant inside WhatsApp, Instagram, Facebook, Messenger and the Meta AI app."
+            ],
+            [
+              "PyTorch",
+              "The most widely used deep learning framework (now under the Linux Foundation)."
+            ],
+            [
+              "Segment Anything (SAM)",
+              "Image and video segmentation models."
+            ],
+            [
+              "Ray-Ban Meta smart glasses",
+              "Glasses with a built-in AI assistant."
+            ],
+            [
+              "FAISS",
+              "Library for fast vector similarity search."
+            ],
+            [
+              "Llama Stack",
+              "Tools and APIs for building apps on Llama."
+            ]
+          ]
+        ],
+        [
+          "NVIDIA",
+          [
+            [
+              "Data-center GPUs (H100, H200, Blackwell B200/GB200)",
+              "The main hardware for AI training and inference."
+            ],
+            [
+              "DGX systems and DGX Cloud",
+              "Complete AI supercomputers, on-premises or in the cloud."
+            ],
+            [
+              "GeForce RTX",
+              "Consumer GPUs, also used for local AI."
+            ],
+            [
+              "DGX Spark / Jetson",
+              "Desktop AI computer and edge AI modules."
+            ],
+            [
+              "CUDA",
+              "Programming platform for GPU computing."
+            ],
+            [
+              "cuDNN, TensorRT, TensorRT-LLM",
+              "Libraries that speed up deep learning training and inference."
+            ],
+            [
+              "NIM microservices",
+              "Ready-to-run containers for deploying AI models."
+            ],
+            [
+              "NeMo",
+              "Framework to build, customize and guard generative AI models."
+            ],
+            [
+              "Nemotron",
+              "Open models and datasets from NVIDIA."
+            ],
+            [
+              "NVLink, InfiniBand, Spectrum-X",
+              "Networking to connect GPUs and servers."
+            ],
+            [
+              "Omniverse and Isaac",
+              "Simulation, digital twins and robotics platforms."
+            ],
+            [
+              "AI Enterprise",
+              "Supported enterprise software suite for AI."
+            ]
+          ]
+        ],
+        [
+          "Amazon (AWS)",
+          [
+            [
+              "Amazon Bedrock",
+              "Managed access to many foundation models, with agents, guardrails and knowledge bases."
+            ],
+            [
+              "Amazon SageMaker AI",
+              "Platform to build, train and deploy ML models."
+            ],
+            [
+              "Amazon Nova",
+              "Amazon's own foundation models."
+            ],
+            [
+              "Amazon Q",
+              "AI assistant for business and for developers."
+            ],
+            [
+              "Kiro",
+              "Agentic IDE for spec-driven development."
+            ],
+            [
+              "Trainium and Inferentia",
+              "Custom chips for AI training and inference."
+            ],
+            [
+              "Alexa+",
+              "Generative-AI version of the Alexa voice assistant."
+            ],
+            [
+              "Bedrock AgentCore",
+              "Services to run and operate AI agents securely."
+            ]
+          ]
+        ],
+        [
+          "xAI",
+          [
+            [
+              "Grok",
+              "Chat assistant in its own app and on X."
+            ],
+            [
+              "Grok models and xAI API",
+              "Language and reasoning models for developers."
+            ],
+            [
+              "Grok Imagine",
+              "Image and video generation."
+            ],
+            [
+              "Colossus",
+              "Large GPU supercomputer used to train Grok."
+            ]
+          ]
+        ],
+        [
+          "Mistral AI",
+          [
+            [
+              "Le Chat",
+              "Chat assistant."
+            ],
+            [
+              "Mistral models (Large, Medium, Small)",
+              "Commercial and open-weight models."
+            ],
+            [
+              "Codestral and Devstral",
+              "Coding models."
+            ],
+            [
+              "Pixtral",
+              "Vision-language models."
+            ],
+            [
+              "Mistral OCR",
+              "Document understanding and OCR."
+            ],
+            [
+              "La Plateforme / API",
+              "Developer platform and API."
+            ]
+          ]
+        ],
+        [
+          "DeepSeek",
+          [
+            [
+              "DeepSeek chat app",
+              "Free chat assistant."
+            ],
+            [
+              "DeepSeek-V3 family",
+              "Open-weight Mixture-of-Experts language models."
+            ],
+            [
+              "DeepSeek-R1",
+              "Open-weight reasoning model."
+            ],
+            [
+              "DeepSeek API",
+              "Low-cost developer API."
+            ],
+            [
+              "DeepSeek-Coder",
+              "Coding models."
+            ]
+          ]
+        ],
+        [
+          "Alibaba",
+          [
+            [
+              "Qwen models",
+              "Open-weight and commercial language, vision and coding models."
+            ],
+            [
+              "Qwen Chat",
+              "Chat assistant."
+            ],
+            [
+              "Qwen Code",
+              "Coding agent for the terminal."
+            ],
+            [
+              "Model Studio (Alibaba Cloud)",
+              "Platform and API for Qwen models."
+            ],
+            [
+              "Wan",
+              "Video generation models."
+            ]
+          ]
+        ]
+      ]
+    },
+    {
       "q": "Define these 124 AI and tech terms.",
       "followup": "Why does it matter to explain technical terms simply to non-technical stakeholders, and which of these do you use most in your work?",
       "terms": [
