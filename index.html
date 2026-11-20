@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You Can Du AI</title>
 <meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
-<link rel="stylesheet" href="style.css?v=41">
+<link rel="stylesheet" href="style.css?v=42">
 </head>
 <body>
 <header>
@@ -155,6 +155,8 @@
       <h2>Question bank <span id="q-total" class="muted"></span></h2>
       <div class="row">
         <label>Filter by topic <select id="q-filter-topic"><option value="">All topics</option></select></label>
+        <label>Difficulty <select id="q-filter-diff"><option value="">All levels</option><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option></select></label>
+        <label>Format <select id="q-filter-type"><option value="">All formats</option><option value="mcq">Multiple choice</option><option value="tf">True / False</option><option value="short">Short answer</option></select></label>
         <label>Search <input id="q-search" type="search"></label>
       </div>
       <ul id="q-list" class="list"></ul>
@@ -325,6 +327,6 @@
     </div>
   </section>
 </main>
-<script type="module" src="app.js?v=41"></script>
+<script type="module" src="app.js?v=42"></script>
 </body>
 </html>

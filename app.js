@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=41';
-import { ADMIN_HASH } from './admin-hash.js?v=41';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=42';
+import { ADMIN_HASH } from './admin-hash.js?v=42';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -75,9 +75,9 @@ function render() {
   $('#source-list').innerHTML = srcs.map(s => `<li dir="auto"><div>${/^https?:\/\//i.test(s.url) ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>` : esc(s.title)} <span class="tag">${esc(s.type)} · ${esc(s.topic)}${s.lang === 'ar' ? ' · العربية' : ''}</span>${s.notes ? `<div class="muted">${esc(s.notes)}</div>` : ''}</div><button class="del" data-del="sources" data-id="${esc(s.id)}">Delete</button></li>`).join('') || '<li class="muted">Nothing yet.</li>';
 
   // questions
-  const qt = $('#q-filter-topic').value, term = $('#q-search').value.toLowerCase();
-  const qs = db.questions.filter(q => (!qt || q.topic === qt) && (!term || q.prompt.toLowerCase().includes(term)));
-  $('#q-total').textContent = `(${db.questions.length} total)`;
+  const qt = $('#q-filter-topic').value, qd = $('#q-filter-diff').value, qy = $('#q-filter-type').value, term = $('#q-search').value.toLowerCase();
+  const qs = db.questions.filter(q => (!qt || q.topic === qt) && (!qd || q.difficulty === qd) && (!qy || q.type === qy) && (!term || q.prompt.toLowerCase().includes(term)));
+  $('#q-total').textContent = `(${qs.length === db.questions.length ? '' : qs.length + ' shown of '}${db.questions.length} total)`;
   $('#q-list').innerHTML = qs.map(q => `<li><div>${esc(q.prompt)}<div class="tag">${esc(q.topic)} · ${TYPE[q.type]} · ${esc(q.difficulty)} · Answer: ${esc(q.answer)}</div></div><button class="del" data-del="questions" data-id="${esc(q.id)}">Delete</button></li>`).join('') || '<li class="muted">No questions match.</li>';
 
   // courses
@@ -240,7 +240,7 @@ async function loadTools() {
 loadTools();
 
 $('#lib-filter-topic').onchange =$('#lib-filter-type').onchange = $('#lib-filter-lang').onchange = render;
-$('#q-filter-topic').onchange = render;
+$('#q-filter-topic').onchange = $('#q-filter-diff').onchange = $('#q-filter-type').onchange = render;
 $('#q-search').oninput = render;
 
 // ---------- deletes ----------
