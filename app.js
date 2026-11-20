@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=46';
-import { ADMIN_HASH } from './admin-hash.js?v=46';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=47';
+import { ADMIN_HASH } from './admin-hash.js?v=47';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -228,13 +228,19 @@ async function loadTools() {
     const q = $('#tool-q').value.trim().toLowerCase(), cat = $('#tool-cat').value, cost = $('#tool-cost').value;
     const list = d.tools.filter(t => (!cat || t.category === cat) && (!cost || costKind(t.cost)[cost]) &&
       (!q || [t.name, t.company, t.category, t.does].join(' ').toLowerCase().includes(q)));
+    // cost rank: free/open 0, freemium/free tier 1, pay-per-use only 2, subscription/paid 3
+    const rank = t => { const k = costKind(t.cost); return k.free ? 0 : k.freemium ? 1 : k.usage && !k.paid ? 2 : 3; };
+    const by = f => (a, b) => f(a, b) || a.name.localeCompare(b.name);
+    const sorts = { az: by(() => 0), za: (a, b) => b.name.localeCompare(a.name), free: by((a, b) => rank(a) - rank(b)), paid: by((a, b) => rank(b) - rank(a)),
+      vendor: by((a, b) => a.company.localeCompare(b.company)), type: by((a, b) => a.category.localeCompare(b.category)) };
+    if (sorts[$('#tool-sort').value]) list.sort(sorts[$('#tool-sort').value]);
     $('#tools-count').textContent = `${list.length} of ${d.tools.length} tools`;
     $('#tools-list').innerHTML = list.map(t => `<article class="tool"><div class="tool-head"><h3><a href="${esc(t.url)}" target="_blank" rel="noopener">${esc(t.name)}</a></h3>
       <span class="tag">${esc(t.company)} · ${esc(t.category)}</span><span class="cost">${esc(t.cost)}</span></div><div class="tool-does">${esc(t.does)}</div>
       <div class="pc"><div><strong class="good">Pros</strong><ul>${t.pros.map(p => `<li>${esc(p)}</li>`).join('')}</ul></div><div><strong class="bad">Cons</strong><ul>${t.cons.map(p => `<li>${esc(p)}</li>`).join('')}</ul></div></div></article>`).join('')
       || '<p class="muted">No tools match.</p>';
   };
-  $('#tool-q').oninput = $('#tool-cat').onchange = $('#tool-cost').onchange = show;
+  $('#tool-q').oninput = $('#tool-cat').onchange = $('#tool-cost').onchange = $('#tool-sort').onchange = show;
   show();
 }
 loadTools();

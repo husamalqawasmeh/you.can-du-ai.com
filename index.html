@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You Can Du AI</title>
 <meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
-<link rel="stylesheet" href="style.css?v=46">
+<link rel="stylesheet" href="style.css?v=47">
 </head>
 <body>
 <header>
@@ -200,6 +200,7 @@
         <label>Search <input id="tool-q" type="search" placeholder="Name, company or feature"></label>
         <label>Category <select id="tool-cat"><option value="">All categories</option></select></label>
         <label>Cost <select id="tool-cost"><option value="">Any cost</option><option value="free">Has a free option</option><option value="freemium">Freemium</option><option value="paid">Paid / subscription</option><option value="usage">Pay-per-use</option></select></label>
+        <label>Sort by <select id="tool-sort"><option value="">Default order</option><option value="az">Name (A–Z)</option><option value="za">Name (Z–A)</option><option value="free">Cost: free first</option><option value="paid">Cost: paid first</option><option value="vendor">Vendor (A–Z)</option><option value="type">Type / category (A–Z)</option></select></label>
       </div>
       <p id="tools-count" class="muted"></p>
     </div>
@@ -329,6 +330,6 @@
     </div>
   </section>
 </main>
-<script type="module" src="app.js?v=46"></script>
+<script type="module" src="app.js?v=47"></script>
 </body>
 </html>
