@@ -44,7 +44,7 @@ fieldset { border: 1px solid var(--border); border-radius: 6px; margin: 0 0 12px
    A floated legend becomes a normal grid item, so it stretches to the full row height. */
 #test-config fieldset { display: grid; grid-template-columns: 170px 1fr; padding: 0; overflow: hidden; border-color: var(--border-strong); }
 #test-config legend { float: left; margin: 0; padding: 8px 10px; font-weight: 600; background: var(--raised); border-right: 1px solid var(--border-strong); }
-#test-config .checks { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px 12px; padding: 8px 10px; align-content: center; }
+#test-config .checks { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px 12px; padding: 8px 10px; align-content: center; font-size: .88rem; }
 #test-config .checks label { display: flex; gap: 6px; align-items: baseline; overflow-wrap: break-word; min-width: 0; }
 @media (max-width: 1000px) { #test-config .checks { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); } }
 @media (max-width: 560px) {
