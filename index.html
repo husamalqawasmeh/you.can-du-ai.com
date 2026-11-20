@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You Can Du AI</title>
 <meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
-<link rel="stylesheet" href="style.css?v=62">
+<link rel="stylesheet" href="style.css?v=63">
 </head>
 <body>
 <header>
@@ -109,16 +109,16 @@
     <form id="test-config" class="card">
       <h2>Set up your test</h2>
       <label>How many questions? <input type="number" name="count" min="1" value="10" required></label>
-      <fieldset><legend>Topics (none = all)</legend><div id="cfg-topics" class="checks"></div></fieldset>
-      <fieldset><legend>AI vendors (none = all)</legend><div id="cfg-vendors" class="checks"></div></fieldset>
-      <fieldset><legend>Question types (none = all)</legend><div class="checks">
+      <fieldset><legend>Topics<span class="legend-sub">(none = all)</span></legend><div id="cfg-topics" class="checks"></div></fieldset>
+      <fieldset><legend>AI vendors<span class="legend-sub">(none = all)</span></legend><div id="cfg-vendors" class="checks"></div></fieldset>
+      <fieldset><legend>Question types<span class="legend-sub">(none = all)</span></legend><div class="checks">
         <label><input type="checkbox" name="type" value="mcq"> Multiple choice</label>
         <label><input type="checkbox" name="type" value="tf"> True / False</label>
         <label><input type="checkbox" name="type" value="short"> Short answer</label>
         <label><input type="checkbox" name="type" value="fill"> Fill in the blank</label>
         <label><input type="checkbox" name="type" value="match"> Matching (connect lines)</label>
       </div></fieldset>
-      <fieldset><legend>Difficulty (none = all)</legend><div class="checks">
+      <fieldset><legend>Difficulty<span class="legend-sub">(none = all)</span></legend><div class="checks">
         <label><input type="checkbox" name="difficulty" value="easy"> Easy</label>
         <label><input type="checkbox" name="difficulty" value="medium"> Medium</label>
         <label><input type="checkbox" name="difficulty" value="hard"> Hard</label>
@@ -332,6 +332,6 @@
     </div>
   </section>
 </main>
-<script type="module" src="app.js?v=62"></script>
+<script type="module" src="app.js?v=63"></script>
 </body>
 </html>
