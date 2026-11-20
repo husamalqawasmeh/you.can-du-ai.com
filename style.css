@@ -89,8 +89,9 @@ small { display: block; }
 .home-card { text-align: start; background: var(--raised); border: 1px solid var(--border-strong); border-top: 4px solid var(--accent); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 2px 6px rgb(0 0 0 / .25); transition: transform .12s, border-color .12s; }
 .home-card strong { font-size: 1.02rem; }
 .home-card span { color: var(--muted); font-size: .9rem; }
-.home-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-@media (prefers-reduced-motion: reduce) { .home-card { transition: none; } .home-card:hover { transform: none; } }
+.home-card:hover, .home-card.hl { border-color: var(--accent); transform: translateY(-2px); }
+.home-card.hl { box-shadow: 0 0 0 2px var(--accent), 0 2px 6px rgb(0 0 0 / .25); }
+@media (prefers-reduced-motion: reduce) { .home-card { transition: none; } .home-card:hover, .home-card.hl { transform: none; } }
 a { color: var(--accent); }
 .topbar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; }
 #user-box { font-size: .9rem; color: var(--muted); }

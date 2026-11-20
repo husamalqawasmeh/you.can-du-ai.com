@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=59';
-import { ADMIN_HASH } from './admin-hash.js?v=59';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=60';
+import { ADMIN_HASH } from './admin-hash.js?v=60';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -32,7 +32,13 @@ function showTab(name) {
   document.querySelectorAll('nav button').forEach(x => x.classList.toggle('active', x.dataset.tab === name));
   document.querySelectorAll('.tab').forEach(t => t.hidden = t.id !== name);
 }
-document.querySelectorAll('nav button').forEach(b => b.onclick = () => showTab(b.dataset.tab));
+document.querySelectorAll('nav button').forEach(b => {
+  b.onclick = () => showTab(b.dataset.tab);
+  // on the home page, hovering (or tabbing to) a menu button highlights its matching card below
+  const hl = on => document.querySelectorAll(`.home-card[data-goto="${b.dataset.tab}"]`).forEach(c => c.classList.toggle('hl', on));
+  b.addEventListener('mouseenter', () => hl(true)); b.addEventListener('mouseleave', () => hl(false));
+  b.addEventListener('focus', () => hl(true)); b.addEventListener('blur', () => hl(false));
+});
 $('#home').onclick = e => { const b = e.target.closest('[data-goto]'); if (b) showTab(b.dataset.goto); };
 
 // ---------- rendering ----------
