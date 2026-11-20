@@ -5305,6 +5305,22 @@
       "answer": "Git is a version control tool that runs on your computer; a GitHub repository is a Git repository hosted online for sharing and collaboration",
       "explanation": "Git tracks changes locally (commit, branch, merge). GitHub hosts Git repositories in the cloud and adds pull requests, issues, Actions (CI/CD) and Pages.",
       "sourceId": ""
+    },
+    {
+      "id": "q3-51",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which sequence correctly describes how to turn an existing web app into a mobile app?",
+      "options": [
+        "Make the site responsive, wrap it with a tool like Capacitor (or make it a PWA), add icons and native features, build it in Android Studio / Xcode, then publish to the app stores",
+        "Rename the website to .apk and email it to users",
+        "Copy the HTML into a Word document and export it as an app",
+        "Buy a new domain name ending in .app; the site becomes a mobile app automatically"
+      ],
+      "answer": "Make the site responsive, wrap it with a tool like Capacitor (or make it a PWA), add icons and native features, build it in Android Studio / Xcode, then publish to the app stores",
+      "explanation": "Common routes: a PWA (installable from the browser), a wrapper such as Capacitor or Cordova that puts the web app in a native shell, or a rewrite with React Native or Flutter. Store apps need signing, icons, privacy details and review.",
+      "sourceId": ""
     }
   ]
 }
