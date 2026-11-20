@@ -789,7 +789,7 @@
       ]
     },
     {
-      "q": "Define these 125 AI and tech terms, grouped by area.",
+      "q": "Define these 126 AI and tech terms, grouped by area.",
       "followup": "Why does it matter to explain technical terms simply to non-technical stakeholders, and which of these do you use most in your work?",
       "terms": [
         [
@@ -1235,7 +1235,7 @@
           ]
         ],
         [
-          "Open source and licensing",
+          "Open source, licensing and pricing",
           [
             [
               "Open-weight model",
@@ -1248,6 +1248,10 @@
             [
               "Copyleft license (GPL, AGPL)",
               "An open-source license that lets you use and change the code, but if you distribute software built on it you must release the combined work under the same license, with source code. AGPL also applies when the software is offered as a network service (e.g. SaaS)."
+            ],
+            [
+              "Freemium",
+              "A pricing model where the basic product is free and users pay for premium features, higher limits or business plans (for example ChatGPT, Claude and Gemini free tiers)."
             ]
           ]
         ],

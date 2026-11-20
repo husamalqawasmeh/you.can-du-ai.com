@@ -5321,6 +5321,22 @@
       "answer": "Make the site responsive, wrap it with a tool like Capacitor (or make it a PWA), add icons and native features, build it in Android Studio / Xcode, then publish to the app stores",
       "explanation": "Common routes: a PWA (installable from the browser), a wrapper such as Capacitor or Cordova that puts the web app in a native shell, or a rewrite with React Native or Flutter. Store apps need signing, icons, privacy details and review.",
       "sourceId": ""
+    },
+    {
+      "id": "q3-52",
+      "topic": "Generative AI",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What does \"freemium\" mean when an AI tool is described as freemium?",
+      "options": [
+        "The basic version is free; you pay for premium features, higher limits or business plans",
+        "The tool is completely free forever with no paid options",
+        "You must pay before you can try anything",
+        "The tool is open source and its code is free to change"
+      ],
+      "answer": "The basic version is free; you pay for premium features, higher limits or business plans",
+      "explanation": "Free + premium: ChatGPT, Claude and Gemini all have free tiers with paid plans for more usage and features. Open source is different: the code itself is free to use and modify.",
+      "sourceId": ""
     }
   ]
 }
