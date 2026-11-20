@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=52';
-import { ADMIN_HASH } from './admin-hash.js?v=52';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=55';
+import { ADMIN_HASH } from './admin-hash.js?v=55';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -230,15 +230,21 @@ async function loadTools() {
       (!q || [t.name, t.company, t.category, t.does].join(' ').toLowerCase().includes(q)));
     // cost rank: free/open 0, freemium/free tier 1, pay-per-use only 2, subscription/paid 3
     const rank = t => { const k = costKind(t.cost); return k.free ? 0 : k.freemium ? 1 : k.usage && !k.paid ? 2 : 3; };
+    // free tools split by kind of free, used for both the order and the groups of the cost sorts
+    const FREE = ['Free', 'Free (open source)', 'Free (bring your own API key)', 'Free tier, pay for more'];
+    const freeKind = c => c === 'Free' ? 0 : /open|self-hosted/i.test(c) ? 1 : /bring your own/i.test(c) ? 2 : 3;
+    // inside a cost level: free kinds in FREE order; plain 'Freemium' before 'Freemium; ...' variants
+    const sub = (a, b) => rank(a) === 0 ? freeKind(a.cost) - freeKind(b.cost) : rank(a) === 1 ? (a.cost !== 'Freemium') - (b.cost !== 'Freemium') || a.cost.localeCompare(b.cost) : 0;
     const by = f => (a, b) => f(a, b) || a.name.localeCompare(b.name);
-    const sorts = { az: by(() => 0), za: (a, b) => b.name.localeCompare(a.name), free: by((a, b) => rank(a) - rank(b)), paid: by((a, b) => rank(b) - rank(a)),
+    const sorts = { az: by(() => 0), za: (a, b) => b.name.localeCompare(a.name), free: by((a, b) => rank(a) - rank(b) || sub(a, b)), paid: by((a, b) => rank(b) - rank(a) || sub(a, b)),
       vendor: by((a, b) => a.company.localeCompare(b.company)), type: by((a, b) => a.category.localeCompare(b.category)),
       new: by((a, b) => (b.released || 0) - (a.released || 0)), old: by((a, b) => (a.released || 9999) - (b.released || 9999)) };
     if (sorts[$('#tool-sort').value]) list.sort(sorts[$('#tool-sort').value]);
     $('#tools-count').textContent = `${list.length} of ${d.tools.length} tools`;
     // Collapsed groups that follow the sort: letter for name sorts, cost level, vendor, release year, or type (default).
     const COST = ['Free / open source', 'Freemium / free tier', 'Pay-per-use', 'Subscription / paid'];
-    const key = { az: t => t.name[0].toUpperCase(), za: t => t.name[0].toUpperCase(), free: t => COST[rank(t)], paid: t => COST[rank(t)], vendor: t => t.company, new: t => 'Released ' + (t.released || 'year unknown'), old: t => 'Released ' + (t.released || 'year unknown') }[$('#tool-sort').value] || (t => t.category);
+    const costGroup = t => rank(t) === 0 ? FREE[freeKind(t.cost)] : rank(t) === 1 ? t.cost : COST[rank(t)];
+    const key = { az: t => t.name[0].toUpperCase(), za: t => t.name[0].toUpperCase(), free: t => costGroup(t), paid: t => costGroup(t), vendor: t => t.company, new: t => 'Released ' + (t.released || 'year unknown'), old: t => 'Released ' + (t.released || 'year unknown') }[$('#tool-sort').value] || (t => t.category);
     const groups = new Map();
     for (const t of list) { const k = key(t); groups.has(k) ? groups.get(k).push(t) : groups.set(k, [t]); }
     const open = new Set([...document.querySelectorAll('#tools-list details[open]')].map(x => x.dataset.g));
