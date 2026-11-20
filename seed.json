@@ -5289,6 +5289,22 @@
       "answer": "13.5 nm",
       "explanation": "ASML is the only maker of EUV machines. They create 13.5 nm light from tin plasma and use mirrors in a vacuum; each machine costs well over $150 million.",
       "sourceId": ""
+    },
+    {
+      "id": "q3-50",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is the difference between Git and a GitHub repository?",
+      "options": [
+        "Git is a version control tool that runs on your computer; a GitHub repository is a Git repository hosted online for sharing and collaboration",
+        "They are the same thing with two names",
+        "GitHub is a programming language and Git is its compiler",
+        "Git only works on Windows; GitHub only works on Linux"
+      ],
+      "answer": "Git is a version control tool that runs on your computer; a GitHub repository is a Git repository hosted online for sharing and collaboration",
+      "explanation": "Git tracks changes locally (commit, branch, merge). GitHub hosts Git repositories in the cloud and adds pull requests, issues, Actions (CI/CD) and Pages.",
+      "sourceId": ""
     }
   ]
 }

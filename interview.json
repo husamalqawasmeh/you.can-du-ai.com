@@ -101,6 +101,10 @@
       "followup": "Why does a single supplier (ASML) for these machines matter for the AI hardware supply chain and for export controls?"
     },
     {
+      "q": "What is the difference between Git and a GitHub repository?",
+      "followup": "Why would a team use GitHub (or GitLab) on top of Git, and how do pull requests and CI/CD fit in?"
+    },
+    {
       "q": "What is Ansible, and what is an Ansible playbook? Describe a playbook you have written or would write.",
       "followup": "Does it work across remote servers, and how does it connect to them and run tasks on many hosts at once?"
     },
