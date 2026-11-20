@@ -635,6 +635,76 @@
           "SDAIA"
         ]
       ]
+    },
+    {
+      "q": "Connect each person to their best-known AI achievement.",
+      "followup": "Whose work influences how you build with AI today, and why?",
+      "match": [
+        [
+          "Geoffrey Hinton",
+          "Popularized backpropagation; \"godfather of deep learning\"; 2024 Nobel Prize in Physics"
+        ],
+        [
+          "Yann LeCun",
+          "Pioneered convolutional neural networks (LeNet); longtime Meta chief AI scientist"
+        ],
+        [
+          "Yoshua Bengio",
+          "Deep learning pioneer; neural language models and attention research (Mila)"
+        ],
+        [
+          "Andrej Karpathy",
+          "Led Tesla Autopilot AI; OpenAI founding member; coined \"vibe coding\""
+        ],
+        [
+          "Andrew Ng",
+          "Founded Google Brain and Coursera; DeepLearning.AI courses"
+        ],
+        [
+          "Fei-Fei Li",
+          "Created the ImageNet dataset"
+        ],
+        [
+          "Ian Goodfellow",
+          "Invented GANs (Generative Adversarial Networks)"
+        ],
+        [
+          "Demis Hassabis",
+          "Co-founded DeepMind; AlphaFold; 2024 Nobel Prize in Chemistry"
+        ],
+        [
+          "Ilya Sutskever",
+          "Co-created AlexNet; OpenAI co-founder and chief scientist; founded SSI"
+        ],
+        [
+          "Sam Altman",
+          "CEO of OpenAI; launched ChatGPT"
+        ],
+        [
+          "Dario Amodei",
+          "Co-founded Anthropic (Claude); CEO"
+        ],
+        [
+          "Jensen Huang",
+          "Co-founded NVIDIA; CEO behind CUDA and the AI GPU boom"
+        ],
+        [
+          "Ashish Vaswani",
+          "First author of \"Attention Is All You Need\" (the Transformer)"
+        ],
+        [
+          "Jürgen Schmidhuber",
+          "Co-invented LSTM networks (with Sepp Hochreiter)"
+        ],
+        [
+          "Alan Turing",
+          "Proposed the Turing test (1950)"
+        ],
+        [
+          "John McCarthy",
+          "Coined the term \"artificial intelligence\" (1956 Dartmouth workshop)"
+        ]
+      ]
     }
   ]
 }
