@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=39';
-import { ADMIN_HASH } from './admin-hash.js?v=39';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=40';
+import { ADMIN_HASH } from './admin-hash.js?v=40';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -203,12 +203,14 @@ async function loadCerts() {
   const show = () => {
     const v = $('#cert-vendor').value, l = $('#cert-level').value;
     const list = c.certs.filter(x => (!v || x.vendor === v) && (!l || x.level === l));
-    $('#certs-list').innerHTML = list.map(x => `<details class="card cert"><summary><strong>${esc(x.name)}</strong> <span class="tag">${esc(x.vendor)} · ${esc(x.level)} · ${esc(x.cost)}</span></summary>
+    const by = {};
+    for (const x of list) (by[x.vendor] ??= []).push(x);
+    $('#certs-list').innerHTML = Object.entries(by).map(([vendor, xs]) => `<section class="cert-group"><h3 class="cert-vendor">${esc(vendor)} <span class="tag">${xs.length} exam${xs.length === 1 ? '' : 's'}</span></h3><div>${xs.map(x => `<details class="card cert"><summary><strong>${esc(x.name)}</strong> <span class="tag">${esc(x.level)} · ${esc(x.cost)}</span></summary>
       <table class="cert-facts">${row('Exam code', x.code)}${row('Level', x.level)}${row('Cost', x.cost)}${row('Duration', x.duration)}${row('Questions', x.questions)}${row('Prerequisites', x.prerequisites)}</table>
       <h4>Modules and topics</h4><ul class="advice">${x.topics.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
       ${x.note ? `<p class="muted"><em>${esc(x.note)}</em></p>` : ''}
       <h4>Vendor courses and free material</h4><ul class="advice">${x.prep.map(p => `<li><a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.title)}</a></li>`).join('')}</ul>
-      <p><a class="button primary" href="${esc(x.url)}" target="_blank" rel="noopener">Official page: details and registration</a></p></details>`).join('') || '<p class="muted">No exams match these filters.</p>';
+      <p><a class="button primary" href="${esc(x.url)}" target="_blank" rel="noopener">Official page: details and registration</a></p></details>`).join('')}</div></section>`).join('') || '<p class="muted">No exams match these filters.</p>';
   };
   $('#cert-vendor').onchange = $('#cert-level').onchange = show;
   show();
