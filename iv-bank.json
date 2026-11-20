@@ -41,12 +41,6 @@
       "followup": "Why might a smaller embedding model be the better choice?"
     },
     {
-      "id": "bank-rag-and-retrieval-6",
-      "category": "RAG and retrieval",
-      "q": "What is hybrid search, and when does it beat pure vector search?",
-      "followup": "Why do exact keywords still matter for things like product codes and names?"
-    },
-    {
       "id": "bank-rag-and-retrieval-7",
       "category": "RAG and retrieval",
       "q": "How would you handle documents that contain tables, images and scanned pages?",
@@ -173,12 +167,6 @@
       "followup": "Why is it dangerous to let retrieved content give instructions?"
     },
     {
-      "id": "bank-agents-and-tool-use-5",
-      "category": "Agents and tool use",
-      "q": "Explain MCP and how it differs from writing custom tool integrations.",
-      "followup": "Why does a shared protocol help an AI tools ecosystem?"
-    },
-    {
       "id": "bank-agents-and-tool-use-6",
       "category": "Agents and tool use",
       "q": "How do you design tool descriptions and schemas so the model calls tools correctly?",
@@ -203,12 +191,6 @@
       "followup": "Why is deciding what to forget as important as what to remember?"
     },
     {
-      "id": "bank-evals-and-quality-1",
-      "category": "Evals and quality",
-      "q": "How would you build an eval set for a new LLM feature?",
-      "followup": "Why should real user failures feed back into the eval set?"
-    },
-    {
       "id": "bank-evals-and-quality-2",
       "category": "Evals and quality",
       "q": "What is LLM-as-a-judge, and what are its biases?",
@@ -225,12 +207,6 @@
       "category": "Evals and quality",
       "q": "How do you detect regressions when you switch to a new model version?",
       "followup": "Why can a \"better\" model still break your product?"
-    },
-    {
-      "id": "bank-evals-and-quality-5",
-      "category": "Evals and quality",
-      "q": "Which public benchmarks do you trust, and what are their limits?",
-      "followup": "Why is benchmark contamination a growing problem?"
     },
     {
       "id": "bank-system-design-and-production-1",
@@ -267,12 +243,6 @@
       "category": "System design and production",
       "q": "How do you size GPUs for serving a 70B-parameter model?",
       "followup": "Why does memory, not compute, usually decide the GPU count?"
-    },
-    {
-      "id": "bank-system-design-and-production-7",
-      "category": "System design and production",
-      "q": "How would you handle PII and sensitive data in prompts?",
-      "followup": "Why is redaction before the model call safer than after?"
     },
     {
       "id": "bank-system-design-and-production-8",
@@ -375,12 +345,6 @@
       "category": "Behavioral and experience",
       "q": "Tell me about a time you shipped an AI feature under uncertainty.",
       "followup": "Why is managing uncertainty a core skill for AI roles?"
-    },
-    {
-      "id": "bank-behavioral-and-experience-3",
-      "category": "Behavioral and experience",
-      "q": "How do you keep up with fast-moving AI research and tools?",
-      "followup": "Why is filtering the hype as important as reading the news?"
     },
     {
       "id": "bank-behavioral-and-experience-4",

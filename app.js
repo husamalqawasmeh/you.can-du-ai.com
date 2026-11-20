@@ -629,7 +629,7 @@ const IV_KEY = 'ycda-iv-added';
 function ivAdded() { try { return JSON.parse(localStorage.getItem(IV_KEY)) || []; } catch { return []; } }
 let ivBank = [];
 async function loadIvBank() {
-  try { ivBank = (await (await fetch('iv-bank.json?v=1')).json()).questions; } catch { $('#ivbank').innerHTML = '<p class="muted">Could not load the question bank.</p>'; return; }
+  try { ivBank = (await (await fetch('iv-bank.json?v=2')).json()).questions; } catch { $('#ivbank').innerHTML = '<p class="muted">Could not load the question bank.</p>'; return; }
   renderIvBank();
 }
 function renderIvBank() {
