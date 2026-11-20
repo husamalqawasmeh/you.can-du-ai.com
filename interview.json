@@ -93,6 +93,10 @@
       "followup": "Why was that paper a turning point, and how does its idea show up in the AI tools you use today?"
     },
     {
+      "q": "What is Ansible, and what is an Ansible playbook? Describe a playbook you have written or would write.",
+      "followup": "Does it work across remote servers, and how does it connect to them and run tasks on many hosts at once?"
+    },
+    {
       "q": "Choose one AI company (for example Google, OpenAI, Anthropic, Microsoft or NVIDIA) and list as many of its products as you can.",
       "followup": "Which of those products would you use in a real project, and why?",
       "companies": [
