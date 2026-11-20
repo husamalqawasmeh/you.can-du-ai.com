@@ -40,6 +40,17 @@ button, .button { cursor: pointer; display: inline-block; }
 fieldset { border: 1px solid var(--border); border-radius: 6px; margin: 0 0 12px; }
 .checks { display: flex; flex-wrap: wrap; gap: 4px 16px; }
 .checks label { margin: 0; }
+/* Test setup: category box on the left (grows with its rows), options in up to 7 aligned columns on the right.
+   A floated legend becomes a normal grid item, so it stretches to the full row height. */
+#test-config fieldset { display: grid; grid-template-columns: 170px 1fr; padding: 0; overflow: hidden; border-color: var(--border-strong); }
+#test-config legend { float: left; margin: 0; padding: 8px 10px; font-weight: 600; background: var(--raised); border-right: 1px solid var(--border-strong); }
+#test-config .checks { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px 12px; padding: 8px 10px; align-content: center; }
+#test-config .checks label { overflow-wrap: anywhere; }
+@media (max-width: 1000px) { #test-config .checks { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); } }
+@media (max-width: 560px) {
+  #test-config fieldset { grid-template-columns: 1fr; }
+  #test-config legend { border-right: 0; border-bottom: 1px solid var(--border-strong); }
+}
 .muted { color: var(--muted); }
 small { display: block; }
 .list { list-style: none; padding: 0; margin: 0; }

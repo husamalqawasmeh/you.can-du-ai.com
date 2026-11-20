@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=38';
-import { ADMIN_HASH } from './admin-hash.js?v=38';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=39';
+import { ADMIN_HASH } from './admin-hash.js?v=39';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -85,14 +85,14 @@ function render() {
   $('#gen-list').innerHTML = db.courses.slice().reverse().map(c => {
     const n = db.questions.filter(q => q.courseId === c.id).length;
     const slides = courseSlides(c);
-    return `<details class="course" dir="auto"><summary>${esc(c.title)} <span class="tag">${esc(c.topic)} · ${esc(c.level)} · ${slides.length} slides · ${n} questions</span></summary>
+    return `<details class="course" dir="auto"><summary><strong>${esc(c.title)}</strong> <span class="tag">${esc(c.topic)} · ${esc(c.level)} · ${slides.length} slides · ${n} questions</span></summary>
       <p>${esc(c.description)}</p>
       <div class="slide-strip">${slides.map((s, i) => `<div class="mini-slide"><span class="tag">${i + 1}</span><strong>${esc(s.title)}</strong><ul>${s.bullets.map(b => `<li>${esc(b)}</li>`).join('')}</ul></div>`).join('')}</div>
       <div class="actions"><button type="button" class="primary" data-course-slides="${esc(c.id)}">Download PDF slides</button>
       <button type="button" data-course-test="${esc(c.id)}" ${n ? '' : 'disabled'}>Take the course test</button>
       <button type="button" class="del" data-del="courses" data-id="${esc(c.id)}">Delete course</button></div></details>`;
   }).join('') || '<p class="muted">No courses created yet.</p>';
-  $('#course-list').innerHTML = db.sources.filter(s => s.type === 'Course').map(s => `<li dir="auto"><div>${/^https?:\/\//i.test(s.url) ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>` : esc(s.title)} <span class="tag">${esc(s.topic)}${s.lang === 'ar' ? ' · العربية' : ''}</span>${s.notes ? `<div class="muted">${esc(s.notes)}</div>` : ''}</div><button class="del" data-del="sources" data-id="${esc(s.id)}">Delete</button></li>`).join('') || '<li class="muted">No courses yet.</li>';
+  $('#course-list').innerHTML = db.sources.filter(s => s.type === 'Course').map(s => `<li dir="auto"><div>${/^https?:\/\//i.test(s.url) ? `<a href="${esc(s.url)}" target="_blank" rel="noopener"><strong>${esc(s.title)}</strong></a>` : `<strong>${esc(s.title)}</strong>`} <span class="tag">${esc(s.topic)}${s.lang === 'ar' ? ' · العربية' : ''}</span>${s.notes ? `<div class="muted">${esc(s.notes)}</div>` : ''}</div><button class="del" data-del="sources" data-id="${esc(s.id)}">Delete</button></li>`).join('') || '<li class="muted">No courses yet.</li>';
 
   renderSuggestions();
   renderObjectives();
