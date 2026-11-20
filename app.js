@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds } from './quiz.js?v=36';
-import { ADMIN_HASH } from './admin-hash.js?v=36';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=37';
+import { ADMIN_HASH } from './admin-hash.js?v=37';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -55,6 +55,9 @@ function render() {
   const checked = new Set([...document.querySelectorAll('#cfg-topics input:checked')].map(i => i.value));
   $('#cfg-topics').innerHTML = db.topics.map(t =>
     `<label><input type="checkbox" name="topic" value="${esc(t)}" ${checked.has(t) ? 'checked' : ''}> ${esc(t)}</label>`).join('');
+  const vChecked = new Set([...document.querySelectorAll('#cfg-vendors input:checked')].map(i => i.value));
+  $('#cfg-vendors').innerHTML = Object.keys(VENDORS).map(v => [v, filterQuestions(db.questions, { vendors: [v] }).length]).filter(([, n]) => n)
+    .map(([v, n]) => `<label><input type="checkbox" name="vendor" value="${esc(v)}" ${vChecked.has(v) ? 'checked' : ''}> ${esc(v)} (${n})</label>`).join('');
   updateMatchCount();
 
   // topics
@@ -308,7 +311,7 @@ qForm.onsubmit = e => {
 const cfgForm = $('#test-config');
 function readConfig() {
   const all = name => [...cfgForm.querySelectorAll(`input[name=${name}]:checked`)].map(i => i.value);
-  return { count: +cfgForm.count.value, topics: all('topic'), types: all('type'), difficulties: all('difficulty'), exclude: cfgForm.includeMastered.checked ? null : masteredIds(db.results) };
+  return { count: +cfgForm.count.value, topics: all('topic'), vendors: all('vendor'), types: all('type'), difficulties: all('difficulty'), exclude: cfgForm.includeMastered.checked ? null : masteredIds(db.results) };
 }
 function updateMatchCount() {
   const cfg = readConfig(), n = filterQuestions(db.questions, cfg).length;

@@ -4571,6 +4571,708 @@
       "answer": "True",
       "explanation": "Along with time-to-first-token and latency.",
       "sourceId": ""
+    },
+    {
+      "id": "q3-1",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is Red Hat OpenShift?",
+      "options": [
+        "An enterprise Kubernetes platform",
+        "A large language model",
+        "A GPU",
+        "A vector database"
+      ],
+      "answer": "An enterprise Kubernetes platform",
+      "explanation": "OpenShift runs containerized apps on-premises or in any cloud.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-2",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which Red Hat product adds tools for training, serving and monitoring AI models on OpenShift?",
+      "options": [
+        "Red Hat OpenShift AI",
+        "Red Hat Satellite",
+        "Red Hat Ceph Storage",
+        "Red Hat Directory Server"
+      ],
+      "answer": "Red Hat OpenShift AI",
+      "explanation": "OpenShift AI provides notebooks, pipelines and model serving.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-3",
+      "topic": "AI Engineering",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "Red Hat Ansible needs an agent installed on every server it manages.",
+      "answer": "False",
+      "explanation": "Ansible is agentless: it connects over SSH (or WinRM for Windows).",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-4",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Red Hat Enterprise Linux AI (RHEL AI) is built around which open model family?",
+      "options": [
+        "IBM Granite",
+        "GPT-4",
+        "Claude",
+        "Gemini"
+      ],
+      "answer": "IBM Granite",
+      "explanation": "RHEL AI bundles Granite models and InstructLab for customization.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-5",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which Red Hat and IBM open-source project lets people add knowledge and skills to a model through a taxonomy of examples?",
+      "options": [
+        "InstructLab",
+        "Kubeflow",
+        "Airflow",
+        "Ray"
+      ],
+      "answer": "InstructLab",
+      "explanation": "InstructLab uses a taxonomy plus synthetic data to fine-tune models.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-6",
+      "topic": "AI Engineering",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Red Hat is a subsidiary of IBM.",
+      "answer": "True",
+      "explanation": "IBM acquired Red Hat in 2019.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-7",
+      "topic": "Generative AI",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which company makes the Seedance video generation model?",
+      "options": [
+        "ByteDance",
+        "Google",
+        "Meta",
+        "Adobe"
+      ],
+      "answer": "ByteDance",
+      "explanation": "ByteDance, the company behind TikTok, builds the Seed family of models.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-8",
+      "topic": "Generative AI",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What does ByteDance's Seedance model generate?",
+      "options": [
+        "Video from text or images",
+        "Music only",
+        "Source code",
+        "Spreadsheets"
+      ],
+      "answer": "Video from text or images",
+      "explanation": "Seedance is a text-to-video and image-to-video model.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-9",
+      "topic": "Frontier Labs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Doubao is the consumer AI assistant and model family of which company?",
+      "options": [
+        "ByteDance",
+        "Alibaba",
+        "Baidu",
+        "Tencent"
+      ],
+      "answer": "ByteDance",
+      "explanation": "Doubao is one of the most used chatbots in China.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-10",
+      "topic": "Frontier Labs",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "ByteDance is the parent company of TikTok.",
+      "answer": "True",
+      "explanation": "ByteDance also runs Douyin, the Chinese version of TikTok.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-11",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is Hugging Face best known for?",
+      "options": [
+        "A hub for sharing open models and datasets",
+        "Making GPUs",
+        "A cloud database",
+        "A search engine"
+      ],
+      "answer": "A hub for sharing open models and datasets",
+      "explanation": "The Hugging Face Hub hosts over a million models.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-12",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which Python library from Hugging Face loads pretrained models with a few lines of code?",
+      "options": [
+        "transformers",
+        "pandas",
+        "requests",
+        "flask"
+      ],
+      "answer": "transformers",
+      "explanation": "The Hugging Face transformers library supports PyTorch, TensorFlow and JAX.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-13",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What are Hugging Face Spaces used for?",
+      "options": [
+        "Hosting AI demo apps (Gradio or Streamlit)",
+        "Storing passwords",
+        "Training GPUs",
+        "Sending email"
+      ],
+      "answer": "Hosting AI demo apps (Gradio or Streamlit)",
+      "explanation": "Spaces let anyone publish an interactive demo.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-14",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which Hugging Face library makes parameter-efficient fine-tuning such as LoRA easy?",
+      "options": [
+        "PEFT",
+        "NumPy",
+        "Matplotlib",
+        "Scrapy"
+      ],
+      "answer": "PEFT",
+      "explanation": "Hugging Face PEFT implements LoRA, prefix tuning and more.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-15",
+      "topic": "AI Development",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "Hugging Face hosts datasets as well as models.",
+      "answer": "True",
+      "explanation": "The Hub has models, datasets and Spaces.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-16",
+      "topic": "Frontier Labs",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is IBM watsonx?",
+      "options": [
+        "IBM's AI and data platform for business",
+        "A smartphone",
+        "A video game",
+        "A web browser"
+      ],
+      "answer": "IBM's AI and data platform for business",
+      "explanation": "watsonx.ai, watsonx.data and watsonx.governance.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-17",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is the name of IBM's open, enterprise-focused model family?",
+      "options": [
+        "Granite",
+        "Llama",
+        "Phi",
+        "Gemma"
+      ],
+      "answer": "Granite",
+      "explanation": "IBM Granite models are released under Apache 2.0.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-18",
+      "topic": "Frontier Labs",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "IBM Watson won the TV quiz show Jeopardy! in 2011.",
+      "answer": "True",
+      "explanation": "A landmark moment for question-answering AI.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-19",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which part of IBM watsonx focuses on AI risk, compliance and model monitoring?",
+      "options": [
+        "watsonx.governance",
+        "watsonx.games",
+        "watsonx.mail",
+        "watsonx.store"
+      ],
+      "answer": "watsonx.governance",
+      "explanation": "It tracks models, bias, drift and regulations.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-20",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is Amazon Bedrock?",
+      "options": [
+        "A managed AWS service for using foundation models through one API",
+        "A GPU chip",
+        "A smart speaker",
+        "A database engine"
+      ],
+      "answer": "A managed AWS service for using foundation models through one API",
+      "explanation": "Bedrock offers Claude, Llama, Mistral, Amazon Nova and more.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-21",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What are AWS Trainium and Inferentia?",
+      "options": [
+        "Custom AWS chips for AI training and inference",
+        "AWS regions",
+        "Programming languages",
+        "Storage classes"
+      ],
+      "answer": "Custom AWS chips for AI training and inference",
+      "explanation": "Trainium for training, Inferentia for inference.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-22",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which AWS service is used to build, train and deploy ML models?",
+      "options": [
+        "Amazon SageMaker AI",
+        "Amazon S3 Glacier",
+        "Amazon Route 53",
+        "Amazon WorkMail"
+      ],
+      "answer": "Amazon SageMaker AI",
+      "explanation": "SageMaker covers the full ML lifecycle.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-23",
+      "topic": "Frontier Labs",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Amazon Nova is a family of foundation models built by Amazon.",
+      "answer": "True",
+      "explanation": "Nova models are available through Amazon Bedrock.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-24",
+      "topic": "Frontier Labs",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is GitHub Copilot?",
+      "options": [
+        "An AI coding assistant from Microsoft's GitHub",
+        "A GPU",
+        "An operating system",
+        "A web host"
+      ],
+      "answer": "An AI coding assistant from Microsoft's GitHub",
+      "explanation": "It suggests code and can act as a coding agent.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-25",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which Microsoft service hosts OpenAI models inside Azure?",
+      "options": [
+        "Azure OpenAI Service",
+        "Azure DevOps",
+        "Azure Files",
+        "Azure DNS"
+      ],
+      "answer": "Azure OpenAI Service",
+      "explanation": "It adds Azure security, networking and compliance.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-26",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Phi is a family of what kind of models from Microsoft?",
+      "options": [
+        "Small language models",
+        "Image sensors",
+        "Databases",
+        "Robots"
+      ],
+      "answer": "Small language models",
+      "explanation": "Phi models are compact open-weight SLMs.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-27",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is Microsoft Copilot Studio used for?",
+      "options": [
+        "Building custom copilots and agents with low code",
+        "Editing video",
+        "Designing chips",
+        "Running SQL Server"
+      ],
+      "answer": "Building custom copilots and agents with low code",
+      "explanation": "It connects agents to business data and actions.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-28",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "AMD Instinct MI300X is which kind of product?",
+      "options": [
+        "A data-center AI accelerator (GPU)",
+        "A gaming console",
+        "A language model",
+        "A network switch"
+      ],
+      "answer": "A data-center AI accelerator (GPU)",
+      "explanation": "It competes with NVIDIA H100/H200 and has 192 GB of HBM3.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-29",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is ROCm?",
+      "options": [
+        "AMD's open software stack for GPU computing",
+        "An Intel CPU",
+        "A Google TPU",
+        "A database"
+      ],
+      "answer": "AMD's open software stack for GPU computing",
+      "explanation": "ROCm is AMD's answer to NVIDIA CUDA.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-30",
+      "topic": "AI Hardware",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "PyTorch can run on AMD GPUs through ROCm.",
+      "answer": "True",
+      "explanation": "PyTorch publishes ROCm builds.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-31",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is Intel Gaudi?",
+      "options": [
+        "An AI accelerator for training and inference",
+        "A web browser",
+        "A chatbot",
+        "A cloud region"
+      ],
+      "answer": "An AI accelerator for training and inference",
+      "explanation": "Gaudi came from Intel's Habana Labs acquisition.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-32",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which Intel toolkit optimizes AI inference on Intel CPUs, GPUs and NPUs?",
+      "options": [
+        "OpenVINO",
+        "TensorRT",
+        "ROCm",
+        "CUDA"
+      ],
+      "answer": "OpenVINO",
+      "explanation": "OpenVINO converts and speeds up models on Intel hardware.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-33",
+      "topic": "AI Hardware",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "Intel Xeon processors are often used as the host CPUs in AI servers.",
+      "answer": "True",
+      "explanation": "GPU servers still need host CPUs.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-34",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is Apple MLX?",
+      "options": [
+        "An array framework for machine learning on Apple silicon",
+        "An iPhone model",
+        "A cloud service",
+        "A chatbot"
+      ],
+      "answer": "An array framework for machine learning on Apple silicon",
+      "explanation": "MLX uses unified memory on M-series chips.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-35",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which Apple framework runs ML models inside iOS and macOS apps?",
+      "options": [
+        "Core ML",
+        "TensorFlow Serving",
+        "ONNX Runtime Server",
+        "Kubeflow"
+      ],
+      "answer": "Core ML",
+      "explanation": "Core ML runs models on-device using the CPU, GPU and Neural Engine.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-36",
+      "topic": "AI Hardware",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "Apple chips include a Neural Engine for on-device AI.",
+      "answer": "True",
+      "explanation": "The Neural Engine is Apple's NPU.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-37",
+      "topic": "Frontier Labs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Cohere mainly focuses on which market?",
+      "options": [
+        "Enterprise AI (models for business, RAG, search)",
+        "Video games",
+        "Smartphones",
+        "Social media"
+      ],
+      "answer": "Enterprise AI (models for business, RAG, search)",
+      "explanation": "Cohere sells Command models and Embed and Rerank for retrieval.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-38",
+      "topic": "Context Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which Cohere model is used to re-score search results in RAG?",
+      "options": [
+        "Cohere Rerank",
+        "Cohere Paint",
+        "Cohere Drive",
+        "Cohere Voice"
+      ],
+      "answer": "Cohere Rerank",
+      "explanation": "Rerank improves the order of retrieved documents.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-39",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is xAI's Colossus?",
+      "options": [
+        "A large GPU supercomputer for training Grok",
+        "A chatbot",
+        "A dataset",
+        "A programming language"
+      ],
+      "answer": "A large GPU supercomputer for training Grok",
+      "explanation": "Colossus in Memphis uses a very large number of NVIDIA GPUs.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-40",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Why did DeepSeek-R1 attract so much attention in January 2025?",
+      "options": [
+        "Strong open-weight reasoning at a reported low training cost",
+        "It was the first chatbot ever",
+        "It needed no GPUs",
+        "It only worked offline"
+      ],
+      "answer": "Strong open-weight reasoning at a reported low training cost",
+      "explanation": "It matched leading reasoning models on several benchmarks.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-41",
+      "topic": "LLMs",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "DeepSeek-V3 uses a Mixture-of-Experts architecture.",
+      "answer": "True",
+      "explanation": "Only a fraction of its parameters are active per token.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-42",
+      "topic": "Frontier Labs",
+      "type": "short",
+      "difficulty": "easy",
+      "prompt": "Which company makes the R1 reasoning model? (one word)",
+      "answer": "DeepSeek|Deep Seek",
+      "explanation": "DeepSeek is a Chinese AI lab.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-43",
+      "topic": "Frontier Labs",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Le Chat is the assistant app of which company?",
+      "options": [
+        "Mistral AI",
+        "Google",
+        "Cohere",
+        "IBM"
+      ],
+      "answer": "Mistral AI",
+      "explanation": "Mistral AI is based in Paris.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-44",
+      "topic": "Frontier Labs",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Qwen models are built by which company?",
+      "options": [
+        "Alibaba",
+        "ByteDance",
+        "Tencent",
+        "Huawei"
+      ],
+      "answer": "Alibaba",
+      "explanation": "Many Qwen models are open-weight.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-45",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What are NVIDIA NIM microservices?",
+      "options": [
+        "Ready-to-run containers for deploying AI models",
+        "GPU cooling systems",
+        "A chatbot app",
+        "A file format"
+      ],
+      "answer": "Ready-to-run containers for deploying AI models",
+      "explanation": "NIM packages a model with an optimized inference engine and API.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-46",
+      "topic": "Generative AI",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which Google tool answers questions from your uploaded sources and can create audio overviews?",
+      "options": [
+        "NotebookLM",
+        "Google Sheets",
+        "Google Maps",
+        "Google Fonts"
+      ],
+      "answer": "NotebookLM",
+      "explanation": "NotebookLM grounds its answers in your documents.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-47",
+      "topic": "Generative AI",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Sora is a text-to-video model from which company?",
+      "options": [
+        "OpenAI",
+        "Google",
+        "ByteDance",
+        "Runway"
+      ],
+      "answer": "OpenAI",
+      "explanation": "Sora generates video from text prompts.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-48",
+      "topic": "Harnesses",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Claude Code is an agentic coding tool from which company?",
+      "options": [
+        "Anthropic",
+        "OpenAI",
+        "Google",
+        "Microsoft"
+      ],
+      "answer": "Anthropic",
+      "explanation": "It works in the terminal, IDE, desktop and web.",
+      "sourceId": ""
     }
   ]
 }

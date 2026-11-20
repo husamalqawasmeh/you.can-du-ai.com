@@ -1,7 +1,7 @@
 // Self-check: node test.mjs
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, validStudentId, proficiency, resultItems, topicProficiency, masteredIds } from './quiz.js';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, vendorsOf } from './quiz.js';
 
 const qs = [
   { id: 'a', topic: 'LLMs', type: 'mcq', difficulty: 'easy', answer: 'Transformer' },
@@ -52,6 +52,13 @@ assert.deepEqual([...mastered].sort(), ['a', 'c']); // wrong answers and old ite
 assert.deepEqual(filterQuestions(qs, { exclude: mastered }).map(q => q.id), ['b']);
 assert.deepEqual(pickQuestions(qs, { count: 5, exclude: new Set(['a', 'b', 'c']) }), []);
 assert.equal(filterQuestions(qs, {}).length, 3); // no exclude = everything
+
+// vendor filter: matched by names in the text, with word boundaries (no "intelligence" → Intel, "output" → TPU)
+const vq = [{ id: 'v1', prompt: 'What is Red Hat OpenShift?', answer: 'x' }, { id: 'v2', prompt: 'Artificial intelligence output', answer: 'y' }, { id: 'v3', prompt: 'x', options: ['Gemini', 'Claude'], answer: 'Gemini' }];
+assert.deepEqual(vendorsOf(vq[0]), ['Red Hat']);
+assert.deepEqual(vendorsOf(vq[1]), []);
+assert.deepEqual(vendorsOf(vq[2]), ['Google', 'Anthropic']);
+assert.deepEqual(filterQuestions(vq, { vendors: ['Anthropic', 'Red Hat'] }).map(q => q.id), ['v1', 'v3']);
 assert.deepEqual(topicProficiency(resultItems(qsP, ['True', 'False'])).map(t => [t.topic, t.level]), [['U', 'Beginner'], ['T', 'Advanced']]); // one hard answer is not enough for Expert
 
 // student ID sign-in: 4-10 letters/digits only, case-insensitive

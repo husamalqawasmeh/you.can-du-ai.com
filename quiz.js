@@ -1,8 +1,34 @@
 // Pure logic shared by the browser app and the node self-check (test.mjs).
 
-export function filterQuestions(questions, { types = [], topics = [], difficulties = [], exclude = null }) {
+// AI vendors, matched by company and product names in a question's text (questions have no vendor field).
+export const VENDORS = {
+  Google: /\bgoogle|gemini|gemma|\btpus?\b|deepmind|vertex ai|tensorflow|\bjax\b|notebooklm|\bveo\b|imagen/i,
+  OpenAI: /openai|chatgpt|\bgpt|\bsora\b|codex|whisper|dall·?-?e|\bo[134](-mini)?\b/i,
+  Anthropic: /anthropic|claude/i,
+  NVIDIA: /nvidia|\bcuda\b|\bh100|\bh200|blackwell|\bdgx\b|nvlink|tensorrt|\bnemo\b|\bnim\b|nemotron|tensor core/i,
+  Microsoft: /microsoft|azure|copilot|\bphi\b|\bmai\b|autogen|semantic kernel/i,
+  Meta: /\bmeta\b|llama|pytorch|\bfaiss\b/i,
+  'Amazon (AWS)': /amazon|\baws\b|bedrock|sagemaker|trainium|inferentia|\bnova\b/i,
+  'Red Hat': /red hat|openshift|ansible|\brhel\b/i,
+  ByteDance: /bytedance|seedance|doubao|tiktok/i,
+  AMD: /\bamd\b|\bmi300|\bmi325|\bmi355|\brocm\b|instinct/i,
+  Intel: /\bintel\b|gaudi|\bxeon\b|openvino/i,
+  Apple: /\bapple\b|\bmlx\b|core ml/i,
+  IBM: /\bibm\b|granite|watsonx/i,
+  'Hugging Face': /hugging ?face|\bhf hub\b|transformers library/i,
+  xAI: /\bxai\b|\bgrok\b|colossus/i,
+  'Mistral AI': /mistral|le chat|codestral/i,
+  DeepSeek: /deepseek/i,
+  Alibaba: /alibaba|\bqwen/i,
+  Cohere: /\bcohere\b/i,
+};
+const qText = q => [q.prompt, q.answer, ...(q.options ?? []), q.explanation ?? ''].join(' ');
+export const vendorsOf = q => Object.keys(VENDORS).filter(v => VENDORS[v].test(qText(q)));
+
+export function filterQuestions(questions, { types = [], topics = [], difficulties = [], vendors = [], exclude = null }) {
   return questions.filter(q =>
     !exclude?.has(q.id) &&
+    (!vendors.length || vendors.some(v => VENDORS[v]?.test(qText(q)))) &&
     (!types.length || types.includes(q.type)) &&
     (!topics.length || topics.includes(q.topic)) &&
     (!difficulties.length || difficulties.includes(q.difficulty)));
