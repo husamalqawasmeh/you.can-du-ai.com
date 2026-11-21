@@ -140,7 +140,7 @@ a.button { text-decoration: none; }
 .brand { color: var(--accent); }
 .sort-row { margin-top: 8px; }
 /* fill in the blank: the text box sits inside the sentence */
-input.blank { display: inline-block; width: 7em; margin: 0 4px; padding: 1px 6px; border-bottom: 2px solid var(--accent); }
+#test-run input.blank { display: inline-block; width: 7em; margin: 0 4px; vertical-align: baseline; padding: 1px 6px; border-bottom: 2px solid var(--accent); }
 /* Tool group bars (every grouping): thin and close together */
 #tools-list > details { padding: 4px 12px; margin-bottom: 4px; }
 #tools-list > details > summary > h3 { font-size: .9rem; line-height: 1.3; }
