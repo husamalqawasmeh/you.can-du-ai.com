@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=91';
-import { ADMIN_HASH } from './admin-hash.js?v=91';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=93';
+import { ADMIN_HASH } from './admin-hash.js?v=93';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -174,17 +174,17 @@ const OBJECTIVES = {
   'AI development': ['Train a model in PyTorch', 'Prepare and clean datasets', 'Use Hugging Face models and datasets', 'Set up MLOps pipelines', 'Use AI coding agents and CLIs'],
   'Career': ['Pass an AI certification exam', 'Prepare for AI job interviews', 'Build an AI portfolio', 'Lead an AI strategy for my organization', 'Manage an AI project', 'Learn AI in Arabic'],
 };
-function objectivesHtml() {
+function objectivesHtml(open = false) {
   const sel = new Set(db.objectives.selected);
   const box = (o, custom) => `<label class="obj"><input type="checkbox" data-obj="${esc(o)}" ${sel.has(o) ? 'checked' : ''}> ${esc(o)}${custom ? ` <button type="button" class="del" data-obj-del="${esc(o)}" aria-label="Remove ${esc(o)}">✕</button>` : ''}</label>`;
-  return `<h2>My learning objectives <span class="tag">${sel.size} chosen · saved to your student ID</span></h2>
+  return `<details class="fold obj-fold"${open ? ' open' : ''}><summary><h2>My learning objectives <span class="tag">${sel.size} chosen · saved to your student ID</span></h2></summary>
     <p class="muted">Tick what you want to achieve. Courses you create are shaped around your objectives.</p>
     ${Object.entries(OBJECTIVES).map(([g, list]) => `<fieldset><legend>${esc(g)}</legend><div class="obj-grid">${list.map(o => box(o)).join('')}</div></fieldset>`).join('')}
     <fieldset><legend>My own objectives</legend><div class="obj-grid">${db.objectives.custom.map(o => box(o, true)).join('') || '<span class="muted">None yet.</span>'}</div>
-      <div class="row obj-add"><input class="obj-new" maxlength="120" placeholder="Add your own objective, e.g. Build a chatbot for my team" aria-label="New objective"><button type="button" class="primary" data-obj-add>Add</button></div></fieldset>`;
+      <div class="row obj-add"><input class="obj-new" maxlength="120" placeholder="Add your own objective, e.g. Build a chatbot for my team" aria-label="New objective"><button type="button" class="primary" data-obj-add>Add</button></div></fieldset></details>`;
 }
 function renderObjectives() {
-  document.querySelectorAll('.objectives-panel').forEach(p => { p.innerHTML = objectivesHtml(); });
+  document.querySelectorAll('.objectives-panel').forEach(p => { p.innerHTML = objectivesHtml(p.querySelector('.obj-fold')?.open); }); // keep a box open while ticking
   const n = db.objectives.selected.length;
   $('#gen-objectives').textContent = n ? `Your ${n} learning objective${n === 1 ? '' : 's'} will guide this course (change them below).` : 'Tip: choose learning objectives below and your courses will be shaped around them.';
 }
