@@ -186,3 +186,11 @@ a.button { text-decoration: none; }
 .nav-home svg { display: block; }
 .cert-levels { display: block; margin-top: 4px; font-size: .8rem; font-weight: 400; color: var(--muted); }
 .cert-levels span { display: block; }
+.cert > summary { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; }
+.cert-more { margin-inline-start: auto; padding: 3px 10px; border: 1px solid var(--accent); border-radius: 6px; color: var(--accent); font-size: .82rem; font-weight: 600; white-space: nowrap; }
+.cert-more::after { content: "Show details ▾"; }
+.cert[open] .cert-more::after { content: "Hide details ▴"; }
+.cert > summary:hover .cert-more { background: var(--accent); color: var(--bg, #fff); }
+.cert-samples > li { margin-bottom: 10px; }
+.cert-samples p { margin: 0 0 4px; }
+.cert-samples ul { margin: 0 0 4px; }

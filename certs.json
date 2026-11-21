@@ -37,7 +37,39 @@
           "url": "https://skillbuilder.aws"
         }
       ],
-      "url": "https://aws.amazon.com/certification/certified-ai-practitioner/"
+      "url": "https://aws.amazon.com/certification/certified-ai-practitioner/",
+      "samples": [
+        {
+          "q": "Which AWS service gives API access to foundation models from several providers?",
+          "options": [
+            "Amazon Bedrock",
+            "Amazon S3",
+            "AWS Lambda",
+            "Amazon RDS"
+          ],
+          "answer": "Amazon Bedrock"
+        },
+        {
+          "q": "A model performs well on training data but poorly on new data. What is this called?",
+          "options": [
+            "Overfitting",
+            "Underfitting",
+            "Data drift",
+            "Hallucination"
+          ],
+          "answer": "Overfitting"
+        },
+        {
+          "q": "Which technique grounds a foundation model in company documents without retraining it?",
+          "options": [
+            "Retrieval-Augmented Generation (RAG)",
+            "Pre-training from scratch",
+            "Data labeling",
+            "Transfer of weights"
+          ],
+          "answer": "Retrieval-Augmented Generation (RAG)"
+        }
+      ]
     },
     {
       "vendor": "AWS",
@@ -61,7 +93,39 @@
           "url": "https://skillbuilder.aws"
         }
       ],
-      "url": "https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/"
+      "url": "https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/",
+      "samples": [
+        {
+          "q": "Which SageMaker feature detects data drift in a deployed model?",
+          "options": [
+            "SageMaker Model Monitor",
+            "SageMaker Ground Truth",
+            "SageMaker Canvas",
+            "SageMaker Studio Lab"
+          ],
+          "answer": "SageMaker Model Monitor"
+        },
+        {
+          "q": "Which endpoint type fits unpredictable, infrequent traffic with no servers to manage?",
+          "options": [
+            "Serverless inference",
+            "Real-time endpoint on large GPUs",
+            "Batch transform",
+            "Multi-model endpoint on dedicated instances"
+          ],
+          "answer": "Serverless inference"
+        },
+        {
+          "q": "Where should features be stored so training and inference use the same values?",
+          "options": [
+            "SageMaker Feature Store",
+            "Amazon SQS",
+            "AWS CloudTrail",
+            "Amazon Route 53"
+          ],
+          "answer": "SageMaker Feature Store"
+        }
+      ]
     },
     {
       "vendor": "AWS",
@@ -83,7 +147,39 @@
           "url": "https://skillbuilder.aws"
         }
       ],
-      "url": "https://aws.amazon.com/certification/certified-generative-ai-developer-professional/"
+      "url": "https://aws.amazon.com/certification/certified-generative-ai-developer-professional/",
+      "samples": [
+        {
+          "q": "Which Bedrock feature filters harmful content and blocks denied topics?",
+          "options": [
+            "Guardrails for Amazon Bedrock",
+            "Bedrock Model Evaluation",
+            "Provisioned Throughput",
+            "Bedrock Studio"
+          ],
+          "answer": "Guardrails for Amazon Bedrock"
+        },
+        {
+          "q": "Which managed Bedrock feature builds a RAG pipeline over documents in S3?",
+          "options": [
+            "Knowledge Bases for Amazon Bedrock",
+            "Amazon Kendra only",
+            "AWS Glue crawler",
+            "Amazon Comprehend"
+          ],
+          "answer": "Knowledge Bases for Amazon Bedrock"
+        },
+        {
+          "q": "A chatbot needs guaranteed capacity and steady latency at high volume. What should you buy?",
+          "options": [
+            "Provisioned Throughput",
+            "On-demand pricing only",
+            "A larger S3 bucket",
+            "Spot instances"
+          ],
+          "answer": "Provisioned Throughput"
+        }
+      ]
     },
     {
       "vendor": "Microsoft",
@@ -107,7 +203,39 @@
           "url": "https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-fundamentals/"
         }
       ],
-      "url": "https://learn.microsoft.com/en-us/credentials/certifications/exams/ai-901/"
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/exams/ai-901/",
+      "samples": [
+        {
+          "q": "Which Azure service extracts text and key-value pairs from invoices and forms?",
+          "options": [
+            "Azure AI Document Intelligence",
+            "Azure AI Translator",
+            "Azure Monitor",
+            "Azure Bastion"
+          ],
+          "answer": "Azure AI Document Intelligence"
+        },
+        {
+          "q": "Predicting a house price from its features is which type of machine learning?",
+          "options": [
+            "Regression",
+            "Classification",
+            "Clustering",
+            "Anomaly detection"
+          ],
+          "answer": "Regression"
+        },
+        {
+          "q": "Which responsible AI principle means people should understand how an AI system makes decisions?",
+          "options": [
+            "Transparency",
+            "Reliability",
+            "Inclusiveness",
+            "Privacy"
+          ],
+          "answer": "Transparency"
+        }
+      ]
     },
     {
       "vendor": "Microsoft",
@@ -131,7 +259,39 @@
           "url": "https://learn.microsoft.com/en-us/credentials/certifications/exams/ai-103/"
         }
       ],
-      "url": "https://learn.microsoft.com/en-us/credentials/certifications/exams/ai-103/"
+      "url": "https://learn.microsoft.com/en-us/credentials/certifications/exams/ai-103/",
+      "samples": [
+        {
+          "q": "Which platform is used to build, evaluate and deploy generative AI apps and agents on Azure?",
+          "options": [
+            "Azure AI Foundry",
+            "Azure DevTest Labs",
+            "Azure Front Door",
+            "Azure Policy"
+          ],
+          "answer": "Azure AI Foundry"
+        },
+        {
+          "q": "Which service adds vector and hybrid search for a RAG app on Azure?",
+          "options": [
+            "Azure AI Search",
+            "Azure Files",
+            "Azure Queue Storage",
+            "Azure DNS"
+          ],
+          "answer": "Azure AI Search"
+        },
+        {
+          "q": "How should an app authenticate to Azure OpenAI without storing keys in code?",
+          "options": [
+            "Managed identity with Microsoft Entra ID",
+            "Hard-coded API key",
+            "Shared password in a text file",
+            "Anonymous access"
+          ],
+          "answer": "Managed identity with Microsoft Entra ID"
+        }
+      ]
     },
     {
       "vendor": "Google Cloud",
@@ -154,7 +314,39 @@
           "url": "https://www.cloudskillsboost.google"
         }
       ],
-      "url": "https://cloud.google.com/learn/certification/generative-ai-leader"
+      "url": "https://cloud.google.com/learn/certification/generative-ai-leader",
+      "samples": [
+        {
+          "q": "Which Google Cloud platform lets enterprises build with Gemini and other models?",
+          "options": [
+            "Vertex AI",
+            "Cloud DNS",
+            "Cloud Armor",
+            "Bigtable"
+          ],
+          "answer": "Vertex AI"
+        },
+        {
+          "q": "What is grounding in generative AI?",
+          "options": [
+            "Connecting model answers to trusted data sources",
+            "Training a model from scratch",
+            "Lowering the temperature to zero",
+            "Compressing a model"
+          ],
+          "answer": "Connecting model answers to trusted data sources"
+        },
+        {
+          "q": "A leader wants quick value from generative AI. What is the best first step?",
+          "options": [
+            "Pick a high-value, low-risk use case and run a pilot",
+            "Train a custom foundation model",
+            "Replace all staff with agents",
+            "Wait for the technology to mature"
+          ],
+          "answer": "Pick a high-value, low-risk use case and run a pilot"
+        }
+      ]
     },
     {
       "vendor": "Google Cloud",
@@ -179,7 +371,39 @@
           "url": "https://www.cloudskillsboost.google"
         }
       ],
-      "url": "https://cloud.google.com/learn/certification/machine-learning-engineer"
+      "url": "https://cloud.google.com/learn/certification/machine-learning-engineer",
+      "samples": [
+        {
+          "q": "Which Vertex AI service orchestrates repeatable ML workflows?",
+          "options": [
+            "Vertex AI Pipelines",
+            "Cloud Scheduler only",
+            "Cloud CDN",
+            "Firestore"
+          ],
+          "answer": "Vertex AI Pipelines"
+        },
+        {
+          "q": "Training and serving give different results because features are computed differently. What is this?",
+          "options": [
+            "Training-serving skew",
+            "Concept drift",
+            "Label leakage",
+            "Underfitting"
+          ],
+          "answer": "Training-serving skew"
+        },
+        {
+          "q": "Which BigQuery feature trains ML models with SQL?",
+          "options": [
+            "BigQuery ML",
+            "BigQuery Omni",
+            "Dataplex",
+            "Looker"
+          ],
+          "answer": "BigQuery ML"
+        }
+      ]
     },
     {
       "vendor": "NVIDIA",
@@ -204,7 +428,39 @@
           "url": "https://www.nvidia.com/en-us/training/"
         }
       ],
-      "url": "https://www.nvidia.com/en-us/learn/certification/generative-ai-llm-associate/"
+      "url": "https://www.nvidia.com/en-us/learn/certification/generative-ai-llm-associate/",
+      "samples": [
+        {
+          "q": "What lets a Transformer weigh the importance of each token relative to others?",
+          "options": [
+            "Self-attention",
+            "Max pooling",
+            "Dropout",
+            "Batch normalization"
+          ],
+          "answer": "Self-attention"
+        },
+        {
+          "q": "Which NVIDIA framework is used to build, customize and train LLMs?",
+          "options": [
+            "NeMo",
+            "PhysX",
+            "DLSS",
+            "Omniverse"
+          ],
+          "answer": "NeMo"
+        },
+        {
+          "q": "Which parameter makes LLM output more random when increased?",
+          "options": [
+            "Temperature",
+            "Learning rate",
+            "Batch size",
+            "Context window"
+          ],
+          "answer": "Temperature"
+        }
+      ]
     },
     {
       "vendor": "NVIDIA",
@@ -226,7 +482,39 @@
           "url": "https://www.nvidia.com/en-us/training/"
         }
       ],
-      "url": "https://www.nvidia.com/en-us/learn/certification/ai-infrastructure-operations-associate/"
+      "url": "https://www.nvidia.com/en-us/learn/certification/ai-infrastructure-operations-associate/",
+      "samples": [
+        {
+          "q": "Which NVIDIA technology links GPUs with high bandwidth inside a server?",
+          "options": [
+            "NVLink",
+            "PCIe Gen 1",
+            "SATA",
+            "USB4"
+          ],
+          "answer": "NVLink"
+        },
+        {
+          "q": "Which tool shows GPU utilization and memory on a Linux server?",
+          "options": [
+            "nvidia-smi",
+            "top only",
+            "ping",
+            "netstat"
+          ],
+          "answer": "nvidia-smi"
+        },
+        {
+          "q": "Which feature splits one data-center GPU into several isolated instances?",
+          "options": [
+            "Multi-Instance GPU (MIG)",
+            "SLI",
+            "G-SYNC",
+            "Hyper-threading"
+          ],
+          "answer": "Multi-Instance GPU (MIG)"
+        }
+      ]
     },
     {
       "vendor": "NVIDIA",
@@ -250,7 +538,39 @@
           "url": "https://www.nvidia.com/en-us/training/"
         }
       ],
-      "url": "https://www.nvidia.com/en-us/learn/certification/generative-ai-llm-professional/"
+      "url": "https://www.nvidia.com/en-us/learn/certification/generative-ai-llm-professional/",
+      "samples": [
+        {
+          "q": "Which NVIDIA library optimizes LLM inference on GPUs?",
+          "options": [
+            "TensorRT-LLM",
+            "cuDNN only",
+            "RAPIDS",
+            "Isaac Sim"
+          ],
+          "answer": "TensorRT-LLM"
+        },
+        {
+          "q": "Which method fine-tunes a model by training small low-rank matrices?",
+          "options": [
+            "LoRA",
+            "Full pre-training",
+            "Pruning",
+            "Knowledge graph"
+          ],
+          "answer": "LoRA"
+        },
+        {
+          "q": "Splitting each layer's matrices across several GPUs is called what?",
+          "options": [
+            "Tensor parallelism",
+            "Data parallelism",
+            "Pipeline flushing",
+            "Gradient clipping"
+          ],
+          "answer": "Tensor parallelism"
+        }
+      ]
     },
     {
       "vendor": "Databricks",
@@ -275,7 +595,39 @@
           "url": "https://www.databricks.com/learn/training/home"
         }
       ],
-      "url": "https://www.databricks.com/learn/certification/genai-engineer-associate"
+      "url": "https://www.databricks.com/learn/certification/genai-engineer-associate",
+      "samples": [
+        {
+          "q": "Which Databricks feature stores embeddings for similarity search?",
+          "options": [
+            "Mosaic AI Vector Search",
+            "Delta Sharing",
+            "Databricks SQL warehouse",
+            "Unity Catalog lineage"
+          ],
+          "answer": "Mosaic AI Vector Search"
+        },
+        {
+          "q": "Which tool tracks and logs LLM chains and models on Databricks?",
+          "options": [
+            "MLflow",
+            "Airflow",
+            "Kafka",
+            "Spark Streaming"
+          ],
+          "answer": "MLflow"
+        },
+        {
+          "q": "Documents are too long for the context window. What should you do first?",
+          "options": [
+            "Chunk them before embedding",
+            "Delete them",
+            "Raise the temperature",
+            "Use a smaller vocabulary"
+          ],
+          "answer": "Chunk them before embedding"
+        }
+      ]
     },
     {
       "vendor": "Oracle",
@@ -298,7 +650,29 @@
           "url": "https://mylearn.oracle.com"
         }
       ],
-      "url": "https://education.oracle.com"
+      "url": "https://education.oracle.com",
+      "samples": [
+        {
+          "q": "Which OCI service provides hosted LLMs for chat and embeddings?",
+          "options": [
+            "OCI Generative AI",
+            "OCI Vault",
+            "OCI Object Storage",
+            "OCI DNS"
+          ],
+          "answer": "OCI Generative AI"
+        },
+        {
+          "q": "What does a dedicated AI cluster in OCI Generative AI give you?",
+          "options": [
+            "Reserved GPU capacity for fine-tuning and hosting",
+            "Free storage",
+            "A database backup",
+            "A VPN connection"
+          ],
+          "answer": "Reserved GPU capacity for fine-tuning and hosting"
+        }
+      ]
     },
     {
       "vendor": "Microsoft",
@@ -322,7 +696,29 @@
         }
       ],
       "url": "https://learn.microsoft.com/credentials/certifications/azure-data-scientist/",
-      "note": "Exam details were not re-checked for this entry; confirm cost, length and version on the official page."
+      "note": "Exam details were not re-checked for this entry; confirm cost, length and version on the official page.",
+      "samples": [
+        {
+          "q": "Which Azure ML feature tries many algorithms and settings automatically?",
+          "options": [
+            "Automated machine learning (AutoML)",
+            "Azure Functions",
+            "Data Factory pipelines",
+            "Azure Advisor"
+          ],
+          "answer": "Automated machine learning (AutoML)"
+        },
+        {
+          "q": "Which open-source tool does Azure ML use to track experiments and models?",
+          "options": [
+            "MLflow",
+            "Jenkins",
+            "Terraform",
+            "Grafana"
+          ],
+          "answer": "MLflow"
+        }
+      ]
     },
     {
       "vendor": "NVIDIA",
@@ -346,7 +742,29 @@
         }
       ],
       "url": "https://www.nvidia.com/en-us/learn/certification/",
-      "note": "Exam details were not re-checked for this entry; confirm cost, length and version on the official page."
+      "note": "Exam details were not re-checked for this entry; confirm cost, length and version on the official page.",
+      "samples": [
+        {
+          "q": "Which model type learns a shared space for images and text?",
+          "options": [
+            "CLIP-style contrastive model",
+            "Decision tree",
+            "k-means",
+            "Linear regression"
+          ],
+          "answer": "CLIP-style contrastive model"
+        },
+        {
+          "q": "Diffusion models generate images by doing what?",
+          "options": [
+            "Removing noise step by step",
+            "Sorting pixels",
+            "Copying training images",
+            "Compressing text"
+          ],
+          "answer": "Removing noise step by step"
+        }
+      ]
     },
     {
       "vendor": "NVIDIA",
@@ -370,7 +788,29 @@
         }
       ],
       "url": "https://www.nvidia.com/en-us/learn/certification/",
-      "note": "Exam details were not re-checked for this entry; confirm cost, length and version on the official page."
+      "note": "Exam details were not re-checked for this entry; confirm cost, length and version on the official page.",
+      "samples": [
+        {
+          "q": "In the ReAct pattern, what does the agent repeat?",
+          "options": [
+            "Reason, act with a tool, observe the result",
+            "Train, test, deploy",
+            "Encode, decode, sample",
+            "Read, write, delete"
+          ],
+          "answer": "Reason, act with a tool, observe the result"
+        },
+        {
+          "q": "What is the safest way to let an agent take high-impact actions?",
+          "options": [
+            "Require human approval for those actions",
+            "Give it admin access to everything",
+            "Disable logging",
+            "Raise the temperature"
+          ],
+          "answer": "Require human approval for those actions"
+        }
+      ]
     },
     {
       "vendor": "Databricks",
@@ -394,7 +834,29 @@
         }
       ],
       "url": "https://www.databricks.com/learn/certification/machine-learning-associate",
-      "note": "Exam details were not re-checked for this entry; confirm cost, length and version on the official page."
+      "note": "Exam details were not re-checked for this entry; confirm cost, length and version on the official page.",
+      "samples": [
+        {
+          "q": "Which Spark ML component chains preprocessing and a model into one object?",
+          "options": [
+            "Pipeline",
+            "DataFrame",
+            "Broadcast variable",
+            "Accumulator"
+          ],
+          "answer": "Pipeline"
+        },
+        {
+          "q": "Which Databricks tool picks models and hyperparameters automatically?",
+          "options": [
+            "AutoML",
+            "Delta Live Tables",
+            "Workflows",
+            "Repos"
+          ],
+          "answer": "AutoML"
+        }
+      ]
     },
     {
       "vendor": "Oracle",
@@ -418,7 +880,29 @@
         }
       ],
       "url": "https://education.oracle.com/oracle-cloud-infrastructure-ai-foundations-associate/",
-      "note": "Exam details were not re-checked for this entry; confirm cost, length and version on the official page."
+      "note": "Exam details were not re-checked for this entry; confirm cost, length and version on the official page.",
+      "samples": [
+        {
+          "q": "Deep learning is a subset of which field?",
+          "options": [
+            "Machine learning",
+            "Networking",
+            "Databases",
+            "Cryptography"
+          ],
+          "answer": "Machine learning"
+        },
+        {
+          "q": "Grouping customers without labels is which type of learning?",
+          "options": [
+            "Unsupervised learning",
+            "Supervised learning",
+            "Reinforcement learning",
+            "Transfer learning"
+          ],
+          "answer": "Unsupervised learning"
+        }
+      ]
     },
     {
       "vendor": "Salesforce",
@@ -442,7 +926,29 @@
         }
       ],
       "url": "https://trailhead.salesforce.com/credentials/aiassociate",
-      "note": "Exam details were not re-checked for this entry; confirm cost, length and version on the official page."
+      "note": "Exam details were not re-checked for this entry; confirm cost, length and version on the official page.",
+      "samples": [
+        {
+          "q": "Which Salesforce layer protects data when using LLMs (masking, zero data retention)?",
+          "options": [
+            "Einstein Trust Layer",
+            "Lightning Locker",
+            "Flow Builder",
+            "AppExchange"
+          ],
+          "answer": "Einstein Trust Layer"
+        },
+        {
+          "q": "Why is data quality important for AI in a CRM?",
+          "options": [
+            "Poor data leads to poor predictions",
+            "It makes pages load faster",
+            "It reduces license costs",
+            "It is not important"
+          ],
+          "answer": "Poor data leads to poor predictions"
+        }
+      ]
     },
     {
       "vendor": "Salesforce",
@@ -466,7 +972,29 @@
         }
       ],
       "url": "https://trailhead.salesforce.com/credentials/agentforcespecialist",
-      "note": "Exam details were not re-checked for this entry; confirm cost, length and version on the official page."
+      "note": "Exam details were not re-checked for this entry; confirm cost, length and version on the official page.",
+      "samples": [
+        {
+          "q": "Which tool creates reusable prompt templates grounded in Salesforce data?",
+          "options": [
+            "Prompt Builder",
+            "Data Loader",
+            "Schema Builder",
+            "Process Builder"
+          ],
+          "answer": "Prompt Builder"
+        },
+        {
+          "q": "In Agentforce, what groups related actions and instructions for an agent?",
+          "options": [
+            "Topics",
+            "Profiles",
+            "Queues",
+            "Reports"
+          ],
+          "answer": "Topics"
+        }
+      ]
     },
     {
       "vendor": "Snowflake",
@@ -490,7 +1018,29 @@
         }
       ],
       "url": "https://www.snowflake.com/certifications/",
-      "note": "Exam details were not re-checked for this entry; confirm cost, length and version on the official page."
+      "note": "Exam details were not re-checked for this entry; confirm cost, length and version on the official page.",
+      "samples": [
+        {
+          "q": "Which Snowflake feature runs LLM functions such as COMPLETE inside SQL?",
+          "options": [
+            "Snowflake Cortex",
+            "Snowpipe",
+            "Time Travel",
+            "Fail-safe"
+          ],
+          "answer": "Snowflake Cortex"
+        },
+        {
+          "q": "Which Cortex service supports RAG with hybrid search over text?",
+          "options": [
+            "Cortex Search",
+            "Streams",
+            "Tasks",
+            "Secure Views"
+          ],
+          "answer": "Cortex Search"
+        }
+      ]
     },
     {
       "vendor": "Red Hat",
@@ -514,7 +1064,29 @@
         }
       ],
       "url": "https://www.redhat.com/en/services/certification",
-      "note": "Exam details were not re-checked for this entry; confirm cost, length and version on the official page."
+      "note": "Exam details were not re-checked for this entry; confirm cost, length and version on the official page.",
+      "samples": [
+        {
+          "q": "Where do data scientists run Jupyter notebooks in OpenShift AI?",
+          "options": [
+            "Workbenches in a data science project",
+            "The OpenShift console logs",
+            "A ConfigMap",
+            "An Ingress"
+          ],
+          "answer": "Workbenches in a data science project"
+        },
+        {
+          "q": "Which component serves models as scalable endpoints in OpenShift AI?",
+          "options": [
+            "Model serving (KServe / ModelMesh)",
+            "etcd",
+            "CoreDNS",
+            "HAProxy only"
+          ],
+          "answer": "Model serving (KServe / ModelMesh)"
+        }
+      ]
     },
     {
       "vendor": "IAPP",
@@ -538,7 +1110,29 @@
         }
       ],
       "url": "https://iapp.org/certify/aigp/",
-      "note": "Exam details were not re-checked for this entry; confirm cost, length and version on the official page."
+      "note": "Exam details were not re-checked for this entry; confirm cost, length and version on the official page.",
+      "samples": [
+        {
+          "q": "Under the EU AI Act, what decides a system's obligations?",
+          "options": [
+            "Its risk level",
+            "Its number of parameters",
+            "Its programming language",
+            "Its price"
+          ],
+          "answer": "Its risk level"
+        },
+        {
+          "q": "Which US framework from NIST guides AI risk management?",
+          "options": [
+            "NIST AI RMF",
+            "NIST CSF only",
+            "ISO 9001",
+            "PCI DSS"
+          ],
+          "answer": "NIST AI RMF"
+        }
+      ]
     },
     {
       "vendor": "ISACA",
@@ -561,7 +1155,29 @@
         }
       ],
       "url": "https://www.isaca.org/credentialing/aaia",
-      "note": "Exam details were not re-checked for this entry; confirm cost, length and version on the official page."
+      "note": "Exam details were not re-checked for this entry; confirm cost, length and version on the official page.",
+      "samples": [
+        {
+          "q": "An auditor wants to know why an AI model approved a loan. What should exist?",
+          "options": [
+            "Explainability evidence and decision logs",
+            "Only the model's accuracy",
+            "The vendor's marketing material",
+            "Nothing; AI cannot be audited"
+          ],
+          "answer": "Explainability evidence and decision logs"
+        },
+        {
+          "q": "What should an AI audit check first?",
+          "options": [
+            "That governance, ownership and risk assessments exist",
+            "The color of the user interface",
+            "The number of GPUs",
+            "The model's file size"
+          ],
+          "answer": "That governance, ownership and risk assessments exist"
+        }
+      ]
     },
     {
       "vendor": "ISACA",
@@ -584,7 +1200,29 @@
         }
       ],
       "url": "https://www.isaca.org/credentialing/aaism",
-      "note": "Exam details were not re-checked for this entry; confirm cost, length and version on the official page."
+      "note": "Exam details were not re-checked for this entry; confirm cost, length and version on the official page.",
+      "samples": [
+        {
+          "q": "An attacker hides instructions in a web page an AI assistant reads. What attack is this?",
+          "options": [
+            "Indirect prompt injection",
+            "SQL injection",
+            "Phishing",
+            "DDoS"
+          ],
+          "answer": "Indirect prompt injection"
+        },
+        {
+          "q": "Training data is secretly altered to change model behavior. What attack is this?",
+          "options": [
+            "Data poisoning",
+            "Model compression",
+            "Tokenization",
+            "Load balancing"
+          ],
+          "answer": "Data poisoning"
+        }
+      ]
     },
     {
       "vendor": "PMI",
@@ -608,7 +1246,29 @@
         }
       ],
       "url": "https://www.pmi.org/certifications/cpmai",
-      "note": "Exam details were not re-checked for this entry; confirm cost, length and version on the official page."
+      "note": "Exam details were not re-checked for this entry; confirm cost, length and version on the official page.",
+      "samples": [
+        {
+          "q": "Which CPMAI phase comes first?",
+          "options": [
+            "Business understanding",
+            "Model training",
+            "Operationalization",
+            "Model evaluation"
+          ],
+          "answer": "Business understanding"
+        },
+        {
+          "q": "Why do many AI projects fail?",
+          "options": [
+            "Unclear business goals and poor data",
+            "Too many GPUs",
+            "Too much documentation",
+            "Short project names"
+          ],
+          "answer": "Unclear business goals and poor data"
+        }
+      ]
     }
   ]
 }
