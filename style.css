@@ -17,7 +17,8 @@ h1 { margin: 0 0 4px; font-size: 1.25rem; }
 nav { display: flex; flex-wrap: wrap; gap: 6px; }
 nav { margin-top: 4px; }
 nav button { background: var(--raised); border: 1px solid var(--border-strong); color: var(--text); border-radius: 999px; padding: 4px 12px; font-size: .9rem; }
-nav button:hover { border-color: var(--accent); color: var(--accent); }
+nav button:hover, nav button.hl { border-color: var(--accent); color: var(--accent); }
+nav button.hl { box-shadow: 0 0 0 2px var(--accent); }
 nav button.active { background: var(--accent); border-color: var(--accent); color: var(--accent-text); font-weight: 600; }
 main { max-width: 960px; margin: 0 auto; padding: 12px 16px; }
 .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin-bottom: 12px; }
@@ -66,8 +67,7 @@ small { display: block; }
 .good { color: var(--good); } .bad { color: var(--bad); }
 .prewrap { white-space: pre-wrap; margin-bottom: 12px; overflow-wrap: anywhere; }
 .score { font-size: 2rem; font-weight: 700; margin: 0; }
-#ai-settings { margin-top: 8px; font-size: .9rem; }
-#ai-settings summary { cursor: pointer; color: var(--muted); }
+#ai-settings h3 { margin: 4px 0 0; }
 #ai-settings .row { margin-top: 8px; }
 #chat-log { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
 .msg { padding: 10px 12px; border-radius: 10px; white-space: pre-wrap; overflow-wrap: anywhere; max-width: 100%; }

@@ -1,8 +1,8 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=102';
-import { ADMIN_HASH } from './admin-hash.js?v=102';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=104';
+import { ADMIN_HASH } from './admin-hash.js?v=104';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
-const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
+const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
 const USER_KEY = 'ycda-user';
 let user = null;
 let KEY = 'ycda-db-v1-guest'; // becomes per-student after sign-in
@@ -49,6 +49,12 @@ document.querySelectorAll('nav button').forEach(b => {
   b.addEventListener('focus', () => hl(true)); b.addEventListener('blur', () => hl(false));
 });
 $('#home').onclick = e => { const b = e.target.closest('[data-goto]'); if (b) showTab(b.dataset.goto); };
+// and the reverse: hovering (or tabbing to) a home card highlights its icon in the top bar
+document.querySelectorAll('.home-card').forEach(c => {
+  const hl = on => document.querySelector(`nav button[data-tab="${c.dataset.goto}"]`)?.classList.toggle('hl', on);
+  c.addEventListener('mouseenter', () => hl(true)); c.addEventListener('mouseleave', () => hl(false));
+  c.addEventListener('focus', () => hl(true)); c.addEventListener('blur', () => hl(false));
+});
 
 // ---------- rendering ----------
 const opt = (v, label = v) => `<option value="${esc(v)}">${esc(label)}</option>`;
@@ -505,7 +511,7 @@ const SAFETY = ['HARM_CATEGORY_HARASSMENT', 'HARM_CATEGORY_HATE_SPEECH', 'HARM_C
   .map(category => ({ category, threshold: 'BLOCK_LOW_AND_ABOVE' }));
 async function gemini(body) {
   const key = aiKey.value.trim(), model = aiModel.value.trim() || 'gemini-4-hydrogen';
-  if (!key) { $('#ai-settings').open = true; aiKey.focus(); throw new Error('Add your Gemini API key in "AI settings" at the top of the page.'); }
+  if (!key) throw new Error('Add your Gemini API key in Settings (the gear icon in the top bar).');
   saveAi();
   const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
     method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key }, body: JSON.stringify({ safetySettings: SAFETY, ...body }),
