@@ -1522,6 +1522,18 @@
           "Coined the term \"artificial intelligence\" (1956 Dartmouth workshop)"
         ]
       ]
+    },
+    {
+      "q": "What topics should an LLM engineer know (for example benchmarking, latency, throughput, capabilities such as voice or video, and RAM/VRAM requirements)?",
+      "followup": "Pick one and explain how you measured or sized it in a real project."
+    },
+    {
+      "q": "How would you size the GPUs and VRAM to serve a 70B model to 100 concurrent users with 8K-token contexts?",
+      "followup": "Which levers (quantization, KV cache, batching, a smaller model) would you pull first to cut cost, and what would you measure?"
+    },
+    {
+      "q": "What is the difference between latency and throughput for an LLM service, and how do you trade one against the other?",
+      "followup": "Which metrics (TTFT, time per output token, p95) would you put on the dashboard, and why?"
     }
   ]
 }

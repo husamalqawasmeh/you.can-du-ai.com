@@ -1488,6 +1488,55 @@
       "title": "LFM3-VL-2B benchmarks vs other small vision-language models",
       "body": "Vendor-reported averages across 10 categories: LFM3-VL-2B (1.9B params) 71.4; LFM2.5-VL-3B (3.1B) 57.6; MiniCPM-V 4.7 1B (1.6B) 57.5; Qwen 3.5 2B (2.3B) 64.0; Gemma 4 E2B (5.1B) 53.6; Gemma 4 12B 71.7; GPT-5.6 Luna 73.4; Gemini 3.5 Flash Lite 70.0. LFM3-VL-2B scores per category: General 66.0, Perception 75.6, Document/OCR/Chart 83.9, Math and logical reasoning 68.8, Visual grounding 77.3, Embodied reasoning 64.4, GUI understanding 83.1, Video 61.2, Multilingual 84.4, Agentic 42.5. Takeaways: a 1.9B model roughly matches Gemma 4 12B on average and beats every other small model in every category; it is strongest on documents, GUI and multilingual tasks; agentic tasks are its weak spot (42.5 vs 56.1 for GPT-5.6 Luna and 62.4 for Gemini 3.5 Flash Lite). These are the vendor's own numbers, so confirm on your own tasks.",
       "sourceId": "src-124"
+    },
+    {
+      "id": "note-26",
+      "topic": "AI Engineering",
+      "title": "What an LLM engineer should know (checklist)",
+      "body": "1) Model choice: capabilities, quality, license, open vs API. 2) Benchmarks and evals: public benchmarks plus your own task tests. 3) Performance: latency (TTFT, time per output token), throughput (tokens/s, requests/s) and concurrency. 4) Capabilities: text, vision, voice, video, tool calling, structured output, reasoning, languages, context window. 5) Hardware sizing: VRAM for weights + KV cache + overhead, RAM, GPU type and count. 6) Optimization: quantization, batching, caching, speculative decoding, smaller or distilled models. 7) Serving: vLLM, TGI, TensorRT-LLM, SGLang, Ollama or llama.cpp locally. 8) Context engineering: prompts, RAG, chunking, memory, MCP and tools. 9) Adapting models: prompt first, then RAG, then fine-tuning (LoRA). 10) Cost: price per million input/output tokens or GPU-hours. 11) Safety: guardrails, prompt injection, privacy, PII. 12) Production: monitoring, tracing, logging, versioning, fallbacks and rate limits.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-27",
+      "topic": "Benchmarking",
+      "title": "Benchmarks vs your own evals",
+      "body": "Public benchmarks (MMLU-Pro, GPQA, SWE-bench, HumanEval, MMMU, LMArena Elo) give a first shortlist, but scores can be inflated by contamination (test data seen in training) and vendor-chosen settings. Always build a small eval set from your real tasks: inputs, expected outputs and a scoring method (exact match, rubric, LLM-as-a-judge checked against humans). Track quality together with latency and cost; the best model is the cheapest one that passes your bar.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-28",
+      "topic": "AI Engineering",
+      "title": "Latency metrics",
+      "body": "TTFT (time to first token): how long until the first word appears; driven by queueing and prefill (processing the prompt), so it grows with prompt length. TPOT / ITL (time per output token, inter-token latency): speed of decoding, usually memory-bandwidth bound. End-to-end latency ≈ TTFT + TPOT × output tokens. Report p50 and p95/p99, not just averages. Chat users feel TTFT most; long answers depend on TPOT. Rough reading speed is about 5-10 tokens per second, so streaming faster than that feels instant.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-29",
+      "topic": "AI Engineering",
+      "title": "Throughput and concurrency",
+      "body": "Throughput is total output tokens per second (or requests per second) the server delivers across all users. Batching many requests together raises throughput but can raise each user's latency, so tune for a latency target (for example p95 TTFT under 1 s) and then maximize throughput. Continuous batching and PagedAttention (vLLM) keep the GPU busy. Prefill is compute-bound; decode is memory-bandwidth-bound. Cost per token = GPU cost per hour / tokens per hour.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-30",
+      "topic": "AI Engineering",
+      "title": "Capabilities and modalities",
+      "body": "Check what the model can take in and put out: text, images (vision), audio/voice (speech-to-text, text-to-speech, real-time speech-to-speech), video understanding or generation, and files such as PDFs. Also check tool/function calling, JSON or structured output, reasoning/thinking modes, context window size, languages (for example Arabic quality), and knowledge cutoff. Voice agents need low end-to-end latency (under about 800 ms per turn); video uses many tokens per second of footage, so it costs more and fills the context fast.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-31",
+      "topic": "AI Sizing",
+      "title": "Memory sizing: VRAM, KV cache and RAM",
+      "body": "VRAM needed ≈ weights + KV cache + activations/overhead (add about 10-20%). Weights = parameters × bytes per parameter (FP16 2 B, FP8/INT8 1 B, INT4 0.5 B): a 70B model needs ~140 GB in FP16 or ~35-40 GB in 4-bit. KV cache per token = 2 (K and V) × layers × KV heads × head size × bytes; it grows with context length × concurrent users, and can exceed the weights for long contexts. GQA, FP8 KV cache and PagedAttention reduce it. System RAM should usually be at least the model size for loading; with offloading (llama.cpp) part of the model runs from RAM, much slower. Training needs far more: roughly 16-20 bytes per parameter with Adam in mixed precision, before activations.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-32",
+      "topic": "AI Engineering",
+      "title": "Making LLMs faster and cheaper",
+      "body": "Quantization (FP8, INT8, 4-bit AWQ/GPTQ/GGUF) cuts memory and often raises speed with small quality loss; test it on your evals. Prompt/prefix caching reuses work for repeated system prompts. Speculative decoding uses a small draft model to propose tokens the big model checks in one step. Use smaller or distilled models for easy steps and route hard ones to bigger models. Limit max output tokens, trim context, and batch offline jobs (batch APIs are often about 50% cheaper).",
+      "sourceId": ""
     }
   ],
   "questions": [
@@ -6380,6 +6429,212 @@
       "answer": "True",
       "explanation": "Vendors choose the benchmarks and settings; independent and task-specific tests are more reliable.",
       "sourceId": "src-124"
+    },
+    {
+      "id": "q3-108",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What does TTFT measure for an LLM?",
+      "options": [
+        "Time from sending the request until the first output token arrives",
+        "Total tokens for training",
+        "Time to fine-tune",
+        "Tokens per GPU"
+      ],
+      "answer": "Time from sending the request until the first output token arrives",
+      "explanation": "TTFT is driven by queueing and prefill of the prompt.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-109",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which formula best estimates end-to-end latency of one LLM response?",
+      "options": [
+        "TTFT + time per output token × number of output tokens",
+        "Parameters × bytes per parameter",
+        "Throughput × batch size",
+        "Context window ÷ tokens per second"
+      ],
+      "answer": "TTFT + time per output token × number of output tokens",
+      "explanation": "Prefill gives TTFT; decoding adds one step per output token.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-110",
+      "topic": "AI Engineering",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Increasing the batch size usually raises total throughput but can increase each user's latency.",
+      "answer": "True",
+      "explanation": "Tune for a latency target, then maximize throughput.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-111",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Why should you report p95 latency and not only the average?",
+      "options": [
+        "Because slow outlier requests that many users feel are hidden by the average",
+        "Because p95 is always lower",
+        "Because averages cannot be calculated for LLMs",
+        "Because p95 measures accuracy"
+      ],
+      "answer": "Because slow outlier requests that many users feel are hidden by the average",
+      "explanation": "Tail latency (p95/p99) shows the worst common experience.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-112",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "The decode phase of LLM inference (generating tokens one by one) is usually limited by what?",
+      "options": [
+        "GPU memory bandwidth",
+        "Disk size",
+        "CPU clock speed",
+        "Network DNS"
+      ],
+      "answer": "GPU memory bandwidth",
+      "explanation": "Each token reads all the weights; prefill is compute-bound, decode is bandwidth-bound.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-113",
+      "topic": "AI Sizing",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "About how much VRAM do the weights of a 70B model need in 4-bit precision?",
+      "options": [
+        "About 35 GB",
+        "About 7 GB",
+        "About 140 GB",
+        "About 280 GB"
+      ],
+      "answer": "About 35 GB",
+      "explanation": "70B × 0.5 bytes = 35 GB, plus KV cache and overhead.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-114",
+      "topic": "AI Sizing",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which two things make the KV cache grow?",
+      "options": [
+        "Longer context length and more concurrent users",
+        "A larger vocabulary and more GPUs",
+        "Higher temperature and top-p",
+        "More training epochs"
+      ],
+      "answer": "Longer context length and more concurrent users",
+      "explanation": "KV cache is stored per token per sequence.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-115",
+      "topic": "AI Sizing",
+      "type": "fill",
+      "difficulty": "medium",
+      "prompt": "Total VRAM for inference ≈ model weights + ___ cache + overhead.",
+      "answer": "KV|key-value|key value",
+      "explanation": "The KV cache stores attention keys and values for every token in the context.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-116",
+      "topic": "AI Sizing",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Fine-tuning all weights of a model needs much more memory than running inference on it.",
+      "answer": "True",
+      "explanation": "Full training needs gradients and optimizer states: roughly 16-20 bytes per parameter with Adam.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-117",
+      "topic": "Benchmarking",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Before choosing a model for production, what is the most reliable test?",
+      "options": [
+        "An eval set built from your own real tasks",
+        "The model with the most parameters",
+        "The newest model",
+        "The highest score on one public leaderboard"
+      ],
+      "answer": "An eval set built from your own real tasks",
+      "explanation": "Public leaderboards are a shortlist, not a decision.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-118",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "For a real-time voice agent, which requirement matters most?",
+      "options": [
+        "Low end-to-end latency per turn (under about a second)",
+        "The largest possible context window",
+        "Batch API discounts",
+        "Image generation quality"
+      ],
+      "answer": "Low end-to-end latency per turn (under about a second)",
+      "explanation": "Speech-to-text, the LLM and text-to-speech all add delay; people notice pauses quickly.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-119",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which technique uses a small draft model to propose tokens that the large model checks in one step?",
+      "options": [
+        "Speculative decoding",
+        "Quantization",
+        "LoRA",
+        "RAG"
+      ],
+      "answer": "Speculative decoding",
+      "explanation": "It speeds up decoding without changing the large model's output distribution.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-120",
+      "topic": "AI Engineering",
+      "type": "match",
+      "difficulty": "medium",
+      "prompt": "Connect each LLM engineering term to what it measures or does.",
+      "pairs": [
+        [
+          "TTFT",
+          "Delay before the first token"
+        ],
+        [
+          "Throughput",
+          "Tokens per second across all users"
+        ],
+        [
+          "KV cache",
+          "Memory for attention keys and values"
+        ],
+        [
+          "Quantization",
+          "Fewer bits per weight"
+        ],
+        [
+          "Context window",
+          "Max tokens the model can consider"
+        ]
+      ],
+      "answer": "TTFT → Delay before the first token; Throughput → Tokens per second across all users; KV cache → Memory for attention keys and values; Quantization → Fewer bits per weight; Context window → Max tokens the model can consider",
+      "explanation": "Core vocabulary for sizing and tuning LLM systems.",
+      "sourceId": ""
     }
   ]
 }
