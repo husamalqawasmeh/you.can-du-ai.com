@@ -1534,6 +1534,18 @@
     {
       "q": "What is the difference between latency and throughput for an LLM service, and how do you trade one against the other?",
       "followup": "Which metrics (TTFT, time per output token, p95) would you put on the dashboard, and why?"
+    },
+    {
+      "q": "What topics should an AI engineer know, and which are your strongest and weakest?",
+      "followup": "What are you doing to close the gap in your weakest area?"
+    },
+    {
+      "q": "What is the difference between an AI engineer, an ML engineer, a data scientist and an LLM engineer?",
+      "followup": "Which of these roles fits the work you want to do, and why?"
+    },
+    {
+      "q": "Walk me through taking an AI feature from idea to production.",
+      "followup": "How do you know it is working after launch, and what would make you roll it back?"
     }
   ]
 }

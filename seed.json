@@ -1537,6 +1537,41 @@
       "title": "Making LLMs faster and cheaper",
       "body": "Quantization (FP8, INT8, 4-bit AWQ/GPTQ/GGUF) cuts memory and often raises speed with small quality loss; test it on your evals. Prompt/prefix caching reuses work for repeated system prompts. Speculative decoding uses a small draft model to propose tokens the big model checks in one step. Use smaller or distilled models for easy steps and route hard ones to bigger models. Limit max output tokens, trim context, and batch offline jobs (batch APIs are often about 50% cheaper).",
       "sourceId": ""
+    },
+    {
+      "id": "note-33",
+      "topic": "AI Engineering",
+      "title": "What an AI engineer should know (checklist)",
+      "body": "An AI engineer builds and runs AI features in real products. Core areas: 1) Programming: Python, Git, testing, APIs (REST, JSON), async code, SQL. 2) Math basics: linear algebra (vectors, matrices), probability and statistics, gradients. 3) ML fundamentals: supervised vs unsupervised, train/validation/test split, overfitting, metrics (accuracy, precision, recall, F1, AUC). 4) Deep learning: neural networks, Transformers, embeddings; PyTorch. 5) LLMs: prompting, context engineering, RAG, vector databases, agents, tool calling, MCP, fine-tuning (LoRA). 6) Data: collection, cleaning, labeling, pipelines, data quality and privacy. 7) Evaluation: offline evals, A/B tests, LLM-as-a-judge, human review. 8) MLOps/LLMOps: experiment tracking, model registry, CI/CD, containers (Docker, Kubernetes), monitoring, drift. 9) Infrastructure: cloud AI platforms, GPUs, serving, latency, throughput, cost. 10) Responsible AI: bias, safety, security (prompt injection), privacy, regulation such as the EU AI Act. 11) Product sense: pick problems where AI adds value, measure business impact, communicate trade-offs.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-34",
+      "topic": "AI Engineering",
+      "title": "AI engineer vs ML engineer vs data scientist vs LLM engineer",
+      "body": "Data scientist: analyzes data, runs experiments and builds models to answer business questions. ML engineer: trains, deploys and scales ML models (pipelines, serving, MLOps). AI engineer: builds products on top of AI models, often foundation models through APIs or open weights; strong in software engineering, integration, evals and deployment. LLM engineer: an AI engineer focused on LLMs (prompting, RAG, agents, serving, latency, GPU sizing). Roles overlap a lot; titles differ by company.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-35",
+      "topic": "AI Engineering",
+      "title": "ML fundamentals every AI engineer needs",
+      "body": "Split data into train, validation and test sets and never tune on the test set. Overfitting = great on training data, poor on new data; fix with more data, regularization, simpler models or early stopping. Bias-variance trade-off: too simple underfits, too complex overfits. Pick metrics by cost of errors: precision when false alarms are costly, recall when misses are costly, F1 to balance, AUC for ranking. Watch data leakage: features that would not be known at prediction time. Baselines first: a simple model or rule shows whether a complex one is worth it.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-36",
+      "topic": "AI Engineering",
+      "title": "MLOps and LLMOps basics",
+      "body": "Version everything: code (Git), data, prompts and models (model registry). Track experiments (MLflow, Weights & Biases). Automate tests and deployment with CI/CD; package with Docker and run on Kubernetes or managed services. In production, monitor quality, latency, cost and errors; detect data drift (inputs change) and concept drift (the meaning of the target changes) and retrain or update prompts. For LLM apps, add tracing (LangSmith, Langfuse, OpenTelemetry), prompt versioning, guardrails and regression evals before each release.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-37",
+      "topic": "AI Engineering",
+      "title": "Responsible and secure AI",
+      "body": "Check models for bias across groups, explain important decisions, and keep a human in the loop for high-stakes cases. Protect privacy: minimize personal data, mask PII, respect data residency. Defend against prompt injection, data exfiltration through tools, jailbreaks and insecure output handling (see OWASP Top 10 for LLM Applications). Follow regulation such as the EU AI Act (risk-based duties) and frameworks such as NIST AI RMF. Log decisions and keep model and data documentation (model cards, datasheets).",
+      "sourceId": ""
     }
   ],
   "questions": [
@@ -6634,6 +6669,212 @@
       ],
       "answer": "TTFT → Delay before the first token; Throughput → Tokens per second across all users; KV cache → Memory for attention keys and values; Quantization → Fewer bits per weight; Context window → Max tokens the model can consider",
       "explanation": "Core vocabulary for sizing and tuning LLM systems.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-121",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which programming language is most widely used by AI engineers?",
+      "options": [
+        "Python",
+        "COBOL",
+        "Fortran",
+        "Visual Basic"
+      ],
+      "answer": "Python",
+      "explanation": "Python has PyTorch, scikit-learn, Hugging Face and most AI SDKs.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-122",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Why do you keep a separate test set when building a model?",
+      "options": [
+        "To measure performance on data the model never saw during training or tuning",
+        "To make training faster",
+        "To store backups",
+        "To reduce GPU memory"
+      ],
+      "answer": "To measure performance on data the model never saw during training or tuning",
+      "explanation": "Tuning on the test set gives an over-optimistic score.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-123",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "A model scores 99% on training data but 70% on new data. What is the most likely problem?",
+      "options": [
+        "Overfitting",
+        "Underfitting",
+        "Too much test data",
+        "A slow GPU"
+      ],
+      "answer": "Overfitting",
+      "explanation": "Use more data, regularization, a simpler model or early stopping.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-124",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "When missing a positive case (for example a cancer) is very costly, which metric matters most?",
+      "options": [
+        "Recall",
+        "Precision",
+        "Training loss",
+        "Latency"
+      ],
+      "answer": "Recall",
+      "explanation": "Recall = share of real positives the model finds.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-125",
+      "topic": "AI Engineering",
+      "type": "fill",
+      "difficulty": "medium",
+      "prompt": "When production inputs slowly change and model quality drops, it is called data ___.",
+      "answer": "drift",
+      "explanation": "Monitor input distributions and quality, then retrain or update.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-126",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is data leakage?",
+      "options": [
+        "Training with information that would not be available at prediction time",
+        "A data center losing power",
+        "Sharing a model on GitHub",
+        "Using too few GPUs"
+      ],
+      "answer": "Training with information that would not be available at prediction time",
+      "explanation": "Leakage gives great offline scores that fail in production.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-127",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which tool is mainly used to track ML experiments and register models?",
+      "options": [
+        "MLflow",
+        "Excel",
+        "Figma",
+        "Slack"
+      ],
+      "answer": "MLflow",
+      "explanation": "Weights & Biases is another popular choice.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-128",
+      "topic": "AI Engineering",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "An AI engineer should try a simple baseline before building a complex model.",
+      "answer": "True",
+      "explanation": "A baseline shows whether the extra complexity is worth it.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-129",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which list is the OWASP Top 10 for LLM Applications most concerned with?",
+      "options": [
+        "Security risks such as prompt injection and insecure output handling",
+        "The 10 fastest GPUs",
+        "The 10 largest models",
+        "The 10 best prompts"
+      ],
+      "answer": "Security risks such as prompt injection and insecure output handling",
+      "explanation": "It lists the main security risks of LLM apps.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-130",
+      "topic": "AI Engineering",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "The EU AI Act sets duties based on the risk level of an AI system.",
+      "answer": "True",
+      "explanation": "Unacceptable-risk uses are banned; high-risk systems have strict duties; limited-risk ones need transparency.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-131",
+      "topic": "AI Engineering",
+      "type": "match",
+      "difficulty": "medium",
+      "prompt": "Connect each role to its main focus.",
+      "pairs": [
+        [
+          "Data scientist",
+          "Analysis and experiments to answer business questions"
+        ],
+        [
+          "ML engineer",
+          "Training, deploying and scaling ML models"
+        ],
+        [
+          "AI engineer",
+          "Building products on top of AI models"
+        ],
+        [
+          "LLM engineer",
+          "Prompting, RAG, agents and LLM serving"
+        ],
+        [
+          "MLOps engineer",
+          "Pipelines, CI/CD and monitoring for models"
+        ]
+      ],
+      "answer": "Data scientist → Analysis and experiments to answer business questions; ML engineer → Training, deploying and scaling ML models; AI engineer → Building products on top of AI models; LLM engineer → Prompting, RAG, agents and LLM serving; MLOps engineer → Pipelines, CI/CD and monitoring for models",
+      "explanation": "Roles overlap; titles differ by company.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-132",
+      "topic": "AI Engineering",
+      "type": "match",
+      "difficulty": "easy",
+      "prompt": "Connect each AI engineering area to an example tool.",
+      "pairs": [
+        [
+          "Deep learning framework",
+          "PyTorch"
+        ],
+        [
+          "Containers",
+          "Docker"
+        ],
+        [
+          "Experiment tracking",
+          "MLflow"
+        ],
+        [
+          "Vector database",
+          "Pinecone"
+        ],
+        [
+          "Version control",
+          "Git"
+        ]
+      ],
+      "answer": "Deep learning framework → PyTorch; Containers → Docker; Experiment tracking → MLflow; Vector database → Pinecone; Version control → Git",
+      "explanation": "Know at least one tool in each area.",
       "sourceId": ""
     }
   ]
