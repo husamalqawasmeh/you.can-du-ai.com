@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You Can Du AI</title>
 <meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
-<link rel="stylesheet" href="style.css?v=98">
+<link rel="stylesheet" href="style.css?v=101">
 </head>
 <body>
 <header>
@@ -89,7 +89,9 @@
       <p class="muted">Name any subject. AI writes the lessons and a test, which are added to your question bank.</p>
       <label>Course subject <input name="subject" required placeholder="e.g. Sizing GPU clusters for LLM inference"></label>
       <div class="row">
-        <label>Topic (pick or type a new one) <input name="topic" list="topic-datalist" required></label>
+        <div class="topic-pick"><span>Topics (tick one or more, or type a new one)</span>
+          <div class="topic-pick-row"><details class="topic-menu"><summary id="gen-topic-sum">Choose topics</summary><div id="gen-topics" class="topic-checks"></div></details>
+          <input name="newtopic" maxlength="40" placeholder="New topic" aria-label="New topic (optional)"></div></div>
         <label>Level <select name="level"><option>Beginner</option><option selected>Intermediate</option><option>Advanced</option></select></label>
         <label>Lessons <input name="modules" type="number" min="2" max="12" value="5" required></label>
         <label>Test questions <input name="questions" type="number" min="3" max="30" value="10" required></label>
@@ -102,7 +104,6 @@
     </form>
     <div class="card objectives-panel"></div>
     <div class="card"><h2>My AI-created courses</h2><div id="gen-list"></div></div>
-    <datalist id="topic-datalist"></datalist>
   </section>
 
   <!-- TEST -->
@@ -333,6 +334,6 @@
     </div>
   </section>
 </main>
-<script type="module" src="app.js?v=98"></script>
+<script type="module" src="app.js?v=101"></script>
 </body>
 </html>

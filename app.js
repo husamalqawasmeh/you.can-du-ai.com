@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=98';
-import { ADMIN_HASH } from './admin-hash.js?v=98';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=101';
+import { ADMIN_HASH } from './admin-hash.js?v=101';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -97,11 +97,13 @@ function render() {
   $('#q-list').innerHTML = qs.map(q => `<li><div>${esc(q.prompt)}<div class="tag">${esc(q.topic)} · ${TYPE[q.type]} · ${esc(q.difficulty)} · Answer: ${esc(q.answer)}</div></div><button class="del" data-del="questions" data-id="${esc(q.id)}">Delete</button></li>`).join('') || '<li class="muted">No questions match.</li>';
 
   // courses
-  $('#topic-datalist').innerHTML = topicOpts;
+  const gChecked = new Set([...document.querySelectorAll('#gen-topics input:checked')].map(i => i.value));
+  $('#gen-topics').innerHTML = db.topics.map(t => `<label><input type="checkbox" value="${esc(t)}" ${gChecked.has(t) ? 'checked' : ''}> ${esc(t)}</label>`).join('');
+  genTopicSummary();
   $('#gen-list').innerHTML = db.courses.slice().reverse().map(c => {
     const n = db.questions.filter(q => q.courseId === c.id).length;
     const slides = courseSlides(c);
-    return `<details class="course" dir="auto"><summary><strong>${esc(c.title)}</strong> <span class="tag">${esc(c.topic)} · ${esc(c.level)} · ${slides.length} slides · ${n} questions</span></summary>
+    return `<details class="course" dir="auto"><summary><strong>${esc(c.title)}</strong> <span class="tag">${esc((c.topics ?? [c.topic]).join(', '))} · ${esc(c.level)} · ${slides.length} slides · ${n} questions</span></summary>
       <p>${esc(c.description)}</p>
       <div class="slide-strip">${slides.map((s, i) => `<div class="mini-slide"><span class="tag">${i + 1}</span><strong>${esc(s.title)}</strong><ul>${s.bullets.map(b => `<li>${esc(b)}</li>`).join('')}</ul></div>`).join('')}</div>
       <div class="actions"><button type="button" class="primary" data-course-slides="${esc(c.id)}">Download PDF slides</button>
@@ -597,20 +599,33 @@ $('#course-add-form').onsubmit = e => {
 };
 
 const genForm = $('#gen-form');
+const genTopics = () => {
+  const t = [...genForm.querySelectorAll('#gen-topics input:checked')].map(i => i.value), n = genForm.newtopic.value.trim().replace(/\s+/g, ' ');
+  if (n && !t.some(x => x.toLowerCase() === n.toLowerCase())) t.push(db.topics.find(x => x.toLowerCase() === n.toLowerCase()) ?? n);
+  return t;
+};
+function genTopicSummary() { const t = genTopics(); $('#gen-topic-sum').textContent = t.length ? t.join(', ') : 'Choose topics'; }
+genForm.addEventListener('change', e => { if (e.target.closest('#gen-topics') || e.target.name === 'newtopic') genTopicSummary(); });
+genForm.newtopic.addEventListener('input', genTopicSummary);
+// close the topic list when clicking elsewhere
+document.addEventListener('click', e => { const m = $('.topic-menu'); if (m?.open && !m.contains(e.target)) m.open = false; });
 genForm.onsubmit = async e => {
   e.preventDefault();
   const d = trimAll(formData(genForm));
+  const topics = genTopics();
+  if (!topics.length) { $('#gen-status').textContent = 'Please tick at least one topic or type a new one.'; $('.topic-menu').open = true; return; }
   const nMod = Math.min(12, Math.max(2, +d.modules || 5)), nQ = Math.min(30, Math.max(3, +d.questions || 10));
   const status = $('#gen-status'), btn = genForm.querySelector('button');
   status.textContent = 'Writing your course… this can take a minute.'; btn.disabled = true;
   const goals = db.objectives.selected;
-  const prompt = `Create a ${d.level} course about: ${d.subject}.${goals.length ? `\nThe learner's personal objectives (shape examples and emphasis around those that relate to this subject): ${goals.join('; ')}.` : ''}
+  const prompt = `Create a ${d.level} course about: ${d.subject}.
+It belongs to these topics: ${topics.join('; ')}.${goals.length ? `\nThe learner's personal objectives (shape examples and emphasis around those that relate to this subject): ${goals.join('; ')}.` : ''}
 Write all text in ${d.lang}. Be factually accurate; prefer well-established facts.
 Return only JSON with this shape:
 {"title": string, "description": string (2-3 sentences),
  "modules": [{"title": string, "content": string}] — exactly ${nMod} lessons; each content is 200-400 words of plain-text teaching with concrete examples and numbers,
  "slides": [{"title": string, "bullets": [3-5 short strings]}] — a slide deck teaching the whole course: about 3 slides per lesson, in lesson order, each bullet under 20 words,
- "questions": [{"type": "mcq"|"tf"|"short", "difficulty": "easy"|"medium"|"hard", "prompt": string, "options": [4 strings, only for mcq], "answer": string, "explanation": string}] — exactly ${nQ} questions that test the lessons, mixing types and difficulties.
+ "questions": [{"topic": one of ${JSON.stringify(topics)}, "type": "mcq"|"tf"|"short", "difficulty": "easy"|"medium"|"hard", "prompt": string, "options": [4 strings, only for mcq], "answer": string, "explanation": string}] — exactly ${nQ} questions that test the lessons, mixing types and difficulties.
 Rules: for "tf" the answer is exactly "True" or "False"; for "mcq" the answer must equal one option exactly; for "short" the answer lists accepted answers separated by "|" (e.g. "bfloat16|bf16").`;
   try {
     const text = await gemini({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { responseMimeType: 'application/json' } });
@@ -618,17 +633,17 @@ Rules: for "tf" the answer is exactly "True" or "False"; for "mcq" the answer mu
     try { c = JSON.parse(text); } catch { throw new Error('The AI reply was not valid course data. Please try again.'); }
     const modules = (Array.isArray(c.modules) ? c.modules : []).filter(m => m?.title && m?.content).map(m => ({ title: String(m.title), content: String(m.content) }));
     if (!modules.length) throw new Error('The AI returned no lessons. Please try again.');
-    const topic = d.topic;
-    if (!db.topics.includes(topic)) db.topics.push(topic);
+    const topic = topics[0];
+    for (const t of topics) if (!db.topics.includes(t)) db.topics.push(t);
     const slides = (Array.isArray(c.slides) ? c.slides : []).filter(s => s?.title && Array.isArray(s.bullets))
       .map(s => ({ title: String(s.title), bullets: s.bullets.map(String).filter(Boolean).slice(0, 6) }));
-    const course = { id: uid(), title: String(c.title || d.subject), description: String(c.description || ''), topic, level: d.level, lang: d.lang === 'Arabic' ? 'ar' : 'en', modules, slides, created: new Date().toISOString() };
+    const course = { id: uid(), title: String(c.title || d.subject), description: String(c.description || ''), topic, topics, level: d.level, lang: d.lang === 'Arabic' ? 'ar' : 'en', modules, slides, created: new Date().toISOString() };
     const qs = (Array.isArray(c.questions) ? c.questions : []).map(normalizeQuestion).filter(Boolean)
-      .map(q => ({ id: uid(), topic, type: q.type, difficulty: q.difficulty, prompt: q.prompt, ...(q.type === 'mcq' && { options: q.options }), answer: q.answer, explanation: String(q.explanation || ''), courseId: course.id }));
+      .map(q => ({ id: uid(), topic: topics.includes(q.topic) ? q.topic : topic, type: q.type, difficulty: q.difficulty, prompt: q.prompt, ...(q.type === 'mcq' && { options: q.options }), answer: q.answer, explanation: String(q.explanation || ''), courseId: course.id }));
     db.courses.push(course);
     db.questions.push(...qs);
     save();
-    genForm.subject.value = '';
+    genForm.subject.value = ''; genForm.newtopic.value = '';
     status.textContent = `Created "${course.title}": ${modules.length} lessons, ${qs.length} test questions.`;
     $('#gen-list details')?.setAttribute('open', '');
   } catch (err) {

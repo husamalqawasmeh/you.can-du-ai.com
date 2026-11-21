@@ -199,4 +199,18 @@ a.button { text-decoration: none; }
 #test-result .fold.sub > summary h3 { font-size: 1.05rem; margin: 0; }
 /* course form: wide Topic box, the other four 20% narrower */
 #gen-form .row > label { flex: 1 1 0; min-width: 110px; }
-#gen-form .row > label:first-child { flex: 2.25 1 0; min-width: 200px; }
+#gen-form .row > :first-child { flex: 2.25 1 0; min-width: 240px; }
+/* course form: multi-topic picker (dropdown of tick boxes) */
+.topic-pick { display: flex; flex-direction: column; gap: 2px; }
+.topic-pick-row { display: flex; gap: 6px; }
+.topic-pick-row input { flex: 0 0 34%; margin-top: 0; }
+.topic-menu { position: relative; flex: 1; min-width: 0; }
+.topic-menu > summary { list-style: none; cursor: pointer; padding: 7px 28px 7px 10px; border: 1px solid var(--border-strong); border-radius: 8px; background: var(--bg); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; position: relative; }
+.topic-menu > summary::-webkit-details-marker { display: none; }
+.topic-menu > summary::after { content: '▾'; position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+.topic-checks { position: absolute; z-index: 20; top: calc(100% + 4px); left: 0; min-width: 100%; width: max-content; max-height: 300px; overflow-y: auto; overflow-x: hidden; padding: 6px; background: var(--card); border: 1px solid var(--border-strong); border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,.35); }
+.topic-checks label { display: flex; align-items: center; gap: 8px; padding: 5px 8px; border-radius: 6px; white-space: nowrap; cursor: pointer; }
+.topic-checks label:hover { background: var(--raised); }
+.topic-checks input[type=checkbox] { margin: 0; padding: 0; width: auto; flex: none; }
+nav button.nav-home { padding: 8px 20px; }
+nav button.nav-home svg { width: 22px; height: 22px; }
