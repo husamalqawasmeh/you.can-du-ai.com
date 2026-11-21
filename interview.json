@@ -1558,6 +1558,10 @@
     {
       "q": "What is NVIDIA DGX Spark, and how does it compare with a Mac Studio, an AMD Strix Halo mini PC or a PC with an RTX 5090 for local LLM work?",
       "followup": "For a 70B model, which would you buy and why: memory size, memory bandwidth or software support?"
+    },
+    {
+      "q": "Why do AI video generators struggle with physics, and what kinds of errors do they make?",
+      "followup": "How would you measure physical correctness, and what would you change in data or training to improve it?"
     }
   ]
 }
