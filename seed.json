@@ -1672,6 +1672,27 @@
       "title": "Z.ai (Zhipu AI) and the GLM models",
       "sourceId": "src-127",
       "body": "Z.ai is the international brand (since 2025) of Zhipu AI, a Beijing AI company spun out of Tsinghua University in 2019 and one of China's leading LLM labs. Its model family is GLM (General Language Model), named after the GLM pre-training method from Tsinghua research. Timeline: GLM-130B (2022, open bilingual Chinese-English model); ChatGLM-6B (2023, small open chat model that ran on consumer GPUs and became very popular); GLM-4 (2024); GLM-4.5 and GLM-4.5-Air (2025, mixture-of-experts: about 355B total / 32B active and 106B / 12B active parameters) built for reasoning, coding and agents, with a \"thinking\" mode; GLM-4.6 (2025) with a longer context window (about 200K tokens) and stronger coding. Later versions continue the line. Other models: GLM-4.5V / GLM-4.xV (vision-language), CogView (images) and CogVideoX (video). Many GLM models are released with open weights under permissive licenses (for example MIT), so you can download them from Hugging Face and run them with vLLM or SGLang. You can also use them through the Z.ai chat app and API, which is OpenAI-compatible, and a low-cost \"GLM Coding Plan\" that plugs into coding agents such as Claude Code, Cline and others. Why it matters: GLM models are among the strongest open-weight models for coding and agent tasks at a low price, alongside Qwen, DeepSeek and Kimi. Things to consider: the US placed Zhipu on its Entity List in January 2025, so check compliance, data residency and your company's policy before using its hosted API; self-hosting the open weights avoids sending data to the provider."
+    },
+    {
+      "id": "note-47",
+      "topic": "LLMs",
+      "title": "What are the weights of an LLM?",
+      "body": "Weights are the numbers a neural network learns during training. Each weight says how strongly one input or neuron affects the next one; together with small offsets called biases they are the model's parameters. \"7B\" or \"70B\" in a model name is the number of parameters: 7 or 70 billion learned numbers. Simple picture: a neuron multiplies each input by its weight, adds them up plus a bias, and passes the result through an activation function; an LLM is billions of these operations organized as large matrices. The weights hold everything the model \"knows\" (language, facts, skills), but spread across all the numbers, not stored as readable sentences, so you cannot point to the one weight that knows Paris is in France. The code of a model is small; the weights are what make it smart, which is why they are the valuable part companies keep closed or release as open weights.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-48",
+      "topic": "LLMs",
+      "title": "How weights are learned and used",
+      "body": "Training: weights start as random numbers. The model predicts the next token, a loss function measures the error, backpropagation computes how each weight contributed (the gradient), and an optimizer such as Adam nudges every weight a little to reduce the error. Repeating this over trillions of tokens is pre-training; it is the expensive part (thousands of GPUs, weeks to months). Inference: the weights are frozen; the model only reads them to turn your prompt into an answer, which is why inference is far cheaper than training. Fine-tuning continues training on new data to adjust the weights; LoRA freezes the original weights and trains small extra matrices instead, so it needs much less memory and the adapter is only a few megabytes.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-49",
+      "topic": "LLMs",
+      "title": "Where the weights live in a Transformer",
+      "body": "Embedding matrix: one vector of weights per token in the vocabulary. Attention layers: weight matrices that make queries, keys and values (Q, K, V) and an output projection (O). Feed-forward (MLP) layers: usually the largest share of the weights, often seen as where much factual knowledge is stored. Layer normalization: small scale and shift weights. Output head: turns the final vector into a score for every token. In mixture-of-experts models only some experts' weights are used per token: \"active\" parameters (for example 32B) vs \"total\" parameters (for example 355B). Weights are stored in files such as safetensors (Hugging Face) or GGUF (llama.cpp, Ollama), often split into shards. Do not confuse them with: activations (temporary values computed for each input), the KV cache (stored attention keys and values for the current context), and hyperparameters (settings chosen by people, such as learning rate or number of layers).",
+      "sourceId": ""
     }
   ],
   "questions": [
@@ -7739,6 +7760,164 @@
       ],
       "explanation": "Some companies, like Google, offer both: closed Gemini and open Gemma.",
       "answer": "Llama → Open weights (Meta); Qwen → Open weights (Alibaba); GPT-5 → Closed, API only (OpenAI); Claude → Closed, API only (Anthropic); Gemma → Open weights (Google); Gemini → Closed, API only (Google)",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-180",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What are the weights of an LLM?",
+      "options": [
+        "The numbers the model learned during training that decide how inputs are turned into outputs",
+        "The size of the training data in GB",
+        "The prices per token",
+        "The physical weight of the GPU server"
+      ],
+      "answer": "The numbers the model learned during training that decide how inputs are turned into outputs",
+      "explanation": "Weights (with biases) are the model's parameters.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-181",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What does \"70B\" mean in a model name such as Llama 3 70B?",
+      "options": [
+        "The model has about 70 billion parameters (weights)",
+        "It was trained on 70 billion documents",
+        "It costs $70 billion",
+        "It has a 70-billion-token context window"
+      ],
+      "answer": "The model has about 70 billion parameters (weights)",
+      "explanation": "More parameters usually means more capability and more memory.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-182",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "How are the weights changed during training?",
+      "options": [
+        "Backpropagation computes gradients and an optimizer such as Adam adjusts the weights to reduce the loss",
+        "People type the values in by hand",
+        "The weights are copied from Wikipedia",
+        "They are chosen at random for each prompt"
+      ],
+      "answer": "Backpropagation computes gradients and an optimizer such as Adam adjusts the weights to reduce the loss",
+      "explanation": "Repeated over trillions of tokens, small updates make the predictions better.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-183",
+      "topic": "LLMs",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "During normal inference (chatting with the model), its weights do not change.",
+      "answer": "True",
+      "explanation": "Weights are frozen at inference; only training or fine-tuning changes them.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-184",
+      "topic": "LLMs",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Facts in an LLM are stored as readable sentences inside specific weights.",
+      "answer": "False",
+      "explanation": "Knowledge is spread across many weights as numbers; it cannot be read directly.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-185",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is the difference between weights and hyperparameters?",
+      "options": [
+        "Weights are learned from data; hyperparameters are settings people choose, such as learning rate or number of layers",
+        "They are the same thing",
+        "Hyperparameters are learned; weights are chosen by people",
+        "Hyperparameters are only used at inference"
+      ],
+      "answer": "Weights are learned from data; hyperparameters are settings people choose, such as learning rate or number of layers",
+      "explanation": "Training finds the weights; people (or tuning tools) pick the hyperparameters.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-186",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What does LoRA do with the original weights during fine-tuning?",
+      "options": [
+        "Keeps them frozen and trains small extra low-rank matrices",
+        "Deletes half of them",
+        "Retrains all of them from scratch",
+        "Converts them to text"
+      ],
+      "answer": "Keeps them frozen and trains small extra low-rank matrices",
+      "explanation": "That makes fine-tuning cheap; the adapter file is tiny.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-187",
+      "topic": "LLMs",
+      "type": "fill",
+      "difficulty": "medium",
+      "prompt": "In a mixture-of-experts model, the weights used for each token are called the ___ parameters, as opposed to the total parameters.",
+      "answer": "active",
+      "explanation": "For example GLM-4.5 has about 355B total but 32B active parameters.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-188",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which file format is commonly used on Hugging Face to store model weights safely?",
+      "options": [
+        "safetensors",
+        "docx",
+        "mp4",
+        "csv"
+      ],
+      "answer": "safetensors",
+      "explanation": "GGUF is used by llama.cpp and Ollama.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-189",
+      "topic": "LLMs",
+      "type": "match",
+      "difficulty": "medium",
+      "prompt": "Connect each term to its meaning.",
+      "pairs": [
+        [
+          "Weights",
+          "Learned numbers that scale connections"
+        ],
+        [
+          "Bias",
+          "Learned offset added to a neuron"
+        ],
+        [
+          "Activations",
+          "Temporary values computed for each input"
+        ],
+        [
+          "Hyperparameters",
+          "Settings chosen before training"
+        ],
+        [
+          "Gradient",
+          "How much each weight affects the error"
+        ]
+      ],
+      "explanation": "Weights and biases are the parameters; activations exist only while processing an input.",
+      "answer": "Weights → Learned numbers that scale connections; Bias → Learned offset added to a neuron; Activations → Temporary values computed for each input; Hyperparameters → Settings chosen before training; Gradient → How much each weight affects the error",
       "sourceId": ""
     }
   ]
