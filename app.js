@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=106';
-import { ADMIN_HASH } from './admin-hash.js?v=106';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=107';
+import { ADMIN_HASH } from './admin-hash.js?v=107';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -390,8 +390,10 @@ function readConfig() {
 }
 function updateMatchCount() {
   const cfg = readConfig(), n = filterQuestions(db.questions, cfg).length;
-  const hidden = cfg.exclude ? filterQuestions(db.questions, { ...cfg, exclude: null }).length - n : 0;
-  $('#match-count').textContent = `${n} question${n === 1 ? '' : 's'} match these settings` + (hidden ? ` (${hidden} you already answered correctly are skipped).` : '.');
+  // questions in these filters that this student already answered correctly (shown next to the Include tick box)
+  const mastered = filterQuestions(db.questions, { ...cfg, exclude: null }).length - filterQuestions(db.questions, { ...cfg, exclude: masteredIds(db.results) }).length;
+  $('#match-count').textContent = `${n} question${n === 1 ? '' : 's'} match these search filters.`;
+  $('#mastered-count').textContent = `(${mastered})`;
 }
 // "All / Any" vendor box: ticking it clears the vendors; ticking a vendor clears it; no vendor ticked = All again.
 cfgForm.addEventListener('change', e => {

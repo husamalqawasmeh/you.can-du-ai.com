@@ -221,3 +221,4 @@ nav button:last-child { margin-inline-end: 0; }
 #test-config .cfg-opts label { display: flex; align-items: center; gap: 6px; margin: 0; white-space: nowrap; }
 #test-config .cfg-opts input[type=number] { width: 5.5em; display: inline-block; margin: 0; }
 .sort-row > label.sort-main { flex: 2 1 260px; }
+#mastered-count { color: var(--muted); font-variant-numeric: tabular-nums; }
