@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=77';
-import { ADMIN_HASH } from './admin-hash.js?v=77';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=78';
+import { ADMIN_HASH } from './admin-hash.js?v=78';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -443,8 +443,14 @@ $('#test-run').onsubmit = e => {
   e.preventDefault();
   const f = new FormData(e.target);
   const { qs, cfg } = current;
-  if ('speechSynthesis' in window) speechSynthesis.cancel();
   const answers = qs.map((_, i) => f.get(`a${i}`) ?? '');
+  // unanswered: blank text/choice, or a matching question with any pair not connected
+  const missing = answers.map((a, i) => (qs[i].type === 'match' ? !a || JSON.parse(a).some(x => !x) : !String(a).trim()) ? i + 1 : 0).filter(Boolean);
+  if (missing.length && !confirm(`You have ${missing.length} unanswered question${missing.length > 1 ? 's' : ''} (number ${missing.join(', ')}).\n\nOK = submit anyway (unanswered count as wrong)\nCancel = go back and answer them`)) {
+    e.target.querySelectorAll('.question')[missing[0] - 1]?.scrollIntoView({ block: 'center' });
+    return;
+  }
+  if ('speechSynthesis' in window) speechSynthesis.cancel();
   const g = grade(qs, answers);
   const items = resultItems(qs, answers);
   db.results.push({ id: uid(), date: new Date().toISOString(), topics: cfg.topics, ...g, byTopic: scoreByTopic(qs, answers), items });
