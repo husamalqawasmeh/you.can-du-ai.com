@@ -183,3 +183,4 @@ a.button { text-decoration: none; }
 .iv-answers dl { margin: 8px 0 0; }
 .iv-answers dt { font-weight: 600; margin-top: 8px; }
 .iv-answers dd { margin: 2px 0 0 1.2em; color: var(--muted); }
+.nav-home svg { display: block; }
