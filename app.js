@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=85';
-import { ADMIN_HASH } from './admin-hash.js?v=85';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=86';
+import { ADMIN_HASH } from './admin-hash.js?v=86';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -31,6 +31,15 @@ function showTab(name) {
   }
   document.querySelectorAll('nav button').forEach(x => x.classList.toggle('active', x.dataset.tab === name));
   document.querySelectorAll('.tab').forEach(t => t.hidden = t.id !== name);
+  if (name === 'test') alignChecks();
+}
+// Same column widths in every test-setup box (widest option per column across all boxes), so options line up.
+function alignChecks() {
+  const boxes = [...document.querySelectorAll('#test-config .checks')];
+  if (!boxes[0]?.offsetWidth) return; // hidden: measured when the tab opens
+  const w = [0, 0, 0, 0, 0];
+  for (const b of boxes) [...b.children].forEach((l, i) => { w[i % 5] = Math.max(w[i % 5], Math.ceil(l.scrollWidth)); });
+  $('#test-config').style.setProperty('--check-cols', w.map(x => x + 'px').join(' '));
 }
 document.querySelectorAll('nav button').forEach(b => {
   b.onclick = () => showTab(b.dataset.tab);
@@ -64,6 +73,7 @@ function render() {
   const vChecked = new Set([...document.querySelectorAll('#cfg-vendors input:checked')].map(i => i.value));
   $('#cfg-vendors').innerHTML = `<label><input type="checkbox" name="vendorAll" ${vChecked.size && !vChecked.has('') ? '' : 'checked'} value=""> <strong>All / Any</strong></label>` + Object.keys(VENDORS).map(v => [v, filterQuestions(db.questions, { vendors: [v] }).length]).filter(([, n]) => n)
     .map(([v, n]) => `<label><input type="checkbox" name="vendor" value="${esc(v)}" ${vChecked.has(v) ? 'checked' : ''}> ${esc(v)} (${n})</label>`).join('');
+  alignChecks();
   updateMatchCount();
 
   // topics

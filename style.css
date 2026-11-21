@@ -45,7 +45,7 @@ fieldset { border: 1px solid var(--border); border-radius: 6px; margin: 0 0 12px
 #test-config fieldset { display: grid; grid-template-columns: 90px 1fr; padding: 0; overflow: hidden; border-color: var(--border-strong); }
 #test-config legend { float: left; margin: 0; padding: 8px 8px; font-size: .9rem; font-weight: 600; background: var(--raised); border-right: 1px solid var(--border-strong); }
 #test-config .legend-sub { display: block; font-weight: 400; font-size: .8rem; color: var(--muted); }
-#test-config .checks { display: grid; grid-template-columns: repeat(5, max-content); justify-content: space-between; gap: 0 22px; padding: 4px 8px; line-height: 1.25; align-content: center; font-size: .88rem; }
+#test-config .checks { display: grid; grid-template-columns: var(--check-cols, repeat(5, max-content)); justify-content: space-between; gap: 0 22px; padding: 4px 8px; line-height: 1.25; align-content: center; font-size: .88rem; }
 #test-config .checks label { display: flex; gap: 5px; margin: 0; padding: 1px 0; align-items: baseline; white-space: nowrap; min-width: 0; }
 @media (max-width: 1000px) { #test-config .checks { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); } }
 @media (max-width: 560px) {
