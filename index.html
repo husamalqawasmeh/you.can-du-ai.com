@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You Can Du AI</title>
 <meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
-<link rel="stylesheet" href="style.css?v=109">
+<link rel="stylesheet" href="style.css?v=110">
 </head>
 <body>
 <header>
@@ -106,7 +106,7 @@
     <form id="test-config" class="card">
       <h2>Set up your test</h2>
       <fieldset><legend>Questions</legend><div class="cfg-opts">
-        <label>How many? <input type="number" name="count" min="1" value="10" required></label>
+        <label><input type="number" name="count" min="1" value="10" required aria-label="How many questions" title="How many questions"></label>
         <span id="match-count" class="muted"></span>
         <label><input type="checkbox" name="includeMastered"> Include questions I already answered correctly <span id="mastered-count"></span></label>
       </div></fieldset>
@@ -345,6 +345,6 @@
     </div>
   </section>
 </main>
-<script type="module" src="app.js?v=109"></script>
+<script type="module" src="app.js?v=110"></script>
 </body>
 </html>
