@@ -222,3 +222,4 @@ nav button:last-child { margin-inline-end: 0; }
 #test-config .cfg-opts input[type=number] { width: 5.5em; display: inline-block; margin: 0; }
 .sort-row > label.sort-main { flex: 2 1 260px; }
 #mastered-count { color: var(--muted); font-variant-numeric: tabular-nums; }
+#test-config .cfg-opts #match-count { margin-inline-start: -18px; }
