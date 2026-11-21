@@ -194,3 +194,4 @@ a.button { text-decoration: none; }
 .cert-samples > li { margin-bottom: 10px; }
 .cert-samples p { margin: 0 0 4px; }
 .cert-samples ul { margin: 0 0 4px; }
+#test-config .checks .cnt { margin-inline-start: auto; padding: 0 6px 0 8px; font-size: .78em; color: var(--muted); font-variant-numeric: tabular-nums; }

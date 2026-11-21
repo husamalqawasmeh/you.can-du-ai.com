@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=86';
-import { ADMIN_HASH } from './admin-hash.js?v=86';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=87';
+import { ADMIN_HASH } from './admin-hash.js?v=87';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -72,7 +72,7 @@ function render() {
     `<label><input type="checkbox" name="topic" value="${esc(t)}" ${checked.has(t) ? 'checked' : ''}> ${esc(t)}</label>`).join('');
   const vChecked = new Set([...document.querySelectorAll('#cfg-vendors input:checked')].map(i => i.value));
   $('#cfg-vendors').innerHTML = `<label><input type="checkbox" name="vendorAll" ${vChecked.size && !vChecked.has('') ? '' : 'checked'} value=""> <strong>All / Any</strong></label>` + Object.keys(VENDORS).map(v => [v, filterQuestions(db.questions, { vendors: [v] }).length]).filter(([, n]) => n)
-    .map(([v, n]) => `<label><input type="checkbox" name="vendor" value="${esc(v)}" ${vChecked.has(v) ? 'checked' : ''}> ${esc(v)} (${n})</label>`).join('');
+    .map(([v, n]) => `<label><input type="checkbox" name="vendor" value="${esc(v)}" ${vChecked.has(v) ? 'checked' : ''}> ${esc(v)} <span class="cnt">(${n})</span></label>`).join('');
   alignChecks();
   updateMatchCount();
 
