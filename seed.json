@@ -7652,6 +7652,94 @@
       "explanation": "Spotting these glitches is also a way to recognize AI-made video.",
       "answer": "A bitten cookie shows no bite mark → Cause and effect; A glass of water refills by itself → Conservation of mass; A ball floats up after being dropped → Gravity; Two cars drive through each other → Solid collisions; A dog behind a tree comes out as a cat → Object permanence",
       "sourceId": "src-125"
+    },
+    {
+      "id": "q3-175",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is the main advantage of an open-weight LLM over a closed (API-only) LLM?",
+      "options": [
+        "You can run it on your own hardware, so data stays in-house and you control versions and fine-tuning",
+        "It is always more accurate than every closed model",
+        "It needs no GPUs at all",
+        "It never needs a license"
+      ],
+      "answer": "You can run it on your own hardware, so data stays in-house and you control versions and fine-tuning",
+      "explanation": "Closed models are used only through the vendor's API; open weights can be downloaded, self-hosted and fine-tuned.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-176",
+      "topic": "LLMs",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "An open-weight model is always free to use for any commercial purpose.",
+      "answer": "False",
+      "explanation": "Licenses differ: Apache 2.0 and MIT are permissive, while some (for example Llama's community license) add limits such as user caps or use restrictions. Always read the license.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-177",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which is a real cost of choosing an open-weight model instead of a closed API model?",
+      "options": [
+        "You must pay for and run the GPUs, serving, scaling, security and updates yourself",
+        "You must pay per token to the model maker",
+        "You cannot fine-tune it",
+        "You cannot use it offline"
+      ],
+      "answer": "You must pay for and run the GPUs, serving, scaling, security and updates yourself",
+      "explanation": "Weights may be free, but hosting is not; for low volume a paid API is often cheaper.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-178",
+      "topic": "LLMs",
+      "type": "fill",
+      "difficulty": "easy",
+      "prompt": "A model whose trained parameters can be downloaded and run on your own servers is called an open-___ model.",
+      "answer": "weight|weights",
+      "explanation": "Open-weight is not always fully open source: the training data and code may stay private.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-179",
+      "topic": "LLMs",
+      "type": "match",
+      "difficulty": "medium",
+      "prompt": "Connect each model to whether its weights are open or closed (API-only).",
+      "pairs": [
+        [
+          "Llama",
+          "Open weights (Meta)"
+        ],
+        [
+          "Qwen",
+          "Open weights (Alibaba)"
+        ],
+        [
+          "GPT-5",
+          "Closed, API only (OpenAI)"
+        ],
+        [
+          "Claude",
+          "Closed, API only (Anthropic)"
+        ],
+        [
+          "Gemma",
+          "Open weights (Google)"
+        ],
+        [
+          "Gemini",
+          "Closed, API only (Google)"
+        ]
+      ],
+      "explanation": "Some companies, like Google, offer both: closed Gemini and open Gemma.",
+      "answer": "Llama → Open weights (Meta); Qwen → Open weights (Alibaba); GPT-5 → Closed, API only (OpenAI); Claude → Closed, API only (Anthropic); Gemma → Open weights (Google); Gemini → Closed, API only (Google)",
+      "sourceId": ""
     }
   ]
 }
