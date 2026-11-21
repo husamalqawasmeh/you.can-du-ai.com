@@ -1554,6 +1554,10 @@
     {
       "q": "What is quantization, and what are the trade-offs of running a model in 8-bit or 4-bit?",
       "followup": "How would you check that a quantized model is still good enough for production?"
+    },
+    {
+      "q": "What is NVIDIA DGX Spark, and how does it compare with a Mac Studio, an AMD Strix Halo mini PC or a PC with an RTX 5090 for local LLM work?",
+      "followup": "For a 70B model, which would you buy and why: memory size, memory bandwidth or software support?"
     }
   ]
 }

@@ -1593,6 +1593,27 @@
       "title": "Quantization",
       "body": "Quantization stores model weights (and sometimes activations and the KV cache) in fewer bits: FP32 (4 bytes) → FP16/BF16 (2) → FP8/INT8 (1) → INT4/FP4 (0.5). Benefits: less memory (a 70B model drops from ~140 GB in FP16 to ~35-40 GB in 4-bit), faster decoding because fewer bytes move from memory, cheaper hardware, and models that fit on laptops and phones. Cost: some quality loss, larger at 3 bits and below and on math, code and long-context tasks. Types: post-training quantization (PTQ, after training: GPTQ, AWQ, SmoothQuant, bitsandbytes) vs quantization-aware training (QAT, the model learns to cope with low precision). Formats: GGUF (llama.cpp, Ollama, with levels such as Q4_K_M and Q8_0), GPTQ and AWQ (GPU serving in vLLM/TGI), FP8 and NVFP4 (native on NVIDIA Hopper/Blackwell). QLoRA fine-tunes LoRA adapters on top of a 4-bit base model to save memory. Always compare the quantized model with the original on your own evals.",
       "sourceId": ""
+    },
+    {
+      "id": "note-41",
+      "topic": "AI Hardware",
+      "title": "NVIDIA DGX Spark",
+      "body": "A desktop \"AI supercomputer\" the size of a small book, shipped in October 2025 (about $3,999 for the 4 TB Founders Edition). Inside is the GB10 Grace Blackwell Superchip: a 20-core Arm CPU and a Blackwell GPU with 5th-gen Tensor Cores, sharing 128 GB of unified LPDDR5X memory (about 273 GB/s). NVIDIA quotes up to 1 petaFLOP of FP4 AI compute (with sparsity). It runs DGX OS (Ubuntu) with the full NVIDIA AI software stack (CUDA, NIM, NeMo), so code moves easily to DGX servers and the cloud. Use it to prototype, fine-tune and run models locally: inference on models up to about 200B parameters (in FP4) and fine-tuning up to about 70B. A built-in ConnectX-7 200 Gb/s network port links two Sparks to run models up to about 405B parameters. Partner versions with the same GB10 chip: ASUS Ascent GX10, Dell Pro Max with GB10, HP ZGX Nano, Lenovo ThinkStation PGX, MSI EdgeXpert, Acer Veriton GN100 and Gigabyte AI TOP ATOM.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-42",
+      "topic": "AI Hardware",
+      "title": "DGX Spark vs similar local AI machines",
+      "body": "NVIDIA DGX Station: the big brother, a deskside workstation with the GB300 Grace Blackwell Ultra chip and about 784 GB of coherent memory for much larger models. Apple Mac Studio (M3 Ultra): up to 512 GB unified memory with about 819 GB/s bandwidth, so very large models fit and generate tokens fast, but no CUDA (use MLX or llama.cpp). AMD Ryzen AI Max+ 395 (\"Strix Halo\") mini PCs such as the Framework Desktop or HP Z2 Mini G1a: up to 128 GB unified memory at about 256 GB/s, lower price, ROCm/Vulkan instead of CUDA. Consumer GPU PC with an RTX 5090: only 32 GB VRAM but about 1.8 TB/s, so much faster on models that fit. RTX PRO 6000 Blackwell: 96 GB VRAM workstation card. NVIDIA Jetson AGX Thor: a 128 GB module for robots and edge devices, not a desktop. How to choose: memory size decides which models fit; memory bandwidth decides tokens per second; software (CUDA vs MLX vs ROCm) decides what runs easily.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-43",
+      "topic": "AI Hardware",
+      "title": "Unified memory and the bandwidth rule",
+      "body": "In unified-memory machines (DGX Spark, Apple silicon, AMD Strix Halo) the CPU and GPU share one large pool, so models much bigger than a gaming GPU's VRAM can load. But decoding reads all active weights for each token, so a rough upper bound is tokens/s ≈ memory bandwidth ÷ bytes of active weights. Example: a 70B model in 4-bit is about 35-40 GB; on DGX Spark (~273 GB/s) that gives under about 7 tokens/s, while a Mac Studio M3 Ultra (~819 GB/s) can roughly triple that. Mixture-of-experts models only read their active experts per token, so they run much faster on these machines. Spark is strongest at prefill (prompt processing), fine-tuning and FP4 compute thanks to its Blackwell Tensor Cores.",
+      "sourceId": ""
     }
   ],
   "questions": [
@@ -7154,6 +7175,196 @@
       ],
       "answer": "GGUF → llama.cpp and Ollama on CPUs and laptops; AWQ → Activation-aware 4-bit weights for GPU serving; FP8 → Native on NVIDIA Hopper and Blackwell GPUs; bitsandbytes → Easy 8-bit and 4-bit loading in Hugging Face; QLoRA → Fine-tuning on a 4-bit base model",
       "explanation": "Pick the format that matches your hardware and serving engine.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-150",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is NVIDIA DGX Spark?",
+      "options": [
+        "A small desktop AI computer for building and running models locally",
+        "A cloud-only GPU service",
+        "A gaming graphics card",
+        "A programming language"
+      ],
+      "answer": "A small desktop AI computer for building and running models locally",
+      "explanation": "It uses the GB10 Grace Blackwell Superchip with 128 GB unified memory.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-151",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which chip powers NVIDIA DGX Spark?",
+      "options": [
+        "GB10 Grace Blackwell Superchip",
+        "H100",
+        "Apple M3 Ultra",
+        "AMD MI300X"
+      ],
+      "answer": "GB10 Grace Blackwell Superchip",
+      "explanation": "An Arm Grace CPU and a Blackwell GPU in one package.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-152",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "How much unified memory does one DGX Spark have?",
+      "options": [
+        "128 GB",
+        "32 GB",
+        "512 GB",
+        "24 GB"
+      ],
+      "answer": "128 GB",
+      "explanation": "CPU and GPU share 128 GB of LPDDR5X.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-153",
+      "topic": "AI Hardware",
+      "type": "fill",
+      "difficulty": "medium",
+      "prompt": "Two DGX Spark units can be linked with their built-in ConnectX-7 network to run models up to about ___ billion parameters.",
+      "answer": "405",
+      "explanation": "One Spark handles about 200B parameters for inference; two linked units about 405B.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-154",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "What usually limits how many tokens per second DGX Spark generates on a large dense model?",
+      "options": [
+        "Its memory bandwidth (about 273 GB/s)",
+        "Its disk size",
+        "The number of USB ports",
+        "Its CPU clock alone"
+      ],
+      "answer": "Its memory bandwidth (about 273 GB/s)",
+      "explanation": "Decoding reads all active weights per token; tokens/s ≈ bandwidth ÷ bytes of active weights.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-155",
+      "topic": "AI Hardware",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Code built on DGX Spark uses the same NVIDIA software stack (CUDA, NIM, NeMo) as DGX servers and the cloud, so it moves there easily.",
+      "answer": "True",
+      "explanation": "That is a key selling point over non-CUDA machines.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-156",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which machine offers up to 512 GB of unified memory for running very large models locally?",
+      "options": [
+        "Apple Mac Studio with M3 Ultra",
+        "NVIDIA DGX Spark",
+        "NVIDIA GeForce RTX 5090",
+        "AMD Ryzen AI Max+ 395 mini PC"
+      ],
+      "answer": "Apple Mac Studio with M3 Ultra",
+      "explanation": "It also has about 819 GB/s bandwidth, but uses MLX or llama.cpp instead of CUDA.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-157",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "A 30B model in 4-bit (about 16 GB) fits on both an RTX 5090 (32 GB, ~1.8 TB/s) and a DGX Spark. Which generates tokens faster?",
+      "options": [
+        "The RTX 5090",
+        "The DGX Spark",
+        "They are the same",
+        "Neither can run it"
+      ],
+      "answer": "The RTX 5090",
+      "explanation": "Its memory bandwidth is several times higher; Spark wins when the model is too big for 32 GB.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-158",
+      "topic": "AI Hardware",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "Mixture-of-experts models often run faster than dense models of the same total size on unified-memory machines like DGX Spark.",
+      "answer": "True",
+      "explanation": "Only the active experts are read for each token.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-159",
+      "topic": "AI Hardware",
+      "type": "match",
+      "difficulty": "medium",
+      "prompt": "Connect each local AI machine to its key feature.",
+      "pairs": [
+        [
+          "NVIDIA DGX Spark",
+          "GB10 chip, 128 GB, CUDA in a tiny box"
+        ],
+        [
+          "NVIDIA DGX Station",
+          "GB300 chip, about 784 GB for very large models"
+        ],
+        [
+          "Apple Mac Studio M3 Ultra",
+          "Up to 512 GB unified memory, MLX"
+        ],
+        [
+          "AMD Ryzen AI Max+ 395 mini PC",
+          "Up to 128 GB at a lower price, ROCm"
+        ],
+        [
+          "NVIDIA Jetson AGX Thor",
+          "Robots and edge devices"
+        ]
+      ],
+      "answer": "NVIDIA DGX Spark → GB10 chip, 128 GB, CUDA in a tiny box; NVIDIA DGX Station → GB300 chip, about 784 GB for very large models; Apple Mac Studio M3 Ultra → Up to 512 GB unified memory, MLX; AMD Ryzen AI Max+ 395 mini PC → Up to 128 GB at a lower price, ROCm; NVIDIA Jetson AGX Thor → Robots and edge devices",
+      "explanation": "Memory size, bandwidth and software decide the right machine.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-160",
+      "topic": "AI Hardware",
+      "type": "match",
+      "difficulty": "easy",
+      "prompt": "Connect each DGX Spark partner version to its maker.",
+      "pairs": [
+        [
+          "Ascent GX10",
+          "ASUS"
+        ],
+        [
+          "Pro Max with GB10",
+          "Dell"
+        ],
+        [
+          "ZGX Nano",
+          "HP"
+        ],
+        [
+          "ThinkStation PGX",
+          "Lenovo"
+        ],
+        [
+          "EdgeXpert",
+          "MSI"
+        ]
+      ],
+      "answer": "Ascent GX10 → ASUS; Pro Max with GB10 → Dell; ZGX Nano → HP; ThinkStation PGX → Lenovo; EdgeXpert → MSI",
+      "explanation": "All use the same NVIDIA GB10 Superchip.",
       "sourceId": ""
     }
   ]
