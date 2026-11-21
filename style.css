@@ -214,3 +214,6 @@ a.button { text-decoration: none; }
 .topic-checks input[type=checkbox] { margin: 0; padding: 0; width: auto; flex: none; }
 nav button.nav-home { padding: 8px 20px; }
 nav button.nav-home svg { width: 22px; height: 22px; }
+/* top bar: a gap after Home, then after every 4 icons */
+nav button:nth-child(4n+1) { margin-inline-end: 16px; }
+nav button:last-child { margin-inline-end: 0; }
