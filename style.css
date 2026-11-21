@@ -184,3 +184,5 @@ a.button { text-decoration: none; }
 .iv-answers dt { font-weight: 600; margin-top: 8px; }
 .iv-answers dd { margin: 2px 0 0 1.2em; color: var(--muted); }
 .nav-home svg { display: block; }
+.cert-levels { display: block; margin-top: 4px; font-size: .8rem; font-weight: 400; color: var(--muted); }
+.cert-levels span { display: block; }

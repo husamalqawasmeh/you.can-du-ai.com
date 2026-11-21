@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=82';
-import { ADMIN_HASH } from './admin-hash.js?v=82';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=83';
+import { ADMIN_HASH } from './admin-hash.js?v=83';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -213,7 +213,7 @@ async function loadCerts() {
     const list = c.certs.filter(x => (!v || x.vendor === v) && (!l || x.level === l));
     const by = {};
     for (const x of list) (by[x.vendor] ??= []).push(x);
-    $('#certs-list').innerHTML = Object.entries(by).map(([vendor, xs]) => `<section class="cert-group"><h3 class="cert-vendor">${esc(vendor)} <span class="tag">${xs.length} exam${xs.length === 1 ? '' : 's'}</span></h3><div>${xs.map(x => `<details class="card cert"><summary><strong>${esc(x.name)}</strong> <span class="tag">${esc(x.level)} · ${esc(x.cost)}</span></summary>
+    $('#certs-list').innerHTML = Object.entries(by).map(([vendor, xs]) => `<section class="cert-group"><h3 class="cert-vendor">${esc(vendor)} <span class="tag">${xs.length} exam${xs.length === 1 ? '' : 's'}</span><span class="cert-levels">${LEVELS.filter(l => xs.some(x => x.level === l)).map(l => `<span>${esc(l)}: ${xs.filter(x => x.level === l).length}</span>`).join('')}</span></h3><div>${xs.map(x => `<details class="card cert"><summary><strong>${esc(x.name)}</strong> <span class="tag">${esc(x.level)} · ${esc(x.cost)}</span></summary>
       <table class="cert-facts">${row('Exam code', x.code)}${row('Level', x.level)}${row('Cost', x.cost)}${row('Duration', x.duration)}${row('Questions', x.questions)}${row('Prerequisites', x.prerequisites)}</table>
       <h4>Modules and topics</h4><ul class="advice">${x.topics.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
       ${x.note ? `<p class="muted"><em>${esc(x.note)}</em></p>` : ''}
