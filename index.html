@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You Can Du AI</title>
 <meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
-<link rel="stylesheet" href="style.css?v=93">
+<link rel="stylesheet" href="style.css?v=94">
 </head>
 <body>
 <header>
@@ -85,7 +85,7 @@
   <!-- COURSES -->
   <section id="courses" class="tab" hidden>
     <form id="gen-form" class="card">
-      <h2>Create a course with AI</h2>
+      <details class="fold" open><summary><h2>Create a course with AI</h2></summary>
       <p class="muted">Name any subject. AI writes the lessons and a test, which are added to your question bank.</p>
       <label>Course subject <input name="subject" required placeholder="e.g. Sizing GPU clusters for LLM inference"></label>
       <div class="row">
@@ -98,6 +98,7 @@
       <p id="gen-objectives" class="muted"></p>
       <button class="primary">Create course</button>
       <p id="gen-status" class="muted" role="status"></p>
+      </details>
     </form>
     <div class="card objectives-panel"></div>
     <div class="card"><h2>My AI-created courses</h2><div id="gen-list"></div></div>
@@ -332,6 +333,6 @@
     </div>
   </section>
 </main>
-<script type="module" src="app.js?v=93"></script>
+<script type="module" src="app.js?v=94"></script>
 </body>
 </html>
