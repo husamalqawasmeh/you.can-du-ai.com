@@ -156,9 +156,8 @@ a.button { text-decoration: none; }
 /* Collapsible full-width boxes (Knowledge library) */
 .fold > summary { cursor: pointer; list-style: none; display: flex; align-items: center; gap: 8px; }
 .fold > summary::-webkit-details-marker { display: none; }
-.fold > summary::before { content: '▸'; color: var(--accent); transition: transform .15s; }
+.fold > summary::before { content: '▶'; font-size: .9em; line-height: 1; color: var(--accent); transition: transform .15s; }
 .fold[open] > summary::before { transform: rotate(90deg); }
-.fold > summary:has(> h2)::before { content: '▶'; font-size: .95em; line-height: 1; }
 .fold > summary > h2, .fold > summary > h3 { margin: 0; }
 .fold[open] > summary { margin-bottom: 10px; }
 .fold.sub { margin-top: 8px; }
