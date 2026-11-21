@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You Can Du AI</title>
 <meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
-<link rel="stylesheet" href="style.css?v=104">
+<link rel="stylesheet" href="style.css?v=105">
 </head>
 <body>
 <header>
@@ -105,7 +105,10 @@
   <section id="test" class="tab" hidden>
     <form id="test-config" class="card">
       <h2>Set up your test</h2>
-      <label>How many questions? <input type="number" name="count" min="1" value="10" required></label>
+      <fieldset><legend>Questions</legend><div class="cfg-opts">
+        <label>How many? <input type="number" name="count" min="1" value="10" required></label>
+        <label><input type="checkbox" name="includeMastered"> Include questions I already answered correctly</label>
+      </div></fieldset>
       <fieldset><legend>Topics<span class="legend-sub">(none = all)</span></legend><div id="cfg-topics" class="checks"></div></fieldset>
       <fieldset><legend>AI vendors<span class="legend-sub">(none = all)</span></legend><div id="cfg-vendors" class="checks"></div></fieldset>
       <fieldset><legend>Question types<span class="legend-sub">(none = all)</span></legend><div class="checks">
@@ -120,7 +123,6 @@
         <label><input type="checkbox" name="difficulty" value="medium"> Medium</label>
         <label><input type="checkbox" name="difficulty" value="hard"> Hard</label>
       </div></fieldset>
-      <label><input type="checkbox" name="includeMastered"> Include questions I already answered correctly</label>
       <p id="match-count" class="muted"></p>
       <button type="submit" class="primary">Start test</button>
     </form>
@@ -341,6 +343,6 @@
     </div>
   </section>
 </main>
-<script type="module" src="app.js?v=104"></script>
+<script type="module" src="app.js?v=105"></script>
 </body>
 </html>
