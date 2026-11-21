@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=74';
-import { ADMIN_HASH } from './admin-hash.js?v=74';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=76';
+import { ADMIN_HASH } from './admin-hash.js?v=76';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -399,7 +399,8 @@ function startTest(qs, cfg) {
       : `<input name="a${i}" autocomplete="off" aria-label="Your answer">`;
     // fill in the blank: the ___ in the statement becomes the text box
     const prompt = q.type === 'fill' ? esc(q.prompt).replace('___', `<input class="blank" name="a${i}" autocomplete="off" aria-label="Missing word">`) : esc(q.prompt);
-    return `<div class="question"><p>${i + 1}. ${prompt}</p><div class="tag">${esc(q.topic)} · ${esc(q.difficulty)}</div>${input}</div>`;
+    const num = 'speechSynthesis' in window ? `<button type="button" class="qnum" data-speak="${i}" title="Read this question aloud" aria-label="Read question ${i + 1} aloud">${i + 1}. 🔊</button>` : `${i + 1}.`;
+    return `<div class="question"><p>${num} ${prompt}</p><div class="tag">${esc(q.topic)} · ${esc(q.difficulty)}</div>${input}</div>`;
   }).join('') + `<button class="primary">Submit answers</button> <button type="button" id="cancel-test">Cancel</button></div>`;
   run.querySelectorAll('.match').forEach(el => { const i = +el.dataset.q; setupMatch(el, qs[i].pairs, links => { run.elements['a' + i].value = JSON.stringify(qs[i].pairs.map((p, k) => links.get(k) ?? '')); }); });
   cfgForm.hidden = true; $('#test-result').hidden = true; run.hidden = false;
@@ -407,7 +408,23 @@ function startTest(qs, cfg) {
   run.scrollIntoView();
 }
 
+// Read a question aloud (browser speech); clicking again while it speaks stops it.
+function speakQuestion(q) {
+  const ss = speechSynthesis;
+  if (ss.speaking) return ss.cancel();
+  let text = q.prompt.replace(/_{3,}/g, ', blank, ').replace(/[.?!:\s]+$/, '');
+  if (q.type !== 'mcq' && q.type !== 'tf' && q.type !== 'match') text += '.';
+  if (q.type === 'mcq') text += '. Options: ' + q.options.join('; ');
+  else if (q.type === 'tf') text += '. True or false?';
+  else if (q.type === 'match') text += '. Match these: ' + q.pairs.map(p => p[0]).join('; ') + '. With: ' + q.pairs.map(p => p[1]).join('; ');
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = /[؀-ۿ]/.test(text) ? 'ar' : 'en-US';
+  ss.speak(u);
+}
+$('#test-run').addEventListener('click', e => { const b = e.target.closest('[data-speak]'); if (b && current) speakQuestion(current.qs[+b.dataset.speak]); });
+
 function resetTest() {
+  if ('speechSynthesis' in window) speechSynthesis.cancel();
   current = null;
   $('#test-run').hidden = true; $('#test-result').hidden = true; cfgForm.hidden = false;
 }
@@ -426,6 +443,7 @@ $('#test-run').onsubmit = e => {
   e.preventDefault();
   const f = new FormData(e.target);
   const { qs, cfg } = current;
+  if ('speechSynthesis' in window) speechSynthesis.cancel();
   const answers = qs.map((_, i) => f.get(`a${i}`) ?? '');
   const g = grade(qs, answers);
   const items = resultItems(qs, answers);

@@ -45,7 +45,7 @@ fieldset { border: 1px solid var(--border); border-radius: 6px; margin: 0 0 12px
 #test-config fieldset { display: grid; grid-template-columns: 90px 1fr; padding: 0; overflow: hidden; border-color: var(--border-strong); }
 #test-config legend { float: left; margin: 0; padding: 8px 8px; font-size: .9rem; font-weight: 600; background: var(--raised); border-right: 1px solid var(--border-strong); }
 #test-config .legend-sub { display: block; font-weight: 400; font-size: .8rem; color: var(--muted); }
-#test-config .checks { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0 10px; padding: 4px 8px; line-height: 1.25; align-content: center; font-size: .88rem; }
+#test-config .checks { display: grid; grid-template-columns: repeat(5, max-content); justify-content: start; gap: 0 22px; padding: 4px 8px; line-height: 1.25; align-content: center; font-size: .88rem; }
 #test-config .checks label { display: flex; gap: 5px; margin: 0; padding: 1px 0; align-items: baseline; overflow-wrap: break-word; min-width: 0; }
 @media (max-width: 1000px) { #test-config .checks { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); } }
 @media (max-width: 560px) {
@@ -141,6 +141,8 @@ a.button { text-decoration: none; }
 .sort-row { margin-top: 8px; }
 /* fill in the blank: the text box sits inside the sentence */
 #test-run input.blank { display: inline-block; width: 7em; margin: 0 4px; vertical-align: baseline; padding: 1px 6px; border-bottom: 2px solid var(--accent); }
+.qnum { display: inline; padding: 0 4px; margin: 0; font: inherit; font-weight: 700; background: none; border: 0; border-radius: 4px; cursor: pointer; color: inherit; }
+.qnum:hover, .qnum:focus-visible { background: var(--raised); color: var(--accent); }
 /* Tool group bars (every grouping): thin and close together */
 #tools-list > details { padding: 4px 12px; margin-bottom: 4px; }
 #tools-list > details > summary > h3 { font-size: .9rem; line-height: 1.3; }
