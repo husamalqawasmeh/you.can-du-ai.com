@@ -1572,6 +1572,27 @@
       "title": "Responsible and secure AI",
       "body": "Check models for bias across groups, explain important decisions, and keep a human in the loop for high-stakes cases. Protect privacy: minimize personal data, mask PII, respect data residency. Defend against prompt injection, data exfiltration through tools, jailbreaks and insecure output handling (see OWASP Top 10 for LLM Applications). Follow regulation such as the EU AI Act (risk-based duties) and frameworks such as NIST AI RMF. Log decisions and keep model and data documentation (model cards, datasheets).",
       "sourceId": ""
+    },
+    {
+      "id": "note-38",
+      "topic": "AI Engineering",
+      "title": "Containers and containerization",
+      "body": "A container packages an app with everything it needs (code, runtime, libraries, settings) into an image that runs the same way on a laptop, a server or the cloud. Unlike a virtual machine, containers share the host operating system kernel, so they start in seconds and use less memory. Key terms: Dockerfile (recipe), image (built package), container (running image), registry (store for images such as Docker Hub, GHCR, ECR), Docker or Podman (build and run), Kubernetes or OpenShift (run many containers across many machines: scaling, restarts, rolling updates).",
+      "sourceId": ""
+    },
+    {
+      "id": "note-39",
+      "topic": "AI Engineering",
+      "title": "Why AI and LLMs need containers",
+      "body": "1) Dependency hell: AI stacks need exact matching versions of Python, PyTorch, CUDA, cuDNN and drivers; a container freezes a working set. 2) Reproducibility: the same image gives the same results in training, testing and production. 3) GPU access: the NVIDIA Container Toolkit lets containers use the host GPUs; NVIDIA NGC and NIM ship ready, optimized containers. 4) Ready-made serving images: vLLM, TGI, Triton and Ollama all run as containers with one command. 5) Scaling: Kubernetes schedules GPU containers, autoscales replicas with traffic and restarts failed ones. 6) Portability: move between clouds or on-premises without rebuilding. 7) Isolation and security: AI agents that run code should do it inside a sandboxed container. Tips: keep model weights outside the image (mount a volume or download at start) to keep images small, pin versions, and do not run as root.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-40",
+      "topic": "AI Sizing",
+      "title": "Quantization",
+      "body": "Quantization stores model weights (and sometimes activations and the KV cache) in fewer bits: FP32 (4 bytes) → FP16/BF16 (2) → FP8/INT8 (1) → INT4/FP4 (0.5). Benefits: less memory (a 70B model drops from ~140 GB in FP16 to ~35-40 GB in 4-bit), faster decoding because fewer bytes move from memory, cheaper hardware, and models that fit on laptops and phones. Cost: some quality loss, larger at 3 bits and below and on math, code and long-context tasks. Types: post-training quantization (PTQ, after training: GPTQ, AWQ, SmoothQuant, bitsandbytes) vs quantization-aware training (QAT, the model learns to cope with low precision). Formats: GGUF (llama.cpp, Ollama, with levels such as Q4_K_M and Q8_0), GPTQ and AWQ (GPU serving in vLLM/TGI), FP8 and NVFP4 (native on NVIDIA Hopper/Blackwell). QLoRA fine-tunes LoRA adapters on top of a 4-bit base model to save memory. Always compare the quantized model with the original on your own evals.",
+      "sourceId": ""
     }
   ],
   "questions": [
@@ -6540,22 +6561,6 @@
       "sourceId": ""
     },
     {
-      "id": "q3-113",
-      "topic": "AI Sizing",
-      "type": "mcq",
-      "difficulty": "medium",
-      "prompt": "About how much VRAM do the weights of a 70B model need in 4-bit precision?",
-      "options": [
-        "About 35 GB",
-        "About 7 GB",
-        "About 140 GB",
-        "About 280 GB"
-      ],
-      "answer": "About 35 GB",
-      "explanation": "70B × 0.5 bytes = 35 GB, plus KV cache and overhead.",
-      "sourceId": ""
-    },
-    {
       "id": "q3-114",
       "topic": "AI Sizing",
       "type": "mcq",
@@ -6875,6 +6880,280 @@
       ],
       "answer": "Deep learning framework → PyTorch; Containers → Docker; Experiment tracking → MLflow; Vector database → Pinecone; Version control → Git",
       "explanation": "Know at least one tool in each area.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-133",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is a container?",
+      "options": [
+        "A package of an app with its code, runtime and libraries that runs the same way anywhere",
+        "A physical box for GPUs",
+        "A type of neural network layer",
+        "A vector database"
+      ],
+      "answer": "A package of an app with its code, runtime and libraries that runs the same way anywhere",
+      "explanation": "Docker is the best-known container tool.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-134",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "How is a container different from a virtual machine?",
+      "options": [
+        "It shares the host OS kernel, so it starts faster and uses less memory",
+        "It always needs its own physical server",
+        "It cannot run Python",
+        "It is slower to start than a VM"
+      ],
+      "answer": "It shares the host OS kernel, so it starts faster and uses less memory",
+      "explanation": "A VM runs a full guest operating system.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-135",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is the main reason AI projects use containers?",
+      "options": [
+        "To freeze exact versions of Python, PyTorch, CUDA and libraries so the app runs the same everywhere",
+        "To make models more accurate",
+        "To train without data",
+        "To replace GPUs"
+      ],
+      "answer": "To freeze exact versions of Python, PyTorch, CUDA and libraries so the app runs the same everywhere",
+      "explanation": "AI stacks break easily when versions differ between machines.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-136",
+      "topic": "AI Engineering",
+      "type": "fill",
+      "difficulty": "easy",
+      "prompt": "The text file with the steps to build a Docker image is called a ___.",
+      "answer": "Dockerfile",
+      "explanation": "docker build turns a Dockerfile into an image; docker run starts a container from it.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-137",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What lets a Docker container use the host machine's NVIDIA GPUs?",
+      "options": [
+        "NVIDIA Container Toolkit",
+        "Docker Compose alone",
+        "A larger image",
+        "Kubernetes namespaces"
+      ],
+      "answer": "NVIDIA Container Toolkit",
+      "explanation": "Run with --gpus all after installing the toolkit and drivers on the host.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-138",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which tool runs and scales many containers across a cluster of machines?",
+      "options": [
+        "Kubernetes",
+        "Git",
+        "Jupyter",
+        "pip"
+      ],
+      "answer": "Kubernetes",
+      "explanation": "Red Hat OpenShift is an enterprise Kubernetes platform.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-139",
+      "topic": "AI Engineering",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "It is usually better to keep large model weights outside the container image, for example on a mounted volume.",
+      "answer": "True",
+      "explanation": "Images stay small and fast to pull; the same image can serve different models.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-140",
+      "topic": "AI Engineering",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "AI agents that run generated code should run it inside an isolated sandbox such as a container.",
+      "answer": "True",
+      "explanation": "Isolation limits damage from bad or malicious code.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-141",
+      "topic": "AI Engineering",
+      "type": "match",
+      "difficulty": "easy",
+      "prompt": "Connect each container term to its meaning.",
+      "pairs": [
+        [
+          "Dockerfile",
+          "Recipe to build an image"
+        ],
+        [
+          "Image",
+          "Built package, ready to run"
+        ],
+        [
+          "Container",
+          "A running instance of an image"
+        ],
+        [
+          "Registry",
+          "Store for images, such as Docker Hub"
+        ],
+        [
+          "Kubernetes",
+          "Runs containers across many machines"
+        ]
+      ],
+      "answer": "Dockerfile → Recipe to build an image; Image → Built package, ready to run; Container → A running instance of an image; Registry → Store for images, such as Docker Hub; Kubernetes → Runs containers across many machines",
+      "explanation": "The basic container workflow: write, build, push, run, orchestrate.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-142",
+      "topic": "AI Sizing",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is quantization of an AI model?",
+      "options": [
+        "Storing weights with fewer bits to save memory and speed up inference",
+        "Adding more layers",
+        "Splitting text into tokens",
+        "Training on more data"
+      ],
+      "answer": "Storing weights with fewer bits to save memory and speed up inference",
+      "explanation": "For example FP16 → INT8 or 4-bit.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-143",
+      "topic": "AI Sizing",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "How many bytes does one parameter take in INT4?",
+      "options": [
+        "0.5",
+        "1",
+        "2",
+        "4"
+      ],
+      "answer": "0.5",
+      "explanation": "FP32 4, FP16/BF16 2, FP8/INT8 1, INT4 0.5 bytes.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-144",
+      "topic": "AI Sizing",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Why does quantization often make token generation faster?",
+      "options": [
+        "Decoding is memory-bandwidth bound, and smaller weights mean fewer bytes to read per token",
+        "It removes layers from the model",
+        "It shortens the prompt",
+        "It turns off attention"
+      ],
+      "answer": "Decoding is memory-bandwidth bound, and smaller weights mean fewer bytes to read per token",
+      "explanation": "Fewer bytes moved means more tokens per second.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-145",
+      "topic": "AI Sizing",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is the difference between PTQ and QAT?",
+      "options": [
+        "PTQ quantizes after training; QAT trains the model while simulating low precision",
+        "PTQ is for images, QAT for text",
+        "They are the same",
+        "QAT removes quantization"
+      ],
+      "answer": "PTQ quantizes after training; QAT trains the model while simulating low precision",
+      "explanation": "QAT usually keeps more quality at very low bits but costs a training run.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-146",
+      "topic": "AI Sizing",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which model file format is used by llama.cpp and Ollama for quantized models?",
+      "options": [
+        "GGUF",
+        "PNG",
+        "ONNX only",
+        "CSV"
+      ],
+      "answer": "GGUF",
+      "explanation": "GGUF has levels such as Q4_K_M and Q8_0.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-147",
+      "topic": "AI Sizing",
+      "type": "fill",
+      "difficulty": "medium",
+      "prompt": "Fine-tuning LoRA adapters on top of a 4-bit quantized base model is called ___.",
+      "answer": "QLoRA",
+      "explanation": "QLoRA (2023) made fine-tuning large models possible on a single GPU.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-148",
+      "topic": "AI Sizing",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Quantizing to very low precision (3 bits or below) can noticeably hurt quality, especially on math and code.",
+      "answer": "True",
+      "explanation": "Always compare against the original model on your own evals.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-149",
+      "topic": "AI Sizing",
+      "type": "match",
+      "difficulty": "medium",
+      "prompt": "Connect each quantization method or format to where it is used.",
+      "pairs": [
+        [
+          "GGUF",
+          "llama.cpp and Ollama on CPUs and laptops"
+        ],
+        [
+          "AWQ",
+          "Activation-aware 4-bit weights for GPU serving"
+        ],
+        [
+          "FP8",
+          "Native on NVIDIA Hopper and Blackwell GPUs"
+        ],
+        [
+          "bitsandbytes",
+          "Easy 8-bit and 4-bit loading in Hugging Face"
+        ],
+        [
+          "QLoRA",
+          "Fine-tuning on a 4-bit base model"
+        ]
+      ],
+      "answer": "GGUF → llama.cpp and Ollama on CPUs and laptops; AWQ → Activation-aware 4-bit weights for GPU serving; FP8 → Native on NVIDIA Hopper and Blackwell GPUs; bitsandbytes → Easy 8-bit and 4-bit loading in Hugging Face; QLoRA → Fine-tuning on a 4-bit base model",
+      "explanation": "Pick the format that matches your hardware and serving engine.",
       "sourceId": ""
     }
   ]

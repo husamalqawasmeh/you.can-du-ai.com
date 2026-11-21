@@ -1546,6 +1546,14 @@
     {
       "q": "Walk me through taking an AI feature from idea to production.",
       "followup": "How do you know it is working after launch, and what would make you roll it back?"
+    },
+    {
+      "q": "What is a container, and why do AI and LLM applications need containerization?",
+      "followup": "How would you give a container GPU access, and where would you keep the model weights?"
+    },
+    {
+      "q": "What is quantization, and what are the trade-offs of running a model in 8-bit or 4-bit?",
+      "followup": "How would you check that a quantized model is still good enough for production?"
     }
   ]
 }
