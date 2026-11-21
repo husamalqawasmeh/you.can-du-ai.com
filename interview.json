@@ -65,6 +65,18 @@
       "followup": "How would you take an open model from the Hub to a production API?"
     },
     {
+      "q": "What is Liquid AI, and how are its Liquid Foundation Models (LFMs) different from Transformer LLMs?",
+      "followup": "When would you pick a small on-device model like LFM2 over a large cloud model such as GPT or Claude?"
+    },
+    {
+      "q": "What kinds of decision models do you know (rules and decision tables, decision trees, ensembles, expected utility, MDPs, multi-criteria), and when would you use each?",
+      "followup": "How would you explain a model's decision to a regulator or an affected customer?"
+    },
+    {
+      "q": "How do you turn a model's prediction into a business decision, for example choosing the threshold for a fraud or loan model?",
+      "followup": "When should a human review the decision, and how would you check it for bias?"
+    },
+    {
       "q": "What is FLOPS?",
       "followup": "Why can peak FLOPS be misleading when choosing a GPU for LLM inference?"
     },

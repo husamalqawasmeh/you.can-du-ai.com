@@ -12,7 +12,8 @@
     "Context Engineering",
     "Agents & MCP",
     "Evals",
-    "Benchmarking"
+    "Benchmarking",
+    "Decision Models"
   ],
   "sources": [
     {
@@ -1238,6 +1239,69 @@
       "url": "https://lastexam.ai",
       "notes": "Very hard expert questions across many fields.",
       "lang": "en"
+    },
+    {
+      "id": "src-117",
+      "topic": "Decision Models",
+      "type": "Book",
+      "title": "Algorithms for Decision Making (Kochenderfer, Wheeler, Wray)",
+      "url": "https://algorithmsbook.com/",
+      "notes": "Free MIT Press book: probabilistic reasoning, MDPs, POMDPs and multi-agent decisions.",
+      "lang": "en"
+    },
+    {
+      "id": "src-118",
+      "topic": "Decision Models",
+      "type": "Book",
+      "title": "Reinforcement Learning: An Introduction (Sutton and Barto)",
+      "url": "http://incompleteideas.net/book/the-book-2nd.html",
+      "notes": "The standard RL textbook, free online.",
+      "lang": "en"
+    },
+    {
+      "id": "src-119",
+      "topic": "Decision Models",
+      "type": "Docs",
+      "title": "scikit-learn: Decision Trees",
+      "url": "https://scikit-learn.org/stable/modules/tree.html",
+      "notes": "How decision trees split, overfit and are pruned, with code.",
+      "lang": "en"
+    },
+    {
+      "id": "src-120",
+      "topic": "Decision Models",
+      "type": "Docs",
+      "title": "scikit-learn: Ensembles (random forests, gradient boosting)",
+      "url": "https://scikit-learn.org/stable/modules/ensemble.html",
+      "notes": "Bagging, random forests and gradient-boosted trees.",
+      "lang": "en"
+    },
+    {
+      "id": "src-121",
+      "topic": "Decision Models",
+      "type": "Website",
+      "title": "OMG Decision Model and Notation (DMN)",
+      "url": "https://www.omg.org/dmn/",
+      "notes": "The standard for business decision tables and decision diagrams.",
+      "lang": "en"
+    },
+    {
+      "id": "src-122",
+      "topic": "Frontier Labs",
+      "type": "Website",
+      "title": "Liquid AI: Liquid Foundation Models",
+      "url": "https://www.liquid.ai/models",
+      "notes": "Official LFM model family pages.",
+      "lang": "en"
+    },
+    {
+      "id": "src-123",
+      "topic": "Frontier Labs",
+      "type": "Paper",
+      "title": "Liquid Time-constant Networks (Hasani et al.)",
+      "url": "https://arxiv.org/abs/2006.04439",
+      "notes": "The liquid neural network research behind Liquid AI.",
+      "lang": "en"
     }
   ],
   "notes": [
@@ -1345,6 +1409,69 @@
       "title": "Reading benchmarks wisely",
       "body": "Model benchmarks: MMLU (knowledge, 57 subjects), GPQA (graduate-level, Google-proof science), HumanEval (code, pass@k), SWE-bench (fixing real GitHub issues), ARC-AGI (abstract reasoning), Humanity's Last Exam (frontier expert questions), LMArena (human preference votes, Elo-style ratings), HELM (many scenarios and metrics). Hardware benchmarks: MLPerf Training and Inference measure system speed on standard workloads. Pitfalls: contamination (test data leaked into training), saturation (top models all near 100%), prompt and setup differences between labs, and the gap between benchmark tasks and your real use case. Always confirm with your own evals on your own data.",
       "sourceId": "src-114"
+    },
+    {
+      "id": "note-16",
+      "topic": "Decision Models",
+      "title": "What a decision model is",
+      "body": "A decision model turns inputs (facts, predictions, preferences) into a choice. Main families: rules and decision tables (explicit logic), decision trees and ensembles (learned from data), decision theory (choose the action with the highest expected utility), sequential models such as MDPs and reinforcement learning (a policy picks actions over time), and multi-criteria methods (weigh several goals). Modern AI agents also make decisions, usually by an LLM choosing the next tool or step.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-17",
+      "topic": "Decision Models",
+      "title": "Decision trees",
+      "body": "A tree asks yes/no questions about features and ends in a leaf with a class or value. Splits are chosen to make the groups purer, measured by Gini impurity or entropy (information gain) for classification and variance for regression. Easy to read and explain, but a single deep tree overfits; limit depth, require a minimum number of samples per leaf, or prune.",
+      "sourceId": "src-119"
+    },
+    {
+      "id": "note-18",
+      "topic": "Decision Models",
+      "title": "Random forests and gradient boosting",
+      "body": "Ensembles combine many trees. A random forest (bagging) trains trees on random samples and random feature subsets, then votes or averages, which lowers variance. Gradient boosting (XGBoost, LightGBM, CatBoost) adds trees one at a time, each fixing the errors of the previous ones. Boosted trees are still often the best choice for tabular business data.",
+      "sourceId": "src-120"
+    },
+    {
+      "id": "note-19",
+      "topic": "Decision Models",
+      "title": "Decision theory and expected utility",
+      "body": "Rational choice under uncertainty: for each action, multiply each outcome's utility by its probability and add them up; pick the action with the highest expected utility. A decision tree in this sense (decision analysis) has decision nodes (squares), chance nodes (circles) and outcomes. An influence diagram is a compact graph of the same decisions, uncertainties and values. Expected value of information tells you how much a test or extra data is worth.",
+      "sourceId": "src-117"
+    },
+    {
+      "id": "note-20",
+      "topic": "Decision Models",
+      "title": "Markov decision processes (MDPs)",
+      "body": "An MDP has states, actions, transition probabilities, rewards and a discount factor (gamma). The goal is a policy (state → action) that maximizes expected total discounted reward. Solve small MDPs with value iteration or policy iteration (Bellman equation). A POMDP adds hidden state: the agent only sees observations and keeps a belief. Reinforcement learning learns a good policy from experience when the transitions are unknown.",
+      "sourceId": "src-118"
+    },
+    {
+      "id": "note-21",
+      "topic": "Decision Models",
+      "title": "Rules, decision tables and DMN",
+      "body": "Business decisions are often written as rules or decision tables: each row is a rule with input conditions and an output. A hit policy says what happens when several rows match (Unique, First, Priority, Collect...). DMN (Decision Model and Notation, from OMG) standardizes decision tables, decision requirement diagrams and the FEEL expression language, and is supported by engines such as Camunda, Drools and IBM ODM. Rules are transparent and auditable; ML models handle patterns too complex to write by hand. Many systems combine both: ML scores, rules decide.",
+      "sourceId": "src-121"
+    },
+    {
+      "id": "note-22",
+      "topic": "Decision Models",
+      "title": "Multi-criteria decisions",
+      "body": "When a choice has several goals (cost, speed, quality, risk), multi-criteria decision analysis helps. Weighted scoring: give each criterion a weight, score each option, add weighted scores. AHP (Analytic Hierarchy Process) builds the weights from pairwise comparisons. Pareto-optimal options are those you cannot improve on one criterion without making another worse.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-23",
+      "topic": "Decision Models",
+      "title": "From prediction to decision: thresholds and costs",
+      "body": "A classifier outputs a probability; the decision is where you set the threshold. Pick it from the costs of errors, not a default 0.5: if a missed fraud costs 50 times more than a false alarm, flag at a much lower probability. Use the confusion matrix, precision/recall and expected cost to choose. For high-stakes decisions, add human review for uncertain cases, log every decision with its reasons, and check for bias across groups.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-24",
+      "topic": "Frontier Labs",
+      "title": "Liquid AI and Liquid Foundation Models (LFM)",
+      "body": "Liquid AI is an MIT spin-off (founded 2023 by Ramin Hasani, Mathias Lechner, Alexander Amini and Daniela Rus). It grew out of liquid neural networks: liquid time-constant networks whose neurons follow differential equations, inspired by the small nervous system of the C. elegans worm. Its Liquid Foundation Models are not plain Transformers. LFM1 (2024) came in 1B, 3B and 40B mixture-of-experts sizes. LFM2 (2025) is a hybrid of short convolution blocks and grouped-query attention, released with open weights in small sizes (about 350M to a few billion parameters) for fast, low-memory use on phones, laptops, cars and other edge devices; LFM2-VL adds vision. The LEAP platform helps developers run LFMs on device. AMD led its 2024 funding round. Why it matters: a strong alternative to Transformers when memory, speed and privacy on the device matter more than top benchmark scores.",
+      "sourceId": "src-122"
     }
   ],
   "questions": [
@@ -5812,6 +5939,368 @@
       ],
       "answer": "Hub → Hosts models and datasets; Spaces → Hosts demo apps; Transformers → Loads and runs pretrained models; Datasets → Loads and shares datasets; PEFT → Parameter-efficient fine-tuning such as LoRA",
       "explanation": "The Hub stores things; the libraries load, train and serve them.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-80",
+      "topic": "Decision Models",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What does a leaf node in a classification decision tree hold?",
+      "options": [
+        "A predicted class",
+        "A feature test",
+        "The training data",
+        "A learning rate"
+      ],
+      "answer": "A predicted class",
+      "explanation": "Internal nodes test features; leaves give the prediction.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-81",
+      "topic": "Decision Models",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which measure is commonly used to choose splits in a classification decision tree?",
+      "options": [
+        "Gini impurity",
+        "Mean squared error of embeddings",
+        "BLEU score",
+        "Perplexity"
+      ],
+      "answer": "Gini impurity",
+      "explanation": "Gini impurity or entropy (information gain) measure how mixed the classes are after a split.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-82",
+      "topic": "Decision Models",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "A single very deep decision tree tends to overfit the training data.",
+      "answer": "True",
+      "explanation": "Limit depth, set a minimum leaf size or prune to reduce overfitting.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-83",
+      "topic": "Decision Models",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "How does a random forest differ from gradient boosting?",
+      "options": [
+        "A forest trains trees independently and averages them; boosting adds trees one after another to fix earlier errors",
+        "A forest uses one tree; boosting uses many",
+        "Boosting only works on images",
+        "There is no difference"
+      ],
+      "answer": "A forest trains trees independently and averages them; boosting adds trees one after another to fix earlier errors",
+      "explanation": "Bagging lowers variance; boosting lowers bias step by step.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-84",
+      "topic": "Decision Models",
+      "type": "fill",
+      "difficulty": "easy",
+      "prompt": "In decision theory, a rational agent picks the action with the highest expected ___.",
+      "answer": "utility|value",
+      "explanation": "Expected utility = sum of probability x utility over the outcomes.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-85",
+      "topic": "Decision Models",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Action A gives $100 with probability 0.5, otherwise $0. Action B gives $40 for sure. Which has the higher expected value?",
+      "options": [
+        "A ($50)",
+        "B ($40)",
+        "They are equal",
+        "Cannot be calculated"
+      ],
+      "answer": "A ($50)",
+      "explanation": "0.5 x 100 = 50, which is more than 40. A risk-averse person may still choose B.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-86",
+      "topic": "Decision Models",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which list gives the parts of a Markov decision process (MDP)?",
+      "options": [
+        "States, actions, transition probabilities, rewards and a discount factor",
+        "Tokens, embeddings and attention heads",
+        "Rows, columns and a hit policy",
+        "Features, labels and a loss function only"
+      ],
+      "answer": "States, actions, transition probabilities, rewards and a discount factor",
+      "explanation": "A policy maps states to actions to maximize expected discounted reward.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-87",
+      "topic": "Decision Models",
+      "type": "short",
+      "difficulty": "medium",
+      "prompt": "In an MDP or reinforcement learning, what is the name for the rule that maps each state to an action?",
+      "answer": "policy|a policy|the policy",
+      "explanation": "The goal of RL is to learn a good policy.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-88",
+      "topic": "Decision Models",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "What does a POMDP add to an MDP?",
+      "options": [
+        "The agent cannot see the true state and must act on observations and a belief",
+        "More than one reward",
+        "No transitions",
+        "A fixed policy"
+      ],
+      "answer": "The agent cannot see the true state and must act on observations and a belief",
+      "explanation": "Partially observable: the agent keeps a probability distribution (belief) over states.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-89",
+      "topic": "Decision Models",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is DMN?",
+      "options": [
+        "Decision Model and Notation, an OMG standard for decision tables and decision diagrams",
+        "Deep Memory Network, a neural network type",
+        "Data Mesh Node",
+        "A GPU interconnect"
+      ],
+      "answer": "Decision Model and Notation, an OMG standard for decision tables and decision diagrams",
+      "explanation": "DMN is supported by engines such as Camunda, Drools and IBM ODM.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-90",
+      "topic": "Decision Models",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "In a DMN decision table, what does the hit policy define?",
+      "options": [
+        "What happens when more than one rule matches the inputs",
+        "How fast the table runs",
+        "Who may edit the table",
+        "The number of columns"
+      ],
+      "answer": "What happens when more than one rule matches the inputs",
+      "explanation": "Examples: Unique, First, Priority, Any and Collect.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-91",
+      "topic": "Decision Models",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "For a fraud model, the best decision threshold is always 0.5.",
+      "answer": "False",
+      "explanation": "Set the threshold from the cost of each kind of error.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-92",
+      "topic": "Decision Models",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is a Pareto-optimal option in a multi-criteria decision?",
+      "options": [
+        "One you cannot improve on one criterion without making another worse",
+        "The cheapest option",
+        "The option with the most criteria",
+        "An option picked at random"
+      ],
+      "answer": "One you cannot improve on one criterion without making another worse",
+      "explanation": "All Pareto-optimal options form the Pareto front; you then choose among them by preference.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-93",
+      "topic": "Decision Models",
+      "type": "fill",
+      "difficulty": "medium",
+      "prompt": "The Analytic ___ Process (AHP) builds criteria weights from pairwise comparisons.",
+      "answer": "Hierarchy",
+      "explanation": "AHP was developed by Thomas Saaty.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-94",
+      "topic": "Decision Models",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "When are business rules better than a machine learning model for a decision?",
+      "options": [
+        "When the logic is known, must be auditable and changes by policy",
+        "When there are millions of unknown patterns in images",
+        "Never",
+        "Only when there is no data at all"
+      ],
+      "answer": "When the logic is known, must be auditable and changes by policy",
+      "explanation": "ML fits complex patterns in data; rules fit clear, regulated logic. Many systems combine both.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-95",
+      "topic": "Decision Models",
+      "type": "match",
+      "difficulty": "medium",
+      "prompt": "Connect each decision model to its typical use.",
+      "pairs": [
+        [
+          "Decision table",
+          "Clear business rules such as discounts"
+        ],
+        [
+          "Gradient-boosted trees",
+          "Predictions on tabular data"
+        ],
+        [
+          "MDP / reinforcement learning",
+          "Choosing actions over many steps"
+        ],
+        [
+          "Influence diagram",
+          "Mapping decisions, uncertainties and values"
+        ],
+        [
+          "Weighted scoring",
+          "Comparing options on several criteria"
+        ]
+      ],
+      "answer": "Decision table → Clear business rules such as discounts; Gradient-boosted trees → Predictions on tabular data; MDP / reinforcement learning → Choosing actions over many steps; Influence diagram → Mapping decisions, uncertainties and values; Weighted scoring → Comparing options on several criteria",
+      "explanation": "Pick the model by how the decision is made: known rules, learned patterns, sequences or trade-offs.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-96",
+      "topic": "Frontier Labs",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which company makes the Liquid Foundation Models (LFMs)?",
+      "options": [
+        "Liquid AI",
+        "Mistral AI",
+        "Cohere",
+        "Stability AI"
+      ],
+      "answer": "Liquid AI",
+      "explanation": "Liquid AI is an MIT spin-off founded in 2023.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-97",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What makes Liquid Foundation Models different from most LLMs?",
+      "options": [
+        "They use a non-Transformer, efficiency-focused architecture aimed at on-device use",
+        "They only generate images",
+        "They are the largest models in the world",
+        "They run only on quantum computers"
+      ],
+      "answer": "They use a non-Transformer, efficiency-focused architecture aimed at on-device use",
+      "explanation": "LFM2 mixes short convolution blocks with a few attention layers to save memory and run fast on edge devices.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-98",
+      "topic": "Frontier Labs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Liquid AI grew out of research on which kind of network?",
+      "options": [
+        "Liquid time-constant (liquid neural) networks",
+        "Generative adversarial networks",
+        "Capsule networks",
+        "Hopfield networks only"
+      ],
+      "answer": "Liquid time-constant (liquid neural) networks",
+      "explanation": "Neurons follow differential equations, inspired by the C. elegans worm nervous system.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-99",
+      "topic": "Frontier Labs",
+      "type": "fill",
+      "difficulty": "easy",
+      "prompt": "Liquid AI was spun out of ___ in 2023.",
+      "answer": "MIT|Massachusetts Institute of Technology",
+      "explanation": "Founders include Ramin Hasani, Mathias Lechner, Alexander Amini and Daniela Rus (MIT CSAIL).",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-100",
+      "topic": "LLMs",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "LFM2 models are released with open weights in small sizes meant for phones, laptops and other edge devices.",
+      "answer": "True",
+      "explanation": "LFM2 started at about 350M, 700M and 1.2B parameters.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-101",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What does LFM stand for in Liquid AI's model names?",
+      "options": [
+        "Liquid Foundation Model",
+        "Large Fine-tuned Model",
+        "Low-Footprint Memory",
+        "Linear Function Machine"
+      ],
+      "answer": "Liquid Foundation Model",
+      "explanation": "LFM1 launched in 2024; LFM2 in 2025.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-102",
+      "topic": "Frontier Labs",
+      "type": "match",
+      "difficulty": "medium",
+      "prompt": "Connect each open or small model family to its maker.",
+      "pairs": [
+        [
+          "LFM",
+          "Liquid AI"
+        ],
+        [
+          "Gemma",
+          "Google"
+        ],
+        [
+          "Phi",
+          "Microsoft"
+        ],
+        [
+          "Llama",
+          "Meta"
+        ],
+        [
+          "Qwen",
+          "Alibaba"
+        ],
+        [
+          "Mistral",
+          "Mistral AI"
+        ]
+      ],
+      "explanation": "Many labs now release small open models for local and edge use.",
+      "answer": "LFM → Liquid AI; Gemma → Google; Phi → Microsoft; Llama → Meta; Qwen → Alibaba; Mistral → Mistral AI",
       "sourceId": ""
     }
   ]

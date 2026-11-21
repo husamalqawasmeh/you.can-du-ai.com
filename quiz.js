@@ -22,6 +22,7 @@ export const VENDORS = {
   Alibaba: /alibaba|\bqwen/i,
   Cohere: /\bcohere\b/i,
   LangChain: /langchain|langgraph|langsmith|\blcel\b/i,
+  'Liquid AI': /liquid ai|liquid foundation|liquid neural|liquid time-constant|\blfm/i,
 };
 const qText = q => [q.prompt, q.answer, ...(q.options ?? []), q.explanation ?? ''].join(' ');
 export const vendorsOf = q => Object.keys(VENDORS).filter(v => VENDORS[v].test(qText(q)));

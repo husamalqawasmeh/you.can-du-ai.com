@@ -1479,6 +1479,23 @@
       ],
       "url": "https://huggingface.co/docs/smolagents",
       "released": 2024
+    },
+    {
+      "name": "Liquid AI (LFM)",
+      "company": "Liquid AI",
+      "category": "Local AI",
+      "does": "Liquid Foundation Models: small, efficient non-Transformer models (LFM2, LFM2-VL) built for phones, laptops and edge devices, plus the LEAP platform to deploy them.",
+      "cost": "Open models; paid API/licenses for some uses",
+      "pros": [
+        "Very fast and memory-light on device",
+        "Open weights for small models"
+      ],
+      "cons": [
+        "Smaller models than frontier LLMs",
+        "License limits large-company commercial use"
+      ],
+      "url": "https://www.liquid.ai",
+      "released": 2024
     }
   ]
 }
