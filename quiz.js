@@ -46,16 +46,23 @@ export function pickQuestions(questions, opts, rand = Math.random) {
 }
 
 const norm = s => String(s ?? '').trim().toLowerCase().replace(/\s+/g, ' ');
+// for typed answers: also ignore punctuation and quotes ("Context." = "context")
+const loose = s => norm(String(s ?? '').replace(/[^\p{L}\p{N}+#]+/gu, ' '));
 
 // shortcut: short answers are exact match against "|"-separated accepted answers; upgrade to fuzzy/LLM grading if too strict.
 // match: q.pairs = [[left, right], ...]; given = JSON array of the right item chosen for each left item (all must be right).
-// fill: the prompt has a ___ blank; graded like short answer.
+// fill: the prompt has a ___ blank; graded like short answer, and the filled-in phrase around the blank is also accepted.
 export function isCorrect(q, given) {
   if (q.type === 'match') {
     let g; try { g = JSON.parse(given || '[]'); } catch { return false; }
     return Array.isArray(g) && q.pairs.every((p, k) => norm(g[k]) === norm(p[1]));
   }
-  if (q.type === 'short' || q.type === 'fill') return String(q.answer).split('|').map(norm).includes(norm(given));
+  const alts = String(q.answer).split('|').map(loose), g = loose(given);
+  if (!g) return false;
+  if (alts.includes(g)) return true;
+  // fill: also accept the blank filled inside more of the sentence, e.g. "Model Context Protocol" for "Model ___ Protocol"
+  if (q.type === 'fill') return alts.some(a => g.includes(a) && q.prompt.split('___').length === 2 && loose(q.prompt.replace('___', a)).includes(g));
+  if (q.type === 'short') return false;
   return norm(given) === norm(q.answer);
 }
 
@@ -140,6 +147,8 @@ export function mergeSeed(db, seed) {
     }
     const have = new Set(db[key].map(x => x.id));
     for (const x of seed[key] ?? []) if (!have.has(x.id)) db[key].push(x);
+    // notes and sources can't be edited by users, so corrected seed text replaces the saved copy
+    if (key === 'notes' || key === 'sources') { const byId = new Map((seed[key] ?? []).map(x => [x.id, x])); db[key] = db[key].map(x => byId.get(x.id) ?? x); }
   }
   db.results ??= [];
   db.courses ??= [];

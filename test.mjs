@@ -77,6 +77,11 @@ assert.equal(normalizeQuestion(null), null);
 // fill in the blank and matching
 const fq = { type: 'fill', difficulty: 'easy', prompt: 'RAG is Retrieval-Augmented ___.', answer: 'Generation' };
 assert.ok(isCorrect(fq, ' generation ')); assert.ok(!isCorrect(fq, 'Gen'));
+const mcpQ = { type: 'fill', prompt: 'MCP stands for Model ___ Protocol.', answer: 'Context' };
+for (const ok of ['Model Context Protocol', 'context protocol', 'Context.', 'MCP stands for Model Context Protocol']) assert.ok(isCorrect(mcpQ, ok), ok);
+for (const bad of ['Model', 'Model Protocol', 'Model Contexts Protocol', '', 'Model Data Protocol']) assert.ok(!isCorrect(mcpQ, bad), bad);
+assert.ok(isCorrect({ type: 'short', answer: 'policy|a policy' }, 'Policy.'));
+assert.ok(isCorrect({ type: 'fill', prompt: 'Written in ___.', answer: 'C++' }, 'C++'));
 assert.equal(normalizeQuestion({ ...fq, prompt: 'no blank here' }), null);
 const mq = normalizeQuestion({ type: 'match', difficulty: 'easy', prompt: 'p', pairs: [['GPU', 'NVIDIA'], ['TPU', 'Google']] });
 assert.equal(mq.answer, 'GPU → NVIDIA; TPU → Google');
@@ -86,6 +91,7 @@ assert.ok(!isCorrect(mq, JSON.stringify(['NVIDIA', '']))); // every pair must be
 assert.ok(!isCorrect(mq, 'not json'));
 assert.equal(normalizeQuestion({ type: 'match', difficulty: 'easy', prompt: 'p', pairs: [['GPU', 'NVIDIA']] }), null); // needs 2+ pairs
 assert.deepEqual(mergeSeed({}, {}).courses, []);
+assert.equal(mergeSeed({ notes: [{ id: 'n1', body: 'old' }, { id: 'mine', body: 'x' }] }, { notes: [{ id: 'n1', body: 'fixed' }] }).notes.map(n => n.body).join(), 'fixed,x'); // seed note corrections reach saved copies
 
 // validate seed file
 const seed = JSON.parse(readFileSync(new URL('./seed.json', import.meta.url)));

@@ -1292,7 +1292,7 @@
       "type": "Website",
       "title": "Liquid AI: Liquid Foundation Models",
       "url": "https://www.liquid.ai/models",
-      "notes": "Official LFM model family pages.",
+      "notes": "Official Liquid AI website: the LFM model family.",
       "lang": "en"
     },
     {
@@ -1320,6 +1320,15 @@
       "title": "How Far is Video Generation from World Model: A Physical Law Perspective (Kang et al., 2024)",
       "url": "https://arxiv.org/abs/2411.02385",
       "notes": "Shows video models copy similar training examples instead of learning physical laws.",
+      "lang": "en"
+    },
+    {
+      "id": "src-126",
+      "topic": "Frontier Labs",
+      "type": "Website",
+      "title": "Liquid Playground (try LFMs online)",
+      "url": "https://playground.liquid.ai",
+      "notes": "Chat with and test Liquid AI models in the browser.",
       "lang": "en"
     }
   ],
@@ -1489,7 +1498,7 @@
       "id": "note-24",
       "topic": "Frontier Labs",
       "title": "Liquid AI and Liquid Foundation Models (LFM)",
-      "body": "Liquid AI is an MIT spin-off (founded 2023 by Ramin Hasani, Mathias Lechner, Alexander Amini and Daniela Rus). It grew out of liquid neural networks: liquid time-constant networks whose neurons follow differential equations, inspired by the small nervous system of the C. elegans worm. Its Liquid Foundation Models are not plain Transformers. LFM1 (2024) came in 1B, 3B and 40B mixture-of-experts sizes. LFM2 (2025) is a hybrid of short convolution blocks and grouped-query attention, released with open weights in small sizes (about 350M to a few billion parameters) for fast, low-memory use on phones, laptops, cars and other edge devices; LFM2-VL adds vision. Later releases include LFM2.5 and LFM3, for example the LFM3-VL-2B vision-language model (see the LFM3-VL-2B benchmarks note). The LEAP platform helps developers run LFMs on device. AMD led its 2024 funding round. Why it matters: a strong alternative to Transformers when memory, speed and privacy on the device matter more than top benchmark scores.",
+      "body": "Liquid Foundation Models (LFMs) are made by Liquid AI, a Boston-based AI company and spin-off from the Massachusetts Institute of Technology (MIT), founded in 2023. The models were pioneered by MIT researchers Ramin Hasani, Mathias Lechner, Alexander Amini and Daniela Rus, and are designed as a non-Transformer, efficiency-focused alternative for both on-device and cloud deployment. It grew out of liquid neural networks: liquid time-constant networks whose neurons follow differential equations, inspired by the small nervous system of the C. elegans worm. Its Liquid Foundation Models are not plain Transformers. LFM1 (2024) came in 1B, 3B and 40B mixture-of-experts sizes. LFM2 (2025) is a hybrid of short convolution blocks and grouped-query attention, released with open weights in small sizes (about 350M to a few billion parameters) for fast, low-memory use on phones, laptops, cars and other edge devices; LFM2-VL adds vision. Later releases include LFM2.5 and LFM3, for example the LFM3-VL-2B vision-language model (see the LFM3-VL-2B benchmarks note). The LEAP platform helps developers run LFMs on device. You can try the models in the Liquid Playground (playground.liquid.ai) or read more on the official website (liquid.ai). AMD led its 2024 funding round. Why it matters: a strong alternative to Transformers when memory, speed and privacy on the device matter more than top benchmark scores.",
       "sourceId": "src-122"
     },
     {
@@ -6362,7 +6371,7 @@
         "Stability AI"
       ],
       "answer": "Liquid AI",
-      "explanation": "Liquid AI is an MIT spin-off founded in 2023.",
+      "explanation": "Liquid AI is a Boston-based MIT spin-off founded in 2023.",
       "sourceId": ""
     },
     {
@@ -6372,12 +6381,12 @@
       "difficulty": "medium",
       "prompt": "What makes Liquid Foundation Models different from most LLMs?",
       "options": [
-        "They use a non-Transformer, efficiency-focused architecture aimed at on-device use",
+        "They use a non-Transformer, efficiency-focused architecture for on-device and cloud use",
         "They only generate images",
         "They are the largest models in the world",
         "They run only on quantum computers"
       ],
-      "answer": "They use a non-Transformer, efficiency-focused architecture aimed at on-device use",
+      "answer": "They use a non-Transformer, efficiency-focused architecture for on-device and cloud use",
       "explanation": "LFM2 mixes short convolution blocks with a few attention layers to save memory and run fast on edge devices.",
       "sourceId": ""
     },
