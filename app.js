@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=67';
-import { ADMIN_HASH } from './admin-hash.js?v=67';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=68';
+import { ADMIN_HASH } from './admin-hash.js?v=68';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -78,7 +78,7 @@ function render() {
   $('#note-list').innerHTML = db.notes.filter(byTopic).map(n => `<li dir="auto"><div><strong>${esc(n.title)}</strong> <span class="tag">${esc(n.topic)}${sourceTitle(n.sourceId) ? ' · ' + esc(sourceTitle(n.sourceId)) : ''}</span><div>${esc(n.body)}</div></div><button class="del" data-del="notes" data-id="${esc(n.id)}">Delete</button></li>`).join('') || '<li class="muted">Nothing yet.</li>';
   const st = $('#lib-filter-type').value, sl = $('#lib-filter-lang').value;
   const srcs = db.sources.filter(s => byTopic(s) && (!st || s.type === st) && (!sl || (s.lang || 'en') === sl));
-  $('#source-list').innerHTML = srcs.map(s => `<li dir="auto"><div>${/^https?:\/\//i.test(s.url) ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>` : esc(s.title)} <span class="tag">${esc(s.type)} · ${esc(s.topic)}${s.lang === 'ar' ? ' · العربية' : ''}</span>${s.notes ? `<div class="muted">${esc(s.notes)}</div>` : ''}</div><button class="del" data-del="sources" data-id="${esc(s.id)}">Delete</button></li>`).join('') || '<li class="muted">Nothing yet.</li>';
+  $('#source-list').innerHTML = srcs.map(s => `<li dir="auto"><div>${/^(https?:\/\/|files\/)/i.test(s.url) ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>` : esc(s.title)} <span class="tag">${esc(s.type)} · ${esc(s.topic)}${s.lang === 'ar' ? ' · العربية' : ''}</span>${s.notes ? `<div class="muted">${esc(s.notes)}</div>` : ''}</div><button class="del" data-del="sources" data-id="${esc(s.id)}">Delete</button></li>`).join('') || '<li class="muted">Nothing yet.</li>';
 
   // questions
   const qt = $('#q-filter-topic').value, qd = $('#q-filter-diff').value, qy = $('#q-filter-type').value, term = $('#q-search').value.toLowerCase();
