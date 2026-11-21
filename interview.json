@@ -2,135 +2,168 @@
   "questions": [
     {
       "q": "Show me your GitHub repositories.",
-      "followup": "Why did you build this one, and what would you do differently today?"
+      "followup": "Why did you build this one, and what would you do differently today?",
+      "answer": "Open 2-3 pinned repos you can explain well, each with a clear README (what it does, how to run it, a screenshot). For each one say the problem, your design choices, the tech stack and what you would change now (for example add tests, CI, better error handling or evals). Interviewers look for real commits over time, clean structure and honest reflection."
     },
     {
       "q": "Show me websites you have created.",
-      "followup": "Why did you choose that tech stack and hosting?"
+      "followup": "Why did you choose that tech stack and hosting?",
+      "answer": "Show a live site, then explain the stack and why: for example a static site on GitHub Pages or Cloudflare for speed, low cost and simple deploys, or Next.js on Vercel when you need server code. Mention the domain, HTTPS, analytics, how you deploy (push to main runs tests then deploys) and what you would improve (accessibility, performance, SEO)."
     },
     {
       "q": "Show me the tools you use.",
-      "followup": "Why these tools over the alternatives?"
+      "followup": "Why these tools over the alternatives?",
+      "answer": "Group them: AI assistants (ChatGPT, Claude, Gemini), coding (VS Code, Cursor, Claude Code, GitHub Copilot), automation (n8n, Zapier), data and notes (Notion, NotebookLM), and cloud. For each say what job it does and why you picked it over alternatives: quality for your tasks, price, integrations, privacy and team standard. Show that you review tools from time to time instead of following hype."
     },
     {
       "q": "Show me the AI skills and extensions you have installed.",
-      "followup": "Why did you need each one, and how did it change the way you work?"
+      "followup": "Why did you need each one, and how did it change the way you work?",
+      "answer": "Show your setup, for example IDE AI extensions, MCP servers (GitHub, browser, database), custom instructions or skills, and browser extensions. For each, explain the gap it filled (repeated manual steps, missing context, slow research) and the measurable change: faster reviews, fewer context switches, automated testing. Mention that you check permissions and data access before installing."
     },
     {
       "q": "Show me something you automated.",
-      "followup": "Why was it worth automating, and how much time or effort does it save?"
+      "followup": "Why was it worth automating, and how much time or effort does it save?",
+      "answer": "Use a short story: the manual task (who did it, how often, how long), the automation (tools such as Python, n8n, Power Automate, Ansible or GitHub Actions), and the result in numbers, for example \"4 hours a week saved, errors dropped to zero\". Explain why it was worth it: frequent, rule-based, error-prone work. Mention monitoring and a human check where mistakes are costly."
     },
     {
       "q": "Show me a chatbot you built.",
-      "followup": "Why did you design it that way, and how do you handle wrong answers?"
+      "followup": "Why did you design it that way, and how do you handle wrong answers?",
+      "answer": "Describe the use case, the model, the knowledge source (RAG over documents), the interface and the guardrails. Explain design choices: RAG to ground answers, a system prompt that limits scope, citations, and refusing when unsure. For wrong answers: evals before release, user feedback buttons, logging and tracing, a fallback to a human, and regular prompt or data updates."
     },
     {
       "q": "Tell me about a project you are proud of.",
-      "followup": "Why are you proud of it, and what was the hardest part?"
+      "followup": "Why are you proud of it, and what was the hardest part?",
+      "answer": "Use STAR: Situation, Task, Action, Result. Pick a project with real impact and your clear role. Name the hardest part (a technical blocker, unclear requirements, a tight deadline) and exactly how you solved it. End with the result in numbers and what you learned."
     },
     {
       "q": "Have you been part of creating an AI strategy?",
-      "followup": "Why did the organization need it, and how was success measured?"
+      "followup": "Why did the organization need it, and how was success measured?",
+      "answer": "Explain the why (stay competitive, cut costs, use data better, manage risk), then the parts: business goals, high-value use cases ranked by value and feasibility, data readiness, build vs buy, governance and responsible AI, skills and training, and a roadmap with quick wins. Success measures: adoption, time or cost saved, revenue impact, quality and risk metrics. If you have not done it, describe how you would."
     },
     {
       "q": "Have you been a project manager on an AI project?",
-      "followup": "Why did the project succeed or struggle, and what did you learn?"
+      "followup": "Why did the project succeed or struggle, and what did you learn?",
+      "answer": "Describe scope, team, timeline and your role. AI projects succeed with a clear business metric, good data early, a small pilot, evals and stakeholder buy-in. They struggle with poor data, unclear success criteria, scope creep and no plan for production. Share one concrete lesson, such as building the eval set before the model."
     },
     {
       "q": "Can you recall some recent AI news you read or explored?",
-      "followup": "Why does it matter, and how could it affect our business?"
+      "followup": "Why does it matter, and how could it affect our business?",
+      "answer": "Pick one recent, specific item (a model release, a regulation such as the EU AI Act, a chip or a funding deal) and summarize it in two sentences. Then connect it to the business: cost, new capability, risk or competition, and suggest one action, such as running a pilot or reviewing compliance."
     },
     {
       "q": "Is there a feature, product, tool or invention you really admire?",
-      "followup": "Why that one over the others, and how would you improve it?"
+      "followup": "Why that one over the others, and how would you improve it?",
+      "answer": "Choose something specific and explain the problem it solves and why it is better than alternatives (simplicity, design, impact). Then suggest a realistic improvement. This shows product thinking: users, trade-offs and iteration."
     },
     {
       "q": "How do you use AI in your day-to-day work?",
-      "followup": "Why do you trust its output, and how do you check it?"
+      "followup": "Why do you trust its output, and how do you check it?",
+      "answer": "Give concrete examples: drafting and editing, coding and code review, research and summarizing, data analysis, meeting notes and automation. You trust but verify: check facts against sources, run and test code, ask for citations, compare two models for important work, and never paste confidential data into tools that are not approved."
     },
     {
       "q": "What is the difference between a graph database and a vector database?",
-      "followup": "Why would you use both together in one AI system, for example in GraphRAG?"
+      "followup": "Why would you use both together in one AI system, for example in GraphRAG?",
+      "answer": "A graph database (Neo4j, Amazon Neptune) stores entities as nodes and relationships as edges; it answers questions about connections (\"who reports to whom\", multi-hop paths) with exact queries. A vector database (Pinecone, Weaviate, pgvector, FAISS) stores embeddings and finds items by meaning (similarity search). Together, as in GraphRAG: vectors find relevant passages, and the graph adds linked facts and relationships, improving answers that need several connected facts."
     },
     {
       "q": "Have you used Hugging Face, and how?",
-      "followup": "Why did you choose those models, datasets or Spaces, and how did you evaluate them?"
+      "followup": "Why did you choose those models, datasets or Spaces, and how did you evaluate them?",
+      "answer": "Describe real use: downloading open models with Transformers, using datasets, building demos in Spaces, fine-tuning with PEFT/LoRA, or calling Inference Endpoints. Explain choices: model size vs hardware, license, benchmark and leaderboard results, downloads and community activity, and then your own evals on your data comparing quality, speed and cost."
     },
     {
       "q": "What is LangChain, and how do LangGraph and LangSmith fit with it?",
-      "followup": "When would you skip LangChain and call the model API directly, and why?"
+      "followup": "When would you skip LangChain and call the model API directly, and why?",
+      "answer": "LangChain is an open-source framework with building blocks for LLM apps: model wrappers, prompts, tools, retrievers and many integrations. LangGraph builds stateful agent workflows as graphs with loops, memory, checkpoints and human-in-the-loop. LangSmith traces, evaluates and monitors LLM apps (even ones not built with LangChain). Skip LangChain for simple apps: a direct API call with the official SDK is easier to read, debug and keep up to date."
     },
     {
-      "q": "Name the main parts of the Hugging Face ecosystem (for example Hub, Spaces, Transformers, Datasets, PEFT, TGI, smolagents) and what each is for.",
-      "followup": "How would you take an open model from the Hub to a production API?"
+      "q": "Name the main parts of the Hugging Face ecosystem and what each is for.",
+      "followup": "How would you take an open model from the Hub to a production API?",
+      "answer": "Hub: hosts models, datasets and Spaces. Spaces: demo apps (Gradio, Streamlit). Transformers: library to load and run pretrained models. Datasets: load and share data. PEFT: LoRA and other efficient fine-tuning. TGI (Text Generation Inference): production serving. smolagents: small code-writing agents. To production: pick and evaluate the model, quantize if needed, serve it with TGI or vLLM in a container on GPUs (or Inference Endpoints), put an API gateway in front, and add monitoring, autoscaling and rate limits."
     },
     {
       "q": "What is Liquid AI, and how are its Liquid Foundation Models (LFMs) different from Transformer LLMs?",
-      "followup": "When would you pick a small on-device model like LFM2 over a large cloud model such as GPT or Claude?"
+      "followup": "When would you pick a small on-device model like LFM2 over a large cloud model such as GPT or Claude?",
+      "answer": "Liquid AI is a Boston-based MIT spin-off (Ramin Hasani, Mathias Lechner, Alexander Amini, Daniela Rus). Its Liquid Foundation Models are not plain Transformers: they come from liquid neural network research and use efficient designs (for example LFM2 mixes short convolutions with a few attention layers), giving low memory use and fast speed on phones, laptops and edge devices as well as in the cloud. Pick a small on-device model for privacy, offline use, low latency and low cost on simple, high-volume tasks; pick a large cloud model for hard reasoning and broad knowledge."
     },
     {
-      "q": "What kinds of decision models do you know (rules and decision tables, decision trees, ensembles, expected utility, MDPs, multi-criteria), and when would you use each?",
-      "followup": "How would you explain a model's decision to a regulator or an affected customer?"
+      "q": "What kinds of decision models do you know, and when would you use each?",
+      "followup": "How would you explain a model's decision to a regulator or an affected customer?",
+      "answer": "Rules and decision tables (DMN) for clear, auditable business logic; decision trees for simple, explainable predictions; ensembles (random forests, gradient boosting) for accurate predictions on tabular data; expected utility and influence diagrams for choices under uncertainty; MDPs and reinforcement learning for decisions over many steps; multi-criteria methods (weighted scoring, AHP) for trade-offs. To explain to a regulator or customer: use interpretable models or explanation tools (SHAP, reason codes), give the main factors in plain language, document data and testing, and offer a human review and appeal."
     },
     {
       "q": "How do you turn a model's prediction into a business decision, for example choosing the threshold for a fraud or loan model?",
-      "followup": "When should a human review the decision, and how would you check it for bias?"
+      "followup": "When should a human review the decision, and how would you check it for bias?",
+      "answer": "A model outputs a probability; the decision is the threshold. Choose it from the cost of each error (a missed fraud vs a false alarm), using the confusion matrix, precision/recall and expected cost, often with bands: auto-approve, auto-decline and a middle band for human review. Humans should review uncertain, high-impact or unusual cases. Check bias by comparing error rates and approval rates across groups, and monitor after launch."
     },
     {
       "q": "What is FLOPS?",
-      "followup": "Why can peak FLOPS be misleading when choosing a GPU for LLM inference?"
+      "followup": "Why can peak FLOPS be misleading when choosing a GPU for LLM inference?",
+      "answer": "FLOPS = floating-point operations per second, a measure of compute speed (TFLOPS = trillions, PFLOPS = quadrillions). Peak FLOPS is a best case at one precision (often FP8 or FP4, sometimes with sparsity). LLM token generation is usually limited by memory bandwidth, not compute, so a GPU with more memory bandwidth and capacity can be faster for inference even with lower peak FLOPS."
     },
     {
-      "q": "What chunking strategies or approaches do you know for RAG (for example fixed-size, recursive, sentence- or document-structure-based, semantic, overlap, parent-child)?",
-      "followup": "Why would you choose one chunking strategy over another, and how do chunk size and overlap affect retrieval quality and cost?"
+      "q": "What chunking strategies or approaches do you know for RAG?",
+      "followup": "Why would you choose one chunking strategy over another, and how do chunk size and overlap affect retrieval quality and cost?",
+      "answer": "Fixed-size chunks (by tokens), recursive splitting (paragraphs, then sentences), sentence- or document-structure-based (headings, sections, tables), semantic chunking (split where meaning changes), overlap between chunks, and parent-child (search small chunks, return the larger parent). Small chunks give precise matches but lose context; large chunks keep context but add noise and cost more tokens. Overlap keeps ideas from being cut but adds storage. Choose by document type and test with retrieval evals (recall@k)."
     },
     {
-      "q": "What are the different types of RAG architectures and strategies (for example naive RAG, advanced RAG with re-ranking and query rewriting, hybrid search, GraphRAG, agentic RAG, multimodal RAG)?",
-      "followup": "Why would you pick a particular RAG architecture for a use case, and how would you evaluate whether it works?"
+      "q": "What are the different types of RAG architectures and strategies?",
+      "followup": "Why would you pick a particular RAG architecture for a use case, and how would you evaluate whether it works?",
+      "answer": "Naive RAG (embed, retrieve top-k, generate); advanced RAG with query rewriting and re-ranking; hybrid search (keyword BM25 plus vectors); GraphRAG (knowledge graph for connected facts); agentic RAG (an agent decides what and when to search, possibly in several steps); multimodal RAG (images, tables, audio). Pick by need: simple FAQ → naive or hybrid; many linked entities → GraphRAG; complex multi-step questions → agentic. Evaluate retrieval (recall, precision) and answers (faithfulness, relevance) on a test set, plus latency and cost."
     },
     {
-      "q": "What is MCP (Model Context Protocol) and how does it work: hosts, clients and servers; tools, resources and prompts?",
-      "followup": "Why use MCP instead of building a custom integration for every tool, and what security risks does it bring?"
+      "q": "What is MCP (Model Context Protocol) and how does it work?",
+      "followup": "Why use MCP instead of building a custom integration for every tool, and what security risks does it bring?",
+      "answer": "MCP is an open standard (from Anthropic) for connecting AI apps to tools and data. The host is the AI app; it runs one client per server connection; servers expose tools (actions), resources (data) and prompts (templates). Benefit: build an integration once and use it in any MCP-compatible app instead of custom code for each. Risks: prompt injection through tool results, over-broad permissions, untrusted servers and data leaks, so use least privilege, trusted servers, user approval for actions and logging."
     },
     {
-      "q": "What is an AI agent, and which agent patterns do you know (ReAct, orchestrator-workers, evaluator-optimizer, multi-agent handoffs)?",
-      "followup": "Why and when would you choose a simple fixed workflow over a fully autonomous agent?"
+      "q": "What is an AI agent, and which agent patterns do you know?",
+      "followup": "Why and when would you choose a simple fixed workflow over a fully autonomous agent?",
+      "answer": "An agent is an LLM that decides its own next steps and tool calls in a loop toward a goal. Patterns: ReAct (think, act, observe), prompt chaining, routing, orchestrator-workers (a lead model splits and delegates), evaluator-optimizer (one critiques, another improves), and multi-agent handoffs. Use a simple fixed workflow when the steps are known: it is cheaper, faster, more predictable and easier to test. Use an autonomous agent only when the path cannot be known in advance and the value is worth the extra risk."
     },
     {
       "q": "How do you evaluate an LLM application (evals)?",
-      "followup": "Why can't you rely on public benchmarks alone, and how do you make sure an LLM-as-a-judge is trustworthy?"
+      "followup": "Why can't you rely on public benchmarks alone, and how do you make sure an LLM-as-a-judge is trustworthy?",
+      "answer": "Build an eval set from real tasks with expected results; score with code checks (exact match, JSON valid, tests pass), rubrics, LLM-as-a-judge and human review; track quality, latency and cost; run evals on every prompt or model change; and monitor production with tracing and user feedback. Public benchmarks don't match your tasks and can be contaminated. Make a judge trustworthy by testing it against human labels, using clear rubrics, and checking for bias (position, length, self-preference)."
     },
     {
       "q": "Which benchmarks do you know for LLMs and for AI hardware, and what does each one measure?",
-      "followup": "Why can benchmark results be misleading (contamination, saturation, different setups), and how would you benchmark for your own use case?"
+      "followup": "Why can benchmark results be misleading (contamination, saturation, different setups), and how would you benchmark for your own use case?",
+      "answer": "LLMs: MMLU/MMLU-Pro (knowledge), GPQA (expert science), HumanEval and SWE-bench (coding), GSM8K and AIME (math), MMMU (multimodal), LMArena (human preference). Hardware: MLPerf Training and Inference (speed across systems). Results mislead through contamination (test data in training), saturation (top models all near 100%), and different settings (prompts, precision, batch size). For your use case, build your own eval set and measure quality, latency, throughput and cost on your hardware."
     },
     {
       "q": "What is \"Tron\", and how does it relate to Project Maven, Google, and the Maven Smart System?",
-      "followup": "Why did Google walk away from Project Maven, and what does that tell you about ethics and employee pressure when AI is used for defense?"
+      "followup": "Why did Google walk away from Project Maven, and what does that tell you about ethics and employee pressure when AI is used for defense?",
+      "answer": "Project Maven is the Pentagon's AI program (started 2017) for analysing drone and surveillance video. Google ran an early pilot, supplying TensorFlow tools, but dropped the contract in 2018 after thousands of employees protested and some resigned, and it published AI principles. Palantir then took over the work; \"Tron\" was Palantir's internal codename for it. Maven grew into the Maven Smart System used for targeting and intelligence. Lesson: employee values and public pressure can change company decisions, and defense AI needs clear ethics, oversight and human control."
     },
     {
       "q": "Name a research paper that had a high impact on AI or generative AI, and explain what it contributed.",
-      "followup": "Why was that paper a turning point, and how does its idea show up in the AI tools you use today?"
+      "followup": "Why was that paper a turning point, and how does its idea show up in the AI tools you use today?",
+      "answer": "Example: \"Attention Is All You Need\" (Vaswani et al., Google, 2017) introduced the Transformer, using self-attention instead of recurrence, so training became parallel and models could scale. It is the base of GPT, Claude, Gemini and Llama. Other good picks: AlexNet (2012, deep learning on GPUs), BERT (2018), GPT-3 (2020, few-shot learning), scaling laws (2020), InstructGPT/RLHF (2022), and diffusion models (2020)."
     },
     {
       "q": "What is the single guardrail rule that could eliminate the chance of AI eliminating humans?",
-      "followup": "How about the guardrail \"protect humans at any cost\": if all AI vendors agreed on it and applied it, would it be enough to completely eliminate the chance of AI eliminating humans?"
+      "followup": "How about the guardrail \"protect humans at any cost\": if all AI vendors agreed on it and applied it, would it be enough to completely eliminate the chance of AI eliminating humans?",
+      "answer": "There is no single rule that fully removes the risk; a commonly suggested core rule is \"AI must never act to harm humans or remove human control over AI\" (keep humans in control, with the ability to stop it). \"Protect humans at any cost\" is not enough: it is vague (which humans, what counts as harm), \"at any cost\" can justify extreme actions such as restricting freedom \"for our safety\", rules can be misread or gamed, not every actor (including criminals or rival states) would apply it, and no one can yet prove that a model will reliably follow a rule. Real safety needs layers: alignment research, testing, monitoring, limits on autonomy, regulation and international agreements."
     },
     {
       "q": "Talk about the EUV (extreme ultraviolet) lithography machine: what it does, who makes it, and why it matters for AI chips.",
-      "followup": "Why does a single supplier (ASML) for these machines matter for the AI hardware supply chain and for export controls?"
+      "followup": "Why does a single supplier (ASML) for these machines matter for the AI hardware supply chain and for export controls?",
+      "answer": "EUV lithography machines print the tiniest chip patterns using 13.5 nm extreme ultraviolet light, made by firing lasers at tin droplets, focused with ultra-precise mirrors in a vacuum. Only ASML (Netherlands) makes them; each costs well over $150 million (high-NA versions even more). They are needed for the most advanced chips (about 7 nm and below), such as NVIDIA GPUs made by TSMC. A single supplier is a supply-chain choke point, and export controls on EUV machines are used to limit which countries can make leading-edge AI chips."
     },
     {
       "q": "What is the difference between Git and a GitHub repository?",
-      "followup": "Why would a team use GitHub (or GitLab) on top of Git, and how do pull requests and CI/CD fit in?"
+      "followup": "Why would a team use GitHub (or GitLab) on top of Git, and how do pull requests and CI/CD fit in?",
+      "answer": "Git is a version control tool that runs on your computer: it tracks changes, branches and history. GitHub is a hosting service for Git repositories in the cloud, adding collaboration: pull requests, code review, issues, Actions (CI/CD), permissions and backups. Teams use GitHub or GitLab to share code and review changes: a developer pushes a branch, opens a pull request, CI runs tests automatically, reviewers approve, and merging can trigger deployment."
     },
     {
       "q": "In a few simple steps, explain how to convert a website (web app) into a mobile app.",
-      "followup": "Why would you choose a PWA, a wrapper like Capacitor, or a full rewrite in React Native or Flutter, and what changes for app store review and device features?"
+      "followup": "Why would you choose a PWA, a wrapper like Capacitor, or a full rewrite in React Native or Flutter, and what changes for app store review and device features?",
+      "answer": "1) Make the site responsive and mobile-friendly. 2) Quick option: turn it into a PWA (manifest plus service worker) so it can be installed and work offline. 3) For app stores: wrap it with Capacitor (or Cordova) to make iOS and Android apps and add native plugins (camera, push notifications). 4) For best performance and native feel: rebuild in React Native or Flutter. 5) Test on real devices, then publish to the App Store and Google Play. PWA is cheapest but limited on iOS and not in stores by default; wrappers are fast but app review may reject apps that are \"just a website\"; rewrites cost most but give full device access."
     },
     {
       "q": "What is Ansible, and what is an Ansible playbook? Describe a playbook you have written or would write.",
-      "followup": "Does it work across remote servers, and how does it connect to them and run tasks on many hosts at once?"
+      "followup": "Does it work across remote servers, and how does it connect to them and run tasks on many hosts at once?",
+      "answer": "Ansible (Red Hat) is an open-source automation tool for configuring servers, deploying apps and managing infrastructure. A playbook is a YAML file listing plays: which hosts, and which tasks (modules such as apt, copy, service) to run, written to be idempotent (safe to run again). Example: install nginx, copy the config, start the service on all web servers. Yes, it works across remote servers: it is agentless, connects over SSH (WinRM for Windows) using an inventory of hosts, and runs tasks on many hosts in parallel (controlled by forks)."
     },
     {
       "q": "Name examples of automation software, then pick one and talk about it: what it automates, how it works and how you have used it (or would use it).",
@@ -1524,44 +1557,54 @@
       ]
     },
     {
-      "q": "What topics should an LLM engineer know (for example benchmarking, latency, throughput, capabilities such as voice or video, and RAM/VRAM requirements)?",
-      "followup": "Pick one and explain how you measured or sized it in a real project."
+      "q": "What topics should an LLM engineer know?",
+      "followup": "Pick one and explain how you measured or sized it in a real project.",
+      "answer": "Benchmarking and evals, latency (time to first token, time per output token) and throughput (tokens per second, concurrency), capabilities (text, vision, voice, video, tool calling, structured output, context window), hardware sizing (VRAM for weights plus KV cache, RAM, GPU type), optimization (quantization, batching, caching, speculative decoding), serving (vLLM, TGI, TensorRT-LLM, Ollama), context engineering and RAG, fine-tuning (LoRA), cost, safety and production monitoring. For the follow-up, give one real measurement, for example \"p95 TTFT dropped from 2.1 s to 0.6 s after enabling prefix caching\"."
     },
     {
       "q": "How would you size the GPUs and VRAM to serve a 70B model to 100 concurrent users with 8K-token contexts?",
-      "followup": "Which levers (quantization, KV cache, batching, a smaller model) would you pull first to cut cost, and what would you measure?"
+      "followup": "Which levers (quantization, KV cache, batching, a smaller model) would you pull first to cut cost, and what would you measure?",
+      "answer": "Weights: 70B in FP16 is about 140 GB, in FP8 about 70 GB, in 4-bit about 35-40 GB. KV cache: for a Llama-70B-style model (80 layers, 8 KV heads with GQA, head size 128, FP16) about 0.33 MB per token, so 100 users × 8K tokens ≈ 800K tokens ≈ 260 GB at full use. Total in FP16 ≈ 400+ GB, for example a node of 8 × 80 GB GPUs with tensor parallelism; FP8 weights and FP8 KV cache can roughly halve it. Levers in order: FP8/4-bit quantization (check evals), FP8 KV cache and PagedAttention, continuous batching, prefix caching, then a smaller or distilled model. Measure quality, p95 latency, throughput and cost per million tokens."
     },
     {
       "q": "What is the difference between latency and throughput for an LLM service, and how do you trade one against the other?",
-      "followup": "Which metrics (TTFT, time per output token, p95) would you put on the dashboard, and why?"
+      "followup": "Which metrics (TTFT, time per output token, p95) would you put on the dashboard, and why?",
+      "answer": "Latency is how long one user waits: time to first token plus time per output token × output length. Throughput is how much work the whole system does: tokens or requests per second across all users. Bigger batches raise throughput and lower cost per token but can raise each user's latency, so set a latency target (for example p95 TTFT under 1 s) and maximize throughput within it. Dashboard: TTFT and time per output token at p50/p95/p99, tokens per second, requests per second, queue time, GPU utilization, error rate and cost per million tokens."
     },
     {
       "q": "What topics should an AI engineer know, and which are your strongest and weakest?",
-      "followup": "What are you doing to close the gap in your weakest area?"
+      "followup": "What are you doing to close the gap in your weakest area?",
+      "answer": "Programming (Python, Git, APIs, SQL, testing), math basics (linear algebra, probability, statistics), ML fundamentals (data splits, overfitting, metrics), deep learning and Transformers, LLMs (prompting, RAG, agents, MCP, fine-tuning), data engineering, evaluation, MLOps/LLMOps (CI/CD, Docker, Kubernetes, monitoring), cloud and GPUs, responsible and secure AI, and product sense. Name a real strength with an example, and an honest weakness with a concrete plan (a course, a side project, a certification, a date)."
     },
     {
       "q": "What is the difference between an AI engineer, an ML engineer, a data scientist and an LLM engineer?",
-      "followup": "Which of these roles fits the work you want to do, and why?"
+      "followup": "Which of these roles fits the work you want to do, and why?",
+      "answer": "Data scientist: analyzes data and runs experiments to answer business questions. ML engineer: trains, deploys and scales ML models (pipelines, serving, MLOps). AI engineer: builds products on top of AI models, often foundation models through APIs or open weights, with strong software engineering, integration and evals. LLM engineer: an AI engineer focused on LLMs (prompting, RAG, agents, serving, GPU sizing). The roles overlap and titles differ by company; pick the one that matches the work you enjoy and give a reason."
     },
     {
       "q": "Walk me through taking an AI feature from idea to production.",
-      "followup": "How do you know it is working after launch, and what would make you roll it back?"
+      "followup": "How do you know it is working after launch, and what would make you roll it back?",
+      "answer": "1) Define the problem, users and a success metric. 2) Check data and feasibility; build a quick prototype. 3) Build an eval set and a baseline. 4) Iterate on prompts, RAG or model choice until evals pass. 5) Add guardrails, security, privacy review and cost limits. 6) Ship behind a feature flag to a small group or A/B test. 7) Monitor quality, latency, cost, errors and feedback with tracing. Roll back if quality or business metrics drop, costs spike, or safety or privacy incidents happen."
     },
     {
       "q": "What is a container, and why do AI and LLM applications need containerization?",
-      "followup": "How would you give a container GPU access, and where would you keep the model weights?"
+      "followup": "How would you give a container GPU access, and where would you keep the model weights?",
+      "answer": "A container packages an app with its code, runtime and libraries so it runs the same everywhere; it shares the host OS kernel, so it is lighter than a VM. AI needs it because Python, PyTorch, CUDA and driver versions must match exactly; containers give reproducibility, portability across clouds, ready-made serving images (vLLM, TGI, Triton, NVIDIA NIM), scaling with Kubernetes and sandboxing for agent-generated code. GPU access: install NVIDIA drivers and the NVIDIA Container Toolkit on the host and run with --gpus all (or the GPU operator on Kubernetes). Keep model weights outside the image on a mounted volume or download them at start."
     },
     {
       "q": "What is quantization, and what are the trade-offs of running a model in 8-bit or 4-bit?",
-      "followup": "How would you check that a quantized model is still good enough for production?"
+      "followup": "How would you check that a quantized model is still good enough for production?",
+      "answer": "Quantization stores weights (and sometimes activations or KV cache) with fewer bits: FP16 → 8-bit → 4-bit. 8-bit halves memory with almost no quality loss; 4-bit cuts memory by about 4× and speeds up decoding, but may lose some quality, especially on math, code and long contexts; below 4 bits loss grows. Methods: GPTQ, AWQ, bitsandbytes, FP8, GGUF for llama.cpp. To check it: run the same eval set on original and quantized models, compare scores, spot-check outputs, test long-context and edge cases, and measure latency and memory before production."
     },
     {
       "q": "What is NVIDIA DGX Spark, and how does it compare with a Mac Studio, an AMD Strix Halo mini PC or a PC with an RTX 5090 for local LLM work?",
-      "followup": "For a 70B model, which would you buy and why: memory size, memory bandwidth or software support?"
+      "followup": "For a 70B model, which would you buy and why: memory size, memory bandwidth or software support?",
+      "answer": "DGX Spark is NVIDIA's desktop AI computer with the GB10 Grace Blackwell chip and 128 GB unified memory (about 273 GB/s), running the full CUDA stack; it fits models up to about 200B parameters in FP4 and is great for prototyping and fine-tuning. Mac Studio M3 Ultra: up to 512 GB and about 819 GB/s, so faster generation on big models, but no CUDA. AMD Strix Halo mini PCs: up to 128 GB at about 256 GB/s, cheaper, ROCm. RTX 5090: only 32 GB but about 1.8 TB/s, fastest when the model fits. For a 70B model: memory size decides if it fits (4-bit ≈ 40 GB), bandwidth decides speed, software decides ease; for CUDA work pick Spark, for fastest local chat at 70B a Mac Studio, for small models an RTX 5090."
     },
     {
       "q": "Why do AI video generators struggle with physics, and what kinds of errors do they make?",
-      "followup": "How would you measure physical correctness, and what would you change in data or training to improve it?"
+      "followup": "How would you measure physical correctness, and what would you change in data or training to improve it?",
+      "answer": "Video models learn how pixels usually look and move, not physical laws; they have no built-in 3D world, mass or forces, and rare events are thin in training data. Errors: objects vanishing or merging, wrong gravity, bodies passing through each other, missing cause and effect (a bite with no mark), liquids appearing or disappearing, morphing hands, and drift over long clips. Measure with physics benchmarks (Physics-IQ, VideoPhy, PhyGenBench) and human review. Improve with better-labeled data, synthetic data from physics simulators and game engines, 3D-aware world models, rewards for physical correctness and longer context for consistency."
     }
   ]
 }

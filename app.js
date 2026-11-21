@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=79';
-import { ADMIN_HASH } from './admin-hash.js?v=79';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=80';
+import { ADMIN_HASH } from './admin-hash.js?v=80';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve']); // open without signing in
@@ -713,11 +713,11 @@ $('#yt-save').onclick = () => {
 // ---------- interview prep (questions in interview.json) ----------
 async function loadInterview() {
   let p;
-  try { p = await (await fetch('interview.json?v=35')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
+  try { p = await (await fetch('interview.json?v=36')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
   // admin-added bank questions go after the open questions, before the exercises
   const k = p.questions.findIndex(q => q.match || q.terms || q.companies);
   p.questions.splice(k < 0 ? p.questions.length : k, 0, ...ivAdded());
-  $('#iv-list').innerHTML = p.questions.map((q, qi) => `<li><strong>${esc(q.q)}</strong>${q.match ? matchHtml(q.match, qi) : ''}${q.terms ? termsHtml(q.terms) : ''}${q.companies ? companiesHtml(q.companies, q.unit) : ''}${q.followup ? `<div class="iv-follow">↳ ${esc(q.followup)}</div>` : ''}</li>`).join('');
+  $('#iv-list').innerHTML = p.questions.map((q, qi) => `<li><strong>${esc(q.q)}</strong>${q.match ? matchHtml(q.match, qi) : ''}${q.terms ? termsHtml(q.terms) : ''}${q.companies ? companiesHtml(q.companies, q.unit) : ''}${q.followup ? `<div class="iv-follow">↳ ${esc(q.followup)}</div>` : ''}${q.answer ? `<details class="iv-answers"><summary>Show a suggested answer</summary><p dir="auto">${esc(q.answer)}</p></details>` : ''}</li>`).join('');
   document.querySelectorAll('.match').forEach(el => setupMatch(el, p.questions[+el.dataset.q].match));
 }
 loadInterview();
