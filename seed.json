@@ -1348,6 +1348,24 @@
       "url": "https://github.com/zai-org",
       "notes": "Open-weight GLM releases, code and model cards.",
       "lang": "en"
+    },
+    {
+      "id": "src-129",
+      "topic": "AI Development",
+      "type": "Docs",
+      "title": "Hugging Face TRL: training LLMs with SFT, DPO and GRPO",
+      "url": "https://huggingface.co/docs/trl",
+      "notes": "The main open-source library for supervised fine-tuning and preference tuning.",
+      "lang": "en"
+    },
+    {
+      "id": "src-131",
+      "topic": "AI Development",
+      "type": "Paper",
+      "title": "QLoRA: Efficient Finetuning of Quantized LLMs (Dettmers et al., 2023)",
+      "url": "https://arxiv.org/abs/2305.14314",
+      "notes": "Fine-tuning LoRA adapters on a 4-bit base model.",
+      "lang": "en"
     }
   ],
   "notes": [
@@ -1693,6 +1711,34 @@
       "title": "Where the weights live in a Transformer",
       "body": "Embedding matrix: one vector of weights per token in the vocabulary. Attention layers: weight matrices that make queries, keys and values (Q, K, V) and an output projection (O). Feed-forward (MLP) layers: usually the largest share of the weights, often seen as where much factual knowledge is stored. Layer normalization: small scale and shift weights. Output head: turns the final vector into a score for every token. In mixture-of-experts models only some experts' weights are used per token: \"active\" parameters (for example 32B) vs \"total\" parameters (for example 355B). Weights are stored in files such as safetensors (Hugging Face) or GGUF (llama.cpp, Ollama), often split into shards. Do not confuse them with: activations (temporary values computed for each input), the KV cache (stored attention keys and values for the current context), and hyperparameters (settings chosen by people, such as learning rate or number of layers).",
       "sourceId": ""
+    },
+    {
+      "id": "note-50",
+      "topic": "AI Development",
+      "title": "Fine-tuning LLMs: what it is and when to use it",
+      "body": "Fine-tuning continues training a pre-trained model on your own smaller dataset so its weights adapt to a task, style or domain. Try the cheaper options first, in this order: 1) prompt engineering and examples in the prompt, 2) RAG to give the model your knowledge, 3) fine-tuning. Fine-tune to change behavior: a fixed output format or tone, a narrow task done reliably (classification, extraction, tool calling), domain language (legal, medical, Arabic dialects), or to make a small cheap model match a big one on your task (distillation). Do not fine-tune mainly to add facts that change often: RAG is better for knowledge, because it is easy to update and can cite sources. Rule of thumb: RAG for what the model should know, fine-tuning for how it should behave.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-51",
+      "topic": "AI Development",
+      "title": "Types of fine-tuning",
+      "body": "Continued pre-training: more next-token training on large raw domain text (for example medical papers) to learn the domain language. Supervised fine-tuning (SFT) / instruction tuning: train on prompt → ideal answer pairs; this is how base models become chat assistants. Preference tuning: teach the model which of two answers people prefer. RLHF trains a reward model from human rankings then optimizes with reinforcement learning (PPO); DPO (Direct Preference Optimization) uses the preferred/rejected pairs directly and is simpler and cheaper. Reinforcement fine-tuning with verifiable rewards (for example GRPO, used for DeepSeek-R1 style reasoning): the model is rewarded when its answer can be checked as correct, such as math results or passing code tests. Distillation: train a small student model on the outputs of a large teacher model.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-52",
+      "topic": "AI Development",
+      "title": "Full fine-tuning vs LoRA and QLoRA",
+      "body": "Full fine-tuning updates every weight: best possible fit but very costly in memory (roughly 16-20 bytes per parameter with Adam, so a 7B model needs over 100 GB of GPU memory) and you store a full copy of the model for each task. Parameter-efficient fine-tuning (PEFT) trains a tiny fraction of parameters. LoRA freezes the original weights and adds small low-rank matrices (rank r, for example 8-64) to attention and feed-forward layers; only those are trained, often under 1% of the parameters, and the adapter file is a few megabytes that can be swapped or merged into the model. QLoRA loads the frozen base model in 4-bit and trains LoRA adapters on top, so a 7-8B model can be fine-tuned on a single consumer GPU and a 70B model on one large GPU. Quality of LoRA is usually close to full fine-tuning for most tasks.",
+      "sourceId": "src-3"
+    },
+    {
+      "id": "note-53",
+      "topic": "AI Development",
+      "title": "Fine-tuning data, process and tools",
+      "body": "Data matters most: a few hundred to a few thousand high-quality, diverse, correctly formatted examples often beat a huge noisy set. Use the model's chat template (system, user, assistant turns), remove duplicates and personal data, and keep a separate test set the model never trains on. Process: 1) define the task and a success metric, 2) build a baseline with prompting or RAG, 3) prepare data, 4) pick a base model (size, license, language), 5) train (key settings: learning rate, epochs (often 1-3), LoRA rank, batch size), 6) evaluate against the baseline on your test set plus general and safety checks, 7) deploy (merge the adapter or serve it with vLLM multi-LoRA) and monitor. Tools: Hugging Face TRL and PEFT, Unsloth (fast, low-memory), Axolotl, torchtune, LLaMA-Factory; managed services: OpenAI fine-tuning API, Google Vertex AI, Amazon Bedrock and SageMaker, Azure AI Foundry, Together AI. Pitfalls: overfitting (great on training data, worse on new data), catastrophic forgetting (the model loses general skills), weaker safety behavior after tuning, data leakage into the test set, and license limits on the base model or on using another model's outputs for training.",
+      "sourceId": "src-129"
     }
   ],
   "questions": [
