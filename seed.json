@@ -13,7 +13,8 @@
     "Agents & MCP",
     "Evals",
     "Benchmarking",
-    "Decision Models"
+    "Decision Models",
+    "Game Engines"
   ],
   "sources": [
     {
@@ -1614,6 +1615,13 @@
       "title": "Unified memory and the bandwidth rule",
       "body": "In unified-memory machines (DGX Spark, Apple silicon, AMD Strix Halo) the CPU and GPU share one large pool, so models much bigger than a gaming GPU's VRAM can load. But decoding reads all active weights for each token, so a rough upper bound is tokens/s ≈ memory bandwidth ÷ bytes of active weights. Example: a 70B model in 4-bit is about 35-40 GB; on DGX Spark (~273 GB/s) that gives under about 7 tokens/s, while a Mac Studio M3 Ultra (~819 GB/s) can roughly triple that. Mixture-of-experts models only read their active experts per token, so they run much faster on these machines. Spark is strongest at prefill (prompt processing), fine-tuning and FP4 compute thanks to its Blackwell Tensor Cores.",
       "sourceId": ""
+    },
+    {
+      "id": "note-44",
+      "topic": "Game Engines",
+      "title": "GTA 6 and Rockstar's RAGE engine",
+      "sourceId": "",
+      "body": "Grand Theft Auto VI was released in November 2026 for PS5 and Xbox Series X|S. Rockstar Games built it on its own in-house engine, RAGE (Rockstar Advanced Game Engine), instead of a licensed engine such as Unreal Engine that many other studios use. RAGE has powered Rockstar games since 2006, including GTA IV, Red Dead Redemption, GTA V and Red Dead Redemption 2, and it is written in C++ for speed and direct control of memory and hardware. What RAGE does: rendering (graphics, lighting), physics and animation (with Euphoria for realistic character movement), AI and simulation of the city (traffic, pedestrians, weather, day-night cycle), audio, scripting of missions, networking for online play, and streaming of the open world. Memory is the first problem: a PS5 has only 16 GB of shared GDDR6 memory (not 16 MB) for the whole game, far less than the size of the world. Three key techniques: 1) Streaming: load only what is near the player from the fast SSD and unload what is far away, so a huge map fits in limited memory. 2) Simulation: thousands of NPCs, cars and systems run with their own behavior, with less detail for things far from the player (level of detail). 3) Ray tracing: light, shadows and reflections calculated by following light rays for realistic images, using the console GPU's ray-tracing hardware. Link to AI: the same limits drive LLM engineering. Memory decides what fits, so engines stream and compress data just as LLM systems quantize models, manage the KV cache and offload weights, and both use C++ and GPU-specific code where speed matters."
     }
   ],
   "questions": [
@@ -7365,6 +7373,108 @@
       ],
       "answer": "Ascent GX10 → ASUS; Pro Max with GB10 → Dell; ZGX Nano → HP; ThinkStation PGX → Lenovo; EdgeXpert → MSI",
       "explanation": "All use the same NVIDIA GB10 Superchip.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-161",
+      "topic": "Game Engines",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which game engine does Rockstar Games use for GTA 6?",
+      "options": [
+        "RAGE (Rockstar Advanced Game Engine)",
+        "Unreal Engine 5",
+        "Unity",
+        "Frostbite"
+      ],
+      "answer": "RAGE (Rockstar Advanced Game Engine)",
+      "explanation": "Rockstar builds its own engine instead of licensing Unreal Engine or Unity.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-162",
+      "topic": "Game Engines",
+      "type": "fill",
+      "difficulty": "easy",
+      "prompt": "The RAGE game engine is written mainly in the programming language ___.",
+      "answer": "C++|cpp|C plus plus",
+      "explanation": "C++ gives speed and direct control over memory and hardware.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-163",
+      "topic": "Game Engines",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "How much memory does a PlayStation 5 have for games and the system?",
+      "options": [
+        "16 GB of GDDR6",
+        "16 MB",
+        "128 GB",
+        "4 GB"
+      ],
+      "answer": "16 GB of GDDR6",
+      "explanation": "The CPU and GPU share 16 GB, so big open worlds must be streamed.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-164",
+      "topic": "Game Engines",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Why does an open-world game like GTA 6 use streaming?",
+      "options": [
+        "To load only what is near the player because the whole world cannot fit in memory",
+        "To broadcast the game on Twitch",
+        "To make the game run online only",
+        "To replace the GPU"
+      ],
+      "answer": "To load only what is near the player because the whole world cannot fit in memory",
+      "explanation": "Assets are loaded from the SSD as the player moves and unloaded when far away.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-165",
+      "topic": "Game Engines",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is ray tracing?",
+      "options": [
+        "Calculating light, shadows and reflections by following rays of light",
+        "Tracking players with GPS",
+        "A way to compress game files",
+        "A type of AI chatbot"
+      ],
+      "answer": "Calculating light, shadows and reflections by following rays of light",
+      "explanation": "Modern GPUs, including console GPUs, have hardware to speed it up.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-166",
+      "topic": "Game Engines",
+      "type": "match",
+      "difficulty": "medium",
+      "prompt": "Connect each RAGE technique to what it does.",
+      "pairs": [
+        [
+          "Streaming",
+          "Loads nearby world data from the SSD as you move"
+        ],
+        [
+          "Simulation",
+          "Runs traffic, pedestrians and weather"
+        ],
+        [
+          "Ray tracing",
+          "Realistic light, shadows and reflections"
+        ],
+        [
+          "Level of detail",
+          "Less detail for far-away objects"
+        ]
+      ],
+      "explanation": "All of them fight the same first problem: limited memory and compute.",
+      "answer": "Streaming → Loads nearby world data from the SSD as you move; Simulation → Runs traffic, pedestrians and weather; Ray tracing → Realistic light, shadows and reflections; Level of detail → Less detail for far-away objects",
       "sourceId": ""
     }
   ]
