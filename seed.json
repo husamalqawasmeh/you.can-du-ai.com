@@ -1330,6 +1330,24 @@
       "url": "https://playground.liquid.ai",
       "notes": "Chat with and test Liquid AI models in the browser.",
       "lang": "en"
+    },
+    {
+      "id": "src-127",
+      "topic": "Frontier Labs",
+      "type": "Website",
+      "title": "Z.ai (Zhipu AI) official site and chat",
+      "url": "https://z.ai",
+      "notes": "Try GLM models in the browser; API platform and coding plan.",
+      "lang": "en"
+    },
+    {
+      "id": "src-128",
+      "topic": "Frontier Labs",
+      "type": "Docs",
+      "title": "Z.ai GLM models on GitHub (zai-org)",
+      "url": "https://github.com/zai-org",
+      "notes": "Open-weight GLM releases, code and model cards.",
+      "lang": "en"
     }
   ],
   "notes": [
@@ -1647,6 +1665,13 @@
       "title": "Physics problems in AI video generation",
       "sourceId": "src-125",
       "body": "Video models such as Sora, Veo, Kling, Runway and Seedance make very realistic clips, but they often break the laws of physics. Common failures: 1) Object permanence: things vanish, appear or merge when hidden behind something. 2) Gravity and motion: objects float, fall at the wrong speed or move in reverse. 3) Collisions: bodies pass through each other, glass does not shatter properly. 4) Cause and effect: a bitten cookie shows no bite mark, a ball changes direction for no reason. 5) Conservation: liquids appear or disappear, the amount of food changes. 6) Bodies and hands: extra fingers, limbs that bend the wrong way, faces that morph. 7) Consistency over time: clothes, text and backgrounds change between frames; longer clips drift more. Why it happens: the model learns how pixels usually look and move from training videos, not the rules behind them. It has no built-in 3D world, mass or forces, and rare events (breaking, splashing, complex collisions) are thin in the data. Research found models mostly imitate the closest training example (\"case-based\" generalization) and fail on new situations, even when made bigger. How it is measured: physics benchmarks such as VideoPhy, PhyGenBench and Physics-IQ, plus human review. How labs improve it: more and better-labeled video, synthetic data from physics simulators and game engines, 3D-aware \"world models\" (for example NVIDIA Cosmos and Google DeepMind Genie), training rewards for physical correctness, and longer context for consistency. Practical tips: keep shots short, avoid complex interactions (pouring, breaking, crowds of hands), use image-to-video with a good first frame, generate several takes and pick the best, and edit or composite the hard parts. Why it matters: realistic-looking but wrong physics is a problem for robotics and self-driving training, science and education, and it is also a clue for spotting AI-made videos."
+    },
+    {
+      "id": "note-46",
+      "topic": "Frontier Labs",
+      "title": "Z.ai (Zhipu AI) and the GLM models",
+      "sourceId": "src-127",
+      "body": "Z.ai is the international brand (since 2025) of Zhipu AI, a Beijing AI company spun out of Tsinghua University in 2019 and one of China's leading LLM labs. Its model family is GLM (General Language Model), named after the GLM pre-training method from Tsinghua research. Timeline: GLM-130B (2022, open bilingual Chinese-English model); ChatGLM-6B (2023, small open chat model that ran on consumer GPUs and became very popular); GLM-4 (2024); GLM-4.5 and GLM-4.5-Air (2025, mixture-of-experts: about 355B total / 32B active and 106B / 12B active parameters) built for reasoning, coding and agents, with a \"thinking\" mode; GLM-4.6 (2025) with a longer context window (about 200K tokens) and stronger coding. Later versions continue the line. Other models: GLM-4.5V / GLM-4.xV (vision-language), CogView (images) and CogVideoX (video). Many GLM models are released with open weights under permissive licenses (for example MIT), so you can download them from Hugging Face and run them with vLLM or SGLang. You can also use them through the Z.ai chat app and API, which is OpenAI-compatible, and a low-cost \"GLM Coding Plan\" that plugs into coding agents such as Claude Code, Cline and others. Why it matters: GLM models are among the strongest open-weight models for coding and agent tasks at a low price, alongside Qwen, DeepSeek and Kimi. Things to consider: the US placed Zhipu on its Entity List in January 2025, so check compliance, data residency and your company's policy before using its hosted API; self-hosting the open weights avoids sending data to the provider."
     }
   ],
   "questions": [
