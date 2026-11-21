@@ -1302,6 +1302,15 @@
       "url": "https://arxiv.org/abs/2006.04439",
       "notes": "The liquid neural network research behind Liquid AI.",
       "lang": "en"
+    },
+    {
+      "id": "src-124",
+      "topic": "Benchmarking",
+      "type": "Slides",
+      "title": "LFM3-VL-2B benchmark table (image)",
+      "url": "files/lfm3-vl-benchmarks.png",
+      "notes": "Vendor-reported scores for LFM3-VL-2B against other small and fast vision-language models.",
+      "lang": "en"
     }
   ],
   "notes": [
@@ -1470,8 +1479,15 @@
       "id": "note-24",
       "topic": "Frontier Labs",
       "title": "Liquid AI and Liquid Foundation Models (LFM)",
-      "body": "Liquid AI is an MIT spin-off (founded 2023 by Ramin Hasani, Mathias Lechner, Alexander Amini and Daniela Rus). It grew out of liquid neural networks: liquid time-constant networks whose neurons follow differential equations, inspired by the small nervous system of the C. elegans worm. Its Liquid Foundation Models are not plain Transformers. LFM1 (2024) came in 1B, 3B and 40B mixture-of-experts sizes. LFM2 (2025) is a hybrid of short convolution blocks and grouped-query attention, released with open weights in small sizes (about 350M to a few billion parameters) for fast, low-memory use on phones, laptops, cars and other edge devices; LFM2-VL adds vision. The LEAP platform helps developers run LFMs on device. AMD led its 2024 funding round. Why it matters: a strong alternative to Transformers when memory, speed and privacy on the device matter more than top benchmark scores.",
+      "body": "Liquid AI is an MIT spin-off (founded 2023 by Ramin Hasani, Mathias Lechner, Alexander Amini and Daniela Rus). It grew out of liquid neural networks: liquid time-constant networks whose neurons follow differential equations, inspired by the small nervous system of the C. elegans worm. Its Liquid Foundation Models are not plain Transformers. LFM1 (2024) came in 1B, 3B and 40B mixture-of-experts sizes. LFM2 (2025) is a hybrid of short convolution blocks and grouped-query attention, released with open weights in small sizes (about 350M to a few billion parameters) for fast, low-memory use on phones, laptops, cars and other edge devices; LFM2-VL adds vision. Later releases include LFM2.5 and LFM3, for example the LFM3-VL-2B vision-language model (see the LFM3-VL-2B benchmarks note). The LEAP platform helps developers run LFMs on device. AMD led its 2024 funding round. Why it matters: a strong alternative to Transformers when memory, speed and privacy on the device matter more than top benchmark scores.",
       "sourceId": "src-122"
+    },
+    {
+      "id": "note-25",
+      "topic": "Benchmarking",
+      "title": "LFM3-VL-2B benchmarks vs other small vision-language models",
+      "body": "Vendor-reported averages across 10 categories: LFM3-VL-2B (1.9B params) 71.4; LFM2.5-VL-3B (3.1B) 57.6; MiniCPM-V 4.7 1B (1.6B) 57.5; Qwen 3.5 2B (2.3B) 64.0; Gemma 4 E2B (5.1B) 53.6; Gemma 4 12B 71.7; GPT-5.6 Luna 73.4; Gemini 3.5 Flash Lite 70.0. LFM3-VL-2B scores per category: General 66.0, Perception 75.6, Document/OCR/Chart 83.9, Math and logical reasoning 68.8, Visual grounding 77.3, Embodied reasoning 64.4, GUI understanding 83.1, Video 61.2, Multilingual 84.4, Agentic 42.5. Takeaways: a 1.9B model roughly matches Gemma 4 12B on average and beats every other small model in every category; it is strongest on documents, GUI and multilingual tasks; agentic tasks are its weak spot (42.5 vs 56.1 for GPT-5.6 Luna and 62.4 for Gemini 3.5 Flash Lite). These are the vendor's own numbers, so confirm on your own tasks.",
+      "sourceId": "src-124"
     }
   ],
   "questions": [
@@ -6302,6 +6318,68 @@
       "explanation": "Many labs now release small open models for local and edge use.",
       "answer": "LFM → Liquid AI; Gemma → Google; Phi → Microsoft; Llama → Meta; Qwen → Alibaba; Mistral → Mistral AI",
       "sourceId": ""
+    },
+    {
+      "id": "q3-103",
+      "topic": "Benchmarking",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "In Liquid AI's published benchmarks, LFM3-VL-2B (1.9B parameters) averages 71.4. Which much larger model has about the same average?",
+      "options": [
+        "Gemma 4 12B (71.7)",
+        "Gemma 4 E2B (53.6)",
+        "MiniCPM-V 4.7 1B (57.5)",
+        "LFM2.5-VL-3B (57.6)"
+      ],
+      "answer": "Gemma 4 12B (71.7)",
+      "explanation": "A 1.9B model nearly matching a 12B model shows how far small, efficient models have come.",
+      "sourceId": "src-124"
+    },
+    {
+      "id": "q3-104",
+      "topic": "Benchmarking",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "In the LFM3-VL-2B benchmark table, which category is its weakest compared with GPT-5.6 Luna and Gemini 3.5 Flash Lite?",
+      "options": [
+        "Agentic",
+        "Multilingual",
+        "Document, OCR and chart",
+        "GUI understanding"
+      ],
+      "answer": "Agentic",
+      "explanation": "LFM3-VL-2B scores 42.5 on agentic tasks vs 56.1 (GPT-5.6 Luna) and 62.4 (Gemini 3.5 Flash Lite).",
+      "sourceId": "src-124"
+    },
+    {
+      "id": "q3-105",
+      "topic": "Benchmarking",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "In the vendor's table, LFM3-VL-2B beats Qwen 3.5 2B in every benchmark category.",
+      "answer": "True",
+      "explanation": "It is higher in all 10 categories, for example GUI understanding 83.1 vs 67.2.",
+      "sourceId": "src-124"
+    },
+    {
+      "id": "q3-106",
+      "topic": "Benchmarking",
+      "type": "fill",
+      "difficulty": "easy",
+      "prompt": "The \"VL\" in LFM3-VL-2B means vision-___.",
+      "answer": "language",
+      "explanation": "Vision-language models take images (and often video) plus text as input.",
+      "sourceId": "src-124"
+    },
+    {
+      "id": "q3-107",
+      "topic": "Benchmarking",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "Benchmark scores published by a model's own vendor should still be checked on your own tasks.",
+      "answer": "True",
+      "explanation": "Vendors choose the benchmarks and settings; independent and task-specific tests are more reliable.",
+      "sourceId": "src-124"
     }
   ]
 }
