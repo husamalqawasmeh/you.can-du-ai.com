@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=105';
-import { ADMIN_HASH } from './admin-hash.js?v=105';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=106';
+import { ADMIN_HASH } from './admin-hash.js?v=106';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -280,17 +280,23 @@ async function loadTools() {
     const key = { az: t => t.name[0].toUpperCase(), za: t => t.name[0].toUpperCase(), free: t => costGroup(t), paid: t => costGroup(t), vendor: t => t.company, domain: t => DOMAINS[domainOf(t)]?.[0] ?? 'Other', new: t => 'Released ' + (t.released || 'year unknown'), old: t => 'Released ' + (t.released || 'year unknown') }[$('#tool-sort').value] || (t => t.category);
     const groups = new Map();
     for (const t of list) { const k = key(t); groups.has(k) ? groups.get(k).push(t) : groups.set(k, [t]); }
+    // direction choices: group names (for alphabetical groupings) and tool names inside each group
+    const sv = $('#tool-sort').value, gDir = $('#tool-gdir').value === 'za' ? -1 : 1, tDir = $('#tool-tdir').value === 'za' ? -1 : 1;
+    let entries = [...groups];
+    if (['', 'az', 'za', 'vendor', 'type'].includes(sv)) entries.sort(([a], [b]) => gDir * a.localeCompare(b));
+    for (const [, ts] of entries) ts.sort((a, b) => tDir * a.name.localeCompare(b.name));
+    $('#tool-gdir').disabled = !['', 'az', 'za', 'vendor', 'type'].includes(sv); // cost, domain and date groups keep their own order
     const open = new Set([...document.querySelectorAll('#tools-list details[open]')].map(x => x.dataset.g));
     const card = t => `<article class="tool"><div class="tool-head"><h3><a href="${esc(t.url)}" target="_blank" rel="noopener">${esc(t.name)}</a></h3>
       <span class="tag">${esc(t.company)} · ${esc(t.category)}${t.released ? ` · since ${t.released}` : ''}</span><span class="cost">${esc(t.cost)}</span></div><div class="tool-does">${esc(t.does)}</div>
       <div class="pc"><div><strong class="good">Pros</strong><ul>${t.pros.map(p => `<li>${esc(p)}</li>`).join('')}</ul></div><div><strong class="bad">Cons</strong><ul>${t.cons.map(p => `<li>${esc(p)}</li>`).join('')}</ul></div></div></article>`;
     // a search opens every group so matches are visible; otherwise keep whatever the user had open
     $('#tools-list').classList.toggle('letters', /^(az|za)$/.test($('#tool-sort').value)); // A–Z / Z–A: letter grid
-    $('#tools-list').innerHTML = [...groups].map(([g, ts]) => `<details class="card fold" data-g="${esc(g)}"${q || open.has(g) ? ' open' : ''}>
+    $('#tools-list').innerHTML = entries.map(([g, ts]) => `<details class="card fold" data-g="${esc(g)}"${q || open.has(g) ? ' open' : ''}>
       <summary><h3>${esc(g)} <span class="tag">${ts.length} tool${ts.length === 1 ? '' : 's'}</span></h3></summary><div class="tools-grid">${ts.map(card).join('')}</div></details>`).join('')
       || '<p class="muted">No tools match.</p>';
   };
-  $('#tool-q').oninput = $('#tool-cat').onchange = $('#tool-cost').onchange = $('#tool-sort').onchange = show;
+  $('#tool-q').oninput = $('#tool-cat').onchange = $('#tool-cost').onchange = $('#tool-sort').onchange = $('#tool-gdir').onchange = $('#tool-tdir').onchange = show;
   show();
 }
 loadTools();
