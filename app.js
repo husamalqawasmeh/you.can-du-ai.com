@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=115';
-import { ADMIN_HASH } from './admin-hash.js?v=115';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=117';
+import { ADMIN_HASH } from './admin-hash.js?v=117';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -121,10 +121,12 @@ function render() {
   renderSuggestions();
   renderObjectives();
 
-  // history (keep the success box open across re-renders)
-  const tsOpen = $('#topic-success details')?.open;
+  // history (keep these boxes open across re-renders)
+  const tsOpen = $('#topic-success details')?.open, sbOpen = $('#study-box details')?.open ?? true;
   $('#topic-success').innerHTML = topicSuccessHtml();
   if (tsOpen) $('#topic-success details').open = true;
+  $('#study-box').innerHTML = studyBoxHtml();
+  $('#study-box details').open = sbOpen;
   $('#history-list').innerHTML = db.results.slice().reverse().map(r => `<li><div><strong>${r.pct}%</strong> (${r.correct}/${r.total}) <span class="tag">${new Date(r.date).toLocaleString()} · ${esc(r.topics.join(', ') || 'All topics')}</span></div></li>`).join('') || '<li class="muted">No tests taken yet.</li>';
 
   $('#data-stats').textContent =`${db.topics.length} topics · ${db.sources.length} sources · ${db.notes.length} knowledge entries · ${db.questions.length} questions · ${db.results.length} test results`;
@@ -432,7 +434,7 @@ function startTest(qs, cfg) {
     // fill in the blank: the ___ in the statement becomes the text box
     const prompt = q.type === 'fill' ? esc(q.prompt).replace('___', `<input class="blank" name="a${i}" autocomplete="off" aria-label="Missing word">`) : esc(q.prompt);
     const num = 'speechSynthesis' in window ? `<button type="button" class="qnum" data-speak="${i}" title="Read this question aloud" aria-label="Read question ${i + 1} aloud">${i + 1}. 🔊</button>` : `${i + 1}.`;
-    return `<div class="question"><p>${num} ${prompt}</p><div class="tag">${esc(q.topic)} · ${esc(q.difficulty)}</div>${input}</div>`;
+    return `<div class="question"><p>${num} ${prompt}</p><div class="tag">${esc(q.topic)} · ${esc(q.difficulty)} ${studyBtn(q.topic)}</div>${input}</div>`;
   }).join('') + `<button class="primary">Submit answers</button> <button type="button" id="cancel-test">Cancel</button></div>`;
   run.querySelectorAll('.match').forEach(el => { const i = +el.dataset.q; setupMatch(el, qs[i].pairs, links => { run.elements['a' + i].value = JSON.stringify(qs[i].pairs.map((p, k) => links.get(k) ?? '')); }); });
   cfgForm.hidden = true; $('#test-result').hidden = true; run.hidden = false;
@@ -460,6 +462,33 @@ function resetTest() {
   current = null;
   $('#test-run').hidden = true; $('#test-result').hidden = true; cfgForm.hidden = false;
 }
+
+// Study list: topics the student marked from test questions, studied from the knowledge notes.
+let showStudy = false;
+const studyBtn = t => {
+  const on = (db.study ?? []).includes(t);
+  return `<button type="button" class="study-btn${on ? ' on' : ''}" data-study="${esc(t)}" aria-pressed="${on}" title="Add this question's topic (${esc(t)}) to your study list">📌 ${on ? 'In study list' : 'Study later'}</button>`;
+};
+function studyBoxHtml() {
+  const list = db.study ?? [];
+  const notes = showStudy ? db.notes.filter(n => list.includes(n.topic)) : [];
+  return `<details class="card fold"><summary><h2>My study list (${list.length} topic${list.length === 1 ? '' : 's'})</h2></summary>` +
+    (list.length ? `<div class="study-chips">${list.map(t => `<span class="study-chip">${esc(t)} <button type="button" data-unstudy="${esc(t)}" title="Remove ${esc(t)}" aria-label="Remove ${esc(t)} from study list">×</button></span>`).join('')}</div>
+      <button type="button" class="primary" id="study-go">${showStudy ? 'Hide study material' : 'Study marked material'}</button>` +
+      (showStudy ? `<ul class="list">${notes.map(n => `<li dir="auto"><div><strong>${esc(n.title)}</strong> <span class="tag">${esc(n.topic)}</span><div>${esc(n.body)}</div></div></li>`).join('') || '<li class="muted">No knowledge notes for these topics yet.</li>'}</ul>` : '')
+    : '<p class="muted">During or after a test, press 📌 Study later next to a question to add its topic here.</p>') + '</details>';
+}
+document.addEventListener('click', e => {
+  const add = e.target.closest('[data-study]'), del = e.target.closest('[data-unstudy]');
+  if (add) {
+    const t = add.dataset.study, list = (db.study ??= []);
+    if (list.includes(t)) list.splice(list.indexOf(t), 1); else list.push(t);
+    document.querySelectorAll('[data-study]').forEach(b => { if (b.dataset.study === t) b.outerHTML = studyBtn(t); });
+    save();
+  } else if (del) {
+    db.study = (db.study ?? []).filter(t => t !== del.dataset.unstudy); save();
+  } else if (e.target.id === 'study-go') { showStudy = !showStudy; render(); }
+});
 
 // Success % per topic across all tests (weakest first); shown once the student has taken more than one test.
 function topicSuccessHtml() {
@@ -493,10 +522,10 @@ $('#test-run').onsubmit = e => {
     <p>Overall, from all your tests: <span class="lvl lvl-${pAll.level.toLowerCase()}">${pAll.level}</span> <span class="tag">${pAll.answered} questions answered · confidence ${pAll.confidence} · details in Learning Suggestions</span></p>` +
     qs.map((q, i) => {
       const ok = isCorrect(q, answers[i]);
-      const shown = q.type === 'match' ? matchAnswerText(q, answers[i]) : answers[i];
+      const shown = q.type === 'match' ? matchAnswerHtml(q, answers[i]) : esc(answers[i]);
       const src = sourceTitle(q.sourceId);
-      return `<div class="question"><p>${i + 1}. ${esc(q.prompt)}</p>
-        <div class="${ok ? 'good' : 'bad'}">${ok ? '✓ Correct' : '✗ Incorrect'} — your answer: ${esc(shown || '(blank)')}</div>
+      return `<div class="question"><p>${i + 1}. ${esc(q.prompt)}</p><div class="tag">${esc(q.topic)} ${studyBtn(q.topic)}</div>
+        <div class="${ok ? 'good' : 'bad'}">${ok ? '✓ Correct' : '✗ Incorrect'} — your answer: ${shown || '(blank)'}</div>
         ${ok ? '' : `<div>Correct answer: <strong>${esc(q.answer.split('|')[0])}</strong></div>`}
         ${q.explanation ? `<div class="muted">${esc(q.explanation)}</div>` : ''}
         ${src ? `<div class="tag">Source: ${esc(src)}</div>` : ''}</div>`;
@@ -823,9 +852,10 @@ function matchHtml(pairs, qi, test = false) {
 }
 // in a test the match has no Check / Show answers buttons, so the answers stay hidden until you submit
 // Your matching answer as text, e.g. 'GPU → NVIDIA; TPU → (not connected)'.
-function matchAnswerText(q, given) {
+// Escaped HTML: each connected pair in green when right, red when wrong.
+function matchAnswerHtml(q, given) {
   let g = []; try { g = JSON.parse(given || '[]'); } catch {}
-  return g.some(Boolean) ? q.pairs.map((p, k) => `${p[0]} → ${g[k] || '(not connected)'}`).join('; ') : '';
+  return g.some(Boolean) ? q.pairs.map((p, k) => `<span class="${g[k] === p[1] ? 'good' : 'bad'}">${esc(p[0])} → ${esc(g[k] || '(not connected)')}</span>`).join('; ') : '';
 }
 function setupMatch(el, pairs, onChange) {
   const links = new Map(); // model index -> vendor
