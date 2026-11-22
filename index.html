@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You Can Du AI</title>
 <meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
-<link rel="stylesheet" href="style.css?v=111">
+<link rel="stylesheet" href="style.css?v=112">
 </head>
 <body>
 <header>
@@ -119,12 +119,14 @@
         <label><input type="checkbox" name="type" value="fill"> Fill in the blank</label>
         <label><input type="checkbox" name="type" value="match"> Matching (connect lines)</label>
       </div></fieldset>
+      <div class="half-row">
       <fieldset><legend>Difficulty<span class="legend-sub">(none = all)</span></legend><div class="checks">
         <label><input type="checkbox" name="difficulty" value="easy"> Easy</label>
         <label><input type="checkbox" name="difficulty" value="medium"> Medium</label>
         <label><input type="checkbox" name="difficulty" value="hard"> Hard</label>
       </div></fieldset>
-      <button type="submit" class="primary">Start test</button>
+      <div class="start-cell"><button type="submit" class="primary">Start test</button></div>
+      </div>
     </form>
     <form id="test-run" hidden></form>
     <div id="test-result" hidden></div>
@@ -345,6 +347,6 @@
     </div>
   </section>
 </main>
-<script type="module" src="app.js?v=111"></script>
+<script type="module" src="app.js?v=112"></script>
 </body>
 </html>

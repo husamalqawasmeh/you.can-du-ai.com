@@ -221,3 +221,9 @@ nav button:last-child { margin-inline-end: 0; }
 .sort-row > label.sort-main { flex: 2 1 260px; }
 #mastered-count { color: var(--muted); font-variant-numeric: tabular-nums; }
 #test-config .cfg-opts #match-count { margin-inline-start: -18px; }
+#test-config .half-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; align-items: stretch; }
+#test-config .half-row fieldset { margin: 0; min-width: 0; }
+#test-config .half-row .checks { grid-template-columns: repeat(3, max-content); justify-content: start; }
+#test-config .start-cell { display: flex; align-items: center; justify-content: center; }
+#test-config .start-cell button { margin: 0; }
+@media (max-width: 640px) { #test-config .half-row { grid-template-columns: 1fr; } }
