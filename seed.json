@@ -1760,6 +1760,27 @@
       "title": "CoWoS as the AI supply bottleneck",
       "body": "From 2023 the shortage of AI GPUs was driven less by making the GPU dies and more by CoWoS packaging capacity and HBM supply. TSMC has been roughly doubling CoWoS capacity each year (by most estimates from about 15,000 wafers per month in 2023 to well over 60,000 by 2025-2026), and NVIDIA books the largest share. Outsourced packaging firms (OSATs) such as ASE/SPIL and Amkor add capacity, and TSMC is building CoWoS lines in Taiwan and planning packaging in Arizona. HBM comes from SK hynix, Samsung and Micron. Lesson for AI engineers: compute supply depends on the whole chain (wafer, HBM, packaging, power), and packaging is now a key strategic step, not an afterthought.",
       "sourceId": ""
+    },
+    {
+      "id": "note-57",
+      "topic": "AI Hardware",
+      "title": "ASML EUV lithography: the machines that print AI chips",
+      "body": "ASML (Veldhoven, Netherlands) is the only company in the world that makes EUV (extreme ultraviolet) lithography machines, which print the smallest features on leading-edge chips such as NVIDIA, AMD and Apple processors made by TSMC, Samsung and Intel. EUV uses light with a 13.5 nm wavelength, made by hitting tiny droplets of molten tin with a powerful CO2 laser about 50,000 times a second to create a plasma. Because EUV is absorbed by air and glass, everything happens in a vacuum and the light is steered by ultra-flat multilayer mirrors from Zeiss instead of lenses. Standard EUV machines (the NXE series, such as NXE:3800E) have a numerical aperture (NA) of 0.33 and cost about $150-200 million each. Export controls stop ASML from selling EUV machines to China, which makes EUV a key part of the AI chip race.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-58",
+      "topic": "AI Hardware",
+      "title": "High-NA EUV (ASML EXE series)",
+      "body": "High-NA EUV is ASML's next generation: the EXE:5000 and EXE:5200 machines raise the numerical aperture from 0.33 to 0.55. A higher NA lets the optics capture more angles of light, so the machine can print finer lines (resolution about 8 nm versus about 13 nm), roughly 1.7x smaller features and almost 3x the transistor density per exposure. This can replace multi-patterning (exposing the same layer several times), which saves steps and errors. Trade-offs: each machine costs about $350-400 million, is the size of a double-decker bus and weighs about 150 tonnes; it uses anamorphic optics, so the exposure field is half the size of standard EUV, which matters for very large AI chips that must be stitched. Intel was first to buy and install High-NA (for its 14A node); TSMC and Samsung are evaluating it for later nodes around 2027-2030. The next idea after this is Hyper-NA (NA about 0.75).",
+      "sourceId": ""
+    },
+    {
+      "id": "note-59",
+      "topic": "AI Hardware",
+      "title": "Why lithography matters for AI",
+      "body": "Each new process node (for example TSMC N3, N2, A16) packs more transistors into the same area, giving AI accelerators more compute and better energy efficiency per watt, which lowers the cost of training and inference. EUV, and later High-NA EUV, is what makes those nodes possible. The AI chip supply chain therefore runs: ASML lithography machines → foundries (TSMC, Samsung, Intel) making the dies → HBM memory (SK hynix, Samsung, Micron) → advanced packaging such as CoWoS → servers and data centres. A bottleneck at any step, including the small number of EUV machines ASML can build each year, limits how many AI chips the world can make.",
+      "sourceId": ""
     }
   ],
   "questions": [

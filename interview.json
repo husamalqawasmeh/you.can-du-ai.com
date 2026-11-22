@@ -1620,6 +1620,11 @@
       "q": "What is CoWoS, and why has advanced packaging become so important for AI hardware?",
       "followup": "How does packaging capacity affect GPU supply and the cost of running large models?",
       "answer": "CoWoS (Chip-on-Wafer-on-Substrate) is TSMC's 2.5D packaging: the GPU die and HBM stacks sit side by side on a silicon (or organic) interposer with very dense wiring, mounted on a package substrate. AI accelerators are limited by memory bandwidth, and HBM only reaches terabytes per second when it sits right next to the GPU with thousands of short links. CoWoS also gets past the reticle limit by joining several dies, as in NVIDIA Blackwell B200 (two GPU dies on CoWoS-L). Since 2023 CoWoS and HBM capacity, not die production, have been the main bottleneck for AI GPU supply, so TSMC keeps doubling capacity. For engineers this means GPU availability and price depend on the whole supply chain, which affects cloud pricing and hardware planning."
+    },
+    {
+      "q": "What is ASML's High-NA EUV machine, and why does it matter for AI chips?",
+      "followup": "What are its trade-offs (cost, exposure field size) and how do they affect very large AI accelerators?",
+      "answer": "ASML is the only maker of EUV lithography machines, which print the smallest features on leading-edge chips using 13.5 nm light from a tin plasma, steered by mirrors in a vacuum. Standard EUV has a numerical aperture of 0.33; High-NA EUV (EXE:5000/5200) raises it to 0.55, printing about 1.7x smaller features (about 8 nm resolution) and nearly 3x the density per exposure, and can replace costly multi-patterning. Smaller nodes give AI accelerators more compute per watt, lowering training and inference cost. Trade-offs: about $350-400 million per machine, and a half-size exposure field, so very large AI dies need stitching or multi-die designs with packaging like CoWoS. Intel adopted it first; TSMC and Samsung plan it for later nodes. Export controls keep EUV out of China, making it a strategic part of the AI race."
     }
   ]
 }
