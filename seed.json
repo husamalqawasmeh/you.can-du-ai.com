@@ -1739,6 +1739,27 @@
       "title": "Fine-tuning data, process and tools",
       "body": "Data matters most: a few hundred to a few thousand high-quality, diverse, correctly formatted examples often beat a huge noisy set. Use the model's chat template (system, user, assistant turns), remove duplicates and personal data, and keep a separate test set the model never trains on. Process: 1) define the task and a success metric, 2) build a baseline with prompting or RAG, 3) prepare data, 4) pick a base model (size, license, language), 5) train (key settings: learning rate, epochs (often 1-3), LoRA rank, batch size), 6) evaluate against the baseline on your test set plus general and safety checks, 7) deploy (merge the adapter or serve it with vLLM multi-LoRA) and monitor. Tools: Hugging Face TRL and PEFT, Unsloth (fast, low-memory), Axolotl, torchtune, LLaMA-Factory; managed services: OpenAI fine-tuning API, Google Vertex AI, Amazon Bedrock and SageMaker, Azure AI Foundry, Together AI. Pitfalls: overfitting (great on training data, worse on new data), catastrophic forgetting (the model loses general skills), weaker safety behavior after tuning, data leakage into the test set, and license limits on the base model or on using another model's outputs for training.",
       "sourceId": "src-129"
+    },
+    {
+      "id": "note-54",
+      "topic": "AI Hardware",
+      "title": "CoWoS: how AI chips are packaged",
+      "body": "CoWoS (Chip-on-Wafer-on-Substrate) is TSMC's advanced 2.5D packaging technology. Instead of putting one chip alone on a package, several dies (a big GPU or accelerator die plus stacks of HBM memory) sit side by side on a silicon interposer, a thin slice of silicon with very dense wiring. The interposer then sits on an organic package substrate that connects to the circuit board. Name breakdown: Chip-on-Wafer = the dies are bonded onto the interposer wafer; on-Substrate = that assembly is mounted on the substrate. Why AI needs it: an LLM accelerator is limited by memory bandwidth, and HBM only delivers terabytes per second when it sits millimetres from the GPU with thousands of short connections. Ordinary PCB wiring cannot do that. NVIDIA (A100, H100, H200, Blackwell B200/GB200), AMD Instinct (MI300X), Google TPUs and AWS Trainium all rely on CoWoS or similar packaging.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-55",
+      "topic": "AI Hardware",
+      "title": "CoWoS variants and the reticle limit",
+      "body": "A single chip cannot be bigger than the lithography \"reticle\" (about 858 mm²). CoWoS gets around this by joining several dies on an interposer that is several times the reticle size. Variants: CoWoS-S uses one large silicon interposer (H100: one GPU die + 6 HBM stacks). CoWoS-R uses an organic redistribution-layer (RDL) interposer, cheaper and more flexible. CoWoS-L uses an organic interposer with small embedded silicon bridges (LSI) only where dense links are needed, allowing even larger packages; NVIDIA Blackwell B200 uses CoWoS-L to join two reticle-size GPU dies with a 10 TB/s link plus 8 HBM3E stacks. TSMC plans ever larger interposers (several reticles) for future chips such as NVIDIA Rubin. Related: SoIC is TSMC's 3D stacking (dies on top of each other); competitors include Intel EMIB and Foveros, and Samsung I-Cube.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-56",
+      "topic": "AI Hardware",
+      "title": "CoWoS as the AI supply bottleneck",
+      "body": "From 2023 the shortage of AI GPUs was driven less by making the GPU dies and more by CoWoS packaging capacity and HBM supply. TSMC has been roughly doubling CoWoS capacity each year (by most estimates from about 15,000 wafers per month in 2023 to well over 60,000 by 2025-2026), and NVIDIA books the largest share. Outsourced packaging firms (OSATs) such as ASE/SPIL and Amkor add capacity, and TSMC is building CoWoS lines in Taiwan and planning packaging in Arizona. HBM comes from SK hynix, Samsung and Micron. Lesson for AI engineers: compute supply depends on the whole chain (wafer, HBM, packaging, power), and packaging is now a key strategic step, not an afterthought.",
+      "sourceId": ""
     }
   ],
   "questions": [
@@ -7964,6 +7985,164 @@
       ],
       "explanation": "Weights and biases are the parameters; activations exist only while processing an input.",
       "answer": "Weights → Learned numbers that scale connections; Bias → Learned offset added to a neuron; Activations → Temporary values computed for each input; Hyperparameters → Settings chosen before training; Gradient → How much each weight affects the error",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-190",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What does CoWoS stand for?",
+      "options": [
+        "Chip-on-Wafer-on-Substrate",
+        "Core-on-Workstation-on-Server",
+        "Compute-over-Wide-optical-Switch",
+        "Cache-on-Wafer-on-Silicon"
+      ],
+      "answer": "Chip-on-Wafer-on-Substrate",
+      "explanation": "TSMC's 2.5D advanced packaging technology.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-191",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which company developed CoWoS packaging?",
+      "options": [
+        "TSMC",
+        "Intel",
+        "Apple",
+        "ARM"
+      ],
+      "answer": "TSMC",
+      "explanation": "TSMC packages chips for NVIDIA, AMD, Google and others with CoWoS.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-192",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "In a CoWoS package such as the NVIDIA H100, what sits next to the GPU die on the interposer?",
+      "options": [
+        "Stacks of HBM memory",
+        "An SSD",
+        "A CPU cooler",
+        "GDDR memory chips on the motherboard"
+      ],
+      "answer": "Stacks of HBM memory",
+      "explanation": "HBM placed millimetres from the GPU gives terabytes per second of bandwidth.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-193",
+      "topic": "AI Hardware",
+      "type": "fill",
+      "difficulty": "medium",
+      "prompt": "In CoWoS, the dies sit side by side on a silicon ___, which has very dense wiring between them.",
+      "answer": "interposer",
+      "explanation": "The interposer then sits on the package substrate.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-194",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Why do AI accelerators need advanced packaging like CoWoS?",
+      "options": [
+        "To connect HBM to the GPU with thousands of short links for very high memory bandwidth",
+        "To make the chip waterproof",
+        "To lower the price of consumer GPUs",
+        "To allow the chip to run without power"
+      ],
+      "answer": "To connect HBM to the GPU with thousands of short links for very high memory bandwidth",
+      "explanation": "LLM inference and training are often memory-bandwidth bound; normal board wiring is far too slow.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-195",
+      "topic": "AI Hardware",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "CoWoS is called \"2.5D\" packaging because dies sit side by side on an interposer rather than being stacked fully on top of each other.",
+      "answer": "True",
+      "explanation": "Full 3D stacking is TSMC SoIC; HBM itself is a 3D stack of DRAM dies.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-196",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Which CoWoS variant does NVIDIA Blackwell B200 use to join two reticle-size GPU dies?",
+      "options": [
+        "CoWoS-L",
+        "CoWoS-S",
+        "CoWoS-R",
+        "InFO"
+      ],
+      "answer": "CoWoS-L",
+      "explanation": "CoWoS-L uses an organic interposer with embedded silicon bridges (LSI), allowing larger packages.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-197",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "What is the \"reticle limit\" that CoWoS helps work around?",
+      "options": [
+        "The maximum size of a single chip that lithography can print (about 858 mm²)",
+        "The maximum clock speed of a GPU",
+        "The maximum number of GPUs in a server",
+        "The maximum power of a data centre"
+      ],
+      "answer": "The maximum size of a single chip that lithography can print (about 858 mm²)",
+      "explanation": "By joining several dies on a large interposer, a package can hold far more silicon than one chip.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-198",
+      "topic": "AI Hardware",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "During the 2023-2024 AI boom, CoWoS packaging capacity was one of the main bottlenecks limiting the supply of NVIDIA AI GPUs.",
+      "answer": "True",
+      "explanation": "TSMC has been roughly doubling CoWoS capacity each year to catch up.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-199",
+      "topic": "AI Hardware",
+      "type": "match",
+      "difficulty": "medium",
+      "prompt": "Connect each packaging term to its meaning.",
+      "pairs": [
+        [
+          "CoWoS-S",
+          "One large silicon interposer"
+        ],
+        [
+          "CoWoS-R",
+          "Organic RDL interposer"
+        ],
+        [
+          "CoWoS-L",
+          "Organic interposer with embedded silicon bridges"
+        ],
+        [
+          "SoIC",
+          "TSMC 3D die stacking"
+        ],
+        [
+          "EMIB",
+          "Intel's embedded bridge packaging"
+        ]
+      ],
+      "answer": "CoWoS-S → One large silicon interposer; CoWoS-R → Organic RDL interposer; CoWoS-L → Organic interposer with embedded silicon bridges; SoIC → TSMC 3D die stacking; EMIB → Intel's embedded bridge packaging",
+      "explanation": "All join several dies into one package for more bandwidth and more silicon.",
       "sourceId": ""
     }
   ]

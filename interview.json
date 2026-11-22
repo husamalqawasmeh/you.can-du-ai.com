@@ -1615,6 +1615,11 @@
       "q": "Why do AI video generators struggle with physics, and what kinds of errors do they make?",
       "followup": "How would you measure physical correctness, and what would you change in data or training to improve it?",
       "answer": "Video models learn how pixels usually look and move, not physical laws; they have no built-in 3D world, mass or forces, and rare events are thin in training data. Errors: objects vanishing or merging, wrong gravity, bodies passing through each other, missing cause and effect (a bite with no mark), liquids appearing or disappearing, morphing hands, and drift over long clips. Measure with physics benchmarks (Physics-IQ, VideoPhy, PhyGenBench) and human review. Improve with better-labeled data, synthetic data from physics simulators and game engines, 3D-aware world models, rewards for physical correctness and longer context for consistency."
+    },
+    {
+      "q": "What is CoWoS, and why has advanced packaging become so important for AI hardware?",
+      "followup": "How does packaging capacity affect GPU supply and the cost of running large models?",
+      "answer": "CoWoS (Chip-on-Wafer-on-Substrate) is TSMC's 2.5D packaging: the GPU die and HBM stacks sit side by side on a silicon (or organic) interposer with very dense wiring, mounted on a package substrate. AI accelerators are limited by memory bandwidth, and HBM only reaches terabytes per second when it sits right next to the GPU with thousands of short links. CoWoS also gets past the reticle limit by joining several dies, as in NVIDIA Blackwell B200 (two GPU dies on CoWoS-L). Since 2023 CoWoS and HBM capacity, not die production, have been the main bottleneck for AI GPU supply, so TSMC keeps doubling capacity. For engineers this means GPU availability and price depend on the whole supply chain, which affects cloud pricing and hardware planning."
     }
   ]
 }
