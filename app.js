@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=110';
-import { ADMIN_HASH } from './admin-hash.js?v=110';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=111';
+import { ADMIN_HASH } from './admin-hash.js?v=111';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -464,7 +464,7 @@ function topicSuccessHtml() {
   const st = topicStats(db.results);
   if (!st.length) return '';
   const weakest = st[0].topic, strongest = st.reduce((a, b) => b.pct > a.pct || (b.pct === a.pct && b.total > a.total) ? b : a).topic;
-  return `<details class="fold sub"><summary><h3>Success by topic (all ${db.results.length} tests)</h3></summary><table class="prof"><thead><tr><th>Topic</th><th>Success</th><th>Correct</th><th></th></tr></thead><tbody>${st.map(s =>
+  return `<details class="card fold"><summary><h2>Success by topic (all ${db.results.length} tests)</h2></summary><table class="prof"><thead><tr><th>Topic</th><th>Success</th><th>Correct</th><th></th></tr></thead><tbody>${st.map(s =>
     `<tr><td>${esc(s.topic)}</td><td class="${s.pct >= 70 ? 'good' : 'bad'}">${s.pct}%</td><td>${s.correct}/${s.total}</td><td>${st.length > 1 && s.topic === weakest ? '<span class="lvl lvl-beginner">Weakest</span>' : st.length > 1 && s.topic === strongest ? '<span class="lvl lvl-expert">Strongest</span>' : ''}</td></tr>`).join('')}</tbody></table></details>`;
 }
 
@@ -497,7 +497,7 @@ $('#test-run').onsubmit = e => {
         ${ok ? '' : `<div>Correct answer: <strong>${esc(q.answer.split('|')[0])}</strong></div>`}
         ${q.explanation ? `<div class="muted">${esc(q.explanation)}</div>` : ''}
         ${src ? `<div class="tag">Source: ${esc(src)}</div>` : ''}</div>`;
-    }).join('') + `<button type="button" class="primary" id="new-test">New test</button>` + topicSuccessHtml() + '</div>';
+    }).join('') + `<button type="button" class="primary" id="new-test">New test</button></div>` + topicSuccessHtml();
   e.target.hidden = true; out.hidden = false;
   $('#new-test').onclick = resetTest;
   save();

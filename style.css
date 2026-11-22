@@ -195,8 +195,6 @@ a.button { text-decoration: none; }
 .cert-samples p { margin: 0 0 4px; }
 .cert-samples ul { margin: 0 0 4px; }
 #test-config .checks .cnt { margin-inline-start: auto; padding: 0 6px 0 8px; font-size: .78em; color: var(--muted); font-variant-numeric: tabular-nums; }
-#test-result .fold.sub { margin-top: 12px; padding: 8px 12px; border: 1px solid var(--border-strong); border-radius: 8px; background: var(--raised); }
-#test-result .fold.sub > summary h3 { font-size: 1.05rem; margin: 0; }
 /* course form: wide Topic box, the other four 20% narrower */
 #gen-form .row > label { flex: 1 1 0; min-width: 110px; }
 #gen-form .row > :first-child { flex: 2.25 1 0; min-width: 240px; }
