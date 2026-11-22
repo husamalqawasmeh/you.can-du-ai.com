@@ -1781,6 +1781,34 @@
       "title": "Why lithography matters for AI",
       "body": "Each new process node (for example TSMC N3, N2, A16) packs more transistors into the same area, giving AI accelerators more compute and better energy efficiency per watt, which lowers the cost of training and inference. EUV, and later High-NA EUV, is what makes those nodes possible. The AI chip supply chain therefore runs: ASML lithography machines → foundries (TSMC, Samsung, Intel) making the dies → HBM memory (SK hynix, Samsung, Micron) → advanced packaging such as CoWoS → servers and data centres. A bottleneck at any step, including the small number of EUV machines ASML can build each year, limits how many AI chips the world can make.",
       "sourceId": ""
+    },
+    {
+      "id": "note-60",
+      "topic": "AI Hardware",
+      "title": "CUDA: NVIDIA's software moat",
+      "body": "CUDA (Compute Unified Device Architecture), launched by NVIDIA in 2006-2007, is a platform and programming model for running general-purpose code on NVIDIA GPUs. Developers write \"kernels\" (functions that run on thousands of GPU threads at once) in C/C++ or Python. On top sit libraries that AI depends on: cuBLAS (matrix maths), cuDNN (neural-network layers), NCCL (communication between GPUs), TensorRT and TensorRT-LLM (fast inference), plus CUTLASS for custom kernels. PyTorch, TensorFlow, JAX, vLLM and most AI tools call these under the hood. Why it matters: almost two decades of tools, libraries, tutorials and trained developers make CUDA the default for AI, which is NVIDIA's biggest advantage (\"moat\") beyond the chips themselves. CUDA only runs on NVIDIA hardware. Alternatives: AMD ROCm/HIP, Intel oneAPI/SYCL, Apple Metal/MLX, and portable layers such as OpenAI Triton, OpenCL and Vulkan compute.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-61",
+      "topic": "AI Hardware",
+      "title": "AMD in AI",
+      "body": "AMD (Advanced Micro Devices, Santa Clara, CEO Lisa Su) is NVIDIA's main GPU competitor and also makes CPUs (Ryzen, EPYC). AI data-centre GPUs: the Instinct line, such as MI300X (192 GB HBM3), MI325X (256 GB HBM3E), MI350/MI355X (288 GB HBM3E, CDNA 4) and the MI400 series with Helios rack systems. Large memory per GPU is AMD's selling point: big models fit on fewer GPUs. Software: ROCm is AMD's open-source answer to CUDA, and HIP lets CUDA code be ported with small changes; PyTorch, vLLM and SGLang support ROCm, though CUDA still has the wider ecosystem. AMD bought Xilinx (FPGAs) and ZT Systems (rack-scale servers). Customers include Microsoft, Meta, Oracle and OpenAI. Consumer side: Ryzen AI chips with NPUs, Ryzen AI Max+ (\"Strix Halo\") with up to 128 GB unified memory, and Radeon gaming GPUs. Like NVIDIA, AMD is \"fabless\": TSMC manufactures its chips.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-62",
+      "topic": "AI Hardware",
+      "title": "Fabs, foundries and fabless chip companies",
+      "body": "A fab (fabrication plant) is a factory that makes chips on silicon wafers in an ultra-clean room, using hundreds of steps: deposition, lithography (EUV machines from ASML), etching, doping and polishing. A leading-edge fab costs $20 billion or more. Business models: Fabless companies design chips but do not own fabs (NVIDIA, AMD, Apple, Qualcomm, Broadcom). Foundries make chips designed by others (TSMC, Samsung Foundry, Intel Foundry, GlobalFoundries, SMIC). IDMs (integrated device manufacturers) design and make their own chips (Intel, Samsung memory, Micron, SK hynix). Process nodes such as 5 nm, 3 nm, 2 nm or A16 are now marketing names for each generation, not real measurements; smaller nodes give more transistors, speed and efficiency. Yield is the share of good chips per wafer and matters most for huge AI dies. Governments fund new fabs (US CHIPS Act, EU Chips Act) because chips are strategic, and most leading-edge capacity is in Taiwan.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-63",
+      "topic": "AI Hardware",
+      "title": "TSMC: the foundry behind AI chips",
+      "body": "TSMC (Taiwan Semiconductor Manufacturing Company), founded in 1987 by Morris Chang in Hsinchu, Taiwan, is the world's largest contract chip maker (foundry) with roughly two-thirds of the foundry market and most of the leading-edge share. It makes chips for NVIDIA (H100, Blackwell, Rubin), AMD, Apple, Qualcomm, Broadcom, Google TPUs, AWS Trainium and many others. It never sells chips under its own brand, so customers trust it with their designs. Process nodes: N5 and N4 (H100 is on a custom 4N), N3 (3 nm), N2 (2 nm, using gate-all-around nanosheet transistors, volume production from late 2025) and A16 (with backside power delivery). It also leads advanced packaging (CoWoS, SoIC), which AI GPUs need. TSMC is building fabs in Arizona (USA), Kumamoto (Japan) and Dresden (Germany). Risk: so much AI chip production in Taiwan creates geopolitical risk for the whole AI industry.",
+      "sourceId": ""
     }
   ],
   "questions": [
@@ -8164,6 +8192,264 @@
       ],
       "answer": "CoWoS-S → One large silicon interposer; CoWoS-R → Organic RDL interposer; CoWoS-L → Organic interposer with embedded silicon bridges; SoIC → TSMC 3D die stacking; EMIB → Intel's embedded bridge packaging",
       "explanation": "All join several dies into one package for more bandwidth and more silicon.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-200",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is CUDA?",
+      "options": [
+        "NVIDIA's platform and programming model for running general-purpose code on its GPUs",
+        "An AMD graphics card",
+        "A cloud storage service",
+        "A large language model"
+      ],
+      "answer": "NVIDIA's platform and programming model for running general-purpose code on its GPUs",
+      "explanation": "AI frameworks like PyTorch use CUDA libraries under the hood.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-201",
+      "topic": "AI Hardware",
+      "type": "fill",
+      "difficulty": "medium",
+      "prompt": "A function written to run on thousands of GPU threads in parallel in CUDA is called a ___.",
+      "answer": "kernel",
+      "explanation": "Kernels are launched on the GPU from host (CPU) code.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-202",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which NVIDIA library provides optimized building blocks for neural-network layers like convolutions and attention?",
+      "options": [
+        "cuDNN",
+        "NCCL",
+        "ROCm",
+        "Metal"
+      ],
+      "answer": "cuDNN",
+      "explanation": "cuBLAS does matrix maths, NCCL handles GPU-to-GPU communication.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-203",
+      "topic": "AI Hardware",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "CUDA code runs natively on AMD and Intel GPUs without any changes.",
+      "answer": "False",
+      "explanation": "CUDA is NVIDIA-only; AMD uses ROCm/HIP and code must be ported or use a portable layer like Triton.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-204",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Why is CUDA often called NVIDIA's \"moat\"?",
+      "options": [
+        "Its long-built ecosystem of libraries, tools and developers makes switching to other chips hard",
+        "It is the only way to cool GPUs",
+        "It is required by law",
+        "It makes chips physically smaller"
+      ],
+      "answer": "Its long-built ecosystem of libraries, tools and developers makes switching to other chips hard",
+      "explanation": "Many competitors match the hardware, but the software ecosystem keeps customers on NVIDIA.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-205",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is AMD's open-source software platform that competes with CUDA?",
+      "options": [
+        "ROCm",
+        "cuDNN",
+        "TensorRT",
+        "oneAPI"
+      ],
+      "answer": "ROCm",
+      "explanation": "HIP, part of ROCm, lets CUDA code be ported with small changes.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-206",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is the main selling point of AMD Instinct GPUs such as the MI300X and MI355X for LLMs?",
+      "options": [
+        "Very large HBM memory per GPU, so big models fit on fewer GPUs",
+        "They run CUDA natively",
+        "They need no power",
+        "They are only for gaming"
+      ],
+      "answer": "Very large HBM memory per GPU, so big models fit on fewer GPUs",
+      "explanation": "MI300X has 192 GB and MI355X 288 GB of HBM.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-207",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "In the chip industry, what is a \"fab\"?",
+      "options": [
+        "A factory that manufactures chips on silicon wafers",
+        "A chip design software",
+        "A type of GPU",
+        "A data centre"
+      ],
+      "answer": "A factory that manufactures chips on silicon wafers",
+      "explanation": "Short for fabrication plant; a leading-edge fab costs $20 billion or more.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-208",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "NVIDIA designs its chips but has TSMC manufacture them. What is this business model called?",
+      "options": [
+        "Fabless",
+        "IDM",
+        "OSAT",
+        "Open-source"
+      ],
+      "answer": "Fabless",
+      "explanation": "NVIDIA, AMD, Apple and Qualcomm are fabless; TSMC is a foundry.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-209",
+      "topic": "AI Hardware",
+      "type": "fill",
+      "difficulty": "medium",
+      "prompt": "The share of working chips out of all chips made on a wafer is called the ___.",
+      "answer": "yield",
+      "explanation": "Large AI dies have lower yield because one defect can ruin a big chip.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-210",
+      "topic": "AI Hardware",
+      "type": "tf",
+      "difficulty": "hard",
+      "prompt": "Process node names such as \"3 nm\" or \"2 nm\" describe the real physical size of a transistor's gate.",
+      "answer": "False",
+      "explanation": "They are generation names now; real feature sizes are larger.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-211",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What does TSMC stand for?",
+      "options": [
+        "Taiwan Semiconductor Manufacturing Company",
+        "Tokyo Silicon Memory Corporation",
+        "Texas Semiconductor Machine Company",
+        "Taiwan Smart Microchip Consortium"
+      ],
+      "answer": "Taiwan Semiconductor Manufacturing Company",
+      "explanation": "Founded in 1987 by Morris Chang in Hsinchu, Taiwan.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-212",
+      "topic": "AI Hardware",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which new transistor design does TSMC's N2 (2 nm) process introduce?",
+      "options": [
+        "Gate-all-around (GAA) nanosheet transistors",
+        "Vacuum tubes",
+        "Planar transistors",
+        "Optical transistors"
+      ],
+      "answer": "Gate-all-around (GAA) nanosheet transistors",
+      "explanation": "GAA wraps the gate around the channel for better control than FinFET.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-213",
+      "topic": "AI Hardware",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "TSMC sells its own brand of AI GPUs that compete with NVIDIA.",
+      "answer": "False",
+      "explanation": "TSMC is a pure-play foundry: it only manufactures chips for customers, which is why they trust it.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-214",
+      "topic": "AI Hardware",
+      "type": "match",
+      "difficulty": "medium",
+      "prompt": "Connect each company to its role in the chip industry.",
+      "pairs": [
+        [
+          "NVIDIA",
+          "Fabless designer of AI GPUs"
+        ],
+        [
+          "TSMC",
+          "Leading contract foundry"
+        ],
+        [
+          "ASML",
+          "Makes EUV lithography machines"
+        ],
+        [
+          "SK hynix",
+          "Makes HBM memory"
+        ],
+        [
+          "Intel",
+          "Designs and manufactures its own chips (IDM)"
+        ]
+      ],
+      "answer": "NVIDIA → Fabless designer of AI GPUs; TSMC → Leading contract foundry; ASML → Makes EUV lithography machines; SK hynix → Makes HBM memory; Intel → Designs and manufactures its own chips (IDM)",
+      "explanation": "AI chips depend on the whole chain: design, lithography, fab, memory and packaging.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-215",
+      "topic": "AI Hardware",
+      "type": "match",
+      "difficulty": "medium",
+      "prompt": "Connect each GPU software stack to its company.",
+      "pairs": [
+        [
+          "CUDA",
+          "NVIDIA"
+        ],
+        [
+          "ROCm",
+          "AMD"
+        ],
+        [
+          "oneAPI",
+          "Intel"
+        ],
+        [
+          "Metal / MLX",
+          "Apple"
+        ],
+        [
+          "Triton",
+          "OpenAI (portable GPU kernels)"
+        ]
+      ],
+      "answer": "CUDA → NVIDIA; ROCm → AMD; oneAPI → Intel; Metal / MLX → Apple; Triton → OpenAI (portable GPU kernels)",
+      "explanation": "CUDA has the largest ecosystem; others try to close the gap.",
       "sourceId": ""
     }
   ]

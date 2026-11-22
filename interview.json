@@ -1625,6 +1625,11 @@
       "q": "What is ASML's High-NA EUV machine, and why does it matter for AI chips?",
       "followup": "What are its trade-offs (cost, exposure field size) and how do they affect very large AI accelerators?",
       "answer": "ASML is the only maker of EUV lithography machines, which print the smallest features on leading-edge chips using 13.5 nm light from a tin plasma, steered by mirrors in a vacuum. Standard EUV has a numerical aperture of 0.33; High-NA EUV (EXE:5000/5200) raises it to 0.55, printing about 1.7x smaller features (about 8 nm resolution) and nearly 3x the density per exposure, and can replace costly multi-patterning. Smaller nodes give AI accelerators more compute per watt, lowering training and inference cost. Trade-offs: about $350-400 million per machine, and a half-size exposure field, so very large AI dies need stitching or multi-die designs with packaging like CoWoS. Intel adopted it first; TSMC and Samsung plan it for later nodes. Export controls keep EUV out of China, making it a strategic part of the AI race."
+    },
+    {
+      "q": "Explain the AI chip supply chain: what do NVIDIA, AMD, TSMC and CUDA each contribute, and what does \"fabless\" mean?",
+      "followup": "If you had to run LLMs on AMD instead of NVIDIA GPUs, what would change in your software stack?",
+      "answer": "NVIDIA and AMD are fabless: they design GPUs but do not own fabs. TSMC is the leading foundry that manufactures their chips on advanced nodes (4N, N3, N2) and packages them with HBM using CoWoS; ASML supplies the EUV machines the fabs need. CUDA is NVIDIA's software platform (kernels plus libraries like cuBLAS, cuDNN, NCCL, TensorRT) that PyTorch and most AI tools use, and its ecosystem is NVIDIA's main moat. AMD competes with Instinct GPUs (MI300X, MI355X) that offer more HBM per GPU, and with ROCm/HIP as its CUDA alternative. Moving to AMD: use ROCm builds of PyTorch and inference engines like vLLM or SGLang, port custom CUDA kernels with HIP or rewrite them in Triton, replace NCCL with RCCL, and test performance and stability because library coverage is narrower."
     }
   ]
 }
