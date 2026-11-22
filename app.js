@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=113';
-import { ADMIN_HASH } from './admin-hash.js?v=113';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=114';
+import { ADMIN_HASH } from './admin-hash.js?v=114';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -121,7 +121,10 @@ function render() {
   renderSuggestions();
   renderObjectives();
 
-  // history
+  // history (keep the success box open across re-renders)
+  const tsOpen = $('#topic-success details')?.open;
+  $('#topic-success').innerHTML = topicSuccessHtml();
+  if (tsOpen) $('#topic-success details').open = true;
   $('#history-list').innerHTML = db.results.slice().reverse().map(r => `<li><div><strong>${r.pct}%</strong> (${r.correct}/${r.total}) <span class="tag">${new Date(r.date).toLocaleString()} · ${esc(r.topics.join(', ') || 'All topics')}</span></div></li>`).join('') || '<li class="muted">No tests taken yet.</li>';
 
   $('#data-stats').textContent =`${db.topics.length} topics · ${db.sources.length} sources · ${db.notes.length} knowledge entries · ${db.questions.length} questions · ${db.results.length} test results`;
@@ -497,7 +500,7 @@ $('#test-run').onsubmit = e => {
         ${ok ? '' : `<div>Correct answer: <strong>${esc(q.answer.split('|')[0])}</strong></div>`}
         ${q.explanation ? `<div class="muted">${esc(q.explanation)}</div>` : ''}
         ${src ? `<div class="tag">Source: ${esc(src)}</div>` : ''}</div>`;
-    }).join('') + `<button type="button" class="primary" id="new-test">New test</button></div>` + topicSuccessHtml();
+    }).join('') + `<button type="button" class="primary" id="new-test">New test</button></div>`;
   e.target.hidden = true; out.hidden = false;
   $('#new-test').onclick = resetTest;
   save();
