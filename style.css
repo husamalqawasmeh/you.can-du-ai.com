@@ -224,6 +224,6 @@ nav button:last-child { margin-inline-end: 0; }
 #test-config .half-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; align-items: stretch; }
 #test-config .half-row fieldset { margin: 0; min-width: 0; }
 #test-config .half-row .checks { grid-template-columns: repeat(3, max-content); justify-content: start; }
-#test-config .start-cell { display: flex; align-items: center; justify-content: center; }
-#test-config .start-cell button { margin: 0; }
+#test-config .start-cell { display: flex; }
+#test-config .start-cell button { margin: 0; flex: 1; font-size: 1.05rem; }
 @media (max-width: 640px) { #test-config .half-row { grid-template-columns: 1fr; } }
