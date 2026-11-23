@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=134';
-import { ADMIN_HASH } from './admin-hash.js?v=134';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=135';
+import { ADMIN_HASH } from './admin-hash.js?v=135';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -69,6 +69,7 @@ function fillSelect(sel, html) {
 function render() {
   const topicOpts = db.topics.map(t => opt(t)).join('');
   document.querySelectorAll('.topic-select').forEach(s => fillSelect(s, topicOpts));
+  renderIvTopics();
   document.querySelectorAll('.source-select').forEach(s => fillSelect(s, opt('', '— none —') + db.sources.map(x => opt(x.id, x.title)).join('')));
   fillSelect($('#q-filter-topic'), opt('', 'All topics') + topicOpts);
   fillSelect($('#lib-filter-topic'), opt('', 'All topics') + topicOpts);
@@ -792,6 +793,7 @@ const IV_JOBS = {
   'AI Solutions Architect': { 'System design and production': 3, 'RAG and retrieval': 2, 'Agents and tool use': 2, 'LLM fundamentals': 2, 'AI hardware and chips': 2, 'Product, strategy and responsible AI': 2, 'Tools and automation': 2, 'Evals and quality': 1, 'Behavioral and experience': 1 },
   'AI Product / Project Manager': { 'Product, strategy and responsible AI': 3, 'Behavioral and experience': 3, 'Evals and quality': 2, 'AI industry and news': 2, 'Agents and tool use': 1, 'LLM fundamentals': 1, 'System design and production': 1, 'RAG and retrieval': 1, 'Tools and automation': 1 },
   'AI Strategy / Consultant': { 'Product, strategy and responsible AI': 3, 'AI industry and news': 3, 'Behavioral and experience': 2, 'Evals and quality': 2, 'AI hardware and chips': 1, 'LLM fundamentals': 1, 'Agents and tool use': 1 },
+  'General (AI literacy)': { 'AI industry and news': 3, 'Behavioral and experience': 3, 'Product, strategy and responsible AI': 2, 'LLM fundamentals': 2, 'Tools and automation': 2, 'Evals and quality': 1, 'Agents and tool use': 1, 'RAG and retrieval': 1, 'AI hardware and chips': 1, 'ML and deep learning basics': 1 },
   'Automation / AI Developer': { 'Tools and automation': 3, 'Agents and tool use': 2, 'System design and production': 2, 'Behavioral and experience': 2, 'LLM fundamentals': 1, 'RAG and retrieval': 1 },
 };
 let ivAll = [];
@@ -820,14 +822,20 @@ function updateIvMatch() {
 ivForm.addEventListener('change', updateIvMatch);
 async function loadInterview() {
   let p;
-  try { p = await (await fetch('interview.json?v=44')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
+  try { p = await (await fetch('interview.json?v=45')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
   // admin-added bank questions go after the open questions, before the exercises
   const k = p.questions.findIndex(q => q.match || q.terms || q.companies);
-  p.questions.splice(k < 0 ? p.questions.length : k, 0, ...ivAdded().map(q => ({ ...q, topics: q.topics ?? (q.category ? [q.category] : []) })));
+  p.questions.splice(k < 0 ? p.questions.length : k, 0, ...ivAdded().map(q => ({ ...q, topics: q.topics ?? [q.category, q.topic].filter(Boolean) })));
   ivAll = p.questions;
-  const checked = new Set([...ivForm.querySelectorAll('#iv-topics input:checked')].map(c => c.value));
-  $('#iv-topics').innerHTML = [...new Set(ivAll.flatMap(q => q.topics ?? []))].sort().map(t => `<label><input type="checkbox" value="${esc(t)}"${checked.has(t) ? ' checked' : ''}> ${esc(t)}</label>`).join('');
+  renderIvTopics();
   renderInterview();
+}
+// two groups of topic tick boxes: the "Take a test" topics, then the interview themes
+function renderIvTopics() {
+  const checked = new Set([...ivForm.querySelectorAll('#iv-topics input:checked')].map(c => c.value));
+  const test = db?.topics ?? [], themes = [...new Set(ivAll.flatMap(q => q.topics ?? []))].filter(t => !test.includes(t)).sort();
+  const box = t => `<label><input type="checkbox" value="${esc(t)}"${checked.has(t) ? ' checked' : ''}> ${esc(t)}</label>`;
+  $('#iv-topics').innerHTML = `${test.length ? `<div class="iv-group-title">Test topics</div>${test.map(box).join('')}` : ''}<div class="iv-group-title">Interview themes</div>${themes.map(box).join('')}`;
   updateIvMatch();
 }
 loadInterview();
@@ -892,7 +900,7 @@ Rules: for "tf" the answer is exactly "True" or "False"; for "mcq" the answer mu
     const have = new Set(db.questions.map(q => q.prompt));
     const qs = arr(c.questions).map(q => normalizeQuestion({ ...q, topic: name })).filter(q => q && !have.has(q.prompt)).slice(0, nQ)
       .map(q => ({ id: uid(), topic: name, type: q.type, difficulty: q.difficulty, prompt: q.prompt, ...(q.type === 'mcq' && { options: q.options }), answer: q.answer, explanation: String(q.explanation || ''), sourceId: '' }));
-    const iv = arr(c.interview).filter(q => q?.q).slice(0, nI).map(q => ({ id: 'gen-' + uid(), q: String(q.q), followup: String(q.followup || ''), answer: String(q.answer || ''), ...(typeof q.category === 'string' && { category: q.category.slice(0, 60) }) }));
+    const iv = arr(c.interview).filter(q => q?.q).slice(0, nI).map(q => ({ id: 'gen-' + uid(), topic: name, q: String(q.q), followup: String(q.followup || ''), answer: String(q.answer || ''), ...(typeof q.category === 'string' && { category: q.category.slice(0, 60) }) }));
     if (!notes.length && !qs.length && !iv.length) throw new Error('The AI returned nothing usable. Please try again.');
     if (!db.topics.includes(name)) db.topics.push(name);
     db.notes.push(...notes);

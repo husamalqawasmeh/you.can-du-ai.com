@@ -243,3 +243,5 @@ nav button:last-child { margin-inline-end: 0; }
 .iv-avail { display: flex; align-items: center; gap: 10px; }
 .iv-filter .iv-avail input { flex: 0 0 6em; width: 6em; margin: 0; }
 .iv-avail #iv-match { font-size: .88rem; }
+.iv-filter .iv-group-title { grid-column: 1 / -1; margin: 6px 0 2px; font-weight: 600; color: var(--accent); font-size: .85rem; }
+.iv-filter .iv-group-title:first-child { margin-top: 0; }

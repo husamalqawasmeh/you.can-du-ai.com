@@ -9273,6 +9273,16 @@
       "answer": "McKinsey",
       "explanation": "First edition 2023; second edition April 2026 (Wiley).",
       "sourceId": "src-139"
+    },
+    {
+      "id": "q3-257",
+      "topic": "AI Hardware",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "LLM token generation is usually limited by memory bandwidth, not compute, so a GPU with more memory bandwidth and capacity can be faster for inference even with lower peak FLOPS.",
+      "answer": "True",
+      "explanation": "In decoding, each new token needs all model weights (and the KV cache) to be read from memory, but only a little math per byte. So speed depends mostly on memory bandwidth (GB/s), and memory capacity decides whether the model fits at all. Peak FLOPS matter more for the prefill step and for training.",
+      "sourceId": ""
     }
   ]
 }
