@@ -248,3 +248,4 @@ nav button:last-child { margin-inline-end: 0; }
 .iv-avail #iv-match { font-size: .88rem; }
 .iv-filter .iv-group-title { grid-column: 1 / -1; margin: 6px 0 2px; font-weight: 600; color: var(--accent); font-size: .85rem; }
 .iv-filter .iv-group-title:first-child { margin-top: 0; }
+.welcome-lead { font-size: .85em; font-weight: 600; }
