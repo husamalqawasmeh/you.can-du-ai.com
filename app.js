@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=136';
-import { ADMIN_HASH } from './admin-hash.js?v=136';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=137';
+import { ADMIN_HASH } from './admin-hash.js?v=137';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -810,7 +810,7 @@ function renderInterview() {
   const topics = [...ivForm.querySelectorAll('#iv-topics input:checked')].map(c => c.value);
   const qs = ivPick(ivAll, ivForm.job.value, topics, Math.max(0, Math.round(+ivForm.count.value || 0)));
   $('#iv-count').textContent = `Showing ${qs.length} of ${ivAll.length} questions, most relevant to ${ivForm.job.value} first.`;
-  $('#iv-list').innerHTML = qs.map((q, qi) => `<li><strong>${esc(q.q)}</strong>${q.match ? matchHtml(q.match, qi) : ''}${q.terms ? termsHtml(q.terms) : ''}${q.companies ? companiesHtml(q.companies, q.unit) : ''}${q.followup ? `<div class="iv-follow">↳ ${esc(q.followup)}</div>` : ''}${q.answer ? `<details class="iv-answers"><summary>Show a suggested answer</summary><p dir="auto">${esc(q.answer)}</p></details>` : ''}</li>`).join('');
+  $('#iv-list').innerHTML = qs.map((q, qi) => `<li><strong>${esc(q.q)}</strong>${q.match ? matchHtml(q.match, qi) : ''}${q.terms ? termsHtml(q.terms) : ''}${q.companies ? companiesHtml(q.companies, q.unit) : ''}${q.followup ? `<div class="iv-follow">↳ ${esc(q.followup)}</div>` : ''}${q.answer ? `<details class="iv-answers"><summary>Show a suggested answer</summary>${q.answer.split(/\n\s*\n/).map(t => `<p dir="auto">${esc(t)}</p>`).join('')}</details>` : ''}</li>`).join('');
   document.querySelectorAll('#iv-list .match').forEach(el => setupMatch(el, qs[+el.dataset.q].match));
 }
 ivForm.onsubmit = e => { e.preventDefault(); renderInterview(); };
@@ -822,7 +822,7 @@ function updateIvMatch() {
 ivForm.addEventListener('change', updateIvMatch);
 async function loadInterview() {
   let p;
-  try { p = await (await fetch('interview.json?v=45')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
+  try { p = await (await fetch('interview.json?v=46')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
   // admin-added bank questions go after the open questions, before the exercises
   const k = p.questions.findIndex(q => q.match || q.terms || q.companies);
   p.questions.splice(k < 0 ? p.questions.length : k, 0, ...ivAdded().map(q => ({ ...q, topics: q.topics ?? [q.category, q.topic].filter(Boolean) })));
