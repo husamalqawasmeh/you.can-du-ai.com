@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=132';
-import { ADMIN_HASH } from './admin-hash.js?v=132';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=133';
+import { ADMIN_HASH } from './admin-hash.js?v=133';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -783,14 +783,45 @@ $('#yt-save').onclick = () => {
 };
 
 // ---------- interview prep (questions in interview.json) ----------
+// how relevant each interview topic is to each job (3 = core, 1 = useful, missing = not needed)
+const IV_JOBS = {
+  'AI Engineer': { 'LLM fundamentals': 3, 'RAG and retrieval': 3, 'Agents and tool use': 3, 'Evals and quality': 3, 'System design and production': 3, 'Tools and automation': 2, 'Fine-tuning and alignment': 2, 'Behavioral and experience': 2, 'ML and deep learning basics': 1, 'Product, strategy and responsible AI': 1, 'AI hardware and chips': 1, 'AI industry and news': 1 },
+  'LLM Engineer': { 'LLM fundamentals': 3, 'RAG and retrieval': 3, 'Fine-tuning and alignment': 3, 'Agents and tool use': 3, 'Evals and quality': 3, 'System design and production': 2, 'AI hardware and chips': 2, 'ML and deep learning basics': 1, 'Behavioral and experience': 1, 'Tools and automation': 1, 'AI industry and news': 1 },
+  'ML Engineer / Data Scientist': { 'ML and deep learning basics': 3, 'Evals and quality': 3, 'Fine-tuning and alignment': 2, 'System design and production': 2, 'LLM fundamentals': 2, 'Behavioral and experience': 1, 'Product, strategy and responsible AI': 1, 'RAG and retrieval': 1, 'Tools and automation': 1 },
+  'MLOps / AI Infrastructure Engineer': { 'System design and production': 3, 'AI hardware and chips': 3, 'Tools and automation': 3, 'LLM fundamentals': 1, 'Evals and quality': 1, 'Behavioral and experience': 1 },
+  'AI Solutions Architect': { 'System design and production': 3, 'RAG and retrieval': 2, 'Agents and tool use': 2, 'LLM fundamentals': 2, 'AI hardware and chips': 2, 'Product, strategy and responsible AI': 2, 'Tools and automation': 2, 'Evals and quality': 1, 'Behavioral and experience': 1 },
+  'AI Product / Project Manager': { 'Product, strategy and responsible AI': 3, 'Behavioral and experience': 3, 'Evals and quality': 2, 'AI industry and news': 2, 'Agents and tool use': 1, 'LLM fundamentals': 1, 'System design and production': 1, 'RAG and retrieval': 1, 'Tools and automation': 1 },
+  'AI Strategy / Consultant': { 'Product, strategy and responsible AI': 3, 'AI industry and news': 3, 'Behavioral and experience': 2, 'Evals and quality': 2, 'AI hardware and chips': 1, 'LLM fundamentals': 1, 'Agents and tool use': 1 },
+  'Automation / AI Developer': { 'Tools and automation': 3, 'Agents and tool use': 2, 'System design and production': 2, 'Behavioral and experience': 2, 'LLM fundamentals': 1, 'RAG and retrieval': 1 },
+};
+let ivAll = [];
+const ivForm = $('#iv-filter');
+ivForm.job.innerHTML = Object.keys(IV_JOBS).map(j => `<option>${esc(j)}</option>`).join('');
+// questions ranked by their most relevant topic for the job, then by how many relevant topics they cover
+function ivPick(all, job, topics, count) {
+  const w = IV_JOBS[job] ?? {}, score = q => { const s = (q.topics ?? []).map(t => w[t] ?? 0); return Math.max(0, ...s) * 10 + s.reduce((a, b) => a + b, 0); };
+  return all.filter(q => !topics.length || (q.topics ?? []).some(t => topics.includes(t)))
+    .map((q, i) => ({ q, i, s: score(q) })).sort((a, b) => b.s - a.s || a.i - b.i).slice(0, count || undefined).map(x => x.q);
+}
+console.assert(ivPick([{ topics: ['AI hardware and chips'] }, { topics: ['RAG and retrieval'] }], 'LLM Engineer', [], 1)[0].topics[0] === 'RAG and retrieval', 'ivPick ranking');
+function renderInterview() {
+  const topics = [...ivForm.querySelectorAll('#iv-topics input:checked')].map(c => c.value);
+  const qs = ivPick(ivAll, ivForm.job.value, topics, Math.max(0, Math.round(+ivForm.count.value || 0)));
+  $('#iv-count').textContent = `Showing ${qs.length} of ${ivAll.length} questions, most relevant to ${ivForm.job.value} first.`;
+  $('#iv-list').innerHTML = qs.map((q, qi) => `<li><strong>${esc(q.q)}</strong>${q.match ? matchHtml(q.match, qi) : ''}${q.terms ? termsHtml(q.terms) : ''}${q.companies ? companiesHtml(q.companies, q.unit) : ''}${q.followup ? `<div class="iv-follow">↳ ${esc(q.followup)}</div>` : ''}${q.answer ? `<details class="iv-answers"><summary>Show a suggested answer</summary><p dir="auto">${esc(q.answer)}</p></details>` : ''}</li>`).join('');
+  document.querySelectorAll('#iv-list .match').forEach(el => setupMatch(el, qs[+el.dataset.q].match));
+}
+ivForm.onsubmit = e => { e.preventDefault(); renderInterview(); };
 async function loadInterview() {
   let p;
-  try { p = await (await fetch('interview.json?v=43')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
+  try { p = await (await fetch('interview.json?v=44')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
   // admin-added bank questions go after the open questions, before the exercises
   const k = p.questions.findIndex(q => q.match || q.terms || q.companies);
-  p.questions.splice(k < 0 ? p.questions.length : k, 0, ...ivAdded());
-  $('#iv-list').innerHTML = p.questions.map((q, qi) => `<li><strong>${esc(q.q)}</strong>${q.match ? matchHtml(q.match, qi) : ''}${q.terms ? termsHtml(q.terms) : ''}${q.companies ? companiesHtml(q.companies, q.unit) : ''}${q.followup ? `<div class="iv-follow">↳ ${esc(q.followup)}</div>` : ''}${q.answer ? `<details class="iv-answers"><summary>Show a suggested answer</summary><p dir="auto">${esc(q.answer)}</p></details>` : ''}</li>`).join('');
-  document.querySelectorAll('.match').forEach(el => setupMatch(el, p.questions[+el.dataset.q].match));
+  p.questions.splice(k < 0 ? p.questions.length : k, 0, ...ivAdded().map(q => ({ ...q, topics: q.topics ?? (q.category ? [q.category] : []) })));
+  ivAll = p.questions;
+  const checked = new Set([...ivForm.querySelectorAll('#iv-topics input:checked')].map(c => c.value));
+  $('#iv-topics').innerHTML = [...new Set(ivAll.flatMap(q => q.topics ?? []))].sort().map(t => `<label><input type="checkbox" value="${esc(t)}"${checked.has(t) ? ' checked' : ''}> ${esc(t)}</label>`).join('');
+  renderInterview();
 }
 loadInterview();
 
@@ -817,7 +848,7 @@ $('#ivbank').addEventListener('click', e => {
   if (!id) return;
   let list = ivAdded();
   if (list.some(q => q.id === id)) list = list.filter(q => q.id !== id);
-  else { const q = ivBank.find(q => q.id === id); list.push({ id: q.id, q: q.q, followup: q.followup }); }
+  else { const q = ivBank.find(q => q.id === id); list.push({ id: q.id, q: q.q, followup: q.followup, category: q.category }); }
   try { localStorage.setItem(IV_KEY, JSON.stringify(list)); } catch { return alert('Could not save in this browser.'); }
   renderIvBank();
   loadInterview();
@@ -841,7 +872,7 @@ Be factually accurate; prefer well-established facts. Write in clear, simple Eng
 Return only JSON with this shape:
 {"notes": [{"title": string, "body": string (120-220 words of plain text with concrete examples)}] — exactly ${nN} notes,
  "questions": [{"type": "mcq"|"tf"|"short"|"fill", "difficulty": "easy"|"medium"|"hard", "prompt": string, "options": [4 strings, only for mcq], "answer": string, "explanation": string}] — exactly ${nQ} questions mixing types and difficulties,
- "interview": [{"q": string, "followup": string, "answer": string (a strong 100-180 word suggested answer)}] — exactly ${nI} open interview questions.
+ "interview": [{"q": string, "followup": string, "answer": string (a strong 100-180 word suggested answer), "category": one of ${JSON.stringify(Object.keys(IV_JOBS['AI Engineer']))}}] — exactly ${nI} open interview questions.
 Rules: for "tf" the answer is exactly "True" or "False"; for "mcq" the answer must equal one option exactly; for "fill" the prompt contains ___ once and the answer is the missing word or phrase; for "short" the answer lists accepted answers separated by "|".`;
   status.textContent = `Writing content for "${topic}"… this can take a minute.`; btn.disabled = true;
   try {
@@ -854,7 +885,7 @@ Rules: for "tf" the answer is exactly "True" or "False"; for "mcq" the answer mu
     const have = new Set(db.questions.map(q => q.prompt));
     const qs = arr(c.questions).map(q => normalizeQuestion({ ...q, topic: name })).filter(q => q && !have.has(q.prompt)).slice(0, nQ)
       .map(q => ({ id: uid(), topic: name, type: q.type, difficulty: q.difficulty, prompt: q.prompt, ...(q.type === 'mcq' && { options: q.options }), answer: q.answer, explanation: String(q.explanation || ''), sourceId: '' }));
-    const iv = arr(c.interview).filter(q => q?.q).slice(0, nI).map(q => ({ id: 'gen-' + uid(), q: String(q.q), followup: String(q.followup || ''), answer: String(q.answer || '') }));
+    const iv = arr(c.interview).filter(q => q?.q).slice(0, nI).map(q => ({ id: 'gen-' + uid(), q: String(q.q), followup: String(q.followup || ''), answer: String(q.answer || ''), ...(typeof q.category === 'string' && { category: q.category.slice(0, 60) }) }));
     if (!notes.length && !qs.length && !iv.length) throw new Error('The AI returned nothing usable. Please try again.');
     if (!db.topics.includes(name)) db.topics.push(name);
     db.notes.push(...notes);
