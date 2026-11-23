@@ -14,7 +14,8 @@
     "Evals",
     "Benchmarking",
     "Decision Models",
-    "Game Engines"
+    "Game Engines",
+    "AI Strategy"
   ],
   "sources": [
     {
@@ -1366,6 +1367,69 @@
       "url": "https://arxiv.org/abs/2305.14314",
       "notes": "Fine-tuning LoRA adapters on a 4-bit base model.",
       "lang": "en"
+    },
+    {
+      "id": "src-132",
+      "topic": "AI Strategy",
+      "type": "Website",
+      "title": "McKinsey: The state of AI in 2025 (agents, innovation and transformation)",
+      "url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-2025",
+      "notes": "Annual survey; AI high performers (about 6%) redesign workflows and have senior leaders who own AI.",
+      "lang": "en"
+    },
+    {
+      "id": "src-133",
+      "topic": "AI Strategy",
+      "type": "Website",
+      "title": "Fortune: MIT report finds 95% of generative AI pilots fail to deliver returns (The GenAI Divide, 2025)",
+      "url": "https://fortune.com/2025/08/18/mit-report-95-percent-generative-ai-pilots-at-companies-failing-cfo/",
+      "notes": "Press coverage of MIT NANDA's \"The GenAI Divide: State of AI in Business 2025\".",
+      "lang": "en"
+    },
+    {
+      "id": "src-134",
+      "topic": "AI Strategy",
+      "type": "Website",
+      "title": "Gartner: Over 40% of agentic AI projects will be canceled by end of 2027",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027",
+      "notes": "Costs, unclear value and weak risk controls; warns about \"agent washing\".",
+      "lang": "en"
+    },
+    {
+      "id": "src-135",
+      "topic": "AI Strategy",
+      "type": "Docs",
+      "title": "NIST AI Risk Management Framework (AI RMF 1.0, AI 100-1)",
+      "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+      "notes": "Voluntary framework with four functions: Govern, Map, Measure, Manage.",
+      "lang": "en"
+    },
+    {
+      "id": "src-136",
+      "topic": "AI Strategy",
+      "type": "Docs",
+      "title": "EU AI Act implementation timeline (AI Act Service Desk)",
+      "url": "https://ai-act-service-desk.ec.europa.eu/en/ai-act/eu-ai-act-implementation-timeline",
+      "notes": "Official timeline; check it for the latest dates after the 2026 AI Omnibus changes.",
+      "lang": "en"
+    },
+    {
+      "id": "src-137",
+      "topic": "AI Strategy",
+      "type": "Website",
+      "title": "BCG: How non-tech companies buy AI (2026)",
+      "url": "https://www.bcg.com/publications/2026/how-non-tech-companies-buy-ai",
+      "notes": "Adopt, partner, build or buy; the aim is access that gives an advantage, not maximum ownership.",
+      "lang": "en"
+    },
+    {
+      "id": "src-138",
+      "topic": "AI Strategy",
+      "type": "Website",
+      "title": "McKinsey: From promise to impact, how companies can measure and realize the full value of AI",
+      "url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/from-promise-to-impact-how-companies-can-measure-and-realize-the-full-value-of-ai",
+      "notes": "Measuring AI value, including total cost of ownership with cloud and token spend.",
+      "lang": "en"
     }
   ],
   "notes": [
@@ -1864,6 +1928,76 @@
       "topic": "Decision Models",
       "title": "LLMs and decision-making",
       "body": "LLMs are increasingly used inside decisions: classifying tickets, approving refunds, routing requests, ranking candidates or choosing an agent's next action. Good design: let the LLM extract facts and give reasons, but keep hard rules and limits (amounts, eligibility, compliance) in deterministic code or DMN tables; ask for structured output with a decision and a confidence; route low-confidence or high-impact cases to a human (human-in-the-loop); log inputs, outputs and the model version for audit. Risks: inconsistent answers to the same input (use temperature 0, fixed prompts, several samples or majority vote), sensitivity to wording and order, hidden bias, and prompt injection in user-provided text. Evaluate the decision itself, not only the text: measure accuracy against labelled past decisions, cost of errors, fairness across groups and agreement with human experts.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-72",
+      "topic": "AI Strategy",
+      "title": "What an AI strategy is",
+      "body": "An AI strategy is a company's plan for using AI to reach its business goals: where AI will create value, what it will build, buy or partner for, which data, people, platforms and governance it needs, how it will manage risk, and how it will measure results. It is a business strategy first, not a technology shopping list. A good AI strategy answers: 1) Ambition: what business outcomes (revenue, cost, risk, customer experience) and by when? 2) Portfolio: which use cases, in what order? 3) Foundations: data, platforms, models and security. 4) Operating model: who owns AI, who builds, how decisions are made. 5) People: skills, AI literacy and change management. 6) Governance and responsible AI: policies, risk tiers, regulation. 7) Value tracking: baselines, KPIs and ROI. Common mistakes: starting from a tool instead of a problem, running many disconnected pilots (\"pilot purgatory\"), ignoring data readiness, and treating adoption as an afterthought.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-73",
+      "topic": "AI Strategy",
+      "title": "Why most AI pilots fail to scale",
+      "body": "Research in 2025 showed a big gap between AI experiments and results. Press coverage of MIT NANDA's report \"The GenAI Divide: State of AI in Business 2025\" said about 95% of enterprise generative AI pilots stall and deliver no measurable P&L return, while about 5% create large value. The study (about 150 leader interviews, a 350-employee survey and 300 public deployments) blamed a \"learning gap\": most tools do not retain feedback, adapt to context or improve over time, and are not integrated into workflows. It also reported that buying from specialised vendors and partnering succeeded about two-thirds of the time, versus about one-third for internal builds, and that budgets favour sales and marketing although the biggest returns were in back-office automation. Gartner predicted in June 2025 that over 40% of agentic AI projects will be canceled by the end of 2027 because of rising costs, unclear value or weak risk controls, and warned about \"agent washing\". Lesson: pick problems with clear value, integrate deeply, and plan for adoption and scaling from day one.",
+      "sourceId": "src-133"
+    },
+    {
+      "id": "note-74",
+      "topic": "AI Strategy",
+      "title": "What AI high performers do differently",
+      "body": "McKinsey's State of AI survey (2025, repeated in 2026) defines AI high performers as the roughly 6% of organisations that attribute at least 5% of EBIT to AI and report significant value. Compared with others, they: 1) Fundamentally redesign workflows around AI instead of adding AI to old processes; workflow redesign was one of the strongest drivers of impact (about three times as likely). 2) Have senior leaders who visibly own and champion AI (about three times as likely). 3) Set growth and innovation goals, not only cost cutting. 4) Define when model outputs need human validation (human-in-the-loop). 5) Track KPIs and measure impact. 6) Invest more in AI and manage risk actively. These practices reinforce each other: redesigned workflows plus leadership, measurement and risk management create value that isolated tools do not.",
+      "sourceId": "src-132"
+    },
+    {
+      "id": "note-75",
+      "topic": "AI Strategy",
+      "title": "Choosing and prioritising AI use cases",
+      "body": "Start from business goals and pain points, not from technology. Collect ideas from each function, then score each use case on: business value (revenue, cost, risk, customer impact), feasibility (technical complexity, model capability), data readiness (is the data available, clean and allowed to be used?), risk (regulation, safety, reputation), adoption effort (how much the workflow and people must change) and time to value. Plot them on a value vs feasibility matrix: \"quick wins\" (high value, high feasibility) go first, \"big bets\" need more planning, low-value ideas are dropped. Most guidance recommends a small first wave of 2-5 use cases, often in one \"lighthouse\" domain, proving value and then reusing components (data pipelines, RAG platform, evaluation, guardrails) across the company. Each funded use case needs a clear value story, a baseline, an owner in the business and a defined path to production, not just a demo.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-76",
+      "topic": "AI Strategy",
+      "title": "Build, buy or partner",
+      "body": "For each AI capability decide whether to buy (SaaS tools, copilots), partner (vendors, system integrators, model providers) or build (your own apps, fine-tuned or custom models). Decide per component, not for the whole system. Buy when the capability is common and not a differentiator (office copilots, transcription, coding assistants): fastest and cheapest to start. Build when it is core to your competitive advantage, uses proprietary data or must be deeply integrated into your workflows. Partner to move fast while building skills. Most companies use a hybrid: buy models via APIs (OpenAI, Anthropic, Google) or use open-weight models, and build their own data, retrieval, workflows and evaluation layer on top. BCG frames the moves as adopt, partner, build and buy, where the goal is the access you need for an advantage, not maximum ownership. Watch for vendor lock-in: keep model-agnostic interfaces (gateways), own your data and prompts, and set exit criteria and regular vendor reviews.",
+      "sourceId": "src-137"
+    },
+    {
+      "id": "note-77",
+      "topic": "AI Strategy",
+      "title": "AI operating models: centralized, federated, hub-and-spoke",
+      "body": "The operating model decides who owns AI work. Centralized (AI Center of Excellence, CoE): one central team builds and governs AI; good for a fast, consistent start and scarce skills, but it becomes a bottleneck and can be far from business needs. Federated (decentralized): each business unit builds its own AI; close to the business and fast, but risks duplicated work, inconsistent data, monitoring and risk handling, and \"fake federation\" where units have accountability but no budget or decision rights. Hub-and-spoke (hybrid): a central hub provides platforms, standards, governance, security and shared components, while spokes (AI teams embedded in business units) own use cases and delivery. Many companies start with a CoE and move to hub-and-spoke once demand outgrows central capacity. Roles often include an executive sponsor or Chief AI Officer, product owners in the business, an AI platform team, and risk, legal and security partners.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-78",
+      "topic": "AI Strategy",
+      "title": "AI governance, responsible AI and regulation",
+      "body": "Governance makes AI safe, legal and trusted without stopping progress. Building blocks: an AI policy (approved tools, data rules), an inventory of AI systems, risk tiers (more review for higher-risk uses such as hiring, credit or health), human oversight rules, model evaluation and monitoring, incident response, and clear accountability. Frameworks: the NIST AI Risk Management Framework (voluntary, US) organises work into four functions: Govern (culture, roles, policies; cross-cutting), Map (understand context and risks), Measure (test, evaluate, verify and validate) and Manage (prioritise, respond, monitor). ISO/IEC 42001 is a certifiable international standard for an AI management system. The EU AI Act sorts AI by risk: prohibited practices (in force since February 2025), high-risk systems (strict requirements; dates moved later by the 2026 \"AI Omnibus\"), transparency duties for chatbots and generated content, and rules for general-purpose AI models since August 2025. Always check the official timeline for current dates.",
+      "sourceId": "src-135"
+    },
+    {
+      "id": "note-79",
+      "topic": "AI Strategy",
+      "title": "Measuring AI value and ROI",
+      "body": "Measure before you build: record a baseline (time per task, cost per case, error rate, conversion, customer satisfaction). Track three layers: adoption (active users, usage per user, task completion without human rescue), operational impact (time saved, throughput, quality, cycle time) and financial impact (cost savings, revenue growth, risk reduction). Hours saved only become value if the time is redeployed or costs actually fall. ROI = (total financial value - total AI cost) / total AI cost × 100. Total cost of ownership includes more than licences: tokens and cloud compute, integration and data work, evaluation and monitoring, security and compliance, change management and training, and ongoing maintenance. Use controlled comparisons (A/B tests, pilot vs control group) to show causality. Report value regularly to leadership, and stop or rework use cases that do not deliver. Value often takes months to show, so set realistic milestones.",
+      "sourceId": "src-138"
+    },
+    {
+      "id": "note-80",
+      "topic": "AI Strategy",
+      "title": "People, skills and change management",
+      "body": "Technology is rarely the hardest part; adoption is. Effective AI strategies include: visible leadership sponsorship; AI literacy for everyone (what AI can and cannot do, safe use, data privacy), which the EU AI Act also expects from organisations that deploy AI; deeper upskilling for builders (prompting, RAG, evaluation, agents) and for managers (redesigning work); champions or \"AI ambassadors\" in each team; redesigned roles, incentives and processes so people actually use the tools; and honest communication about job changes, with reskilling paths. Reports suggest only a small share of organisations have a real change-management plan for AI. Partnership matters: the CEO and business leaders own outcomes, the CIO or CTO owns platforms, the CHRO owns skills and organisation design, and a Chief AI Officer (common where AI is core to the business) coordinates the strategy, portfolio and governance.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-81",
+      "topic": "AI Strategy",
+      "title": "AI maturity and roadmap",
+      "body": "Maturity models (for example Gartner's five-level AI maturity model) help a company see where it stands, from ad hoc experiments to AI embedded across the business, across dimensions such as strategy, data, governance, engineering, operating model, culture and value. A practical roadmap: Phase 1 (0-6 months) Foundations: set the ambition, AI policy and governance, approve safe tools, give staff AI literacy, pick 2-5 high-value use cases and set baselines. Phase 2 (6-18 months) Scale: build a shared platform (data, model access via a gateway, RAG, evaluation, monitoring), move proven pilots into production, redesign workflows, and grow a hub-and-spoke team. Phase 3 (18+ months) Transform: AI-native processes and products, agents for multi-step work, continuous value tracking and portfolio rebalancing. Review the strategy at least yearly, because models, costs and regulation change fast.",
       "sourceId": ""
     }
   ],
@@ -8822,6 +8956,264 @@
       "prompt": "When an LLM makes business decisions, hard limits like refund amounts are best enforced in deterministic code or rules, not only in the prompt.",
       "answer": "True",
       "explanation": "Let the LLM extract facts and reasons; keep limits in code and send risky cases to a human.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-237",
+      "topic": "AI Strategy",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What should an AI strategy start from?",
+      "options": [
+        "Business goals and problems to solve",
+        "The newest AI model",
+        "The cheapest AI tool",
+        "What competitors post on social media"
+      ],
+      "answer": "Business goals and problems to solve",
+      "explanation": "Starting from a tool instead of a problem is a common mistake.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-238",
+      "topic": "AI Strategy",
+      "type": "fill",
+      "difficulty": "medium",
+      "prompt": "Running many AI experiments that never reach production is often called pilot ___.",
+      "answer": "purgatory",
+      "explanation": "A small set of prioritised use cases with a path to production avoids it.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-239",
+      "topic": "AI Strategy",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "According to McKinsey's State of AI survey, which practice most clearly separates AI high performers from others?",
+      "options": [
+        "Fundamentally redesigning workflows around AI",
+        "Buying the most AI licences",
+        "Banning AI tools for staff",
+        "Using only one AI vendor"
+      ],
+      "answer": "Fundamentally redesigning workflows around AI",
+      "explanation": "High performers are about three times as likely to redesign workflows instead of adding AI to old processes.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-240",
+      "topic": "AI Strategy",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "When prioritising AI use cases, which pair of criteria forms the classic 2×2 matrix?",
+      "options": [
+        "Business value and feasibility",
+        "Model size and colour",
+        "Number of slides and meetings",
+        "Vendor name and logo"
+      ],
+      "answer": "Business value and feasibility",
+      "explanation": "High value plus high feasibility gives quick wins to do first.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-241",
+      "topic": "AI Strategy",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Data readiness (available, clean and allowed to be used) should be part of scoring an AI use case.",
+      "answer": "True",
+      "explanation": "Weak data is one of the most common reasons AI initiatives stall.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-242",
+      "topic": "AI Strategy",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "When is building your own AI solution usually the better choice than buying?",
+      "options": [
+        "When it is core to your competitive advantage and uses proprietary data",
+        "When the capability is a common office tool",
+        "When you need it working tomorrow with no team",
+        "Always; buying is never wise"
+      ],
+      "answer": "When it is core to your competitive advantage and uses proprietary data",
+      "explanation": "Buy common, non-differentiating capabilities; build what makes you different.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-243",
+      "topic": "AI Strategy",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "In a hub-and-spoke AI operating model, what does the hub provide?",
+      "options": [
+        "Shared platforms, standards, governance and security",
+        "Every use case for every department",
+        "Only marketing campaigns",
+        "Nothing; each unit works alone"
+      ],
+      "answer": "Shared platforms, standards, governance and security",
+      "explanation": "The spokes are AI teams embedded in business units that own use cases.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-244",
+      "topic": "AI Strategy",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "A fully centralized AI Center of Excellence can become a bottleneck as demand for AI grows.",
+      "answer": "True",
+      "explanation": "That is why many companies move to hub-and-spoke as they mature.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-245",
+      "topic": "AI Strategy",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "What are the four functions of the NIST AI Risk Management Framework?",
+      "options": [
+        "Govern, Map, Measure, Manage",
+        "Plan, Do, Check, Act",
+        "Identify, Protect, Detect, Respond",
+        "Build, Buy, Partner, Adopt"
+      ],
+      "answer": "Govern, Map, Measure, Manage",
+      "explanation": "Govern is cross-cutting; Map sets context, Measure tests, Manage responds.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-246",
+      "topic": "AI Strategy",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which standard is a certifiable international management system for AI?",
+      "options": [
+        "ISO/IEC 42001",
+        "ISO 9001",
+        "PCI DSS",
+        "HTML5"
+      ],
+      "answer": "ISO/IEC 42001",
+      "explanation": "The NIST AI RMF is a voluntary framework, not a certifiable standard.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-247",
+      "topic": "AI Strategy",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "How does the EU AI Act mainly regulate AI systems?",
+      "options": [
+        "By risk level, from prohibited to high-risk to limited and minimal risk",
+        "By the size of the company only",
+        "By the programming language used",
+        "It bans all AI"
+      ],
+      "answer": "By risk level, from prohibited to high-risk to limited and minimal risk",
+      "explanation": "Plus separate rules for general-purpose AI models.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-248",
+      "topic": "AI Strategy",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Why should you record a baseline before deploying an AI use case?",
+      "options": [
+        "To prove what actually improved after deployment",
+        "To make the model larger",
+        "To avoid paying for tokens",
+        "Baselines are not needed"
+      ],
+      "answer": "To prove what actually improved after deployment",
+      "explanation": "Without a baseline, time or cost savings cannot be shown.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-249",
+      "topic": "AI Strategy",
+      "type": "tf",
+      "difficulty": "hard",
+      "prompt": "Hours saved by AI always turn directly into financial value.",
+      "answer": "False",
+      "explanation": "Only if the time is redeployed to valuable work or costs actually fall.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-250",
+      "topic": "AI Strategy",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Which cost is most often forgotten when calculating AI total cost of ownership?",
+      "options": [
+        "Ongoing evaluation, monitoring, integration and change management",
+        "The software licence",
+        "The first demo",
+        "The vendor's logo design"
+      ],
+      "answer": "Ongoing evaluation, monitoring, integration and change management",
+      "explanation": "TCO includes tokens, compute, data work, security, training and maintenance, not only licences.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-251",
+      "topic": "AI Strategy",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "In June 2025, what did Gartner predict about agentic AI projects?",
+      "options": [
+        "Over 40% will be canceled by the end of 2027",
+        "All will succeed by 2026",
+        "They will replace all software by 2026",
+        "They will be banned in the EU"
+      ],
+      "answer": "Over 40% will be canceled by the end of 2027",
+      "explanation": "Reasons: rising costs, unclear business value or weak risk controls.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-252",
+      "topic": "AI Strategy",
+      "type": "fill",
+      "difficulty": "medium",
+      "prompt": "Vendors relabelling ordinary chatbots or automation as AI agents is called agent ___.",
+      "answer": "washing",
+      "explanation": "Gartner warned that only a fraction of \"agentic AI\" vendors offer real agents.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-253",
+      "topic": "AI Strategy",
+      "type": "match",
+      "difficulty": "medium",
+      "prompt": "Connect each AI strategy element to its purpose.",
+      "pairs": [
+        [
+          "Use-case portfolio",
+          "Where AI creates value, and in what order"
+        ],
+        [
+          "Operating model",
+          "Who owns, builds and decides about AI"
+        ],
+        [
+          "Governance",
+          "Keep AI safe, legal and trusted"
+        ],
+        [
+          "Change management",
+          "Get people to adopt new ways of working"
+        ],
+        [
+          "Value tracking",
+          "Prove ROI against a baseline"
+        ]
+      ],
+      "answer": "Use-case portfolio → Where AI creates value, and in what order; Operating model → Who owns, builds and decides about AI; Governance → Keep AI safe, legal and trusted; Change management → Get people to adopt new ways of working; Value tracking → Prove ROI against a baseline",
+      "explanation": "A complete AI strategy covers all of these, not just technology.",
       "sourceId": ""
     }
   ]
