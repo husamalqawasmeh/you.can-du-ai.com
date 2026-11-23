@@ -1269,6 +1269,114 @@
           "answer": "Unclear business goals and poor data"
         }
       ]
+    },
+    {
+      "vendor": "IBM",
+      "name": "IBM Certified watsonx Generative AI Engineer – Associate",
+      "code": "C1000-185",
+      "level": "Associate",
+      "cost": "See official page (about $200 in the US)",
+      "duration": "About 90 minutes",
+      "questions": "About 60 multiple choice",
+      "prerequisites": "Hands-on experience building generative AI solutions with IBM watsonx.ai; basic Python and LLM concepts.",
+      "topics": [
+        "Analyzing and designing generative AI solutions",
+        "Prompt engineering and prompt templates in watsonx.ai",
+        "Retrieval-augmented generation (RAG) and data preparation",
+        "Model customization and tuning (prompt tuning, fine-tuning)",
+        "Deploying, integrating and governing models (watsonx.governance)"
+      ],
+      "note": "Check the official page for the current exam code, length and price before booking.",
+      "prep": [
+        {
+          "title": "IBM SkillsBuild (free AI courses)",
+          "url": "https://skillsbuild.org"
+        },
+        {
+          "title": "IBM Generative AI Engineering Professional Certificate (Coursera)",
+          "url": "https://www.coursera.org/ibm"
+        }
+      ],
+      "url": "https://www.ibm.com/training/certification",
+      "samples": [
+        {
+          "q": "Which IBM product is used to build, tune and deploy foundation models?",
+          "options": [
+            "watsonx.ai",
+            "IBM Db2",
+            "IBM MQ",
+            "IBM Cognos"
+          ],
+          "answer": "watsonx.ai"
+        },
+        {
+          "q": "An app must answer questions from a company's own documents with citations. Which approach fits best?",
+          "options": [
+            "Retrieval-augmented generation (RAG)",
+            "Raising the temperature",
+            "Training a model from scratch",
+            "Removing the system prompt"
+          ],
+          "answer": "Retrieval-augmented generation (RAG)"
+        },
+        {
+          "q": "Which IBM product tracks model risk, bias and compliance?",
+          "options": [
+            "watsonx.governance",
+            "watsonx.data",
+            "IBM Z",
+            "Red Hat Ansible"
+          ],
+          "answer": "watsonx.governance"
+        }
+      ]
+    },
+    {
+      "vendor": "OpenAI",
+      "name": "OpenAI Certifications: AI Foundations",
+      "code": "",
+      "level": "Foundational",
+      "cost": "See official page (announced in 2025, started as a pilot)",
+      "duration": "Self-paced course with an assessment",
+      "questions": "Practical tasks and quizzes inside ChatGPT",
+      "prerequisites": "None; aimed at workers and job seekers who want to show practical AI skills.",
+      "topics": [
+        "Using ChatGPT and AI tools for everyday work",
+        "Writing clear prompts and giving context",
+        "Checking AI output for accuracy",
+        "Data privacy and responsible AI use",
+        "Applying AI to real job tasks"
+      ],
+      "note": "OpenAI announced certifications delivered through OpenAI Academy and ChatGPT, linked to its jobs platform. Details are still changing, so check the official page.",
+      "prep": [
+        {
+          "title": "OpenAI Academy (free)",
+          "url": "https://academy.openai.com"
+        }
+      ],
+      "url": "https://academy.openai.com",
+      "samples": [
+        {
+          "q": "What is the best way to get a more useful answer from ChatGPT?",
+          "options": [
+            "Give clear context, the goal and the format you want",
+            "Use as few words as possible",
+            "Ask the same question in capital letters",
+            "Never give examples"
+          ],
+          "answer": "Give clear context, the goal and the format you want"
+        },
+        {
+          "q": "ChatGPT gives you a statistic for a report. What should you do?",
+          "options": [
+            "Check it against a reliable source before using it",
+            "Use it as is; AI is always right",
+            "Ask it to make the number bigger",
+            "Delete the report"
+          ],
+          "answer": "Check it against a reliable source before using it"
+        }
+      ]
     }
   ]
 }

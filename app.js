@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=130';
-import { ADMIN_HASH } from './admin-hash.js?v=130';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=131';
+import { ADMIN_HASH } from './admin-hash.js?v=131';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -223,7 +223,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.cl
 // ---------- AI certifications (certs.json) ----------
 async function loadCerts() {
   let c;
-  try { c = await (await fetch('certs.json?v=3')).json(); } catch { $('#certs-list').innerHTML = '<p class="muted">Could not load certifications.</p>'; return; }
+  try { c = await (await fetch('certs.json?v=4')).json(); } catch { $('#certs-list').innerHTML = '<p class="muted">Could not load certifications.</p>'; return; }
   $('#certs-checked').textContent = `Last checked: ${c.checked}.`;
   $('#certs-register').innerHTML = c.howToRegister.map(s => `<li>${esc(s)}</li>`).join('');
   $('#certs-buy').innerHTML = c.whatToBuy.map(s => `<li>${esc(s)}</li>`).join('');
