@@ -252,37 +252,37 @@
     },
     {
       "id": "bank-ml-and-deep-learning-basics-1",
-      "category": "ML and deep learning basics",
+      "category": "ML & DL deep basics",
       "q": "Explain the bias-variance trade-off with an example.",
       "followup": "Why does more data usually help high-variance models?"
     },
     {
       "id": "bank-ml-and-deep-learning-basics-2",
-      "category": "ML and deep learning basics",
+      "category": "ML & DL deep basics",
       "q": "What is the vanishing gradient problem, and how is it solved?",
       "followup": "Why did residual connections make very deep networks trainable?"
     },
     {
       "id": "bank-ml-and-deep-learning-basics-3",
-      "category": "ML and deep learning basics",
+      "category": "ML & DL deep basics",
       "q": "Compare batch normalization and layer normalization.",
       "followup": "Why do transformers use layer normalization?"
     },
     {
       "id": "bank-ml-and-deep-learning-basics-4",
-      "category": "ML and deep learning basics",
+      "category": "ML & DL deep basics",
       "q": "How do you handle an imbalanced dataset?",
       "followup": "Why can accuracy be a misleading metric here?"
     },
     {
       "id": "bank-ml-and-deep-learning-basics-5",
-      "category": "ML and deep learning basics",
+      "category": "ML & DL deep basics",
       "q": "Precision vs recall: when would you prefer each?",
       "followup": "Why does a fraud detector usually favour recall?"
     },
     {
       "id": "bank-ml-and-deep-learning-basics-6",
-      "category": "ML and deep learning basics",
+      "category": "ML & DL deep basics",
       "q": "Design a recommendation system for an online store.",
       "followup": "Why is the cold-start problem hard, and how do you handle it?"
     },

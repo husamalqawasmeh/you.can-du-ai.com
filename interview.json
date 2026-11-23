@@ -181,7 +181,7 @@
       "answer": "Weights are the billions of numbers (parameters, together with biases) a model learns in training; \"70B\" means about 70 billion of them. They sit in matrices: token embeddings, attention (Q, K, V, O), feed-forward layers and the output head. Training starts them random, then backpropagation and an optimizer such as Adam adjust them to reduce next-token prediction error over trillions of tokens. At inference the weights are frozen and only read. Knowledge is spread across them, not stored as text.\n\nLoRA freezes the original weights and trains small low-rank matrices added to some layers, so it needs little memory and the adapter is tiny. Weights are valuable because they hold the result of very expensive training (data, compute, know-how); the code is small, so whoever has the weights has the model, which is why some companies keep them closed and others release them as open weights.",
       "topics": [
         "LLM fundamentals",
-        "ML and deep learning basics",
+        "ML & DL deep basics",
         "LLMs"
       ]
     },
@@ -203,7 +203,7 @@
       "answer": "Rules and decision tables (DMN) for clear, auditable business logic; decision trees for simple, explainable predictions; ensembles (random forests, gradient boosting) for accurate predictions on tabular data; expected utility and influence diagrams for choices under uncertainty; MDPs and reinforcement learning for decisions over many steps; multi-criteria methods (weighted scoring, AHP) for trade-offs.\n\nTo explain to a regulator or customer: use interpretable models or explanation tools (SHAP, reason codes), give the main factors in plain language, document data and testing, and offer a human review and appeal.",
       "topics": [
         "Evals",
-        "ML and deep learning basics",
+        "ML & DL deep basics",
         "Decision Models"
       ]
     },
@@ -213,7 +213,7 @@
       "answer": "A model outputs a probability; the decision is the threshold. Choose it from the cost of each error (a missed fraud vs a false alarm), using the confusion matrix, precision/recall and expected cost, often with bands: auto-approve, auto-decline and a middle band for human review.\n\nHumans should review uncertain, high-impact or unusual cases. Check bias by comparing error rates and approval rates across groups, and monitor after launch.",
       "topics": [
         "Evals",
-        "ML and deep learning basics",
+        "ML & DL deep basics",
         "Decision Models",
         "Product and project management"
       ]
@@ -301,7 +301,7 @@
       "answer": "Example: \"Attention Is All You Need\" (Vaswani et al., Google, 2017) introduced the Transformer, using self-attention instead of recurrence, so training became parallel and models could scale. It is the base of GPT, Claude, Gemini and Llama. Other good picks: AlexNet (2012, deep learning on GPUs), BERT (2018), GPT-3 (2020, few-shot learning), scaling laws (2020), InstructGPT/RLHF (2022), and diffusion models (2020).",
       "topics": [
         "AI industry and news",
-        "ML and deep learning basics",
+        "ML & DL deep basics",
         "Generative AI",
         "LLMs"
       ]
@@ -739,7 +739,7 @@
       "q": "Explain the bias-variance trade-off with an example.",
       "followup": "Why does more data usually help high-variance models?",
       "topics": [
-        "ML and deep learning basics"
+        "ML & DL deep basics"
       ]
     },
     {
@@ -747,7 +747,7 @@
       "q": "What is the vanishing gradient problem, and how is it solved?",
       "followup": "Why did residual connections make very deep networks trainable?",
       "topics": [
-        "ML and deep learning basics"
+        "ML & DL deep basics"
       ]
     },
     {
@@ -755,7 +755,7 @@
       "q": "Compare batch normalization and layer normalization.",
       "followup": "Why do transformers use layer normalization?",
       "topics": [
-        "ML and deep learning basics"
+        "ML & DL deep basics"
       ]
     },
     {
@@ -763,7 +763,7 @@
       "q": "How do you handle an imbalanced dataset?",
       "followup": "Why can accuracy be a misleading metric here?",
       "topics": [
-        "ML and deep learning basics"
+        "ML & DL deep basics"
       ]
     },
     {
@@ -771,7 +771,7 @@
       "q": "Precision vs recall: when would you prefer each?",
       "followup": "Why does a fraud detector usually favour recall?",
       "topics": [
-        "ML and deep learning basics",
+        "ML & DL deep basics",
         "Evals",
         "Decision Models"
       ]
@@ -781,7 +781,7 @@
       "q": "Design a recommendation system for an online store.",
       "followup": "Why is the cold-start problem hard, and how do you handle it?",
       "topics": [
-        "ML and deep learning basics"
+        "ML & DL deep basics"
       ]
     },
     {
@@ -2393,7 +2393,7 @@
       "followup": "How would you measure physical correctness, and what would you change in data or training to improve it?",
       "answer": "Video models learn how pixels usually look and move, not physical laws; they have no built-in 3D world, mass or forces, and rare events are thin in training data. Errors: objects vanishing or merging, wrong gravity, bodies passing through each other, missing cause and effect (a bite with no mark), liquids appearing or disappearing, morphing hands, and drift over long clips.\n\nMeasure with physics benchmarks (Physics-IQ, VideoPhy, PhyGenBench) and human review. Improve with better-labeled data, synthetic data from physics simulators and game engines, 3D-aware world models, rewards for physical correctness and longer context for consistency.",
       "topics": [
-        "ML and deep learning basics",
+        "ML & DL deep basics",
         "AI industry and news",
         "Generative AI"
       ]
@@ -2442,7 +2442,7 @@
       "answer": "First check the model is calibrated (predicted probabilities match real rates) using a reliability diagram, and fix it with Platt scaling or isotonic regression if needed. Then put money on the errors: cost of a false positive (blocked good customer, review time) versus a false negative (fraud loss). Flag a case when probability × fraud loss > (1 - probability) × false-positive cost, or sweep thresholds on validation data and pick the one with the lowest total expected cost. Look at precision and recall at that point, not accuracy, because fraud is rare. Use bands: auto-approve low scores, auto-block very high ones, and send the middle to human review within the team's capacity. Keep hard rules (limits, sanctions lists) in deterministic code or DMN tables. Monitor drift and re-tune over time, and A/B test threshold changes.\n\nAn LLM can summarise the evidence and draft a reason for reviewers, using structured output, while the decision limits stay in code, humans approve high-impact cases, and everything is logged for audit.",
       "topics": [
         "Evals",
-        "ML and deep learning basics",
+        "ML & DL deep basics",
         "Decision Models",
         "AI Risk Management"
       ]
