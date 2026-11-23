@@ -6,7 +6,7 @@
       "answer": "Open 2-3 pinned repos you can explain well, each with a clear README (what it does, how to run it, a screenshot). For each one say the problem, your design choices, the tech stack and what you would change now (for example add tests, CI, better error handling or evals). Interviewers look for real commits over time, clean structure and honest reflection.",
       "topics": [
         "Behavioral and experience",
-        "Tools and automation",
+        "Automation / AI tools",
         "AI Development"
       ]
     },
@@ -16,7 +16,7 @@
       "answer": "Show a live site, then explain the stack and why: for example a static site on GitHub Pages or Cloudflare for speed, low cost and simple deploys, or Next.js on Vercel when you need server code. Mention the domain, HTTPS, analytics, how you deploy (push to main runs tests then deploys) and what you would improve (accessibility, performance, SEO).",
       "topics": [
         "Behavioral and experience",
-        "Tools and automation",
+        "Automation / AI tools",
         "AI Development"
       ]
     },
@@ -26,7 +26,7 @@
       "answer": "Group them: AI assistants (ChatGPT, Claude, Gemini), coding (VS Code, Cursor, Claude Code, GitHub Copilot), automation (n8n, Zapier), data and notes (Notion, NotebookLM), and cloud.\n\nFor each say what job it does and why you picked it over alternatives: quality for your tasks, price, integrations, privacy and team standard. Show that you review tools from time to time instead of following hype.",
       "topics": [
         "Behavioral and experience",
-        "Tools and automation",
+        "Automation / AI tools",
         "AI Development",
         "CLI",
         "Harnesses"
@@ -38,7 +38,7 @@
       "answer": "Show your setup, for example IDE AI extensions, MCP servers (GitHub, browser, database), custom instructions or skills, and browser extensions.\n\nFor each, explain the gap it filled (repeated manual steps, missing context, slow research) and the measurable change: faster reviews, fewer context switches, automated testing. Mention that you check permissions and data access before installing.",
       "topics": [
         "Behavioral and experience",
-        "Tools and automation",
+        "Automation / AI tools",
         "Harnesses",
         "CLI"
       ]
@@ -49,7 +49,7 @@
       "answer": "Use a short story: the manual task (who did it, how often, how long), the automation (tools such as Python, n8n, Power Automate, Ansible or GitHub Actions), and the result in numbers, for example \"4 hours a week saved, errors dropped to zero\".\n\nExplain why it was worth it: frequent, rule-based, error-prone work. Mention monitoring and a human check where mistakes are costly.",
       "topics": [
         "Behavioral and experience",
-        "Tools and automation",
+        "Automation / AI tools",
         "AI Development"
       ]
     },
@@ -118,7 +118,7 @@
       "answer": "Give concrete examples: drafting and editing, coding and code review, research and summarizing, data analysis, meeting notes and automation.\n\nYou trust but verify: check facts against sources, run and test code, ask for citations, compare two models for important work, and never paste confidential data into tools that are not approved.",
       "topics": [
         "Behavioral and experience",
-        "Tools and automation",
+        "Automation / AI tools",
         "Generative AI",
         "Harnesses"
       ]
@@ -137,7 +137,7 @@
       "followup": "Why did you choose those models, datasets or Spaces, and how did you evaluate them?",
       "answer": "Describe real use: downloading open models with Transformers, using datasets, building demos in Spaces, fine-tuning with PEFT/LoRA, or calling Inference Endpoints.\n\nExplain choices: model size vs hardware, license, benchmark and leaderboard results, downloads and community activity, and then your own evals on your data comparing quality, speed and cost.",
       "topics": [
-        "Tools and automation",
+        "Automation / AI tools",
         "LLMs",
         "AI Development"
       ]
@@ -148,7 +148,7 @@
       "answer": "LangChain is an open-source framework with building blocks for LLM apps: model wrappers, prompts, tools, retrievers and many integrations. LangGraph builds stateful agent workflows as graphs with loops, memory, checkpoints and human-in-the-loop. LangSmith traces, evaluates and monitors LLM apps (even ones not built with LangChain).\n\nSkip LangChain for simple apps: a direct API call with the official SDK is easier to read, debug and keep up to date.",
       "topics": [
         "Agents/MCP/Tool-use",
-        "Tools and automation",
+        "Automation / AI tools",
         "AI Engineering"
       ]
     },
@@ -157,7 +157,7 @@
       "followup": "How would you take an open model from the Hub to a production API?",
       "answer": "Hub: hosts models, datasets and Spaces. Spaces: demo apps (Gradio, Streamlit). Transformers: library to load and run pretrained models. Datasets: load and share data. PEFT: LoRA and other efficient fine-tuning. TGI (Text Generation Inference): production serving. smolagents: small code-writing agents.\n\nTo production: pick and evaluate the model, quantize if needed, serve it with TGI or vLLM in a container on GPUs (or Inference Endpoints), put an API gateway in front, and add monitoring, autoscaling and rate limits.",
       "topics": [
-        "Tools and automation",
+        "Automation / AI tools",
         "LLMs"
       ]
     },
@@ -320,7 +320,7 @@
       "followup": "Why would a team use GitHub (or GitLab) on top of Git, and how do pull requests and CI/CD fit in?",
       "answer": "Git is a version control tool that runs on your computer: it tracks changes, branches and history. GitHub is a hosting service for Git repositories in the cloud, adding collaboration: pull requests, code review, issues, Actions (CI/CD), permissions and backups.\n\nTeams use GitHub or GitLab to share code and review changes: a developer pushes a branch, opens a pull request, CI runs tests automatically, reviewers approve, and merging can trigger deployment.",
       "topics": [
-        "Tools and automation",
+        "Automation / AI tools",
         "AI Development",
         "CLI"
       ]
@@ -330,7 +330,7 @@
       "followup": "Why would you choose a PWA, a wrapper like Capacitor, or a full rewrite in React Native or Flutter, and what changes for app store review and device features?",
       "answer": "1) Make the site responsive and mobile-friendly. 2) Quick option: turn it into a PWA (manifest plus service worker) so it can be installed and work offline. 3) For app stores: wrap it with Capacitor (or Cordova) to make iOS and Android apps and add native plugins (camera, push notifications). 4) For best performance and native feel: rebuild in React Native or Flutter. 5) Test on real devices, then publish to the App Store and Google Play.\n\nPWA is cheapest but limited on iOS and not in stores by default; wrappers are fast but app review may reject apps that are \"just a website\"; rewrites cost most but give full device access.",
       "topics": [
-        "Tools and automation",
+        "Automation / AI tools",
         "System/Product design",
         "AI Development"
       ]
@@ -340,7 +340,7 @@
       "followup": "Does it work across remote servers, and how does it connect to them and run tasks on many hosts at once?",
       "answer": "Ansible (Red Hat) is an open-source automation tool for configuring servers, deploying apps and managing infrastructure. A playbook is a YAML file listing plays: which hosts, and which tasks (modules such as apt, copy, service) to run, written to be idempotent (safe to run again). Example: install nginx, copy the config, start the service on all web servers.\n\nYes, it works across remote servers: it is agentless, connects over SSH (WinRM for Windows) using an inventory of hosts, and runs tasks on many hosts in parallel (controlled by forks).",
       "topics": [
-        "Tools and automation",
+        "Automation / AI tools",
         "System/Product design",
         "AI Development",
         "CLI"
@@ -1069,7 +1069,7 @@
         ]
       ],
       "topics": [
-        "Tools and automation",
+        "Automation / AI tools",
         "AI Development"
       ]
     },
@@ -2332,7 +2332,7 @@
       "answer": "A container packages an app with its code, runtime and libraries so it runs the same everywhere; it shares the host OS kernel, so it is lighter than a VM. AI needs it because Python, PyTorch, CUDA and driver versions must match exactly; containers give reproducibility, portability across clouds, ready-made serving images (vLLM, TGI, Triton, NVIDIA NIM), scaling with Kubernetes and sandboxing for agent-generated code.\n\nGPU access: install NVIDIA drivers and the NVIDIA Container Toolkit on the host and run with --gpus all (or the GPU operator on Kubernetes). Keep model weights outside the image on a mounted volume or download them at start.",
       "topics": [
         "System/Product design",
-        "Tools and automation",
+        "Automation / AI tools",
         "AI Development"
       ]
     },
