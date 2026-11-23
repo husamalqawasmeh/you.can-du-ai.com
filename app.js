@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=158';
-import { ADMIN_HASH } from './admin-hash.js?v=158';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=159';
+import { ADMIN_HASH } from './admin-hash.js?v=159';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -792,7 +792,7 @@ const IV_JOBS = {
   'Data Scientist': { 'ML and deep learning basics': 3, 'Evals': 3, 'Decision Models': 3, 'Behavioral and experience': 2, 'Fine-tuning and alignment': 1, 'LLM fundamentals': 1, 'AI Strategy': 1, 'Product and project management': 1 },
   'Data Engineer': { 'System design and production': 3, 'Tools and automation': 2, 'RAG and retrieval': 3, 'AI Governance': 2, 'Context Engineering': 2, 'ML and deep learning basics': 1, 'Evals': 1, 'AI Risk Management': 1, 'Behavioral and experience': 1 },
   'MLOps Engineer': { 'System design and production': 3, 'Tools and automation': 3, 'Evals': 2, 'ML and deep learning basics': 2, 'Fine-tuning and alignment': 1, 'LLM fundamentals': 1, 'AI hardware and chips': 1, 'Behavioral and experience': 1, 'AI Risk Management': 1 },
-  'AI Infrastructure Engineer': { 'AI hardware and chips': 3, 'System design and production': 3, 'Tools and automation': 2, 'LLM fundamentals': 1, 'Evals': 1, 'Behavioral and experience': 1 },
+  'AI Infra. Eng.': { 'AI hardware and chips': 3, 'System design and production': 3, 'Tools and automation': 2, 'LLM fundamentals': 1, 'Evals': 1, 'Behavioral and experience': 1 },
   'AI Solutions Architect': { 'System design and production': 3, 'RAG and retrieval': 2, 'Agents and tool use': 2, 'LLM fundamentals': 2, 'AI hardware and chips': 2, 'Tools and automation': 2, 'Behavioral and experience': 1, 'Evals': 1, 'AI Strategy': 2, 'AI Governance': 2, 'AI Risk Management': 2, 'Product and project management': 2 },
   'AI Project Manager': { 'Behavioral and experience': 3, 'System design and production': 2, 'Tools and automation': 1, 'Agents and tool use': 1, 'LLM fundamentals': 1, 'AI industry and news': 1, 'Evals': 2, 'AI Strategy': 2, 'AI Governance': 1, 'AI Risk Management': 2, 'Product and project management': 3 },
   'AI Product Manager': { 'Behavioral and experience': 3, 'AI industry and news': 2, 'Agents and tool use': 2, 'LLM fundamentals': 1, 'RAG and retrieval': 1, 'System design and production': 1, 'Evals': 2, 'AI Strategy': 2, 'AI Governance': 2, 'AI Risk Management': 2, 'Product and project management': 3 },
@@ -821,7 +821,7 @@ function ivPick(all, jobs, topics, count) {
     .map((q, i) => ({ q, i, s: score(q) })).sort((a, b) => b.s - a.s || a.i - b.i).slice(0, count || undefined).map(x => x.q);
 }
 console.assert(ivPick([{ topics: ['AI hardware and chips'] }, { topics: ['RAG and retrieval'] }], ['LLM Engineer'], [], 1)[0].topics[0] === 'RAG and retrieval', 'ivPick ranking');
-console.assert(ivPick([{ topics: ['RAG and retrieval'] }, { topics: ['AI hardware and chips'] }], ['AI Strategy/Consultant', 'AI Infrastructure Engineer'], [], 1)[0].topics[0] === 'AI hardware and chips', 'ivPick multi-job');
+console.assert(ivPick([{ topics: ['RAG and retrieval'] }, { topics: ['AI hardware and chips'] }], ['AI Strategy/Consultant', 'AI Infra. Eng.'], [], 1)[0].topics[0] === 'AI hardware and chips', 'ivPick multi-job');
 function renderInterview() {
   const topics = [...ivForm.querySelectorAll('#iv-topics input:checked')].map(c => c.value);
   const jobs = ivJobs(), qs = ivPick(ivAll, jobs, topics, Math.max(0, Math.round(+ivForm.count.value || 0)));
