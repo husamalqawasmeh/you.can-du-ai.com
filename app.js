@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=167';
-import { ADMIN_HASH } from './admin-hash.js?v=167';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=169';
+import { ADMIN_HASH } from './admin-hash.js?v=169';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -86,7 +86,7 @@ function render() {
   // topics
   $('#topic-list').innerHTML = db.topics.map(t => {
     const n = db.questions.filter(q => q.topic === t).length;
-    return `<li><div>${esc(t)} <span class="tag">${n} questions</span></div><button type="button" class="del" data-del-topic="${esc(t)}">Delete</button></li>`;
+    return `<li><div>${esc(t)} <span class="tag">${n} questions</span></div><span class="row">${seed.topics?.includes(t) ? '' : `<button type="button" data-rename-topic="${esc(t)}">Rename</button>`}<button type="button" class="del" data-del-topic="${esc(t)}">Delete</button></span></li>`;
   }).join('');
 
   // library
@@ -312,6 +312,20 @@ $('#q-filter-topic').onchange = $('#q-filter-diff').onchange = $('#q-filter-type
 $('#q-search').oninput = render;
 
 // ---------- deletes ----------
+// rename a topic added in this browser, everywhere it is used
+document.addEventListener('click', e => {
+  const old = e.target.closest('[data-rename-topic]')?.dataset.renameTopic;
+  if (!old) return;
+  const name = prompt(`New name for "${old}":`, old)?.trim().replace(/s+/g, ' ').slice(0, 60);
+  if (!name || name === old) return;
+  if (db.topics.some(t => t.toLowerCase() === name.toLowerCase() && t !== old)) return alert('That topic already exists.');
+  db.topics = db.topics.map(t => t === old ? name : t);
+  for (const k of ['questions', 'sources', 'notes', 'courses']) for (const x of db[k] ?? []) {
+    if (x.topic === old) x.topic = name;
+    if (Array.isArray(x.topics)) x.topics = x.topics.map(t => t === old ? name : t);
+  }
+  save();
+});
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-del], [data-del-topic]');
   if (!b) return;

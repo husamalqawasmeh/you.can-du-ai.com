@@ -265,3 +265,4 @@ header .topbar { order: 2; flex-shrink: 0; }
 #iv-jobs label { display: flex; gap: 6px; align-items: baseline; }
 #iv-jobs .iv-job-name { flex: 1; min-width: 0; }
 #iv-jobs .iv-job-n { color: var(--muted); font-variant-numeric: tabular-nums; }
+#iv-filter legend { font-weight: 700; color: var(--accent); }
