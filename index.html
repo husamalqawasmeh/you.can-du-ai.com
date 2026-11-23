@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You Can Du AI</title>
 <meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
-<link rel="stylesheet" href="style.css?v=142">
+<link rel="stylesheet" href="style.css?v=144">
 </head>
 <body>
 <header>
@@ -138,13 +138,6 @@
 
   <!-- LIBRARY: every box full width, collapsed until opened -->
   <section id="library" class="tab" hidden>
-    <details class="card fold">
-      <summary><h2>Topics</h2></summary>
-      <form id="topic-form">
-        <div class="row"><input name="name" placeholder="New topic, e.g. AI Networking" required><button class="primary">Add</button></div>
-        <ul id="topic-list" class="list"></ul>
-      </form>
-    </details>
     <details class="card fold">
       <summary><h2>Course library</h2></summary>
       <ul id="course-list" class="list"></ul>
@@ -284,9 +277,16 @@
     </form>
     <div id="admin-body" hidden>
     <p><button type="button" id="admin-logout">Lock admin</button></p>
+    <details class="card fold">
+      <summary><h2>Add a topic</h2></summary>
+      <form id="topic-form">
+        <div class="row"><input name="name" aria-label="New topic name" placeholder="New topic, e.g. AI Networking" required><button class="primary">Add</button></div>
+        <ul id="topic-list" class="list"></ul>
+      </form>
+    </details>
     <div class="grid">
-      <form id="source-form" class="card">
-        <h2>Add a site or source</h2>
+      <details class="card fold"><summary><h2>Add a site or source</h2></summary>
+      <form id="source-form">
         <label>Title <input name="title" required></label>
         <label>URL <input name="url" type="url" placeholder="https://"></label>
         <div class="row">
@@ -297,10 +297,11 @@
         <label>Notes <textarea name="notes" rows="2"></textarea></label>
         <button class="primary">Add source</button>
       </form>
+      </details>
     </div>
     <div class="grid">
-      <form id="course-add-form" class="card">
-        <h2>Add a course</h2>
+      <details class="card fold"><summary><h2>Add a course</h2></summary>
+      <form id="course-add-form">
         <p class="muted">Enter a course name, a link, or both.</p>
         <label>Course name <input name="title"></label>
         <label>Link <input name="url" type="url" placeholder="https://"></label>
@@ -308,9 +309,10 @@
         <label>Notes (optional) <input name="notes"></label>
         <button class="primary">Add course</button>
       </form>
+      </details>
     </div>
-    <form id="q-form" class="card">
-      <h2>Add a question</h2>
+    <details class="card fold"><summary><h2>Add a question</h2></summary>
+    <form id="q-form">
       <div class="row">
         <label>Topic <select name="topic" class="topic-select" required></select></label>
         <label>Type <select name="type">
@@ -328,18 +330,9 @@
       <label>Source (optional) <select name="sourceId" class="source-select"></select></label>
       <button class="primary">Add question</button>
     </form>
-    <div class="card">
-      <h2>Question bank <span id="q-total" class="muted"></span></h2>
-      <div class="row">
-        <label>Filter by topic <select id="q-filter-topic"><option value="">All topics</option></select></label>
-        <label>Difficulty <select id="q-filter-diff"><option value="">All levels</option><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option></select></label>
-        <label>Format <select id="q-filter-type"><option value="">All formats</option><option value="mcq">Multiple choice</option><option value="tf">True / False</option><option value="short">Short answer</option><option value="fill">Fill in the blank</option><option value="match">Matching</option></select></label>
-        <label>Search <input id="q-search" type="search"></label>
-      </div>
-      <ul id="q-list" class="list"></ul>
-    </div>
-    <form id="topic-gen-form" class="card">
-      <h2>Add content for a topic with AI</h2>
+    </details>
+    <details class="card fold"><summary><h2>Add content for a topic with AI</h2></summary>
+    <form id="topic-gen-form">
       <p class="muted">Type a topic name (an existing one, such as Evals or Decision Models, or a new one). Gemini writes knowledge notes, test questions and interview prep questions for it. Uses the Gemini key in Settings; new content is saved in this browser.</p>
       <div class="row">
         <label>Topic name <input name="topic" list="topic-gen-list" required placeholder="e.g. Evals"><datalist id="topic-gen-list"></datalist></label>
@@ -350,13 +343,21 @@
       <button class="primary">Generate and add</button>
       <p id="topic-gen-status" class="muted" aria-live="polite"></p>
     </form>
-    <div class="card">
-      <h2>Interview question bank</h2>
+    </details>
+    <details class="card fold"><summary><h2>Question bank <span id="q-total" class="muted"></span></h2></summary>
+      <div class="row">
+        <label>Filter by topic <select id="q-filter-topic"><option value="">All topics</option></select></label>
+        <label>Difficulty <select id="q-filter-diff"><option value="">All levels</option><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option></select></label>
+        <label>Format <select id="q-filter-type"><option value="">All formats</option><option value="mcq">Multiple choice</option><option value="tf">True / False</option><option value="short">Short answer</option><option value="fill">Fill in the blank</option><option value="match">Matching</option></select></label>
+        <label>Search <input id="q-search" type="search"></label>
+      </div>
+      <ul id="q-list" class="list"></ul>
+    </details>
+    <details class="card fold"><summary><h2>Interview question bank</h2></summary>
       <p class="muted">Candidate questions gathered from AI interview guides. Click <strong>Add</strong> to put one on the Interview prep list. Added questions are saved in this browser.</p>
       <div id="ivbank"><p class="muted">Loading…</p></div>
-    </div>
-    <div class="card">
-      <h2>Data: backup and restore</h2>
+    </details>
+    <details class="card fold"><summary><h2>Data: backup and restore</h2></summary>
       <p>Everything you add is saved in this browser. Export a backup regularly, and import it to move your knowledge base to another device.</p>
       <p id="data-stats" class="muted"></p>
       <div class="row">
@@ -364,10 +365,10 @@
         <label class="button">Import backup<input id="import-file" type="file" accept="application/json,.json" hidden></label>
       </div>
       <p class="muted">Import merges with what you have: items with the same id are replaced by the imported copy.</p>
-    </div>
+    </details>
     </div>
   </section>
 </main>
-<script type="module" src="app.js?v=142"></script>
+<script type="module" src="app.js?v=144"></script>
 </body>
 </html>
