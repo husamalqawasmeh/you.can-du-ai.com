@@ -217,7 +217,7 @@
       "followup": "Why can peak FLOPS be misleading when choosing a GPU for LLM inference?",
       "answer": "FLOPS = floating-point operations per second, a measure of compute speed (TFLOPS = trillions, PFLOPS = quadrillions). Peak FLOPS is a best case at one precision (often FP8 or FP4, sometimes with sparsity).\n\nLLM token generation is usually limited by memory bandwidth, not compute, so a GPU with more memory bandwidth and capacity can be faster for inference even with lower peak FLOPS.",
       "topics": [
-        "AI H/W and Semiconductors",
+        "AI H/W & Semiconductors",
         "AI Sizing"
       ]
     },
@@ -271,7 +271,7 @@
       "answer": "LLMs: MMLU/MMLU-Pro (knowledge), GPQA (expert science), HumanEval and SWE-bench (coding), GSM8K and AIME (math), MMMU (multimodal), LMArena (human preference). Hardware: MLPerf Training and Inference (speed across systems).\n\nResults mislead through contamination (test data in training), saturation (top models all near 100%), and different settings (prompts, precision, batch size). For your use case, build your own eval set and measure quality, latency, throughput and cost on your hardware.",
       "topics": [
         "Evals",
-        "AI H/W and Semiconductors",
+        "AI H/W & Semiconductors",
         "Benchmarking"
       ]
     },
@@ -312,7 +312,7 @@
       "followup": "Why does a single supplier (ASML) for these machines matter for the AI hardware supply chain and for export controls?",
       "answer": "EUV lithography machines print the tiniest chip patterns using 13.5 nm extreme ultraviolet light, made by firing lasers at tin droplets, focused with ultra-precise mirrors in a vacuum. Only ASML (Netherlands) makes them; each costs well over $150 million (high-NA versions even more). They are needed for the most advanced chips (about 7 nm and below), such as NVIDIA GPUs made by TSMC.\n\nA single supplier is a supply-chain choke point, and export controls on EUV machines are used to limit which countries can make leading-edge AI chips.",
       "topics": [
-        "AI H/W and Semiconductors"
+        "AI H/W & Semiconductors"
       ]
     },
     {
@@ -331,7 +331,7 @@
       "answer": "1) Make the site responsive and mobile-friendly. 2) Quick option: turn it into a PWA (manifest plus service worker) so it can be installed and work offline. 3) For app stores: wrap it with Capacitor (or Cordova) to make iOS and Android apps and add native plugins (camera, push notifications). 4) For best performance and native feel: rebuild in React Native or Flutter. 5) Test on real devices, then publish to the App Store and Google Play.\n\nPWA is cheapest but limited on iOS and not in stores by default; wrappers are fast but app review may reject apps that are \"just a website\"; rewrites cost most but give full device access.",
       "topics": [
         "Tools and automation",
-        "System design and production",
+        "System/Product design",
         "AI Development"
       ]
     },
@@ -341,7 +341,7 @@
       "answer": "Ansible (Red Hat) is an open-source automation tool for configuring servers, deploying apps and managing infrastructure. A playbook is a YAML file listing plays: which hosts, and which tasks (modules such as apt, copy, service) to run, written to be idempotent (safe to run again). Example: install nginx, copy the config, start the service on all web servers.\n\nYes, it works across remote servers: it is agentless, connects over SSH (WinRM for Windows) using an inventory of hosts, and runs tasks on many hosts in parallel (controlled by forks).",
       "topics": [
         "Tools and automation",
-        "System design and production",
+        "System/Product design",
         "AI Development",
         "CLI"
       ]
@@ -644,7 +644,7 @@
       "q": "Design a customer-support chatbot for a bank.",
       "followup": "Why do regulated industries need extra guardrails and audit logs?",
       "topics": [
-        "System design and production",
+        "System/Product design",
         "AI Engineering"
       ]
     },
@@ -653,7 +653,7 @@
       "q": "Design an enterprise search assistant for 100,000 employees.",
       "followup": "Why do caching and access control dominate the design at that scale?",
       "topics": [
-        "System design and production",
+        "System/Product design",
         "AI Engineering"
       ]
     },
@@ -662,7 +662,7 @@
       "q": "How do you reduce LLM cost without hurting quality?",
       "followup": "Why is routing easy requests to a smaller model so effective?",
       "topics": [
-        "System design and production",
+        "System/Product design",
         "AI Engineering",
         "AI Sizing"
       ]
@@ -672,7 +672,7 @@
       "q": "How do you reduce latency for a chat application?",
       "followup": "Why does streaming improve how fast the app feels?",
       "topics": [
-        "System design and production",
+        "System/Product design",
         "AI Engineering",
         "AI Sizing"
       ]
@@ -682,7 +682,7 @@
       "q": "What do you monitor for an LLM application in production?",
       "followup": "Why do you need to log prompts and outputs, and how do you protect PII in them?",
       "topics": [
-        "System design and production",
+        "System/Product design",
         "AI Engineering"
       ]
     },
@@ -691,10 +691,10 @@
       "q": "How do you size GPUs for serving a 70B-parameter model?",
       "followup": "Why does memory, not compute, usually decide the GPU count?",
       "topics": [
-        "System design and production",
+        "System/Product design",
         "AI Engineering",
         "AI Sizing",
-        "AI H/W and Semiconductors"
+        "AI H/W & Semiconductors"
       ]
     },
     {
@@ -702,7 +702,7 @@
       "q": "How do you handle rate limits and outages from an LLM provider?",
       "followup": "Why is a fallback model part of a reliable design?",
       "topics": [
-        "System design and production",
+        "System/Product design",
         "AI Engineering"
       ]
     },
@@ -2282,8 +2282,8 @@
       "followup": "Which levers (quantization, KV cache, batching, a smaller model) would you pull first to cut cost, and what would you measure?",
       "answer": "Weights: 70B in FP16 is about 140 GB, in FP8 about 70 GB, in 4-bit about 35-40 GB. KV cache: for a Llama-70B-style model (80 layers, 8 KV heads with GQA, head size 128, FP16) about 0.33 MB per token, so 100 users × 8K tokens ≈ 800K tokens ≈ 260 GB at full use. Total in FP16 ≈ 400+ GB, for example a node of 8 × 80 GB GPUs with tensor parallelism; FP8 weights and FP8 KV cache can roughly halve it.\n\nLevers in order: FP8/4-bit quantization (check evals), FP8 KV cache and PagedAttention, continuous batching, prefix caching, then a smaller or distilled model. Measure quality, p95 latency, throughput and cost per million tokens.",
       "topics": [
-        "AI H/W and Semiconductors",
-        "System design and production",
+        "AI H/W & Semiconductors",
+        "System/Product design",
         "AI Sizing"
       ]
     },
@@ -2292,7 +2292,7 @@
       "followup": "Which metrics (TTFT, time per output token, p95) would you put on the dashboard, and why?",
       "answer": "Latency is how long one user waits: time to first token plus time per output token × output length. Throughput is how much work the whole system does: tokens or requests per second across all users. Bigger batches raise throughput and lower cost per token but can raise each user's latency, so set a latency target (for example p95 TTFT under 1 s) and maximize throughput within it.\n\nDashboard: TTFT and time per output token at p50/p95/p99, tokens per second, requests per second, queue time, GPU utilization, error rate and cost per million tokens.",
       "topics": [
-        "System design and production",
+        "System/Product design",
         "LLMs",
         "AI Sizing",
         "AI Engineering"
@@ -2321,7 +2321,7 @@
       "followup": "How do you know it is working after launch, and what would make you roll it back?",
       "answer": "1) Define the problem, users and a success metric. 2) Check data and feasibility; build a quick prototype. 3) Build an eval set and a baseline. 4) Iterate on prompts, RAG or model choice until evals pass. 5) Add guardrails, security, privacy review and cost limits. 6) Ship behind a feature flag to a small group or A/B test. 7) Monitor quality, latency, cost, errors and feedback with tracing.\n\nRoll back if quality or business metrics drop, costs spike, or safety or privacy incidents happen.",
       "topics": [
-        "System design and production",
+        "System/Product design",
         "AI Engineering",
         "Product and project management"
       ]
@@ -2331,7 +2331,7 @@
       "followup": "How would you give a container GPU access, and where would you keep the model weights?",
       "answer": "A container packages an app with its code, runtime and libraries so it runs the same everywhere; it shares the host OS kernel, so it is lighter than a VM. AI needs it because Python, PyTorch, CUDA and driver versions must match exactly; containers give reproducibility, portability across clouds, ready-made serving images (vLLM, TGI, Triton, NVIDIA NIM), scaling with Kubernetes and sandboxing for agent-generated code.\n\nGPU access: install NVIDIA drivers and the NVIDIA Container Toolkit on the host and run with --gpus all (or the GPU operator on Kubernetes). Keep model weights outside the image on a mounted volume or download them at start.",
       "topics": [
-        "System design and production",
+        "System/Product design",
         "Tools and automation",
         "AI Development"
       ]
@@ -2342,8 +2342,8 @@
       "answer": "Quantization stores weights (and sometimes activations or KV cache) with fewer bits: FP16 → 8-bit → 4-bit. 8-bit halves memory with almost no quality loss; 4-bit cuts memory by about 4× and speeds up decoding, but may lose some quality, especially on math, code and long contexts; below 4 bits loss grows. Methods: GPTQ, AWQ, bitsandbytes, FP8, GGUF for llama.cpp.\n\nTo check it: run the same eval set on original and quantized models, compare scores, spot-check outputs, test long-context and edge cases, and measure latency and memory before production.",
       "topics": [
         "LLMs",
-        "System design and production",
-        "AI H/W and Semiconductors",
+        "System/Product design",
+        "AI H/W & Semiconductors",
         "AI Sizing"
       ]
     },
@@ -2352,7 +2352,7 @@
       "followup": "For a 70B model, which would you buy and why: memory size, memory bandwidth or software support?",
       "answer": "DGX Spark is NVIDIA's desktop AI computer with the GB10 Grace Blackwell chip and 128 GB unified memory (about 273 GB/s), running the full CUDA stack; it fits models up to about 200B parameters in FP4 and is great for prototyping and fine-tuning. Mac Studio M3 Ultra: up to 512 GB and about 819 GB/s, so faster generation on big models, but no CUDA. AMD Strix Halo mini PCs: up to 128 GB at about 256 GB/s, cheaper, ROCm. RTX 5090: only 32 GB but about 1.8 TB/s, fastest when the model fits.\n\nFor a 70B model: memory size decides if it fits (4-bit ≈ 40 GB), bandwidth decides speed, software decides ease; for CUDA work pick Spark, for fastest local chat at 70B a Mac Studio, for small models an RTX 5090.",
       "topics": [
-        "AI H/W and Semiconductors",
+        "AI H/W & Semiconductors",
         "AI Sizing"
       ]
     },
@@ -2371,7 +2371,7 @@
       "followup": "How does packaging capacity affect GPU supply and the cost of running large models?",
       "answer": "CoWoS (Chip-on-Wafer-on-Substrate) is TSMC's 2.5D packaging: the GPU die and HBM stacks sit side by side on a silicon (or organic) interposer with very dense wiring, mounted on a package substrate. AI accelerators are limited by memory bandwidth, and HBM only reaches terabytes per second when it sits right next to the GPU with thousands of short links. CoWoS also gets past the reticle limit by joining several dies, as in NVIDIA Blackwell B200 (two GPU dies on CoWoS-L). Since 2023 CoWoS and HBM capacity, not die production, have been the main bottleneck for AI GPU supply, so TSMC keeps doubling capacity.\n\nFor engineers this means GPU availability and price depend on the whole supply chain, which affects cloud pricing and hardware planning.",
       "topics": [
-        "AI H/W and Semiconductors"
+        "AI H/W & Semiconductors"
       ]
     },
     {
@@ -2379,7 +2379,7 @@
       "followup": "What are its trade-offs (cost, exposure field size) and how do they affect very large AI accelerators?",
       "answer": "ASML is the only maker of EUV lithography machines, which print the smallest features on leading-edge chips using 13.5 nm light from a tin plasma, steered by mirrors in a vacuum. Standard EUV has a numerical aperture of 0.33; High-NA EUV (EXE:5000/5200) raises it to 0.55, printing about 1.7x smaller features (about 8 nm resolution) and nearly 3x the density per exposure, and can replace costly multi-patterning. Smaller nodes give AI accelerators more compute per watt, lowering training and inference cost.\n\nTrade-offs: about $350-400 million per machine, and a half-size exposure field, so very large AI dies need stitching or multi-die designs with packaging like CoWoS. Intel adopted it first; TSMC and Samsung plan it for later nodes. Export controls keep EUV out of China, making it a strategic part of the AI race.",
       "topics": [
-        "AI H/W and Semiconductors"
+        "AI H/W & Semiconductors"
       ]
     },
     {
@@ -2387,7 +2387,7 @@
       "followup": "If you had to run LLMs on AMD instead of NVIDIA GPUs, what would change in your software stack?",
       "answer": "NVIDIA and AMD are fabless: they design GPUs but do not own fabs. TSMC is the leading foundry that manufactures their chips on advanced nodes (4N, N3, N2) and packages them with HBM using CoWoS; ASML supplies the EUV machines the fabs need. CUDA is NVIDIA's software platform (kernels plus libraries like cuBLAS, cuDNN, NCCL, TensorRT) that PyTorch and most AI tools use, and its ecosystem is NVIDIA's main moat. AMD competes with Instinct GPUs (MI300X, MI355X) that offer more HBM per GPU, and with ROCm/HIP as its CUDA alternative.\n\nMoving to AMD: use ROCm builds of PyTorch and inference engines like vLLM or SGLang, port custom CUDA kernels with HIP or rewrite them in Triton, replace NCCL with RCCL, and test performance and stability because library coverage is narrower.",
       "topics": [
-        "AI H/W and Semiconductors",
+        "AI H/W & Semiconductors",
         "AI industry and news"
       ]
     },

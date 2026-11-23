@@ -210,43 +210,43 @@
     },
     {
       "id": "bank-system-design-and-production-1",
-      "category": "System design and production",
+      "category": "System/Product design",
       "q": "Design a customer-support chatbot for a bank.",
       "followup": "Why do regulated industries need extra guardrails and audit logs?"
     },
     {
       "id": "bank-system-design-and-production-2",
-      "category": "System design and production",
+      "category": "System/Product design",
       "q": "Design an enterprise search assistant for 100,000 employees.",
       "followup": "Why do caching and access control dominate the design at that scale?"
     },
     {
       "id": "bank-system-design-and-production-3",
-      "category": "System design and production",
+      "category": "System/Product design",
       "q": "How do you reduce LLM cost without hurting quality?",
       "followup": "Why is routing easy requests to a smaller model so effective?"
     },
     {
       "id": "bank-system-design-and-production-4",
-      "category": "System design and production",
+      "category": "System/Product design",
       "q": "How do you reduce latency for a chat application?",
       "followup": "Why does streaming improve how fast the app feels?"
     },
     {
       "id": "bank-system-design-and-production-5",
-      "category": "System design and production",
+      "category": "System/Product design",
       "q": "What do you monitor for an LLM application in production?",
       "followup": "Why do you need to log prompts and outputs, and how do you protect PII in them?"
     },
     {
       "id": "bank-system-design-and-production-6",
-      "category": "System design and production",
+      "category": "System/Product design",
       "q": "How do you size GPUs for serving a 70B-parameter model?",
       "followup": "Why does memory, not compute, usually decide the GPU count?"
     },
     {
       "id": "bank-system-design-and-production-8",
-      "category": "System design and production",
+      "category": "System/Product design",
       "q": "How do you handle rate limits and outages from an LLM provider?",
       "followup": "Why is a fallback model part of a reliable design?"
     },
