@@ -1809,6 +1809,62 @@
       "title": "TSMC: the foundry behind AI chips",
       "body": "TSMC (Taiwan Semiconductor Manufacturing Company), founded in 1987 by Morris Chang in Hsinchu, Taiwan, is the world's largest contract chip maker (foundry) with roughly two-thirds of the foundry market and most of the leading-edge share. It makes chips for NVIDIA (H100, Blackwell, Rubin), AMD, Apple, Qualcomm, Broadcom, Google TPUs, AWS Trainium and many others. It never sells chips under its own brand, so customers trust it with their designs. Process nodes: N5 and N4 (H100 is on a custom 4N), N3 (3 nm), N2 (2 nm, using gate-all-around nanosheet transistors, volume production from late 2025) and A16 (with backside power delivery). It also leads advanced packaging (CoWoS, SoIC), which AI GPUs need. TSMC is building fabs in Arizona (USA), Kumamoto (Japan) and Dresden (Germany). Risk: so much AI chip production in Taiwan creates geopolitical risk for the whole AI industry.",
       "sourceId": ""
+    },
+    {
+      "id": "note-64",
+      "topic": "Evals",
+      "title": "Eval metrics: which score for which task",
+      "body": "Pick the metric from the task. Exact match and accuracy: for classification, multiple choice and short factual answers. Code: run unit tests; pass@k is the chance that at least one of k generated samples passes. Structured output: JSON schema validity, field-level accuracy. Text overlap metrics (BLEU for translation, ROUGE for summaries) compare words with a reference answer; cheap but they miss meaning and punish good paraphrases. Embedding similarity (BERTScore, cosine similarity) compares meaning instead of words. Open-ended answers (helpfulness, tone, correctness against a rubric): LLM-as-a-judge or human review. RAG: faithfulness (answer supported by retrieved context), answer relevance, context precision and context recall. Operational metrics belong in every eval too: latency, cost per request, token usage and refusal rate. Rule of thumb: use the cheapest deterministic check that captures the requirement, and save judges and humans for what code cannot check.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-65",
+      "topic": "Evals",
+      "title": "LLM-as-a-judge: doing it well",
+      "body": "An LLM judge grades another model's output against a rubric. Good practice: 1) Give a clear rubric with concrete pass/fail criteria or a small scale (1-5) with examples for each score. 2) Prefer binary or pairwise judgments over fine-grained scores; they agree better with humans. 3) Ask for a short reasoning before the verdict, and return structured output (JSON). 4) Grade one criterion per call (for example correctness separately from tone). 5) Calibrate: label a sample by hand and measure agreement (accuracy, Cohen's kappa) between judge and humans before trusting it; re-check when the judge model changes. Known biases: position bias (prefers the first answer in pairwise; fix by swapping order), verbosity bias (prefers longer answers), self-preference (prefers its own model family) and leniency. Use a strong model as judge and keep the judge prompt under version control like any other code.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-66",
+      "topic": "Evals",
+      "title": "Evaluating agents",
+      "body": "Agents take many steps, so evaluate both the result and the path. Outcome metrics: task success rate (did it finish the goal?), measured by checking the final state (tests pass, ticket closed, database row correct). Trajectory metrics: right tools chosen, correct tool arguments, number of steps, loops or repeated calls, recovery after errors. Efficiency: tokens, cost, wall-clock time per task. Safety: did it take forbidden actions, leak data or follow injected instructions? Because agents are non-deterministic, run each task several times and report pass rate (pass^k is the chance that all k runs succeed, a reliability measure). Public agent benchmarks: SWE-bench Verified (fix real GitHub issues), Terminal-Bench (command-line tasks), tau-bench (customer-service tools with simulated users), WebArena and OSWorld (web and desktop use), GAIA (general assistant tasks). Build your own task suite from real user requests as soon as possible.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-67",
+      "topic": "Evals",
+      "title": "Eval tooling and statistics",
+      "body": "Tools: promptfoo (CLI, config-based tests and red teaming), DeepEval (pytest-style LLM tests), Ragas (RAG metrics), OpenAI Evals, UK AISI Inspect (agent and safety evals), LangSmith, Braintrust, Arize Phoenix and Langfuse (tracing plus datasets and online scoring). Run evals in CI so every prompt or model change is tested before release. Statistics matter: with 50 test cases, a change from 80% to 84% is usually noise; report confidence intervals (bootstrap) and use paired comparisons on the same cases. Grow the dataset from production failures. Watch for data contamination (benchmark questions leaked into training data) and for overfitting your prompt to a small eval set; keep a held-out set. Online evals: sample live traffic, score it with judges or user feedback (thumbs up/down, edits, retries) and track drift over time.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-68",
+      "topic": "Decision Models",
+      "title": "Evaluating classifiers that drive decisions",
+      "body": "A confusion matrix counts true positives, false positives, true negatives and false negatives. Precision = TP / (TP + FP): of the cases flagged, how many were right. Recall = TP / (TP + FN): of the real cases, how many were caught. F1 is their harmonic mean. Accuracy misleads on imbalanced data (with 1% fraud, always saying \"no fraud\" is 99% accurate). ROC-AUC measures how well the model ranks positives above negatives across all thresholds; PR-AUC is more informative when positives are rare. Calibration checks that predicted probabilities match reality (of cases scored 0.8, about 80% should be positive); check with a reliability diagram and fix with Platt scaling or isotonic regression. Calibrated probabilities are needed for expected-cost decisions. Finally, translate errors into money: cost of a false positive versus a false negative, and pick the threshold that minimises total expected cost.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-69",
+      "topic": "Decision Models",
+      "title": "Decisions under uncertainty: criteria and value of information",
+      "body": "When probabilities are known, choose by expected value or expected utility (utility captures risk aversion: losing $1M hurts more than winning $1M helps). When probabilities are unknown: maximin picks the action with the best worst case (cautious), maximax the best best case (optimistic), minimax regret minimises the largest \"I wish I had chosen differently\" loss, and the Hurwicz criterion mixes best and worst cases. A decision tree diagram (decision nodes as squares, chance nodes as circles) is solved by \"rolling back\": compute expected values from the leaves towards the root. Value of information: the expected value of perfect information (EVPI) = expected value with perfect knowledge minus the best expected value now; it is the most you should pay for a test, survey or extra data. Sensitivity analysis shows which inputs could change the decision.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-70",
+      "topic": "Decision Models",
+      "title": "Bandits, experiments and sequential decisions",
+      "body": "A/B testing splits traffic evenly between options and decides at the end; simple and statistically clean, but it keeps sending users to the worse option during the test. Multi-armed bandits balance exploration (trying options to learn) and exploitation (using the best option so far) while learning. Common algorithms: epsilon-greedy (explore at random with probability epsilon), UCB (upper confidence bound: pick the option with the highest optimistic estimate) and Thompson sampling (sample from each option's posterior and pick the best sample). Contextual bandits use features of the user or situation, as in recommendations and ad selection. Full reinforcement learning (MDPs) is needed when actions change future states. In LLM systems, these ideas appear in model routing (choose a cheap or strong model per request), prompt selection, and RLHF, where a policy learns from rewards.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-71",
+      "topic": "Decision Models",
+      "title": "LLMs and decision-making",
+      "body": "LLMs are increasingly used inside decisions: classifying tickets, approving refunds, routing requests, ranking candidates or choosing an agent's next action. Good design: let the LLM extract facts and give reasons, but keep hard rules and limits (amounts, eligibility, compliance) in deterministic code or DMN tables; ask for structured output with a decision and a confidence; route low-confidence or high-impact cases to a human (human-in-the-loop); log inputs, outputs and the model version for audit. Risks: inconsistent answers to the same input (use temperature 0, fixed prompts, several samples or majority vote), sensitivity to wording and order, hidden bias, and prompt injection in user-provided text. Evaluate the decision itself, not only the text: measure accuracy against labelled past decisions, cost of errors, fairness across groups and agreement with human experts.",
+      "sourceId": ""
     }
   ],
   "questions": [
@@ -8450,6 +8506,322 @@
       ],
       "answer": "CUDA → NVIDIA; ROCm → AMD; oneAPI → Intel; Metal / MLX → Apple; Triton → OpenAI (portable GPU kernels)",
       "explanation": "CUDA has the largest ecosystem; others try to close the gap.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-216",
+      "topic": "Evals",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What does pass@k measure for code generation?",
+      "options": [
+        "The chance that at least one of k generated samples passes the tests",
+        "The number of tests in the suite",
+        "How fast the code runs",
+        "The number of lines of code"
+      ],
+      "answer": "The chance that at least one of k generated samples passes the tests",
+      "explanation": "pass@1 is the usual headline number; higher k rewards diversity.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-217",
+      "topic": "Evals",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which metric family compares generated text with a reference by overlapping words, as used for summaries?",
+      "options": [
+        "ROUGE",
+        "pass@k",
+        "Cohen's kappa",
+        "Latency"
+      ],
+      "answer": "ROUGE",
+      "explanation": "BLEU is similar for translation; both miss meaning and paraphrases.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-218",
+      "topic": "Evals",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "BLEU and ROUGE reliably reward a correct answer even when it is worded very differently from the reference.",
+      "answer": "False",
+      "explanation": "They count overlapping words; embedding metrics or judges handle paraphrases better.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-219",
+      "topic": "Evals",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "In pairwise LLM-as-a-judge evaluation, how do you reduce position bias?",
+      "options": [
+        "Run each comparison twice with the answer order swapped",
+        "Always put the longer answer first",
+        "Use a higher temperature",
+        "Remove the rubric"
+      ],
+      "answer": "Run each comparison twice with the answer order swapped",
+      "explanation": "Judges often prefer whichever answer comes first.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-220",
+      "topic": "Evals",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which bias makes an LLM judge prefer longer answers even when they are not better?",
+      "options": [
+        "Verbosity bias",
+        "Position bias",
+        "Recency bias",
+        "Selection bias"
+      ],
+      "answer": "Verbosity bias",
+      "explanation": "Rubrics and length-controlled comparisons help.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-221",
+      "topic": "Evals",
+      "type": "fill",
+      "difficulty": "hard",
+      "prompt": "Agreement between an LLM judge and human labels, corrected for chance, is often measured with Cohen's ___.",
+      "answer": "kappa",
+      "explanation": "Plain accuracy can look high just by chance on imbalanced labels.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-222",
+      "topic": "Evals",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "When evaluating an agent, what does a trajectory metric look at?",
+      "options": [
+        "The steps it took: tools chosen, arguments, loops and recovery",
+        "Only the final answer text",
+        "The size of the model",
+        "The colour of the UI"
+      ],
+      "answer": "The steps it took: tools chosen, arguments, loops and recovery",
+      "explanation": "Outcome metrics check the final result; trajectory metrics check the path.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-223",
+      "topic": "Evals",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which benchmark asks agents to fix real GitHub issues so the repository tests pass?",
+      "options": [
+        "SWE-bench Verified",
+        "MMLU",
+        "HellaSwag",
+        "ImageNet"
+      ],
+      "answer": "SWE-bench Verified",
+      "explanation": "Terminal-Bench, tau-bench and OSWorld test other kinds of agent work.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-224",
+      "topic": "Evals",
+      "type": "tf",
+      "difficulty": "hard",
+      "prompt": "With only 50 test cases, a score change from 80% to 84% is strong proof that the new prompt is better.",
+      "answer": "False",
+      "explanation": "That is 2 cases; report confidence intervals and use more or paired cases.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-225",
+      "topic": "Evals",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is data contamination in benchmarks?",
+      "options": [
+        "Benchmark questions or answers leaked into the model's training data",
+        "Bugs in the scoring script",
+        "Too many test cases",
+        "Using a GPU for evaluation"
+      ],
+      "answer": "Benchmark questions or answers leaked into the model's training data",
+      "explanation": "It inflates scores; use fresh or held-out tests.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-226",
+      "topic": "Evals",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which tool is a CLI for config-based LLM tests and red teaming?",
+      "options": [
+        "promptfoo",
+        "Docker",
+        "Kubernetes",
+        "Pandas"
+      ],
+      "answer": "promptfoo",
+      "explanation": "Ragas focuses on RAG metrics; DeepEval offers pytest-style tests.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-227",
+      "topic": "Evals",
+      "type": "match",
+      "difficulty": "medium",
+      "prompt": "Connect each task to a suitable eval method.",
+      "pairs": [
+        [
+          "Multiple-choice answer",
+          "Exact match"
+        ],
+        [
+          "Generated code",
+          "Run unit tests"
+        ],
+        [
+          "JSON output",
+          "Schema validation"
+        ],
+        [
+          "Helpful tone",
+          "LLM judge with a rubric"
+        ],
+        [
+          "RAG answer grounded in sources",
+          "Faithfulness score"
+        ]
+      ],
+      "answer": "Multiple-choice answer → Exact match; Generated code → Run unit tests; JSON output → Schema validation; Helpful tone → LLM judge with a rubric; RAG answer grounded in sources → Faithfulness score",
+      "explanation": "Use the cheapest check that captures the requirement.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-228",
+      "topic": "Decision Models",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What does precision measure?",
+      "options": [
+        "Of the cases the model flagged, the share that were truly positive",
+        "Of the truly positive cases, the share that were caught",
+        "The share of all predictions that were right",
+        "How fast the model predicts"
+      ],
+      "answer": "Of the cases the model flagged, the share that were truly positive",
+      "explanation": "Precision = TP / (TP + FP).",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-229",
+      "topic": "Decision Models",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What does recall measure?",
+      "options": [
+        "Of the truly positive cases, the share the model caught",
+        "Of the flagged cases, the share that were right",
+        "The area under the ROC curve",
+        "The number of features"
+      ],
+      "answer": "Of the truly positive cases, the share the model caught",
+      "explanation": "Recall = TP / (TP + FN).",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-230",
+      "topic": "Decision Models",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "On data with 1% fraud, a model that always predicts \"not fraud\" has 99% accuracy but is useless.",
+      "answer": "True",
+      "explanation": "That is why precision, recall and PR-AUC matter on imbalanced data.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-231",
+      "topic": "Decision Models",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "What does it mean for a classifier to be well calibrated?",
+      "options": [
+        "Its predicted probabilities match observed frequencies",
+        "It has 100% accuracy",
+        "It always predicts 0.5",
+        "It trains quickly"
+      ],
+      "answer": "Its predicted probabilities match observed frequencies",
+      "explanation": "Of cases scored 0.8, about 80% should be positive; needed for expected-cost decisions.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-232",
+      "topic": "Decision Models",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which decision rule picks the action with the best worst-case outcome?",
+      "options": [
+        "Maximin",
+        "Maximax",
+        "Expected value",
+        "Random choice"
+      ],
+      "answer": "Maximin",
+      "explanation": "Maximax picks the best best case; minimax regret minimises the largest regret.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-233",
+      "topic": "Decision Models",
+      "type": "fill",
+      "difficulty": "hard",
+      "prompt": "The most you should pay for perfect information before a decision is the expected value of perfect ___ (EVPI).",
+      "answer": "information",
+      "explanation": "EVPI = expected value with perfect knowledge minus the best expected value now.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-234",
+      "topic": "Decision Models",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "In a multi-armed bandit, what is the trade-off between trying options to learn and using the best one so far called?",
+      "options": [
+        "Exploration vs exploitation",
+        "Bias vs variance",
+        "Precision vs recall",
+        "Latency vs throughput"
+      ],
+      "answer": "Exploration vs exploitation",
+      "explanation": "Epsilon-greedy, UCB and Thompson sampling balance it in different ways.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-235",
+      "topic": "Decision Models",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Which bandit algorithm samples from each option's posterior distribution and picks the best sample?",
+      "options": [
+        "Thompson sampling",
+        "Epsilon-greedy",
+        "Gradient boosting",
+        "K-means"
+      ],
+      "answer": "Thompson sampling",
+      "explanation": "UCB picks the highest optimistic estimate; epsilon-greedy explores at random.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-236",
+      "topic": "Decision Models",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "When an LLM makes business decisions, hard limits like refund amounts are best enforced in deterministic code or rules, not only in the prompt.",
+      "answer": "True",
+      "explanation": "Let the LLM extract facts and reasons; keep limits in code and send risky cases to a human.",
       "sourceId": ""
     }
   ]
