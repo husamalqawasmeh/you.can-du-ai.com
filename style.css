@@ -236,7 +236,10 @@ nav button:last-child { margin-inline-end: 0; }
 #new-test { display: block; width: 100%; font-weight: 700; margin-top: 12px; }
 .run-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; } .run-actions button { margin: 0; font-weight: 700; }
 #test.running > #study-box, #test.running > #topic-success, #test.running > details.card.fold { display: none; } /* hidden while answering a test */
-.iv-filter { display: grid; grid-template-columns: minmax(0,2fr) minmax(0,1fr); gap: 8px 12px; margin: 10px 0 14px; }
+.iv-filter { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 8px 12px; margin: 10px 0 14px; }
 .iv-filter fieldset, .iv-filter button, .iv-filter p { grid-column: 1 / -1; margin: 0; }
 .iv-filter .checks { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2px 12px; }
 @media (max-width: 640px) { .iv-filter { grid-template-columns: 1fr; } }
+.iv-avail { display: flex; align-items: center; gap: 10px; }
+.iv-filter .iv-avail input { flex: 0 0 6em; width: 6em; margin: 0; }
+.iv-avail #iv-match { font-size: .88rem; }

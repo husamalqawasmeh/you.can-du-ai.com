@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=133';
-import { ADMIN_HASH } from './admin-hash.js?v=133';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=134';
+import { ADMIN_HASH } from './admin-hash.js?v=134';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -812,6 +812,12 @@ function renderInterview() {
   document.querySelectorAll('#iv-list .match').forEach(el => setupMatch(el, qs[+el.dataset.q].match));
 }
 ivForm.onsubmit = e => { e.preventDefault(); renderInterview(); };
+// live count of questions available for the chosen topics (like the test setup)
+function updateIvMatch() {
+  const topics = [...ivForm.querySelectorAll('#iv-topics input:checked')].map(c => c.value), n = ivPick(ivAll, ivForm.job.value, topics, 0).length;
+  $('#iv-match').textContent = `${n} question${n === 1 ? '' : 's'} available for these filters.`;
+}
+ivForm.addEventListener('change', updateIvMatch);
 async function loadInterview() {
   let p;
   try { p = await (await fetch('interview.json?v=44')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
@@ -822,6 +828,7 @@ async function loadInterview() {
   const checked = new Set([...ivForm.querySelectorAll('#iv-topics input:checked')].map(c => c.value));
   $('#iv-topics').innerHTML = [...new Set(ivAll.flatMap(q => q.topics ?? []))].sort().map(t => `<label><input type="checkbox" value="${esc(t)}"${checked.has(t) ? ' checked' : ''}> ${esc(t)}</label>`).join('');
   renderInterview();
+  updateIvMatch();
 }
 loadInterview();
 
