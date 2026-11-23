@@ -1035,6 +1035,95 @@
       ]
     },
     {
+      "id": "iv-deep-1",
+      "q": "What is the difference between MCP and A2A, and when would you use each?",
+      "followup": "How would you secure an agent that uses both?",
+      "topics": [
+        "Agents/MCP/Tool-use",
+        "AI Engineering",
+        "System/Product design"
+      ],
+      "answer": "MCP (Model Context Protocol) connects one agent to tools and data: a host runs a client per server, and servers expose tools, resources and prompts. A2A (Agent2Agent) connects agents to each other: agents publish Agent Cards describing their skills and exchange Tasks that move through states such as working and completed. Use MCP when the agent needs a capability (a database, an API, files) and A2A when it needs to delegate to another agent, possibly owned by another team or company. They are often combined: an agent reads its own data through MCP and asks a partner agent to act through A2A.\n\nTo secure it: least privilege per tool and per delegated agent, OAuth with short-lived tokens instead of shared keys, verify agent identity before delegating, allow-list servers and destinations, treat tool results and other agents' replies as untrusted (prompt injection), require human approval for irreversible actions, and log every call for audit."
+    },
+    {
+      "id": "iv-deep-2",
+      "q": "What are the main security risks of LLM applications and AI agents, and how do you mitigate them?",
+      "followup": "What is the \"lethal trifecta\", and how would you break it?",
+      "topics": [
+        "AI Security",
+        "AI Risk Management",
+        "Agents/MCP/Tool-use",
+        "AI Governance"
+      ],
+      "answer": "I use the OWASP Top 10 for LLM Applications (2025) as a checklist: prompt injection, sensitive information disclosure, supply chain, data and model poisoning, improper output handling, excessive agency, system prompt leakage, vector and embedding weaknesses, misinformation and unbounded consumption. For agents, OWASP's 2025 agentic list adds goal hijacking, tool misuse, privilege abuse, memory poisoning and rogue agents. Mitigations: treat model output as untrusted, least-privilege tools, keep secrets out of prompts, permission-aware retrieval, sandboxed code execution, rate limits and budgets, human approval for risky actions, red-teaming and logging.\n\nThe lethal trifecta is an agent with access to private data, exposure to untrusted content and the ability to communicate externally; together they let injected instructions exfiltrate data. Break it by removing one leg for risky tasks: no external sends, no untrusted input, or no private data in that session, plus allow-listed destinations."
+    },
+    {
+      "id": "iv-deep-3",
+      "q": "How does the EU AI Act affect an AI product, and what changed with the 2026 Digital Omnibus?",
+      "followup": "How would you set up AI governance in a company that operates in the EU?",
+      "topics": [
+        "AI Governance",
+        "AI Risk Management",
+        "AI Strategy"
+      ],
+      "answer": "The EU AI Act classifies AI by risk. Prohibited practices such as social scoring have applied since 2 February 2025, together with an AI literacy duty. General-purpose AI model providers have had documentation, copyright and transparency duties since 2 August 2025. High-risk systems (hiring, credit, education, essential services, law enforcement) need risk management, data governance, logging, human oversight and conformity assessment. Transparency rules require telling users they are talking to AI and labelling deepfakes. The 2026 Digital Omnibus delayed the high-risk rules: stand-alone Annex III systems to 2 December 2027 and product-embedded Annex I systems to 2 August 2028, while prohibitions, GPAI duties and transparency rules stayed on schedule.\n\nGovernance setup: an AI inventory, risk classification per system, an owner for each, controls per tier mapped to NIST AI RMF (Govern, Map, Measure, Manage) or ISO/IEC 42001, testing and human-review rules, incident logging, staff training and regular review."
+    },
+    {
+      "id": "iv-deep-4",
+      "q": "What is context engineering, and which techniques do you use for long-running agents?",
+      "followup": "How would you tell that an agent is suffering from context rot?",
+      "topics": [
+        "Context Engineering",
+        "Agents/MCP/Tool-use",
+        "Harnesses Engineering"
+      ],
+      "answer": "Context engineering is choosing the smallest set of high-signal tokens the model sees at each step, because quality drops as the context fills. For long-running agents I use compaction (summarise the history near the limit and clear old raw tool results), structured note-taking (the agent writes progress and decisions to a file and reads it back), sub-agents with clean context windows that return short summaries, and just-in-time retrieval (keep file paths or queries and load data only when needed). I also keep the system prompt clear but not brittle, and keep tools few, distinct and token-efficient.\n\nSigns of context rot: the agent forgets earlier instructions or decisions, repeats tool calls, contradicts itself, or quality falls as the session gets longer. I check it by comparing success rates on the same task at different context lengths and by inspecting traces."
+    },
+    {
+      "id": "iv-deep-5",
+      "q": "What is an agent harness, and what would you change to make a coding agent more reliable?",
+      "followup": "Why should benchmark results always name the harness?",
+      "topics": [
+        "Harnesses Engineering",
+        "Agents/MCP/Tool-use",
+        "AI Engineering"
+      ],
+      "answer": "A harness is everything around the model that makes it an agent: Agent = Model + Harness. It includes the control loop, the tools (file edits, shell, search), permissions and sandboxing, context management (compaction, memory files such as CLAUDE.md or AGENTS.md), sub-agents, hooks and recovery when steps fail. Claude Code, Codex and Gemini CLI are examples. To improve reliability I would tighten the feedback loop (run tests and linters after every edit), write clear tool descriptions with strict schemas, add project rules in a memory file, cap loops and retries, require approval for risky commands, and add evals built from real failures.\n\nBenchmarks should name the harness because the same model can score very differently with different harnesses; otherwise you credit the model for gains that came from the tooling."
+    },
+    {
+      "id": "iv-deep-6",
+      "q": "How do you choose between prompting, RAG and fine-tuning, and which fine-tuning method would you pick?",
+      "followup": "When would you use GRPO instead of DPO?",
+      "topics": [
+        "Model Fine-tuning",
+        "LLM / VLM / SLM / ALM",
+        "AI Engineering"
+      ],
+      "answer": "Start with prompting and examples; add RAG when the model needs fresh or private knowledge; fine-tune when you need consistent style or format, a narrow skill, lower latency or a smaller model. For fine-tuning, I start with supervised fine-tuning using LoRA (frozen base, small adapters), or QLoRA if GPU memory is tight because the base is quantized to 4 bits. DPO learns from pairs of preferred and rejected answers without a reward model, which suits tone and preferences. Always compare against the base model on a held-out eval set, and remember data quality matters more than the method.\n\nGRPO, from DeepSeek, is reinforcement fine-tuning: it samples several answers per prompt, scores them with a reward function and learns from the better ones. I use it when answers can be checked automatically, such as math, code with tests or structured extraction; I use DPO when I have human preference pairs but no reliable automatic grader."
+    },
+    {
+      "id": "iv-deep-7",
+      "q": "How do you write and maintain good prompts for a production LLM feature?",
+      "followup": "How do you know a prompt change is actually an improvement?",
+      "topics": [
+        "Prompt Engineering",
+        "Evals",
+        "AI Engineering"
+      ],
+      "answer": "I make the task explicit (goal, audience, format, constraints, what \"done\" means) and explain why rules matter. I add a few varied examples when format matters, separate instructions from data with clear tags, put long documents first and the question last, ask for structured JSON output when code reads the answer, and let the model reason step by step or use a reasoning model for hard cases. Big tasks become a chain of smaller prompts. Prompts live in version control with owners and change notes, and retrieved text is always treated as data, never as instructions.\n\nTo prove an improvement I run the old and new prompts on the same eval set, compare results case by case, check the sample size and confidence interval, look at what broke as well as what improved, and check cost and latency before shipping, often behind a small A/B test."
+    },
+    {
+      "id": "iv-deep-8",
+      "q": "What are world models such as Genie 3, and how do they compare with game engines?",
+      "followup": "Where would you use a world model today, and where would you not?",
+      "topics": [
+        "Game Engines",
+        "Generative AI",
+        "Frontier Labs"
+      ],
+      "answer": "A world model learns from video and actions to generate the next frames of an interactive environment. Google DeepMind's Genie 3 (August 2025) was its first to run in real time, at about 720p and 24 frames per second, with consistency for a few minutes. A game engine such as Unreal or Unity instead simulates the world from explicit assets, rules and physics code, so it is exact, repeatable and controllable. World models create varied environments instantly but forget details, cannot guarantee rules and are costly to run.\n\nI would use world models for rapid prototyping, concept exploration and generating diverse training environments for robots and agents. I would not use them for shipped games, competitive gameplay or anything that needs exact, repeatable rules; there, engines stay, with AI helping through neural upscaling such as DLSS, procedural content, coding help and LLM-driven characters."
+    },
+    {
       "q": "Name examples of automation software, then pick one and talk about it: what it automates, how it works and how you have used it (or would use it).",
       "followup": "Why would you choose that tool over the alternatives, and where would you add AI or a human check to the workflow?",
       "unit": "tools",

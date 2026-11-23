@@ -15,7 +15,11 @@
     "Benchmarking",
     "Decision Models",
     "Game Engines",
-    "AI Strategy"
+    "AI Strategy",
+    "Prompt Engineering",
+    "AI Security",
+    "AI Governance",
+    "Model Fine-tuning"
   ],
   "sources": [
     {
@@ -1439,6 +1443,195 @@
       "url": "https://www.oreilly.com/library/view/rewired-2nd-edition/9781394381906/",
       "notes": "By Eric Lamarre, Kate Smaje, Robert Levin, Alex Singla and Alexander Sukharevsky (April 2026, about 624 pages). McKinsey's playbook for tech and AI transformation, updated for generative and agentic AI. First edition (2023) by Lamarre, Smaje and Rodney Zemmel.",
       "lang": "en"
+    },
+    {
+      "id": "src-140",
+      "topic": "Agents & MCP",
+      "type": "Website",
+      "title": "Model Context Protocol (Wikipedia)",
+      "url": "https://en.wikipedia.org/wiki/Model_Context_Protocol",
+      "notes": "History, design and governance of MCP.",
+      "lang": "en"
+    },
+    {
+      "id": "src-141",
+      "topic": "Agents & MCP",
+      "type": "Website",
+      "title": "Agentic AI Foundation (AAIF) blog: MCP spec changes",
+      "url": "https://aaif.io/blog/mcp-2026-changes-the-rules",
+      "notes": "The Linux Foundation fund that now hosts MCP.",
+      "lang": "en"
+    },
+    {
+      "id": "src-142",
+      "topic": "Agents & MCP",
+      "type": "Website",
+      "title": "IBM: What is the Agent2Agent (A2A) protocol?",
+      "url": "https://www.ibm.com/think/topics/agent2agent-protocol",
+      "notes": "A2A agent cards, tasks and how A2A complements MCP.",
+      "lang": "en"
+    },
+    {
+      "id": "src-143",
+      "topic": "AI Security",
+      "type": "Website",
+      "title": "OWASP Top 10 for LLM Applications (GenAI Security Project)",
+      "url": "https://genai.owasp.org/llm-top-10/",
+      "notes": "The standard list of LLM application risks.",
+      "lang": "en"
+    },
+    {
+      "id": "src-144",
+      "topic": "AI Security",
+      "type": "Website",
+      "title": "OWASP Top 10 for Agentic Applications (Dec 2025)",
+      "url": "https://genai.owasp.org/2025/12/09/owasp-top-10-for-agentic-applications-the-benchmark-for-agentic-security-in-the-age-of-autonomous-ai/",
+      "notes": "Risks specific to autonomous agents (ASI01-ASI10).",
+      "lang": "en"
+    },
+    {
+      "id": "src-145",
+      "topic": "AI Governance",
+      "type": "Website",
+      "title": "EU AI Act Explorer: Digital Omnibus on AI",
+      "url": "https://artificialintelligenceact.eu/ai-act-explorer/digital-omnibus/",
+      "notes": "How the 2026 Digital Omnibus changed EU AI Act deadlines.",
+      "lang": "en"
+    },
+    {
+      "id": "src-146",
+      "topic": "AI Governance",
+      "type": "Website",
+      "title": "Orrick: EU AI Act update, Digital Omnibus finalizes 8 compliance changes (2026)",
+      "url": "https://www.orrick.com/en/Insights/2026/07/EU-AI-Act-Update-Digital-Omnibus-Finalizes-8-Compliance-Changes",
+      "notes": "Law-firm summary of the final Digital Omnibus changes.",
+      "lang": "en"
+    },
+    {
+      "id": "src-147",
+      "topic": "AI Governance",
+      "type": "Website",
+      "title": "NIST AI Risk Management Framework",
+      "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+      "notes": "Voluntary US framework: Govern, Map, Measure, Manage.",
+      "lang": "en"
+    },
+    {
+      "id": "src-148",
+      "topic": "Context Engineering",
+      "type": "Website",
+      "title": "Anthropic: Effective context engineering for AI agents",
+      "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+      "notes": "Compaction, note-taking, sub-agents and just-in-time retrieval.",
+      "lang": "en"
+    },
+    {
+      "id": "src-149",
+      "topic": "Harnesses",
+      "type": "Website",
+      "title": "Addy Osmani: Agent harness engineering",
+      "url": "https://addyosmani.com/blog/agent-harness-engineering/",
+      "notes": "What a harness is and what it contains.",
+      "lang": "en"
+    },
+    {
+      "id": "src-150",
+      "topic": "Harnesses",
+      "type": "Website",
+      "title": "freeCodeCamp: What is an agent harness?",
+      "url": "https://www.freecodecamp.org/news/what-is-an-agent-harness/",
+      "notes": "The architecture behind coding agents such as Claude Code.",
+      "lang": "en"
+    },
+    {
+      "id": "src-151",
+      "topic": "Benchmarking",
+      "type": "PDF",
+      "title": "Stanford AI Index Report 2026: Technical performance chapter",
+      "url": "https://hai.stanford.edu/assets/files/ai_index_report_2026_chapter_2_technical.pdf",
+      "notes": "Benchmark trends, saturation and new hard tests.",
+      "lang": "en"
+    },
+    {
+      "id": "src-152",
+      "topic": "Benchmarking",
+      "type": "Website",
+      "title": "Humanity's Last Exam (Wikipedia)",
+      "url": "https://en.wikipedia.org/wiki/Humanity%27s_Last_Exam",
+      "notes": "A hard expert-written benchmark from CAIS and Scale AI.",
+      "lang": "en"
+    },
+    {
+      "id": "src-153",
+      "topic": "Model Fine-tuning",
+      "type": "Docs",
+      "title": "Axolotl docs: Which fine-tuning method should I use?",
+      "url": "https://docs.axolotl.ai/docs/choosing_method.html",
+      "notes": "Choosing SFT, LoRA, QLoRA, DPO, KTO or GRPO.",
+      "lang": "en"
+    },
+    {
+      "id": "src-154",
+      "topic": "Model Fine-tuning",
+      "type": "Docs",
+      "title": "Together AI docs: Post-training methods",
+      "url": "https://docs.together.ai/docs/post-training/training-methods",
+      "notes": "SFT, LoRA, DPO and reinforcement fine-tuning explained.",
+      "lang": "en"
+    },
+    {
+      "id": "src-155",
+      "topic": "Game Engines",
+      "type": "Website",
+      "title": "Google DeepMind: Genie 3, a new frontier for world models",
+      "url": "https://deepmind.google/discover/blog/genie-3-a-new-frontier-for-world-models/",
+      "notes": "Real-time interactive world model (Aug 2025).",
+      "lang": "en"
+    },
+    {
+      "id": "src-156",
+      "topic": "Prompt Engineering",
+      "type": "Website",
+      "title": "Claude: Best practices for prompt engineering",
+      "url": "https://claude.com/blog/best-practices-for-prompt-engineering",
+      "notes": "Official prompting guidance from Anthropic.",
+      "lang": "en"
+    },
+    {
+      "id": "src-157",
+      "topic": "Prompt Engineering",
+      "type": "Website",
+      "title": "IBM: The 2026 guide to prompt engineering",
+      "url": "https://www.ibm.com/think/prompt-engineering",
+      "notes": "Techniques from zero-shot to chain-of-thought.",
+      "lang": "en"
+    },
+    {
+      "id": "src-158",
+      "topic": "Generative AI",
+      "type": "Website",
+      "title": "InVideo: AI video models that generate native sound (2026)",
+      "url": "https://invideo.io/blog/ai-video-models-with-audio/",
+      "notes": "Overview of video models with built-in audio.",
+      "lang": "en"
+    },
+    {
+      "id": "src-159",
+      "topic": "Frontier Labs",
+      "type": "Website",
+      "title": "DemandSphere: AI frontier model tracker",
+      "url": "https://www.demandsphere.com/research/demandsphere-radar/ai-frontier-model-tracker/",
+      "notes": "Tracks model releases across labs.",
+      "lang": "en"
+    },
+    {
+      "id": "src-160",
+      "topic": "LLMs",
+      "type": "Website",
+      "title": "Hugging Face: Mixture of Experts explained",
+      "url": "https://huggingface.co/blog/moe",
+      "notes": "How MoE models route tokens to experts.",
+      "lang": "en"
     }
   ],
   "notes": [
@@ -2015,6 +2208,132 @@
       "title": "Rewired (McKinsey): the six capabilities for tech and AI transformation",
       "sourceId": "src-139",
       "body": "Rewired is McKinsey's book on how companies win with digital technology and AI. The first edition (2023, Lamarre, Smaje and Zemmel) was subtitled \"The McKinsey Guide to Outcompeting in the Age of Digital and AI\". The second edition (Wiley, April 2026, by Eric Lamarre, Kate Smaje, Robert Levin, Alex Singla and Alexander Sukharevsky) updates it for generative and agentic AI, drawing on more than 200 enterprise-wide transformations and over 30 case studies. Its core is six capabilities a company must build together: 1) a business-led strategic roadmap that focuses on a few domains with big value; 2) talent: building an in-house bench of engineers, data and product people; 3) an operating model where small cross-functional agile teams own outcomes and scale; 4) technology: a distributed, modern tech stack (cloud, APIs, platforms) that lets teams ship fast; 5) data embedded everywhere, managed as reusable data products; 6) adoption and scaling: redesigning processes and roles, tracking adoption and replicating solutions across the business. Key ideas in the second edition: agentic AI means reimagining workflows end to end in targeted domains rather than adding AI to single tasks; adoption and change (process redesign, new human roles, tracking use) become a core discipline, the \"how\" behind AI's \"wow\"; and companies that built these capabilities in the first AI wave are pulling further ahead."
+    },
+    {
+      "id": "note-83",
+      "topic": "Agents & MCP",
+      "title": "MCP in 2026: governance, versions and what changed",
+      "body": "The Model Context Protocol (MCP), launched by Anthropic in November 2024, is an open standard that lets AI apps (hosts) connect to tools and data through servers. A host runs one client per server; servers expose tools (actions), resources (data) and prompts (templates) over JSON-RPC. The spec is versioned by date: 2024-11-05 (first release), 2025-03-26 (Streamable HTTP transport and OAuth-based authorization), 2025-06-18 (structured tool output and elicitation, where a server asks the user for input) and 2025-11-25 (async tasks for long-running work and an extensions system, among other changes). In December 2025 Anthropic donated MCP to the Agentic AI Foundation (AAIF), a fund hosted by the Linux Foundation and co-founded with OpenAI and Block, so changes now go through public Specification Enhancement Proposals (SEPs). Later 2026 revisions continue to simplify the protocol; check modelcontextprotocol.io for the current version. Practical lesson: pin the spec version your client and server support, and prefer remote servers with OAuth over sharing long-lived API keys.",
+      "sourceId": "src-140"
+    },
+    {
+      "id": "note-84",
+      "topic": "Agents & MCP",
+      "title": "A2A vs MCP: agent-to-agent vs agent-to-tool",
+      "body": "Agent2Agent (A2A) is an open protocol, first introduced by Google in 2025 and now a Linux Foundation project, for one AI agent to discover and delegate work to another. Each agent publishes an Agent Card, a JSON document usually at /.well-known/agent.json, listing its skills, accepted input and output types and how to authenticate. Work is sent as a Task, which moves through states such as submitted, working, input-required and completed; long jobs report progress by streaming or push notifications. A2A runs over HTTP and JSON-RPC. MCP solves a different problem: connecting one agent to tools and data (databases, APIs, files). A simple rule: use MCP when an agent needs a capability, and A2A when it needs a colleague. Many systems use both: an agent uses MCP internally to read its database, then uses A2A to ask a supplier's agent to place an order. Security matters for both: verify agent identity, limit what a delegated agent may do and log every hand-off.",
+      "sourceId": "src-142"
+    },
+    {
+      "id": "note-85",
+      "topic": "AI Security",
+      "title": "OWASP Top 10 for LLM Applications (2025)",
+      "body": "The OWASP GenAI Security Project publishes the most-used list of risks for LLM applications. The 2025 edition: LLM01 Prompt Injection (inputs, including hidden text in documents or web pages, change the model's behaviour); LLM02 Sensitive Information Disclosure; LLM03 Supply Chain (unsafe models, datasets or plugins); LLM04 Data and Model Poisoning; LLM05 Improper Output Handling (passing model output to a browser, shell or SQL without validation); LLM06 Excessive Agency (too many tools or permissions); LLM07 System Prompt Leakage (new); LLM08 Vector and Embedding Weaknesses (new, for RAG); LLM09 Misinformation (confident wrong answers); LLM10 Unbounded Consumption (runaway cost or denial of service). Core defences: treat all model output as untrusted, give least privilege to tools, keep secrets out of prompts, filter retrieved content by user permissions, require human approval for risky actions, rate-limit and set budgets, and red-team before launch.",
+      "sourceId": "src-143"
+    },
+    {
+      "id": "note-86",
+      "topic": "AI Security",
+      "title": "Securing AI agents: OWASP agentic risks and the lethal trifecta",
+      "body": "In December 2025 OWASP released a separate Top 10 for Agentic Applications (ASI01-ASI10), because agents that plan and act bring new risks. They include agent goal hijacking (an attacker redirects the agent through injected instructions), tool misuse, identity and privilege abuse, agentic supply-chain risks, unexpected code execution, memory and context poisoning, insecure agent-to-agent communication, cascading failures, exploitation of human trust and rogue agents. A useful mental model is the \"lethal trifecta\": an agent that has access to private data, reads untrusted content (web pages, emails, documents) and can communicate externally can be tricked into leaking data. Remove at least one of the three for risky tasks. Other defences: sandbox code execution, give each agent its own scoped identity and short-lived credentials, allow-list tools and destinations, require confirmation for irreversible actions, cap loops and spending, and log every tool call for audit.",
+      "sourceId": "src-144"
+    },
+    {
+      "id": "note-87",
+      "topic": "AI Governance",
+      "title": "EU AI Act: risk tiers and the timeline after the Digital Omnibus",
+      "body": "The EU AI Act (Regulation (EU) 2024/1689) entered into force on 1 August 2024 and sorts AI by risk. Unacceptable-risk practices (for example social scoring and some manipulative or biometric uses) have been banned since 2 February 2025, together with an AI literacy duty. Obligations for general-purpose AI (GPAI) model providers (technical documentation, copyright policy, training-data summary, and extra duties for models with systemic risk) apply from 2 August 2025. High-risk systems (in areas such as hiring, credit scoring, education, essential services and law enforcement) need risk management, data governance, logging, human oversight and conformity assessment. In 2026 the EU adopted the Digital Omnibus on AI, which delayed the high-risk rules: stand-alone Annex III systems moved from 2 August 2026 to 2 December 2027, and AI inside regulated products (Annex I) to 2 August 2028. Prohibitions, GPAI duties and Article 50 transparency rules (telling people they are talking to AI and labelling deepfakes) were not delayed. Fines reach up to 7% of global turnover for prohibited practices.",
+      "sourceId": "src-145"
+    },
+    {
+      "id": "note-88",
+      "topic": "AI Governance",
+      "title": "AI governance frameworks: NIST AI RMF and ISO/IEC 42001",
+      "body": "Companies rarely build governance from scratch; they map to frameworks. The NIST AI Risk Management Framework (AI RMF 1.0, January 2023, voluntary, US) has four functions: Govern (culture, policies, roles and accountability), Map (understand the context, intended use and impacts), Measure (test and track risks such as bias, robustness and privacy) and Manage (prioritise, respond and monitor). NIST added a Generative AI Profile in July 2024 covering risks such as confabulation and harmful content. ISO/IEC 42001 (December 2023) is a certifiable management-system standard for AI, similar in style to ISO 27001 for security: it requires an AI policy, risk and impact assessments, controls and continual improvement. A practical governance programme combines them: keep an inventory of AI systems, classify each by risk (aligned to the EU AI Act if you operate in the EU), assign an owner, define required testing and human review per risk tier, record decisions and incidents, and review regularly.",
+      "sourceId": "src-147"
+    },
+    {
+      "id": "note-89",
+      "topic": "Context Engineering",
+      "title": "Context engineering techniques: compaction, notes, sub-agents and just-in-time retrieval",
+      "body": "Context engineering is curating the smallest set of high-signal tokens the model sees at each step. It matters because recall gets worse as the context fills (\"context rot\"), even inside large windows. Main techniques: (1) Compaction: when the conversation nears the limit, summarise it and continue from the summary; the lightest form is clearing old raw tool results once they have been used. (2) Structured note-taking: the agent writes progress, decisions and to-do lists to a file (for example NOTES.md) outside the context and reads it back later, which supports long tasks. (3) Sub-agents: a lead agent hands focused tasks to sub-agents with clean context windows; each may use tens of thousands of tokens but returns a short summary. (4) Just-in-time retrieval: keep lightweight references (file paths, URLs, queries) and load data only when needed instead of stuffing everything up front. Also: write system prompts at the right altitude (clear but not brittle), keep tools few, distinct and token-efficient, and use a small set of canonical examples rather than a long list of edge cases.",
+      "sourceId": "src-148"
+    },
+    {
+      "id": "note-90",
+      "topic": "Harnesses",
+      "title": "Agent harnesses: Agent = Model + Harness",
+      "body": "A harness is all the software around a model that turns it into an agent. A popular formula from 2026 is Agent = Model + Harness. Coding agents such as Claude Code, OpenAI Codex, Gemini CLI, OpenCode and OpenHands are harnesses wrapped around LLMs. Typical parts: the control loop (call the model, run the tools it asks for, feed results back, repeat until done); tools (read and edit files, run shell commands, search the web); permissions and sandboxes (what the agent may do without asking); context management (compaction, memory files such as CLAUDE.md or AGENTS.md, retrieval); sub-agents for parallel or isolated work; hooks and skills that add project rules; and recovery paths when a step fails. Studies show the harness changes results a lot: the same model can score very differently with different harnesses, so benchmark results should name the harness. \"Harness engineering\" means improving these parts: better tool descriptions, tighter feedback loops (run tests after edits), safer defaults and smarter context handling.",
+      "sourceId": "src-149"
+    },
+    {
+      "id": "note-91",
+      "topic": "Benchmarking",
+      "title": "Benchmarks in 2026: saturation and the new hard tests",
+      "body": "Older benchmarks such as MMLU, GSM8K and HumanEval are saturated: top models score near the ceiling, so they no longer separate models. Newer, harder tests took their place. Humanity's Last Exam (HLE, from the Center for AI Safety and Scale AI, 2025) has about 2,500 expert-written questions across many subjects, designed to resist web search. ARC-AGI-2 tests abstract visual reasoning that is easy for people but hard for models; ARC-AGI-3 (2026) moves to interactive games. SWE-bench Verified and the harder SWE-bench Pro test fixing real software issues. METR's time-horizon measure asks how long a task (in human working time) an AI agent can complete with 50% success; it has been doubling roughly every 4-7 months. Scores differ between leaderboards because of settings, tools, harnesses and contamination, and some public tasks turn out to be broken, so always check the official leaderboard, the exact setup and independent replications before trusting a headline number.",
+      "sourceId": "src-151"
+    },
+    {
+      "id": "note-92",
+      "topic": "Model Fine-tuning",
+      "title": "Choosing a fine-tuning method: SFT, LoRA, QLoRA, DPO and GRPO",
+      "body": "Pick the method from the training signal you have. Supervised fine-tuning (SFT) learns from input-output examples and is the usual first step, for style, format, domain vocabulary or a specific task. LoRA and QLoRA are not separate goals but cheaper ways to train: LoRA freezes the base weights and trains small low-rank adapter matrices; QLoRA (2023) does the same on a 4-bit quantized base so a large model fits on one GPU. DPO (Direct Preference Optimization, 2023) learns from pairs of chosen and rejected answers without a separate reward model, good for tone and preferences. GRPO (Group Relative Policy Optimization, from DeepSeek, used for DeepSeek-R1) is reinforcement fine-tuning: for each prompt it samples several answers, scores them with a reward function and pushes the model toward the better ones; it suits math, code and other tasks with verifiable answers. Rules of thumb: try prompting and RAG first, start with SFT plus LoRA, use GRPO when you can grade answers automatically, and remember that data quality matters more than the algorithm. Always compare against the base model on a held-out eval set.",
+      "sourceId": "src-153"
+    },
+    {
+      "id": "note-93",
+      "topic": "Prompt Engineering",
+      "title": "Prompt engineering fundamentals that still work",
+      "body": "Good prompts are clear, specific and give context. Core techniques: (1) Say exactly what you want, including audience, length, format and what \"done\" looks like; explain why, because models follow reasons better than bare rules. (2) Give examples (few-shot) when format or style matters; vary them so the model does not copy one pattern. (3) Separate parts of a prompt with clear structure, such as XML-style tags (<document>, <instructions>) or headings, so instructions are not confused with data. (4) Let the model think: ask it to reason step by step (chain of thought) or use a reasoning model for hard problems. (5) Assign a role or put stable rules in the system prompt. (6) Ask for structured output (JSON matching a schema) when code will read the answer. (7) Break big tasks into a chain of smaller prompts. (8) Put long documents first and the question last. Treat prompts like code: keep them in version control, build a small test set and measure changes instead of judging by one example. Never put secrets in prompts, and treat retrieved text as data, not instructions.",
+      "sourceId": "src-156"
+    },
+    {
+      "id": "note-94",
+      "topic": "Generative AI",
+      "title": "Generative video in 2026: native audio, longer shots and world models",
+      "body": "Video generation moved fast. Most frontier models are diffusion models built on transformers (diffusion transformers): they start from noise in a compressed latent space and remove it step by step, guided by the text prompt. Google's Veo 3 (announced in 2025) popularised native audio, generating dialogue, sound effects and music in the same pass as the frames, and by 2026 most leading models (for example Veo, Kling and Seedance) did the same. Other trends: higher resolution (up to 4K), multi-shot scenes with consistent characters, image-to-video and video editing, and open-weight models such as LTX. Common weaknesses remain: physics errors, morphing hands and objects, and drift in long clips. Related \"world models\" such as Google DeepMind's Genie 3 generate interactive environments in real time instead of fixed clips. Responsible use matters: label AI-generated media (the EU AI Act requires deepfake labelling), use content credentials such as C2PA, and respect likeness and copyright.",
+      "sourceId": "src-158"
+    },
+    {
+      "id": "note-95",
+      "topic": "Frontier Labs",
+      "title": "The frontier AI landscape and how to follow it",
+      "body": "The frontier is shared by a few groups. US closed-model labs: OpenAI (GPT models, ChatGPT), Anthropic (Claude), Google DeepMind (Gemini) and xAI (Grok). Meta releases open-weight Llama models. Strong Chinese labs mostly release open weights: DeepSeek, Alibaba (Qwen), Moonshot AI (Kimi), Zhipu AI (GLM) and MiniMax. In Europe, Mistral AI offers both open and commercial models. New flagship versions now arrive every few months, often in families (a large reasoning model plus faster, cheaper ones). To follow releases reliably, read the lab's own announcement, model card and system card (which reports safety testing), check independent evaluations and leaderboards, and compare price per million input and output tokens, context window and rate limits. Be careful with aggregator sites: they often disagree on names and dates. For a product decision, test the candidate models on your own tasks; the \"best\" model on a leaderboard is not always best, or cheapest, for your use case.",
+      "sourceId": "src-159"
+    },
+    {
+      "id": "note-96",
+      "topic": "CLI",
+      "title": "AI agents in the terminal and the shell skills behind them",
+      "body": "Command-line coding agents such as Claude Code, OpenAI Codex CLI and Google's open-source Gemini CLI run in a terminal, read and edit files and run shell commands for you. Most also have a non-interactive mode for scripts and CI (for example passing a prompt with a flag and printing the result), so they can review pull requests or fix failing tests automatically. To use them well you need basic shell skills: standard input and output, pipes (|) to pass one command's output to another, redirection (> to a file), exit codes (0 means success, anything else means failure), environment variables for configuration and secrets, and tools such as grep (search text), curl (send HTTP requests, often to test APIs), jq (filter JSON) and git. Safety: review the commands an agent proposes, run it in a project folder or sandbox, keep API keys in environment variables rather than in code, and use allow-lists for commands it may run without asking.",
+      "sourceId": "src-90"
+    },
+    {
+      "id": "note-97",
+      "topic": "LLMs",
+      "title": "Modern LLM families: reasoning models, MoE, SLMs, VLMs and audio models",
+      "body": "Today's language models come in several flavours. Reasoning models spend extra \"thinking\" tokens before answering (test-time compute), which improves math, coding and planning but costs more time and tokens; many APIs let you set the thinking budget. Mixture-of-Experts (MoE) models contain many expert sub-networks and a router that sends each token to only a few of them, so a model with a huge total parameter count uses only a fraction per token, making it cheaper to run (DeepSeek, Qwen and Mixtral use MoE). Small language models (SLMs, roughly under 10B parameters) run on laptops and phones for privacy, low latency and low cost. Vision-language models (VLMs) take images (and often video) as input alongside text. Audio language models (ALMs) understand or generate speech directly, enabling real-time voice assistants. Choosing among them is a trade-off between quality, latency, cost, privacy and where the model must run.",
+      "sourceId": "src-160"
+    },
+    {
+      "id": "note-98",
+      "topic": "AI Sizing",
+      "title": "Estimating KV cache memory",
+      "body": "During generation a model stores keys and values for every past token: the KV cache. Its size often decides how many users fit on a GPU. Formula: KV bytes = 2 (keys and values) × layers × KV heads × head dimension × tokens × concurrent sequences × bytes per value. Example, Llama 3 70B: 80 layers, 8 KV heads (grouped-query attention), head dimension 128, FP16 (2 bytes): 2 × 80 × 8 × 128 × 2 = 327,680 bytes, about 0.31 MB per token. An 8,000-token conversation therefore needs about 2.6 GB, and 32 such users about 84 GB, on top of about 140 GB for the FP16 weights. Ways to shrink it: grouped-query attention (fewer KV heads), an FP8 KV cache (half the size), paged attention (vLLM) to avoid wasted memory, prefix caching to share common prompt prefixes, and shorter context limits. Always add headroom (about 10-20%) for activations and fragmentation.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-99",
+      "topic": "Evals",
+      "title": "Evaluating agents: pass@k, pass^k and trajectories",
+      "body": "Agents are non-deterministic, so one run proves little. Two metrics help. pass@k is the chance that at least one of k attempts succeeds; it fits tasks where you can try several times and check (for example code with tests). pass^k (pass-hat-k, used by the tau-bench agent benchmark) is the chance that all k attempts succeed; it measures reliability, which matters for customer-facing agents where every run must work. A model can have a high pass@k but a low pass^k. Grade both the outcome (check the final state: tests pass, the database record changed) and the trajectory (right tools, valid arguments, no forbidden actions, reasonable number of steps, recovery from errors). Build the task set from real user requests, add every production failure as a new test, run each task several times, and track cost and latency alongside success. Use LLM judges only after checking them against human labels.",
+      "sourceId": ""
+    },
+    {
+      "id": "note-100",
+      "topic": "Game Engines",
+      "title": "World models vs game engines",
+      "body": "A game engine (Unreal, Unity, Godot) simulates a world from explicit assets, rules and physics code, so it is exact, repeatable and controllable. A world model learns to generate the next frames from video data and user actions. Google DeepMind's Genie 3 (August 2025) was its first world model to allow real-time interaction, at about 720p and 24 frames per second, with consistency lasting a few minutes. Open alternatives such as Skywork's Matrix-Game 2.0 were trained on gameplay footage from engines. World models are good for fast prototyping, generating varied training environments for robots and agents, and creative exploration, but they forget details, cannot guarantee exact rules and are expensive to run, so they do not replace engines for shipped games. AI already helps inside engines in other ways: neural upscaling and frame generation (such as NVIDIA DLSS), procedural content, AI-assisted coding and asset creation, and LLM-driven characters with dialogue.",
+      "sourceId": "src-155"
     }
   ],
   "questions": [
@@ -9351,6 +9670,808 @@
       "answer": "Contamination → Test questions leaked into the training data; Saturation → Top models all score near 100%, so the test no longer separates them; Different settings → Prompts, precision or batch size differ between reported results; Your own eval set → Measure quality, latency, throughput and cost on your own hardware and use case",
       "explanation": "Benchmark results mislead through contamination, saturation and different test settings. For your use case, build your own eval set and measure quality, latency, throughput and cost on your hardware.",
       "sourceId": ""
+    },
+    {
+      "id": "q3-260",
+      "topic": "Agents & MCP",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "In December 2025, Anthropic donated the Model Context Protocol to which organization?",
+      "answer": "The Agentic AI Foundation (Linux Foundation)",
+      "explanation": "The AAIF is a Linux Foundation fund co-founded by Anthropic, OpenAI and Block.",
+      "options": [
+        "The Agentic AI Foundation (Linux Foundation)",
+        "The Apache Software Foundation",
+        "The W3C",
+        "The OpenAI Foundation"
+      ],
+      "sourceId": "src-140"
+    },
+    {
+      "id": "q3-261",
+      "topic": "Agents & MCP",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which MCP spec version introduced the Streamable HTTP transport and OAuth-based authorization?",
+      "answer": "2025-03-26",
+      "explanation": "Versions: 2024-11-05, 2025-03-26, 2025-06-18, 2025-11-25.",
+      "options": [
+        "2025-03-26",
+        "2024-11-05",
+        "2025-06-18",
+        "2023-09-01"
+      ],
+      "sourceId": "src-140"
+    },
+    {
+      "id": "q3-262",
+      "topic": "Agents & MCP",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "MCP \"elicitation\" lets a server ask the user for extra information during a task.",
+      "answer": "True",
+      "explanation": "Elicitation was added in the 2025-06-18 spec.",
+      "sourceId": "src-140"
+    },
+    {
+      "id": "q3-263",
+      "topic": "Agents & MCP",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which protocol is designed for one AI agent to delegate a task to another agent?",
+      "answer": "A2A (Agent2Agent)",
+      "explanation": "MCP connects an agent to tools and data; A2A connects agents to each other.",
+      "options": [
+        "A2A (Agent2Agent)",
+        "MCP",
+        "SMTP",
+        "gRPC"
+      ],
+      "sourceId": "src-142"
+    },
+    {
+      "id": "q3-264",
+      "topic": "Agents & MCP",
+      "type": "fill",
+      "difficulty": "medium",
+      "prompt": "In A2A, each agent publishes a JSON ___ ___ (usually at /.well-known/agent.json) describing its skills and authentication.",
+      "answer": "Agent Card|agent card",
+      "explanation": "Other agents read the Agent Card to discover what an agent can do.",
+      "sourceId": "src-142"
+    },
+    {
+      "id": "q3-265",
+      "topic": "AI Security",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is LLM01, the top risk in the OWASP Top 10 for LLM Applications 2025?",
+      "answer": "Prompt injection",
+      "explanation": "Inputs, including hidden text in documents or web pages, can change the model's behaviour.",
+      "options": [
+        "Prompt injection",
+        "Unbounded consumption",
+        "Misinformation",
+        "Model theft"
+      ],
+      "sourceId": "src-143"
+    },
+    {
+      "id": "q3-266",
+      "topic": "AI Security",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which two entries were new in the OWASP LLM Top 10 2025?",
+      "answer": "System Prompt Leakage and Vector and Embedding Weaknesses",
+      "explanation": "Both reflect wider use of system prompts and RAG.",
+      "options": [
+        "System Prompt Leakage and Vector and Embedding Weaknesses",
+        "Prompt Injection and Supply Chain",
+        "Overfitting and Underfitting",
+        "SQL Injection and XSS"
+      ],
+      "sourceId": "src-143"
+    },
+    {
+      "id": "q3-267",
+      "topic": "AI Security",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "An agent has dozens of tools and admin rights it never needs. Which OWASP LLM risk is this?",
+      "answer": "Excessive agency",
+      "explanation": "Give agents only the tools and permissions the task needs.",
+      "options": [
+        "Excessive agency",
+        "Misinformation",
+        "Data poisoning",
+        "System prompt leakage"
+      ],
+      "sourceId": "src-143"
+    },
+    {
+      "id": "q3-268",
+      "topic": "AI Security",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "It is safe to pass model output directly to a shell or SQL query because the model wrote it.",
+      "answer": "False",
+      "explanation": "Improper output handling (LLM05): treat model output as untrusted and validate it.",
+      "sourceId": "src-143"
+    },
+    {
+      "id": "q3-269",
+      "topic": "AI Security",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "The \"lethal trifecta\" for AI agents combines which three capabilities?",
+      "answer": "Access to private data, exposure to untrusted content, and external communication",
+      "explanation": "With all three, injected instructions can make the agent leak data; remove at least one for risky tasks.",
+      "options": [
+        "Access to private data, exposure to untrusted content, and external communication",
+        "Long context, tool use, and memory",
+        "High temperature, no system prompt, and streaming",
+        "GPU access, internet access, and logging"
+      ],
+      "sourceId": "src-144"
+    },
+    {
+      "id": "q3-270",
+      "topic": "AI Security",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "OWASP published a separate Top 10 list for agentic applications in December 2025.",
+      "answer": "True",
+      "explanation": "It uses ASI01-ASI10 and covers risks such as goal hijacking, tool misuse and rogue agents.",
+      "sourceId": "src-144"
+    },
+    {
+      "id": "q3-271",
+      "topic": "AI Governance",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Since when have the EU AI Act's prohibited practices (such as social scoring) applied?",
+      "answer": "2 February 2025",
+      "explanation": "The Act entered into force on 1 August 2024; bans applied six months later.",
+      "options": [
+        "2 February 2025",
+        "1 August 2024",
+        "2 August 2026",
+        "2 December 2027"
+      ],
+      "sourceId": "src-145"
+    },
+    {
+      "id": "q3-272",
+      "topic": "AI Governance",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "After the 2026 Digital Omnibus, when do EU AI Act obligations for stand-alone high-risk (Annex III) systems apply?",
+      "answer": "2 December 2027",
+      "explanation": "They were moved from 2 August 2026; Annex I product-embedded AI moved to 2 August 2028.",
+      "options": [
+        "2 December 2027",
+        "2 August 2026",
+        "2 February 2025",
+        "1 January 2030"
+      ],
+      "sourceId": "src-145"
+    },
+    {
+      "id": "q3-273",
+      "topic": "AI Governance",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "The Digital Omnibus delayed the EU AI Act's general-purpose AI model obligations and the deepfake-labelling transparency rules.",
+      "answer": "False",
+      "explanation": "GPAI duties (from 2 August 2025), prohibitions and Article 50 transparency rules were not delayed.",
+      "sourceId": "src-145"
+    },
+    {
+      "id": "q3-274",
+      "topic": "AI Governance",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which of these is a high-risk use case under the EU AI Act?",
+      "answer": "Screening job applicants",
+      "explanation": "Hiring, credit scoring, education and law enforcement uses are listed as high-risk.",
+      "options": [
+        "Screening job applicants",
+        "A spam filter",
+        "A video game NPC",
+        "Spell-checking an email"
+      ],
+      "sourceId": "src-145"
+    },
+    {
+      "id": "q3-275",
+      "topic": "AI Governance",
+      "type": "short",
+      "difficulty": "medium",
+      "prompt": "Which certifiable ISO/IEC standard (2023) defines a management system for AI?",
+      "answer": "ISO/IEC 42001|ISO 42001|42001",
+      "explanation": "It is similar in style to ISO 27001 for information security.",
+      "sourceId": "src-147"
+    },
+    {
+      "id": "q3-276",
+      "topic": "Context Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "An agent's conversation is near the context limit. What is \"compaction\"?",
+      "answer": "Summarizing the conversation and continuing from the summary",
+      "explanation": "The lightest form is clearing old raw tool results.",
+      "options": [
+        "Summarizing the conversation and continuing from the summary",
+        "Quantizing the model to 4 bits",
+        "Deleting the system prompt",
+        "Raising the temperature"
+      ],
+      "sourceId": "src-148"
+    },
+    {
+      "id": "q3-277",
+      "topic": "Context Engineering",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "A model's recall of information can get worse as its context window fills up, even when the window is large.",
+      "answer": "True",
+      "explanation": "This is often called context rot, so keep context small and high-signal.",
+      "sourceId": "src-148"
+    },
+    {
+      "id": "q3-278",
+      "topic": "Context Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Why do lead agents hand work to sub-agents in context engineering?",
+      "answer": "Each sub-agent works in a clean context and returns only a short summary",
+      "explanation": "This keeps detailed search context out of the lead agent's window.",
+      "options": [
+        "Each sub-agent works in a clean context and returns only a short summary",
+        "Sub-agents are always cheaper models",
+        "It removes the need for tools",
+        "It makes the system deterministic"
+      ],
+      "sourceId": "src-148"
+    },
+    {
+      "id": "q3-279",
+      "topic": "Context Engineering",
+      "type": "fill",
+      "difficulty": "medium",
+      "prompt": "Loading data only when it is needed, using lightweight references such as file paths, is called just-in-time ___.",
+      "answer": "retrieval",
+      "explanation": "Instead of stuffing everything into the prompt up front.",
+      "sourceId": "src-148"
+    },
+    {
+      "id": "q3-280",
+      "topic": "Harnesses",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "In the formula \"Agent = Model + ___\", what completes it?",
+      "answer": "Harness",
+      "explanation": "The harness is the loop, tools, permissions, context management and recovery around the model.",
+      "options": [
+        "Harness",
+        "Dataset",
+        "GPU",
+        "Benchmark"
+      ],
+      "sourceId": "src-149"
+    },
+    {
+      "id": "q3-281",
+      "topic": "Harnesses",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "The same model can score very differently on a benchmark depending on the harness it runs in.",
+      "answer": "True",
+      "explanation": "So benchmark results should state which harness was used.",
+      "sourceId": "src-149"
+    },
+    {
+      "id": "q3-282",
+      "topic": "Harnesses",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which of these is NOT usually part of a coding-agent harness?",
+      "answer": "The model's pretraining dataset",
+      "explanation": "Harness parts: control loop, tools, permissions, context management, memory files, sub-agents, hooks.",
+      "options": [
+        "The model's pretraining dataset",
+        "The tool-calling loop",
+        "Permission rules and sandboxing",
+        "Context compaction"
+      ],
+      "sourceId": "src-150"
+    },
+    {
+      "id": "q3-283",
+      "topic": "Harnesses",
+      "type": "short",
+      "difficulty": "easy",
+      "prompt": "Name a project memory file that coding agents read for instructions (for example the one used by Claude Code).",
+      "answer": "CLAUDE.md|AGENTS.md",
+      "explanation": "These files hold project rules, commands and conventions.",
+      "sourceId": "src-149"
+    },
+    {
+      "id": "q3-284",
+      "topic": "Benchmarking",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Who created Humanity's Last Exam (HLE)?",
+      "answer": "The Center for AI Safety and Scale AI",
+      "explanation": "It has about 2,500 expert-written questions designed to resist web search.",
+      "options": [
+        "The Center for AI Safety and Scale AI",
+        "OpenAI and Microsoft",
+        "MLCommons",
+        "Stanford HAI"
+      ],
+      "sourceId": "src-152"
+    },
+    {
+      "id": "q3-285",
+      "topic": "Benchmarking",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What does METR's \"time horizon\" measure?",
+      "answer": "The length of tasks (in human working time) an AI agent completes with 50% success",
+      "explanation": "It has been doubling roughly every 4-7 months.",
+      "options": [
+        "The length of tasks (in human working time) an AI agent completes with 50% success",
+        "How long training takes",
+        "Latency to the first token",
+        "How long a model stays online"
+      ],
+      "sourceId": "src-151"
+    },
+    {
+      "id": "q3-286",
+      "topic": "Benchmarking",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "A benchmark is \"saturated\" when top models all score near the maximum, so it no longer separates them.",
+      "answer": "True",
+      "explanation": "MMLU, GSM8K and HumanEval are examples.",
+      "sourceId": "src-151"
+    },
+    {
+      "id": "q3-287",
+      "topic": "Benchmarking",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "ARC-AGI-3 differs from ARC-AGI-2 mainly because it uses:",
+      "answer": "Interactive games",
+      "explanation": "ARC-AGI-2 uses static grid puzzles.",
+      "options": [
+        "Interactive games",
+        "Multiple-choice trivia",
+        "Essay grading",
+        "Speech recognition"
+      ],
+      "sourceId": "src-151"
+    },
+    {
+      "id": "q3-288",
+      "topic": "Model Fine-tuning",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "You can automatically check if an answer is correct (math, code tests). Which method fits best?",
+      "answer": "GRPO (reinforcement fine-tuning)",
+      "explanation": "GRPO samples several answers per prompt, scores them with a reward function and learns from the better ones.",
+      "options": [
+        "GRPO (reinforcement fine-tuning)",
+        "DPO",
+        "Plain prompt engineering",
+        "Knowledge distillation only"
+      ],
+      "sourceId": "src-153"
+    },
+    {
+      "id": "q3-289",
+      "topic": "Model Fine-tuning",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "You have pairs of chosen and rejected answers. Which method uses them directly without a reward model?",
+      "answer": "DPO",
+      "explanation": "Direct Preference Optimization, 2023.",
+      "options": [
+        "DPO",
+        "GRPO",
+        "SFT on chosen answers only",
+        "Pretraining"
+      ],
+      "sourceId": "src-153"
+    },
+    {
+      "id": "q3-290",
+      "topic": "Model Fine-tuning",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What makes QLoRA different from LoRA?",
+      "answer": "The frozen base model is quantized to 4 bits",
+      "explanation": "That lets large models be fine-tuned on a single GPU.",
+      "options": [
+        "The frozen base model is quantized to 4 bits",
+        "It trains all weights",
+        "It needs no data",
+        "It only works for images"
+      ],
+      "sourceId": "src-153"
+    },
+    {
+      "id": "q3-291",
+      "topic": "Model Fine-tuning",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "LoRA freezes the base model and trains small low-rank adapter matrices.",
+      "answer": "True",
+      "explanation": "The adapter is tiny and can be swapped per task.",
+      "sourceId": "src-154"
+    },
+    {
+      "id": "q3-292",
+      "topic": "Model Fine-tuning",
+      "type": "short",
+      "difficulty": "medium",
+      "prompt": "Which lab introduced GRPO and used it to train its R1 reasoning model?",
+      "answer": "DeepSeek",
+      "explanation": "GRPO = Group Relative Policy Optimization.",
+      "sourceId": "src-154"
+    },
+    {
+      "id": "q3-293",
+      "topic": "Prompt Engineering",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is \"few-shot\" prompting?",
+      "answer": "Including a few examples of the desired input and output in the prompt",
+      "explanation": "Examples steer format and style.",
+      "options": [
+        "Including a few examples of the desired input and output in the prompt",
+        "Asking very short questions",
+        "Using a small model",
+        "Retrying until it works"
+      ],
+      "sourceId": "src-156"
+    },
+    {
+      "id": "q3-294",
+      "topic": "Prompt Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Why wrap documents and instructions in tags such as <document> and <instructions>?",
+      "answer": "To separate data from instructions so the model does not confuse them",
+      "explanation": "Clear structure also helps when parsing the output.",
+      "options": [
+        "To separate data from instructions so the model does not confuse them",
+        "To make the prompt shorter",
+        "Because models only read XML",
+        "To hide text from the model"
+      ],
+      "sourceId": "src-156"
+    },
+    {
+      "id": "q3-295",
+      "topic": "Prompt Engineering",
+      "type": "fill",
+      "difficulty": "easy",
+      "prompt": "Asking the model to reason step by step before answering is called chain-of-___ prompting.",
+      "answer": "thought",
+      "explanation": "Reasoning models do this internally.",
+      "sourceId": "src-157"
+    },
+    {
+      "id": "q3-296",
+      "topic": "Prompt Engineering",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Explaining why a rule matters usually helps the model follow it better than a bare rule.",
+      "answer": "True",
+      "explanation": "Context and reasons help the model generalise the intent.",
+      "sourceId": "src-156"
+    },
+    {
+      "id": "q3-297",
+      "topic": "Prompt Engineering",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Code will read the model's answer. What should you ask for?",
+      "answer": "Structured output, such as JSON matching a schema",
+      "explanation": "Many APIs can enforce a JSON schema.",
+      "options": [
+        "Structured output, such as JSON matching a schema",
+        "A friendly paragraph",
+        "A longer answer",
+        "An answer in capital letters"
+      ],
+      "sourceId": "src-156"
+    },
+    {
+      "id": "q3-298",
+      "topic": "Generative AI",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What does \"native audio\" mean for a video generation model?",
+      "answer": "It generates dialogue, sound effects and music in the same pass as the video",
+      "explanation": "Google's Veo 3 popularised it in 2025.",
+      "options": [
+        "It generates dialogue, sound effects and music in the same pass as the video",
+        "It can only make silent videos",
+        "It adds stock music afterwards",
+        "It translates subtitles"
+      ],
+      "sourceId": "src-158"
+    },
+    {
+      "id": "q3-299",
+      "topic": "Generative AI",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Most frontier video generators are built on which architecture?",
+      "answer": "Diffusion transformers",
+      "explanation": "They denoise a latent video step by step, guided by the prompt.",
+      "options": [
+        "Diffusion transformers",
+        "Decision trees",
+        "Recurrent neural networks only",
+        "Rule-based animation"
+      ],
+      "sourceId": "src-158"
+    },
+    {
+      "id": "q3-300",
+      "topic": "Generative AI",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "The EU AI Act requires deepfakes to be labelled as AI-generated.",
+      "answer": "True",
+      "explanation": "Article 50 transparency rules; content credentials such as C2PA help.",
+      "sourceId": "src-158"
+    },
+    {
+      "id": "q3-301",
+      "topic": "Frontier Labs",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which company makes the GLM models?",
+      "answer": "Zhipu AI",
+      "explanation": "Zhipu AI (also known as Z.ai) releases GLM models.",
+      "options": [
+        "Zhipu AI",
+        "DeepSeek",
+        "xAI",
+        "Cohere"
+      ],
+      "sourceId": "src-159"
+    },
+    {
+      "id": "q3-302",
+      "topic": "Frontier Labs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What does a model's \"system card\" mainly report?",
+      "answer": "Safety testing, risks and mitigations",
+      "explanation": "Read it alongside the model card when evaluating a release.",
+      "options": [
+        "Safety testing, risks and mitigations",
+        "The price list",
+        "The training source code",
+        "The company's revenue"
+      ],
+      "sourceId": "src-159"
+    },
+    {
+      "id": "q3-303",
+      "topic": "CLI",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which command-line tool sends HTTP requests and is often used to test APIs?",
+      "answer": "curl",
+      "explanation": "Example: curl -H \"Authorization: Bearer $KEY\" https://api.example.com",
+      "options": [
+        "curl",
+        "grep",
+        "chmod",
+        "tar"
+      ],
+      "sourceId": "src-90"
+    },
+    {
+      "id": "q3-304",
+      "topic": "CLI",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "In a shell, what does an exit code of 0 mean?",
+      "answer": "The command succeeded",
+      "explanation": "Any non-zero code means an error; CI uses this to pass or fail a step.",
+      "options": [
+        "The command succeeded",
+        "The command failed",
+        "The command is still running",
+        "There was no output"
+      ],
+      "sourceId": "src-90"
+    },
+    {
+      "id": "q3-305",
+      "topic": "CLI",
+      "type": "fill",
+      "difficulty": "easy",
+      "prompt": "The | character, which sends one command's output into another command, is called a ___.",
+      "answer": "pipe",
+      "explanation": "Example: cat log.txt | grep ERROR",
+      "sourceId": "src-90"
+    },
+    {
+      "id": "q3-306",
+      "topic": "CLI",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which tool is best for filtering JSON output from an API in the terminal?",
+      "answer": "jq",
+      "explanation": "Example: curl ... | jq .data",
+      "options": [
+        "jq",
+        "ping",
+        "ls",
+        "vim"
+      ],
+      "sourceId": "src-90"
+    },
+    {
+      "id": "q3-307",
+      "topic": "CLI",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "Gemini CLI is an open-source terminal AI agent from Google.",
+      "answer": "True",
+      "explanation": "It runs in the terminal and can read files and run commands.",
+      "sourceId": "src-90"
+    },
+    {
+      "id": "q3-308",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Why is a Mixture-of-Experts model cheaper to run than a dense model with the same total parameters?",
+      "answer": "Each token is routed to only a few experts",
+      "explanation": "Only a fraction of the parameters is active per token.",
+      "options": [
+        "Each token is routed to only a few experts",
+        "It has no attention layers",
+        "It uses no GPU",
+        "It skips tokenization"
+      ],
+      "sourceId": "src-160"
+    },
+    {
+      "id": "q3-309",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What extra input does a vision-language model (VLM) accept besides text?",
+      "answer": "Images",
+      "explanation": "Many also accept video.",
+      "options": [
+        "Images",
+        "Only numbers",
+        "Only audio files",
+        "Spreadsheets only"
+      ],
+      "sourceId": "src-160"
+    },
+    {
+      "id": "q3-310",
+      "topic": "LLMs",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Reasoning models improve on hard tasks by spending extra \"thinking\" tokens at inference time, which costs more time and tokens.",
+      "answer": "True",
+      "explanation": "This is called test-time compute.",
+      "sourceId": "src-160"
+    },
+    {
+      "id": "q3-311",
+      "topic": "AI Sizing",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Llama 3 70B has 80 layers, 8 KV heads and head dimension 128. About how much FP16 KV cache does one token need?",
+      "answer": "About 0.31 MB",
+      "explanation": "2 × 80 × 8 × 128 × 2 bytes = 327,680 bytes.",
+      "options": [
+        "About 0.31 MB",
+        "About 31 MB",
+        "About 3 KB",
+        "About 3 GB"
+      ],
+      "sourceId": ""
+    },
+    {
+      "id": "q3-312",
+      "topic": "AI Sizing",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which change halves KV cache memory with little quality loss?",
+      "answer": "Storing the KV cache in FP8 instead of FP16",
+      "explanation": "Grouped-query attention and paged attention also reduce KV memory.",
+      "options": [
+        "Storing the KV cache in FP8 instead of FP16",
+        "Raising the temperature",
+        "Using a longer system prompt",
+        "Adding more layers"
+      ],
+      "sourceId": ""
+    },
+    {
+      "id": "q3-313",
+      "topic": "Evals",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "What does pass^k (pass-hat-k) measure for an agent?",
+      "answer": "The chance that all k attempts succeed (reliability)",
+      "explanation": "pass@k is the chance that at least one of k attempts succeeds.",
+      "options": [
+        "The chance that all k attempts succeed (reliability)",
+        "The chance that at least one attempt succeeds",
+        "The average latency over k runs",
+        "The number of tools used"
+      ],
+      "sourceId": ""
+    },
+    {
+      "id": "q3-314",
+      "topic": "Evals",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "When evaluating an agent, you should grade both the final outcome and the trajectory (tools, arguments, steps).",
+      "answer": "True",
+      "explanation": "A correct answer reached through a forbidden action is still a failure.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-315",
+      "topic": "Game Engines",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What was new about Google DeepMind's Genie 3 (August 2025)?",
+      "answer": "It was DeepMind's first world model to allow real-time interaction",
+      "explanation": "About 720p at 24 frames per second, consistent for a few minutes.",
+      "options": [
+        "It was DeepMind's first world model to allow real-time interaction",
+        "It is a new physics engine written in C++",
+        "It replaced Unreal Engine",
+        "It only generates still images"
+      ],
+      "sourceId": "src-155"
+    },
+    {
+      "id": "q3-316",
+      "topic": "Game Engines",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "World models can already fully replace game engines such as Unreal and Unity for shipped games.",
+      "answer": "False",
+      "explanation": "They forget details and cannot guarantee exact rules; engines stay exact and repeatable.",
+      "sourceId": "src-155"
+    },
+    {
+      "id": "q3-317",
+      "topic": "Game Engines",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which NVIDIA technology uses AI to upscale and generate frames in games?",
+      "answer": "DLSS",
+      "explanation": "Deep Learning Super Sampling.",
+      "options": [
+        "DLSS",
+        "CUDA",
+        "NVLink",
+        "HBM"
+      ],
+      "sourceId": "src-155"
     }
   ]
 }

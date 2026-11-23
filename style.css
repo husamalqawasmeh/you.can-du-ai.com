@@ -276,3 +276,4 @@ header .topbar { order: 2; flex-shrink: 0; }
 #iv-levels label:nth-child(5) { grid-column: 4; }
 #iv-levels label { display: flex; gap: 6px; align-items: baseline; }
 @media (max-width: 760px) { #iv-levels label:nth-child(5) { grid-column: 2; } }
+#iv-match { font-weight: 700; }
