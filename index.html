@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You Can Du AI</title>
 <meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
-<link rel="stylesheet" href="style.css?v=183">
+<link rel="stylesheet" href="style.css?v=184">
 </head>
 <body>
 <header>
@@ -236,6 +236,7 @@
       <form id="iv-filter" class="iv-filter">
         <fieldset><legend>Jobs you are interviewing for <span class="legend-note">(optional, choose one or more)</span></legend><div id="iv-jobs" class="checks"></div></fieldset>
         <fieldset><legend>Topics <span class="legend-note">(optional, none = all)</span></legend><div id="iv-topics" class="checks"></div></fieldset>
+        <fieldset><legend>Question category <span id="iv-levels-note" class="legend-note"></span></legend><div id="iv-levels" class="checks iv-levels"></div></fieldset>
         <fieldset><legend>How many questions</legend><div class="iv-avail"><input name="count" type="number" min="1" placeholder="All" aria-label="How many questions"> <span id="iv-match" class="muted"></span></div></fieldset>
       </form>
       <details class="fold iv-results"><summary><h2>Show questions</h2> <span id="iv-count" class="muted"></span></summary>
@@ -368,6 +369,6 @@
     </div>
   </section>
 </main>
-<script type="module" src="app.js?v=183"></script>
+<script type="module" src="app.js?v=184"></script>
 </body>
 </html>
