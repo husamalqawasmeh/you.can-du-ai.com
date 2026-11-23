@@ -9283,6 +9283,74 @@
       "answer": "True",
       "explanation": "In decoding, each new token needs all model weights (and the KV cache) to be read from memory, but only a little math per byte. So speed depends mostly on memory bandwidth (GB/s), and memory capacity decides whether the model fits at all. Peak FLOPS matter more for the prefill step and for training.",
       "sourceId": ""
+    },
+    {
+      "id": "q3-258",
+      "topic": "Benchmarking",
+      "type": "match",
+      "difficulty": "medium",
+      "prompt": "Connect each benchmark to what it tests.",
+      "pairs": [
+        [
+          "MMLU / MMLU-Pro",
+          "Broad knowledge across many subjects"
+        ],
+        [
+          "GPQA",
+          "Expert-level science questions"
+        ],
+        [
+          "HumanEval / SWE-bench",
+          "Coding"
+        ],
+        [
+          "GSM8K / AIME",
+          "Math"
+        ],
+        [
+          "MMMU",
+          "Multimodal understanding (images and text)"
+        ],
+        [
+          "LMArena",
+          "Human preference votes"
+        ],
+        [
+          "MLPerf Training / Inference",
+          "Hardware speed across systems"
+        ]
+      ],
+      "answer": "MMLU / MMLU-Pro → Broad knowledge across many subjects; GPQA → Expert-level science questions; HumanEval / SWE-bench → Coding; GSM8K / AIME → Math; MMMU → Multimodal understanding (images and text); LMArena → Human preference votes; MLPerf Training / Inference → Hardware speed across systems",
+      "explanation": "LLM benchmarks: MMLU/MMLU-Pro (knowledge), GPQA (expert science), HumanEval and SWE-bench (coding), GSM8K and AIME (math), MMMU (multimodal), LMArena (human preference). Hardware: MLPerf Training and Inference compare speed across systems.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-259",
+      "topic": "Benchmarking",
+      "type": "match",
+      "difficulty": "medium",
+      "prompt": "Connect each benchmark pitfall or practice to what it means.",
+      "pairs": [
+        [
+          "Contamination",
+          "Test questions leaked into the training data"
+        ],
+        [
+          "Saturation",
+          "Top models all score near 100%, so the test no longer separates them"
+        ],
+        [
+          "Different settings",
+          "Prompts, precision or batch size differ between reported results"
+        ],
+        [
+          "Your own eval set",
+          "Measure quality, latency, throughput and cost on your own hardware and use case"
+        ]
+      ],
+      "answer": "Contamination → Test questions leaked into the training data; Saturation → Top models all score near 100%, so the test no longer separates them; Different settings → Prompts, precision or batch size differ between reported results; Your own eval set → Measure quality, latency, throughput and cost on your own hardware and use case",
+      "explanation": "Benchmark results mislead through contamination, saturation and different test settings. For your use case, build your own eval set and measure quality, latency, throughput and cost on your hardware.",
+      "sourceId": ""
     }
   ]
 }
