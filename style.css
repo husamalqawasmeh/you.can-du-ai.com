@@ -272,6 +272,7 @@ header .topbar { order: 2; flex-shrink: 0; }
 .iv-results > summary { background: var(--accent); color: var(--accent-text); border-radius: 8px; padding: 8px 14px; }
 .iv-results > summary::before, .iv-results > summary h2, .iv-results > summary .muted { color: var(--accent-text); }
 .iv-results > summary:hover { filter: brightness(1.08); }
-#iv-levels { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+/* same 4 columns as Jobs and Topics; "Not relevant" sits under "Relevant" */
+#iv-levels label:nth-child(5) { grid-column: 4; }
 #iv-levels label { display: flex; gap: 6px; align-items: baseline; }
-@media (max-width: 760px) { #iv-levels { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) { #iv-levels label:nth-child(5) { grid-column: 2; } }
