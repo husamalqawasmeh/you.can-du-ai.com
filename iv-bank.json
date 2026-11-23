@@ -60,85 +60,85 @@
     },
     {
       "id": "bank-llm-fundamentals-1",
-      "category": "LLMs",
+      "category": "LLM / VLM / SLM / ALM",
       "q": "Explain how a transformer works to someone non-technical, then to an engineer.",
       "followup": "Why is the ability to explain at two levels valuable on a team?"
     },
     {
       "id": "bank-llm-fundamentals-2",
-      "category": "LLMs",
+      "category": "LLM / VLM / SLM / ALM",
       "q": "What is the KV cache, and why does it matter for inference speed and memory?",
       "followup": "Why does a long context window increase serving cost?"
     },
     {
       "id": "bank-llm-fundamentals-3",
-      "category": "LLMs",
+      "category": "LLM / VLM / SLM / ALM",
       "q": "What do temperature and top-p do, and how would you set them for a coding assistant?",
       "followup": "Why would you use different settings for creative writing?"
     },
     {
       "id": "bank-llm-fundamentals-4",
-      "category": "LLMs",
+      "category": "LLM / VLM / SLM / ALM",
       "q": "What causes hallucinations, and what techniques reduce them?",
       "followup": "Why can no technique remove hallucinations completely?"
     },
     {
       "id": "bank-llm-fundamentals-5",
-      "category": "LLMs",
+      "category": "LLM / VLM / SLM / ALM",
       "q": "Compare encoder-only, decoder-only and encoder-decoder models, with an example of each.",
       "followup": "Why did decoder-only models come to dominate generative AI?"
     },
     {
       "id": "bank-llm-fundamentals-6",
-      "category": "LLMs",
+      "category": "LLM / VLM / SLM / ALM",
       "q": "What is positional encoding, and why do many models use RoPE?",
       "followup": "Why does position information matter for long contexts?"
     },
     {
       "id": "bank-llm-fundamentals-7",
-      "category": "LLMs",
+      "category": "LLM / VLM / SLM / ALM",
       "q": "How does tokenization affect cost, multilingual performance and arithmetic?",
       "followup": "Why can the same sentence cost more tokens in Arabic than in English?"
     },
     {
       "id": "bank-llm-fundamentals-8",
-      "category": "LLMs",
+      "category": "LLM / VLM / SLM / ALM",
       "q": "What are the trade-offs of quantizing a model to 4 bits?",
       "followup": "Why does quantization make local and edge deployment possible?"
     },
     {
       "id": "bank-llm-fundamentals-9",
-      "category": "LLMs",
+      "category": "LLM / VLM / SLM / ALM",
       "q": "What is Mixture of Experts, and why does it make large models cheaper to run?",
       "followup": "Why do MoE models still need a lot of memory?"
     },
     {
       "id": "bank-fine-tuning-and-alignment-1",
-      "category": "Fine-tuning and alignment",
+      "category": "Model Fine-tuning",
       "q": "Walk me through fine-tuning an open-weight model with LoRA.",
       "followup": "Why does LoRA need far less GPU memory than full fine-tuning?"
     },
     {
       "id": "bank-fine-tuning-and-alignment-2",
-      "category": "Fine-tuning and alignment",
+      "category": "Model Fine-tuning",
       "q": "How do you build and clean a fine-tuning dataset?",
       "followup": "Why does data quality matter more than data quantity here?"
     },
     {
       "id": "bank-fine-tuning-and-alignment-3",
-      "category": "Fine-tuning and alignment",
+      "category": "Model Fine-tuning",
       "q": "Compare RLHF and DPO.",
       "followup": "Why has DPO become popular for smaller teams?"
     },
     {
       "id": "bank-fine-tuning-and-alignment-4",
-      "category": "Fine-tuning and alignment",
+      "category": "Model Fine-tuning",
       "q": "What is catastrophic forgetting, and how do you prevent it?",
       "followup": "Why should you test general skills after fine-tuning, not only the target task?"
     },
     {
       "id": "bank-fine-tuning-and-alignment-5",
-      "category": "Fine-tuning and alignment",
+      "category": "Model Fine-tuning",
       "q": "How do you decide whether fine-tuning actually improved the model?",
       "followup": "Why do you need a held-out evaluation set before you start?"
     },

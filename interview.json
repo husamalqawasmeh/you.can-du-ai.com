@@ -89,7 +89,7 @@
       "topics": [
         "Behavioral and experience",
         "AI Strategy",
-        "Product & project management"
+        "AI Project management"
       ]
     },
     {
@@ -138,7 +138,7 @@
       "answer": "Describe real use: downloading open models with Transformers, using datasets, building demos in Spaces, fine-tuning with PEFT/LoRA, or calling Inference Endpoints.\n\nExplain choices: model size vs hardware, license, benchmark and leaderboard results, downloads and community activity, and then your own evals on your data comparing quality, speed and cost.",
       "topics": [
         "Automation / AI tools",
-        "LLMs",
+        "LLM / VLM / SLM / ALM",
         "AI Development"
       ]
     },
@@ -158,7 +158,7 @@
       "answer": "Hub: hosts models, datasets and Spaces. Spaces: demo apps (Gradio, Streamlit). Transformers: library to load and run pretrained models. Datasets: load and share data. PEFT: LoRA and other efficient fine-tuning. TGI (Text Generation Inference): production serving. smolagents: small code-writing agents.\n\nTo production: pick and evaluate the model, quantize if needed, serve it with TGI or vLLM in a container on GPUs (or Inference Endpoints), put an API gateway in front, and add monitoring, autoscaling and rate limits.",
       "topics": [
         "Automation / AI tools",
-        "LLMs"
+        "LLM / VLM / SLM / ALM"
       ]
     },
     {
@@ -166,9 +166,10 @@
       "followup": "When would you pick a small on-device model like LFM2 over a large cloud model such as GPT or Claude?",
       "answer": "Liquid AI is a Boston-based MIT spin-off (Ramin Hasani, Mathias Lechner, Alexander Amini, Daniela Rus). Its Liquid Foundation Models are not plain Transformers: they come from liquid neural network research and use efficient designs (for example LFM2 mixes short convolutions with a few attention layers), giving low memory use and fast speed on phones, laptops and edge devices as well as in the cloud.\n\nPick a small on-device model for privacy, offline use, low latency and low cost on simple, high-volume tasks; pick a large cloud model for hard reasoning and broad knowledge.",
       "topics": [
-        "LLMs",
+        "LLM / VLM / SLM / ALM",
         "AI industry and news",
-        "Frontier Labs"
+        "Frontier Labs",
+        "Transformers / GANs / VAEs"
       ]
     },
     {
@@ -176,7 +177,7 @@
       "followup": "What changes in the weights when you fine-tune with LoRA, and why do companies treat weights as their most valuable asset?",
       "answer": "Weights are the billions of numbers (parameters, together with biases) a model learns in training; \"70B\" means about 70 billion of them. They sit in matrices: token embeddings, attention (Q, K, V, O), feed-forward layers and the output head. Training starts them random, then backpropagation and an optimizer such as Adam adjust them to reduce next-token prediction error over trillions of tokens. At inference the weights are frozen and only read. Knowledge is spread across them, not stored as text.\n\nLoRA freezes the original weights and trains small low-rank matrices added to some layers, so it needs little memory and the adapter is tiny. Weights are valuable because they hold the result of very expensive training (data, compute, know-how); the code is small, so whoever has the weights has the model, which is why some companies keep them closed and others release them as open weights.",
       "topics": [
-        "LLMs",
+        "LLM / VLM / SLM / ALM",
         "ML & DL"
       ]
     },
@@ -185,7 +186,7 @@
       "followup": "For a bank chatbot that handles customer data, which would you choose and why? What would change for a small startup prototype?",
       "answer": "Open-weight: you download and run the model yourself. Pros: data stays on your servers (privacy, compliance, data residency), full control of versions (no surprise changes or retirement), fine-tuning, offline or edge use, no per-token fee and no vendor lock-in. Cons: you pay for GPUs and engineering (serving, scaling, security, updates), the best open models are often a step behind the top closed ones on the hardest tasks, and licenses vary (Apache 2.0 and MIT are permissive; some add limits). Closed API models: pros are top quality, no infrastructure, fast start, built-in tools (search, vision, voice) and the vendor's safety and uptime; cons are per-token cost that grows with volume, data leaves your network, rate limits, the vendor can change or retire models, and lock-in. Open-weight is not the same as open source: training data and code are often private.\n\nFor a bank: self-host an open model (or use a closed model through a private cloud deal with no data retention) because of privacy and regulation, and run evals to check quality. For a startup prototype: start with a closed API for speed and quality, then move high-volume or sensitive tasks to an open model when cost or privacy matters. Many teams mix both and route each task to the cheapest model that passes their evals.",
       "topics": [
-        "LLMs",
+        "LLM / VLM / SLM / ALM",
         "Frontier Labs",
         "AI Strategy",
         "AI Risk Management"
@@ -209,7 +210,7 @@
         "Evals",
         "ML & DL",
         "Decision Models",
-        "Product & project management"
+        "AI Product management"
       ]
     },
     {
@@ -293,7 +294,7 @@
         "AI industry and news",
         "ML & DL",
         "Generative AI",
-        "LLMs"
+        "LLM / VLM / SLM / ALM"
       ]
     },
     {
@@ -384,7 +385,7 @@
         "RAG and retrieval",
         "AI Engineering",
         "Context Engineering",
-        "LLMs"
+        "LLM / VLM / SLM / ALM"
       ]
     },
     {
@@ -432,7 +433,8 @@
       "q": "Explain how a transformer works to someone non-technical, then to an engineer.",
       "followup": "Why is the ability to explain at two levels valuable on a team?",
       "topics": [
-        "LLMs"
+        "LLM / VLM / SLM / ALM",
+        "Transformers / GANs / VAEs"
       ]
     },
     {
@@ -440,7 +442,7 @@
       "q": "What is the KV cache, and why does it matter for inference speed and memory?",
       "followup": "Why does a long context window increase serving cost?",
       "topics": [
-        "LLMs",
+        "LLM / VLM / SLM / ALM",
         "AI Sizing"
       ]
     },
@@ -449,7 +451,7 @@
       "q": "What do temperature and top-p do, and how would you set them for a coding assistant?",
       "followup": "Why would you use different settings for creative writing?",
       "topics": [
-        "LLMs"
+        "LLM / VLM / SLM / ALM"
       ]
     },
     {
@@ -457,7 +459,7 @@
       "q": "What causes hallucinations, and what techniques reduce them?",
       "followup": "Why can no technique remove hallucinations completely?",
       "topics": [
-        "LLMs"
+        "LLM / VLM / SLM / ALM"
       ]
     },
     {
@@ -465,7 +467,8 @@
       "q": "Compare encoder-only, decoder-only and encoder-decoder models, with an example of each.",
       "followup": "Why did decoder-only models come to dominate generative AI?",
       "topics": [
-        "LLMs"
+        "LLM / VLM / SLM / ALM",
+        "Transformers / GANs / VAEs"
       ]
     },
     {
@@ -473,7 +476,8 @@
       "q": "What is positional encoding, and why do many models use RoPE?",
       "followup": "Why does position information matter for long contexts?",
       "topics": [
-        "LLMs"
+        "LLM / VLM / SLM / ALM",
+        "Transformers / GANs / VAEs"
       ]
     },
     {
@@ -481,7 +485,7 @@
       "q": "How does tokenization affect cost, multilingual performance and arithmetic?",
       "followup": "Why can the same sentence cost more tokens in Arabic than in English?",
       "topics": [
-        "LLMs"
+        "LLM / VLM / SLM / ALM"
       ]
     },
     {
@@ -489,7 +493,7 @@
       "q": "What are the trade-offs of quantizing a model to 4 bits?",
       "followup": "Why does quantization make local and edge deployment possible?",
       "topics": [
-        "LLMs",
+        "LLM / VLM / SLM / ALM",
         "AI Sizing"
       ]
     },
@@ -498,7 +502,8 @@
       "q": "What is Mixture of Experts, and why does it make large models cheaper to run?",
       "followup": "Why do MoE models still need a lot of memory?",
       "topics": [
-        "LLMs"
+        "LLM / VLM / SLM / ALM",
+        "Transformers / GANs / VAEs"
       ]
     },
     {
@@ -506,8 +511,8 @@
       "q": "Walk me through fine-tuning an open-weight model with LoRA.",
       "followup": "Why does LoRA need far less GPU memory than full fine-tuning?",
       "topics": [
-        "Fine-tuning and alignment",
-        "LLMs",
+        "Model Fine-tuning",
+        "LLM / VLM / SLM / ALM",
         "AI Engineering"
       ]
     },
@@ -516,8 +521,8 @@
       "q": "How do you build and clean a fine-tuning dataset?",
       "followup": "Why does data quality matter more than data quantity here?",
       "topics": [
-        "Fine-tuning and alignment",
-        "LLMs",
+        "Model Fine-tuning",
+        "LLM / VLM / SLM / ALM",
         "AI Engineering"
       ]
     },
@@ -526,8 +531,8 @@
       "q": "Compare RLHF and DPO.",
       "followup": "Why has DPO become popular for smaller teams?",
       "topics": [
-        "Fine-tuning and alignment",
-        "LLMs",
+        "Model Fine-tuning",
+        "LLM / VLM / SLM / ALM",
         "AI Engineering"
       ]
     },
@@ -536,8 +541,8 @@
       "q": "What is catastrophic forgetting, and how do you prevent it?",
       "followup": "Why should you test general skills after fine-tuning, not only the target task?",
       "topics": [
-        "Fine-tuning and alignment",
-        "LLMs",
+        "Model Fine-tuning",
+        "LLM / VLM / SLM / ALM",
         "AI Engineering"
       ]
     },
@@ -546,8 +551,8 @@
       "q": "How do you decide whether fine-tuning actually improved the model?",
       "followup": "Why do you need a held-out evaluation set before you start?",
       "topics": [
-        "Fine-tuning and alignment",
-        "LLMs",
+        "Model Fine-tuning",
+        "LLM / VLM / SLM / ALM",
         "AI Engineering"
       ]
     },
@@ -762,7 +767,7 @@
       "followup": "Why can a simple rule beat a model?",
       "topics": [
         "AI Strategy",
-        "Product & project management"
+        "AI Product management"
       ]
     },
     {
@@ -771,7 +776,7 @@
       "followup": "Why are business metrics and model metrics both needed?",
       "topics": [
         "AI Strategy",
-        "Product & project management"
+        "AI Product management"
       ]
     },
     {
@@ -808,7 +813,7 @@
       "followup": "Why should users be able to see sources and correct the AI?",
       "topics": [
         "AI Strategy",
-        "Product & project management",
+        "AI Product management",
         "AI Risk Management"
       ]
     },
@@ -2114,7 +2119,7 @@
       ],
       "topics": [
         "AI industry and news",
-        "LLMs",
+        "LLM / VLM / SLM / ALM",
         "Generative AI"
       ]
     },
@@ -2190,7 +2195,7 @@
       "topics": [
         "AI industry and news",
         "Frontier Labs",
-        "LLMs"
+        "LLM / VLM / SLM / ALM"
       ]
     },
     {
@@ -2272,7 +2277,7 @@
       "followup": "Pick one and explain how you measured or sized it in a real project.",
       "answer": "Benchmarking and evals, latency (time to first token, time per output token) and throughput (tokens per second, concurrency), capabilities (text, vision, voice, video, tool calling, structured output, context window), hardware sizing (VRAM for weights plus KV cache, RAM, GPU type), optimization (quantization, batching, caching, speculative decoding), serving (vLLM, TGI, TensorRT-LLM, Ollama), context engineering and RAG, fine-tuning (LoRA), cost, safety and production monitoring.\n\nFor the follow-up, give one real measurement, for example \"p95 TTFT dropped from 2.1 s to 0.6 s after enabling prefix caching\".",
       "topics": [
-        "LLMs",
+        "LLM / VLM / SLM / ALM",
         "Behavioral and experience",
         "AI Engineering"
       ]
@@ -2293,7 +2298,7 @@
       "answer": "Latency is how long one user waits: time to first token plus time per output token × output length. Throughput is how much work the whole system does: tokens or requests per second across all users. Bigger batches raise throughput and lower cost per token but can raise each user's latency, so set a latency target (for example p95 TTFT under 1 s) and maximize throughput within it.\n\nDashboard: TTFT and time per output token at p50/p95/p99, tokens per second, requests per second, queue time, GPU utilization, error rate and cost per million tokens.",
       "topics": [
         "System/Product design",
-        "LLMs",
+        "LLM / VLM / SLM / ALM",
         "AI Sizing",
         "AI Engineering"
       ]
@@ -2323,7 +2328,8 @@
       "topics": [
         "System/Product design",
         "AI Engineering",
-        "Product & project management"
+        "AI Project management",
+        "AI Product management"
       ]
     },
     {
@@ -2341,7 +2347,7 @@
       "followup": "How would you check that a quantized model is still good enough for production?",
       "answer": "Quantization stores weights (and sometimes activations or KV cache) with fewer bits: FP16 → 8-bit → 4-bit. 8-bit halves memory with almost no quality loss; 4-bit cuts memory by about 4× and speeds up decoding, but may lose some quality, especially on math, code and long contexts; below 4 bits loss grows. Methods: GPTQ, AWQ, bitsandbytes, FP8, GGUF for llama.cpp.\n\nTo check it: run the same eval set on original and quantized models, compare scores, spot-check outputs, test long-context and edge cases, and measure latency and memory before production.",
       "topics": [
-        "LLMs",
+        "LLM / VLM / SLM / ALM",
         "System/Product design",
         "AI H/W & Semiconductors",
         "AI Sizing"
@@ -2363,7 +2369,8 @@
       "topics": [
         "ML & DL",
         "AI industry and news",
-        "Generative AI"
+        "Generative AI",
+        "Transformers / GANs / VAEs"
       ]
     },
     {
@@ -2425,7 +2432,8 @@
       "answer": "Common causes: starting from technology instead of a business problem; too many disconnected pilots; weak or inaccessible data; tools bolted onto old processes instead of redesigned workflows; no learning loop, so systems do not improve from feedback; unclear owners and no baseline; underestimated cost; and little change management, so people do not adopt the tool. MIT NANDA's 2025 GenAI Divide report and Gartner's forecast that over 40% of agentic AI projects will be canceled by 2027 both point to unclear value, integration and risk controls. To avoid it: tie each use case to a measurable outcome and owner, check data readiness first, integrate into the real workflow, design human-in-the-loop review, evaluate quality continuously, plan adoption and training, and stop projects that miss milestones.\n\nFor a support assistant: baseline handle time, resolution rate, CSAT and cost per ticket; compare with a control group; count tokens, licences, integration, evaluation, monitoring and training in the cost; ROI = (value - cost) / cost.",
       "topics": [
         "AI Strategy",
-        "Product & project management"
+        "AI Project management",
+        "AI Product management"
       ]
     }
   ]
