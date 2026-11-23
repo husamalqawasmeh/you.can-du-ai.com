@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=150';
-import { ADMIN_HASH } from './admin-hash.js?v=150';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=152';
+import { ADMIN_HASH } from './admin-hash.js?v=152';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -802,31 +802,34 @@ const IV_JOBS = {
 };
 let ivAll = [];
 const ivForm = $('#iv-filter');
-// job list with each job's core + important question count, right-aligned as "(nn)+" (monospace select so the padding lines up)
+// job tick boxes, each with its core + important question count as "(nn)+"
+const ivJobs = () => [...ivForm.querySelectorAll('#iv-jobs input:checked')].map(c => c.value);
 function renderIvJobs() {
-  const cur = ivForm.job.value, names = Object.keys(IV_JOBS), w = Math.max(...names.map(n => n.length));
+  const cur = new Set(ivJobs());
   const n = j => ivAll.filter(q => Math.max(0, ...(q.topics ?? []).map(t => IV_JOBS[j][t] ?? 0)) >= 2).length;
-  ivForm.job.innerHTML = names.map(j => `<option value="${esc(j)}"${j === cur ? ' selected' : ''}>${esc(j.padEnd(w + 2, ' ') + '(' + String(n(j)).padStart(2, ' ') + ')+')}</option>`).join('');
+  $('#iv-jobs').innerHTML = Object.keys(IV_JOBS).map(j => `<label><input type="checkbox" value="${esc(j)}"${cur.has(j) ? ' checked' : ''}> <span class="iv-job-name">${esc(j)}</span><span class="iv-job-n">(${n(j)})+</span></label>`).join('');
 }
 renderIvJobs();
-// questions ranked by their most relevant topic for the job, then by how many relevant topics they cover
-function ivPick(all, job, topics, count) {
-  const w = IV_JOBS[job] ?? {}, score = q => { const s = (q.topics ?? []).map(t => w[t] ?? 0); return Math.max(0, ...s) * 10 + s.reduce((a, b) => a + b, 0); };
+// questions ranked by their most relevant topic for the chosen jobs (best weight across jobs), then by how many relevant topics they cover
+function ivPick(all, jobs, topics, count) {
+  const wt = t => Math.max(0, ...jobs.map(j => IV_JOBS[j]?.[t] ?? 0));
+  const score = q => { const s = (q.topics ?? []).map(wt); return Math.max(0, ...s) * 10 + s.reduce((a, b) => a + b, 0); };
   return all.filter(q => !topics.length || (q.topics ?? []).some(t => topics.includes(t)))
     .map((q, i) => ({ q, i, s: score(q) })).sort((a, b) => b.s - a.s || a.i - b.i).slice(0, count || undefined).map(x => x.q);
 }
-console.assert(ivPick([{ topics: ['AI hardware and chips'] }, { topics: ['RAG and retrieval'] }], 'LLM Engineer', [], 1)[0].topics[0] === 'RAG and retrieval', 'ivPick ranking');
+console.assert(ivPick([{ topics: ['AI hardware and chips'] }, { topics: ['RAG and retrieval'] }], ['LLM Engineer'], [], 1)[0].topics[0] === 'RAG and retrieval', 'ivPick ranking');
+console.assert(ivPick([{ topics: ['RAG and retrieval'] }, { topics: ['AI hardware and chips'] }], ['AI Strategy / Consultant', 'MLOps / AI Infrastructure Engineer'], [], 1)[0].topics[0] === 'AI hardware and chips', 'ivPick multi-job');
 function renderInterview() {
   const topics = [...ivForm.querySelectorAll('#iv-topics input:checked')].map(c => c.value);
-  const qs = ivPick(ivAll, ivForm.job.value, topics, Math.max(0, Math.round(+ivForm.count.value || 0)));
-  $('#iv-count').textContent = `Showing ${qs.length} of ${ivAll.length} questions, most relevant to ${ivForm.job.value} first.`;
+  const jobs = ivJobs(), qs = ivPick(ivAll, jobs, topics, Math.max(0, Math.round(+ivForm.count.value || 0)));
+  $('#iv-count').textContent = `Showing ${qs.length} of ${ivAll.length} questions${jobs.length ? `, most relevant to ${jobs.join(', ')} first` : ''}.`;
   $('#iv-list').innerHTML = qs.map((q, qi) => `<li><strong>${esc(q.q)}</strong>${q.match ? matchHtml(q.match, qi) : ''}${q.terms ? termsHtml(q.terms) : ''}${q.companies ? companiesHtml(q.companies, q.unit) : ''}${q.followup ? `<div class="iv-follow">↳ ${esc(q.followup)}</div>` : ''}${q.answer ? `<details class="iv-answers"><summary>Show a suggested answer</summary>${q.answer.split(/\n\s*\n/).map(t => `<p dir="auto">${esc(t)}</p>`).join('')}</details>` : ''}</li>`).join('');
   document.querySelectorAll('#iv-list .match').forEach(el => setupMatch(el, qs[+el.dataset.q].match));
 }
 ivForm.onsubmit = e => { e.preventDefault(); renderInterview(); };
 // live count of questions available for the chosen topics (like the test setup)
 function updateIvMatch() {
-  const topics = [...ivForm.querySelectorAll('#iv-topics input:checked')].map(c => c.value), n = ivPick(ivAll, ivForm.job.value, topics, 0).length;
+  const topics = [...ivForm.querySelectorAll('#iv-topics input:checked')].map(c => c.value), n = ivPick(ivAll, [], topics, 0).length;
   $('#iv-match').textContent = `${n} question${n === 1 ? '' : 's'} available for these filters.`;
 }
 ivForm.addEventListener('change', updateIvMatch);
