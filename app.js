@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=120';
-import { ADMIN_HASH } from './admin-hash.js?v=120';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=121';
+import { ADMIN_HASH } from './admin-hash.js?v=121';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -435,7 +435,7 @@ function startTest(qs, cfg) {
     const prompt = q.type === 'fill' ? esc(q.prompt).replace('___', `<input class="blank" name="a${i}" autocomplete="off" aria-label="Missing word">`) : esc(q.prompt);
     const num = 'speechSynthesis' in window ? `<button type="button" class="qnum" data-speak="${i}" title="Read this question aloud" aria-label="Read question ${i + 1} aloud">${i + 1}. 🔊</button>` : `${i + 1}.`;
     return `<div class="question"><p>${num} ${prompt}</p><div class="tag">${esc(q.topic)} · ${esc(q.difficulty)} ${studyBtn(q.topic)}</div>${input}</div>`;
-  }).join('') + `<button class="primary">Submit answers</button> <button type="button" id="cancel-test">Cancel</button></div>`;
+  }).join('') + `<div class="run-actions"><button type="button" id="cancel-test">Cancel</button><button class="primary">Submit answers</button></div></div>`;
   run.querySelectorAll('.match').forEach(el => { const i = +el.dataset.q; setupMatch(el, qs[i].pairs, links => { run.elements['a' + i].value = JSON.stringify(qs[i].pairs.map((p, k) => links.get(k) ?? '')); }); });
   cfgForm.hidden = true; $('#test-result').hidden = true; run.hidden = false;
   $('#cancel-test').onclick = resetTest;

@@ -234,3 +234,4 @@ nav button:last-child { margin-inline-end: 0; }
 .study-chip button { padding: 0 6px; border: 0; background: transparent; color: var(--muted); font-size: 1rem; line-height: 1; }
 #test > details.card.fold, #topic-success > .card, #study-box > .card { padding-block: 5px; }
 #new-test { display: block; width: 100%; font-weight: 700; margin-top: 12px; }
+.run-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; } .run-actions button { margin: 0; font-weight: 700; }
