@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=156';
-import { ADMIN_HASH } from './admin-hash.js?v=156';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=157';
+import { ADMIN_HASH } from './admin-hash.js?v=157';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -801,7 +801,7 @@ const IV_JOBS = {
   'AI Business Partner': { 'AI industry and news': 3, 'Behavioral and experience': 3, 'LLM fundamentals': 1, 'Agents and tool use': 1, 'Tools and automation': 1, 'Evals': 1, 'AI Strategy': 3, 'AI Governance': 1, 'AI Risk Management': 1, 'Product and project management': 2 },
   'AI Strategy / Consultant': { 'AI industry and news': 3, 'Behavioral and experience': 2, 'AI hardware and chips': 1, 'LLM fundamentals': 1, 'Agents and tool use': 1, 'Evals': 2, 'AI Strategy': 3, 'AI Governance': 2, 'AI Risk Management': 2, 'Product and project management': 2 },
   'General (AI literacy)': { 'AI industry and news': 3, 'Behavioral and experience': 3, 'LLM fundamentals': 2, 'Tools and automation': 2, 'Agents and tool use': 1, 'RAG and retrieval': 1, 'AI hardware and chips': 1, 'ML and deep learning basics': 1, 'Evals': 1, 'AI Strategy': 2, 'AI Governance': 2, 'AI Risk Management': 2, 'Product and project management': 2 },
-  'Automation / AI Developer': { 'Tools and automation': 3, 'Agents and tool use': 2, 'System design and production': 2, 'Behavioral and experience': 2, 'LLM fundamentals': 1, 'RAG and retrieval': 1 },
+  'Automation/AI Dev.': { 'Tools and automation': 3, 'Agents and tool use': 2, 'System design and production': 2, 'Behavioral and experience': 2, 'LLM fundamentals': 1, 'RAG and retrieval': 1 },
 };
 let ivAll = [];
 const ivForm = $('#iv-filter');
