@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=138';
-import { ADMIN_HASH } from './admin-hash.js?v=138';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=139';
+import { ADMIN_HASH } from './admin-hash.js?v=139';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -718,9 +718,9 @@ function openSlides(c) {
 @page { size: 13.333in 7.5in; margin: 0; }
 * { box-sizing: border-box; } body { margin: 0; font-family: system-ui, "Segoe UI", Tahoma, sans-serif; background: #e9eaf0; color: #1b1e28; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 .bar { position: sticky; top: 0; background: #1b1e28; color: #fff; padding: 10px 16px; display: flex; gap: 12px; align-items: center; z-index: 1; }
-.bar button { font: inherit; padding: 6px 14px; border-radius: 6px; border: 0; background: #818cf8; color: #11131a; cursor: pointer; }
+.bar button { font: inherit; padding: 6px 14px; border-radius: 6px; border: 0; background: #4285f4; color: #fff; cursor: pointer; }
 .slide { width: 13.333in; height: 7.5in; margin: 16px auto; background: #fff; padding: 0.7in 0.9in; display: flex; flex-direction: column; justify-content: center; page-break-after: always; break-after: page; overflow: hidden; border-top: 0.18in solid #4f46e5; }
-.slide h1 { font-size: 44pt; margin: 0 0 18pt; color: #4f46e5; } .slide h2 { font-size: 30pt; margin: 0 0 20pt; color: #4f46e5; }
+.slide h1 { font-size: 44pt; margin: 0 0 18pt; color: #1a73e8; } .slide h2 { font-size: 30pt; margin: 0 0 20pt; color: #1a73e8; }
 .slide p { font-size: 20pt; line-height: 1.4; margin: 0 0 10pt; } .slide ul { font-size: 20pt; line-height: 1.45; margin: 0; padding-inline-start: 1.1em; } .slide li { margin-bottom: 10pt; }
 .meta { color: #626a7d; font-size: 16pt; }
 @media screen and (max-width: 1320px) { .slide { zoom: 0.6; } }

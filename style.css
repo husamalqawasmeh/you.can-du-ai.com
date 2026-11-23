@@ -1,12 +1,12 @@
 :root {
   --bg: #f6f7fb; --card: #fff; --text: #1b1e28; --muted: #626a7d; --border: #dde1ea;
-  --accent: #4f46e5; --accent-text: #fff; --good: #15803d; --bad: #b91c1c;
+  --accent: #1a73e8; --accent-text: #fff; --good: #15803d; --bad: #c15f3c;
   --raised: #eef0f8; --border-strong: #b9bfd0;
 }
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #11131a; --card: #1b1e28; --text: #e8eaf0; --muted: #9aa1b3; --border: #2e3342;
-    --accent: #818cf8; --accent-text: #11131a; --good: #4ade80; --bad: #f87171;
+    --accent: #4285f4; --accent-text: #fff; --good: #4ade80; --bad: #d97757;
     --raised: #262b3b; --border-strong: #464d66;
   }
 }
@@ -122,7 +122,7 @@ nav button.locked::after { content: " 🔒"; font-size: .75em; }
 .match-col button.linked { border-color: var(--accent); }
 .match-actions { grid-column: 1 / -1; align-items: center; }
 .lvl { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: .85em; font-weight: 600; border: 1px solid currentColor; }
-.lvl-beginner { color: var(--bad); } .lvl-intermediate { color: #d97706; } .lvl-advanced { color: var(--accent); } .lvl-expert { color: var(--good); }
+.lvl-beginner { color: var(--bad); } .lvl-intermediate { color: #ca8a04; } .lvl-advanced { color: var(--accent); } .lvl-expert { color: var(--good); }
 table.prof, table.cert-facts { border-collapse: collapse; width: 100%; font-size: .9rem; margin-top: 6px; }
 table.prof th, table.prof td, table.cert-facts th, table.cert-facts td { text-align: start; padding: 4px 8px; border-top: 1px solid var(--border); vertical-align: top; }
 table.cert-facts th { width: 9em; color: var(--muted); font-weight: 500; }
