@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=135';
-import { ADMIN_HASH } from './admin-hash.js?v=135';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=136';
+import { ADMIN_HASH } from './admin-hash.js?v=136';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -936,7 +936,9 @@ function termsHtml(groups) {
 const shuffle = a => pickQuestions(a, { count: a.length }); // reuses the Fisher-Yates shuffle
 function matchHtml(pairs, qi, test = false) {
   const vendors = shuffle([...new Set(pairs.map(p => p[1]))]);
-  return `<div class="match" data-q="${qi}"><svg class="match-lines" aria-hidden="true"></svg>
+  // long right-hand labels (e.g. achievements) get a wider column so they fit on one line
+  const len = k => Math.max(...pairs.map(p => p[k].length)), wide = len(1) > 1.8 * len(0);
+  return `<div class="match${wide ? ' match-wide' : ''}" data-q="${qi}"><svg class="match-lines" aria-hidden="true"></svg>
     <div class="match-col">${shuffle(pairs.map((p, i) => i)).map(i => `<button type="button" data-l="${i}">${esc(pairs[i][0])}</button>`).join('')}</div>
     <div class="match-col">${vendors.map(v => `<button type="button" data-r="${esc(v)}">${esc(v)}</button>`).join('')}</div>
     ${test ? '' : '<div class="row match-actions"><button type="button" class="primary" data-act="check">Check</button><button type="button" data-act="show">Show answers</button><button type="button" data-act="reset">Reset</button><span class="match-score" role="status"></span></div>'}</div>`;
