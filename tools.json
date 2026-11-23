@@ -1496,6 +1496,40 @@
       ],
       "url": "https://www.liquid.ai",
       "released": 2024
+    },
+    {
+      "name": "Gradio",
+      "company": "Hugging Face",
+      "category": "Framework",
+      "does": "Open-source Python library for building web demos and UIs for ML models in a few lines (text, image, audio, chat). Powers most Hugging Face Spaces and can share a public link or expose an app as an API.",
+      "cost": "Free (open source); hosting free or paid on Hugging Face Spaces",
+      "pros": [
+        "Very fast to build model demos and chat UIs",
+        "Built-in Hugging Face Spaces hosting and sharing"
+      ],
+      "cons": [
+        "Less layout control than a full web framework",
+        "Not meant for large production apps"
+      ],
+      "url": "https://www.gradio.app",
+      "released": 2019
+    },
+    {
+      "name": "Streamlit",
+      "company": "Snowflake",
+      "category": "Framework",
+      "does": "Open-source Python framework that turns scripts into interactive web apps and dashboards: data apps, LLM chat apps and internal tools. Owned by Snowflake; deploy on Streamlit Community Cloud, Snowflake or Hugging Face Spaces.",
+      "cost": "Free (open source); Community Cloud free; paid in Snowflake",
+      "pros": [
+        "Pure Python, no front-end code needed",
+        "Great for data dashboards and quick LLM chat apps"
+      ],
+      "cons": [
+        "Reruns the whole script on each interaction, which can be slow",
+        "Limited custom design and scaling"
+      ],
+      "url": "https://streamlit.io",
+      "released": 2019
     }
   ]
 }

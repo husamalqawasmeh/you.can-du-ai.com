@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=129';
-import { ADMIN_HASH } from './admin-hash.js?v=129';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=130';
+import { ADMIN_HASH } from './admin-hash.js?v=130';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -252,7 +252,7 @@ loadCerts();
 // ---------- AI tools dictionary (tools.json) ----------
 async function loadTools() {
   let d;
-  try { d = await (await fetch('tools.json?v=4')).json(); } catch { $('#tools-list').innerHTML = '<p class="muted">Could not load the tools.</p>'; return; }
+  try { d = await (await fetch('tools.json?v=5')).json(); } catch { $('#tools-list').innerHTML = '<p class="muted">Could not load the tools.</p>'; return; }
   $('#tools-checked').textContent = `Last checked: ${d.checked}.`;
   $('#tool-cat').innerHTML += [...new Set(d.tools.map(t => t.category))].sort().map(c => opt(c)).join('');
   const costKind = c => { c = c.toLowerCase(); return { free: /free|open/.test(c) && !/freemium/.test(c), freemium: /freemium|free tier|free app|free to try/.test(c), paid: /subscription|paid|licen|included/.test(c), usage: /pay-per-use|api/.test(c) }; };
