@@ -98,7 +98,8 @@ small { display: block; }
 #home .card, #home .home-card, #home button, #home input { border-radius: 0; }
 a { color: var(--accent); }
 .topbar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; }
-#user-box { font-size: .9rem; color: var(--muted); }
+#user-box { font-size: .9rem; color: var(--muted); margin-inline-start: auto; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 #user-box button { font-size: .8rem; padding: 2px 8px; margin-inline-start: 6px; }
 .signin { border-color: var(--accent); }
 nav button.locked::after { content: " 🔒"; font-size: .75em; }
