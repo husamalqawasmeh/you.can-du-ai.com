@@ -256,7 +256,8 @@
       "followup": "Why and when would you choose a simple fixed workflow over a fully autonomous agent?",
       "answer": "An agent is an LLM that decides its own next steps and tool calls in a loop toward a goal. Patterns: ReAct (think, act, observe), prompt chaining, routing, orchestrator-workers (a lead model splits and delegates), evaluator-optimizer (one critiques, another improves), and multi-agent handoffs.\n\nUse a simple fixed workflow when the steps are known: it is cheaper, faster, more predictable and easier to test. Use an autonomous agent only when the path cannot be known in advance and the value is worth the extra risk.",
       "topics": [
-        "Agents/MCP/Tool-use"
+        "Agents/MCP/Tool-use",
+        "Loop Engineering"
       ]
     },
     {
@@ -572,7 +573,8 @@
       "q": "How do you decide when an agent should stop?",
       "followup": "Why are step limits and budgets needed even with a smart model?",
       "topics": [
-        "Agents/MCP/Tool-use"
+        "Agents/MCP/Tool-use",
+        "Loop Engineering"
       ]
     },
     {
@@ -606,7 +608,8 @@
       "q": "How would you debug an agent that loops or repeats the same tool call?",
       "followup": "Why is tracing every step essential for agents?",
       "topics": [
-        "Agents/MCP/Tool-use"
+        "Agents/MCP/Tool-use",
+        "Loop Engineering"
       ]
     },
     {
@@ -998,7 +1001,8 @@
       "topics": [
         "Evals",
         "Agents/MCP/Tool-use",
-        "Prompt Engineering"
+        "Prompt Engineering",
+        "Loop Engineering"
       ]
     },
     {
