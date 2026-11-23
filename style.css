@@ -268,4 +268,7 @@ header .topbar { order: 2; flex-shrink: 0; }
 #iv-filter legend { font-weight: 700; color: var(--accent); }
 #iv-filter .legend-note { font-weight: 400; color: var(--text); }
 .iv-results { border-top: 1px solid var(--border); padding-top: 8px; }
-.iv-results > summary h2 { color: var(--accent); }
+.iv-results { border-top: 0; padding-top: 0; }
+.iv-results > summary { background: var(--accent); color: var(--accent-text); border-radius: 8px; padding: 8px 14px; }
+.iv-results > summary::before, .iv-results > summary h2, .iv-results > summary .muted { color: var(--accent-text); }
+.iv-results > summary:hover { filter: brightness(1.08); }
