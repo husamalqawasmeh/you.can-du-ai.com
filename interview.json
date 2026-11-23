@@ -138,7 +138,6 @@
       "answer": "Describe real use: downloading open models with Transformers, using datasets, building demos in Spaces, fine-tuning with PEFT/LoRA, or calling Inference Endpoints.\n\nExplain choices: model size vs hardware, license, benchmark and leaderboard results, downloads and community activity, and then your own evals on your data comparing quality, speed and cost.",
       "topics": [
         "Tools and automation",
-        "LLM fundamentals",
         "LLMs",
         "AI Development"
       ]
@@ -160,7 +159,6 @@
       "answer": "Hub: hosts models, datasets and Spaces. Spaces: demo apps (Gradio, Streamlit). Transformers: library to load and run pretrained models. Datasets: load and share data. PEFT: LoRA and other efficient fine-tuning. TGI (Text Generation Inference): production serving. smolagents: small code-writing agents.\n\nTo production: pick and evaluate the model, quantize if needed, serve it with TGI or vLLM in a container on GPUs (or Inference Endpoints), put an API gateway in front, and add monitoring, autoscaling and rate limits.",
       "topics": [
         "Tools and automation",
-        "LLM fundamentals",
         "LLMs"
       ]
     },
@@ -169,9 +167,8 @@
       "followup": "When would you pick a small on-device model like LFM2 over a large cloud model such as GPT or Claude?",
       "answer": "Liquid AI is a Boston-based MIT spin-off (Ramin Hasani, Mathias Lechner, Alexander Amini, Daniela Rus). Its Liquid Foundation Models are not plain Transformers: they come from liquid neural network research and use efficient designs (for example LFM2 mixes short convolutions with a few attention layers), giving low memory use and fast speed on phones, laptops and edge devices as well as in the cloud.\n\nPick a small on-device model for privacy, offline use, low latency and low cost on simple, high-volume tasks; pick a large cloud model for hard reasoning and broad knowledge.",
       "topics": [
-        "LLM fundamentals",
-        "AI industry and news",
         "LLMs",
+        "AI industry and news",
         "Frontier Labs"
       ]
     },
@@ -180,9 +177,8 @@
       "followup": "What changes in the weights when you fine-tune with LoRA, and why do companies treat weights as their most valuable asset?",
       "answer": "Weights are the billions of numbers (parameters, together with biases) a model learns in training; \"70B\" means about 70 billion of them. They sit in matrices: token embeddings, attention (Q, K, V, O), feed-forward layers and the output head. Training starts them random, then backpropagation and an optimizer such as Adam adjust them to reduce next-token prediction error over trillions of tokens. At inference the weights are frozen and only read. Knowledge is spread across them, not stored as text.\n\nLoRA freezes the original weights and trains small low-rank matrices added to some layers, so it needs little memory and the adapter is tiny. Weights are valuable because they hold the result of very expensive training (data, compute, know-how); the code is small, so whoever has the weights has the model, which is why some companies keep them closed and others release them as open weights.",
       "topics": [
-        "LLM fundamentals",
-        "ML & DL deep basics",
-        "LLMs"
+        "LLMs",
+        "ML & DL deep basics"
       ]
     },
     {
@@ -190,7 +186,6 @@
       "followup": "For a bank chatbot that handles customer data, which would you choose and why? What would change for a small startup prototype?",
       "answer": "Open-weight: you download and run the model yourself. Pros: data stays on your servers (privacy, compliance, data residency), full control of versions (no surprise changes or retirement), fine-tuning, offline or edge use, no per-token fee and no vendor lock-in. Cons: you pay for GPUs and engineering (serving, scaling, security, updates), the best open models are often a step behind the top closed ones on the hardest tasks, and licenses vary (Apache 2.0 and MIT are permissive; some add limits). Closed API models: pros are top quality, no infrastructure, fast start, built-in tools (search, vision, voice) and the vendor's safety and uptime; cons are per-token cost that grows with volume, data leaves your network, rate limits, the vendor can change or retire models, and lock-in. Open-weight is not the same as open source: training data and code are often private.\n\nFor a bank: self-host an open model (or use a closed model through a private cloud deal with no data retention) because of privacy and regulation, and run evals to check quality. For a startup prototype: start with a closed API for speed and quality, then move high-volume or sensitive tasks to an open model when cost or privacy matters. Many teams mix both and route each task to the cheapest model that passes their evals.",
       "topics": [
-        "LLM fundamentals",
         "LLMs",
         "Frontier Labs",
         "AI Strategy",
@@ -223,8 +218,7 @@
       "followup": "Why can peak FLOPS be misleading when choosing a GPU for LLM inference?",
       "answer": "FLOPS = floating-point operations per second, a measure of compute speed (TFLOPS = trillions, PFLOPS = quadrillions). Peak FLOPS is a best case at one precision (often FP8 or FP4, sometimes with sparsity).\n\nLLM token generation is usually limited by memory bandwidth, not compute, so a GPU with more memory bandwidth and capacity can be faster for inference even with lower peak FLOPS.",
       "topics": [
-        "AI hardware and chips",
-        "AI Hardware",
+        "AI H/W and Semiconductors",
         "AI Sizing"
       ]
     },
@@ -280,9 +274,8 @@
       "answer": "LLMs: MMLU/MMLU-Pro (knowledge), GPQA (expert science), HumanEval and SWE-bench (coding), GSM8K and AIME (math), MMMU (multimodal), LMArena (human preference). Hardware: MLPerf Training and Inference (speed across systems).\n\nResults mislead through contamination (test data in training), saturation (top models all near 100%), and different settings (prompts, precision, batch size). For your use case, build your own eval set and measure quality, latency, throughput and cost on your hardware.",
       "topics": [
         "Evals",
-        "AI hardware and chips",
-        "Benchmarking",
-        "AI Hardware"
+        "AI H/W and Semiconductors",
+        "Benchmarking"
       ]
     },
     {
@@ -322,8 +315,7 @@
       "followup": "Why does a single supplier (ASML) for these machines matter for the AI hardware supply chain and for export controls?",
       "answer": "EUV lithography machines print the tiniest chip patterns using 13.5 nm extreme ultraviolet light, made by firing lasers at tin droplets, focused with ultra-precise mirrors in a vacuum. Only ASML (Netherlands) makes them; each costs well over $150 million (high-NA versions even more). They are needed for the most advanced chips (about 7 nm and below), such as NVIDIA GPUs made by TSMC.\n\nA single supplier is a supply-chain choke point, and export controls on EUV machines are used to limit which countries can make leading-edge AI chips.",
       "topics": [
-        "AI hardware and chips",
-        "AI Hardware"
+        "AI H/W and Semiconductors"
       ]
     },
     {
@@ -443,7 +435,6 @@
       "q": "Explain how a transformer works to someone non-technical, then to an engineer.",
       "followup": "Why is the ability to explain at two levels valuable on a team?",
       "topics": [
-        "LLM fundamentals",
         "LLMs"
       ]
     },
@@ -452,7 +443,6 @@
       "q": "What is the KV cache, and why does it matter for inference speed and memory?",
       "followup": "Why does a long context window increase serving cost?",
       "topics": [
-        "LLM fundamentals",
         "LLMs",
         "AI Sizing"
       ]
@@ -462,7 +452,6 @@
       "q": "What do temperature and top-p do, and how would you set them for a coding assistant?",
       "followup": "Why would you use different settings for creative writing?",
       "topics": [
-        "LLM fundamentals",
         "LLMs"
       ]
     },
@@ -471,7 +460,6 @@
       "q": "What causes hallucinations, and what techniques reduce them?",
       "followup": "Why can no technique remove hallucinations completely?",
       "topics": [
-        "LLM fundamentals",
         "LLMs"
       ]
     },
@@ -480,7 +468,6 @@
       "q": "Compare encoder-only, decoder-only and encoder-decoder models, with an example of each.",
       "followup": "Why did decoder-only models come to dominate generative AI?",
       "topics": [
-        "LLM fundamentals",
         "LLMs"
       ]
     },
@@ -489,7 +476,6 @@
       "q": "What is positional encoding, and why do many models use RoPE?",
       "followup": "Why does position information matter for long contexts?",
       "topics": [
-        "LLM fundamentals",
         "LLMs"
       ]
     },
@@ -498,7 +484,6 @@
       "q": "How does tokenization affect cost, multilingual performance and arithmetic?",
       "followup": "Why can the same sentence cost more tokens in Arabic than in English?",
       "topics": [
-        "LLM fundamentals",
         "LLMs"
       ]
     },
@@ -507,7 +492,6 @@
       "q": "What are the trade-offs of quantizing a model to 4 bits?",
       "followup": "Why does quantization make local and edge deployment possible?",
       "topics": [
-        "LLM fundamentals",
         "LLMs",
         "AI Sizing"
       ]
@@ -517,7 +501,6 @@
       "q": "What is Mixture of Experts, and why does it make large models cheaper to run?",
       "followup": "Why do MoE models still need a lot of memory?",
       "topics": [
-        "LLM fundamentals",
         "LLMs"
       ]
     },
@@ -722,7 +705,7 @@
         "System design and production",
         "AI Engineering",
         "AI Sizing",
-        "AI Hardware"
+        "AI H/W and Semiconductors"
       ]
     },
     {
@@ -2142,7 +2125,7 @@
       ],
       "topics": [
         "AI industry and news",
-        "LLM fundamentals",
+        "LLMs",
         "Generative AI"
       ]
     },
@@ -2300,9 +2283,8 @@
       "followup": "Pick one and explain how you measured or sized it in a real project.",
       "answer": "Benchmarking and evals, latency (time to first token, time per output token) and throughput (tokens per second, concurrency), capabilities (text, vision, voice, video, tool calling, structured output, context window), hardware sizing (VRAM for weights plus KV cache, RAM, GPU type), optimization (quantization, batching, caching, speculative decoding), serving (vLLM, TGI, TensorRT-LLM, Ollama), context engineering and RAG, fine-tuning (LoRA), cost, safety and production monitoring.\n\nFor the follow-up, give one real measurement, for example \"p95 TTFT dropped from 2.1 s to 0.6 s after enabling prefix caching\".",
       "topics": [
-        "LLM fundamentals",
-        "Behavioral and experience",
         "LLMs",
+        "Behavioral and experience",
         "AI Engineering"
       ]
     },
@@ -2311,10 +2293,9 @@
       "followup": "Which levers (quantization, KV cache, batching, a smaller model) would you pull first to cut cost, and what would you measure?",
       "answer": "Weights: 70B in FP16 is about 140 GB, in FP8 about 70 GB, in 4-bit about 35-40 GB. KV cache: for a Llama-70B-style model (80 layers, 8 KV heads with GQA, head size 128, FP16) about 0.33 MB per token, so 100 users × 8K tokens ≈ 800K tokens ≈ 260 GB at full use. Total in FP16 ≈ 400+ GB, for example a node of 8 × 80 GB GPUs with tensor parallelism; FP8 weights and FP8 KV cache can roughly halve it.\n\nLevers in order: FP8/4-bit quantization (check evals), FP8 KV cache and PagedAttention, continuous batching, prefix caching, then a smaller or distilled model. Measure quality, p95 latency, throughput and cost per million tokens.",
       "topics": [
-        "AI hardware and chips",
+        "AI H/W and Semiconductors",
         "System design and production",
-        "AI Sizing",
-        "AI Hardware"
+        "AI Sizing"
       ]
     },
     {
@@ -2323,7 +2304,7 @@
       "answer": "Latency is how long one user waits: time to first token plus time per output token × output length. Throughput is how much work the whole system does: tokens or requests per second across all users. Bigger batches raise throughput and lower cost per token but can raise each user's latency, so set a latency target (for example p95 TTFT under 1 s) and maximize throughput within it.\n\nDashboard: TTFT and time per output token at p50/p95/p99, tokens per second, requests per second, queue time, GPU utilization, error rate and cost per million tokens.",
       "topics": [
         "System design and production",
-        "LLM fundamentals",
+        "LLMs",
         "AI Sizing",
         "AI Engineering"
       ]
@@ -2371,10 +2352,9 @@
       "followup": "How would you check that a quantized model is still good enough for production?",
       "answer": "Quantization stores weights (and sometimes activations or KV cache) with fewer bits: FP16 → 8-bit → 4-bit. 8-bit halves memory with almost no quality loss; 4-bit cuts memory by about 4× and speeds up decoding, but may lose some quality, especially on math, code and long contexts; below 4 bits loss grows. Methods: GPTQ, AWQ, bitsandbytes, FP8, GGUF for llama.cpp.\n\nTo check it: run the same eval set on original and quantized models, compare scores, spot-check outputs, test long-context and edge cases, and measure latency and memory before production.",
       "topics": [
-        "LLM fundamentals",
-        "System design and production",
-        "AI hardware and chips",
         "LLMs",
+        "System design and production",
+        "AI H/W and Semiconductors",
         "AI Sizing"
       ]
     },
@@ -2383,8 +2363,7 @@
       "followup": "For a 70B model, which would you buy and why: memory size, memory bandwidth or software support?",
       "answer": "DGX Spark is NVIDIA's desktop AI computer with the GB10 Grace Blackwell chip and 128 GB unified memory (about 273 GB/s), running the full CUDA stack; it fits models up to about 200B parameters in FP4 and is great for prototyping and fine-tuning. Mac Studio M3 Ultra: up to 512 GB and about 819 GB/s, so faster generation on big models, but no CUDA. AMD Strix Halo mini PCs: up to 128 GB at about 256 GB/s, cheaper, ROCm. RTX 5090: only 32 GB but about 1.8 TB/s, fastest when the model fits.\n\nFor a 70B model: memory size decides if it fits (4-bit ≈ 40 GB), bandwidth decides speed, software decides ease; for CUDA work pick Spark, for fastest local chat at 70B a Mac Studio, for small models an RTX 5090.",
       "topics": [
-        "AI hardware and chips",
-        "AI Hardware",
+        "AI H/W and Semiconductors",
         "AI Sizing"
       ]
     },
@@ -2403,8 +2382,7 @@
       "followup": "How does packaging capacity affect GPU supply and the cost of running large models?",
       "answer": "CoWoS (Chip-on-Wafer-on-Substrate) is TSMC's 2.5D packaging: the GPU die and HBM stacks sit side by side on a silicon (or organic) interposer with very dense wiring, mounted on a package substrate. AI accelerators are limited by memory bandwidth, and HBM only reaches terabytes per second when it sits right next to the GPU with thousands of short links. CoWoS also gets past the reticle limit by joining several dies, as in NVIDIA Blackwell B200 (two GPU dies on CoWoS-L). Since 2023 CoWoS and HBM capacity, not die production, have been the main bottleneck for AI GPU supply, so TSMC keeps doubling capacity.\n\nFor engineers this means GPU availability and price depend on the whole supply chain, which affects cloud pricing and hardware planning.",
       "topics": [
-        "AI hardware and chips",
-        "AI Hardware"
+        "AI H/W and Semiconductors"
       ]
     },
     {
@@ -2412,8 +2390,7 @@
       "followup": "What are its trade-offs (cost, exposure field size) and how do they affect very large AI accelerators?",
       "answer": "ASML is the only maker of EUV lithography machines, which print the smallest features on leading-edge chips using 13.5 nm light from a tin plasma, steered by mirrors in a vacuum. Standard EUV has a numerical aperture of 0.33; High-NA EUV (EXE:5000/5200) raises it to 0.55, printing about 1.7x smaller features (about 8 nm resolution) and nearly 3x the density per exposure, and can replace costly multi-patterning. Smaller nodes give AI accelerators more compute per watt, lowering training and inference cost.\n\nTrade-offs: about $350-400 million per machine, and a half-size exposure field, so very large AI dies need stitching or multi-die designs with packaging like CoWoS. Intel adopted it first; TSMC and Samsung plan it for later nodes. Export controls keep EUV out of China, making it a strategic part of the AI race.",
       "topics": [
-        "AI hardware and chips",
-        "AI Hardware"
+        "AI H/W and Semiconductors"
       ]
     },
     {
@@ -2421,9 +2398,8 @@
       "followup": "If you had to run LLMs on AMD instead of NVIDIA GPUs, what would change in your software stack?",
       "answer": "NVIDIA and AMD are fabless: they design GPUs but do not own fabs. TSMC is the leading foundry that manufactures their chips on advanced nodes (4N, N3, N2) and packages them with HBM using CoWoS; ASML supplies the EUV machines the fabs need. CUDA is NVIDIA's software platform (kernels plus libraries like cuBLAS, cuDNN, NCCL, TensorRT) that PyTorch and most AI tools use, and its ecosystem is NVIDIA's main moat. AMD competes with Instinct GPUs (MI300X, MI355X) that offer more HBM per GPU, and with ROCm/HIP as its CUDA alternative.\n\nMoving to AMD: use ROCm builds of PyTorch and inference engines like vLLM or SGLang, port custom CUDA kernels with HIP or rewrite them in Triton, replace NCCL with RCCL, and test performance and stability because library coverage is narrower.",
       "topics": [
-        "AI hardware and chips",
-        "AI industry and news",
-        "AI Hardware"
+        "AI H/W and Semiconductors",
+        "AI industry and news"
       ]
     },
     {
