@@ -78,7 +78,6 @@
       "followup": "Why did the organization need it, and how was success measured?",
       "answer": "Explain the why (stay competitive, cut costs, use data better, manage risk), then the parts: business goals, high-value use cases ranked by value and feasibility, data readiness, build vs buy, governance and responsible AI, skills and training, and a roadmap with quick wins.\n\nSuccess measures: adoption, time or cost saved, revenue impact, quality and risk metrics. If you have not done it, describe how you would.",
       "topics": [
-        "Product, strategy and responsible AI",
         "Behavioral and experience",
         "AI Strategy"
       ]
@@ -88,9 +87,9 @@
       "followup": "Why did the project succeed or struggle, and what did you learn?",
       "answer": "Describe scope, team, timeline and your role.\n\nAI projects succeed with a clear business metric, good data early, a small pilot, evals and stakeholder buy-in. They struggle with poor data, unclear success criteria, scope creep and no plan for production. Share one concrete lesson, such as building the eval set before the model.",
       "topics": [
-        "Product, strategy and responsible AI",
         "Behavioral and experience",
-        "AI Strategy"
+        "AI Strategy",
+        "Product and project management"
       ]
     },
     {
@@ -192,9 +191,10 @@
       "answer": "Open-weight: you download and run the model yourself. Pros: data stays on your servers (privacy, compliance, data residency), full control of versions (no surprise changes or retirement), fine-tuning, offline or edge use, no per-token fee and no vendor lock-in. Cons: you pay for GPUs and engineering (serving, scaling, security, updates), the best open models are often a step behind the top closed ones on the hardest tasks, and licenses vary (Apache 2.0 and MIT are permissive; some add limits). Closed API models: pros are top quality, no infrastructure, fast start, built-in tools (search, vision, voice) and the vendor's safety and uptime; cons are per-token cost that grows with volume, data leaves your network, rate limits, the vendor can change or retire models, and lock-in. Open-weight is not the same as open source: training data and code are often private.\n\nFor a bank: self-host an open model (or use a closed model through a private cloud deal with no data retention) because of privacy and regulation, and run evals to check quality. For a startup prototype: start with a closed API for speed and quality, then move high-volume or sensitive tasks to an open model when cost or privacy matters. Many teams mix both and route each task to the cheapest model that passes their evals.",
       "topics": [
         "LLM fundamentals",
-        "Product, strategy and responsible AI",
         "LLMs",
-        "Frontier Labs"
+        "Frontier Labs",
+        "AI Strategy",
+        "AI Risk Management"
       ]
     },
     {
@@ -202,7 +202,7 @@
       "followup": "How would you explain a model's decision to a regulator or an affected customer?",
       "answer": "Rules and decision tables (DMN) for clear, auditable business logic; decision trees for simple, explainable predictions; ensembles (random forests, gradient boosting) for accurate predictions on tabular data; expected utility and influence diagrams for choices under uncertainty; MDPs and reinforcement learning for decisions over many steps; multi-criteria methods (weighted scoring, AHP) for trade-offs.\n\nTo explain to a regulator or customer: use interpretable models or explanation tools (SHAP, reason codes), give the main factors in plain language, document data and testing, and offer a human review and appeal.",
       "topics": [
-        "Evals and quality",
+        "Evals",
         "ML and deep learning basics",
         "Decision Models"
       ]
@@ -212,10 +212,10 @@
       "followup": "When should a human review the decision, and how would you check it for bias?",
       "answer": "A model outputs a probability; the decision is the threshold. Choose it from the cost of each error (a missed fraud vs a false alarm), using the confusion matrix, precision/recall and expected cost, often with bands: auto-approve, auto-decline and a middle band for human review.\n\nHumans should review uncertain, high-impact or unusual cases. Check bias by comparing error rates and approval rates across groups, and monitor after launch.",
       "topics": [
-        "Evals and quality",
+        "Evals",
         "ML and deep learning basics",
-        "Product, strategy and responsible AI",
-        "Decision Models"
+        "Decision Models",
+        "Product and project management"
       ]
     },
     {
@@ -271,7 +271,6 @@
       "followup": "Why can't you rely on public benchmarks alone, and how do you make sure an LLM-as-a-judge is trustworthy?",
       "answer": "Build an eval set from real tasks with expected results; score with code checks (exact match, JSON valid, tests pass), rubrics, LLM-as-a-judge and human review; track quality, latency and cost; run evals on every prompt or model change; and monitor production with tracing and user feedback.\n\nPublic benchmarks don't match your tasks and can be contaminated. Make a judge trustworthy by testing it against human labels, using clear rubrics, and checking for bias (position, length, self-preference).",
       "topics": [
-        "Evals and quality",
         "Evals"
       ]
     },
@@ -280,7 +279,7 @@
       "followup": "Why can benchmark results be misleading (contamination, saturation, different setups), and how would you benchmark for your own use case?",
       "answer": "LLMs: MMLU/MMLU-Pro (knowledge), GPQA (expert science), HumanEval and SWE-bench (coding), GSM8K and AIME (math), MMMU (multimodal), LMArena (human preference). Hardware: MLPerf Training and Inference (speed across systems).\n\nResults mislead through contamination (test data in training), saturation (top models all near 100%), and different settings (prompts, precision, batch size). For your use case, build your own eval set and measure quality, latency, throughput and cost on your hardware.",
       "topics": [
-        "Evals and quality",
+        "Evals",
         "AI hardware and chips",
         "Benchmarking",
         "AI Hardware"
@@ -292,8 +291,8 @@
       "answer": "Project Maven is the Pentagon's AI program (started 2017) for analysing drone and surveillance video. Google ran an early pilot, supplying TensorFlow tools, but dropped the contract in 2018 after thousands of employees protested and some resigned, and it published AI principles. Palantir then took over the work; \"Tron\" was Palantir's internal codename for it. Maven grew into the Maven Smart System used for targeting and intelligence.\n\nLesson: employee values and public pressure can change company decisions, and defense AI needs clear ethics, oversight and human control.",
       "topics": [
         "AI industry and news",
-        "Product, strategy and responsible AI",
-        "Frontier Labs"
+        "Frontier Labs",
+        "AI Governance"
       ]
     },
     {
@@ -312,9 +311,10 @@
       "followup": "How about the guardrail \"protect humans at any cost\": if all AI vendors agreed on it and applied it, would it be enough to completely eliminate the chance of AI eliminating humans?",
       "answer": "There is no single rule that fully removes the risk; a commonly suggested core rule is \"AI must never act to harm humans or remove human control over AI\" (keep humans in control, with the ability to stop it).\n\n\"Protect humans at any cost\" is not enough: it is vague (which humans, what counts as harm), \"at any cost\" can justify extreme actions such as restricting freedom \"for our safety\", rules can be misread or gamed, not every actor (including criminals or rival states) would apply it, and no one can yet prove that a model will reliably follow a rule. Real safety needs layers: alignment research, testing, monitoring, limits on autonomy, regulation and international agreements.",
       "topics": [
-        "Product, strategy and responsible AI",
         "AI Strategy",
-        "Generative AI"
+        "Generative AI",
+        "AI Risk Management",
+        "AI Governance"
       ]
     },
     {
@@ -648,7 +648,6 @@
       "q": "What is LLM-as-a-judge, and what are its biases?",
       "followup": "Why should you check the judge against human ratings?",
       "topics": [
-        "Evals and quality",
         "Evals"
       ]
     },
@@ -657,7 +656,6 @@
       "q": "How do you run A/B tests for an LLM feature in production?",
       "followup": "Why are offline evals not enough on their own?",
       "topics": [
-        "Evals and quality",
         "Evals"
       ]
     },
@@ -666,7 +664,6 @@
       "q": "How do you detect regressions when you switch to a new model version?",
       "followup": "Why can a \"better\" model still break your product?",
       "topics": [
-        "Evals and quality",
         "Evals"
       ]
     },
@@ -792,8 +789,8 @@
       "q": "How do you decide whether a problem actually needs AI?",
       "followup": "Why can a simple rule beat a model?",
       "topics": [
-        "Product, strategy and responsible AI",
-        "AI Strategy"
+        "AI Strategy",
+        "Product and project management"
       ]
     },
     {
@@ -801,8 +798,8 @@
       "q": "How would you measure the success of an AI feature after launch?",
       "followup": "Why are business metrics and model metrics both needed?",
       "topics": [
-        "Product, strategy and responsible AI",
-        "AI Strategy"
+        "AI Strategy",
+        "Product and project management"
       ]
     },
     {
@@ -810,7 +807,6 @@
       "q": "Build, buy, or use an API: how do you decide for an AI capability?",
       "followup": "Why does the answer change as the product scales?",
       "topics": [
-        "Product, strategy and responsible AI",
         "AI Strategy"
       ]
     },
@@ -819,8 +815,9 @@
       "q": "How would you run a responsible-AI review before launch?",
       "followup": "Why is \"we will be careful about bias\" not a real plan?",
       "topics": [
-        "Product, strategy and responsible AI",
-        "AI Strategy"
+        "AI Strategy",
+        "AI Governance",
+        "AI Risk Management"
       ]
     },
     {
@@ -828,8 +825,9 @@
       "q": "An AI hiring tool shows bias against a group. What do you do?",
       "followup": "Why is pausing the feature sometimes the right call?",
       "topics": [
-        "Product, strategy and responsible AI",
-        "AI Strategy"
+        "AI Strategy",
+        "AI Risk Management",
+        "AI Governance"
       ]
     },
     {
@@ -837,8 +835,9 @@
       "q": "How do you design the user experience around model mistakes?",
       "followup": "Why should users be able to see sources and correct the AI?",
       "topics": [
-        "Product, strategy and responsible AI",
-        "AI Strategy"
+        "AI Strategy",
+        "Product and project management",
+        "AI Risk Management"
       ]
     },
     {
@@ -846,8 +845,8 @@
       "q": "How do you explain AI risks and limits to executives?",
       "followup": "Why do clear limits build more trust than big promises?",
       "topics": [
-        "Product, strategy and responsible AI",
-        "AI Strategy"
+        "AI Strategy",
+        "AI Risk Management"
       ]
     },
     {
@@ -855,8 +854,8 @@
       "q": "What AI regulations should a product team know about (for example the EU AI Act)?",
       "followup": "Why does the risk level of a use case change your obligations?",
       "topics": [
-        "Product, strategy and responsible AI",
-        "AI Strategy"
+        "AI Strategy",
+        "AI Governance"
       ]
     },
     {
@@ -2353,8 +2352,8 @@
       "answer": "1) Define the problem, users and a success metric. 2) Check data and feasibility; build a quick prototype. 3) Build an eval set and a baseline. 4) Iterate on prompts, RAG or model choice until evals pass. 5) Add guardrails, security, privacy review and cost limits. 6) Ship behind a feature flag to a small group or A/B test. 7) Monitor quality, latency, cost, errors and feedback with tracing.\n\nRoll back if quality or business metrics drop, costs spike, or safety or privacy incidents happen.",
       "topics": [
         "System design and production",
-        "Product, strategy and responsible AI",
-        "AI Engineering"
+        "AI Engineering",
+        "Product and project management"
       ]
     },
     {
@@ -2432,9 +2431,8 @@
       "followup": "Your eval score went from 80% to 84% after a prompt change. Would you ship it? What would you check first?",
       "answer": "Evaluate the outcome and the path. Outcome: task success measured by checking the final state (tests pass, record updated). Trajectory: right tools, correct arguments, number of steps, loops, recovery from errors. Also cost, latency and safety (forbidden actions, data leaks, prompt injection). Agents are non-deterministic, so run each task several times and report pass rates, including reliability across runs. Build a task suite from real user requests and add every production failure.\n\nFor an LLM judge: give a clear rubric, prefer binary or pairwise verdicts, ask for reasoning before the verdict, one criterion per call, and swap answer order to cancel position bias. Calibrate it on a hand-labelled sample and measure agreement (accuracy, Cohen's kappa) before trusting it, and re-check when the judge model changes. For 80% to 84%: check the sample size and confidence interval, compare paired results case by case, look at what broke as well as what improved, and check cost and latency before shipping.",
       "topics": [
-        "Evals and quality",
-        "Agents and tool use",
         "Evals",
+        "Agents and tool use",
         "Agents & MCP"
       ]
     },
@@ -2443,10 +2441,10 @@
       "followup": "How would you include an LLM in this process safely, for example to explain or review flagged cases?",
       "answer": "First check the model is calibrated (predicted probabilities match real rates) using a reliability diagram, and fix it with Platt scaling or isotonic regression if needed. Then put money on the errors: cost of a false positive (blocked good customer, review time) versus a false negative (fraud loss). Flag a case when probability × fraud loss > (1 - probability) × false-positive cost, or sweep thresholds on validation data and pick the one with the lowest total expected cost. Look at precision and recall at that point, not accuracy, because fraud is rare. Use bands: auto-approve low scores, auto-block very high ones, and send the middle to human review within the team's capacity. Keep hard rules (limits, sanctions lists) in deterministic code or DMN tables. Monitor drift and re-tune over time, and A/B test threshold changes.\n\nAn LLM can summarise the evidence and draft a reason for reviewers, using structured output, while the decision limits stay in code, humans approve high-impact cases, and everything is logged for audit.",
       "topics": [
-        "Evals and quality",
+        "Evals",
         "ML and deep learning basics",
-        "Product, strategy and responsible AI",
-        "Decision Models"
+        "Decision Models",
+        "AI Risk Management"
       ]
     },
     {
@@ -2454,7 +2452,6 @@
       "followup": "Which three use cases would you pick first, and how would you decide?",
       "answer": "Start with the business: agree 2-3 outcomes with leadership (for example lower service cost, faster sales cycles, fewer errors) and name an executive owner. Take stock of current pilots, data, tools and risks.\n\nScore candidate use cases on value, feasibility, data readiness, risk, adoption effort and time to value; pick 2-5 with clear owners, baselines and a path to production, ideally in one lighthouse area, and stop pilots with no value story. Decide build, buy or partner per component: buy commodity tools, build where proprietary data or workflows give an edge, keep a model gateway to avoid lock-in. Set up a hub-and-spoke model: a central platform and governance team with AI people embedded in business units. Put governance in place early (AI policy, inventory, risk tiers, human review rules, NIST AI RMF or ISO 42001, EU AI Act where relevant). Redesign workflows, train staff, use champions. Track adoption, operational and financial KPIs against the baseline, report quarterly and scale what works.",
       "topics": [
-        "Product, strategy and responsible AI",
         "AI Strategy"
       ]
     },
@@ -2463,8 +2460,8 @@
       "followup": "How would you measure ROI for a customer-support AI assistant, including its full cost?",
       "answer": "Common causes: starting from technology instead of a business problem; too many disconnected pilots; weak or inaccessible data; tools bolted onto old processes instead of redesigned workflows; no learning loop, so systems do not improve from feedback; unclear owners and no baseline; underestimated cost; and little change management, so people do not adopt the tool. MIT NANDA's 2025 GenAI Divide report and Gartner's forecast that over 40% of agentic AI projects will be canceled by 2027 both point to unclear value, integration and risk controls. To avoid it: tie each use case to a measurable outcome and owner, check data readiness first, integrate into the real workflow, design human-in-the-loop review, evaluate quality continuously, plan adoption and training, and stop projects that miss milestones.\n\nFor a support assistant: baseline handle time, resolution rate, CSAT and cost per ticket; compare with a control group; count tokens, licences, integration, evaluation, monitoring and training in the cost; ROI = (value - cost) / cost.",
       "topics": [
-        "Product, strategy and responsible AI",
-        "AI Strategy"
+        "AI Strategy",
+        "Product and project management"
       ]
     }
   ]

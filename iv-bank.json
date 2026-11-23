@@ -192,19 +192,19 @@
     },
     {
       "id": "bank-evals-and-quality-2",
-      "category": "Evals and quality",
+      "category": "Evals",
       "q": "What is LLM-as-a-judge, and what are its biases?",
       "followup": "Why should you check the judge against human ratings?"
     },
     {
       "id": "bank-evals-and-quality-3",
-      "category": "Evals and quality",
+      "category": "Evals",
       "q": "How do you run A/B tests for an LLM feature in production?",
       "followup": "Why are offline evals not enough on their own?"
     },
     {
       "id": "bank-evals-and-quality-4",
-      "category": "Evals and quality",
+      "category": "Evals",
       "q": "How do you detect regressions when you switch to a new model version?",
       "followup": "Why can a \"better\" model still break your product?"
     },

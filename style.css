@@ -244,6 +244,8 @@ nav button:last-child { margin-inline-end: 0; }
 .iv-filter { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 8px 12px; margin: 10px 0 14px; }
 .iv-filter fieldset, .iv-filter button, .iv-filter p { grid-column: 1 / -1; margin: 0; }
 .iv-filter .checks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2px 12px; }
+#iv-topics.checks { align-items: start; }
+.iv-topic-col { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 @media (max-width: 760px) { .iv-filter .checks { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 640px) { .iv-filter { grid-template-columns: 1fr; } }
 .iv-avail { display: flex; align-items: center; gap: 10px; }
