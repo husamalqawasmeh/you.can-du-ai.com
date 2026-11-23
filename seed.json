@@ -1430,6 +1430,15 @@
       "url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/from-promise-to-impact-how-companies-can-measure-and-realize-the-full-value-of-ai",
       "notes": "Measuring AI value, including total cost of ownership with cloud and token spend.",
       "lang": "en"
+    },
+    {
+      "id": "src-139",
+      "topic": "AI Strategy",
+      "type": "Book",
+      "title": "Rewired, 2nd edition: How Leading Companies Win with Technology and AI (McKinsey, Wiley, 2026)",
+      "url": "https://www.oreilly.com/library/view/rewired-2nd-edition/9781394381906/",
+      "notes": "By Eric Lamarre, Kate Smaje, Robert Levin, Alex Singla and Alexander Sukharevsky (April 2026, about 624 pages). McKinsey's playbook for tech and AI transformation, updated for generative and agentic AI. First edition (2023) by Lamarre, Smaje and Rodney Zemmel.",
+      "lang": "en"
     }
   ],
   "notes": [
@@ -1999,6 +2008,13 @@
       "title": "AI maturity and roadmap",
       "body": "Maturity models (for example Gartner's five-level AI maturity model) help a company see where it stands, from ad hoc experiments to AI embedded across the business, across dimensions such as strategy, data, governance, engineering, operating model, culture and value. A practical roadmap: Phase 1 (0-6 months) Foundations: set the ambition, AI policy and governance, approve safe tools, give staff AI literacy, pick 2-5 high-value use cases and set baselines. Phase 2 (6-18 months) Scale: build a shared platform (data, model access via a gateway, RAG, evaluation, monitoring), move proven pilots into production, redesign workflows, and grow a hub-and-spoke team. Phase 3 (18+ months) Transform: AI-native processes and products, agents for multi-step work, continuous value tracking and portfolio rebalancing. Review the strategy at least yearly, because models, costs and regulation change fast.",
       "sourceId": ""
+    },
+    {
+      "id": "note-82",
+      "topic": "AI Strategy",
+      "title": "Rewired (McKinsey): the six capabilities for tech and AI transformation",
+      "sourceId": "src-139",
+      "body": "Rewired is McKinsey's book on how companies win with digital technology and AI. The first edition (2023, Lamarre, Smaje and Zemmel) was subtitled \"The McKinsey Guide to Outcompeting in the Age of Digital and AI\". The second edition (Wiley, April 2026, by Eric Lamarre, Kate Smaje, Robert Levin, Alex Singla and Alexander Sukharevsky) updates it for generative and agentic AI, drawing on more than 200 enterprise-wide transformations and over 30 case studies. Its core is six capabilities a company must build together: 1) a business-led strategic roadmap that focuses on a few domains with big value; 2) talent: building an in-house bench of engineers, data and product people; 3) an operating model where small cross-functional agile teams own outcomes and scale; 4) technology: a distributed, modern tech stack (cloud, APIs, platforms) that lets teams ship fast; 5) data embedded everywhere, managed as reusable data products; 6) adoption and scaling: redesigning processes and roles, tracking adoption and replicating solutions across the business. Key ideas in the second edition: agentic AI means reimagining workflows end to end in targeted domains rather than adding AI to single tasks; adoption and change (process redesign, new human roles, tracking use) become a core discipline, the \"how\" behind AI's \"wow\"; and companies that built these capabilities in the first AI wave are pulling further ahead."
     }
   ],
   "questions": [
@@ -9215,6 +9231,48 @@
       "answer": "Use-case portfolio → Where AI creates value, and in what order; Operating model → Who owns, builds and decides about AI; Governance → Keep AI safe, legal and trusted; Change management → Get people to adopt new ways of working; Value tracking → Prove ROI against a baseline",
       "explanation": "A complete AI strategy covers all of these, not just technology.",
       "sourceId": ""
+    },
+    {
+      "id": "q3-254",
+      "topic": "AI Strategy",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "McKinsey's book \"Rewired\" says companies must build six capabilities together. Which list matches them?",
+      "options": [
+        "Roadmap, talent, operating model, technology, data, adoption and scaling",
+        "Marketing, sales, finance, legal, HR, IT",
+        "Prompts, models, GPUs, tokens, agents, chatbots",
+        "Plan, build, test, release, monitor, retire"
+      ],
+      "answer": "Roadmap, talent, operating model, technology, data, adoption and scaling",
+      "explanation": "Rewired's six capabilities: business-led roadmap, talent bench, operating model, distributed technology, data everywhere, adoption and scaling.",
+      "sourceId": "src-139"
+    },
+    {
+      "id": "q3-255",
+      "topic": "AI Strategy",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "The second edition of McKinsey's \"Rewired\" (2026) argues that agentic AI should be used to reimagine workflows end to end in targeted domains, not just to automate single tasks.",
+      "answer": "True",
+      "explanation": "It also treats adoption and process redesign as a core discipline.",
+      "sourceId": "src-139"
+    },
+    {
+      "id": "q3-256",
+      "topic": "AI Strategy",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which firm wrote the book \"Rewired\" on digital and AI transformation?",
+      "options": [
+        "McKinsey",
+        "OpenAI",
+        "Apple",
+        "NVIDIA"
+      ],
+      "answer": "McKinsey",
+      "explanation": "First edition 2023; second edition April 2026 (Wiley).",
+      "sourceId": "src-139"
     }
   ]
 }
