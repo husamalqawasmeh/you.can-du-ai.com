@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=127';
-import { ADMIN_HASH } from './admin-hash.js?v=127';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=128';
+import { ADMIN_HASH } from './admin-hash.js?v=128';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -437,7 +437,7 @@ function startTest(qs, cfg) {
     return `<div class="question"><p>${num} ${prompt}</p><div class="tag">${esc(q.topic)} · ${esc(q.difficulty)} ${studyBtn(q.topic)}</div>${input}</div>`;
   }).join('') + `<div class="run-actions"><button type="button" id="cancel-test">Cancel</button><button class="primary">Submit answers</button></div></div>`;
   run.querySelectorAll('.match').forEach(el => { const i = +el.dataset.q; setupMatch(el, qs[i].pairs, links => { run.elements['a' + i].value = JSON.stringify(qs[i].pairs.map((p, k) => links.get(k) ?? '')); }); });
-  cfgForm.hidden = true; $('#test-result').hidden = true; run.hidden = false;
+  cfgForm.hidden = true; $('#test-result').hidden = true; run.hidden = false; $('#test').classList.add('running');
   $('#cancel-test').onclick = resetTest;
   run.scrollIntoView();
 }
@@ -460,7 +460,7 @@ $('#test-run').addEventListener('click', e => { const b = e.target.closest('[dat
 function resetTest() {
   if ('speechSynthesis' in window) speechSynthesis.cancel();
   current = null;
-  $('#test-run').hidden = true; $('#test-result').hidden = true; cfgForm.hidden = false;
+  $('#test-run').hidden = true; $('#test-result').hidden = true; cfgForm.hidden = false; $('#test').classList.remove('running');
 }
 
 // Study list: topics the student marked from test questions, studied from the knowledge notes.
@@ -530,7 +530,7 @@ $('#test-run').onsubmit = e => {
         ${q.explanation ? `<div class="muted">${esc(q.explanation)}</div>` : ''}
         ${src ? `<div class="tag">Source: ${esc(src)}</div>` : ''}</div>`;
     }).join('') + `<button type="button" class="primary" id="new-test">New test</button></div>`;
-  e.target.hidden = true; out.hidden = false;
+  e.target.hidden = true; out.hidden = false; $('#test').classList.remove('running');
   $('#new-test').onclick = resetTest;
   save();
   out.scrollIntoView();
