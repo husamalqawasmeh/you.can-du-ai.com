@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You Can Du AI</title>
 <meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
-<link rel="stylesheet" href="style.css?v=128">
+<link rel="stylesheet" href="style.css?v=129">
 </head>
 <body>
 <header>
@@ -331,6 +331,18 @@
       </div>
       <ul id="q-list" class="list"></ul>
     </div>
+    <form id="topic-gen-form" class="card">
+      <h2>Add content for a topic with AI</h2>
+      <p class="muted">Type a topic name (an existing one, such as Evals or Decision Models, or a new one). Gemini writes knowledge notes, test questions and interview prep questions for it. Uses the Gemini key in Settings; new content is saved in this browser.</p>
+      <div class="row">
+        <label>Topic name <input name="topic" list="topic-gen-list" required placeholder="e.g. Evals"><datalist id="topic-gen-list"></datalist></label>
+        <label>Knowledge notes <input name="notes" type="number" min="0" max="8" value="3"></label>
+        <label>Test questions <input name="questions" type="number" min="0" max="25" value="10"></label>
+        <label>Interview questions <input name="interview" type="number" min="0" max="5" value="2"></label>
+      </div>
+      <button class="primary">Generate and add</button>
+      <p id="topic-gen-status" class="muted" aria-live="polite"></p>
+    </form>
     <div class="card">
       <h2>Interview question bank</h2>
       <p class="muted">Candidate questions gathered from AI interview guides. Click <strong>Add</strong> to put one on the Interview prep list. Added questions are saved in this browser.</p>
@@ -349,6 +361,6 @@
     </div>
   </section>
 </main>
-<script type="module" src="app.js?v=128"></script>
+<script type="module" src="app.js?v=129"></script>
 </body>
 </html>

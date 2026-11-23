@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=128';
-import { ADMIN_HASH } from './admin-hash.js?v=128';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=129';
+import { ADMIN_HASH } from './admin-hash.js?v=129';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -823,6 +823,51 @@ $('#ivbank').addEventListener('click', e => {
   loadInterview();
 });
 loadIvBank();
+
+// ---------- admin: AI-generated knowledge, test questions and interview questions for one topic ----------
+const topicGen = $('#topic-gen-form');
+topicGen.topic.onfocus = () => { $('#topic-gen-list').innerHTML = db.topics.map(t => `<option value="${esc(t)}">`).join(''); };
+topicGen.onsubmit = async e => {
+  e.preventDefault();
+  const topic = topicGen.topic.value.trim().replace(/\s+/g, ' ').slice(0, 60);
+  const cap = (n, max) => Math.min(max, Math.max(0, Math.round(+n || 0)));
+  const nN = cap(topicGen.notes.value, 8), nQ = cap(topicGen.questions.value, 25), nI = cap(topicGen.interview.value, 5);
+  const status = $('#topic-gen-status'), btn = topicGen.querySelector('button');
+  if (!topic || !(nN + nQ + nI)) { status.textContent = 'Type a topic name and ask for at least one item.'; return; }
+  const known = db.notes.filter(n => n.topic.toLowerCase() === topic.toLowerCase()).map(n => n.title);
+  const prompt = `You write learning content for an AI training website. Topic: ${topic}.
+${known.length ? `Knowledge notes that already exist (cover NEW sub-topics, do not repeat these): ${known.join('; ')}.` : ''}
+Be factually accurate; prefer well-established facts. Write in clear, simple English.
+Return only JSON with this shape:
+{"notes": [{"title": string, "body": string (120-220 words of plain text with concrete examples)}] — exactly ${nN} notes,
+ "questions": [{"type": "mcq"|"tf"|"short"|"fill", "difficulty": "easy"|"medium"|"hard", "prompt": string, "options": [4 strings, only for mcq], "answer": string, "explanation": string}] — exactly ${nQ} questions mixing types and difficulties,
+ "interview": [{"q": string, "followup": string, "answer": string (a strong 100-180 word suggested answer)}] — exactly ${nI} open interview questions.
+Rules: for "tf" the answer is exactly "True" or "False"; for "mcq" the answer must equal one option exactly; for "fill" the prompt contains ___ once and the answer is the missing word or phrase; for "short" the answer lists accepted answers separated by "|".`;
+  status.textContent = `Writing content for "${topic}"… this can take a minute.`; btn.disabled = true;
+  try {
+    const text = await gemini({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { responseMimeType: 'application/json' } });
+    let c;
+    try { c = JSON.parse(text); } catch { throw new Error('The AI reply was not valid data. Please try again.'); }
+    const arr = x => Array.isArray(x) ? x : [];
+    const name = db.topics.find(t => t.toLowerCase() === topic.toLowerCase()) ?? topic;
+    const notes = arr(c.notes).filter(n => n?.title && n?.body).slice(0, nN).map(n => ({ id: uid(), topic: name, title: String(n.title), body: String(n.body), sourceId: '' }));
+    const have = new Set(db.questions.map(q => q.prompt));
+    const qs = arr(c.questions).map(q => normalizeQuestion({ ...q, topic: name })).filter(q => q && !have.has(q.prompt)).slice(0, nQ)
+      .map(q => ({ id: uid(), topic: name, type: q.type, difficulty: q.difficulty, prompt: q.prompt, ...(q.type === 'mcq' && { options: q.options }), answer: q.answer, explanation: String(q.explanation || ''), sourceId: '' }));
+    const iv = arr(c.interview).filter(q => q?.q).slice(0, nI).map(q => ({ id: 'gen-' + uid(), q: String(q.q), followup: String(q.followup || ''), answer: String(q.answer || '') }));
+    if (!notes.length && !qs.length && !iv.length) throw new Error('The AI returned nothing usable. Please try again.');
+    if (!db.topics.includes(name)) db.topics.push(name);
+    db.notes.push(...notes);
+    db.questions.push(...qs);
+    if (iv.length) { try { localStorage.setItem(IV_KEY, JSON.stringify([...ivAdded(), ...iv])); } catch { alert('Could not save the interview questions in this browser.'); } }
+    save();
+    loadInterview();
+    topicGen.topic.value = '';
+    status.textContent = `Added to "${name}": ${notes.length} knowledge notes, ${qs.length} test questions, ${iv.length} interview questions.`;
+  } catch (err) {
+    status.textContent = 'Failed: ' + err.message;
+  } finally { btn.disabled = false; }
+};
 
 // One collapsed answer box per company: [company, [[product, what it is], ...]].
 const companiesHtml = (cs, unit = 'products') => cs.map(([c, ps]) => `<details class="iv-answers"><summary>${esc(c)} (${ps.length} ${unit})</summary>
