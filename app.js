@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=147';
-import { ADMIN_HASH } from './admin-hash.js?v=147';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=148';
+import { ADMIN_HASH } from './admin-hash.js?v=148';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -822,13 +822,15 @@ function updateIvMatch() {
 ivForm.addEventListener('change', updateIvMatch);
 async function loadInterview() {
   let p;
-  try { p = await (await fetch('interview.json?v=46')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
+  try { p = await (await fetch('interview.json?v=47')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
   // admin-added bank questions go after the open questions, before the exercises
   const k = p.questions.findIndex(q => q.match || q.terms || q.companies);
-  p.questions.splice(k < 0 ? p.questions.length : k, 0, ...ivAdded().map(q => ({ ...q, topics: q.topics ?? [q.category, q.topic].filter(Boolean) })));
+  const onPage = new Set(p.questions.map(q => q.id).filter(Boolean));
+  p.questions.splice(k < 0 ? p.questions.length : k, 0, ...ivAdded().filter(q => !onPage.has(q.id)).map(q => ({ ...q, topics: q.topics ?? [q.category, q.topic].filter(Boolean) })));
   ivAll = p.questions;
   renderIvTopics();
   renderInterview();
+  if (ivBank.length) renderIvBank();
 }
 // two groups of topic tick boxes: the "Take a test" topics, then the interview themes
 function renderIvTopics() {
@@ -852,11 +854,13 @@ async function loadIvBank() {
 function renderIvBank() {
   const have = new Set(ivAdded().map(q => q.id)), by = {};
   const open = new Set([...document.querySelectorAll('#ivbank details[open]')].map(d => d.dataset.cat));
-  for (const q of ivBank) (by[q.category] ??= []).push(q);
+  // bank questions already built into the Interview prep page are not offered again
+  const onPage = new Set(ivAll.filter(q => !q.id?.startsWith('gen-') && !ivAdded().some(a => a.id === q.id)).map(q => q.id));
+  for (const q of ivBank) if (!onPage.has(q.id)) (by[q.category] ??= []).push(q);
   $('#ivbank').innerHTML = Object.entries(by).map(([c, qs]) => `<details class="iv-answers" data-cat="${esc(c)}"${open.has(c) ? ' open' : ''}>
     <summary>${esc(c)} (${qs.filter(q => have.has(q.id)).length} of ${qs.length} added)</summary>
     <ul class="list">${qs.map(q => `<li><div>${esc(q.q)}<div class="tag">↳ ${esc(q.followup)}</div></div>
-      <button type="button"${have.has(q.id) ? '' : ' class="primary"'} data-ivadd="${esc(q.id)}">${have.has(q.id) ? 'Remove' : 'Add'}</button></li>`).join('')}</ul></details>`).join('');
+      <button type="button"${have.has(q.id) ? '' : ' class="primary"'} data-ivadd="${esc(q.id)}">${have.has(q.id) ? 'Remove' : 'Add'}</button></li>`).join('')}</ul></details>`).join('') || '<p class="muted">All bank questions are already on the Interview prep page.</p>';
 }
 $('#ivbank').addEventListener('click', e => {
   const id = e.target.closest('[data-ivadd]')?.dataset.ivadd;
