@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=163';
-import { ADMIN_HASH } from './admin-hash.js?v=163';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=165';
+import { ADMIN_HASH } from './admin-hash.js?v=165';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -786,22 +786,22 @@ $('#yt-save').onclick = () => {
 // ---------- interview prep (questions in interview.json) ----------
 // how relevant each interview topic is to each job (3 = core, 1 = useful, missing = not needed)
 const IV_JOBS = {
-  'AI Engineer': { 'LLMs': 3, 'RAG and retrieval': 3, 'Agents and tool use': 3, 'System design and production': 3, 'Tools and automation': 2, 'Fine-tuning and alignment': 2, 'Behavioral and experience': 2, 'ML & DL deep basics': 1, 'AI H/W and Semiconductors': 1, 'AI industry and news': 1, 'Evals': 3, 'AI Strategy': 1, 'AI Governance': 1, 'AI Risk Management': 1, 'Product and project management': 1 },
-  'LLM Engineer': { 'LLMs': 3, 'RAG and retrieval': 3, 'Fine-tuning and alignment': 3, 'Agents and tool use': 3, 'System design and production': 2, 'AI H/W and Semiconductors': 2, 'ML & DL deep basics': 1, 'Behavioral and experience': 1, 'Tools and automation': 1, 'AI industry and news': 1, 'Evals': 3 },
-  'ML Engineer': { 'ML & DL deep basics': 3, 'System design and production': 3, 'Fine-tuning and alignment': 2, 'Evals': 2, 'Tools and automation': 2, 'LLMs': 2, 'AI H/W and Semiconductors': 1, 'RAG and retrieval': 1, 'Behavioral and experience': 1 },
-  'Data Scientist': { 'ML & DL deep basics': 3, 'Evals': 3, 'Decision Models': 3, 'Behavioral and experience': 2, 'Fine-tuning and alignment': 1, 'LLMs': 1, 'AI Strategy': 1, 'Product and project management': 1 },
-  'Data Engineer': { 'System design and production': 3, 'Tools and automation': 2, 'RAG and retrieval': 3, 'AI Governance': 2, 'Context Engineering': 2, 'ML & DL deep basics': 1, 'Evals': 1, 'AI Risk Management': 1, 'Behavioral and experience': 1 },
-  'MLOps Engineer': { 'System design and production': 3, 'Tools and automation': 3, 'Evals': 2, 'ML & DL deep basics': 2, 'Fine-tuning and alignment': 1, 'LLMs': 1, 'AI H/W and Semiconductors': 1, 'Behavioral and experience': 1, 'AI Risk Management': 1 },
+  'AI Engineer': { 'LLMs': 3, 'RAG and retrieval': 3, 'Agents/MCP/Tool-use': 3, 'System design and production': 3, 'Tools and automation': 2, 'Fine-tuning and alignment': 2, 'Behavioral and experience': 2, 'ML & DL': 1, 'AI H/W and Semiconductors': 1, 'AI industry and news': 1, 'Evals': 3, 'AI Strategy': 1, 'AI Governance': 1, 'AI Risk Management': 1, 'Product and project management': 1 },
+  'LLM Engineer': { 'LLMs': 3, 'RAG and retrieval': 3, 'Fine-tuning and alignment': 3, 'Agents/MCP/Tool-use': 3, 'System design and production': 2, 'AI H/W and Semiconductors': 2, 'ML & DL': 1, 'Behavioral and experience': 1, 'Tools and automation': 1, 'AI industry and news': 1, 'Evals': 3 },
+  'ML Engineer': { 'ML & DL': 3, 'System design and production': 3, 'Fine-tuning and alignment': 2, 'Evals': 2, 'Tools and automation': 2, 'LLMs': 2, 'AI H/W and Semiconductors': 1, 'RAG and retrieval': 1, 'Behavioral and experience': 1 },
+  'Data Scientist': { 'ML & DL': 3, 'Evals': 3, 'Decision Models': 3, 'Behavioral and experience': 2, 'Fine-tuning and alignment': 1, 'LLMs': 1, 'AI Strategy': 1, 'Product and project management': 1 },
+  'Data Engineer': { 'System design and production': 3, 'Tools and automation': 2, 'RAG and retrieval': 3, 'AI Governance': 2, 'Context Engineering': 2, 'ML & DL': 1, 'Evals': 1, 'AI Risk Management': 1, 'Behavioral and experience': 1 },
+  'MLOps Engineer': { 'System design and production': 3, 'Tools and automation': 3, 'Evals': 2, 'ML & DL': 2, 'Fine-tuning and alignment': 1, 'LLMs': 1, 'AI H/W and Semiconductors': 1, 'Behavioral and experience': 1, 'AI Risk Management': 1 },
   'AI Infra. Eng.': { 'AI H/W and Semiconductors': 3, 'System design and production': 3, 'Tools and automation': 2, 'LLMs': 1, 'Evals': 1, 'Behavioral and experience': 1 },
-  'AI Solutions Architect': { 'System design and production': 3, 'RAG and retrieval': 2, 'Agents and tool use': 2, 'LLMs': 2, 'AI H/W and Semiconductors': 2, 'Tools and automation': 2, 'Behavioral and experience': 1, 'Evals': 1, 'AI Strategy': 2, 'AI Governance': 2, 'AI Risk Management': 2, 'Product and project management': 2 },
-  'AI Project Manager': { 'Behavioral and experience': 3, 'System design and production': 2, 'Tools and automation': 1, 'Agents and tool use': 1, 'LLMs': 1, 'AI industry and news': 1, 'Evals': 2, 'AI Strategy': 2, 'AI Governance': 1, 'AI Risk Management': 2, 'Product and project management': 3 },
-  'AI Product Manager': { 'Behavioral and experience': 3, 'AI industry and news': 2, 'Agents and tool use': 2, 'LLMs': 1, 'RAG and retrieval': 1, 'System design and production': 1, 'Evals': 2, 'AI Strategy': 2, 'AI Governance': 2, 'AI Risk Management': 2, 'Product and project management': 3 },
-  'AI Governance': { 'AI industry and news': 2, 'Behavioral and experience': 2, 'Fine-tuning and alignment': 1, 'LLMs': 1, 'Agents and tool use': 1, 'Evals': 3, 'AI Strategy': 2, 'AI Governance': 3, 'AI Risk Management': 3, 'Product and project management': 1 },
-  'AI Risk Management': { 'Agents and tool use': 2, 'Fine-tuning and alignment': 2, 'Behavioral and experience': 1, 'AI industry and news': 1, 'System design and production': 1, 'ML & DL deep basics': 1, 'Evals': 3, 'AI Strategy': 1, 'AI Governance': 3, 'AI Risk Management': 3, 'Product and project management': 1 },
-  'AI Business Partner': { 'AI industry and news': 3, 'Behavioral and experience': 3, 'LLMs': 1, 'Agents and tool use': 1, 'Tools and automation': 1, 'Evals': 1, 'AI Strategy': 3, 'AI Governance': 1, 'AI Risk Management': 1, 'Product and project management': 2 },
-  'AI Strategy/Consult': { 'AI industry and news': 3, 'Behavioral and experience': 2, 'AI H/W and Semiconductors': 1, 'LLMs': 1, 'Agents and tool use': 1, 'Evals': 2, 'AI Strategy': 3, 'AI Governance': 2, 'AI Risk Management': 2, 'Product and project management': 2 },
-  'General (AI literacy)': { 'AI industry and news': 3, 'Behavioral and experience': 3, 'LLMs': 2, 'Tools and automation': 2, 'Agents and tool use': 1, 'RAG and retrieval': 1, 'AI H/W and Semiconductors': 1, 'ML & DL deep basics': 1, 'Evals': 1, 'AI Strategy': 2, 'AI Governance': 2, 'AI Risk Management': 2, 'Product and project management': 2 },
-  'Automation/AI Dev.': { 'Tools and automation': 3, 'Agents and tool use': 2, 'System design and production': 2, 'Behavioral and experience': 2, 'LLMs': 1, 'RAG and retrieval': 1 },
+  'AI Solutions Architect': { 'System design and production': 3, 'RAG and retrieval': 2, 'Agents/MCP/Tool-use': 2, 'LLMs': 2, 'AI H/W and Semiconductors': 2, 'Tools and automation': 2, 'Behavioral and experience': 1, 'Evals': 1, 'AI Strategy': 2, 'AI Governance': 2, 'AI Risk Management': 2, 'Product and project management': 2 },
+  'AI Project Manager': { 'Behavioral and experience': 3, 'System design and production': 2, 'Tools and automation': 1, 'Agents/MCP/Tool-use': 1, 'LLMs': 1, 'AI industry and news': 1, 'Evals': 2, 'AI Strategy': 2, 'AI Governance': 1, 'AI Risk Management': 2, 'Product and project management': 3 },
+  'AI Product Manager': { 'Behavioral and experience': 3, 'AI industry and news': 2, 'Agents/MCP/Tool-use': 2, 'LLMs': 1, 'RAG and retrieval': 1, 'System design and production': 1, 'Evals': 2, 'AI Strategy': 2, 'AI Governance': 2, 'AI Risk Management': 2, 'Product and project management': 3 },
+  'AI Governance': { 'AI industry and news': 2, 'Behavioral and experience': 2, 'Fine-tuning and alignment': 1, 'LLMs': 1, 'Agents/MCP/Tool-use': 1, 'Evals': 3, 'AI Strategy': 2, 'AI Governance': 3, 'AI Risk Management': 3, 'Product and project management': 1 },
+  'AI Risk Management': { 'Agents/MCP/Tool-use': 2, 'Fine-tuning and alignment': 2, 'Behavioral and experience': 1, 'AI industry and news': 1, 'System design and production': 1, 'ML & DL': 1, 'Evals': 3, 'AI Strategy': 1, 'AI Governance': 3, 'AI Risk Management': 3, 'Product and project management': 1 },
+  'AI Business Partner': { 'AI industry and news': 3, 'Behavioral and experience': 3, 'LLMs': 1, 'Agents/MCP/Tool-use': 1, 'Tools and automation': 1, 'Evals': 1, 'AI Strategy': 3, 'AI Governance': 1, 'AI Risk Management': 1, 'Product and project management': 2 },
+  'AI Strategy/Consult': { 'AI industry and news': 3, 'Behavioral and experience': 2, 'AI H/W and Semiconductors': 1, 'LLMs': 1, 'Agents/MCP/Tool-use': 1, 'Evals': 2, 'AI Strategy': 3, 'AI Governance': 2, 'AI Risk Management': 2, 'Product and project management': 2 },
+  'General (AI literacy)': { 'AI industry and news': 3, 'Behavioral and experience': 3, 'LLMs': 2, 'Tools and automation': 2, 'Agents/MCP/Tool-use': 1, 'RAG and retrieval': 1, 'AI H/W and Semiconductors': 1, 'ML & DL': 1, 'Evals': 1, 'AI Strategy': 2, 'AI Governance': 2, 'AI Risk Management': 2, 'Product and project management': 2 },
+  'Automation/AI Dev.': { 'Tools and automation': 3, 'Agents/MCP/Tool-use': 2, 'System design and production': 2, 'Behavioral and experience': 2, 'LLMs': 1, 'RAG and retrieval': 1 },
 };
 let ivAll = [];
 const ivForm = $('#iv-filter');
@@ -838,7 +838,7 @@ function updateIvMatch() {
 ivForm.addEventListener('change', updateIvMatch);
 async function loadInterview() {
   let p;
-  try { p = await (await fetch('interview.json?v=51')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
+  try { p = await (await fetch('interview.json?v=53')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
   // admin-added bank questions go after the open questions, before the exercises
   const k = p.questions.findIndex(q => q.match || q.terms || q.companies);
   const onPage = new Set(p.questions.map(q => q.id).filter(Boolean));
@@ -850,17 +850,18 @@ async function loadInterview() {
   if (ivBank.length) renderIvBank();
 }
 // topic columns: hardware and infrastructure, ML and engineering, Gen AI and LLMs, strategy, governance, management and behaviour
+// test topics shown under their merged interview name
+const IV_TOPIC_ALIAS = { 'AI Hardware': 'AI H/W and Semiconductors', 'Agents & MCP': 'Agents/MCP/Tool-use' };
 const IV_TOPIC_COLS = [
   ['AI H/W and Semiconductors', 'AI Sizing', 'Benchmarking', 'System design and production', 'Tools and automation', 'CLI', 'Game Engines'],
-  ['ML & DL deep basics', 'Decision Models', 'Evals', 'Fine-tuning and alignment', 'AI Engineering', 'AI Development'],
-  ['Generative AI', 'LLMs', 'Frontier Labs', 'Context Engineering', 'RAG and retrieval', 'Agents & MCP', 'Agents and tool use', 'Harnesses'],
+  ['ML & DL', 'Decision Models', 'Evals', 'Fine-tuning and alignment', 'AI Engineering', 'AI Development'],
+  ['Generative AI', 'LLMs', 'Frontier Labs', 'Context Engineering', 'RAG and retrieval', 'Agents/MCP/Tool-use', 'Harnesses'],
   ['AI Strategy', 'AI Governance', 'AI Risk Management', 'Product and project management', 'AI industry and news', 'Behavioral and experience'],
 ];
 // topic tick boxes: the "Take a test" topics plus the interview themes, in the four columns above
 function renderIvTopics() {
   const checked = new Set([...ivForm.querySelectorAll('#iv-topics input:checked')].map(c => c.value));
-  // the test topic "AI Hardware" is shown under its merged interview name
-  const all = [...new Set([...(db?.topics ?? []).map(t => t === 'AI Hardware' ? 'AI H/W and Semiconductors' : t), ...ivAll.flatMap(q => q.topics ?? [])])];
+  const all = [...new Set([...(db?.topics ?? []).map(t => IV_TOPIC_ALIAS[t] ?? t), ...ivAll.flatMap(q => q.topics ?? [])])];
   const cols = IV_TOPIC_COLS.map(col => col.filter(t => all.includes(t)));
   // topics not placed in a column (e.g. new ones added in Admin) go to the Gen AI column
   cols[2].push(...all.filter(t => !IV_TOPIC_COLS.flat().includes(t)).sort((x, y) => x.localeCompare(y)));
@@ -876,7 +877,7 @@ const IV_KEY = 'ycda-iv-added';
 function ivAdded() { try { return JSON.parse(localStorage.getItem(IV_KEY)) || []; } catch { return []; } }
 let ivBank = [];
 async function loadIvBank() {
-  try { ivBank = (await (await fetch('iv-bank.json?v=5')).json()).questions; } catch { $('#ivbank').innerHTML = '<p class="muted">Could not load the question bank.</p>'; return; }
+  try { ivBank = (await (await fetch('iv-bank.json?v=7')).json()).questions; } catch { $('#ivbank').innerHTML = '<p class="muted">Could not load the question bank.</p>'; return; }
   renderIvBank();
 }
 function renderIvBank() {

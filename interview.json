@@ -59,7 +59,7 @@
       "answer": "Describe the use case, the model, the knowledge source (RAG over documents), the interface and the guardrails. Explain design choices: RAG to ground answers, a system prompt that limits scope, citations, and refusing when unsure.\n\nFor wrong answers: evals before release, user feedback buttons, logging and tracing, a fallback to a human, and regular prompt or data updates.",
       "topics": [
         "Behavioral and experience",
-        "Agents and tool use",
+        "Agents/MCP/Tool-use",
         "AI Development",
         "Generative AI"
       ]
@@ -147,10 +147,9 @@
       "followup": "When would you skip LangChain and call the model API directly, and why?",
       "answer": "LangChain is an open-source framework with building blocks for LLM apps: model wrappers, prompts, tools, retrievers and many integrations. LangGraph builds stateful agent workflows as graphs with loops, memory, checkpoints and human-in-the-loop. LangSmith traces, evaluates and monitors LLM apps (even ones not built with LangChain).\n\nSkip LangChain for simple apps: a direct API call with the official SDK is easier to read, debug and keep up to date.",
       "topics": [
-        "Agents and tool use",
+        "Agents/MCP/Tool-use",
         "Tools and automation",
-        "AI Engineering",
-        "Agents & MCP"
+        "AI Engineering"
       ]
     },
     {
@@ -178,7 +177,7 @@
       "answer": "Weights are the billions of numbers (parameters, together with biases) a model learns in training; \"70B\" means about 70 billion of them. They sit in matrices: token embeddings, attention (Q, K, V, O), feed-forward layers and the output head. Training starts them random, then backpropagation and an optimizer such as Adam adjust them to reduce next-token prediction error over trillions of tokens. At inference the weights are frozen and only read. Knowledge is spread across them, not stored as text.\n\nLoRA freezes the original weights and trains small low-rank matrices added to some layers, so it needs little memory and the adapter is tiny. Weights are valuable because they hold the result of very expensive training (data, compute, know-how); the code is small, so whoever has the weights has the model, which is why some companies keep them closed and others release them as open weights.",
       "topics": [
         "LLMs",
-        "ML & DL deep basics"
+        "ML & DL"
       ]
     },
     {
@@ -198,7 +197,7 @@
       "answer": "Rules and decision tables (DMN) for clear, auditable business logic; decision trees for simple, explainable predictions; ensembles (random forests, gradient boosting) for accurate predictions on tabular data; expected utility and influence diagrams for choices under uncertainty; MDPs and reinforcement learning for decisions over many steps; multi-criteria methods (weighted scoring, AHP) for trade-offs.\n\nTo explain to a regulator or customer: use interpretable models or explanation tools (SHAP, reason codes), give the main factors in plain language, document data and testing, and offer a human review and appeal.",
       "topics": [
         "Evals",
-        "ML & DL deep basics",
+        "ML & DL",
         "Decision Models"
       ]
     },
@@ -208,7 +207,7 @@
       "answer": "A model outputs a probability; the decision is the threshold. Choose it from the cost of each error (a missed fraud vs a false alarm), using the confusion matrix, precision/recall and expected cost, often with bands: auto-approve, auto-decline and a middle band for human review.\n\nHumans should review uncertain, high-impact or unusual cases. Check bias by comparing error rates and approval rates across groups, and monitor after launch.",
       "topics": [
         "Evals",
-        "ML & DL deep basics",
+        "ML & DL",
         "Decision Models",
         "Product and project management"
       ]
@@ -247,8 +246,7 @@
       "followup": "Why use MCP instead of building a custom integration for every tool, and what security risks does it bring?",
       "answer": "MCP is an open standard (from Anthropic) for connecting AI apps to tools and data. The host is the AI app; it runs one client per server connection; servers expose tools (actions), resources (data) and prompts (templates).\n\nBenefit: build an integration once and use it in any MCP-compatible app instead of custom code for each. Risks: prompt injection through tool results, over-broad permissions, untrusted servers and data leaks, so use least privilege, trusted servers, user approval for actions and logging.",
       "topics": [
-        "Agents and tool use",
-        "Agents & MCP"
+        "Agents/MCP/Tool-use"
       ]
     },
     {
@@ -256,8 +254,7 @@
       "followup": "Why and when would you choose a simple fixed workflow over a fully autonomous agent?",
       "answer": "An agent is an LLM that decides its own next steps and tool calls in a loop toward a goal. Patterns: ReAct (think, act, observe), prompt chaining, routing, orchestrator-workers (a lead model splits and delegates), evaluator-optimizer (one critiques, another improves), and multi-agent handoffs.\n\nUse a simple fixed workflow when the steps are known: it is cheaper, faster, more predictable and easier to test. Use an autonomous agent only when the path cannot be known in advance and the value is worth the extra risk.",
       "topics": [
-        "Agents and tool use",
-        "Agents & MCP"
+        "Agents/MCP/Tool-use"
       ]
     },
     {
@@ -294,7 +291,7 @@
       "answer": "Example: \"Attention Is All You Need\" (Vaswani et al., Google, 2017) introduced the Transformer, using self-attention instead of recurrence, so training became parallel and models could scale. It is the base of GPT, Claude, Gemini and Llama. Other good picks: AlexNet (2012, deep learning on GPUs), BERT (2018), GPT-3 (2020, few-shot learning), scaling laws (2020), InstructGPT/RLHF (2022), and diffusion models (2020).",
       "topics": [
         "AI industry and news",
-        "ML & DL deep basics",
+        "ML & DL",
         "Generative AI",
         "LLMs"
       ]
@@ -559,8 +556,7 @@
       "q": "Design an AI agent that books meetings using a calendar API. What can go wrong?",
       "followup": "Why must risky actions require human confirmation?",
       "topics": [
-        "Agents and tool use",
-        "Agents & MCP"
+        "Agents/MCP/Tool-use"
       ]
     },
     {
@@ -568,8 +564,7 @@
       "q": "How do you decide when an agent should stop?",
       "followup": "Why are step limits and budgets needed even with a smart model?",
       "topics": [
-        "Agents and tool use",
-        "Agents & MCP"
+        "Agents/MCP/Tool-use"
       ]
     },
     {
@@ -577,8 +572,7 @@
       "q": "When is a simple workflow better than an autonomous agent?",
       "followup": "Why do many production systems start as fixed workflows?",
       "topics": [
-        "Agents and tool use",
-        "Agents & MCP"
+        "Agents/MCP/Tool-use"
       ]
     },
     {
@@ -586,8 +580,7 @@
       "q": "How would you defend an agent against prompt injection from web pages or emails?",
       "followup": "Why is it dangerous to let retrieved content give instructions?",
       "topics": [
-        "Agents and tool use",
-        "Agents & MCP"
+        "Agents/MCP/Tool-use"
       ]
     },
     {
@@ -595,8 +588,7 @@
       "q": "How do you design tool descriptions and schemas so the model calls tools correctly?",
       "followup": "Why are clear tool names and error messages part of prompt design?",
       "topics": [
-        "Agents and tool use",
-        "Agents & MCP"
+        "Agents/MCP/Tool-use"
       ]
     },
     {
@@ -604,8 +596,7 @@
       "q": "How would you debug an agent that loops or repeats the same tool call?",
       "followup": "Why is tracing every step essential for agents?",
       "topics": [
-        "Agents and tool use",
-        "Agents & MCP"
+        "Agents/MCP/Tool-use"
       ]
     },
     {
@@ -613,8 +604,7 @@
       "q": "Single agent or multi-agent: how do you choose?",
       "followup": "Why does adding more agents often add cost and failure points?",
       "topics": [
-        "Agents and tool use",
-        "Agents & MCP"
+        "Agents/MCP/Tool-use"
       ]
     },
     {
@@ -622,8 +612,7 @@
       "q": "How do you give an agent memory across sessions?",
       "followup": "Why is deciding what to forget as important as what to remember?",
       "topics": [
-        "Agents and tool use",
-        "Agents & MCP"
+        "Agents/MCP/Tool-use"
       ]
     },
     {
@@ -722,7 +711,7 @@
       "q": "Explain the bias-variance trade-off with an example.",
       "followup": "Why does more data usually help high-variance models?",
       "topics": [
-        "ML & DL deep basics"
+        "ML & DL"
       ]
     },
     {
@@ -730,7 +719,7 @@
       "q": "What is the vanishing gradient problem, and how is it solved?",
       "followup": "Why did residual connections make very deep networks trainable?",
       "topics": [
-        "ML & DL deep basics"
+        "ML & DL"
       ]
     },
     {
@@ -738,7 +727,7 @@
       "q": "Compare batch normalization and layer normalization.",
       "followup": "Why do transformers use layer normalization?",
       "topics": [
-        "ML & DL deep basics"
+        "ML & DL"
       ]
     },
     {
@@ -746,7 +735,7 @@
       "q": "How do you handle an imbalanced dataset?",
       "followup": "Why can accuracy be a misleading metric here?",
       "topics": [
-        "ML & DL deep basics"
+        "ML & DL"
       ]
     },
     {
@@ -754,7 +743,7 @@
       "q": "Precision vs recall: when would you prefer each?",
       "followup": "Why does a fraud detector usually favour recall?",
       "topics": [
-        "ML & DL deep basics",
+        "ML & DL",
         "Evals",
         "Decision Models"
       ]
@@ -764,7 +753,7 @@
       "q": "Design a recommendation system for an online store.",
       "followup": "Why is the cold-start problem hard, and how do you handle it?",
       "topics": [
-        "ML & DL deep basics"
+        "ML & DL"
       ]
     },
     {
@@ -2372,7 +2361,7 @@
       "followup": "How would you measure physical correctness, and what would you change in data or training to improve it?",
       "answer": "Video models learn how pixels usually look and move, not physical laws; they have no built-in 3D world, mass or forces, and rare events are thin in training data. Errors: objects vanishing or merging, wrong gravity, bodies passing through each other, missing cause and effect (a bite with no mark), liquids appearing or disappearing, morphing hands, and drift over long clips.\n\nMeasure with physics benchmarks (Physics-IQ, VideoPhy, PhyGenBench) and human review. Improve with better-labeled data, synthetic data from physics simulators and game engines, 3D-aware world models, rewards for physical correctness and longer context for consistency.",
       "topics": [
-        "ML & DL deep basics",
+        "ML & DL",
         "AI industry and news",
         "Generative AI"
       ]
@@ -2408,8 +2397,7 @@
       "answer": "Evaluate the outcome and the path. Outcome: task success measured by checking the final state (tests pass, record updated). Trajectory: right tools, correct arguments, number of steps, loops, recovery from errors. Also cost, latency and safety (forbidden actions, data leaks, prompt injection). Agents are non-deterministic, so run each task several times and report pass rates, including reliability across runs. Build a task suite from real user requests and add every production failure.\n\nFor an LLM judge: give a clear rubric, prefer binary or pairwise verdicts, ask for reasoning before the verdict, one criterion per call, and swap answer order to cancel position bias. Calibrate it on a hand-labelled sample and measure agreement (accuracy, Cohen's kappa) before trusting it, and re-check when the judge model changes. For 80% to 84%: check the sample size and confidence interval, compare paired results case by case, look at what broke as well as what improved, and check cost and latency before shipping.",
       "topics": [
         "Evals",
-        "Agents and tool use",
-        "Agents & MCP"
+        "Agents/MCP/Tool-use"
       ]
     },
     {
@@ -2418,7 +2406,7 @@
       "answer": "First check the model is calibrated (predicted probabilities match real rates) using a reliability diagram, and fix it with Platt scaling or isotonic regression if needed. Then put money on the errors: cost of a false positive (blocked good customer, review time) versus a false negative (fraud loss). Flag a case when probability × fraud loss > (1 - probability) × false-positive cost, or sweep thresholds on validation data and pick the one with the lowest total expected cost. Look at precision and recall at that point, not accuracy, because fraud is rare. Use bands: auto-approve low scores, auto-block very high ones, and send the middle to human review within the team's capacity. Keep hard rules (limits, sanctions lists) in deterministic code or DMN tables. Monitor drift and re-tune over time, and A/B test threshold changes.\n\nAn LLM can summarise the evidence and draft a reason for reviewers, using structured output, while the decision limits stay in code, humans approve high-impact cases, and everything is logged for audit.",
       "topics": [
         "Evals",
-        "ML & DL deep basics",
+        "ML & DL",
         "Decision Models",
         "AI Risk Management"
       ]
