@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=180';
-import { ADMIN_HASH } from './admin-hash.js?v=180';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=181';
+import { ADMIN_HASH } from './admin-hash.js?v=181';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -872,8 +872,8 @@ async function loadInterview() {
 // test topics shown under their merged interview name
 const IV_TOPIC_ALIAS = { 'AI Hardware': 'AI H/W & Semiconductors', 'Agents & MCP': 'Agents/MCP/Tool-use', LLMs: 'LLM / VLM / SLM / ALM', Harnesses: 'Harnesses Engineering' };
 const IV_TOPIC_COLS = [
-  ['AI H/W & Semiconductors', 'Transformers / GANs / VAEs', 'AI Sizing', 'System/Product design', 'Automation / AI tools', 'CLI'],
-  ['AI Engineering', 'ML & DL', 'Decision Models', 'Model Fine-tuning', 'AI Development', 'Game Engines', 'Prompt Engineering', 'Context Engineering', 'RAG and retrieval'],
+  ['AI H/W & Semiconductors', 'Transformers / GANs / VAEs', 'AI Sizing', 'System/Product design', 'Automation / AI tools', 'CLI', 'Game Engines'],
+  ['AI Engineering', 'ML & DL', 'Decision Models', 'Model Fine-tuning', 'AI Development', 'Prompt Engineering', 'Context Engineering', 'RAG and retrieval'],
   ['Frontier Labs', 'Generative AI', 'LLM / VLM / SLM / ALM', 'Evals', 'Benchmarking', 'Agents/MCP/Tool-use', 'Harnesses Engineering'],
   ['AI Strategy', 'AI Governance', 'AI Risk Management', 'AI Product management', 'AI Project management', 'AI industry and news', 'Behavioral and experience'],
 ];
