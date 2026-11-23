@@ -259,3 +259,4 @@ header .topbar { order: 2; flex-shrink: 0; }
 #user-box button { margin: 0; border-radius: 999px; }
 #admin-body details.card.fold { padding-block: 5px; margin-bottom: 8px; }
 #admin-body .grid:has(> details.fold) { margin-bottom: 0; }
+#iv-filter select[name=job], #iv-filter select[name=job] option { font-family: ui-monospace, Consolas, "Cascadia Mono", monospace; }

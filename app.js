@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=148';
-import { ADMIN_HASH } from './admin-hash.js?v=148';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=150';
+import { ADMIN_HASH } from './admin-hash.js?v=150';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -791,14 +791,24 @@ const IV_JOBS = {
   'ML Engineer / Data Scientist': { 'ML and deep learning basics': 3, 'Evals and quality': 3, 'Fine-tuning and alignment': 2, 'System design and production': 2, 'LLM fundamentals': 2, 'Behavioral and experience': 1, 'Product, strategy and responsible AI': 1, 'RAG and retrieval': 1, 'Tools and automation': 1 },
   'MLOps / AI Infrastructure Engineer': { 'System design and production': 3, 'AI hardware and chips': 3, 'Tools and automation': 3, 'LLM fundamentals': 1, 'Evals and quality': 1, 'Behavioral and experience': 1 },
   'AI Solutions Architect': { 'System design and production': 3, 'RAG and retrieval': 2, 'Agents and tool use': 2, 'LLM fundamentals': 2, 'AI hardware and chips': 2, 'Product, strategy and responsible AI': 2, 'Tools and automation': 2, 'Evals and quality': 1, 'Behavioral and experience': 1 },
-  'AI Product / Project Manager': { 'Product, strategy and responsible AI': 3, 'Behavioral and experience': 3, 'Evals and quality': 2, 'AI industry and news': 2, 'Agents and tool use': 1, 'LLM fundamentals': 1, 'System design and production': 1, 'RAG and retrieval': 1, 'Tools and automation': 1 },
+  'AI Project Manager': { 'Behavioral and experience': 3, 'Product, strategy and responsible AI': 3, 'System design and production': 2, 'Evals and quality': 2, 'Tools and automation': 1, 'Agents and tool use': 1, 'LLM fundamentals': 1, 'AI industry and news': 1 },
+  'AI Product Manager': { 'Product, strategy and responsible AI': 3, 'Behavioral and experience': 3, 'Evals and quality': 2, 'AI industry and news': 2, 'Agents and tool use': 2, 'LLM fundamentals': 1, 'RAG and retrieval': 1, 'System design and production': 1 },
+  'AI Governance': { 'Product, strategy and responsible AI': 3, 'Evals and quality': 3, 'AI industry and news': 2, 'Behavioral and experience': 2, 'Fine-tuning and alignment': 1, 'LLM fundamentals': 1, 'Agents and tool use': 1 },
+  'AI Risk Management': { 'Product, strategy and responsible AI': 3, 'Evals and quality': 3, 'Agents and tool use': 2, 'Fine-tuning and alignment': 2, 'Behavioral and experience': 1, 'AI industry and news': 1, 'System design and production': 1, 'ML and deep learning basics': 1 },
+  'AI Business Partner': { 'Product, strategy and responsible AI': 3, 'AI industry and news': 3, 'Behavioral and experience': 3, 'Evals and quality': 1, 'LLM fundamentals': 1, 'Agents and tool use': 1, 'Tools and automation': 1 },
   'AI Strategy / Consultant': { 'Product, strategy and responsible AI': 3, 'AI industry and news': 3, 'Behavioral and experience': 2, 'Evals and quality': 2, 'AI hardware and chips': 1, 'LLM fundamentals': 1, 'Agents and tool use': 1 },
   'General (AI literacy)': { 'AI industry and news': 3, 'Behavioral and experience': 3, 'Product, strategy and responsible AI': 2, 'LLM fundamentals': 2, 'Tools and automation': 2, 'Evals and quality': 1, 'Agents and tool use': 1, 'RAG and retrieval': 1, 'AI hardware and chips': 1, 'ML and deep learning basics': 1 },
   'Automation / AI Developer': { 'Tools and automation': 3, 'Agents and tool use': 2, 'System design and production': 2, 'Behavioral and experience': 2, 'LLM fundamentals': 1, 'RAG and retrieval': 1 },
 };
 let ivAll = [];
 const ivForm = $('#iv-filter');
-ivForm.job.innerHTML = Object.keys(IV_JOBS).map(j => `<option>${esc(j)}</option>`).join('');
+// job list with each job's core + important question count, right-aligned as "(nn)+" (monospace select so the padding lines up)
+function renderIvJobs() {
+  const cur = ivForm.job.value, names = Object.keys(IV_JOBS), w = Math.max(...names.map(n => n.length));
+  const n = j => ivAll.filter(q => Math.max(0, ...(q.topics ?? []).map(t => IV_JOBS[j][t] ?? 0)) >= 2).length;
+  ivForm.job.innerHTML = names.map(j => `<option value="${esc(j)}"${j === cur ? ' selected' : ''}>${esc(j.padEnd(w + 2, ' ') + '(' + String(n(j)).padStart(2, ' ') + ')+')}</option>`).join('');
+}
+renderIvJobs();
 // questions ranked by their most relevant topic for the job, then by how many relevant topics they cover
 function ivPick(all, job, topics, count) {
   const w = IV_JOBS[job] ?? {}, score = q => { const s = (q.topics ?? []).map(t => w[t] ?? 0); return Math.max(0, ...s) * 10 + s.reduce((a, b) => a + b, 0); };
@@ -828,16 +838,17 @@ async function loadInterview() {
   const onPage = new Set(p.questions.map(q => q.id).filter(Boolean));
   p.questions.splice(k < 0 ? p.questions.length : k, 0, ...ivAdded().filter(q => !onPage.has(q.id)).map(q => ({ ...q, topics: q.topics ?? [q.category, q.topic].filter(Boolean) })));
   ivAll = p.questions;
+  renderIvJobs();
   renderIvTopics();
   renderInterview();
   if (ivBank.length) renderIvBank();
 }
-// two groups of topic tick boxes: the "Take a test" topics, then the interview themes
+// one list of topic tick boxes: the "Take a test" topics plus the interview themes, A to Z
 function renderIvTopics() {
   const checked = new Set([...ivForm.querySelectorAll('#iv-topics input:checked')].map(c => c.value));
-  const test = db?.topics ?? [], themes = [...new Set(ivAll.flatMap(q => q.topics ?? []))].filter(t => !test.includes(t)).sort();
+  const all = [...new Set([...(db?.topics ?? []), ...ivAll.flatMap(q => q.topics ?? [])])].sort((x, y) => x.localeCompare(y));
   const box = t => `<label><input type="checkbox" value="${esc(t)}"${checked.has(t) ? ' checked' : ''}> ${esc(t)}</label>`;
-  $('#iv-topics').innerHTML = `${test.length ? `<div class="iv-group-title">Test topics</div>${test.map(box).join('')}` : ''}<div class="iv-group-title">Interview themes</div>${themes.map(box).join('')}`;
+  $('#iv-topics').innerHTML = all.map(box).join('');
   updateIvMatch();
 }
 loadInterview();
