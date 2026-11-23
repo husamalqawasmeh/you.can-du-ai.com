@@ -257,3 +257,5 @@ header nav { order: 1; flex: 1; margin-top: 0; }
 header .topbar { order: 2; flex-shrink: 0; }
 #user-box:not([hidden]) { display: inline-flex; align-items: center; gap: 6px; background: var(--raised); border: 1px solid var(--border-strong); border-radius: 999px; padding: 0 5px 0 14px; min-height: 40px; white-space: nowrap; }
 #user-box button { margin: 0; border-radius: 999px; }
+#admin-body details.card.fold { padding-block: 5px; margin-bottom: 8px; }
+#admin-body .grid:has(> details.fold) { margin-bottom: 0; }
