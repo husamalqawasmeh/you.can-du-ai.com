@@ -267,3 +267,5 @@ header .topbar { order: 2; flex-shrink: 0; }
 #iv-jobs .iv-job-n { color: var(--muted); font-variant-numeric: tabular-nums; }
 #iv-filter legend { font-weight: 700; color: var(--accent); }
 #iv-filter .legend-note { font-weight: 400; color: var(--text); }
+.iv-results { border-top: 1px solid var(--border); padding-top: 8px; }
+.iv-results > summary h2 { color: var(--accent); }

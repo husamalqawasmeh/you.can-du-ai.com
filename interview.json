@@ -29,7 +29,7 @@
         "Automation / AI tools",
         "AI Development",
         "CLI",
-        "Harnesses"
+        "Harnesses Engineering"
       ]
     },
     {
@@ -39,7 +39,7 @@
       "topics": [
         "Behavioral and experience",
         "Automation / AI tools",
-        "Harnesses",
+        "Harnesses Engineering",
         "CLI"
       ]
     },
@@ -120,7 +120,8 @@
         "Behavioral and experience",
         "Automation / AI tools",
         "Generative AI",
-        "Harnesses"
+        "Harnesses Engineering",
+        "Prompt Engineering"
       ]
     },
     {
@@ -451,7 +452,8 @@
       "q": "What do temperature and top-p do, and how would you set them for a coding assistant?",
       "followup": "Why would you use different settings for creative writing?",
       "topics": [
-        "LLM / VLM / SLM / ALM"
+        "LLM / VLM / SLM / ALM",
+        "Prompt Engineering"
       ]
     },
     {
@@ -459,7 +461,8 @@
       "q": "What causes hallucinations, and what techniques reduce them?",
       "followup": "Why can no technique remove hallucinations completely?",
       "topics": [
-        "LLM / VLM / SLM / ALM"
+        "LLM / VLM / SLM / ALM",
+        "Prompt Engineering"
       ]
     },
     {
@@ -585,7 +588,8 @@
       "q": "How would you defend an agent against prompt injection from web pages or emails?",
       "followup": "Why is it dangerous to let retrieved content give instructions?",
       "topics": [
-        "Agents/MCP/Tool-use"
+        "Agents/MCP/Tool-use",
+        "Prompt Engineering"
       ]
     },
     {
@@ -593,7 +597,8 @@
       "q": "How do you design tool descriptions and schemas so the model calls tools correctly?",
       "followup": "Why are clear tool names and error messages part of prompt design?",
       "topics": [
-        "Agents/MCP/Tool-use"
+        "Agents/MCP/Tool-use",
+        "Prompt Engineering"
       ]
     },
     {
@@ -669,7 +674,8 @@
       "topics": [
         "System/Product design",
         "AI Engineering",
-        "AI Sizing"
+        "AI Sizing",
+        "Prompt Engineering"
       ]
     },
     {
@@ -857,6 +863,171 @@
       "followup": "Why do data and quick experiments resolve such disagreements best?",
       "topics": [
         "Behavioral and experience"
+      ]
+    },
+    {
+      "q": "What topics should an LLM engineer know?",
+      "followup": "Pick one and explain how you measured or sized it in a real project.",
+      "answer": "Benchmarking and evals, latency (time to first token, time per output token) and throughput (tokens per second, concurrency), capabilities (text, vision, voice, video, tool calling, structured output, context window), hardware sizing (VRAM for weights plus KV cache, RAM, GPU type), optimization (quantization, batching, caching, speculative decoding), serving (vLLM, TGI, TensorRT-LLM, Ollama), context engineering and RAG, fine-tuning (LoRA), cost, safety and production monitoring.\n\nFor the follow-up, give one real measurement, for example \"p95 TTFT dropped from 2.1 s to 0.6 s after enabling prefix caching\".",
+      "topics": [
+        "LLM / VLM / SLM / ALM",
+        "Behavioral and experience",
+        "AI Engineering"
+      ]
+    },
+    {
+      "q": "How would you size the GPUs and VRAM to serve a 70B model to 100 concurrent users with 8K-token contexts?",
+      "followup": "Which levers (quantization, KV cache, batching, a smaller model) would you pull first to cut cost, and what would you measure?",
+      "answer": "Weights: 70B in FP16 is about 140 GB, in FP8 about 70 GB, in 4-bit about 35-40 GB. KV cache: for a Llama-70B-style model (80 layers, 8 KV heads with GQA, head size 128, FP16) about 0.33 MB per token, so 100 users × 8K tokens ≈ 800K tokens ≈ 260 GB at full use. Total in FP16 ≈ 400+ GB, for example a node of 8 × 80 GB GPUs with tensor parallelism; FP8 weights and FP8 KV cache can roughly halve it.\n\nLevers in order: FP8/4-bit quantization (check evals), FP8 KV cache and PagedAttention, continuous batching, prefix caching, then a smaller or distilled model. Measure quality, p95 latency, throughput and cost per million tokens.",
+      "topics": [
+        "AI H/W & Semiconductors",
+        "System/Product design",
+        "AI Sizing"
+      ]
+    },
+    {
+      "q": "What is the difference between latency and throughput for an LLM service, and how do you trade one against the other?",
+      "followup": "Which metrics (TTFT, time per output token, p95) would you put on the dashboard, and why?",
+      "answer": "Latency is how long one user waits: time to first token plus time per output token × output length. Throughput is how much work the whole system does: tokens or requests per second across all users. Bigger batches raise throughput and lower cost per token but can raise each user's latency, so set a latency target (for example p95 TTFT under 1 s) and maximize throughput within it.\n\nDashboard: TTFT and time per output token at p50/p95/p99, tokens per second, requests per second, queue time, GPU utilization, error rate and cost per million tokens.",
+      "topics": [
+        "System/Product design",
+        "LLM / VLM / SLM / ALM",
+        "AI Sizing",
+        "AI Engineering"
+      ]
+    },
+    {
+      "q": "What topics should an AI engineer know, and which are your strongest and weakest?",
+      "followup": "What are you doing to close the gap in your weakest area?",
+      "answer": "Programming (Python, Git, APIs, SQL, testing), math basics (linear algebra, probability, statistics), ML fundamentals (data splits, overfitting, metrics), deep learning and Transformers, LLMs (prompting, RAG, agents, MCP, fine-tuning), data engineering, evaluation, MLOps/LLMOps (CI/CD, Docker, Kubernetes, monitoring), cloud and GPUs, responsible and secure AI, and product sense.\n\nName a real strength with an example, and an honest weakness with a concrete plan (a course, a side project, a certification, a date).",
+      "topics": [
+        "Behavioral and experience",
+        "AI Engineering"
+      ]
+    },
+    {
+      "q": "What is the difference between an AI engineer, an ML engineer, a data scientist and an LLM engineer?",
+      "followup": "Which of these roles fits the work you want to do, and why?",
+      "answer": "Data scientist: analyzes data and runs experiments to answer business questions. ML engineer: trains, deploys and scales ML models (pipelines, serving, MLOps). AI engineer: builds products on top of AI models, often foundation models through APIs or open weights, with strong software engineering, integration and evals. LLM engineer: an AI engineer focused on LLMs (prompting, RAG, agents, serving, GPU sizing).\n\nThe roles overlap and titles differ by company; pick the one that matches the work you enjoy and give a reason.",
+      "topics": [
+        "Behavioral and experience",
+        "AI Engineering"
+      ]
+    },
+    {
+      "q": "Walk me through taking an AI feature from idea to production.",
+      "followup": "How do you know it is working after launch, and what would make you roll it back?",
+      "answer": "1) Define the problem, users and a success metric. 2) Check data and feasibility; build a quick prototype. 3) Build an eval set and a baseline. 4) Iterate on prompts, RAG or model choice until evals pass. 5) Add guardrails, security, privacy review and cost limits. 6) Ship behind a feature flag to a small group or A/B test. 7) Monitor quality, latency, cost, errors and feedback with tracing.\n\nRoll back if quality or business metrics drop, costs spike, or safety or privacy incidents happen.",
+      "topics": [
+        "System/Product design",
+        "AI Engineering",
+        "AI Project management",
+        "AI Product management"
+      ]
+    },
+    {
+      "q": "What is a container, and why do AI and LLM applications need containerization?",
+      "followup": "How would you give a container GPU access, and where would you keep the model weights?",
+      "answer": "A container packages an app with its code, runtime and libraries so it runs the same everywhere; it shares the host OS kernel, so it is lighter than a VM. AI needs it because Python, PyTorch, CUDA and driver versions must match exactly; containers give reproducibility, portability across clouds, ready-made serving images (vLLM, TGI, Triton, NVIDIA NIM), scaling with Kubernetes and sandboxing for agent-generated code.\n\nGPU access: install NVIDIA drivers and the NVIDIA Container Toolkit on the host and run with --gpus all (or the GPU operator on Kubernetes). Keep model weights outside the image on a mounted volume or download them at start.",
+      "topics": [
+        "System/Product design",
+        "Automation / AI tools",
+        "AI Development"
+      ]
+    },
+    {
+      "q": "What is quantization, and what are the trade-offs of running a model in 8-bit or 4-bit?",
+      "followup": "How would you check that a quantized model is still good enough for production?",
+      "answer": "Quantization stores weights (and sometimes activations or KV cache) with fewer bits: FP16 → 8-bit → 4-bit. 8-bit halves memory with almost no quality loss; 4-bit cuts memory by about 4× and speeds up decoding, but may lose some quality, especially on math, code and long contexts; below 4 bits loss grows. Methods: GPTQ, AWQ, bitsandbytes, FP8, GGUF for llama.cpp.\n\nTo check it: run the same eval set on original and quantized models, compare scores, spot-check outputs, test long-context and edge cases, and measure latency and memory before production.",
+      "topics": [
+        "LLM / VLM / SLM / ALM",
+        "System/Product design",
+        "AI H/W & Semiconductors",
+        "AI Sizing"
+      ]
+    },
+    {
+      "q": "What is NVIDIA DGX Spark, and how does it compare with a Mac Studio, an AMD Strix Halo mini PC or a PC with an RTX 5090 for local LLM work?",
+      "followup": "For a 70B model, which would you buy and why: memory size, memory bandwidth or software support?",
+      "answer": "DGX Spark is NVIDIA's desktop AI computer with the GB10 Grace Blackwell chip and 128 GB unified memory (about 273 GB/s), running the full CUDA stack; it fits models up to about 200B parameters in FP4 and is great for prototyping and fine-tuning. Mac Studio M3 Ultra: up to 512 GB and about 819 GB/s, so faster generation on big models, but no CUDA. AMD Strix Halo mini PCs: up to 128 GB at about 256 GB/s, cheaper, ROCm. RTX 5090: only 32 GB but about 1.8 TB/s, fastest when the model fits.\n\nFor a 70B model: memory size decides if it fits (4-bit ≈ 40 GB), bandwidth decides speed, software decides ease; for CUDA work pick Spark, for fastest local chat at 70B a Mac Studio, for small models an RTX 5090.",
+      "topics": [
+        "AI H/W & Semiconductors",
+        "AI Sizing"
+      ]
+    },
+    {
+      "q": "Why do AI video generators struggle with physics, and what kinds of errors do they make?",
+      "followup": "How would you measure physical correctness, and what would you change in data or training to improve it?",
+      "answer": "Video models learn how pixels usually look and move, not physical laws; they have no built-in 3D world, mass or forces, and rare events are thin in training data. Errors: objects vanishing or merging, wrong gravity, bodies passing through each other, missing cause and effect (a bite with no mark), liquids appearing or disappearing, morphing hands, and drift over long clips.\n\nMeasure with physics benchmarks (Physics-IQ, VideoPhy, PhyGenBench) and human review. Improve with better-labeled data, synthetic data from physics simulators and game engines, 3D-aware world models, rewards for physical correctness and longer context for consistency.",
+      "topics": [
+        "ML & DL",
+        "AI industry and news",
+        "Generative AI",
+        "Transformers / GANs / VAEs"
+      ]
+    },
+    {
+      "q": "What is CoWoS, and why has advanced packaging become so important for AI hardware?",
+      "followup": "How does packaging capacity affect GPU supply and the cost of running large models?",
+      "answer": "CoWoS (Chip-on-Wafer-on-Substrate) is TSMC's 2.5D packaging: the GPU die and HBM stacks sit side by side on a silicon (or organic) interposer with very dense wiring, mounted on a package substrate. AI accelerators are limited by memory bandwidth, and HBM only reaches terabytes per second when it sits right next to the GPU with thousands of short links. CoWoS also gets past the reticle limit by joining several dies, as in NVIDIA Blackwell B200 (two GPU dies on CoWoS-L). Since 2023 CoWoS and HBM capacity, not die production, have been the main bottleneck for AI GPU supply, so TSMC keeps doubling capacity.\n\nFor engineers this means GPU availability and price depend on the whole supply chain, which affects cloud pricing and hardware planning.",
+      "topics": [
+        "AI H/W & Semiconductors"
+      ]
+    },
+    {
+      "q": "What is ASML's High-NA EUV machine, and why does it matter for AI chips?",
+      "followup": "What are its trade-offs (cost, exposure field size) and how do they affect very large AI accelerators?",
+      "answer": "ASML is the only maker of EUV lithography machines, which print the smallest features on leading-edge chips using 13.5 nm light from a tin plasma, steered by mirrors in a vacuum. Standard EUV has a numerical aperture of 0.33; High-NA EUV (EXE:5000/5200) raises it to 0.55, printing about 1.7x smaller features (about 8 nm resolution) and nearly 3x the density per exposure, and can replace costly multi-patterning. Smaller nodes give AI accelerators more compute per watt, lowering training and inference cost.\n\nTrade-offs: about $350-400 million per machine, and a half-size exposure field, so very large AI dies need stitching or multi-die designs with packaging like CoWoS. Intel adopted it first; TSMC and Samsung plan it for later nodes. Export controls keep EUV out of China, making it a strategic part of the AI race.",
+      "topics": [
+        "AI H/W & Semiconductors"
+      ]
+    },
+    {
+      "q": "Explain the AI chip supply chain: what do NVIDIA, AMD, TSMC and CUDA each contribute, and what does \"fabless\" mean?",
+      "followup": "If you had to run LLMs on AMD instead of NVIDIA GPUs, what would change in your software stack?",
+      "answer": "NVIDIA and AMD are fabless: they design GPUs but do not own fabs. TSMC is the leading foundry that manufactures their chips on advanced nodes (4N, N3, N2) and packages them with HBM using CoWoS; ASML supplies the EUV machines the fabs need. CUDA is NVIDIA's software platform (kernels plus libraries like cuBLAS, cuDNN, NCCL, TensorRT) that PyTorch and most AI tools use, and its ecosystem is NVIDIA's main moat. AMD competes with Instinct GPUs (MI300X, MI355X) that offer more HBM per GPU, and with ROCm/HIP as its CUDA alternative.\n\nMoving to AMD: use ROCm builds of PyTorch and inference engines like vLLM or SGLang, port custom CUDA kernels with HIP or rewrite them in Triton, replace NCCL with RCCL, and test performance and stability because library coverage is narrower.",
+      "topics": [
+        "AI H/W & Semiconductors",
+        "AI industry and news"
+      ]
+    },
+    {
+      "q": "How would you evaluate an AI agent, and how do you make sure an LLM-as-a-judge can be trusted?",
+      "followup": "Your eval score went from 80% to 84% after a prompt change. Would you ship it? What would you check first?",
+      "answer": "Evaluate the outcome and the path. Outcome: task success measured by checking the final state (tests pass, record updated). Trajectory: right tools, correct arguments, number of steps, loops, recovery from errors. Also cost, latency and safety (forbidden actions, data leaks, prompt injection). Agents are non-deterministic, so run each task several times and report pass rates, including reliability across runs. Build a task suite from real user requests and add every production failure.\n\nFor an LLM judge: give a clear rubric, prefer binary or pairwise verdicts, ask for reasoning before the verdict, one criterion per call, and swap answer order to cancel position bias. Calibrate it on a hand-labelled sample and measure agreement (accuracy, Cohen's kappa) before trusting it, and re-check when the judge model changes. For 80% to 84%: check the sample size and confidence interval, compare paired results case by case, look at what broke as well as what improved, and check cost and latency before shipping.",
+      "topics": [
+        "Evals",
+        "Agents/MCP/Tool-use",
+        "Prompt Engineering"
+      ]
+    },
+    {
+      "q": "A model predicts fraud probability. How do you choose the threshold and design the decision process around it?",
+      "followup": "How would you include an LLM in this process safely, for example to explain or review flagged cases?",
+      "answer": "First check the model is calibrated (predicted probabilities match real rates) using a reliability diagram, and fix it with Platt scaling or isotonic regression if needed. Then put money on the errors: cost of a false positive (blocked good customer, review time) versus a false negative (fraud loss). Flag a case when probability × fraud loss > (1 - probability) × false-positive cost, or sweep thresholds on validation data and pick the one with the lowest total expected cost. Look at precision and recall at that point, not accuracy, because fraud is rare. Use bands: auto-approve low scores, auto-block very high ones, and send the middle to human review within the team's capacity. Keep hard rules (limits, sanctions lists) in deterministic code or DMN tables. Monitor drift and re-tune over time, and A/B test threshold changes.\n\nAn LLM can summarise the evidence and draft a reason for reviewers, using structured output, while the decision limits stay in code, humans approve high-impact cases, and everything is logged for audit.",
+      "topics": [
+        "Evals",
+        "ML & DL",
+        "Decision Models",
+        "AI Risk Management"
+      ]
+    },
+    {
+      "q": "How would you build an AI strategy for a mid-sized company that has many AI experiments but little business value?",
+      "followup": "Which three use cases would you pick first, and how would you decide?",
+      "answer": "Start with the business: agree 2-3 outcomes with leadership (for example lower service cost, faster sales cycles, fewer errors) and name an executive owner. Take stock of current pilots, data, tools and risks.\n\nScore candidate use cases on value, feasibility, data readiness, risk, adoption effort and time to value; pick 2-5 with clear owners, baselines and a path to production, ideally in one lighthouse area, and stop pilots with no value story. Decide build, buy or partner per component: buy commodity tools, build where proprietary data or workflows give an edge, keep a model gateway to avoid lock-in. Set up a hub-and-spoke model: a central platform and governance team with AI people embedded in business units. Put governance in place early (AI policy, inventory, risk tiers, human review rules, NIST AI RMF or ISO 42001, EU AI Act where relevant). Redesign workflows, train staff, use champions. Track adoption, operational and financial KPIs against the baseline, report quarterly and scale what works.",
+      "topics": [
+        "AI Strategy"
+      ]
+    },
+    {
+      "q": "Many reports say most AI pilots fail to deliver returns. Why does this happen, and how would you avoid it?",
+      "followup": "How would you measure ROI for a customer-support AI assistant, including its full cost?",
+      "answer": "Common causes: starting from technology instead of a business problem; too many disconnected pilots; weak or inaccessible data; tools bolted onto old processes instead of redesigned workflows; no learning loop, so systems do not improve from feedback; unclear owners and no baseline; underestimated cost; and little change management, so people do not adopt the tool. MIT NANDA's 2025 GenAI Divide report and Gartner's forecast that over 40% of agentic AI projects will be canceled by 2027 both point to unclear value, integration and risk controls. To avoid it: tie each use case to a measurable outcome and owner, check data readiness first, integrate into the real workflow, design human-in-the-loop review, evaluate quality continuously, plan adoption and training, and stop projects that miss milestones.\n\nFor a support assistant: baseline handle time, resolution rate, CSAT and cost per ticket; compare with a control group; count tokens, licences, integration, evaluation, monitoring and training in the cost; ROI = (value - cost) / cost.",
+      "topics": [
+        "AI Strategy",
+        "AI Project management",
+        "AI Product management"
       ]
     },
     {
@@ -2270,170 +2441,6 @@
       "topics": [
         "AI industry and news",
         "Frontier Labs"
-      ]
-    },
-    {
-      "q": "What topics should an LLM engineer know?",
-      "followup": "Pick one and explain how you measured or sized it in a real project.",
-      "answer": "Benchmarking and evals, latency (time to first token, time per output token) and throughput (tokens per second, concurrency), capabilities (text, vision, voice, video, tool calling, structured output, context window), hardware sizing (VRAM for weights plus KV cache, RAM, GPU type), optimization (quantization, batching, caching, speculative decoding), serving (vLLM, TGI, TensorRT-LLM, Ollama), context engineering and RAG, fine-tuning (LoRA), cost, safety and production monitoring.\n\nFor the follow-up, give one real measurement, for example \"p95 TTFT dropped from 2.1 s to 0.6 s after enabling prefix caching\".",
-      "topics": [
-        "LLM / VLM / SLM / ALM",
-        "Behavioral and experience",
-        "AI Engineering"
-      ]
-    },
-    {
-      "q": "How would you size the GPUs and VRAM to serve a 70B model to 100 concurrent users with 8K-token contexts?",
-      "followup": "Which levers (quantization, KV cache, batching, a smaller model) would you pull first to cut cost, and what would you measure?",
-      "answer": "Weights: 70B in FP16 is about 140 GB, in FP8 about 70 GB, in 4-bit about 35-40 GB. KV cache: for a Llama-70B-style model (80 layers, 8 KV heads with GQA, head size 128, FP16) about 0.33 MB per token, so 100 users × 8K tokens ≈ 800K tokens ≈ 260 GB at full use. Total in FP16 ≈ 400+ GB, for example a node of 8 × 80 GB GPUs with tensor parallelism; FP8 weights and FP8 KV cache can roughly halve it.\n\nLevers in order: FP8/4-bit quantization (check evals), FP8 KV cache and PagedAttention, continuous batching, prefix caching, then a smaller or distilled model. Measure quality, p95 latency, throughput and cost per million tokens.",
-      "topics": [
-        "AI H/W & Semiconductors",
-        "System/Product design",
-        "AI Sizing"
-      ]
-    },
-    {
-      "q": "What is the difference between latency and throughput for an LLM service, and how do you trade one against the other?",
-      "followup": "Which metrics (TTFT, time per output token, p95) would you put on the dashboard, and why?",
-      "answer": "Latency is how long one user waits: time to first token plus time per output token × output length. Throughput is how much work the whole system does: tokens or requests per second across all users. Bigger batches raise throughput and lower cost per token but can raise each user's latency, so set a latency target (for example p95 TTFT under 1 s) and maximize throughput within it.\n\nDashboard: TTFT and time per output token at p50/p95/p99, tokens per second, requests per second, queue time, GPU utilization, error rate and cost per million tokens.",
-      "topics": [
-        "System/Product design",
-        "LLM / VLM / SLM / ALM",
-        "AI Sizing",
-        "AI Engineering"
-      ]
-    },
-    {
-      "q": "What topics should an AI engineer know, and which are your strongest and weakest?",
-      "followup": "What are you doing to close the gap in your weakest area?",
-      "answer": "Programming (Python, Git, APIs, SQL, testing), math basics (linear algebra, probability, statistics), ML fundamentals (data splits, overfitting, metrics), deep learning and Transformers, LLMs (prompting, RAG, agents, MCP, fine-tuning), data engineering, evaluation, MLOps/LLMOps (CI/CD, Docker, Kubernetes, monitoring), cloud and GPUs, responsible and secure AI, and product sense.\n\nName a real strength with an example, and an honest weakness with a concrete plan (a course, a side project, a certification, a date).",
-      "topics": [
-        "Behavioral and experience",
-        "AI Engineering"
-      ]
-    },
-    {
-      "q": "What is the difference between an AI engineer, an ML engineer, a data scientist and an LLM engineer?",
-      "followup": "Which of these roles fits the work you want to do, and why?",
-      "answer": "Data scientist: analyzes data and runs experiments to answer business questions. ML engineer: trains, deploys and scales ML models (pipelines, serving, MLOps). AI engineer: builds products on top of AI models, often foundation models through APIs or open weights, with strong software engineering, integration and evals. LLM engineer: an AI engineer focused on LLMs (prompting, RAG, agents, serving, GPU sizing).\n\nThe roles overlap and titles differ by company; pick the one that matches the work you enjoy and give a reason.",
-      "topics": [
-        "Behavioral and experience",
-        "AI Engineering"
-      ]
-    },
-    {
-      "q": "Walk me through taking an AI feature from idea to production.",
-      "followup": "How do you know it is working after launch, and what would make you roll it back?",
-      "answer": "1) Define the problem, users and a success metric. 2) Check data and feasibility; build a quick prototype. 3) Build an eval set and a baseline. 4) Iterate on prompts, RAG or model choice until evals pass. 5) Add guardrails, security, privacy review and cost limits. 6) Ship behind a feature flag to a small group or A/B test. 7) Monitor quality, latency, cost, errors and feedback with tracing.\n\nRoll back if quality or business metrics drop, costs spike, or safety or privacy incidents happen.",
-      "topics": [
-        "System/Product design",
-        "AI Engineering",
-        "AI Project management",
-        "AI Product management"
-      ]
-    },
-    {
-      "q": "What is a container, and why do AI and LLM applications need containerization?",
-      "followup": "How would you give a container GPU access, and where would you keep the model weights?",
-      "answer": "A container packages an app with its code, runtime and libraries so it runs the same everywhere; it shares the host OS kernel, so it is lighter than a VM. AI needs it because Python, PyTorch, CUDA and driver versions must match exactly; containers give reproducibility, portability across clouds, ready-made serving images (vLLM, TGI, Triton, NVIDIA NIM), scaling with Kubernetes and sandboxing for agent-generated code.\n\nGPU access: install NVIDIA drivers and the NVIDIA Container Toolkit on the host and run with --gpus all (or the GPU operator on Kubernetes). Keep model weights outside the image on a mounted volume or download them at start.",
-      "topics": [
-        "System/Product design",
-        "Automation / AI tools",
-        "AI Development"
-      ]
-    },
-    {
-      "q": "What is quantization, and what are the trade-offs of running a model in 8-bit or 4-bit?",
-      "followup": "How would you check that a quantized model is still good enough for production?",
-      "answer": "Quantization stores weights (and sometimes activations or KV cache) with fewer bits: FP16 → 8-bit → 4-bit. 8-bit halves memory with almost no quality loss; 4-bit cuts memory by about 4× and speeds up decoding, but may lose some quality, especially on math, code and long contexts; below 4 bits loss grows. Methods: GPTQ, AWQ, bitsandbytes, FP8, GGUF for llama.cpp.\n\nTo check it: run the same eval set on original and quantized models, compare scores, spot-check outputs, test long-context and edge cases, and measure latency and memory before production.",
-      "topics": [
-        "LLM / VLM / SLM / ALM",
-        "System/Product design",
-        "AI H/W & Semiconductors",
-        "AI Sizing"
-      ]
-    },
-    {
-      "q": "What is NVIDIA DGX Spark, and how does it compare with a Mac Studio, an AMD Strix Halo mini PC or a PC with an RTX 5090 for local LLM work?",
-      "followup": "For a 70B model, which would you buy and why: memory size, memory bandwidth or software support?",
-      "answer": "DGX Spark is NVIDIA's desktop AI computer with the GB10 Grace Blackwell chip and 128 GB unified memory (about 273 GB/s), running the full CUDA stack; it fits models up to about 200B parameters in FP4 and is great for prototyping and fine-tuning. Mac Studio M3 Ultra: up to 512 GB and about 819 GB/s, so faster generation on big models, but no CUDA. AMD Strix Halo mini PCs: up to 128 GB at about 256 GB/s, cheaper, ROCm. RTX 5090: only 32 GB but about 1.8 TB/s, fastest when the model fits.\n\nFor a 70B model: memory size decides if it fits (4-bit ≈ 40 GB), bandwidth decides speed, software decides ease; for CUDA work pick Spark, for fastest local chat at 70B a Mac Studio, for small models an RTX 5090.",
-      "topics": [
-        "AI H/W & Semiconductors",
-        "AI Sizing"
-      ]
-    },
-    {
-      "q": "Why do AI video generators struggle with physics, and what kinds of errors do they make?",
-      "followup": "How would you measure physical correctness, and what would you change in data or training to improve it?",
-      "answer": "Video models learn how pixels usually look and move, not physical laws; they have no built-in 3D world, mass or forces, and rare events are thin in training data. Errors: objects vanishing or merging, wrong gravity, bodies passing through each other, missing cause and effect (a bite with no mark), liquids appearing or disappearing, morphing hands, and drift over long clips.\n\nMeasure with physics benchmarks (Physics-IQ, VideoPhy, PhyGenBench) and human review. Improve with better-labeled data, synthetic data from physics simulators and game engines, 3D-aware world models, rewards for physical correctness and longer context for consistency.",
-      "topics": [
-        "ML & DL",
-        "AI industry and news",
-        "Generative AI",
-        "Transformers / GANs / VAEs"
-      ]
-    },
-    {
-      "q": "What is CoWoS, and why has advanced packaging become so important for AI hardware?",
-      "followup": "How does packaging capacity affect GPU supply and the cost of running large models?",
-      "answer": "CoWoS (Chip-on-Wafer-on-Substrate) is TSMC's 2.5D packaging: the GPU die and HBM stacks sit side by side on a silicon (or organic) interposer with very dense wiring, mounted on a package substrate. AI accelerators are limited by memory bandwidth, and HBM only reaches terabytes per second when it sits right next to the GPU with thousands of short links. CoWoS also gets past the reticle limit by joining several dies, as in NVIDIA Blackwell B200 (two GPU dies on CoWoS-L). Since 2023 CoWoS and HBM capacity, not die production, have been the main bottleneck for AI GPU supply, so TSMC keeps doubling capacity.\n\nFor engineers this means GPU availability and price depend on the whole supply chain, which affects cloud pricing and hardware planning.",
-      "topics": [
-        "AI H/W & Semiconductors"
-      ]
-    },
-    {
-      "q": "What is ASML's High-NA EUV machine, and why does it matter for AI chips?",
-      "followup": "What are its trade-offs (cost, exposure field size) and how do they affect very large AI accelerators?",
-      "answer": "ASML is the only maker of EUV lithography machines, which print the smallest features on leading-edge chips using 13.5 nm light from a tin plasma, steered by mirrors in a vacuum. Standard EUV has a numerical aperture of 0.33; High-NA EUV (EXE:5000/5200) raises it to 0.55, printing about 1.7x smaller features (about 8 nm resolution) and nearly 3x the density per exposure, and can replace costly multi-patterning. Smaller nodes give AI accelerators more compute per watt, lowering training and inference cost.\n\nTrade-offs: about $350-400 million per machine, and a half-size exposure field, so very large AI dies need stitching or multi-die designs with packaging like CoWoS. Intel adopted it first; TSMC and Samsung plan it for later nodes. Export controls keep EUV out of China, making it a strategic part of the AI race.",
-      "topics": [
-        "AI H/W & Semiconductors"
-      ]
-    },
-    {
-      "q": "Explain the AI chip supply chain: what do NVIDIA, AMD, TSMC and CUDA each contribute, and what does \"fabless\" mean?",
-      "followup": "If you had to run LLMs on AMD instead of NVIDIA GPUs, what would change in your software stack?",
-      "answer": "NVIDIA and AMD are fabless: they design GPUs but do not own fabs. TSMC is the leading foundry that manufactures their chips on advanced nodes (4N, N3, N2) and packages them with HBM using CoWoS; ASML supplies the EUV machines the fabs need. CUDA is NVIDIA's software platform (kernels plus libraries like cuBLAS, cuDNN, NCCL, TensorRT) that PyTorch and most AI tools use, and its ecosystem is NVIDIA's main moat. AMD competes with Instinct GPUs (MI300X, MI355X) that offer more HBM per GPU, and with ROCm/HIP as its CUDA alternative.\n\nMoving to AMD: use ROCm builds of PyTorch and inference engines like vLLM or SGLang, port custom CUDA kernels with HIP or rewrite them in Triton, replace NCCL with RCCL, and test performance and stability because library coverage is narrower.",
-      "topics": [
-        "AI H/W & Semiconductors",
-        "AI industry and news"
-      ]
-    },
-    {
-      "q": "How would you evaluate an AI agent, and how do you make sure an LLM-as-a-judge can be trusted?",
-      "followup": "Your eval score went from 80% to 84% after a prompt change. Would you ship it? What would you check first?",
-      "answer": "Evaluate the outcome and the path. Outcome: task success measured by checking the final state (tests pass, record updated). Trajectory: right tools, correct arguments, number of steps, loops, recovery from errors. Also cost, latency and safety (forbidden actions, data leaks, prompt injection). Agents are non-deterministic, so run each task several times and report pass rates, including reliability across runs. Build a task suite from real user requests and add every production failure.\n\nFor an LLM judge: give a clear rubric, prefer binary or pairwise verdicts, ask for reasoning before the verdict, one criterion per call, and swap answer order to cancel position bias. Calibrate it on a hand-labelled sample and measure agreement (accuracy, Cohen's kappa) before trusting it, and re-check when the judge model changes. For 80% to 84%: check the sample size and confidence interval, compare paired results case by case, look at what broke as well as what improved, and check cost and latency before shipping.",
-      "topics": [
-        "Evals",
-        "Agents/MCP/Tool-use"
-      ]
-    },
-    {
-      "q": "A model predicts fraud probability. How do you choose the threshold and design the decision process around it?",
-      "followup": "How would you include an LLM in this process safely, for example to explain or review flagged cases?",
-      "answer": "First check the model is calibrated (predicted probabilities match real rates) using a reliability diagram, and fix it with Platt scaling or isotonic regression if needed. Then put money on the errors: cost of a false positive (blocked good customer, review time) versus a false negative (fraud loss). Flag a case when probability × fraud loss > (1 - probability) × false-positive cost, or sweep thresholds on validation data and pick the one with the lowest total expected cost. Look at precision and recall at that point, not accuracy, because fraud is rare. Use bands: auto-approve low scores, auto-block very high ones, and send the middle to human review within the team's capacity. Keep hard rules (limits, sanctions lists) in deterministic code or DMN tables. Monitor drift and re-tune over time, and A/B test threshold changes.\n\nAn LLM can summarise the evidence and draft a reason for reviewers, using structured output, while the decision limits stay in code, humans approve high-impact cases, and everything is logged for audit.",
-      "topics": [
-        "Evals",
-        "ML & DL",
-        "Decision Models",
-        "AI Risk Management"
-      ]
-    },
-    {
-      "q": "How would you build an AI strategy for a mid-sized company that has many AI experiments but little business value?",
-      "followup": "Which three use cases would you pick first, and how would you decide?",
-      "answer": "Start with the business: agree 2-3 outcomes with leadership (for example lower service cost, faster sales cycles, fewer errors) and name an executive owner. Take stock of current pilots, data, tools and risks.\n\nScore candidate use cases on value, feasibility, data readiness, risk, adoption effort and time to value; pick 2-5 with clear owners, baselines and a path to production, ideally in one lighthouse area, and stop pilots with no value story. Decide build, buy or partner per component: buy commodity tools, build where proprietary data or workflows give an edge, keep a model gateway to avoid lock-in. Set up a hub-and-spoke model: a central platform and governance team with AI people embedded in business units. Put governance in place early (AI policy, inventory, risk tiers, human review rules, NIST AI RMF or ISO 42001, EU AI Act where relevant). Redesign workflows, train staff, use champions. Track adoption, operational and financial KPIs against the baseline, report quarterly and scale what works.",
-      "topics": [
-        "AI Strategy"
-      ]
-    },
-    {
-      "q": "Many reports say most AI pilots fail to deliver returns. Why does this happen, and how would you avoid it?",
-      "followup": "How would you measure ROI for a customer-support AI assistant, including its full cost?",
-      "answer": "Common causes: starting from technology instead of a business problem; too many disconnected pilots; weak or inaccessible data; tools bolted onto old processes instead of redesigned workflows; no learning loop, so systems do not improve from feedback; unclear owners and no baseline; underestimated cost; and little change management, so people do not adopt the tool. MIT NANDA's 2025 GenAI Divide report and Gartner's forecast that over 40% of agentic AI projects will be canceled by 2027 both point to unclear value, integration and risk controls. To avoid it: tie each use case to a measurable outcome and owner, check data readiness first, integrate into the real workflow, design human-in-the-loop review, evaluate quality continuously, plan adoption and training, and stop projects that miss milestones.\n\nFor a support assistant: baseline handle time, resolution rate, CSAT and cost per ticket; compare with a control group; count tokens, licences, integration, evaluation, monitoring and training in the cost; ROI = (value - cost) / cost.",
-      "topics": [
-        "AI Strategy",
-        "AI Project management",
-        "AI Product management"
       ]
     }
   ]
