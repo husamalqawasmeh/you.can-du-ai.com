@@ -2,7 +2,7 @@
   "topics": [
     "AI Strategy",
     "AI Hardware/GPUs",
-    "AI Sizing",
+    "Model Fine-tuning",
     "Generative AI",
     "LLMs",
     "AI Governance",
@@ -22,7 +22,7 @@
     "Global AI Incidents",
     "Game Engines",
     "Harness Engineering",
-    "Model Fine-tuning"
+    "AI Sizing"
   ],
   "sources": [
     {
