@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=205';
-import { ADMIN_HASH } from './admin-hash.js?v=205';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=206';
+import { ADMIN_HASH } from './admin-hash.js?v=206';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -925,7 +925,7 @@ const IV_TOPIC_COLS = [
   ['AI Engineering', 'AI H/W & Semiconductors', 'Transformers / GANs / VAEs', 'AI Sizing', 'System/Product design', 'Automation / AI tools', 'CLI', 'Game Engines'],
   ['Frontier Labs', 'ML & DL', 'Decision Models', 'Model Fine-tuning', 'AI Development', 'Prompt Engineering', 'Context Engineering', 'RAG and retrieval'],
   ['Generative AI', 'LLM / VLM / SLM / ALM', 'Evals', 'Benchmarking', 'Agents/MCP/Tool-use', 'Harnesses Engineering', 'OpenClaw', 'OpenClaw/Loop Eng.', 'Loop Engineering'],
-  ['AI Strategy', 'AI Governance', 'AI Risk Management', 'AI Security', 'AI Product management', 'AI Project management', 'AI industry and news', 'Behavioral and experience'],
+  ['AI Strategy', 'AI Governance', 'AI Risk Management', 'AI Security', 'AI Incidents', 'AI Product management', 'AI Project management', 'AI industry and news', 'Behavioral and experience'],
 ];
 // topic tick boxes: the "Take a test" topics plus the interview themes, in the four columns above
 function renderIvTopics() {

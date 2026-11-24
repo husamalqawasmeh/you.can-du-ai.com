@@ -20,7 +20,8 @@
     "AI Security",
     "AI Governance",
     "Model Fine-tuning",
-    "AI Risk Management"
+    "AI Risk Management",
+    "AI Incidents"
   ],
   "sources": [
     {
@@ -1669,6 +1670,51 @@
       "url": "https://incidentdatabase.ai",
       "notes": "Searchable record of real-world AI harms and failures.",
       "lang": "en"
+    },
+    {
+      "id": "src-165",
+      "topic": "AI Incidents",
+      "type": "Website",
+      "title": "OECD AI Incidents and Hazards Monitor (AIM)",
+      "url": "https://oecd.ai/en/incidents",
+      "notes": "Tracks AI incidents reported in global news.",
+      "lang": "en"
+    },
+    {
+      "id": "src-166",
+      "topic": "AI Incidents",
+      "type": "Paper",
+      "title": "EchoLeak: the first real-world zero-click prompt injection exploit in a production LLM system",
+      "url": "https://arxiv.org/html/2509.10540v1",
+      "notes": "Research paper on CVE-2025-32711 in Microsoft 365 Copilot.",
+      "lang": "en"
+    },
+    {
+      "id": "src-167",
+      "topic": "AI Incidents",
+      "type": "Website",
+      "title": "Tom's Hardware: hacker injects wiper prompt into Amazon's AI coding assistant",
+      "url": "https://www.tomshardware.com/tech-industry/cyber-security/hacker-injects-malicious-potentially-disk-wiping-prompt-into-amazons-ai-coding-assistant-with-a-simple-pull-request-told-your-goal-is-to-clean-a-system-to-a-near-factory-state-and-delete-file-system-and-cloud-resources",
+      "notes": "July 2025 supply-chain compromise of the Amazon Q VS Code extension.",
+      "lang": "en"
+    },
+    {
+      "id": "src-168",
+      "topic": "AI Incidents",
+      "type": "Website",
+      "title": "Pinsent Masons: Getty's copyright case against Stability AI fails",
+      "url": "https://www.pinsentmasons.com/en-gb/out-law/news/gettys-copyright-case-against-stability-ai-fails",
+      "notes": "UK High Court ruling of 4 November 2025.",
+      "lang": "en"
+    },
+    {
+      "id": "src-169",
+      "topic": "AI Incidents",
+      "type": "Website",
+      "title": "Rafter: a timeline of AI agent security incidents (2025-2026)",
+      "url": "https://rafter.so/blog/incidents/ai-agent-security-timeline-2025-2026",
+      "notes": "Tracker of agent-related security incidents.",
+      "lang": "en"
     }
   ],
   "notes": [
@@ -2399,6 +2445,55 @@
       "title": "AI incidents, red-teaming and risk appetite",
       "body": "Learning from failures is central to AI risk management. The AI Incident Database records thousands of real cases where AI caused or nearly caused harm, such as biased decisions, false arrests from face recognition, chatbots giving dangerous advice and deepfake fraud; reviewing similar incidents is a quick way to find risks for a new project. Red-teaming means deliberately attacking your own system before others do, through jailbreaks, prompt injection, data extraction and misuse scenarios, by internal teams, external experts or automated tools. Every organisation should also define its risk appetite: which uses are prohibited, which need extra approval and which are low-risk enough to proceed quickly. Residual risk is what remains after controls; a named owner must formally accept it. Finally, prepare an AI incident response plan: how to detect a problem, who decides to pause or roll back the system, how to notify affected people and regulators, and how lessons feed back into testing.",
       "sourceId": "src-164"
+    },
+    {
+      "id": "note-105",
+      "topic": "AI Incidents",
+      "title": "AI incidents: security breaches and hacks",
+      "body": "Notable AI security incidents: (1) Samsung, April 2023: engineers pasted confidential source code and meeting notes into ChatGPT; Samsung then restricted generative AI tools at work. (2) ChatGPT, March 2023: a bug in an open-source library briefly showed some users other people's chat titles and partial payment details. (3) Bing Chat, February 2023: users used prompt injection to make it reveal its hidden \"Sydney\" system prompt. (4) DeepSeek, January 2025: researchers at Wiz found a publicly exposed database containing chat logs and API secrets. (5) EchoLeak (CVE-2025-32711), June 2025: a zero-click prompt-injection flaw in Microsoft 365 Copilot where a crafted email could make Copilot send internal data to an attacker; rated critical (CVSS 9.3) and fixed server-side, with no known customer impact. (6) Amazon Q Developer, July 2025: an attacker got a destructive \"wiper\" prompt merged into the VS Code extension through a pull request; Amazon removed it and said no customer resources were affected. (7) Salesloft Drift, August 2025: attackers stole OAuth tokens from the Drift AI chat agent's Salesforce integration and exported data from hundreds of organisations. (8) November 2025: Anthropic reported that a state-linked group misused Claude Code to run a largely automated cyber-espionage campaign. Lessons: treat prompts and AI output as untrusted, protect integrations and tokens, review code contributions and limit agent permissions.",
+      "sourceId": "src-169"
+    },
+    {
+      "id": "note-106",
+      "topic": "AI Incidents",
+      "title": "AI incidents: agent and product failures",
+      "body": "When AI products fail in public: (1) Microsoft Tay, 2016: a Twitter chatbot learned offensive language from users and was shut down within a day. (2) Zillow Offers, 2021: the home-price algorithm overpaid for houses; Zillow closed the business with large losses and job cuts. (3) Google Bard launch, February 2023: a demo answer wrongly claimed the James Webb telescope took the first exoplanet picture, and Alphabet's market value fell by about $100 billion that day. (4) Chevrolet dealer chatbot, December 2023: users tricked it into \"agreeing\" to sell a car for $1. (5) Google Gemini images, February 2024: Google paused people images after historically inaccurate results. (6) Air Canada, February 2024: a tribunal held the airline liable after its chatbot invented a bereavement refund policy; the company had argued the bot was responsible for its own words. (7) New York City MyCity chatbot, 2024: gave business owners advice that broke the law. (8) Google AI Overviews, May 2024: suggested adding glue to pizza sauce, based on a joke forum post. (9) Replit, July 2025: an AI coding agent deleted a company's production database during a code freeze. Lessons: companies are responsible for what their AI says, test edge cases and adversarial users, and never give agents unreviewed access to production.",
+      "sourceId": "src-164"
+    },
+    {
+      "id": "note-107",
+      "topic": "AI Incidents",
+      "title": "AI incidents: hallucinations in professional work",
+      "body": "Fabricated facts have caused real damage. Mata v. Avianca (New York, 2023): lawyers filed a brief citing six court cases that ChatGPT invented; the judge fined them $5,000. Since then courts in many countries have sanctioned lawyers for AI-invented citations, and researchers track hundreds of such cases. Deloitte Australia (2025): a government report contained fabricated references and quotes produced with generative AI; Deloitte corrected the report and refunded part of its fee. Other cases include AI-generated summaries and articles with invented quotes, and medical or legal chatbots giving confident wrong answers. Lessons: verify every citation, quote and number against the original source; require human review and sign-off for professional work; disclose AI use where rules require it; and prefer tools that retrieve and cite real documents.",
+      "sourceId": "src-164"
+    },
+    {
+      "id": "note-108",
+      "topic": "AI Incidents",
+      "title": "AI incidents: bias and discrimination",
+      "body": "Well-known bias cases: (1) COMPAS (US, 2016): a ProPublica investigation found the criminal risk-scoring tool falsely flagged Black defendants as high-risk more often than white defendants. (2) Amazon recruiting tool (reported 2018): it learned to downgrade CVs that mentioned women's activities, and Amazon scrapped it. (3) Netherlands childcare benefits scandal: a risk algorithm and practices wrongly accused thousands of families, many with dual nationality, of fraud; the Dutch government resigned in January 2021. (4) UK A-level grades, 2020: an algorithm downgraded many students from disadvantaged schools and was withdrawn after protests. (5) Robert Williams, Detroit, 2020: wrongfully arrested after a face-recognition false match, one of several such US cases. (6) iTutorGroup, 2023: settled a US EEOC case for $365,000 after its hiring software automatically rejected older applicants. (7) Mobley v. Workday: a US lawsuit alleging AI screening discriminated by age, race and disability, allowed to proceed as a collective action in 2025. Lessons: test outcomes across groups before and after launch, keep humans accountable for decisions, and give people a way to appeal.",
+      "sourceId": "src-164"
+    },
+    {
+      "id": "note-109",
+      "topic": "AI Incidents",
+      "title": "AI incidents: deepfakes and fraud",
+      "body": "Generative AI has made impersonation cheap. (1) 2019: criminals used a cloned voice of a parent-company chief executive to trick a UK energy firm into transferring about €220,000. (2) Arup, Hong Kong, early 2024: an employee transferred about US$25 million after a video call in which the CFO and colleagues were all deepfakes. (3) New Hampshire, January 2024: robocalls with a fake Joe Biden voice told people not to vote in the primary; the US FCC fined the political consultant behind them $6 million and banned AI voices in robocalls without consent. (4) January 2024: sexually explicit deepfakes of Taylor Swift spread widely on X, which temporarily blocked searches for her name. Since then, deepfake scams using cloned voices of relatives or executives have grown fast. Defences: verify payment requests through a second known channel, use code words for urgent requests, train staff, label AI media and use content credentials such as C2PA.",
+      "sourceId": "src-164"
+    },
+    {
+      "id": "note-110",
+      "topic": "AI Incidents",
+      "title": "AI incidents: lawsuits and regulatory actions",
+      "body": "Key legal cases: (1) Italy, March 2023: the data-protection authority temporarily banned ChatGPT, and in December 2024 fined OpenAI €15 million over privacy issues. (2) The New York Times v. OpenAI and Microsoft (filed December 2023): copyright claims over training on and reproducing news articles. (3) US FTC v. Rite Aid, December 2023: Rite Aid was banned from using facial recognition for five years after false matches harmed shoppers. (4) Clearview AI: fined by several European regulators for scraping faces without consent. (5) Garcia v. Character Technologies (October 2024) and Raine v. OpenAI (August 2025): families sued chatbot makers after teenagers' suicides, pushing new safety features for minors. (6) Disney and Universal v. Midjourney (June 2025): copyright claims over generated images of their characters. (7) Bartz v. Anthropic: a $1.5 billion settlement (2025) over books obtained from pirate sites for training. (8) Getty Images v. Stability AI (UK High Court, 4 November 2025): Getty lost its main copyright claims and won only a narrow trademark point; an appeal was allowed. (9) Amazon v. Perplexity (November 2025): over the Comet browser's AI agent shopping on Amazon. Lessons: know where training data comes from, respect privacy law, and build safety for vulnerable users.",
+      "sourceId": "src-168"
+    },
+    {
+      "id": "note-111",
+      "topic": "AI Incidents",
+      "title": "AI incidents: autonomous vehicles and physical safety",
+      "body": "AI in the physical world raises the stakes. (1) Uber, Tempe, Arizona, March 2018: a self-driving test car killed pedestrian Elaine Herzberg, the first pedestrian death involving a self-driving car; the safety driver was distracted and the system failed to classify her correctly in time. (2) Cruise, San Francisco, October 2023: a robotaxi dragged a pedestrian who had been thrown into its path by another car; California suspended Cruise's permits, and GM later stopped its robotaxi programme. (3) Tesla Autopilot and Full Self-Driving: many crashes have been investigated by US regulators, and in August 2025 a Florida jury found Tesla partly liable for a 2019 crash, awarding damages of over $200 million. Lessons: safety cases and independent testing before deployment, honest communication about limits, driver-monitoring for partial automation, and fast transparent incident reporting to regulators.",
+      "sourceId": "src-165"
     }
   ],
   "questions": [
@@ -10736,6 +10831,238 @@
         "It is the same for every company",
         "It replaces testing"
       ],
+      "sourceId": "src-164"
+    },
+    {
+      "id": "q3-332",
+      "topic": "AI Incidents",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "In the 2024 Air Canada chatbot case, what did the tribunal decide?",
+      "answer": "The airline was liable for the false refund policy its chatbot invented",
+      "explanation": "Air Canada had argued the chatbot was responsible for its own statements.",
+      "options": [
+        "The airline was liable for the false refund policy its chatbot invented",
+        "The chatbot vendor alone was liable",
+        "The customer was at fault for trusting a bot",
+        "Chatbots cannot make statements in law"
+      ],
+      "sourceId": "src-164"
+    },
+    {
+      "id": "q3-333",
+      "topic": "AI Incidents",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "In Mata v. Avianca (2023), what went wrong?",
+      "answer": "Lawyers cited court cases that ChatGPT had invented",
+      "explanation": "They were fined $5,000; verify every citation.",
+      "options": [
+        "Lawyers cited court cases that ChatGPT had invented",
+        "A chatbot leaked the client's data",
+        "An airline robot injured a passenger",
+        "A judge used AI to write the verdict"
+      ],
+      "sourceId": "src-164"
+    },
+    {
+      "id": "q3-334",
+      "topic": "AI Incidents",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "In early 2024, an Arup employee in Hong Kong transferred about US$25 million after:",
+      "answer": "A video call where the CFO and colleagues were deepfakes",
+      "explanation": "Verify payment requests through a second, known channel.",
+      "options": [
+        "A video call where the CFO and colleagues were deepfakes",
+        "A phishing email with a fake invoice",
+        "Ransomware locked the finance system",
+        "An AI trading bot malfunctioned"
+      ],
+      "sourceId": "src-164"
+    },
+    {
+      "id": "q3-335",
+      "topic": "AI Incidents",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "What made EchoLeak (CVE-2025-32711) in Microsoft 365 Copilot notable?",
+      "answer": "It was a zero-click prompt injection: a crafted email could make Copilot leak internal data",
+      "explanation": "Rated CVSS 9.3 and fixed server-side; Microsoft reported no customer impact.",
+      "options": [
+        "It was a zero-click prompt injection: a crafted email could make Copilot leak internal data",
+        "It let attackers train Copilot on stolen data",
+        "It deleted users' OneDrive files",
+        "It was a GPU driver bug"
+      ],
+      "sourceId": "src-166"
+    },
+    {
+      "id": "q3-336",
+      "topic": "AI Incidents",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "In July 2025, a destructive \"wiper\" prompt was merged into Amazon Q Developer's VS Code extension through a pull request.",
+      "answer": "True",
+      "explanation": "A supply-chain risk: review contributions to AI tools and limit agent permissions.",
+      "sourceId": "src-167"
+    },
+    {
+      "id": "q3-337",
+      "topic": "AI Incidents",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "In July 2025, what did a Replit AI coding agent do during a code freeze?",
+      "answer": "Deleted a company's production database",
+      "explanation": "Never give agents unreviewed access to production.",
+      "options": [
+        "Deleted a company's production database",
+        "Leaked the company's source code",
+        "Bought servers with a stolen card",
+        "Shut down the company website for a week"
+      ],
+      "sourceId": "src-164"
+    },
+    {
+      "id": "q3-338",
+      "topic": "AI Incidents",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Why did Amazon scrap an experimental AI recruiting tool (reported 2018)?",
+      "answer": "It learned to downgrade CVs that mentioned women's activities",
+      "explanation": "It learned bias from past hiring data.",
+      "options": [
+        "It learned to downgrade CVs that mentioned women's activities",
+        "It was too slow",
+        "It hired only remote workers",
+        "It refused to read PDFs"
+      ],
+      "sourceId": "src-164"
+    },
+    {
+      "id": "q3-339",
+      "topic": "AI Incidents",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "The Dutch government resigned in January 2021 over the childcare benefits scandal, in which a risk algorithm and related practices wrongly accused thousands of families of fraud.",
+      "answer": "True",
+      "explanation": "A key example of automated decision-making harming citizens.",
+      "sourceId": "src-164"
+    },
+    {
+      "id": "q3-340",
+      "topic": "AI Incidents",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What did the US FCC do after the January 2024 deepfake Joe Biden robocalls?",
+      "answer": "Fined the consultant behind them $6 million and banned non-consensual AI voices in robocalls",
+      "explanation": "The calls told New Hampshire voters not to vote in the primary.",
+      "options": [
+        "Fined the consultant behind them $6 million and banned non-consensual AI voices in robocalls",
+        "Banned all AI voice tools in the US",
+        "Took no action",
+        "Required all phones to block AI"
+      ],
+      "sourceId": "src-164"
+    },
+    {
+      "id": "q3-341",
+      "topic": "AI Incidents",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "What was the main outcome of Getty Images v. Stability AI in the UK High Court (November 2025)?",
+      "answer": "Getty lost its main copyright claims and won only a narrow trademark point",
+      "explanation": "The court found the model did not store or reproduce Getty's images; an appeal was allowed.",
+      "options": [
+        "Getty lost its main copyright claims and won only a narrow trademark point",
+        "Stability AI was ordered to delete its model",
+        "Getty won $1 billion in damages",
+        "The case was dismissed before trial"
+      ],
+      "sourceId": "src-168"
+    },
+    {
+      "id": "q3-342",
+      "topic": "AI Incidents",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Bartz v. Anthropic ended in a settlement of about how much (2025)?",
+      "answer": "$1.5 billion",
+      "explanation": "It concerned books obtained from pirate sites for training.",
+      "options": [
+        "$1.5 billion",
+        "$15 million",
+        "$150,000",
+        "$15 billion"
+      ],
+      "sourceId": "src-168"
+    },
+    {
+      "id": "q3-343",
+      "topic": "AI Incidents",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which country's data-protection authority temporarily banned ChatGPT in March 2023?",
+      "answer": "Italy",
+      "explanation": "It later fined OpenAI €15 million (December 2024).",
+      "options": [
+        "Italy",
+        "Germany",
+        "Japan",
+        "Canada"
+      ],
+      "sourceId": "src-168"
+    },
+    {
+      "id": "q3-344",
+      "topic": "AI Incidents",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which 2018 event was the first pedestrian death involving a self-driving car?",
+      "answer": "An Uber test car struck Elaine Herzberg in Tempe, Arizona",
+      "explanation": "The safety driver was distracted and the system failed to react in time.",
+      "options": [
+        "An Uber test car struck Elaine Herzberg in Tempe, Arizona",
+        "A Waymo car crash in Phoenix",
+        "A Tesla crash in Norway",
+        "A Cruise robotaxi in Austin"
+      ],
+      "sourceId": "src-165"
+    },
+    {
+      "id": "q3-345",
+      "topic": "AI Incidents",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What went wrong with Google Bard's launch demo in February 2023?",
+      "answer": "It gave a wrong fact about the James Webb Space Telescope, and Alphabet's value fell about $100 billion",
+      "explanation": "A reminder to fact-check AI answers, even in demos.",
+      "options": [
+        "It gave a wrong fact about the James Webb Space Telescope, and Alphabet's value fell about $100 billion",
+        "It leaked user passwords",
+        "It refused to answer any questions",
+        "It crashed during the live stream"
+      ],
+      "sourceId": "src-164"
+    },
+    {
+      "id": "q3-346",
+      "topic": "AI Incidents",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "Samsung restricted staff use of generative AI after engineers pasted confidential source code into ChatGPT in 2023.",
+      "answer": "True",
+      "explanation": "Never paste confidential data into unapproved AI tools.",
+      "sourceId": "src-169"
+    },
+    {
+      "id": "q3-347",
+      "topic": "AI Incidents",
+      "type": "short",
+      "difficulty": "easy",
+      "prompt": "Name the public database that records thousands of real-world AI harms and failures.",
+      "answer": "AI Incident Database|AIID|incidentdatabase.ai",
+      "explanation": "The OECD AI Incidents Monitor is another.",
       "sourceId": "src-164"
     }
   ]
