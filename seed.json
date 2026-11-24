@@ -7,21 +7,21 @@
     "AI Engineering",
     "AI Development",
     "Frontier Labs",
-    "Harnesses",
     "CLI",
+    "Prompt Engineering",
     "Context Engineering",
+    "Harness Engineering",
     "Agents & MCP",
-    "Evals",
     "Benchmarking",
+    "Evals",
     "Decision Models",
     "Game Engines",
     "AI Strategy",
-    "Prompt Engineering",
-    "AI Security",
     "AI Governance",
+    "AI Security",
     "Model Fine-tuning",
     "AI Risk Management",
-    "AI Incidents"
+    "Global AI Incidents"
   ],
   "sources": [
     {
@@ -746,7 +746,7 @@
     },
     {
       "id": "src-81",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "Website",
       "title": "Effective harnesses for long-running agents (Anthropic)",
       "url": "https://www.anthropic.com/research/effective-harnesses-for-long-running-agents",
@@ -755,7 +755,7 @@
     },
     {
       "id": "src-82",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "Docs",
       "title": "Claude Agent SDK",
       "url": "https://platform.claude.com/docs/en/api/agent-sdk/overview",
@@ -764,7 +764,7 @@
     },
     {
       "id": "src-83",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "Docs",
       "title": "Model Context Protocol (MCP)",
       "url": "https://modelcontextprotocol.io",
@@ -773,7 +773,7 @@
     },
     {
       "id": "src-84",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "Website",
       "title": "EleutherAI LM Evaluation Harness",
       "url": "https://github.com/EleutherAI/lm-evaluation-harness",
@@ -782,7 +782,7 @@
     },
     {
       "id": "src-85",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "Website",
       "title": "SWE-bench",
       "url": "https://www.swebench.com",
@@ -791,7 +791,7 @@
     },
     {
       "id": "src-86",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "Website",
       "title": "Terminal-Bench",
       "url": "https://www.tbench.ai",
@@ -935,7 +935,7 @@
     },
     {
       "id": "src-mv-81cf3c",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "Video",
       "title": "Maven: Build Your First Claude Agent with a Brain",
       "url": "https://maven.com/p/81cf3c/build-your-first-claude-agent-with-brain-like-top-0-1-do",
@@ -944,7 +944,7 @@
     },
     {
       "id": "src-mv-26d88e",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "Video",
       "title": "Maven: Build a Claude Agent That Onboards Clients for Your Team",
       "url": "https://maven.com/p/26d88e/build-a-claude-agent-that-onboards-clients-for-your-team",
@@ -1529,7 +1529,7 @@
     },
     {
       "id": "src-149",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "Website",
       "title": "Addy Osmani: Agent harness engineering",
       "url": "https://addyosmani.com/blog/agent-harness-engineering/",
@@ -1538,7 +1538,7 @@
     },
     {
       "id": "src-150",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "Website",
       "title": "freeCodeCamp: What is an agent harness?",
       "url": "https://www.freecodecamp.org/news/what-is-an-agent-harness/",
@@ -1673,7 +1673,7 @@
     },
     {
       "id": "src-165",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "type": "Website",
       "title": "OECD AI Incidents and Hazards Monitor (AIM)",
       "url": "https://oecd.ai/en/incidents",
@@ -1682,7 +1682,7 @@
     },
     {
       "id": "src-166",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "type": "Paper",
       "title": "EchoLeak: the first real-world zero-click prompt injection exploit in a production LLM system",
       "url": "https://arxiv.org/html/2509.10540v1",
@@ -1691,7 +1691,7 @@
     },
     {
       "id": "src-167",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "type": "Website",
       "title": "Tom's Hardware: hacker injects wiper prompt into Amazon's AI coding assistant",
       "url": "https://www.tomshardware.com/tech-industry/cyber-security/hacker-injects-malicious-potentially-disk-wiping-prompt-into-amazons-ai-coding-assistant-with-a-simple-pull-request-told-your-goal-is-to-clean-a-system-to-a-near-factory-state-and-delete-file-system-and-cloud-resources",
@@ -1700,7 +1700,7 @@
     },
     {
       "id": "src-168",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "type": "Website",
       "title": "Pinsent Masons: Getty's copyright case against Stability AI fails",
       "url": "https://www.pinsentmasons.com/en-gb/out-law/news/gettys-copyright-case-against-stability-ai-fails",
@@ -1709,7 +1709,7 @@
     },
     {
       "id": "src-169",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "type": "Website",
       "title": "Rafter: a timeline of AI agent security incidents (2025-2026)",
       "url": "https://rafter.so/blog/incidents/ai-agent-security-timeline-2025-2026",
@@ -1783,7 +1783,7 @@
     },
     {
       "id": "note-10",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "title": "What an agent harness is",
       "body": "The harness is the software around the model: it runs the agent loop (model -> tool call -> run tool -> feed result back), defines the tools, manages context and memory, enforces permissions and sandboxing, and decides when to stop. The same model can perform very differently in different harnesses. \"Evaluation harness\" means something else: a framework for running benchmarks against models, such as EleutherAI's lm-evaluation-harness.",
       "sourceId": "src-81"
@@ -2343,7 +2343,7 @@
     },
     {
       "id": "note-90",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "title": "Agent harnesses: Agent = Model + Harness",
       "body": "A harness is all the software around a model that turns it into an agent. A popular formula from 2026 is Agent = Model + Harness. Coding agents such as Claude Code, OpenAI Codex, Gemini CLI, OpenCode and OpenHands are harnesses wrapped around LLMs. Typical parts: the control loop (call the model, run the tools it asks for, feed results back, repeat until done); tools (read and edit files, run shell commands, search the web); permissions and sandboxes (what the agent may do without asking); context management (compaction, memory files such as CLAUDE.md or AGENTS.md, retrieval); sub-agents for parallel or isolated work; hooks and skills that add project rules; and recovery paths when a step fails. Studies show the harness changes results a lot: the same model can score very differently with different harnesses, so benchmark results should name the harness. \"Harness engineering\" means improving these parts: better tool descriptions, tighter feedback loops (run tests after edits), safer defaults and smarter context handling.",
       "sourceId": "src-149"
@@ -2448,49 +2448,49 @@
     },
     {
       "id": "note-105",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "title": "AI incidents: security breaches and hacks",
       "body": "Notable AI security incidents: (1) Samsung, April 2023: engineers pasted confidential source code and meeting notes into ChatGPT; Samsung then restricted generative AI tools at work. (2) ChatGPT, March 2023: a bug in an open-source library briefly showed some users other people's chat titles and partial payment details. (3) Bing Chat, February 2023: users used prompt injection to make it reveal its hidden \"Sydney\" system prompt. (4) DeepSeek, January 2025: researchers at Wiz found a publicly exposed database containing chat logs and API secrets. (5) EchoLeak (CVE-2025-32711), June 2025: a zero-click prompt-injection flaw in Microsoft 365 Copilot where a crafted email could make Copilot send internal data to an attacker; rated critical (CVSS 9.3) and fixed server-side, with no known customer impact. (6) Amazon Q Developer, July 2025: an attacker got a destructive \"wiper\" prompt merged into the VS Code extension through a pull request; Amazon removed it and said no customer resources were affected. (7) Salesloft Drift, August 2025: attackers stole OAuth tokens from the Drift AI chat agent's Salesforce integration and exported data from hundreds of organisations. (8) November 2025: Anthropic reported that a state-linked group misused Claude Code to run a largely automated cyber-espionage campaign. Lessons: treat prompts and AI output as untrusted, protect integrations and tokens, review code contributions and limit agent permissions.",
       "sourceId": "src-169"
     },
     {
       "id": "note-106",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "title": "AI incidents: agent and product failures",
       "body": "When AI products fail in public: (1) Microsoft Tay, 2016: a Twitter chatbot learned offensive language from users and was shut down within a day. (2) Zillow Offers, 2021: the home-price algorithm overpaid for houses; Zillow closed the business with large losses and job cuts. (3) Google Bard launch, February 2023: a demo answer wrongly claimed the James Webb telescope took the first exoplanet picture, and Alphabet's market value fell by about $100 billion that day. (4) Chevrolet dealer chatbot, December 2023: users tricked it into \"agreeing\" to sell a car for $1. (5) Google Gemini images, February 2024: Google paused people images after historically inaccurate results. (6) Air Canada, February 2024: a tribunal held the airline liable after its chatbot invented a bereavement refund policy; the company had argued the bot was responsible for its own words. (7) New York City MyCity chatbot, 2024: gave business owners advice that broke the law. (8) Google AI Overviews, May 2024: suggested adding glue to pizza sauce, based on a joke forum post. (9) Replit, July 2025: an AI coding agent deleted a company's production database during a code freeze. Lessons: companies are responsible for what their AI says, test edge cases and adversarial users, and never give agents unreviewed access to production.",
       "sourceId": "src-164"
     },
     {
       "id": "note-107",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "title": "AI incidents: hallucinations in professional work",
       "body": "Fabricated facts have caused real damage. Mata v. Avianca (New York, 2023): lawyers filed a brief citing six court cases that ChatGPT invented; the judge fined them $5,000. Since then courts in many countries have sanctioned lawyers for AI-invented citations, and researchers track hundreds of such cases. Deloitte Australia (2025): a government report contained fabricated references and quotes produced with generative AI; Deloitte corrected the report and refunded part of its fee. Other cases include AI-generated summaries and articles with invented quotes, and medical or legal chatbots giving confident wrong answers. Lessons: verify every citation, quote and number against the original source; require human review and sign-off for professional work; disclose AI use where rules require it; and prefer tools that retrieve and cite real documents.",
       "sourceId": "src-164"
     },
     {
       "id": "note-108",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "title": "AI incidents: bias and discrimination",
       "body": "Well-known bias cases: (1) COMPAS (US, 2016): a ProPublica investigation found the criminal risk-scoring tool falsely flagged Black defendants as high-risk more often than white defendants. (2) Amazon recruiting tool (reported 2018): it learned to downgrade CVs that mentioned women's activities, and Amazon scrapped it. (3) Netherlands childcare benefits scandal: a risk algorithm and practices wrongly accused thousands of families, many with dual nationality, of fraud; the Dutch government resigned in January 2021. (4) UK A-level grades, 2020: an algorithm downgraded many students from disadvantaged schools and was withdrawn after protests. (5) Robert Williams, Detroit, 2020: wrongfully arrested after a face-recognition false match, one of several such US cases. (6) iTutorGroup, 2023: settled a US EEOC case for $365,000 after its hiring software automatically rejected older applicants. (7) Mobley v. Workday: a US lawsuit alleging AI screening discriminated by age, race and disability, allowed to proceed as a collective action in 2025. Lessons: test outcomes across groups before and after launch, keep humans accountable for decisions, and give people a way to appeal.",
       "sourceId": "src-164"
     },
     {
       "id": "note-109",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "title": "AI incidents: deepfakes and fraud",
       "body": "Generative AI has made impersonation cheap. (1) 2019: criminals used a cloned voice of a parent-company chief executive to trick a UK energy firm into transferring about €220,000. (2) Arup, Hong Kong, early 2024: an employee transferred about US$25 million after a video call in which the CFO and colleagues were all deepfakes. (3) New Hampshire, January 2024: robocalls with a fake Joe Biden voice told people not to vote in the primary; the US FCC fined the political consultant behind them $6 million and banned AI voices in robocalls without consent. (4) January 2024: sexually explicit deepfakes of Taylor Swift spread widely on X, which temporarily blocked searches for her name. Since then, deepfake scams using cloned voices of relatives or executives have grown fast. Defences: verify payment requests through a second known channel, use code words for urgent requests, train staff, label AI media and use content credentials such as C2PA.",
       "sourceId": "src-164"
     },
     {
       "id": "note-110",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "title": "AI incidents: lawsuits and regulatory actions",
       "body": "Key legal cases: (1) Italy, March 2023: the data-protection authority temporarily banned ChatGPT, and in December 2024 fined OpenAI €15 million over privacy issues. (2) The New York Times v. OpenAI and Microsoft (filed December 2023): copyright claims over training on and reproducing news articles. (3) US FTC v. Rite Aid, December 2023: Rite Aid was banned from using facial recognition for five years after false matches harmed shoppers. (4) Clearview AI: fined by several European regulators for scraping faces without consent. (5) Garcia v. Character Technologies (October 2024) and Raine v. OpenAI (August 2025): families sued chatbot makers after teenagers' suicides, pushing new safety features for minors. (6) Disney and Universal v. Midjourney (June 2025): copyright claims over generated images of their characters. (7) Bartz v. Anthropic: a $1.5 billion settlement (2025) over books obtained from pirate sites for training. (8) Getty Images v. Stability AI (UK High Court, 4 November 2025): Getty lost its main copyright claims and won only a narrow trademark point; an appeal was allowed. (9) Amazon v. Perplexity (November 2025): over the Comet browser's AI agent shopping on Amazon. Lessons: know where training data comes from, respect privacy law, and build safety for vulnerable users.",
       "sourceId": "src-168"
     },
     {
       "id": "note-111",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "title": "AI incidents: autonomous vehicles and physical safety",
       "body": "AI in the physical world raises the stakes. (1) Uber, Tempe, Arizona, March 2018: a self-driving test car killed pedestrian Elaine Herzberg, the first pedestrian death involving a self-driving car; the safety driver was distracted and the system failed to classify her correctly in time. (2) Cruise, San Francisco, October 2023: a robotaxi dragged a pedestrian who had been thrown into its path by another car; California suspended Cruise's permits, and GM later stopped its robotaxi programme. (3) Tesla Autopilot and Full Self-Driving: many crashes have been investigated by US regulators, and in August 2025 a Florida jury found Tesla partly liable for a 2019 crash, awarding damages of over $200 million. Lessons: safety cases and independent testing before deployment, honest communication about limits, driver-monitoring for partial automation, and fast transparent incident reporting to regulators.",
       "sourceId": "src-165"
@@ -3527,7 +3527,7 @@
     },
     {
       "id": "q-har-1",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "mcq",
       "difficulty": "easy",
       "prompt": "In AI agents, what is the \"harness\"?",
@@ -3543,7 +3543,7 @@
     },
     {
       "id": "q-har-2",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "tf",
       "difficulty": "easy",
       "prompt": "A basic agent loop is: the model requests a tool call, the harness runs it, the result is added to the context, and this repeats until the task is done.",
@@ -3553,7 +3553,7 @@
     },
     {
       "id": "q-har-3",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "mcq",
       "difficulty": "easy",
       "prompt": "What is the Model Context Protocol (MCP)?",
@@ -3569,7 +3569,7 @@
     },
     {
       "id": "q-har-4",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "What is EleutherAI's lm-evaluation-harness used for?",
@@ -3585,7 +3585,7 @@
     },
     {
       "id": "q-har-5",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "What does SWE-bench measure?",
@@ -3601,7 +3601,7 @@
     },
     {
       "id": "q-har-6",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "tf",
       "difficulty": "medium",
       "prompt": "Sandboxing in an agent harness (restricting file system and network access) limits the damage a wrong or manipulated agent action can do.",
@@ -3611,7 +3611,7 @@
     },
     {
       "id": "q-har-7",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "mcq",
       "difficulty": "hard",
       "prompt": "For agents that work across many context windows, what does Anthropic recommend the harness keep outside the context?",
@@ -4955,7 +4955,7 @@
     },
     {
       "id": "q2-64",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "In an agent harness, what does the stop condition decide?",
@@ -4971,7 +4971,7 @@
     },
     {
       "id": "q2-65",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "tf",
       "difficulty": "medium",
       "prompt": "The same model can perform very differently in different harnesses.",
@@ -4981,7 +4981,7 @@
     },
     {
       "id": "q2-66",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "Why do harnesses ask the user for permission before some actions?",
@@ -4997,7 +4997,7 @@
     },
     {
       "id": "q2-67",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "What does Terminal-Bench evaluate?",
@@ -5013,7 +5013,7 @@
     },
     {
       "id": "q2-68",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "Why set a maximum number of steps for an agent?",
@@ -5029,7 +5029,7 @@
     },
     {
       "id": "q2-69",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "mcq",
       "difficulty": "hard",
       "prompt": "How do sub-agents help a harness on big tasks?",
@@ -5045,7 +5045,7 @@
     },
     {
       "id": "q2-70",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "tf",
       "difficulty": "easy",
       "prompt": "An evaluation harness and an agent harness mean the same thing.",
@@ -5055,7 +5055,7 @@
     },
     {
       "id": "q2-71",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "Why do harnesses record traces or logs of each step?",
@@ -5071,7 +5071,7 @@
     },
     {
       "id": "q2-72",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "What is sandboxed execution in an agent harness?",
@@ -6409,7 +6409,7 @@
     },
     {
       "id": "q3-48",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "mcq",
       "difficulty": "easy",
       "prompt": "Claude Code is an agentic coding tool from which company?",
@@ -10105,7 +10105,7 @@
     },
     {
       "id": "q3-280",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "mcq",
       "difficulty": "easy",
       "prompt": "In the formula \"Agent = Model + ___\", what completes it?",
@@ -10121,7 +10121,7 @@
     },
     {
       "id": "q3-281",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "tf",
       "difficulty": "medium",
       "prompt": "The same model can score very differently on a benchmark depending on the harness it runs in.",
@@ -10131,7 +10131,7 @@
     },
     {
       "id": "q3-282",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "Which of these is NOT usually part of a coding-agent harness?",
@@ -10147,7 +10147,7 @@
     },
     {
       "id": "q3-283",
-      "topic": "Harnesses",
+      "topic": "Harness Engineering",
       "type": "short",
       "difficulty": "easy",
       "prompt": "Name a project memory file that coding agents read for instructions (for example the one used by Claude Code).",
@@ -10835,7 +10835,7 @@
     },
     {
       "id": "q3-332",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "In the 2024 Air Canada chatbot case, what did the tribunal decide?",
@@ -10851,7 +10851,7 @@
     },
     {
       "id": "q3-333",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "type": "mcq",
       "difficulty": "easy",
       "prompt": "In Mata v. Avianca (2023), what went wrong?",
@@ -10867,7 +10867,7 @@
     },
     {
       "id": "q3-334",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "In early 2024, an Arup employee in Hong Kong transferred about US$25 million after:",
@@ -10883,7 +10883,7 @@
     },
     {
       "id": "q3-335",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "type": "mcq",
       "difficulty": "hard",
       "prompt": "What made EchoLeak (CVE-2025-32711) in Microsoft 365 Copilot notable?",
@@ -10899,7 +10899,7 @@
     },
     {
       "id": "q3-336",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "type": "tf",
       "difficulty": "medium",
       "prompt": "In July 2025, a destructive \"wiper\" prompt was merged into Amazon Q Developer's VS Code extension through a pull request.",
@@ -10909,7 +10909,7 @@
     },
     {
       "id": "q3-337",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "In July 2025, what did a Replit AI coding agent do during a code freeze?",
@@ -10925,7 +10925,7 @@
     },
     {
       "id": "q3-338",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "type": "mcq",
       "difficulty": "easy",
       "prompt": "Why did Amazon scrap an experimental AI recruiting tool (reported 2018)?",
@@ -10941,7 +10941,7 @@
     },
     {
       "id": "q3-339",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "type": "tf",
       "difficulty": "medium",
       "prompt": "The Dutch government resigned in January 2021 over the childcare benefits scandal, in which a risk algorithm and related practices wrongly accused thousands of families of fraud.",
@@ -10951,7 +10951,7 @@
     },
     {
       "id": "q3-340",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "What did the US FCC do after the January 2024 deepfake Joe Biden robocalls?",
@@ -10967,7 +10967,7 @@
     },
     {
       "id": "q3-341",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "type": "mcq",
       "difficulty": "hard",
       "prompt": "What was the main outcome of Getty Images v. Stability AI in the UK High Court (November 2025)?",
@@ -10983,7 +10983,7 @@
     },
     {
       "id": "q3-342",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "Bartz v. Anthropic ended in a settlement of about how much (2025)?",
@@ -10999,7 +10999,7 @@
     },
     {
       "id": "q3-343",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "type": "mcq",
       "difficulty": "easy",
       "prompt": "Which country's data-protection authority temporarily banned ChatGPT in March 2023?",
@@ -11015,7 +11015,7 @@
     },
     {
       "id": "q3-344",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "Which 2018 event was the first pedestrian death involving a self-driving car?",
@@ -11031,7 +11031,7 @@
     },
     {
       "id": "q3-345",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "type": "mcq",
       "difficulty": "easy",
       "prompt": "What went wrong with Google Bard's launch demo in February 2023?",
@@ -11047,7 +11047,7 @@
     },
     {
       "id": "q3-346",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "type": "tf",
       "difficulty": "easy",
       "prompt": "Samsung restricted staff use of generative AI after engineers pasted confidential source code into ChatGPT in 2023.",
@@ -11057,7 +11057,7 @@
     },
     {
       "id": "q3-347",
-      "topic": "AI Incidents",
+      "topic": "Global AI Incidents",
       "type": "short",
       "difficulty": "easy",
       "prompt": "Name the public database that records thousands of real-world AI harms and failures.",
