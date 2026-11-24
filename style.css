@@ -347,3 +347,11 @@ header .topbar { display: flex; align-items: center; gap: 8px; }
 #chat-form .row label > select, #chat-form .chat-q textarea { display: block; margin-top: 8px; }
 /* test setup: number of questions box always has a blue border */
 #test-config input[name="count"] { border: 2px solid var(--accent); }
+/* admin question bank: inline topic / difficulty pickers */
+.q-class select { width: auto; padding: 2px 6px; font-size: 12px; margin: 2px 4px 0 0; }
+/* test setup: tighter columns so the option grids stay inside their boxes */
+#test-config fieldset { min-width: 0; }
+#test-config .checks { gap: 0 6px; padding: 4px 6px; }
+#test-config .checks label { gap: 4px; }
+#test-config .checks .cnt { padding: 0 2px 0 6px; }
+#test-config .checks label { white-space: normal; }

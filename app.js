@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=238';
-import { ADMIN_HASH } from './admin-hash.js?v=238';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=244';
+import { ADMIN_HASH } from './admin-hash.js?v=244';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -37,9 +37,12 @@ function showTab(name) {
 function alignChecks() {
   const boxes = [...document.querySelectorAll('#test-config .checks')];
   if (!boxes[0]?.offsetWidth) return; // hidden: measured when the tab opens
+  $('#test-config').style.removeProperty('--check-cols'); // measure natural widths, not last time's stretched columns
   const w = [0, 0, 0, 0, 0];
-  for (const b of boxes) [...b.children].forEach((l, i) => { w[i % 5] = Math.max(w[i % 5], Math.ceil(l.scrollWidth)); });
-  $('#test-config').style.setProperty('--check-cols', w.map(x => x + 'px').join(' '));
+  for (const b of boxes) [...b.children].forEach((l, i) => { w[i % 5] = Math.max(w[i % 5], Math.ceil(l.getBoundingClientRect().width) + 1); });
+  // if five natural-width columns would stick out of the box, keep five equal columns and let long names wrap
+  const room = boxes[0].clientWidth - 12 - 4 * 6;
+  $('#test-config').style.setProperty('--check-cols', w.reduce((s, x) => s + x, 0) > room ? 'repeat(5, minmax(0, 1fr))' : w.map(x => x + 'px').join(' '));
 }
 document.querySelectorAll('nav button[data-tab]').forEach(b => {
   b.onclick = () => showTab(b.dataset.tab);
@@ -101,7 +104,7 @@ function render() {
   const qt = $('#q-filter-topic').value, qd = $('#q-filter-diff').value, qy = $('#q-filter-type').value, term = $('#q-search').value.toLowerCase();
   const qs = db.questions.filter(q => (!qt || q.topic === qt) && (!qd || q.difficulty === qd) && (!qy || q.type === qy) && (!term || q.prompt.toLowerCase().includes(term)));
   $('#q-total').textContent = `(${qs.length === db.questions.length ? '' : qs.length + ' shown of '}${db.questions.length} total)`;
-  $('#q-list').innerHTML = qs.map(q => `<li><div>${esc(q.prompt)}<div class="tag">${esc(q.topic)} · ${TYPE[q.type]} · ${esc(q.difficulty)} · Answer: ${esc(q.answer)}</div></div><button class="del" data-del="questions" data-id="${esc(q.id)}">Delete</button></li>`).join('') || '<li class="muted">No questions match.</li>';
+  $('#q-list').innerHTML = qs.map(q => `<li><div>${esc(q.prompt)}<div class="tag q-class"><select data-q-set="topic" data-id="${esc(q.id)}" aria-label="Topic">${db.topics.map(t => `<option ${t === q.topic ? 'selected' : ''}>${esc(t)}</option>`).join('')}</select> <select data-q-set="difficulty" data-id="${esc(q.id)}" aria-label="Difficulty">${['easy', 'medium', 'hard'].map(x => `<option ${x === q.difficulty ? 'selected' : ''}>${x}</option>`).join('')}</select> · ${TYPE[q.type]} · Answer: ${esc(q.answer)}</div></div><button class="del" data-del="questions" data-id="${esc(q.id)}">Delete</button></li>`).join('') || '<li class="muted">No questions match.</li>';
 
   // courses
   const gChecked = new Set([...document.querySelectorAll('#gen-topics input:checked')].map(i => i.value));
@@ -361,6 +364,8 @@ loadTools();
 $('#lib-filter-topic').onchange =$('#lib-filter-type').onchange = $('#lib-filter-lang').onchange = render;
 $('#q-filter-topic').onchange = $('#q-filter-diff').onchange = $('#q-filter-type').onchange = render;
 $('#q-search').oninput = render;
+// admin: change a question's topic or difficulty right in the list
+$('#q-list').addEventListener('change', e => { const f = e.target.dataset.qSet, q = f && db.questions.find(x => x.id === e.target.dataset.id); if (q) { q[f] = e.target.value; save(); } });
 
 // ---------- deletes ----------
 // rename a topic added in this browser, everywhere it is used
@@ -1209,9 +1214,9 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=238')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=244')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
-const TOPIC_RENAMED = { 'AI Hardware': 'AI Hardware/GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents' };
+const TOPIC_RENAMED = { 'AI Hardware': 'AI Hardware/GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers/Attention' };
 const rn = t => TOPIC_RENAMED[t] ?? t;
 if (db.topics) db.topics = [...new Set(db.topics.map(rn))];
 for (const k of ['questions', 'sources', 'notes', 'courses']) for (const x of db[k] ?? []) {
@@ -1229,8 +1234,11 @@ const place = (t, ref, after) => { if (!db.topics.includes(t) || !db.topics.incl
 place('Prompt Engineering', 'Context Engineering', false);
 place('Harness Engineering', 'Context Engineering', true);
 place('Evals', 'Benchmarking', true);
-place('Transformers / Attention', 'LLMs', true);
+place('Transformers/Attention', 'LLMs', true);
 // these fill the first (left) column of the 5-column test topic grid; the rest follow in order
 const FIRST_COL = ['AI Strategy', 'AI Governance', 'AI Security', 'AI Risk Management', 'Global AI Incidents'].filter(t => db.topics.includes(t));
-{ const rest = db.topics.filter(t => !FIRST_COL.includes(t)), out = []; FIRST_COL.forEach((t, r) => out.push(t, ...rest.splice(0, 4))); db.topics = out.concat(rest); }
+{ const rest = db.topics.filter(t => !FIRST_COL.includes(t)), out = [];
+  // Context and Harness Engineering sit directly below Prompt Engineering (4 topics per row besides the first column)
+  const under = ['Context Engineering', 'Harness Engineering'].filter(t => rest.includes(t));
+  if (rest.includes('Prompt Engineering')) { under.forEach(t => rest.splice(rest.indexOf(t), 1)); under.forEach((t, k) => rest.splice(Math.min(rest.indexOf('Prompt Engineering') + 4 * (k + 1), rest.length), 0, t)); } FIRST_COL.forEach((t, r) => out.push(t, ...rest.splice(0, 4))); db.topics = out.concat(rest); }
 save();
