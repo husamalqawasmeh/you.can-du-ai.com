@@ -317,3 +317,4 @@ header .topbar { display: flex; align-items: center; gap: 8px; }
 .objectives-panel legend { font-weight: 700; padding: 0 4px; }
 /* course page bars: same slim height as the admin bars */
 #courses .objectives-panel, #gen-box { padding-block: 5px; }
+#gen-form > details > button.primary, #gen-form > button.primary { display: block; width: 100%; font-weight: 700; }
