@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=234';
-import { ADMIN_HASH } from './admin-hash.js?v=234';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=236';
+import { ADMIN_HASH } from './admin-hash.js?v=236';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -1209,7 +1209,7 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=234')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=236')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Hardware/GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents' };
 const rn = t => TOPIC_RENAMED[t] ?? t;
@@ -1229,5 +1229,7 @@ const place = (t, ref, after) => { if (!db.topics.includes(t) || !db.topics.incl
 place('Prompt Engineering', 'Context Engineering', false);
 place('Harness Engineering', 'Context Engineering', true);
 place('Evals', 'Benchmarking', true);
-place('AI Governance', 'AI Strategy', true);
+place('Transformers / Attention', 'LLMs', true);
+// directly under Context Engineering in the 5-column test grid
+if (db.topics.includes('AI Governance') && db.topics.includes('Context Engineering')) { db.topics = db.topics.filter(x => x !== 'AI Governance'); db.topics.splice(db.topics.indexOf('Context Engineering') + 5, 0, 'AI Governance'); }
 save();

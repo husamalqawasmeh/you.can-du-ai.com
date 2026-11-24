@@ -4,6 +4,7 @@
     "AI Sizing",
     "Generative AI",
     "LLMs",
+    "Transformers / Attention",
     "AI Engineering",
     "AI Development",
     "Frontier Labs",
@@ -14,10 +15,10 @@
     "Agents & MCP",
     "Benchmarking",
     "Evals",
+    "AI Governance",
     "Decision Models",
     "Game Engines",
     "AI Strategy",
-    "AI Governance",
     "AI Security",
     "Model Fine-tuning",
     "AI Risk Management",
@@ -2494,6 +2495,13 @@
       "title": "AI incidents: autonomous vehicles and physical safety",
       "body": "AI in the physical world raises the stakes. (1) Uber, Tempe, Arizona, March 2018: a self-driving test car killed pedestrian Elaine Herzberg, the first pedestrian death involving a self-driving car; the safety driver was distracted and the system failed to classify her correctly in time. (2) Cruise, San Francisco, October 2023: a robotaxi dragged a pedestrian who had been thrown into its path by another car; California suspended Cruise's permits, and GM later stopped its robotaxi programme. (3) Tesla Autopilot and Full Self-Driving: many crashes have been investigated by US regulators, and in August 2025 a Florida jury found Tesla partly liable for a 2019 crash, awarding damages of over $200 million. Lessons: safety cases and independent testing before deployment, honest communication about limits, driver-monitoring for partial automation, and fast transparent incident reporting to regulators.",
       "sourceId": "src-165"
+    },
+    {
+      "id": "note-112",
+      "topic": "Transformers / Attention",
+      "sourceId": "src-1",
+      "title": "Transformers and attention: the core ideas",
+      "body": "The Transformer (Vaswani et al., 2017, \"Attention Is All You Need\") replaced recurrence with attention, so every token in a sequence can look at every other token in parallel. Self-attention turns each token into three vectors: a query, a key and a value. Each token scores every other token by the dot product of its query with their keys, divides by the square root of the key size, applies softmax to get weights, and takes the weighted sum of the values. Multi-head attention runs several of these in parallel so different heads can learn different relationships. Because attention has no built-in sense of order, positional information is added (sine/cosine encodings in the original paper; learned or rotary embeddings in many later models). Each layer also has a feed-forward network, residual connections and layer normalisation. The original design had an encoder and a decoder; BERT uses only the encoder, and GPT-style LLMs use only the decoder with causal masking so a token cannot see future tokens. Attention cost grows with the square of the sequence length, which is why long context is expensive and why techniques such as the KV cache and FlashAttention matter."
     }
   ],
   "questions": [
@@ -11064,6 +11072,122 @@
       "answer": "AI Incident Database|AIID|incidentdatabase.ai",
       "explanation": "The OECD AI Incidents Monitor is another.",
       "sourceId": "src-164"
+    },
+    {
+      "id": "q3-348",
+      "topic": "Transformers / Attention",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which 2017 paper introduced the Transformer architecture?",
+      "answer": "Attention Is All You Need",
+      "explanation": "By Vaswani et al. at Google.",
+      "options": [
+        "Attention Is All You Need",
+        "ImageNet Classification with Deep CNNs",
+        "Playing Atari with Deep RL",
+        "Generative Adversarial Nets"
+      ],
+      "sourceId": "src-1"
+    },
+    {
+      "id": "q3-349",
+      "topic": "Transformers / Attention",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "In self-attention, each token is projected into which three vectors?",
+      "answer": "Query, key and value",
+      "explanation": "Queries are compared with keys; the scores weight the values.",
+      "options": [
+        "Query, key and value",
+        "Input, hidden and output",
+        "Mean, variance and bias",
+        "Encoder, decoder and head"
+      ],
+      "sourceId": "src-1"
+    },
+    {
+      "id": "q3-350",
+      "topic": "Transformers / Attention",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Why are attention scores divided by the square root of the key dimension?",
+      "answer": "To keep dot products from growing too large and saturating the softmax",
+      "explanation": "This is the \"scaled\" in scaled dot-product attention.",
+      "options": [
+        "To keep dot products from growing too large and saturating the softmax",
+        "To make the model smaller",
+        "To add position information",
+        "To remove padding tokens"
+      ],
+      "sourceId": "src-1"
+    },
+    {
+      "id": "q3-351",
+      "topic": "Transformers / Attention",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "Self-attention on its own has no sense of word order, so Transformers add positional information.",
+      "answer": "True",
+      "explanation": "Sine/cosine, learned or rotary position embeddings are common.",
+      "sourceId": "src-1"
+    },
+    {
+      "id": "q3-352",
+      "topic": "Transformers / Attention",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is the benefit of multi-head attention?",
+      "answer": "Different heads can learn different kinds of relationships between tokens",
+      "explanation": "Heads run in parallel and their outputs are combined.",
+      "options": [
+        "Different heads can learn different kinds of relationships between tokens",
+        "It removes the need for training data",
+        "It makes attention cost linear",
+        "It replaces the feed-forward layers"
+      ],
+      "sourceId": "src-1"
+    },
+    {
+      "id": "q3-353",
+      "topic": "Transformers / Attention",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "GPT-style LLMs use which part of the original Transformer?",
+      "answer": "The decoder only, with causal masking",
+      "explanation": "BERT uses the encoder only; T5 uses both.",
+      "options": [
+        "The decoder only, with causal masking",
+        "The encoder only",
+        "Both encoder and decoder",
+        "Neither; they use RNNs"
+      ],
+      "sourceId": "src-1"
+    },
+    {
+      "id": "q3-354",
+      "topic": "Transformers / Attention",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "How does the compute cost of standard self-attention grow with sequence length n?",
+      "answer": "Quadratically, O(n²)",
+      "explanation": "Every token attends to every other token.",
+      "options": [
+        "Quadratically, O(n²)",
+        "Linearly, O(n)",
+        "Logarithmically",
+        "It does not depend on n"
+      ],
+      "sourceId": "src-1"
+    },
+    {
+      "id": "q3-355",
+      "topic": "Transformers / Attention",
+      "type": "fill",
+      "difficulty": "medium",
+      "prompt": "During generation, an LLM stores past keys and values to avoid recomputing them. This is called the ___ cache.",
+      "answer": "KV|key-value|key value",
+      "explanation": "It speeds up decoding but uses a lot of GPU memory for long contexts.",
+      "sourceId": "src-1"
     }
   ]
 }
