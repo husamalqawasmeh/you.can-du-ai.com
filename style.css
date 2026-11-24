@@ -355,5 +355,3 @@ header .topbar { display: flex; align-items: center; gap: 8px; }
 #test-config .checks label { gap: 4px; }
 #test-config .checks .cnt { padding: 0 2px 0 6px; }
 #test-config .checks label { white-space: normal; }
-/* vendor counts sit right after the name, not pushed to the column's right edge */
-#test-config .checks .cnt { margin-inline-start: 0; padding: 0 0 0 4px; }
