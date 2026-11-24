@@ -19,7 +19,8 @@
     "Prompt Engineering",
     "AI Security",
     "AI Governance",
-    "Model Fine-tuning"
+    "Model Fine-tuning",
+    "AI Risk Management"
   ],
   "sources": [
     {
@@ -1632,6 +1633,42 @@
       "url": "https://huggingface.co/blog/moe",
       "notes": "How MoE models route tokens to experts.",
       "lang": "en"
+    },
+    {
+      "id": "src-161",
+      "topic": "AI Risk Management",
+      "type": "Website",
+      "title": "MIT AI Risk Repository",
+      "url": "https://airisk.mit.edu",
+      "notes": "A living database of AI risks extracted from published frameworks, grouped by cause and domain.",
+      "lang": "en"
+    },
+    {
+      "id": "src-162",
+      "topic": "AI Risk Management",
+      "type": "Website",
+      "title": "ISO/IEC 23894:2023 Artificial intelligence: Guidance on risk management",
+      "url": "https://www.iso.org/standard/77304.html",
+      "notes": "How to apply ISO 31000 risk management to AI.",
+      "lang": "en"
+    },
+    {
+      "id": "src-163",
+      "topic": "AI Risk Management",
+      "type": "Website",
+      "title": "US Federal Reserve SR 11-7: Guidance on Model Risk Management",
+      "url": "https://www.federalreserve.gov/supervisionreg/srletters/sr1107.htm",
+      "notes": "Classic bank model-risk guidance: development, validation and governance of models.",
+      "lang": "en"
+    },
+    {
+      "id": "src-164",
+      "topic": "AI Risk Management",
+      "type": "Website",
+      "title": "AI Incident Database",
+      "url": "https://incidentdatabase.ai",
+      "notes": "Searchable record of real-world AI harms and failures.",
+      "lang": "en"
     }
   ],
   "notes": [
@@ -2334,6 +2371,34 @@
       "title": "World models vs game engines",
       "body": "A game engine (Unreal, Unity, Godot) simulates a world from explicit assets, rules and physics code, so it is exact, repeatable and controllable. A world model learns to generate the next frames from video data and user actions. Google DeepMind's Genie 3 (August 2025) was its first world model to allow real-time interaction, at about 720p and 24 frames per second, with consistency lasting a few minutes. Open alternatives such as Skywork's Matrix-Game 2.0 were trained on gameplay footage from engines. World models are good for fast prototyping, generating varied training environments for robots and agents, and creative exploration, but they forget details, cannot guarantee exact rules and are expensive to run, so they do not replace engines for shipped games. AI already helps inside engines in other ways: neural upscaling and frame generation (such as NVIDIA DLSS), procedural content, AI-assisted coding and asset creation, and LLM-driven characters with dialogue.",
       "sourceId": "src-155"
+    },
+    {
+      "id": "note-101",
+      "topic": "AI Risk Management",
+      "title": "AI risk management: the lifecycle and the key frameworks",
+      "body": "AI risk management means finding, measuring, reducing and monitoring the ways an AI system can cause harm, to people, to the organisation or to society, across its whole life: design, data, training, testing, deployment and retirement. The main frameworks: NIST AI RMF 1.0 (2023) with four functions, Govern (policies, roles, accountability), Map (context, intended use, who could be affected), Measure (test and track risks) and Manage (prioritise, treat, monitor and respond); its Generative AI Profile (NIST AI 600-1, July 2024) adds GenAI risks such as confabulation, harmful content, data privacy and information integrity. ISO/IEC 23894 (2023) applies the general ISO 31000 risk process to AI, and ISO/IEC 42001 adds a certifiable AI management system. Regulations such as the EU AI Act turn risk management into a legal duty for high-risk systems. A typical process: inventory every AI system, classify each by risk tier, assess likelihood and impact, choose controls, assign an owner, document the decision, and monitor with key risk indicators.",
+      "sourceId": "src-147"
+    },
+    {
+      "id": "note-102",
+      "topic": "AI Risk Management",
+      "title": "A taxonomy of AI risks: what can go wrong",
+      "body": "The MIT AI Risk Repository collects hundreds of risks from published AI frameworks and groups them into seven domains: (1) discrimination and toxicity (bias, unfair outcomes, harmful content); (2) privacy and security (leaking personal data, attacks on models, prompt injection); (3) misinformation (false or misleading output, pollution of the information ecosystem); (4) malicious actors and misuse (fraud, cyberattacks, weapons, surveillance); (5) human-computer interaction (over-reliance, loss of human agency); (6) socioeconomic and environmental harms (job impacts, concentration of power, energy use); (7) AI system safety, failures and limitations (wrong answers, lack of robustness, models pursuing unintended goals). It also classifies risks by cause: whether a human or the AI causes them, whether intentional or not, and whether they appear before or after deployment. Using a shared taxonomy helps a risk team check that its assessment has not missed a whole category.",
+      "sourceId": "src-161"
+    },
+    {
+      "id": "note-103",
+      "topic": "AI Risk Management",
+      "title": "Practical controls for AI risk",
+      "body": "Banks have managed model risk for years under guidance such as the US Federal Reserve's SR 11-7 (2011): independent validation, clear documentation, ongoing monitoring and a model inventory. The same ideas extend to AI. Common controls: (1) data controls (lineage, consent, quality checks, removing personal data); (2) testing before launch (accuracy on representative data, bias and fairness tests across groups, robustness, red-teaming for misuse and prompt injection); (3) human oversight proportional to impact (human review for high-stakes decisions, clear escalation paths); (4) technical guardrails (input and output filters, least-privilege tools for agents, rate and spending limits); (5) transparency (model cards, telling users they are dealing with AI, explanations for decisions); (6) monitoring after launch (drift, error rates, complaints and incidents, with thresholds that trigger review or rollback); (7) third-party risk (due diligence on AI vendors, contracts on data use, retention and incident notice). Track key risk indicators such as error rate, override rate, complaint rate and incident count, and review them on a schedule.",
+      "sourceId": "src-163"
+    },
+    {
+      "id": "note-104",
+      "topic": "AI Risk Management",
+      "title": "AI incidents, red-teaming and risk appetite",
+      "body": "Learning from failures is central to AI risk management. The AI Incident Database records thousands of real cases where AI caused or nearly caused harm, such as biased decisions, false arrests from face recognition, chatbots giving dangerous advice and deepfake fraud; reviewing similar incidents is a quick way to find risks for a new project. Red-teaming means deliberately attacking your own system before others do, through jailbreaks, prompt injection, data extraction and misuse scenarios, by internal teams, external experts or automated tools. Every organisation should also define its risk appetite: which uses are prohibited, which need extra approval and which are low-risk enough to proceed quickly. Residual risk is what remains after controls; a named owner must formally accept it. Finally, prepare an AI incident response plan: how to detect a problem, who decides to pause or roll back the system, how to notify affected people and regulators, and how lessons feed back into testing.",
+      "sourceId": "src-164"
     }
   ],
   "questions": [
@@ -10472,6 +10537,206 @@
         "HBM"
       ],
       "sourceId": "src-155"
+    },
+    {
+      "id": "q3-318",
+      "topic": "AI Risk Management",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is the first step in most AI risk management programmes?",
+      "answer": "Making an inventory of the AI systems in use",
+      "explanation": "You cannot manage risks of systems you do not know about.",
+      "options": [
+        "Making an inventory of the AI systems in use",
+        "Buying the biggest model",
+        "Deleting all training data",
+        "Turning off logging"
+      ],
+      "sourceId": "src-147"
+    },
+    {
+      "id": "q3-319",
+      "topic": "AI Risk Management",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "In the NIST AI RMF, which function covers policies, roles and accountability?",
+      "answer": "Govern",
+      "explanation": "Map covers context, Measure covers testing, Manage covers treatment and monitoring.",
+      "options": [
+        "Govern",
+        "Map",
+        "Measure",
+        "Manage"
+      ],
+      "sourceId": "src-147"
+    },
+    {
+      "id": "q3-320",
+      "topic": "AI Risk Management",
+      "type": "short",
+      "difficulty": "medium",
+      "prompt": "What is the NIST document number of the Generative AI Profile (July 2024)?",
+      "answer": "NIST AI 600-1|AI 600-1|600-1",
+      "explanation": "It adds GenAI risks such as confabulation and harmful content.",
+      "sourceId": "src-147"
+    },
+    {
+      "id": "q3-321",
+      "topic": "AI Risk Management",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which ISO/IEC standard gives guidance on applying risk management (ISO 31000) to AI?",
+      "answer": "ISO/IEC 23894",
+      "explanation": "ISO/IEC 42001 is the certifiable AI management system standard.",
+      "options": [
+        "ISO/IEC 23894",
+        "ISO 9001",
+        "ISO/IEC 27701",
+        "ISO 14001"
+      ],
+      "sourceId": "src-162"
+    },
+    {
+      "id": "q3-322",
+      "topic": "AI Risk Management",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which of these is one of the seven domains in the MIT AI Risk Repository?",
+      "answer": "Misinformation",
+      "explanation": "Others include discrimination and toxicity, privacy and security, and malicious use.",
+      "options": [
+        "Misinformation",
+        "Server cooling",
+        "Font choice",
+        "Office furniture"
+      ],
+      "sourceId": "src-161"
+    },
+    {
+      "id": "q3-323",
+      "topic": "AI Risk Management",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "Over-reliance on AI, where people stop checking its output, is considered an AI risk.",
+      "answer": "True",
+      "explanation": "It falls under human-computer interaction risks.",
+      "sourceId": "src-161"
+    },
+    {
+      "id": "q3-324",
+      "topic": "AI Risk Management",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is the main idea of \"independent validation\" in model risk management?",
+      "answer": "People who did not build the model test it before and after launch",
+      "explanation": "From banking guidance such as SR 11-7.",
+      "options": [
+        "People who did not build the model test it before and after launch",
+        "The model validates itself",
+        "Users vote on the model",
+        "Validation happens only once, at design"
+      ],
+      "sourceId": "src-163"
+    },
+    {
+      "id": "q3-325",
+      "topic": "AI Risk Management",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which control fits a high-impact AI decision such as rejecting a loan?",
+      "answer": "Human review with an appeal route",
+      "explanation": "Oversight should be proportional to impact.",
+      "options": [
+        "Human review with an appeal route",
+        "No logging, for speed",
+        "Higher temperature",
+        "Hiding that AI was used"
+      ],
+      "sourceId": "src-163"
+    },
+    {
+      "id": "q3-326",
+      "topic": "AI Risk Management",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which is a key risk indicator (KRI) you might track for a deployed AI system?",
+      "answer": "The rate at which humans override its decisions",
+      "explanation": "Error, override, complaint and incident rates are common KRIs.",
+      "options": [
+        "The rate at which humans override its decisions",
+        "The number of slides in the launch deck",
+        "The model's file name",
+        "The office temperature"
+      ],
+      "sourceId": "src-163"
+    },
+    {
+      "id": "q3-327",
+      "topic": "AI Risk Management",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Buying an AI tool from a vendor transfers all of its risk to the vendor.",
+      "answer": "False",
+      "explanation": "You still own the risk to your customers; manage it with due diligence and contracts.",
+      "sourceId": "src-163"
+    },
+    {
+      "id": "q3-328",
+      "topic": "AI Risk Management",
+      "type": "fill",
+      "difficulty": "easy",
+      "prompt": "Deliberately attacking your own AI system to find weaknesses before release is called red-___.",
+      "answer": "teaming",
+      "explanation": "It includes jailbreaks, prompt injection and misuse scenarios.",
+      "sourceId": "src-164"
+    },
+    {
+      "id": "q3-329",
+      "topic": "AI Risk Management",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is \"residual risk\"?",
+      "answer": "The risk that remains after controls are applied",
+      "explanation": "A named owner must formally accept it.",
+      "options": [
+        "The risk that remains after controls are applied",
+        "Risk from old servers",
+        "The risk before any assessment",
+        "Risk that only affects competitors"
+      ],
+      "sourceId": "src-164"
+    },
+    {
+      "id": "q3-330",
+      "topic": "AI Risk Management",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is the AI Incident Database used for?",
+      "answer": "Learning from real-world cases where AI caused or nearly caused harm",
+      "explanation": "Reviewing similar incidents helps find risks for new projects.",
+      "options": [
+        "Learning from real-world cases where AI caused or nearly caused harm",
+        "Storing model weights",
+        "Training chatbots",
+        "Booking GPU time"
+      ],
+      "sourceId": "src-164"
+    },
+    {
+      "id": "q3-331",
+      "topic": "AI Risk Management",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which statement about \"risk appetite\" is correct?",
+      "answer": "It defines which AI uses are prohibited, need extra approval or can proceed quickly",
+      "explanation": "Set by leadership and applied through risk tiers.",
+      "options": [
+        "It defines which AI uses are prohibited, need extra approval or can proceed quickly",
+        "It is the amount of GPU memory needed",
+        "It is the same for every company",
+        "It replaces testing"
+      ],
+      "sourceId": "src-164"
     }
   ]
 }

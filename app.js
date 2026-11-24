@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=204';
-import { ADMIN_HASH } from './admin-hash.js?v=204';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=205';
+import { ADMIN_HASH } from './admin-hash.js?v=205';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -86,7 +86,7 @@ function render() {
   // topics
   $('#topic-list').innerHTML = db.topics.map(t => {
     const n = db.questions.filter(q => q.topic === t).length;
-    return `<li><div>${esc(t)} <span class="tag">${n} questions</span></div><span class="row">${seed.topics?.includes(t) ? '' : `<button type="button" data-rename-topic="${esc(t)}">Rename</button>`}<button type="button" class="del" data-del-topic="${esc(t)}">Delete</button></span></li>`;
+    return `<li><div class="topic-row"><span>${esc(t)}</span><span class="tag">${n} questions</span></div><span class="row">${seed.topics?.includes(t) ? '' : `<button type="button" data-rename-topic="${esc(t)}">Rename</button>`}<button type="button" class="del" data-del-topic="${esc(t)}">Delete</button></span></li>`;
   }).join('');
 
   // library
