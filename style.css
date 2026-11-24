@@ -304,3 +304,7 @@ header .topbar { display: flex; align-items: center; gap: 8px; }
 #tools-list.cols > details > summary > h3 { flex: 1; display: flex; align-items: baseline; gap: 8px; min-width: 0; }
 #tools-list.cols > details > summary > h3 .tag { margin-inline-start: auto; white-space: nowrap; }
 #topic-list .topic-row { display: grid; grid-template-columns: minmax(0, 220px) auto; gap: 12px; align-items: baseline; }
+/* objectives: 3 per row, each on one line */
+.obj-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.obj-grid label { font-size: .75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+@media (max-width: 900px) { .obj-grid { grid-template-columns: 1fr; } .obj-grid label { white-space: normal; } }

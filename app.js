@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=208';
-import { ADMIN_HASH } from './admin-hash.js?v=208';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=211';
+import { ADMIN_HASH } from './admin-hash.js?v=211';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -180,15 +180,23 @@ $('#suggest-body').onclick = e => {
 };
 
 // ---------- learning objectives (saved per student ID; shown in Learning Suggestions and Courses) ----------
+const OBJ_RENAMED = {
+  'Understand tokens, embeddings and context windows': 'Understand tokens, embeddings and context',
+  'Know the difference between ML, deep learning and generative AI': 'Tell ML, deep learning and generative AI apart',
+  'Learn the math behind AI (linear algebra, probability)': 'Learn the math behind AI (algebra, probability)',
+  'Understand FLOPS, memory bandwidth and the roofline model': 'Understand FLOPS, bandwidth and roofline'
+};
 const OBJECTIVES = {
-  'Foundations': ['Understand how neural networks learn', 'Explain transformers and attention', 'Understand tokens, embeddings and context windows', 'Know the difference between ML, deep learning and generative AI', 'Understand training versus inference', 'Learn the math behind AI (linear algebra, probability)'],
-  'AI hardware and sizing': ['Size GPU memory for an LLM', 'Choose GPUs for training versus inference', 'Understand FLOPS, memory bandwidth and the roofline model', 'Estimate training cost and time', 'Plan an on-premises AI cluster', 'Compare GPUs, TPUs and other accelerators', 'Understand quantization trade-offs'],
+  'Foundations': ['Understand how neural networks learn', 'Explain transformers and attention', 'Understand tokens, embeddings and context', 'Tell ML, deep learning and generative AI apart', 'Understand training versus inference', 'Learn the math behind AI (algebra, probability)'],
+  'AI hardware and sizing': ['Size GPU memory for an LLM', 'Choose GPUs for training versus inference', 'Understand FLOPS, bandwidth and roofline', 'Estimate training cost and time', 'Plan an on-premises AI cluster', 'Compare GPUs, TPUs and other accelerators', 'Understand quantization trade-offs'],
   'LLMs and generative AI': ['Write effective prompts', 'Fine-tune a model with LoRA', 'Build a RAG application', 'Evaluate LLM outputs', 'Reduce hallucinations', 'Create images with diffusion models', 'Understand RLHF and alignment', 'Run open models locally (Ollama, LM Studio)'],
   'AI engineering': ['Build an AI agent that uses tools', 'Connect tools with MCP', 'Master context engineering', 'Serve models with vLLM', 'Deploy an AI app to the cloud', 'Monitor AI apps in production', 'Secure AI apps against prompt injection', 'Control AI costs'],
   'AI development': ['Train a model in PyTorch', 'Prepare and clean datasets', 'Use Hugging Face models and datasets', 'Set up MLOps pipelines', 'Use AI coding agents and CLIs'],
   'Career': ['Pass an AI certification exam', 'Prepare for AI job interviews', 'Build an AI portfolio', 'Lead an AI strategy for my organization', 'Manage an AI project', 'Learn AI in Arabic'],
 };
 function objectivesHtml(open = false) {
+  // objectives shortened to fit one line: carry over ticks saved under the old wording
+  db.objectives.selected = db.objectives.selected.map(o => OBJ_RENAMED[o] ?? o);
   const sel = new Set(db.objectives.selected);
   const box = (o, custom) => `<label class="obj"><input type="checkbox" data-obj="${esc(o)}" ${sel.has(o) ? 'checked' : ''}> ${esc(o)}${custom ? ` <button type="button" class="del" data-obj-del="${esc(o)}" aria-label="Remove ${esc(o)}">✕</button>` : ''}</label>`;
   return `<details class="fold obj-fold"${open ? ' open' : ''}><summary><h2>My learning objectives <span class="tag">${sel.size} chosen · saved to your student ID</span></h2></summary>
