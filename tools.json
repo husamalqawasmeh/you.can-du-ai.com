@@ -2328,6 +2328,38 @@
       ],
       "url": "https://www.granola.ai",
       "released": 2024
+    },
+    {
+      "name": "OpenArt",
+      "company": "OpenArt",
+      "category": "Image",
+      "does": "All-in-one creative platform that gives access to many image, video and audio models (such as Nano Banana, GPT Image, Seedream, Kling and Veo) in one place, with editing, inpainting, consistent characters and custom model training.",
+      "cost": "Freemium",
+      "pros": [
+        "Many top image and video models in one subscription",
+        "Consistent characters and custom model training"
+      ],
+      "cons": [
+        "Credit-based plans; free credits are limited",
+        "Quality depends on the model you pick"
+      ],
+      "url": "https://openart.ai"
+    },
+    {
+      "name": "OmniRoute",
+      "company": "OmniRoute (open source)",
+      "category": "Model gateway",
+      "does": "Open-source, self-hosted AI gateway that puts one OpenAI-compatible /v1 endpoint in front of many model providers, with smart routing and automatic fallback across subscription, API-key, cheap and free models; works with coding tools such as Claude Code, Cursor and Cline.",
+      "cost": "Free (open source)",
+      "pros": [
+        "One endpoint for many providers",
+        "Automatic fallback keeps coding agents running"
+      ],
+      "cons": [
+        "You install and maintain it yourself",
+        "Mostly one main maintainer; check forks and docs carefully"
+      ],
+      "url": "https://github.com/diegosouzapw/OmniRoute"
     }
   ]
 }
