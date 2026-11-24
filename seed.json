@@ -1716,6 +1716,33 @@
       "url": "https://rafter.so/blog/incidents/ai-agent-security-timeline-2025-2026",
       "notes": "Tracker of agent-related security incidents.",
       "lang": "en"
+    },
+    {
+      "id": "src-170",
+      "topic": "AI Development",
+      "type": "Docs",
+      "title": "Ollama documentation (GitHub)",
+      "url": "https://github.com/ollama/ollama",
+      "notes": "How to install Ollama, run models and use its local API.",
+      "lang": "en"
+    },
+    {
+      "id": "src-171",
+      "topic": "AI Development",
+      "type": "Docs",
+      "title": "Open WebUI documentation",
+      "url": "https://docs.openwebui.com",
+      "notes": "Self-hosted chat interface for Ollama and OpenAI-compatible APIs.",
+      "lang": "en"
+    },
+    {
+      "id": "src-172",
+      "topic": "AI Development",
+      "type": "Docs",
+      "title": "LibreChat documentation",
+      "url": "https://www.librechat.ai/docs",
+      "notes": "Open-source chat app that connects to many AI providers.",
+      "lang": "en"
     }
   ],
   "notes": [
@@ -2502,6 +2529,13 @@
       "sourceId": "src-1",
       "title": "Transformers and attention: the core ideas",
       "body": "The Transformer (Vaswani et al., 2017, \"Attention Is All You Need\") replaced recurrence with attention, so every token in a sequence can look at every other token in parallel. Self-attention turns each token into three vectors: a query, a key and a value. Each token scores every other token by the dot product of its query with their keys, divides by the square root of the key size, applies softmax to get weights, and takes the weighted sum of the values. Multi-head attention runs several of these in parallel so different heads can learn different relationships. Because attention has no built-in sense of order, positional information is added (sine/cosine encodings in the original paper; learned or rotary embeddings in many later models). Each layer also has a feed-forward network, residual connections and layer normalisation. The original design had an encoder and a decoder; BERT uses only the encoder, and GPT-style LLMs use only the decoder with causal masking so a token cannot see future tokens. Attention cost grows with the square of the sequence length, which is why long context is expensive and why techniques such as the KV cache and FlashAttention matter."
+    },
+    {
+      "id": "note-113",
+      "topic": "AI Development",
+      "sourceId": "src-170",
+      "title": "Running models locally: Ollama and multi-provider chat apps",
+      "body": "Ollama is a free, open-source tool that runs open-weight models on your own computer. One command, such as \"ollama run llama3.2\", downloads a model and starts a chat. It can run models from many different makers (Meta Llama, Google Gemma, Alibaba Qwen, Mistral, DeepSeek and others), and it serves them through a local API on port 11434 that also speaks the OpenAI API format, so many apps written for OpenAI can point at your own machine instead. Local models are usually quantized (for example to 4-bit), which shrinks memory use so they fit on a laptop or consumer GPU at a small cost in quality. Benefits of local hosting: your data stays on your machine, it works offline and there are no per-token fees; the trade-offs are that you need capable hardware and the biggest frontier models are not available. On top of Ollama or cloud APIs you can run a self-hosted chat interface: Open WebUI works with Ollama and OpenAI-compatible APIs, and LibreChat connects to OpenAI, Anthropic, Google and others, so one screen can switch between local and cloud models using your own API keys (\"bring your own key\"). A chat client is the user interface; a model gateway such as OpenRouter is an API that routes requests to many models."
     }
   ],
   "questions": [
@@ -11188,6 +11222,158 @@
       "answer": "KV|key-value|key value",
       "explanation": "It speeds up decoding but uses a lot of GPU memory for long contexts.",
       "sourceId": "src-1"
+    },
+    {
+      "id": "q3-356",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is Ollama mainly used for?",
+      "answer": "Running open-weight AI models locally on your own computer",
+      "explanation": "It can run models from many makers, such as Llama, Gemma, Qwen and Mistral.",
+      "options": [
+        "Running open-weight AI models locally on your own computer",
+        "Training models from scratch in the cloud",
+        "Designing GPU chips",
+        "Hosting websites"
+      ],
+      "sourceId": "src-170"
+    },
+    {
+      "id": "q3-357",
+      "topic": "AI Development",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "Ollama can run models from many different makers (for example Meta Llama, Google Gemma and Mistral), not just one company.",
+      "answer": "True",
+      "explanation": "It downloads open-weight models from its model library.",
+      "sourceId": "src-170"
+    },
+    {
+      "id": "q3-358",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which Ollama command downloads a model and starts a chat with it?",
+      "answer": "ollama run llama3.2",
+      "explanation": "If the model is not on your machine yet, \"ollama run\" pulls it first.",
+      "options": [
+        "ollama run llama3.2",
+        "ollama chat --cloud",
+        "pip install llama3.2",
+        "docker start llama"
+      ],
+      "sourceId": "src-170"
+    },
+    {
+      "id": "q3-359",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "On which port does Ollama serve its local API by default?",
+      "answer": "11434",
+      "explanation": "Apps on your machine call http://localhost:11434.",
+      "options": [
+        "11434",
+        "8080",
+        "443",
+        "3000"
+      ],
+      "sourceId": "src-170"
+    },
+    {
+      "id": "q3-360",
+      "topic": "AI Development",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Ollama offers an OpenAI-compatible API, so many apps built for the OpenAI API can use a local Ollama server instead.",
+      "answer": "True",
+      "explanation": "You change the base URL to your local server.",
+      "sourceId": "src-170"
+    },
+    {
+      "id": "q3-361",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which is a main benefit of hosting a model locally instead of using a cloud API?",
+      "answer": "Your data stays on your own machine and there are no per-token fees",
+      "explanation": "The trade-off: you need capable hardware and cannot run the biggest frontier models.",
+      "options": [
+        "Your data stays on your own machine and there are no per-token fees",
+        "It is always faster than the cloud",
+        "It gives access to every closed frontier model",
+        "It needs no hardware at all"
+      ],
+      "sourceId": "src-170"
+    },
+    {
+      "id": "q3-362",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Why are models run with Ollama usually \"quantized\" (for example to 4-bit)?",
+      "answer": "To cut memory use so they fit on a laptop or consumer GPU",
+      "explanation": "Quantization stores weights with fewer bits, at a small cost in quality.",
+      "options": [
+        "To cut memory use so they fit on a laptop or consumer GPU",
+        "To make them more accurate than the original",
+        "To add internet access",
+        "To translate them into other languages"
+      ],
+      "sourceId": "src-170"
+    },
+    {
+      "id": "q3-363",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What are Open WebUI and LibreChat?",
+      "answer": "Open-source, self-hosted chat apps that can connect to many AI providers and local models",
+      "explanation": "One screen can switch between, for example, OpenAI, Anthropic, Google and Ollama models.",
+      "options": [
+        "Open-source, self-hosted chat apps that can connect to many AI providers and local models",
+        "Closed chatbots owned by OpenAI",
+        "GPU drivers",
+        "Benchmark leaderboards"
+      ],
+      "sourceId": "src-171"
+    },
+    {
+      "id": "q3-364",
+      "topic": "AI Development",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Open WebUI can be used with local models from Ollama and with OpenAI-compatible cloud APIs.",
+      "answer": "True",
+      "explanation": "It started as \"Ollama WebUI\" and later added other providers.",
+      "sourceId": "src-171"
+    },
+    {
+      "id": "q3-365",
+      "topic": "AI Development",
+      "type": "fill",
+      "difficulty": "easy",
+      "prompt": "Using your own API key in a multi-provider chat app is often called \"bring your own ___\".",
+      "answer": "key|API key",
+      "explanation": "You pay each provider directly for what you use.",
+      "sourceId": "src-172"
+    },
+    {
+      "id": "q3-366",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is the difference between a chat client like LibreChat and a model gateway like OpenRouter?",
+      "answer": "The chat client is a user interface; the gateway is an API that routes requests to many models",
+      "explanation": "They can be combined: a chat client can use a gateway as one of its providers.",
+      "options": [
+        "The chat client is a user interface; the gateway is an API that routes requests to many models",
+        "They are exactly the same thing",
+        "A gateway only works offline",
+        "A chat client trains its own models"
+      ],
+      "sourceId": "src-172"
     }
   ]
 }

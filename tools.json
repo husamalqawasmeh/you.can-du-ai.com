@@ -838,7 +838,7 @@
       "name": "Ollama",
       "company": "Ollama",
       "category": "Local AI",
-      "does": "Runs open models (Llama, Qwen, Gemma and more) on your own computer with one command.",
+      "does": "Runs open models from many makers (Llama, Qwen, Gemma, Mistral, DeepSeek and more) on your own computer with one command, and serves them through a local API (port 11434, OpenAI-compatible) that other apps can use.",
       "cost": "Free (open source)",
       "pros": [
         "Private and offline",
@@ -2563,6 +2563,57 @@
       ],
       "url": "https://thinkingmachines.ai",
       "released": 2026
+    },
+    {
+      "name": "Open WebUI",
+      "company": "Open WebUI (open-source community)",
+      "category": "Local AI",
+      "does": "Self-hosted chat interface (it started as \"Ollama WebUI\") that works with local models from Ollama and with OpenAI-compatible cloud APIs, all in one ChatGPT-style screen with chat history, document chat (RAG) and user accounts.",
+      "cost": "Free (self-hosted)",
+      "pros": [
+        "Local and cloud models side by side",
+        "Runs offline with Ollama"
+      ],
+      "cons": [
+        "You install and maintain it (often with Docker)",
+        "Needs your own hardware or server"
+      ],
+      "url": "https://openwebui.com",
+      "released": 2023
+    },
+    {
+      "name": "LibreChat",
+      "company": "LibreChat (open source)",
+      "category": "Local AI",
+      "does": "Open-source, self-hosted chat app that connects to many providers (OpenAI, Anthropic, Google, Azure, AWS Bedrock, Ollama and other custom endpoints) using your own API keys.",
+      "cost": "Free (open source); you pay providers for API use",
+      "pros": [
+        "Many providers in one interface",
+        "Agents, file chat and multi-user support"
+      ],
+      "cons": [
+        "Setup takes technical skill",
+        "API costs still apply"
+      ],
+      "url": "https://www.librechat.ai",
+      "released": 2023
+    },
+    {
+      "name": "LobeChat",
+      "company": "LobeHub",
+      "category": "Local AI",
+      "does": "Open-source chat app with a polished interface that supports many AI providers and local models through Ollama, plus plugins and an agent marketplace.",
+      "cost": "Free (self-hosted); paid cloud version",
+      "pros": [
+        "Modern, easy interface",
+        "Many providers and local models"
+      ],
+      "cons": [
+        "Some features need the cloud version",
+        "Self-hosting needs setup"
+      ],
+      "url": "https://lobehub.com",
+      "released": 2023
     }
   ]
 }
