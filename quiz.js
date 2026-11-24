@@ -13,6 +13,7 @@ export const VENDORS = {
   ByteDance: /bytedance|seedance|doubao|tiktok/i,
   AMD: /\bamd\b|\bmi300|\bmi325|\bmi355|\brocm\b|instinct/i,
   Intel: /\bintel\b|gaudi|\bxeon\b|openvino/i,
+  TSMC: /\btsmc\b|taiwan semiconductor|cowos/i,
   Apple: /\bapple\b|\bmlx\b|core ml/i,
   IBM: /\bibm\b|granite|watsonx/i,
   'Hugging Face': /hugging ?face|smolagents|\bhf hub\b|transformers library/i,
