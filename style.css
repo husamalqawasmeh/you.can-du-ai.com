@@ -230,7 +230,7 @@ nav button:last-child { margin-inline-end: 0; }
 #test-config .half-row fieldset { margin: 0; min-width: 0; }
 #test-config .half-row .checks { grid-template-columns: repeat(3, max-content); justify-content: start; }
 #test-config .start-cell { display: flex; }
-#test-config .start-cell button { margin: 0; flex: 1; font-size: 1.05rem; }
+#test-config .start-cell button { margin: 0; flex: 1; font-size: 1.05rem; font-weight: 700; }
 @media (max-width: 640px) { #test-config .half-row { grid-template-columns: 1fr; } }
 .study-btn { margin-inline-start: 8px; padding: 1px 8px; font-size: .78rem; border-radius: 999px; border: 1px solid var(--border-strong); background: transparent; color: var(--muted); }
 .study-btn.on { border-color: var(--accent); color: var(--accent); }
