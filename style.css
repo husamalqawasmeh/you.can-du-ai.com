@@ -288,7 +288,7 @@ header .topbar { order: 2; flex-shrink: 0; }
 .home-card.soon { cursor: default; }
 .home-card.soon > strong, .home-card.soon > span { color: var(--muted); }
 .home-card.soon:hover { transform: none; border-color: var(--border-strong); border-top-color: var(--accent); }
-.soon-badge { display: inline-block; margin-inline-start: 6px; padding: 0 6px; border-radius: 999px; background: var(--accent); color: #fff; font-size: .62rem; font-weight: 700; vertical-align: middle; }
+.soon-badge { display: inline-block; margin-inline-start: 6px; padding: 0 5px; border-radius: 999px; background: var(--accent); color: #fff; font-size: .56rem; line-height: 1.5; font-weight: 700; vertical-align: middle; }
 .home-card .soon-badge { color: #fff; } /* beats the grey .home-card span rule */
 nav button.soon { opacity: .55; cursor: default; }
 nav button.soon:hover { border-color: var(--border-strong); color: var(--text); }
