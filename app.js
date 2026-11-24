@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=197';
-import { ADMIN_HASH } from './admin-hash.js?v=197';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=198';
+import { ADMIN_HASH } from './admin-hash.js?v=198';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -843,6 +843,7 @@ $('#yt-save').onclick = () => {
 const IV_JOBS = {
   'General (AI literacy)': { 'AI industry and news': 3, 'Behavioral and experience': 3, 'Automation / AI tools': 2, 'Agents/MCP/Tool-use': 1, 'RAG and retrieval': 1, 'AI H/W & Semiconductors': 1, 'ML & DL': 1, 'Evals': 1, 'AI Strategy': 2, 'AI Governance': 2, 'AI Risk Management': 2, 'LLM / VLM / SLM / ALM': 2, 'AI Product management': 2, 'AI Project management': 2, 'Transformers / GANs / VAEs': 1, 'Prompt Engineering': 2 },
   'AI Business Partner': { 'AI industry and news': 3, 'Behavioral and experience': 3, 'Agents/MCP/Tool-use': 1, 'Automation / AI tools': 1, 'Evals': 1, 'AI Strategy': 3, 'AI Governance': 1, 'AI Risk Management': 1, 'LLM / VLM / SLM / ALM': 1, 'AI Product management': 2, 'AI Project management': 2 },
+  'AI Strategy/Consult': { 'AI industry and news': 3, 'Behavioral and experience': 2, 'AI H/W & Semiconductors': 1, 'Agents/MCP/Tool-use': 1, 'Evals': 2, 'AI Strategy': 3, 'AI Governance': 2, 'AI Risk Management': 2, 'LLM / VLM / SLM / ALM': 1, 'AI Product management': 2, 'AI Project management': 2 },
   'AI Engineer': { 'RAG and retrieval': 3, 'Agents/MCP/Tool-use': 3, 'System/Product design': 3, 'Automation / AI tools': 2, 'Behavioral and experience': 2, 'ML & DL': 1, 'AI H/W & Semiconductors': 1, 'AI industry and news': 1, 'Evals': 3, 'AI Strategy': 1, 'AI Governance': 1, 'AI Risk Management': 1, 'LLM / VLM / SLM / ALM': 3, 'Model Fine-tuning': 2, 'AI Product management': 1, 'AI Project management': 1, 'Transformers / GANs / VAEs': 1, 'Prompt Engineering': 2, 'Loop Engineering': 2, 'AI Security': 2 },
   'ML Engineer': { 'ML & DL': 3, 'System/Product design': 3, 'Evals': 2, 'Automation / AI tools': 2, 'AI H/W & Semiconductors': 1, 'RAG and retrieval': 1, 'Behavioral and experience': 1, 'LLM / VLM / SLM / ALM': 2, 'Model Fine-tuning': 2, 'Transformers / GANs / VAEs': 2 },
   'Gen. AI Engineer': { 'RAG and retrieval': 3, 'Agents/MCP/Tool-use': 3, 'System/Product design': 2, 'AI H/W & Semiconductors': 2, 'ML & DL': 1, 'Behavioral and experience': 1, 'Automation / AI tools': 1, 'AI industry and news': 1, 'Evals': 3, 'LLM / VLM / SLM / ALM': 3, 'Model Fine-tuning': 3, 'Transformers / GANs / VAEs': 2, 'Prompt Engineering': 2, 'Loop Engineering': 2, 'AI Security': 2 },
@@ -855,7 +856,6 @@ const IV_JOBS = {
   'AI Product Manager': { 'Behavioral and experience': 3, 'AI industry and news': 2, 'Agents/MCP/Tool-use': 2, 'RAG and retrieval': 1, 'System/Product design': 1, 'Evals': 2, 'AI Strategy': 2, 'AI Governance': 2, 'AI Risk Management': 2, 'LLM / VLM / SLM / ALM': 1, 'AI Product management': 3, 'AI Project management': 2, 'Prompt Engineering': 1, 'AI Security': 1 },
   'AI Governance': { 'AI industry and news': 2, 'Behavioral and experience': 2, 'Agents/MCP/Tool-use': 1, 'Evals': 3, 'AI Strategy': 2, 'AI Governance': 3, 'AI Risk Management': 3, 'LLM / VLM / SLM / ALM': 1, 'Model Fine-tuning': 1, 'AI Product management': 1, 'AI Project management': 1, 'AI Security': 2 },
   'AI Risk Management': { 'Agents/MCP/Tool-use': 2, 'Behavioral and experience': 1, 'AI industry and news': 1, 'System/Product design': 1, 'ML & DL': 1, 'Evals': 3, 'AI Strategy': 1, 'AI Governance': 3, 'AI Risk Management': 3, 'Model Fine-tuning': 2, 'AI Product management': 1, 'AI Project management': 1, 'AI Security': 3 },
-  'AI Strategy/Consult': { 'AI industry and news': 3, 'Behavioral and experience': 2, 'AI H/W & Semiconductors': 1, 'Agents/MCP/Tool-use': 1, 'Evals': 2, 'AI Strategy': 3, 'AI Governance': 2, 'AI Risk Management': 2, 'LLM / VLM / SLM / ALM': 1, 'AI Product management': 2, 'AI Project management': 2 },
   'Automation/AI Dev.': { 'Automation / AI tools': 3, 'Agents/MCP/Tool-use': 2, 'System/Product design': 2, 'Behavioral and experience': 2, 'RAG and retrieval': 1, 'LLM / VLM / SLM / ALM': 1, 'Prompt Engineering': 2, 'Loop Engineering': 2, 'AI Security': 1 },
 };
 let ivAll = [];
