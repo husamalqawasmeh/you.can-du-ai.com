@@ -1,28 +1,28 @@
 {
   "topics": [
+    "AI Strategy",
     "AI Hardware/GPUs",
     "AI Sizing",
     "Generative AI",
     "LLMs",
+    "AI Governance",
     "Transformers / Attention",
     "AI Engineering",
     "AI Development",
     "Frontier Labs",
+    "AI Security",
     "CLI",
     "Prompt Engineering",
     "Context Engineering",
     "Harness Engineering",
+    "AI Risk Management",
     "Agents & MCP",
     "Benchmarking",
     "Evals",
-    "AI Governance",
     "Decision Models",
+    "Global AI Incidents",
     "Game Engines",
-    "AI Strategy",
-    "AI Security",
-    "Model Fine-tuning",
-    "AI Risk Management",
-    "Global AI Incidents"
+    "Model Fine-tuning"
   ],
   "sources": [
     {
