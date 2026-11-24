@@ -340,3 +340,8 @@ header .topbar { display: flex; align-items: center; gap: 8px; }
 #chat-form .row { gap: 12px; }
 #chat-form .row > button, #chat-form .row > label:not(.chat-q) { width: 170px; flex: 0 0 170px; }
 #chat-form .row > button, #chat-form .row select, #chat-form .chat-q textarea { height: 64px; }
+/* tutor row v3: +20% height, -20% control width, more breathing room */
+#chat-form .row { gap: 18px; }
+#chat-form .row > button, #chat-form .row > label:not(.chat-q) { width: 136px; flex: 0 0 136px; }
+#chat-form .row > button, #chat-form .row select, #chat-form .chat-q textarea { height: 77px; }
+#chat-form .row label > select, #chat-form .chat-q textarea { display: block; margin-top: 8px; }
