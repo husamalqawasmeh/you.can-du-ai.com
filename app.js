@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=186';
-import { ADMIN_HASH } from './admin-hash.js?v=186';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=188';
+import { ADMIN_HASH } from './admin-hash.js?v=188';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -251,6 +251,29 @@ async function loadCerts() {
 loadCerts();
 
 // ---------- AI tools dictionary (tools.json) ----------
+// tool groups by theme for the 4-column view (unknown categories go to the last column)
+const TOOL_COLS = [
+  ['Chat assistant', 'Search / research', 'AI agent', 'Local AI', 'Model gateway'],
+  ['Coding', 'App builder', 'Framework', 'Developer platform', 'Model serving', 'MLOps', 'Cloud AI platform', 'Vector database'],
+  ['Image', 'Video', 'Audio / voice', 'Design', 'Presentations', 'Social media'],
+  ['Writing', 'Productivity', 'Meetings', 'Automation', 'Legal', 'Careers', 'Utilities'],
+];
+// Places closed groups in their column, row by row; an opened group gets its own full-width row under its row.
+function layoutTools() {
+  const list = $('#tools-list'), items = [...list.children].filter(x => x.matches('details'));
+  const on = list.classList.contains('cols') && matchMedia('(min-width: 701px)').matches;
+  for (const x of items) x.style.gridRow = x.style.gridColumn = '';
+  if (!on) return;
+  const cols = [1, 2, 3, 4].map(c => items.filter(x => +x.dataset.col === c));
+  let row = 1;
+  for (let r = 0; r < Math.max(...cols.map(c => c.length)); r++) {
+    const cells = cols.map(c => c[r]).filter(Boolean);
+    cells.filter(x => !x.open).forEach(x => { x.style.gridRow = row; x.style.gridColumn = x.dataset.col; });
+    const opened = cells.filter(x => x.open);
+    if (opened.length < cells.length) row++;
+    opened.forEach(x => { x.style.gridRow = row++; x.style.gridColumn = '1 / -1'; });
+  }
+}
 async function loadTools() {
   let d;
   try { d = await (await fetch('tools.json?v=5')).json(); } catch { $('#tools-list').innerHTML = '<p class="muted">Could not load the tools.</p>'; return; }
@@ -297,11 +320,21 @@ async function loadTools() {
       <span class="tag">${esc(t.company)} · ${esc(t.category)}${t.released ? ` · since ${t.released}` : ''}</span><span class="cost">${esc(t.cost)}</span></div><div class="tool-does">${esc(t.does)}</div>
       <div class="pc"><div><strong class="good">Pros</strong><ul>${t.pros.map(p => `<li>${esc(p)}</li>`).join('')}</ul></div><div><strong class="bad">Cons</strong><ul>${t.cons.map(p => `<li>${esc(p)}</li>`).join('')}</ul></div></div></article>`;
     // a search opens every group so matches are visible; otherwise keep whatever the user had open
-    $('#tools-list').classList.toggle('letters', /^(az|za)$/.test($('#tool-sort').value)); // A–Z / Z–A: letter grid
-    $('#tools-list').innerHTML = entries.map(([g, ts]) => `<details class="card fold" data-g="${esc(g)}"${q || open.has(g) ? ' open' : ''}>
+    const letters = /^(az|za)$/.test(sv); // A–Z / Z–A: letter grid; every other view: 4 columns
+    $('#tools-list').classList.toggle('letters', letters);
+    $('#tools-list').classList.toggle('cols', !letters);
+    // column for each group: by theme in the default type view, otherwise the sort order filled down each column
+    const per = Math.ceil(entries.length / 4) || 1;
+    const colOf = (g, i) => sv === '' ? (TOOL_COLS.findIndex(cs => cs.includes(g)) + 1 || 4) : Math.floor(i / per) + 1;
+    entries = entries.map((e, i) => [...e, colOf(e[0], i)]);
+    if (sv === '') entries.sort((a, b) => a[2] - b[2] || gDir * (TOOL_COLS[a[2] - 1].indexOf(a[0]) - TOOL_COLS[b[2] - 1].indexOf(b[0])));
+    $('#tools-list').innerHTML = entries.map(([g, ts, c]) => `<details class="card fold" data-g="${esc(g)}" data-col="${c}"${q || open.has(g) ? ' open' : ''}>
       <summary><h3>${esc(g)} <span class="tag">${ts.length} tool${ts.length === 1 ? '' : 's'}</span></h3></summary><div class="tools-grid">${ts.map(card).join('')}</div></details>`).join('')
       || '<p class="muted">No tools match.</p>';
+    layoutTools();
   };
+  $('#tools-list').addEventListener('toggle', layoutTools, true); // toggle does not bubble
+  addEventListener('resize', layoutTools);
   $('#tool-q').oninput = $('#tool-cat').onchange = $('#tool-cost').onchange = $('#tool-sort').onchange = $('#tool-gdir').onchange = $('#tool-tdir').onchange = show;
   show();
 }
