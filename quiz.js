@@ -14,6 +14,7 @@ export const VENDORS = {
   AMD: /\bamd\b|\bmi300|\bmi325|\bmi355|\brocm\b|instinct/i,
   'Hugging Face': /hugging ?face|smolagents|\bhf hub\b|transformers library/i,
   TSMC: /\btsmc\b|taiwan semiconductor|cowos/i,
+  ASML: /\basml\b|\beuv\b|extreme ultraviolet/i,
   Apple: /\bapple\b|\bmlx\b|core ml/i,
   IBM: /\bibm\b|granite|watsonx/i,
   Intel: /\bintel\b|gaudi|\bxeon\b|openvino/i,
