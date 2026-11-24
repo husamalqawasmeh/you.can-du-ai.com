@@ -1,5 +1,5 @@
 {
-  "checked": "2026-11-21",
+  "checked": "2026-11-24",
   "tools": [
     {
       "name": "ChatGPT",
@@ -515,15 +515,15 @@
       "name": "Sora",
       "company": "OpenAI",
       "category": "Video",
-      "does": "Generates video clips from text and images.",
-      "cost": "Included with some ChatGPT plans",
+      "does": "Discontinued: OpenAI's text-to-video model. The Sora app and website closed on 26 April 2026 and the Sora API on 24 September 2026; OpenAI named no replacement. Kept here for reference.",
+      "cost": "Discontinued",
       "pros": [
         "High-quality video generation",
         "Easy prompt-to-video"
       ],
       "cons": [
-        "Usage limits",
-        "Availability varies by country"
+        "No longer available",
+        "Use Veo, Kling or Runway instead"
       ],
       "url": "https://openai.com/sora",
       "released": 2024
@@ -1566,6 +1566,768 @@
       ],
       "url": "https://vercel.com",
       "released": 2015
+    },
+    {
+      "name": "Perplexity Comet",
+      "company": "Perplexity",
+      "category": "AI browser",
+      "does": "AI-native web browser with Perplexity built in: answers with citations, summarizes pages and can carry out multi-step tasks across tabs.",
+      "cost": "Freemium",
+      "pros": [
+        "Strong research with sources",
+        "Can act on pages for you"
+      ],
+      "cons": [
+        "Agent actions still make mistakes",
+        "Prompt-injection risk from web pages"
+      ],
+      "url": "https://www.perplexity.ai/comet",
+      "released": 2025
+    },
+    {
+      "name": "Dia",
+      "company": "The Browser Company",
+      "category": "AI browser",
+      "does": "Chromium-based browser from the makers of Arc with an AI assistant that reads your open tabs, writes and answers questions about pages.",
+      "cost": "Freemium",
+      "pros": [
+        "Clean, easy design",
+        "Chat with your open tabs"
+      ],
+      "cons": [
+        "Less autonomous than agent-first browsers",
+        "Advanced use needs a paid plan"
+      ],
+      "url": "https://www.diabrowser.com",
+      "released": 2025
+    },
+    {
+      "name": "Opera Neon",
+      "company": "Opera",
+      "category": "AI browser",
+      "does": "Agent-first browser that can browse, fill forms and build small apps or documents for you from a prompt.",
+      "cost": "Subscription",
+      "pros": [
+        "Most action-focused AI browser",
+        "Can build simple pages and docs"
+      ],
+      "cons": [
+        "Paid only",
+        "Agent tasks can fail or need retries"
+      ],
+      "url": "https://www.operaneon.com",
+      "released": 2025
+    },
+    {
+      "name": "Brave Leo",
+      "company": "Brave",
+      "category": "AI browser",
+      "does": "Privacy-focused AI assistant built into the Brave browser for summarizing pages, answering questions and writing.",
+      "cost": "Freemium",
+      "pros": [
+        "Strong privacy defaults",
+        "Free to use in Brave"
+      ],
+      "cons": [
+        "An assistant, not a full agent",
+        "Best models need Leo Premium"
+      ],
+      "url": "https://brave.com/leo/",
+      "released": 2023
+    },
+    {
+      "name": "Kiro",
+      "company": "AWS",
+      "category": "Coding",
+      "does": "Agentic IDE built on spec-driven development: turns a prompt into requirements, a design and tasks, then writes the code, with hooks and steering files for team rules.",
+      "cost": "Freemium",
+      "pros": [
+        "Specs keep big changes organised",
+        "Hooks automate tests and docs"
+      ],
+      "cons": [
+        "Spec workflow feels slow for small fixes",
+        "Usage limits on lower plans"
+      ],
+      "url": "https://kiro.dev",
+      "released": 2025
+    },
+    {
+      "name": "Google Antigravity",
+      "company": "Google",
+      "category": "Coding",
+      "does": "Agent-first development platform where several coding agents work in parallel across editor, terminal and browser, managed from a mission-control view.",
+      "cost": "Free tier, pay for more",
+      "pros": [
+        "Run many agents at once",
+        "Agents can test in a built-in browser"
+      ],
+      "cons": [
+        "Still new; rate limits on free use",
+        "Agents need careful review"
+      ],
+      "url": "https://antigravity.google",
+      "released": 2025
+    },
+    {
+      "name": "Cline",
+      "company": "Cline (open source)",
+      "category": "Coding",
+      "does": "Open-source autonomous coding agent for VS Code that plans, edits files, runs terminal commands and uses MCP tools, asking for approval at each step.",
+      "cost": "Free (bring your own API key)",
+      "pros": [
+        "Open source, works with many models",
+        "Clear step-by-step approvals"
+      ],
+      "cons": [
+        "You pay for model tokens",
+        "Can use many tokens on big tasks"
+      ],
+      "url": "https://cline.bot",
+      "released": 2024
+    },
+    {
+      "name": "OpenAI Agents SDK",
+      "company": "OpenAI",
+      "category": "Framework",
+      "does": "Lightweight open-source Python and TypeScript SDK for building agents with tools, handoffs between agents, guardrails and tracing.",
+      "cost": "Free (open source)",
+      "pros": [
+        "Small and simple to learn",
+        "Built-in tracing and handoffs"
+      ],
+      "cons": [
+        "Best with OpenAI models",
+        "Fewer integrations than LangChain"
+      ],
+      "url": "https://openai.github.io/openai-agents-python/",
+      "released": 2025
+    },
+    {
+      "name": "Microsoft Agent Framework",
+      "company": "Microsoft",
+      "category": "Framework",
+      "does": "Open-source .NET and Python framework that merges AutoGen and Semantic Kernel for single and multi-agent apps, with workflows, MCP and A2A support.",
+      "cost": "Free (open source)",
+      "pros": [
+        "Successor to AutoGen and Semantic Kernel",
+        "Enterprise features and Azure integration"
+      ],
+      "cons": [
+        "New, so fewer examples",
+        "Migration needed from older projects"
+      ],
+      "url": "https://github.com/microsoft/agent-framework",
+      "released": 2025
+    },
+    {
+      "name": "Pydantic AI",
+      "company": "Pydantic",
+      "category": "Framework",
+      "does": "Python agent framework from the Pydantic team focused on type-safe, structured outputs, dependency injection and testable agents.",
+      "cost": "Free (open source)",
+      "pros": [
+        "Type-safe structured outputs",
+        "Model-agnostic and easy to test"
+      ],
+      "cons": [
+        "Python only",
+        "Smaller ecosystem than LangChain"
+      ],
+      "url": "https://ai.pydantic.dev",
+      "released": 2024
+    },
+    {
+      "name": "DSPy",
+      "company": "Stanford NLP (open source)",
+      "category": "Framework",
+      "does": "Framework for programming LLM pipelines as modules and automatically optimizing their prompts and few-shot examples against a metric.",
+      "cost": "Free (open source)",
+      "pros": [
+        "Optimizes prompts automatically",
+        "Good for complex pipelines"
+      ],
+      "cons": [
+        "Learning curve",
+        "Needs an eval metric and data"
+      ],
+      "url": "https://dspy.ai",
+      "released": 2023
+    },
+    {
+      "name": "Vercel AI SDK",
+      "company": "Vercel",
+      "category": "Framework",
+      "does": "Open-source TypeScript toolkit for building AI apps: streaming chat, tool calling, structured output and UI hooks across many model providers.",
+      "cost": "Free (open source)",
+      "pros": [
+        "Excellent for web chat UIs",
+        "Switch providers easily"
+      ],
+      "cons": [
+        "TypeScript/JavaScript focus",
+        "Agent features lighter than Python frameworks"
+      ],
+      "url": "https://ai-sdk.dev",
+      "released": 2023
+    },
+    {
+      "name": "llama.cpp",
+      "company": "ggml (open source)",
+      "category": "Model serving",
+      "does": "C/C++ engine that runs LLMs efficiently on CPUs, Apple Silicon and GPUs using quantized GGUF models; powers many local AI apps.",
+      "cost": "Free (open source)",
+      "pros": [
+        "Runs almost anywhere",
+        "Excellent quantization support"
+      ],
+      "cons": [
+        "Command-line and technical",
+        "Not built for large multi-user serving"
+      ],
+      "url": "https://github.com/ggml-org/llama.cpp",
+      "released": 2023
+    },
+    {
+      "name": "SGLang",
+      "company": "SGLang (open source)",
+      "category": "Model serving",
+      "does": "High-performance serving engine for LLMs and vision models with fast structured output, prefix caching (RadixAttention) and multi-GPU support.",
+      "cost": "Free (open source)",
+      "pros": [
+        "Very fast, especially with shared prefixes",
+        "Strong for structured output"
+      ],
+      "cons": [
+        "Needs GPU and setup skills",
+        "Smaller community than vLLM"
+      ],
+      "url": "https://github.com/sgl-project/sglang",
+      "released": 2024
+    },
+    {
+      "name": "Jan",
+      "company": "Menlo Research (open source)",
+      "category": "Local AI",
+      "does": "Open-source desktop app for chatting with local models offline, with an OpenAI-compatible local API server.",
+      "cost": "Free (open source)",
+      "pros": [
+        "Private and offline",
+        "Simple interface"
+      ],
+      "cons": [
+        "Speed depends on your hardware",
+        "Fewer features than cloud chat"
+      ],
+      "url": "https://jan.ai",
+      "released": 2023
+    },
+    {
+      "name": "GPT4All",
+      "company": "Nomic AI",
+      "category": "Local AI",
+      "does": "Free desktop app to run open models on your computer, including chatting with your local documents.",
+      "cost": "Free (open source)",
+      "pros": [
+        "Runs on ordinary laptops",
+        "Local document chat"
+      ],
+      "cons": [
+        "Smaller models are less capable",
+        "Fewer updates than some rivals"
+      ],
+      "url": "https://www.nomic.ai/gpt4all",
+      "released": 2023
+    },
+    {
+      "name": "LiteLLM",
+      "company": "BerriAI",
+      "category": "Model gateway",
+      "does": "Open-source library and proxy that calls 100+ model providers through one OpenAI-style API, with budgets, rate limits, logging and fallbacks.",
+      "cost": "Free (open source)",
+      "pros": [
+        "One API for many providers",
+        "Spend tracking and fallbacks"
+      ],
+      "cons": [
+        "You host and maintain the proxy",
+        "Enterprise features are paid"
+      ],
+      "url": "https://www.litellm.ai",
+      "released": 2023
+    },
+    {
+      "name": "Weaviate",
+      "company": "Weaviate",
+      "category": "Vector database",
+      "does": "Open-source vector database with hybrid (keyword plus vector) search, built-in embedding modules and a managed cloud.",
+      "cost": "Free (open source)",
+      "pros": [
+        "Hybrid search built in",
+        "Self-host or cloud"
+      ],
+      "cons": [
+        "More to operate than simple stores",
+        "Cloud costs grow with data"
+      ],
+      "url": "https://weaviate.io",
+      "released": 2019
+    },
+    {
+      "name": "Qdrant",
+      "company": "Qdrant",
+      "category": "Vector database",
+      "does": "Open-source vector database written in Rust with fast filtering, quantization and a managed cloud.",
+      "cost": "Free (open source)",
+      "pros": [
+        "Fast with strong filtering",
+        "Low memory options"
+      ],
+      "cons": [
+        "Another service to run",
+        "Advanced features need tuning"
+      ],
+      "url": "https://qdrant.tech",
+      "released": 2021
+    },
+    {
+      "name": "Milvus",
+      "company": "Zilliz",
+      "category": "Vector database",
+      "does": "Open-source, highly scalable vector database for billions of vectors, with Zilliz Cloud as the managed version.",
+      "cost": "Free (open source)",
+      "pros": [
+        "Scales to very large datasets",
+        "Many index types"
+      ],
+      "cons": [
+        "Complex to operate at scale",
+        "Overkill for small projects"
+      ],
+      "url": "https://milvus.io",
+      "released": 2019
+    },
+    {
+      "name": "pgvector",
+      "company": "pgvector (open source)",
+      "category": "Vector database",
+      "does": "PostgreSQL extension that stores embeddings and runs vector similarity search inside your existing Postgres database.",
+      "cost": "Free (open source)",
+      "pros": [
+        "No new database to run",
+        "Join vectors with normal SQL data"
+      ],
+      "cons": [
+        "Slower than dedicated stores at huge scale",
+        "Index tuning needed"
+      ],
+      "url": "https://github.com/pgvector/pgvector",
+      "released": 2021
+    },
+    {
+      "name": "Langfuse",
+      "company": "Langfuse",
+      "category": "Observability",
+      "does": "Open-source LLM engineering platform for tracing, prompt management, evaluations and cost tracking; self-host or cloud.",
+      "cost": "Free (open source)",
+      "pros": [
+        "Open source and self-hostable",
+        "Works with any framework"
+      ],
+      "cons": [
+        "Self-hosting needs maintenance",
+        "Advanced features on paid cloud plans"
+      ],
+      "url": "https://langfuse.com",
+      "released": 2023
+    },
+    {
+      "name": "Arize Phoenix",
+      "company": "Arize AI",
+      "category": "Observability",
+      "does": "Open-source tool for tracing, evaluating and debugging LLM apps and agents, built on OpenTelemetry.",
+      "cost": "Free (open source)",
+      "pros": [
+        "OpenTelemetry-based tracing",
+        "Good built-in evaluators"
+      ],
+      "cons": [
+        "Enterprise features in paid Arize AX",
+        "Setup needed for production"
+      ],
+      "url": "https://phoenix.arize.com",
+      "released": 2023
+    },
+    {
+      "name": "Braintrust",
+      "company": "Braintrust",
+      "category": "Observability",
+      "does": "Platform for evaluating, logging and improving AI products: datasets, scorers, experiments and prompt playgrounds.",
+      "cost": "Freemium",
+      "pros": [
+        "Strong evaluation workflow",
+        "Easy experiment comparison"
+      ],
+      "cons": [
+        "Not open source",
+        "Costs grow with usage"
+      ],
+      "url": "https://www.braintrust.dev",
+      "released": 2023
+    },
+    {
+      "name": "Promptfoo",
+      "company": "Promptfoo",
+      "category": "Observability",
+      "does": "Open-source CLI for testing prompts and models and red-teaming LLM apps for jailbreaks, prompt injection and data leaks; runs in CI.",
+      "cost": "Free (open source)",
+      "pros": [
+        "Simple config-based tests in CI",
+        "Built-in red-teaming"
+      ],
+      "cons": [
+        "Command-line focused",
+        "Not a production monitoring tool"
+      ],
+      "url": "https://www.promptfoo.dev",
+      "released": 2023
+    },
+    {
+      "name": "NeMo Guardrails",
+      "company": "NVIDIA",
+      "category": "AI security",
+      "does": "Open-source toolkit for adding programmable guardrails to LLM apps: topic limits, jailbreak and injection checks, and safe tool use.",
+      "cost": "Free (open source)",
+      "pros": [
+        "Flexible, programmable rules",
+        "Works with many models"
+      ],
+      "cons": [
+        "Learning curve (Colang)",
+        "Adds latency to each call"
+      ],
+      "url": "https://github.com/NVIDIA/NeMo-Guardrails",
+      "released": 2023
+    },
+    {
+      "name": "Llama Guard",
+      "company": "Meta",
+      "category": "AI security",
+      "does": "Open-weight safety classifier models that label prompts and responses as safe or unsafe across standard hazard categories.",
+      "cost": "Free (open source)",
+      "pros": [
+        "Open weights, run it yourself",
+        "Checks both inputs and outputs"
+      ],
+      "cons": [
+        "Needs GPU to host",
+        "Categories may not fit every policy"
+      ],
+      "url": "https://www.llama.com/llama-protections/",
+      "released": 2023
+    },
+    {
+      "name": "Lakera Guard",
+      "company": "Lakera",
+      "category": "AI security",
+      "does": "API that detects prompt injection, jailbreaks, data leakage and harmful content in LLM inputs and outputs in real time.",
+      "cost": "Free tier, pay for more",
+      "pros": [
+        "Easy API to add protection",
+        "Focused on prompt injection"
+      ],
+      "cons": [
+        "Another vendor in the request path",
+        "No detector catches everything"
+      ],
+      "url": "https://www.lakera.ai",
+      "released": 2023
+    },
+    {
+      "name": "Elicit",
+      "company": "Elicit",
+      "category": "Search / research",
+      "does": "AI research assistant that finds academic papers, summarizes them and extracts data into tables for literature reviews.",
+      "cost": "Freemium",
+      "pros": [
+        "Built for scientific papers",
+        "Data extraction into tables"
+      ],
+      "cons": [
+        "Coverage limited to indexed papers",
+        "Always check the extracted facts"
+      ],
+      "url": "https://elicit.com",
+      "released": 2021
+    },
+    {
+      "name": "Consensus",
+      "company": "Consensus",
+      "category": "Search / research",
+      "does": "Search engine that answers questions from peer-reviewed research, showing which studies support or dispute a claim.",
+      "cost": "Freemium",
+      "pros": [
+        "Answers grounded in studies",
+        "Shows level of agreement"
+      ],
+      "cons": [
+        "Best for yes/no research questions",
+        "Advanced features are paid"
+      ],
+      "url": "https://consensus.app",
+      "released": 2022
+    },
+    {
+      "name": "DeepL",
+      "company": "DeepL",
+      "category": "Translation",
+      "does": "AI translation and writing assistant for text and documents in dozens of languages, with an API for developers.",
+      "cost": "Freemium",
+      "pros": [
+        "Very natural translations",
+        "Keeps document formatting"
+      ],
+      "cons": [
+        "Fewer languages than Google Translate",
+        "Volume needs a paid plan"
+      ],
+      "url": "https://www.deepl.com",
+      "released": 2017
+    },
+    {
+      "name": "Julius AI",
+      "company": "Julius AI",
+      "category": "Data analysis",
+      "does": "Chat with your spreadsheets and data files: it writes and runs code to clean data, analyze it and make charts.",
+      "cost": "Freemium",
+      "pros": [
+        "No coding needed",
+        "Makes charts quickly"
+      ],
+      "cons": [
+        "Check its analysis before using",
+        "Message limits on free plan"
+      ],
+      "url": "https://julius.ai",
+      "released": 2023
+    },
+    {
+      "name": "Intercom Fin",
+      "company": "Intercom",
+      "category": "Customer support",
+      "does": "AI customer-service agent that answers support questions from your help content across chat, email and voice, handing off to humans when needed.",
+      "cost": "Pay-per-use",
+      "pros": [
+        "Resolves many questions automatically",
+        "Works with existing help center"
+      ],
+      "cons": [
+        "Charged per resolution",
+        "Needs good help content"
+      ],
+      "url": "https://fin.ai",
+      "released": 2023
+    },
+    {
+      "name": "Sierra",
+      "company": "Sierra",
+      "category": "Customer support",
+      "does": "Enterprise platform for building branded AI customer-service agents that take actions such as returns and bookings.",
+      "cost": "Paid (contact sales)",
+      "pros": [
+        "Agents can complete real tasks",
+        "Built for large brands"
+      ],
+      "cons": [
+        "Enterprise pricing only",
+        "Needs integration work"
+      ],
+      "url": "https://sierra.ai",
+      "released": 2024
+    },
+    {
+      "name": "Khanmigo",
+      "company": "Khan Academy",
+      "category": "Education",
+      "does": "AI tutor and teaching assistant that guides students with questions instead of giving answers, and helps teachers plan lessons.",
+      "cost": "Free for teachers; paid plan for learners",
+      "pros": [
+        "Teaches rather than gives answers",
+        "Free tools for teachers"
+      ],
+      "cons": [
+        "Mainly for Khan Academy content",
+        "Availability varies by country"
+      ],
+      "url": "https://www.khanmigo.ai",
+      "released": 2023
+    },
+    {
+      "name": "Udio",
+      "company": "Udio",
+      "category": "Audio / voice",
+      "does": "AI music generator that creates songs with vocals from text prompts; moved toward licensed models after 2025 deals with Universal and Warner.",
+      "cost": "Freemium",
+      "pros": [
+        "High-quality vocals and styles",
+        "Licensing deals with major labels"
+      ],
+      "cons": [
+        "Rules on use and downloads changed over time",
+        "Rights and usage terms need checking"
+      ],
+      "url": "https://www.udio.com",
+      "released": 2024
+    },
+    {
+      "name": "Deepgram",
+      "company": "Deepgram",
+      "category": "Audio / voice",
+      "does": "Speech-to-text and text-to-speech APIs for real-time transcription and voice agents.",
+      "cost": "Pay-per-use",
+      "pros": [
+        "Fast, low-latency transcription",
+        "Built for voice agents"
+      ],
+      "cons": [
+        "API only, needs coding",
+        "Costs scale with audio hours"
+      ],
+      "url": "https://deepgram.com"
+    },
+    {
+      "name": "AssemblyAI",
+      "company": "AssemblyAI",
+      "category": "Audio / voice",
+      "does": "Speech AI API for transcription, speaker labels, summaries and audio intelligence features.",
+      "cost": "Pay-per-use",
+      "pros": [
+        "Accurate transcription",
+        "Many audio intelligence features"
+      ],
+      "cons": [
+        "API only",
+        "Costs scale with volume"
+      ],
+      "url": "https://www.assemblyai.com"
+    },
+    {
+      "name": "Leonardo AI",
+      "company": "Canva",
+      "category": "Image",
+      "does": "Image and video generation platform for artwork, game assets and marketing visuals, with fine-tuned models and editing tools.",
+      "cost": "Freemium",
+      "pros": [
+        "Many styles and fine-tuned models",
+        "Good for game and concept art"
+      ],
+      "cons": [
+        "Daily token limits on free plan",
+        "Many options to learn"
+      ],
+      "url": "https://leonardo.ai",
+      "released": 2022
+    },
+    {
+      "name": "Nano Banana (Gemini image)",
+      "company": "Google",
+      "category": "Image",
+      "does": "Gemini image generation and editing model, popular for consistent characters and precise edits from text instructions.",
+      "cost": "Freemium",
+      "pros": [
+        "Excellent editing and consistency",
+        "Available in the Gemini app and API"
+      ],
+      "cons": [
+        "Usage limits on free use",
+        "Adds a SynthID watermark"
+      ],
+      "url": "https://gemini.google/overview/image-generation/",
+      "released": 2025
+    },
+    {
+      "name": "Luma Dream Machine",
+      "company": "Luma AI",
+      "category": "Video",
+      "does": "Video generation from text and images with realistic motion, plus tools to extend, edit and restyle clips.",
+      "cost": "Freemium",
+      "pros": [
+        "Smooth, realistic motion",
+        "Easy image-to-video"
+      ],
+      "cons": [
+        "Short clips",
+        "Credit limits"
+      ],
+      "url": "https://lumalabs.ai/dream-machine",
+      "released": 2024
+    },
+    {
+      "name": "Meshy",
+      "company": "Meshy",
+      "category": "3D",
+      "does": "Creates textured 3D models from text or images for games, 3D printing and AR, with export to common formats.",
+      "cost": "Freemium",
+      "pros": [
+        "Fast text-to-3D and image-to-3D",
+        "Exports to game engines"
+      ],
+      "cons": [
+        "Models may need cleanup",
+        "Credit limits"
+      ],
+      "url": "https://www.meshy.ai",
+      "released": 2023
+    },
+    {
+      "name": "Make",
+      "company": "Make (Celonis)",
+      "category": "Automation",
+      "does": "Visual no-code automation platform (formerly Integromat) for connecting apps, with AI modules and agents.",
+      "cost": "Freemium",
+      "pros": [
+        "Powerful visual scenarios",
+        "Cheaper than Zapier for many tasks"
+      ],
+      "cons": [
+        "Steeper learning curve",
+        "Operations-based pricing"
+      ],
+      "url": "https://www.make.com"
+    },
+    {
+      "name": "Microsoft Power Automate",
+      "company": "Microsoft",
+      "category": "Automation",
+      "does": "Workflow automation for Microsoft 365 and other apps, with desktop RPA and Copilot to build flows from plain language.",
+      "cost": "Subscription",
+      "pros": [
+        "Deep Microsoft 365 integration",
+        "Includes desktop automation (RPA)"
+      ],
+      "cons": [
+        "Licensing can be confusing",
+        "Best inside the Microsoft ecosystem"
+      ],
+      "url": "https://www.microsoft.com/power-platform/products/power-automate",
+      "released": 2016
+    },
+    {
+      "name": "Granola",
+      "company": "Granola",
+      "category": "Meetings",
+      "does": "AI notepad for meetings: transcribes your computer audio without a bot joining the call and turns your rough notes into clean summaries.",
+      "cost": "Freemium",
+      "pros": [
+        "No meeting bot needed",
+        "Combines your notes with the transcript"
+      ],
+      "cons": [
+        "Desktop focus",
+        "Free use is limited"
+      ],
+      "url": "https://www.granola.ai",
+      "released": 2024
     }
   ]
 }

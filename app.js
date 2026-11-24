@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=193';
-import { ADMIN_HASH } from './admin-hash.js?v=193';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=195';
+import { ADMIN_HASH } from './admin-hash.js?v=195';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -253,10 +253,10 @@ loadCerts();
 // ---------- AI tools dictionary (tools.json) ----------
 // tool groups by theme for the 4-column view (unknown categories go to the last column)
 const TOOL_COLS = [
-  ['Chat assistant', 'Search / research', 'AI agent', 'Local AI', 'Model gateway'],
-  ['Coding', 'App builder', 'Framework', 'Developer platform', 'Web hosting', 'Model serving', 'MLOps', 'Cloud AI platform', 'Vector database'],
-  ['Image', 'Video', 'Audio / voice', 'Design', 'Presentations', 'Social media'],
-  ['Writing', 'Productivity', 'Meetings', 'Automation', 'Legal', 'Careers', 'Utilities'],
+  ['Chat assistant', 'Search / research', 'AI browser', 'AI agent', 'Local AI', 'Model gateway'],
+  ['Coding', 'App builder', 'Framework', 'Developer platform', 'Web hosting', 'Model serving', 'MLOps', 'Observability', 'AI security', 'Cloud AI platform', 'Vector database'],
+  ['Image', 'Video', 'Audio / voice', '3D', 'Design', 'Presentations', 'Social media'],
+  ['Writing', 'Productivity', 'Meetings', 'Automation', 'Translation', 'Data analysis', 'Customer support', 'Education', 'Legal', 'Careers', 'Utilities'],
 ];
 // Places every group button in its column, row by row. An opened group keeps its (highlighted) button in place
 // and its tools move into a full-width panel under that row; closing it moves the tools back.
@@ -284,7 +284,7 @@ function layoutTools() {
 }
 async function loadTools() {
   let d;
-  try { d = await (await fetch('tools.json?v=6')).json(); } catch { $('#tools-list').innerHTML = '<p class="muted">Could not load the tools.</p>'; return; }
+  try { d = await (await fetch('tools.json?v=8')).json(); } catch { $('#tools-list').innerHTML = '<p class="muted">Could not load the tools.</p>'; return; }
   $('#tools-checked').textContent = `Last checked: ${d.checked}.`;
   $('#tool-cat').innerHTML += [...new Set(d.tools.map(t => t.category))].sort().map(c => opt(c)).join('');
   const costKind = c => { c = c.toLowerCase(); return { free: /free|open/.test(c) && !/freemium/.test(c), freemium: /freemium|free tier|free app|free to try/.test(c), paid: /subscription|paid|licen|included/.test(c), usage: /pay-per-use|api/.test(c) }; };
@@ -300,10 +300,10 @@ async function loadTools() {
     // inside a cost level: free kinds in FREE order; plain 'Freemium' before 'Freemium; ...' variants
     const sub = (a, b) => rank(a) === 0 ? freeKind(a.cost) - freeKind(b.cost) : rank(a) === 1 ? (a.cost !== 'Freemium') - (b.cost !== 'Freemium') || a.cost.localeCompare(b.cost) : 0;
     // broad domain per category (unknown categories fall into Other)
-    const DOMAINS = [['LLMs and assistants', ['Chat assistant', 'Search / research', 'AI agent', 'Local AI', 'Model gateway']], ['Coding and app building', ['Coding', 'App builder']],
-      ['Image and design', ['Image', 'Design']], ['Video', ['Video']], ['Voice and audio', ['Audio / voice', 'Meetings']], ['Database', ['Vector database']],
-      ['Developer and infrastructure', ['Developer platform', 'Web hosting', 'Framework', 'Model serving', 'MLOps', 'Cloud AI platform', 'Automation']],
-      ['Business and productivity', ['Productivity', 'Writing', 'Presentations', 'Social media', 'Legal', 'Careers', 'Utilities']]];
+    const DOMAINS = [['LLMs and assistants', ['Chat assistant', 'Search / research', 'AI browser', 'AI agent', 'Local AI', 'Model gateway']], ['Coding and app building', ['Coding', 'App builder']],
+      ['Image and design', ['Image', 'Design', '3D']], ['Video', ['Video']], ['Voice and audio', ['Audio / voice', 'Meetings']], ['Database', ['Vector database']],
+      ['Developer and infrastructure', ['Developer platform', 'Web hosting', 'Framework', 'Model serving', 'MLOps', 'Observability', 'AI security', 'Cloud AI platform', 'Automation']],
+      ['Business and productivity', ['Productivity', 'Writing', 'Presentations', 'Social media', 'Translation', 'Data analysis', 'Customer support', 'Education', 'Legal', 'Careers', 'Utilities']]];
     const domainOf = t => { const i = DOMAINS.findIndex(([, cs]) => cs.includes(t.category)); return i < 0 ? DOMAINS.length : i; };
     const by = f => (a, b) => f(a, b) || a.name.localeCompare(b.name);
     const sorts = { az: by(() => 0), za: (a, b) => b.name.localeCompare(a.name), free: by((a, b) => rank(a) - rank(b) || sub(a, b)), paid: by((a, b) => rank(b) - rank(a) || sub(a, b)),
