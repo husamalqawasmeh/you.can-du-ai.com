@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=207';
-import { ADMIN_HASH } from './admin-hash.js?v=207';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=208';
+import { ADMIN_HASH } from './admin-hash.js?v=208';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -747,6 +747,7 @@ Rules: for "tf" the answer is exactly "True" or "False"; for "mcq" the answer mu
     save();
     genForm.subject.value = ''; genForm.newtopic.value = '';
     status.textContent = `Created "${course.title}": ${modules.length} lessons, ${qs.length} test questions.`;
+    $('#gen-box').open = true; // show the new course
     $('#gen-list details')?.setAttribute('open', '');
   } catch (err) {
     status.textContent = 'Failed: ' + err.message;
