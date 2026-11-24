@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=260';
-import { ADMIN_HASH } from './admin-hash.js?v=260';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=263';
+import { ADMIN_HASH } from './admin-hash.js?v=263';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -1214,9 +1214,9 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=260')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=263')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
-const TOPIC_RENAMED = { 'AI Hardware': 'AI Hardware/GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers' };
+const TOPIC_RENAMED = { 'AI Hardware': 'AI Hardware/GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents' };
 const rn = t => TOPIC_RENAMED[t] ?? t;
 if (db.topics) db.topics = [...new Set(db.topics.map(rn))];
 for (const k of ['questions', 'sources', 'notes', 'courses']) for (const x of db[k] ?? []) {
@@ -1227,6 +1227,13 @@ for (const r of db.results ?? []) {
   if (Array.isArray(r.topics)) r.topics = r.topics.map(rn);
   if (r.byTopic) r.byTopic = Object.fromEntries(Object.entries(r.byTopic).map(([t, v]) => [rn(t), v]));
   for (const it of r.items ?? []) if (it.topic) it.topic = rn(it.topic);
+}
+// one-time: MCP questions moved from Agents to the new MCPs topic (later admin edits are kept)
+db.migrations ??= [];
+if (!db.migrations.includes('mcps')) {
+  const ids = new Set(["q-mcp-1","q-mcp-2","q-mcp-3","q-mcp-4","q2-91","q2-92","q2-93","q2-97","q3-59","q3-69","q3-260","q3-261","q3-262"]);
+  for (const q of db.questions ?? []) if (ids.has(q.id) && q.topic === 'Agents') q.topic = 'MCPs';
+  db.migrations.push('mcps');
 }
 mergeSeed(db, seed);
 // built-in topics always follow seed.json order (it is laid out as the 5-column test grid); topics added in this browser come after

@@ -13,16 +13,18 @@
     "AI Security",
     "Prompt Engineering",
     "Frontier Labs",
-    "Agents & MCP",
+    "Agents",
     "CLI",
     "Benchmarking",
     "Context Engineering",
     "AI Risk Management",
-    "Decision Models",
+    "OpenClaw/BOTs",
     "AI Sizing",
     "Game Engines",
     "Harness Engineering",
-    "Global AI Incidents"
+    "Global AI Incidents",
+    "MCPs",
+    "Decision Models"
   ],
   "sources": [
     {
@@ -1035,7 +1037,7 @@
     },
     {
       "id": "src-93",
-      "topic": "Agents & MCP",
+      "topic": "MCPs",
       "type": "Docs",
       "title": "MCP specification",
       "url": "https://modelcontextprotocol.io/specification",
@@ -1044,7 +1046,7 @@
     },
     {
       "id": "src-94",
-      "topic": "Agents & MCP",
+      "topic": "MCPs",
       "type": "Website",
       "title": "Introducing the Model Context Protocol (Anthropic)",
       "url": "https://www.anthropic.com/news/model-context-protocol",
@@ -1053,7 +1055,7 @@
     },
     {
       "id": "src-95",
-      "topic": "Agents & MCP",
+      "topic": "MCPs",
       "type": "Website",
       "title": "MCP reference servers (GitHub)",
       "url": "https://github.com/modelcontextprotocol/servers",
@@ -1062,7 +1064,7 @@
     },
     {
       "id": "src-96",
-      "topic": "Agents & MCP",
+      "topic": "Agents",
       "type": "Docs",
       "title": "OpenAI Agents SDK",
       "url": "https://openai.github.io/openai-agents-python/",
@@ -1071,7 +1073,7 @@
     },
     {
       "id": "src-97",
-      "topic": "Agents & MCP",
+      "topic": "Agents",
       "type": "Docs",
       "title": "Google Agent Development Kit (ADK)",
       "url": "https://google.github.io/adk-docs/",
@@ -1080,7 +1082,7 @@
     },
     {
       "id": "src-98",
-      "topic": "Agents & MCP",
+      "topic": "Agents",
       "type": "Website",
       "title": "Agent2Agent (A2A) protocol",
       "url": "https://a2a-protocol.org",
@@ -1089,7 +1091,7 @@
     },
     {
       "id": "src-99",
-      "topic": "Agents & MCP",
+      "topic": "Agents",
       "type": "Website",
       "title": "LLM Powered Autonomous Agents (Lilian Weng)",
       "url": "https://lilianweng.github.io/posts/2023-06-23-agent/",
@@ -1098,7 +1100,7 @@
     },
     {
       "id": "src-100",
-      "topic": "Agents & MCP",
+      "topic": "Agents",
       "type": "Paper",
       "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
       "url": "https://arxiv.org/abs/2210.03629",
@@ -1449,7 +1451,7 @@
     },
     {
       "id": "src-140",
-      "topic": "Agents & MCP",
+      "topic": "MCPs",
       "type": "Website",
       "title": "Model Context Protocol (Wikipedia)",
       "url": "https://en.wikipedia.org/wiki/Model_Context_Protocol",
@@ -1458,7 +1460,7 @@
     },
     {
       "id": "src-141",
-      "topic": "Agents & MCP",
+      "topic": "MCPs",
       "type": "Website",
       "title": "Agentic AI Foundation (AAIF) blog: MCP spec changes",
       "url": "https://aaif.io/blog/mcp-2026-changes-the-rules",
@@ -1467,7 +1469,7 @@
     },
     {
       "id": "src-142",
-      "topic": "Agents & MCP",
+      "topic": "Agents",
       "type": "Website",
       "title": "IBM: What is the Agent2Agent (A2A) protocol?",
       "url": "https://www.ibm.com/think/topics/agent2agent-protocol",
@@ -1825,14 +1827,14 @@
     },
     {
       "id": "note-12",
-      "topic": "Agents & MCP",
+      "topic": "MCPs",
       "title": "MCP in one page",
       "body": "MCP (Model Context Protocol) is an open standard for connecting AI applications to tools and data. Roles: the HOST is the AI app (e.g. Claude Code, an IDE); inside it, a CLIENT keeps a 1:1 connection to each SERVER; a server exposes capabilities. Server primitives: TOOLS (functions the model can call), RESOURCES (data the app can read, like files or records) and PROMPTS (reusable templates). Clients can offer SAMPLING (a server asks the client's model for a completion) and ROOTS. Transports: stdio for local servers, Streamable HTTP for remote ones. Messages use JSON-RPC 2.0. Why it matters: write a tool once and use it in any MCP host, instead of a custom integration per app. Risks: untrusted servers, tool poisoning and prompt injection, so apply least privilege and require user approval for risky actions.",
       "sourceId": "src-93"
     },
     {
       "id": "note-13",
-      "topic": "Agents & MCP",
+      "topic": "Agents",
       "title": "Agent patterns",
       "body": "An agent is an LLM that decides its own next steps and tool calls in a loop (ReAct: think, act, observe). Simpler WORKFLOWS follow fixed code paths. Common patterns: prompt chaining, routing, parallelization, orchestrator-workers (a lead model splits work and delegates), evaluator-optimizer (one model critiques, another improves), and multi-agent handoffs. Building blocks: tools, memory (short-term context plus long-term stores), planning, guardrails and tracing. Start with the simplest design that works; add autonomy only when it pays off. A2A is a protocol for agents to talk to other agents; MCP connects an agent to tools.",
       "sourceId": "src-99"
@@ -2322,14 +2324,14 @@
     },
     {
       "id": "note-83",
-      "topic": "Agents & MCP",
+      "topic": "MCPs",
       "title": "MCP in 2026: governance, versions and what changed",
       "body": "The Model Context Protocol (MCP), launched by Anthropic in November 2024, is an open standard that lets AI apps (hosts) connect to tools and data through servers. A host runs one client per server; servers expose tools (actions), resources (data) and prompts (templates) over JSON-RPC. The spec is versioned by date: 2024-11-05 (first release), 2025-03-26 (Streamable HTTP transport and OAuth-based authorization), 2025-06-18 (structured tool output and elicitation, where a server asks the user for input) and 2025-11-25 (async tasks for long-running work and an extensions system, among other changes). In December 2025 Anthropic donated MCP to the Agentic AI Foundation (AAIF), a fund hosted by the Linux Foundation and co-founded with OpenAI and Block, so changes now go through public Specification Enhancement Proposals (SEPs). Later 2026 revisions continue to simplify the protocol; check modelcontextprotocol.io for the current version. Practical lesson: pin the spec version your client and server support, and prefer remote servers with OAuth over sharing long-lived API keys.",
       "sourceId": "src-140"
     },
     {
       "id": "note-84",
-      "topic": "Agents & MCP",
+      "topic": "Agents",
       "title": "A2A vs MCP: agent-to-agent vs agent-to-tool",
       "body": "Agent2Agent (A2A) is an open protocol, first introduced by Google in 2025 and now a Linux Foundation project, for one AI agent to discover and delegate work to another. Each agent publishes an Agent Card, a JSON document usually at /.well-known/agent.json, listing its skills, accepted input and output types and how to authenticate. Work is sent as a Task, which moves through states such as submitted, working, input-required and completed; long jobs report progress by streaming or push notifications. A2A runs over HTTP and JSON-RPC. MCP solves a different problem: connecting one agent to tools and data (databases, APIs, files). A simple rule: use MCP when an agent needs a capability, and A2A when it needs a colleague. Many systems use both: an agent uses MCP internally to read its database, then uses A2A to ask a supplier's agent to place an order. Security matters for both: verify agent identity, limit what a delegated agent may do and log every hand-off.",
       "sourceId": "src-142"
@@ -3757,7 +3759,7 @@
     },
     {
       "id": "q-mcp-1",
-      "topic": "Agents & MCP",
+      "topic": "MCPs",
       "type": "mcq",
       "difficulty": "easy",
       "prompt": "In MCP, which component exposes tools, resources and prompts?",
@@ -3773,7 +3775,7 @@
     },
     {
       "id": "q-mcp-2",
-      "topic": "Agents & MCP",
+      "topic": "MCPs",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "Which are the three main primitives an MCP server can expose?",
@@ -3789,7 +3791,7 @@
     },
     {
       "id": "q-mcp-3",
-      "topic": "Agents & MCP",
+      "topic": "MCPs",
       "type": "tf",
       "difficulty": "medium",
       "prompt": "MCP servers can run locally over stdio or remotely over HTTP.",
@@ -3799,7 +3801,7 @@
     },
     {
       "id": "q-mcp-4",
-      "topic": "Agents & MCP",
+      "topic": "MCPs",
       "type": "mcq",
       "difficulty": "hard",
       "prompt": "What does the MCP \"sampling\" feature let a server do?",
@@ -3815,7 +3817,7 @@
     },
     {
       "id": "q-mcp-5",
-      "topic": "Agents & MCP",
+      "topic": "Agents",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "The ReAct approach interleaves which two things?",
@@ -3831,7 +3833,7 @@
     },
     {
       "id": "q-mcp-6",
-      "topic": "Agents & MCP",
+      "topic": "Agents",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "In the orchestrator-workers pattern, what does the orchestrator do?",
@@ -3847,7 +3849,7 @@
     },
     {
       "id": "q-mcp-7",
-      "topic": "Agents & MCP",
+      "topic": "Agents",
       "type": "short",
       "difficulty": "medium",
       "prompt": "What is the open protocol (introduced by Google in 2025) that lets AI agents communicate with other agents?",
@@ -3857,7 +3859,7 @@
     },
     {
       "id": "q-mcp-8",
-      "topic": "Agents & MCP",
+      "topic": "Agents",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "Which security principle best limits the damage a compromised or manipulated agent can do?",
@@ -3873,7 +3875,7 @@
     },
     {
       "id": "q-mcp-9",
-      "topic": "Agents & MCP",
+      "topic": "Agents",
       "type": "tf",
       "difficulty": "easy",
       "prompt": "An AI agent lets the LLM decide its own next steps and tool calls, instead of following a fixed code path.",
@@ -5387,7 +5389,7 @@
     },
     {
       "id": "q2-91",
-      "topic": "Agents & MCP",
+      "topic": "MCPs",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "Which message format does MCP use?",
@@ -5403,7 +5405,7 @@
     },
     {
       "id": "q2-92",
-      "topic": "Agents & MCP",
+      "topic": "MCPs",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "Which of these is an example of an MCP host?",
@@ -5419,7 +5421,7 @@
     },
     {
       "id": "q2-93",
-      "topic": "Agents & MCP",
+      "topic": "MCPs",
       "type": "tf",
       "difficulty": "medium",
       "prompt": "In MCP, each client keeps a one-to-one connection with a single server.",
@@ -5429,7 +5431,7 @@
     },
     {
       "id": "q2-94",
-      "topic": "Agents & MCP",
+      "topic": "Agents",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "In the evaluator-optimizer pattern, what happens?",
@@ -5445,7 +5447,7 @@
     },
     {
       "id": "q2-95",
-      "topic": "Agents & MCP",
+      "topic": "Agents",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "What is the routing pattern?",
@@ -5461,7 +5463,7 @@
     },
     {
       "id": "q2-96",
-      "topic": "Agents & MCP",
+      "topic": "Agents",
       "type": "short",
       "difficulty": "medium",
       "prompt": "What is agent memory that persists across sessions usually called (two words)?",
@@ -5471,7 +5473,7 @@
     },
     {
       "id": "q2-97",
-      "topic": "Agents & MCP",
+      "topic": "MCPs",
       "type": "mcq",
       "difficulty": "hard",
       "prompt": "What is \"tool poisoning\" in MCP?",
@@ -5487,7 +5489,7 @@
     },
     {
       "id": "q2-98",
-      "topic": "Agents & MCP",
+      "topic": "Agents",
       "type": "tf",
       "difficulty": "easy",
       "prompt": "Agents usually use more tokens than a single LLM call for the same request.",
@@ -5497,7 +5499,7 @@
     },
     {
       "id": "q2-99",
-      "topic": "Agents & MCP",
+      "topic": "Agents",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "What is a handoff in a multi-agent system?",
@@ -6591,7 +6593,7 @@
     },
     {
       "id": "q3-59",
-      "topic": "Agents & MCP",
+      "topic": "MCPs",
       "type": "fill",
       "difficulty": "easy",
       "prompt": "MCP stands for Model ___ Protocol.",
@@ -6787,7 +6789,7 @@
     },
     {
       "id": "q3-69",
-      "topic": "Agents & MCP",
+      "topic": "MCPs",
       "type": "match",
       "difficulty": "medium",
       "prompt": "Connect each MCP part to its role.",
@@ -6879,7 +6881,7 @@
     },
     {
       "id": "q3-73",
-      "topic": "Agents & MCP",
+      "topic": "Agents",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "How does LangGraph model an agent workflow?",
@@ -6895,7 +6897,7 @@
     },
     {
       "id": "q3-74",
-      "topic": "Agents & MCP",
+      "topic": "Agents",
       "type": "mcq",
       "difficulty": "hard",
       "prompt": "In LangGraph, what lets a run pause (for example for human approval) and resume later, even after a crash?",
@@ -6921,7 +6923,7 @@
     },
     {
       "id": "q3-76",
-      "topic": "Agents & MCP",
+      "topic": "Agents",
       "type": "fill",
       "difficulty": "easy",
       "prompt": "The LangChain library for building stateful, multi-step agents as graphs is called ___.",
@@ -9875,7 +9877,7 @@
     },
     {
       "id": "q3-260",
-      "topic": "Agents & MCP",
+      "topic": "MCPs",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "In December 2025, Anthropic donated the Model Context Protocol to which organization?",
@@ -9891,7 +9893,7 @@
     },
     {
       "id": "q3-261",
-      "topic": "Agents & MCP",
+      "topic": "MCPs",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "Which MCP spec version introduced the Streamable HTTP transport and OAuth-based authorization?",
@@ -9907,7 +9909,7 @@
     },
     {
       "id": "q3-262",
-      "topic": "Agents & MCP",
+      "topic": "MCPs",
       "type": "tf",
       "difficulty": "medium",
       "prompt": "MCP \"elicitation\" lets a server ask the user for extra information during a task.",
@@ -9917,7 +9919,7 @@
     },
     {
       "id": "q3-263",
-      "topic": "Agents & MCP",
+      "topic": "Agents",
       "type": "mcq",
       "difficulty": "easy",
       "prompt": "Which protocol is designed for one AI agent to delegate a task to another agent?",
@@ -9933,7 +9935,7 @@
     },
     {
       "id": "q3-264",
-      "topic": "Agents & MCP",
+      "topic": "Agents",
       "type": "fill",
       "difficulty": "medium",
       "prompt": "In A2A, each agent publishes a JSON ___ ___ (usually at /.well-known/agent.json) describing its skills and authentication.",
