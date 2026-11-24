@@ -566,7 +566,7 @@
       "name": "Kling",
       "company": "Kuaishou",
       "category": "Video",
-      "does": "Text- and image-to-video generation.",
+      "does": "Kuaishou's video generator for text-to-video and image-to-video. Recent versions (Kling 3.0, 2026) combine image, video and audio in one model, with multi-shot scenes, consistent characters and native sound; often rated one of the best-value video models.",
       "cost": "Freemium",
       "pros": [
         "Strong motion quality",
@@ -2546,6 +2546,23 @@
       ],
       "url": "https://hailuoai.video",
       "released": 2024
+    },
+    {
+      "name": "Inkling",
+      "company": "Thinking Machines Lab",
+      "category": "Open model",
+      "does": "Open-weight multimodal model from Thinking Machines Lab (founded by former OpenAI CTO Mira Murati), released in July 2026: a Mixture-of-Experts model with about 975B total and 41B active parameters, a context window of up to 1 million tokens and adjustable thinking effort. Apache 2.0 weights on Hugging Face; also available through the Tinker platform.",
+      "cost": "Free (open weights)",
+      "pros": [
+        "Apache 2.0 license allows commercial use",
+        "Very long context and multimodal input"
+      ],
+      "cons": [
+        "Huge model, expensive to self-host",
+        "Below the top frontier models on independent rankings"
+      ],
+      "url": "https://thinkingmachines.ai",
+      "released": 2026
     }
   ]
 }
