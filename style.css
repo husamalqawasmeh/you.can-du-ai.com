@@ -361,3 +361,7 @@ header .topbar { display: flex; align-items: center; gap: 8px; }
 #cfg-vendors label:nth-child(5n) { max-width: 124px; }
 /* Question types: five options spread across the full width on their own */
 #test-config #cfg-types { grid-template-columns: repeat(5, max-content); justify-content: space-between; }
+/* admin topic list: compact move arrows and level picker */
+#topic-list .row { align-items: center; gap: 6px; }
+#topic-list .mv { padding: 2px 9px; font-weight: 700; line-height: 1.2; }
+#topic-list select { width: auto; margin: 0; padding: 3px 6px; }

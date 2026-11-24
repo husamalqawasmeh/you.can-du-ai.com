@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=275';
-import { ADMIN_HASH } from './admin-hash.js?v=275';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=276';
+import { ADMIN_HASH } from './admin-hash.js?v=276';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -89,7 +89,7 @@ function render() {
   // topics
   $('#topic-list').innerHTML = db.topics.map(t => {
     const n = db.questions.filter(q => q.topic === t).length;
-    return `<li><div class="topic-row"><span>${esc(t)}</span><span class="tag">${n} questions</span></div><span class="row">${seed.topics?.includes(t) ? '' : `<button type="button" data-rename-topic="${esc(t)}">Rename</button>`}<button type="button" class="del" data-del-topic="${esc(t)}">Delete</button></span></li>`;
+    return `<li><div class="topic-row"><span>${esc(t)}</span><span class="tag">${n} questions</span></div><span class="row"><button type="button" class="mv" data-move-topic="${esc(t)}" data-dir="-1" aria-label="Move ${esc(t)} up" title="Move up">↑</button><button type="button" class="mv" data-move-topic="${esc(t)}" data-dir="1" aria-label="Move ${esc(t)} down" title="Move down">↓</button><select data-topic-level="${esc(t)}" aria-label="Level of ${esc(t)}">${[['', 'Level…'], ['easy', 'Easy'], ['medium', 'Medium'], ['difficult', 'Difficult']].map(([v, l]) => `<option value="${v}" ${(db.topicLevels?.[t] ?? '') === v ? 'selected' : ''}>${l}</option>`).join('')}</select>${seed.topics?.includes(t) ? '' : `<button type="button" data-rename-topic="${esc(t)}">Rename</button>`}<button type="button" class="del" data-del-topic="${esc(t)}">Delete</button></span></li>`;
   }).join('');
 
   // library
@@ -367,6 +367,25 @@ $('#q-search').oninput = render;
 // admin: change a question's topic or difficulty right in the list
 $('#q-list').addEventListener('change', e => { const f = e.target.dataset.qSet, q = f && db.questions.find(x => x.id === e.target.dataset.id); if (q) { q[f] = e.target.value; save(); } });
 
+// admin topic list: move a topic up or down (sets this browser's own topic order) and mark its level
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-move-topic]');
+  if (!b) return;
+  const i = db.topics.indexOf(b.dataset.moveTopic), j = i + +b.dataset.dir;
+  if (i < 0 || j < 0 || j >= db.topics.length) return;
+  [db.topics[i], db.topics[j]] = [db.topics[j], db.topics[i]];
+  db.topicOrder = [...db.topics];
+  save();
+  document.querySelector(`[data-move-topic="${CSS.escape(b.dataset.moveTopic)}"][data-dir="${b.dataset.dir}"]`)?.focus();
+});
+$('#topic-list').addEventListener('change', e => {
+  const t = e.target.dataset.topicLevel;
+  if (t === undefined) return;
+  db.topicLevels ??= {};
+  if (e.target.value) db.topicLevels[t] = e.target.value; else delete db.topicLevels[t];
+  save();
+});
+
 // ---------- deletes ----------
 // rename a topic added in this browser, everywhere it is used
 document.addEventListener('click', e => {
@@ -376,6 +395,8 @@ document.addEventListener('click', e => {
   if (!name || name === old) return;
   if (db.topics.some(t => t.toLowerCase() === name.toLowerCase() && t !== old)) return alert('That topic already exists.');
   db.topics = db.topics.map(t => t === old ? name : t);
+  if (db.topicOrder) db.topicOrder = db.topicOrder.map(t => t === old ? name : t);
+  if (db.topicLevels?.[old]) { db.topicLevels[name] = db.topicLevels[old]; delete db.topicLevels[old]; }
   for (const k of ['questions', 'sources', 'notes', 'courses']) for (const x of db[k] ?? []) {
     if (x.topic === old) x.topic = name;
     if (Array.isArray(x.topics)) x.topics = x.topics.map(t => t === old ? name : t);
@@ -1214,11 +1235,13 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=275')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=276')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Infra./GPUs', 'AI Hardware/GPUs': 'AI Infra./GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents' };
 const rn = t => TOPIC_RENAMED[t] ?? t;
 if (db.topics) db.topics = [...new Set(db.topics.map(rn))];
+if (db.topicOrder) db.topicOrder = [...new Set(db.topicOrder.map(rn))];
+if (db.topicLevels) db.topicLevels = Object.fromEntries(Object.entries(db.topicLevels).map(([t, v]) => [rn(t), v]));
 for (const k of ['questions', 'sources', 'notes', 'courses']) for (const x of db[k] ?? []) {
   if (x.topic) x.topic = rn(x.topic);
   if (Array.isArray(x.topics)) x.topics = x.topics.map(rn);
@@ -1236,6 +1259,7 @@ if (!db.migrations.includes('mcps')) {
   db.migrations.push('mcps');
 }
 mergeSeed(db, seed);
-// built-in topics always follow seed.json order (it is laid out as the 5-column test grid); topics added in this browser come after
-if (seed.topics) db.topics = seed.topics.filter(t => db.topics.includes(t)).concat(db.topics.filter(t => !seed.topics.includes(t)));
+// topics follow the order set with the admin arrows in this browser, else seed.json order (laid out as the 5-column test grid); any others come after
+const order = db.topicOrder ?? seed.topics;
+if (order) db.topics = order.filter(t => db.topics.includes(t)).concat(db.topics.filter(t => !order.includes(t)));
 save();
