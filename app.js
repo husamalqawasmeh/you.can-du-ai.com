@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=203';
-import { ADMIN_HASH } from './admin-hash.js?v=203';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=204';
+import { ADMIN_HASH } from './admin-hash.js?v=204';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -253,7 +253,7 @@ loadCerts();
 // ---------- AI tools dictionary (tools.json) ----------
 // tool groups by theme for the 4-column view (unknown categories go to the last column)
 const TOOL_COLS = [
-  ['Chat assistant', 'Search / research', 'AI browser', 'AI agent', 'Local AI', 'Model gateway'],
+  ['Chat assistant', 'Open model', 'Search / research', 'AI browser', 'AI agent', 'Local AI', 'Model gateway'],
   ['Coding', 'App builder', 'Framework', 'Developer platform', 'Web hosting', 'Model serving', 'MLOps', 'Observability', 'AI security', 'Cloud AI platform', 'Vector database'],
   ['Image', 'Video', 'Audio / voice', '3D', 'Design', 'Presentations', 'Social media'],
   ['Writing', 'Productivity', 'Meetings', 'Automation', 'Translation', 'Data analysis', 'Customer support', 'Education', 'Legal', 'Careers', 'Utilities'],
@@ -284,7 +284,7 @@ function layoutTools() {
 }
 async function loadTools() {
   let d;
-  try { d = await (await fetch('tools.json?v=9')).json(); } catch { $('#tools-list').innerHTML = '<p class="muted">Could not load the tools.</p>'; return; }
+  try { d = await (await fetch('tools.json?v=10')).json(); } catch { $('#tools-list').innerHTML = '<p class="muted">Could not load the tools.</p>'; return; }
   $('#tools-checked').textContent = `Last checked: ${d.checked}.`;
   $('#tool-cat').innerHTML += [...new Set(d.tools.map(t => t.category))].sort().map(c => opt(c)).join('');
   const costKind = c => { c = c.toLowerCase(); return { free: /free|open/.test(c) && !/freemium/.test(c), freemium: /freemium|free tier|free app|free to try/.test(c), paid: /subscription|paid|licen|included/.test(c), usage: /pay-per-use|api/.test(c) }; };
@@ -300,7 +300,7 @@ async function loadTools() {
     // inside a cost level: free kinds in FREE order; plain 'Freemium' before 'Freemium; ...' variants
     const sub = (a, b) => rank(a) === 0 ? freeKind(a.cost) - freeKind(b.cost) : rank(a) === 1 ? (a.cost !== 'Freemium') - (b.cost !== 'Freemium') || a.cost.localeCompare(b.cost) : 0;
     // broad domain per category (unknown categories fall into Other)
-    const DOMAINS = [['LLMs and assistants', ['Chat assistant', 'Search / research', 'AI browser', 'AI agent', 'Local AI', 'Model gateway']], ['Coding and app building', ['Coding', 'App builder']],
+    const DOMAINS = [['LLMs and assistants', ['Chat assistant', 'Open model', 'Search / research', 'AI browser', 'AI agent', 'Local AI', 'Model gateway']], ['Coding and app building', ['Coding', 'App builder']],
       ['Image and design', ['Image', 'Design', '3D']], ['Video', ['Video']], ['Voice and audio', ['Audio / voice', 'Meetings']], ['Database', ['Vector database']],
       ['Developer and infrastructure', ['Developer platform', 'Web hosting', 'Framework', 'Model serving', 'MLOps', 'Observability', 'AI security', 'Cloud AI platform', 'Automation']],
       ['Business and productivity', ['Productivity', 'Writing', 'Presentations', 'Social media', 'Translation', 'Data analysis', 'Customer support', 'Education', 'Legal', 'Careers', 'Utilities']]];

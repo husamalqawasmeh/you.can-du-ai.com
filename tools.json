@@ -2360,6 +2360,192 @@
         "Mostly one main maintainer; check forks and docs carefully"
       ],
       "url": "https://github.com/diegosouzapw/OmniRoute"
+    },
+    {
+      "name": "Xiaomi MiMo",
+      "company": "Xiaomi",
+      "category": "Open model",
+      "does": "Xiaomi's MIT-licensed open-weight models for reasoning, coding and agents. MiMo-V2-Flash (December 2025) is a Mixture-of-Experts model with 309B total and 15B active parameters; newer V2.5 and V2.6 versions followed. Available on Hugging Face, MiMo Studio and an API.",
+      "cost": "Free (open weights); paid API",
+      "pros": [
+        "Permissive MIT license",
+        "Strong coding and agent results for its cost"
+      ],
+      "cons": [
+        "Large models need serious GPUs to self-host",
+        "Newer ecosystem and docs"
+      ],
+      "url": "https://mimo.xiaomi.com",
+      "released": 2025
+    },
+    {
+      "name": "NVIDIA Nemotron",
+      "company": "NVIDIA",
+      "category": "Open model",
+      "does": "NVIDIA's family of open models released together with open training data and recipes. Nemotron 3 (from December 2025) comes in Nano, Super and Ultra sizes: efficient hybrid Mixture-of-Experts models built for agents.",
+      "cost": "Free (open weights)",
+      "pros": [
+        "Weights, data and recipes are open",
+        "Optimized for NVIDIA GPUs and NIM"
+      ],
+      "cons": [
+        "NVIDIA model license terms to check",
+        "Biggest models need data-center GPUs"
+      ],
+      "url": "https://developer.nvidia.com/nemotron",
+      "released": 2024
+    },
+    {
+      "name": "MiniMax",
+      "company": "MiniMax",
+      "category": "Open model",
+      "does": "Chinese AI lab whose open-weight MiniMax-M2 series (from October 2025; 230B total, 10B active parameters) is strong at coding and agentic tool use at low cost; it also powers the MiniMax Agent app.",
+      "cost": "Free (open weights); pay-per-use API",
+      "pros": [
+        "Low API price for strong coding",
+        "Open weights on Hugging Face"
+      ],
+      "cons": [
+        "Weaker than leaders on some general tasks",
+        "Data-residency questions for some companies"
+      ],
+      "url": "https://www.minimax.io",
+      "released": 2025
+    },
+    {
+      "name": "gpt-oss",
+      "company": "OpenAI",
+      "category": "Open model",
+      "does": "OpenAI's open-weight reasoning models (August 2025): gpt-oss-120b runs on a single 80 GB GPU and gpt-oss-20b on devices with 16 GB of memory. Apache 2.0 license.",
+      "cost": "Free (open weights)",
+      "pros": [
+        "Apache 2.0 license",
+        "Strong reasoning for its size"
+      ],
+      "cons": [
+        "Text only",
+        "Behind OpenAI's closed frontier models"
+      ],
+      "url": "https://openai.com/open-models/",
+      "released": 2025
+    },
+    {
+      "name": "Llama",
+      "company": "Meta",
+      "category": "Open model",
+      "does": "Meta's widely used family of open-weight models, from small on-device models to large multimodal ones; the base for many fine-tuned models.",
+      "cost": "Free (open weights, Llama license)",
+      "pros": [
+        "Huge community and tooling",
+        "Many sizes and fine-tunes"
+      ],
+      "cons": [
+        "Custom license with usage limits",
+        "Newer rivals often beat it"
+      ],
+      "url": "https://www.llama.com",
+      "released": 2023
+    },
+    {
+      "name": "Gemma",
+      "company": "Google",
+      "category": "Open model",
+      "does": "Google's lightweight open models built from Gemini research, including multimodal and on-device versions.",
+      "cost": "Free (open weights)",
+      "pros": [
+        "Small, efficient and multilingual",
+        "Runs well on laptops and phones"
+      ],
+      "cons": [
+        "Gemma license terms apply",
+        "Smaller than frontier models"
+      ],
+      "url": "https://ai.google.dev/gemma",
+      "released": 2024
+    },
+    {
+      "name": "Phi",
+      "company": "Microsoft",
+      "category": "Open model",
+      "does": "Microsoft's small language models trained on high-quality data, strong at reasoning for their size and suited to edge devices.",
+      "cost": "Free (open weights)",
+      "pros": [
+        "MIT license",
+        "Very capable for its small size"
+      ],
+      "cons": [
+        "Less world knowledge than big models",
+        "Mostly English-focused"
+      ],
+      "url": "https://azure.microsoft.com/products/phi",
+      "released": 2023
+    },
+    {
+      "name": "OLMo",
+      "company": "Ai2 (Allen Institute for AI)",
+      "category": "Open model",
+      "does": "Fully open language models: weights, training data, code and logs are all published, which makes them ideal for research and transparency.",
+      "cost": "Free (open source)",
+      "pros": [
+        "Truly open, including training data",
+        "Great for research and learning"
+      ],
+      "cons": [
+        "Not the strongest models",
+        "Smaller ecosystem"
+      ],
+      "url": "https://allenai.org/olmo",
+      "released": 2024
+    },
+    {
+      "name": "IBM Granite",
+      "company": "IBM",
+      "category": "Open model",
+      "does": "IBM's Apache 2.0 open models for business use: language, code, embedding and safety models, available on watsonx and Hugging Face.",
+      "cost": "Free (open weights)",
+      "pros": [
+        "Apache 2.0, built for enterprise",
+        "Discloses its training data"
+      ],
+      "cons": [
+        "Not frontier-level",
+        "Smaller community"
+      ],
+      "url": "https://www.ibm.com/granite",
+      "released": 2024
+    },
+    {
+      "name": "GLM",
+      "company": "Zhipu AI (Z.ai)",
+      "category": "Open model",
+      "does": "Open-weight GLM models from Zhipu AI for reasoning, coding and agents, plus the Z.ai chat app and API.",
+      "cost": "Free (open weights); pay-per-use API",
+      "pros": [
+        "Strong coding and agent results",
+        "Permissive licenses on recent models"
+      ],
+      "cons": [
+        "Large models are costly to self-host",
+        "Some docs are Chinese-first"
+      ],
+      "url": "https://z.ai"
+    },
+    {
+      "name": "Hailuo AI",
+      "company": "MiniMax",
+      "category": "Video",
+      "does": "MiniMax's video generator for text-to-video and image-to-video, known for realistic motion and good prompt following.",
+      "cost": "Freemium",
+      "pros": [
+        "Realistic motion",
+        "Good value"
+      ],
+      "cons": [
+        "Short clips",
+        "Credit limits"
+      ],
+      "url": "https://hailuoai.video",
+      "released": 2024
     }
   ]
 }
