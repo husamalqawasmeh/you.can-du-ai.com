@@ -1,7 +1,7 @@
 {
   "topics": [
     "AI Strategy",
-    "AI Hardware/GPUs",
+    "AI Infra./GPUs",
     "Model Fine-tuning",
     "Generative AI",
     "LLMs",
@@ -137,7 +137,7 @@
     },
     {
       "id": "src-13",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "Book",
       "title": "How to Scale Your Model (Google DeepMind)",
       "url": "https://jax-ml.github.io/scaling-book/",
@@ -146,7 +146,7 @@
     },
     {
       "id": "src-14",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "Website",
       "title": "NVIDIA Technical Blog",
       "url": "https://developer.nvidia.com/blog",
@@ -155,7 +155,7 @@
     },
     {
       "id": "src-15",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "Docs",
       "title": "NVIDIA Blackwell Architecture",
       "url": "https://www.nvidia.com/en-us/data-center/technologies/blackwell-architecture/",
@@ -164,7 +164,7 @@
     },
     {
       "id": "src-16",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "Docs",
       "title": "Google Cloud TPU documentation",
       "url": "https://cloud.google.com/tpu/docs",
@@ -173,7 +173,7 @@
     },
     {
       "id": "src-17",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "Book",
       "title": "The Ultra-Scale Playbook (Hugging Face)",
       "url": "https://huggingface.co/spaces/nanotron/ultrascale-playbook",
@@ -182,7 +182,7 @@
     },
     {
       "id": "src-18",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "Website",
       "title": "MLCommons MLPerf benchmarks",
       "url": "https://mlcommons.org/benchmarks/",
@@ -191,7 +191,7 @@
     },
     {
       "id": "src-19",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "Paper",
       "title": "FlashAttention: Fast and Memory-Efficient Exact Attention",
       "url": "https://arxiv.org/abs/2205.14135",
@@ -443,7 +443,7 @@
     },
     {
       "id": "src-47",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "Website",
       "title": "NVIDIA Research",
       "url": "https://research.nvidia.com/",
@@ -452,7 +452,7 @@
     },
     {
       "id": "src-48",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "Course",
       "title": "NVIDIA Deep Learning Institute (DLI)",
       "url": "https://www.nvidia.com/en-us/training/",
@@ -461,7 +461,7 @@
     },
     {
       "id": "src-49",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "Slides",
       "title": "NVIDIA On-Demand (GTC sessions and slides)",
       "url": "https://www.nvidia.com/en-us/on-demand/",
@@ -470,7 +470,7 @@
     },
     {
       "id": "src-50",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "Docs",
       "title": "NVIDIA Deep Learning Performance Guide",
       "url": "https://docs.nvidia.com/deeplearning/performance/",
@@ -479,7 +479,7 @@
     },
     {
       "id": "src-51",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "PDF",
       "title": "NVIDIA H100 (Hopper) Architecture Whitepaper",
       "url": "https://resources.nvidia.com/en-us-tensor-core/gtc22-whitepaper-hopper",
@@ -488,7 +488,7 @@
     },
     {
       "id": "src-52",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "Docs",
       "title": "AMD Instinct accelerators",
       "url": "https://www.amd.com/en/products/accelerators/instinct.html",
@@ -497,7 +497,7 @@
     },
     {
       "id": "src-53",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "Website",
       "title": "Cerebras blog",
       "url": "https://www.cerebras.ai/blog",
@@ -884,7 +884,7 @@
     },
     {
       "id": "src-mv-a8a163",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "Video",
       "title": "Maven: Free Ways to Use NVIDIA GPUs + Path to Certification",
       "url": "https://maven.com/p/a8a163/free-ways-to-use-nvidia-gp-us-path-to-certification-17-11",
@@ -1764,14 +1764,14 @@
     },
     {
       "id": "note-3",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "title": "Why decoding is memory-bound",
       "body": "At small batch sizes each generated token needs all weights read from memory, but does little math per byte. Memory bandwidth (HBM), not peak FLOPs, usually limits tokens per second.",
       "sourceId": ""
     },
     {
       "id": "note-4",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "title": "Roofline model",
       "body": "Arithmetic intensity = FLOPs / bytes moved. If it is above the hardware ratio (peak FLOPs / memory bandwidth) the work is compute-bound; below it, memory-bound. Large-batch training is usually compute-bound; small-batch decoding is memory-bound.",
       "sourceId": "src-13"
@@ -2030,21 +2030,21 @@
     },
     {
       "id": "note-41",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "title": "NVIDIA DGX Spark",
       "body": "A desktop \"AI supercomputer\" the size of a small book, shipped in October 2025 (about $3,999 for the 4 TB Founders Edition). Inside is the GB10 Grace Blackwell Superchip: a 20-core Arm CPU and a Blackwell GPU with 5th-gen Tensor Cores, sharing 128 GB of unified LPDDR5X memory (about 273 GB/s). NVIDIA quotes up to 1 petaFLOP of FP4 AI compute (with sparsity). It runs DGX OS (Ubuntu) with the full NVIDIA AI software stack (CUDA, NIM, NeMo), so code moves easily to DGX servers and the cloud. Use it to prototype, fine-tune and run models locally: inference on models up to about 200B parameters (in FP4) and fine-tuning up to about 70B. A built-in ConnectX-7 200 Gb/s network port links two Sparks to run models up to about 405B parameters. Partner versions with the same GB10 chip: ASUS Ascent GX10, Dell Pro Max with GB10, HP ZGX Nano, Lenovo ThinkStation PGX, MSI EdgeXpert, Acer Veriton GN100 and Gigabyte AI TOP ATOM.",
       "sourceId": ""
     },
     {
       "id": "note-42",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "title": "DGX Spark vs similar local AI machines",
       "body": "NVIDIA DGX Station: the big brother, a deskside workstation with the GB300 Grace Blackwell Ultra chip and about 784 GB of coherent memory for much larger models. Apple Mac Studio (M3 Ultra): up to 512 GB unified memory with about 819 GB/s bandwidth, so very large models fit and generate tokens fast, but no CUDA (use MLX or llama.cpp). AMD Ryzen AI Max+ 395 (\"Strix Halo\") mini PCs such as the Framework Desktop or HP Z2 Mini G1a: up to 128 GB unified memory at about 256 GB/s, lower price, ROCm/Vulkan instead of CUDA. Consumer GPU PC with an RTX 5090: only 32 GB VRAM but about 1.8 TB/s, so much faster on models that fit. RTX PRO 6000 Blackwell: 96 GB VRAM workstation card. NVIDIA Jetson AGX Thor: a 128 GB module for robots and edge devices, not a desktop. How to choose: memory size decides which models fit; memory bandwidth decides tokens per second; software (CUDA vs MLX vs ROCm) decides what runs easily.",
       "sourceId": ""
     },
     {
       "id": "note-43",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "title": "Unified memory and the bandwidth rule",
       "body": "In unified-memory machines (DGX Spark, Apple silicon, AMD Strix Halo) the CPU and GPU share one large pool, so models much bigger than a gaming GPU's VRAM can load. But decoding reads all active weights for each token, so a rough upper bound is tokens/s ≈ memory bandwidth ÷ bytes of active weights. Example: a 70B model in 4-bit is about 35-40 GB; on DGX Spark (~273 GB/s) that gives under about 7 tokens/s, while a Mac Studio M3 Ultra (~819 GB/s) can roughly triple that. Mixture-of-experts models only read their active experts per token, so they run much faster on these machines. Spark is strongest at prefill (prompt processing), fine-tuning and FP4 compute thanks to its Blackwell Tensor Cores.",
       "sourceId": ""
@@ -2121,70 +2121,70 @@
     },
     {
       "id": "note-54",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "title": "CoWoS: how AI chips are packaged",
       "body": "CoWoS (Chip-on-Wafer-on-Substrate) is TSMC's advanced 2.5D packaging technology. Instead of putting one chip alone on a package, several dies (a big GPU or accelerator die plus stacks of HBM memory) sit side by side on a silicon interposer, a thin slice of silicon with very dense wiring. The interposer then sits on an organic package substrate that connects to the circuit board. Name breakdown: Chip-on-Wafer = the dies are bonded onto the interposer wafer; on-Substrate = that assembly is mounted on the substrate. Why AI needs it: an LLM accelerator is limited by memory bandwidth, and HBM only delivers terabytes per second when it sits millimetres from the GPU with thousands of short connections. Ordinary PCB wiring cannot do that. NVIDIA (A100, H100, H200, Blackwell B200/GB200), AMD Instinct (MI300X), Google TPUs and AWS Trainium all rely on CoWoS or similar packaging.",
       "sourceId": ""
     },
     {
       "id": "note-55",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "title": "CoWoS variants and the reticle limit",
       "body": "A single chip cannot be bigger than the lithography \"reticle\" (about 858 mm²). CoWoS gets around this by joining several dies on an interposer that is several times the reticle size. Variants: CoWoS-S uses one large silicon interposer (H100: one GPU die + 6 HBM stacks). CoWoS-R uses an organic redistribution-layer (RDL) interposer, cheaper and more flexible. CoWoS-L uses an organic interposer with small embedded silicon bridges (LSI) only where dense links are needed, allowing even larger packages; NVIDIA Blackwell B200 uses CoWoS-L to join two reticle-size GPU dies with a 10 TB/s link plus 8 HBM3E stacks. TSMC plans ever larger interposers (several reticles) for future chips such as NVIDIA Rubin. Related: SoIC is TSMC's 3D stacking (dies on top of each other); competitors include Intel EMIB and Foveros, and Samsung I-Cube.",
       "sourceId": ""
     },
     {
       "id": "note-56",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "title": "CoWoS as the AI supply bottleneck",
       "body": "From 2023 the shortage of AI GPUs was driven less by making the GPU dies and more by CoWoS packaging capacity and HBM supply. TSMC has been roughly doubling CoWoS capacity each year (by most estimates from about 15,000 wafers per month in 2023 to well over 60,000 by 2025-2026), and NVIDIA books the largest share. Outsourced packaging firms (OSATs) such as ASE/SPIL and Amkor add capacity, and TSMC is building CoWoS lines in Taiwan and planning packaging in Arizona. HBM comes from SK hynix, Samsung and Micron. Lesson for AI engineers: compute supply depends on the whole chain (wafer, HBM, packaging, power), and packaging is now a key strategic step, not an afterthought.",
       "sourceId": ""
     },
     {
       "id": "note-57",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "title": "ASML EUV lithography: the machines that print AI chips",
       "body": "ASML (Veldhoven, Netherlands) is the only company in the world that makes EUV (extreme ultraviolet) lithography machines, which print the smallest features on leading-edge chips such as NVIDIA, AMD and Apple processors made by TSMC, Samsung and Intel. EUV uses light with a 13.5 nm wavelength, made by hitting tiny droplets of molten tin with a powerful CO2 laser about 50,000 times a second to create a plasma. Because EUV is absorbed by air and glass, everything happens in a vacuum and the light is steered by ultra-flat multilayer mirrors from Zeiss instead of lenses. Standard EUV machines (the NXE series, such as NXE:3800E) have a numerical aperture (NA) of 0.33 and cost about $150-200 million each. Export controls stop ASML from selling EUV machines to China, which makes EUV a key part of the AI chip race.",
       "sourceId": ""
     },
     {
       "id": "note-58",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "title": "High-NA EUV (ASML EXE series)",
       "body": "High-NA EUV is ASML's next generation: the EXE:5000 and EXE:5200 machines raise the numerical aperture from 0.33 to 0.55. A higher NA lets the optics capture more angles of light, so the machine can print finer lines (resolution about 8 nm versus about 13 nm), roughly 1.7x smaller features and almost 3x the transistor density per exposure. This can replace multi-patterning (exposing the same layer several times), which saves steps and errors. Trade-offs: each machine costs about $350-400 million, is the size of a double-decker bus and weighs about 150 tonnes; it uses anamorphic optics, so the exposure field is half the size of standard EUV, which matters for very large AI chips that must be stitched. Intel was first to buy and install High-NA (for its 14A node); TSMC and Samsung are evaluating it for later nodes around 2027-2030. The next idea after this is Hyper-NA (NA about 0.75).",
       "sourceId": ""
     },
     {
       "id": "note-59",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "title": "Why lithography matters for AI",
       "body": "Each new process node (for example TSMC N3, N2, A16) packs more transistors into the same area, giving AI accelerators more compute and better energy efficiency per watt, which lowers the cost of training and inference. EUV, and later High-NA EUV, is what makes those nodes possible. The AI chip supply chain therefore runs: ASML lithography machines → foundries (TSMC, Samsung, Intel) making the dies → HBM memory (SK hynix, Samsung, Micron) → advanced packaging such as CoWoS → servers and data centres. A bottleneck at any step, including the small number of EUV machines ASML can build each year, limits how many AI chips the world can make.",
       "sourceId": ""
     },
     {
       "id": "note-60",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "title": "CUDA: NVIDIA's software moat",
       "body": "CUDA (Compute Unified Device Architecture), launched by NVIDIA in 2006-2007, is a platform and programming model for running general-purpose code on NVIDIA GPUs. Developers write \"kernels\" (functions that run on thousands of GPU threads at once) in C/C++ or Python. On top sit libraries that AI depends on: cuBLAS (matrix maths), cuDNN (neural-network layers), NCCL (communication between GPUs), TensorRT and TensorRT-LLM (fast inference), plus CUTLASS for custom kernels. PyTorch, TensorFlow, JAX, vLLM and most AI tools call these under the hood. Why it matters: almost two decades of tools, libraries, tutorials and trained developers make CUDA the default for AI, which is NVIDIA's biggest advantage (\"moat\") beyond the chips themselves. CUDA only runs on NVIDIA hardware. Alternatives: AMD ROCm/HIP, Intel oneAPI/SYCL, Apple Metal/MLX, and portable layers such as OpenAI Triton, OpenCL and Vulkan compute.",
       "sourceId": ""
     },
     {
       "id": "note-61",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "title": "AMD in AI",
       "body": "AMD (Advanced Micro Devices, Santa Clara, CEO Lisa Su) is NVIDIA's main GPU competitor and also makes CPUs (Ryzen, EPYC). AI data-centre GPUs: the Instinct line, such as MI300X (192 GB HBM3), MI325X (256 GB HBM3E), MI350/MI355X (288 GB HBM3E, CDNA 4) and the MI400 series with Helios rack systems. Large memory per GPU is AMD's selling point: big models fit on fewer GPUs. Software: ROCm is AMD's open-source answer to CUDA, and HIP lets CUDA code be ported with small changes; PyTorch, vLLM and SGLang support ROCm, though CUDA still has the wider ecosystem. AMD bought Xilinx (FPGAs) and ZT Systems (rack-scale servers). Customers include Microsoft, Meta, Oracle and OpenAI. Consumer side: Ryzen AI chips with NPUs, Ryzen AI Max+ (\"Strix Halo\") with up to 128 GB unified memory, and Radeon gaming GPUs. Like NVIDIA, AMD is \"fabless\": TSMC manufactures its chips.",
       "sourceId": ""
     },
     {
       "id": "note-62",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "title": "Fabs, foundries and fabless chip companies",
       "body": "A fab (fabrication plant) is a factory that makes chips on silicon wafers in an ultra-clean room, using hundreds of steps: deposition, lithography (EUV machines from ASML), etching, doping and polishing. A leading-edge fab costs $20 billion or more. Business models: Fabless companies design chips but do not own fabs (NVIDIA, AMD, Apple, Qualcomm, Broadcom). Foundries make chips designed by others (TSMC, Samsung Foundry, Intel Foundry, GlobalFoundries, SMIC). IDMs (integrated device manufacturers) design and make their own chips (Intel, Samsung memory, Micron, SK hynix). Process nodes such as 5 nm, 3 nm, 2 nm or A16 are now marketing names for each generation, not real measurements; smaller nodes give more transistors, speed and efficiency. Yield is the share of good chips per wafer and matters most for huge AI dies. Governments fund new fabs (US CHIPS Act, EU Chips Act) because chips are strategic, and most leading-edge capacity is in Taiwan.",
       "sourceId": ""
     },
     {
       "id": "note-63",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "title": "TSMC: the foundry behind AI chips",
       "body": "TSMC (Taiwan Semiconductor Manufacturing Company), founded in 1987 by Morris Chang in Hsinchu, Taiwan, is the world's largest contract chip maker (foundry) with roughly two-thirds of the foundry market and most of the leading-edge share. It makes chips for NVIDIA (H100, Blackwell, Rubin), AMD, Apple, Qualcomm, Broadcom, Google TPUs, AWS Trainium and many others. It never sells chips under its own brand, so customers trust it with their designs. Process nodes: N5 and N4 (H100 is on a custom 4N), N3 (3 nm), N2 (2 nm, using gate-all-around nanosheet transistors, volume production from late 2025) and A16 (with backside power delivery). It also leads advanced packaging (CoWoS, SoIC), which AI GPUs need. TSMC is building fabs in Arizona (USA), Kumamoto (Japan) and Dresden (Germany). Risk: so much AI chip production in Taiwan creates geopolitical risk for the whole AI industry.",
       "sourceId": ""
@@ -2543,7 +2543,7 @@
   "questions": [
     {
       "id": "q-hw-1",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "easy",
       "prompt": "Which processor type is most commonly used to train large neural networks?",
@@ -2558,7 +2558,7 @@
     },
     {
       "id": "q-hw-2",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "tf",
       "difficulty": "easy",
       "prompt": "HBM stands for High Bandwidth Memory.",
@@ -2567,7 +2567,7 @@
     },
     {
       "id": "q-hw-3",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "Which NVIDIA interconnect provides high-bandwidth direct GPU-to-GPU communication?",
@@ -2582,7 +2582,7 @@
     },
     {
       "id": "q-hw-4",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "What is Google's custom accelerator designed for machine learning called?",
@@ -2597,7 +2597,7 @@
     },
     {
       "id": "q-hw-5",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "short",
       "difficulty": "medium",
       "prompt": "Name the 16-bit number format with 8 exponent bits and 7 mantissa bits widely used for training.",
@@ -2606,7 +2606,7 @@
     },
     {
       "id": "q-hw-6",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "hard",
       "prompt": "For LLM token generation at small batch sizes, performance is usually limited by:",
@@ -2621,7 +2621,7 @@
     },
     {
       "id": "q-hw-7",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "tf",
       "difficulty": "medium",
       "prompt": "Tensor Cores are specialized GPU units for matrix multiply-accumulate operations.",
@@ -3053,7 +3053,7 @@
     },
     {
       "id": "q-hw-8",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "hard",
       "prompt": "How does FlashAttention speed up attention?",
@@ -3069,7 +3069,7 @@
     },
     {
       "id": "q-hw-9",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "hard",
       "prompt": "In the roofline model, an operation is compute-bound when its arithmetic intensity is ___ the hardware's FLOPs-per-byte ratio.",
@@ -3085,7 +3085,7 @@
     },
     {
       "id": "q-hw-10",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "tf",
       "difficulty": "easy",
       "prompt": "MLPerf is a suite of industry benchmarks for AI training and inference performance, run by MLCommons.",
@@ -3095,7 +3095,7 @@
     },
     {
       "id": "q-hw-11",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "tf",
       "difficulty": "medium",
       "prompt": "NVIDIA's Transformer Engine, which uses FP8 precision, was first introduced with the Hopper (H100) architecture.",
@@ -3105,7 +3105,7 @@
     },
     {
       "id": "q-hw-12",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "hard",
       "prompt": "In data-parallel training, what does ZeRO (as described in the Ultra-Scale Playbook) do?",
@@ -4105,7 +4105,7 @@
     },
     {
       "id": "q2-1",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "easy",
       "prompt": "What does GPU stand for?",
@@ -4121,7 +4121,7 @@
     },
     {
       "id": "q2-2",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "tf",
       "difficulty": "medium",
       "prompt": "NVIDIA's Blackwell GPU generation succeeds the Hopper generation.",
@@ -4131,7 +4131,7 @@
     },
     {
       "id": "q2-3",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "Which company manufactures most leading-edge AI chips for NVIDIA, AMD and Apple?",
@@ -4147,7 +4147,7 @@
     },
     {
       "id": "q2-4",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "What is AMD's data-center AI accelerator line called?",
@@ -4163,7 +4163,7 @@
     },
     {
       "id": "q2-5",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "short",
       "difficulty": "medium",
       "prompt": "Which standard bus connects GPUs to the CPU in most servers and PCs?",
@@ -4173,7 +4173,7 @@
     },
     {
       "id": "q2-6",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "hard",
       "prompt": "Why is HBM memory stacked right next to the GPU chip?",
@@ -4189,7 +4189,7 @@
     },
     {
       "id": "q2-7",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "tf",
       "difficulty": "easy",
       "prompt": "CPUs usually have far fewer cores than GPUs, but each CPU core is more flexible.",
@@ -4199,7 +4199,7 @@
     },
     {
       "id": "q2-8",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "What is InfiniBand mainly used for in AI clusters?",
@@ -4215,7 +4215,7 @@
     },
     {
       "id": "q2-9",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "hard",
       "prompt": "Which 8-bit floating-point format, supported by Hopper and Blackwell Tensor Cores, halves memory versus FP16?",
@@ -6057,7 +6057,7 @@
     },
     {
       "id": "q3-21",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "What are AWS Trainium and Inferentia?",
@@ -6163,7 +6163,7 @@
     },
     {
       "id": "q3-28",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "easy",
       "prompt": "AMD Instinct MI300X is which kind of product?",
@@ -6179,7 +6179,7 @@
     },
     {
       "id": "q3-29",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "What is ROCm?",
@@ -6195,7 +6195,7 @@
     },
     {
       "id": "q3-30",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "tf",
       "difficulty": "medium",
       "prompt": "PyTorch can run on AMD GPUs through ROCm.",
@@ -6205,7 +6205,7 @@
     },
     {
       "id": "q3-31",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "What is Intel Gaudi?",
@@ -6237,7 +6237,7 @@
     },
     {
       "id": "q3-33",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "tf",
       "difficulty": "easy",
       "prompt": "Intel Xeon processors are often used as the host CPUs in AI servers.",
@@ -6279,7 +6279,7 @@
     },
     {
       "id": "q3-36",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "tf",
       "difficulty": "easy",
       "prompt": "Apple chips include a Neural Engine for on-device AI.",
@@ -6321,7 +6321,7 @@
     },
     {
       "id": "q3-39",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "What is xAI's Colossus?",
@@ -6405,7 +6405,7 @@
     },
     {
       "id": "q3-45",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "What are NVIDIA NIM microservices?",
@@ -6469,7 +6469,7 @@
     },
     {
       "id": "q3-49",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "hard",
       "prompt": "EUV lithography machines, needed to make the most advanced chips such as AI GPUs, print chip patterns with light of about which wavelength?",
@@ -6603,7 +6603,7 @@
     },
     {
       "id": "q3-60",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "fill",
       "difficulty": "easy",
       "prompt": "NVIDIA's platform for programming its GPUs is called ___.",
@@ -6613,7 +6613,7 @@
     },
     {
       "id": "q3-61",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "fill",
       "difficulty": "medium",
       "prompt": "The stacked memory placed next to data-center GPUs for very high bandwidth is called ___.",
@@ -6689,7 +6689,7 @@
     },
     {
       "id": "q3-66",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "match",
       "difficulty": "medium",
       "prompt": "Connect each chip to the company that designs it.",
@@ -8103,7 +8103,7 @@
     },
     {
       "id": "q3-150",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "easy",
       "prompt": "What is NVIDIA DGX Spark?",
@@ -8119,7 +8119,7 @@
     },
     {
       "id": "q3-151",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "Which chip powers NVIDIA DGX Spark?",
@@ -8135,7 +8135,7 @@
     },
     {
       "id": "q3-152",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "How much unified memory does one DGX Spark have?",
@@ -8151,7 +8151,7 @@
     },
     {
       "id": "q3-153",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "fill",
       "difficulty": "medium",
       "prompt": "Two DGX Spark units can be linked with their built-in ConnectX-7 network to run models up to about ___ billion parameters.",
@@ -8161,7 +8161,7 @@
     },
     {
       "id": "q3-154",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "hard",
       "prompt": "What usually limits how many tokens per second DGX Spark generates on a large dense model?",
@@ -8177,7 +8177,7 @@
     },
     {
       "id": "q3-155",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "tf",
       "difficulty": "medium",
       "prompt": "Code built on DGX Spark uses the same NVIDIA software stack (CUDA, NIM, NeMo) as DGX servers and the cloud, so it moves there easily.",
@@ -8187,7 +8187,7 @@
     },
     {
       "id": "q3-156",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "Which machine offers up to 512 GB of unified memory for running very large models locally?",
@@ -8203,7 +8203,7 @@
     },
     {
       "id": "q3-157",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "A 30B model in 4-bit (about 16 GB) fits on both an RTX 5090 (32 GB, ~1.8 TB/s) and a DGX Spark. Which generates tokens faster?",
@@ -8219,7 +8219,7 @@
     },
     {
       "id": "q3-158",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "tf",
       "difficulty": "easy",
       "prompt": "Mixture-of-experts models often run faster than dense models of the same total size on unified-memory machines like DGX Spark.",
@@ -8229,7 +8229,7 @@
     },
     {
       "id": "q3-159",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "match",
       "difficulty": "medium",
       "prompt": "Connect each local AI machine to its key feature.",
@@ -8261,7 +8261,7 @@
     },
     {
       "id": "q3-160",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "match",
       "difficulty": "easy",
       "prompt": "Connect each DGX Spark partner version to its maker.",
@@ -8767,7 +8767,7 @@
     },
     {
       "id": "q3-190",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "easy",
       "prompt": "What does CoWoS stand for?",
@@ -8783,7 +8783,7 @@
     },
     {
       "id": "q3-191",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "easy",
       "prompt": "Which company developed CoWoS packaging?",
@@ -8799,7 +8799,7 @@
     },
     {
       "id": "q3-192",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "In a CoWoS package such as the NVIDIA H100, what sits next to the GPU die on the interposer?",
@@ -8815,7 +8815,7 @@
     },
     {
       "id": "q3-193",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "fill",
       "difficulty": "medium",
       "prompt": "In CoWoS, the dies sit side by side on a silicon ___, which has very dense wiring between them.",
@@ -8825,7 +8825,7 @@
     },
     {
       "id": "q3-194",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "Why do AI accelerators need advanced packaging like CoWoS?",
@@ -8841,7 +8841,7 @@
     },
     {
       "id": "q3-195",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "tf",
       "difficulty": "medium",
       "prompt": "CoWoS is called \"2.5D\" packaging because dies sit side by side on an interposer rather than being stacked fully on top of each other.",
@@ -8851,7 +8851,7 @@
     },
     {
       "id": "q3-196",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "hard",
       "prompt": "Which CoWoS variant does NVIDIA Blackwell B200 use to join two reticle-size GPU dies?",
@@ -8867,7 +8867,7 @@
     },
     {
       "id": "q3-197",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "hard",
       "prompt": "What is the \"reticle limit\" that CoWoS helps work around?",
@@ -8883,7 +8883,7 @@
     },
     {
       "id": "q3-198",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "tf",
       "difficulty": "medium",
       "prompt": "During the 2023-2024 AI boom, CoWoS packaging capacity was one of the main bottlenecks limiting the supply of NVIDIA AI GPUs.",
@@ -8893,7 +8893,7 @@
     },
     {
       "id": "q3-199",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "match",
       "difficulty": "medium",
       "prompt": "Connect each packaging term to its meaning.",
@@ -8925,7 +8925,7 @@
     },
     {
       "id": "q3-200",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "easy",
       "prompt": "What is CUDA?",
@@ -8941,7 +8941,7 @@
     },
     {
       "id": "q3-201",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "fill",
       "difficulty": "medium",
       "prompt": "A function written to run on thousands of GPU threads in parallel in CUDA is called a ___.",
@@ -8951,7 +8951,7 @@
     },
     {
       "id": "q3-202",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "Which NVIDIA library provides optimized building blocks for neural-network layers like convolutions and attention?",
@@ -8967,7 +8967,7 @@
     },
     {
       "id": "q3-203",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "tf",
       "difficulty": "medium",
       "prompt": "CUDA code runs natively on AMD and Intel GPUs without any changes.",
@@ -8977,7 +8977,7 @@
     },
     {
       "id": "q3-204",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "Why is CUDA often called NVIDIA's \"moat\"?",
@@ -8993,7 +8993,7 @@
     },
     {
       "id": "q3-205",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "easy",
       "prompt": "What is AMD's open-source software platform that competes with CUDA?",
@@ -9009,7 +9009,7 @@
     },
     {
       "id": "q3-206",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "What is the main selling point of AMD Instinct GPUs such as the MI300X and MI355X for LLMs?",
@@ -9025,7 +9025,7 @@
     },
     {
       "id": "q3-207",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "easy",
       "prompt": "In the chip industry, what is a \"fab\"?",
@@ -9041,7 +9041,7 @@
     },
     {
       "id": "q3-208",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "NVIDIA designs its chips but has TSMC manufacture them. What is this business model called?",
@@ -9057,7 +9057,7 @@
     },
     {
       "id": "q3-209",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "fill",
       "difficulty": "medium",
       "prompt": "The share of working chips out of all chips made on a wafer is called the ___.",
@@ -9067,7 +9067,7 @@
     },
     {
       "id": "q3-210",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "tf",
       "difficulty": "hard",
       "prompt": "Process node names such as \"3 nm\" or \"2 nm\" describe the real physical size of a transistor's gate.",
@@ -9077,7 +9077,7 @@
     },
     {
       "id": "q3-211",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "easy",
       "prompt": "What does TSMC stand for?",
@@ -9093,7 +9093,7 @@
     },
     {
       "id": "q3-212",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "Which new transistor design does TSMC's N2 (2 nm) process introduce?",
@@ -9109,7 +9109,7 @@
     },
     {
       "id": "q3-213",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "tf",
       "difficulty": "medium",
       "prompt": "TSMC sells its own brand of AI GPUs that compete with NVIDIA.",
@@ -9119,7 +9119,7 @@
     },
     {
       "id": "q3-214",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "match",
       "difficulty": "medium",
       "prompt": "Connect each company to its role in the chip industry.",
@@ -9151,7 +9151,7 @@
     },
     {
       "id": "q3-215",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "match",
       "difficulty": "medium",
       "prompt": "Connect each GPU software stack to its company.",
@@ -9799,7 +9799,7 @@
     },
     {
       "id": "q3-257",
-      "topic": "AI Hardware/GPUs",
+      "topic": "AI Infra./GPUs",
       "type": "tf",
       "difficulty": "medium",
       "prompt": "LLM token generation is usually limited by memory bandwidth, not compute, so a GPU with more memory bandwidth and capacity can be faster for inference even with lower peak FLOPS.",
