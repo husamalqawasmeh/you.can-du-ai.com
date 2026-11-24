@@ -290,3 +290,8 @@ header .topbar { order: 2; flex-shrink: 0; }
 .home-card.soon:hover { transform: none; border-color: var(--border-strong); border-top-color: var(--accent); }
 .soon-badge { display: inline-block; margin-inline-start: 6px; padding: 1px 8px; border-radius: 999px; background: var(--accent); color: #fff; font-size: .7rem; font-weight: 700; vertical-align: middle; }
 .home-card .soon-badge { color: #fff; } /* beats the grey .home-card span rule */
+nav button.soon { opacity: .55; cursor: default; }
+nav button.soon:hover { border-color: var(--border-strong); color: var(--text); }
+header .topbar { display: flex; align-items: center; gap: 8px; }
+.author-pill { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px 0 5px; border-radius: 999px; background: var(--raised); border: 1px solid var(--border-strong); color: var(--text); font-size: .9rem; white-space: nowrap; }
+.author-avatar { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #fff; font-size: .75rem; font-weight: 700; }

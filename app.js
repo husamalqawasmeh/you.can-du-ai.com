@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=190';
-import { ADMIN_HASH } from './admin-hash.js?v=190';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=191';
+import { ADMIN_HASH } from './admin-hash.js?v=191';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -41,7 +41,7 @@ function alignChecks() {
   for (const b of boxes) [...b.children].forEach((l, i) => { w[i % 5] = Math.max(w[i % 5], Math.ceil(l.scrollWidth)); });
   $('#test-config').style.setProperty('--check-cols', w.map(x => x + 'px').join(' '));
 }
-document.querySelectorAll('nav button').forEach(b => {
+document.querySelectorAll('nav button[data-tab]').forEach(b => {
   b.onclick = () => showTab(b.dataset.tab);
   // on the home page, hovering (or tabbing to) a menu button highlights its matching card below
   const hl = on => document.querySelectorAll(`.home-card[data-goto="${b.dataset.tab}"]`).forEach(c => c.classList.toggle('hl', on));
@@ -1159,7 +1159,7 @@ function syncUser() {
   $('#signin-form').hidden = !!user;
   $('#user-box').hidden = !user;
   if (user) $('#user-id').textContent = user.id;
-  document.querySelectorAll('nav button').forEach(b => b.classList.toggle('locked', !user && !PUBLIC_TABS.has(b.dataset.tab)));
+  document.querySelectorAll('nav button[data-tab]').forEach(b => b.classList.toggle('locked', !user && !PUBLIC_TABS.has(b.dataset.tab)));
 }
 $('#signin-form').onsubmit = e => {
   e.preventDefault();
