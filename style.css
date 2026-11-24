@@ -289,7 +289,7 @@ header .topbar { order: 2; flex-shrink: 0; }
 .home-card.soon > strong, .home-card.soon > span { color: var(--muted); }
 .home-card.soon:hover { transform: none; border-color: var(--border-strong); border-top-color: var(--accent); }
 .soon-badge { display: inline-block; margin-inline-start: 6px; padding: 0 5px; border-radius: 999px; background: var(--accent); color: #fff; font-size: .56rem; line-height: 1.5; font-weight: 700; vertical-align: middle; }
-.home-card .soon-badge { color: #fff; } /* beats the grey .home-card span rule */
+.home-card .soon-badge { color: #fff; font-size: 10px; padding: 1px 7px; line-height: 1.4; } /* beats the .home-card span colour and size rules */
 nav button.soon { opacity: .55; cursor: default; }
 nav button.soon:hover { border-color: var(--border-strong); color: var(--text); }
 header .topbar { display: flex; align-items: center; gap: 8px; }
