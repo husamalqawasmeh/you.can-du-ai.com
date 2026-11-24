@@ -1530,6 +1530,42 @@
       ],
       "url": "https://streamlit.io",
       "released": 2019
+    },
+    {
+      "name": "Netlify",
+      "company": "Netlify",
+      "category": "Web hosting",
+      "does": "Hosts and deploys websites and web apps from a Git repo or a folder, with serverless functions, forms and preview links for every change. Common place to publish sites built with AI app builders such as Bolt.new.",
+      "cost": "Freemium",
+      "pros": [
+        "Free plan is enough for personal and small sites",
+        "Deploys automatically on every Git push, with preview URLs",
+        "Simple drag-and-drop deploys"
+      ],
+      "cons": [
+        "Bandwidth and build limits on the free plan",
+        "Costs can rise with heavy traffic or many functions"
+      ],
+      "url": "https://www.netlify.com",
+      "released": 2014
+    },
+    {
+      "name": "Vercel",
+      "company": "Vercel",
+      "category": "Web hosting",
+      "does": "Hosting and deployment platform from the makers of Next.js, with serverless and edge functions, preview deployments, and the Vercel AI SDK and v0 for building AI apps.",
+      "cost": "Freemium",
+      "pros": [
+        "Best support for Next.js and React apps",
+        "Preview deployment for every pull request",
+        "AI SDK makes streaming chat apps easy"
+      ],
+      "cons": [
+        "Free Hobby plan is for non-commercial use",
+        "Usage-based costs can grow quickly at scale"
+      ],
+      "url": "https://vercel.com",
+      "released": 2015
     }
   ]
 }

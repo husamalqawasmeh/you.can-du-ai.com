@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=191';
-import { ADMIN_HASH } from './admin-hash.js?v=191';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=192';
+import { ADMIN_HASH } from './admin-hash.js?v=192';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -254,7 +254,7 @@ loadCerts();
 // tool groups by theme for the 4-column view (unknown categories go to the last column)
 const TOOL_COLS = [
   ['Chat assistant', 'Search / research', 'AI agent', 'Local AI', 'Model gateway'],
-  ['Coding', 'App builder', 'Framework', 'Developer platform', 'Model serving', 'MLOps', 'Cloud AI platform', 'Vector database'],
+  ['Coding', 'App builder', 'Framework', 'Developer platform', 'Web hosting', 'Model serving', 'MLOps', 'Cloud AI platform', 'Vector database'],
   ['Image', 'Video', 'Audio / voice', 'Design', 'Presentations', 'Social media'],
   ['Writing', 'Productivity', 'Meetings', 'Automation', 'Legal', 'Careers', 'Utilities'],
 ];
@@ -276,7 +276,7 @@ function layoutTools() {
 }
 async function loadTools() {
   let d;
-  try { d = await (await fetch('tools.json?v=5')).json(); } catch { $('#tools-list').innerHTML = '<p class="muted">Could not load the tools.</p>'; return; }
+  try { d = await (await fetch('tools.json?v=6')).json(); } catch { $('#tools-list').innerHTML = '<p class="muted">Could not load the tools.</p>'; return; }
   $('#tools-checked').textContent = `Last checked: ${d.checked}.`;
   $('#tool-cat').innerHTML += [...new Set(d.tools.map(t => t.category))].sort().map(c => opt(c)).join('');
   const costKind = c => { c = c.toLowerCase(); return { free: /free|open/.test(c) && !/freemium/.test(c), freemium: /freemium|free tier|free app|free to try/.test(c), paid: /subscription|paid|licen|included/.test(c), usage: /pay-per-use|api/.test(c) }; };
@@ -294,7 +294,7 @@ async function loadTools() {
     // broad domain per category (unknown categories fall into Other)
     const DOMAINS = [['LLMs and assistants', ['Chat assistant', 'Search / research', 'AI agent', 'Local AI', 'Model gateway']], ['Coding and app building', ['Coding', 'App builder']],
       ['Image and design', ['Image', 'Design']], ['Video', ['Video']], ['Voice and audio', ['Audio / voice', 'Meetings']], ['Database', ['Vector database']],
-      ['Developer and infrastructure', ['Developer platform', 'Framework', 'Model serving', 'MLOps', 'Cloud AI platform', 'Automation']],
+      ['Developer and infrastructure', ['Developer platform', 'Web hosting', 'Framework', 'Model serving', 'MLOps', 'Cloud AI platform', 'Automation']],
       ['Business and productivity', ['Productivity', 'Writing', 'Presentations', 'Social media', 'Legal', 'Careers', 'Utilities']]];
     const domainOf = t => { const i = DOMAINS.findIndex(([, cs]) => cs.includes(t.category)); return i < 0 ? DOMAINS.length : i; };
     const by = f => (a, b) => f(a, b) || a.name.localeCompare(b.name);
