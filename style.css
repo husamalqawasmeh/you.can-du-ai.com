@@ -345,3 +345,5 @@ header .topbar { display: flex; align-items: center; gap: 8px; }
 #chat-form .row > button, #chat-form .row > label:not(.chat-q) { width: 136px; flex: 0 0 136px; }
 #chat-form .row > button, #chat-form .row select, #chat-form .chat-q textarea { height: 77px; }
 #chat-form .row label > select, #chat-form .chat-q textarea { display: block; margin-top: 8px; }
+/* test setup: number of questions box always has a blue border */
+#test-config input[name="count"] { border: 2px solid var(--accent); }
