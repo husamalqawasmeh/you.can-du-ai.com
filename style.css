@@ -285,3 +285,6 @@ header .topbar { order: 2; flex-shrink: 0; }
 #tools .card > .row > label, #tools .card > .row > label.sort-main { margin: 0; min-width: 0; }
 #tools .card > .row input, #tools .card > .row select { width: 100%; box-sizing: border-box; height: 36px; }
 @media (max-width: 640px) { #tools .card > .row { grid-template-columns: 1fr; } }
+.home-card.soon { opacity: .75; cursor: default; }
+.home-card.soon:hover { transform: none; border-color: var(--border-strong); border-top-color: var(--accent); }
+.soon-badge { display: inline-block; margin-inline-start: 6px; padding: 1px 8px; border-radius: 999px; background: var(--accent); color: var(--accent-text); font-size: .7rem; font-weight: 700; vertical-align: middle; }
