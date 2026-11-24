@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=251';
-import { ADMIN_HASH } from './admin-hash.js?v=251';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=252';
+import { ADMIN_HASH } from './admin-hash.js?v=252';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -1214,7 +1214,7 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=251')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=252')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Hardware/GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers/Attention' };
 const rn = t => TOPIC_RENAMED[t] ?? t;
