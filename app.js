@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=244';
-import { ADMIN_HASH } from './admin-hash.js?v=244';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=246';
+import { ADMIN_HASH } from './admin-hash.js?v=246';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -1214,7 +1214,7 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=244')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=246')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Hardware/GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers/Attention' };
 const rn = t => TOPIC_RENAMED[t] ?? t;
@@ -1229,16 +1229,6 @@ for (const r of db.results ?? []) {
   for (const it of r.items ?? []) if (it.topic) it.topic = rn(it.topic);
 }
 mergeSeed(db, seed);
-// fixed topic order: put a topic just before or after another
-const place = (t, ref, after) => { if (!db.topics.includes(t) || !db.topics.includes(ref)) return; db.topics = db.topics.filter(x => x !== t); db.topics.splice(db.topics.indexOf(ref) + (after ? 1 : 0), 0, t); };
-place('Prompt Engineering', 'Context Engineering', false);
-place('Harness Engineering', 'Context Engineering', true);
-place('Evals', 'Benchmarking', true);
-place('Transformers/Attention', 'LLMs', true);
-// these fill the first (left) column of the 5-column test topic grid; the rest follow in order
-const FIRST_COL = ['AI Strategy', 'AI Governance', 'AI Security', 'AI Risk Management', 'Global AI Incidents'].filter(t => db.topics.includes(t));
-{ const rest = db.topics.filter(t => !FIRST_COL.includes(t)), out = [];
-  // Context and Harness Engineering sit directly below Prompt Engineering (4 topics per row besides the first column)
-  const under = ['Context Engineering', 'Harness Engineering'].filter(t => rest.includes(t));
-  if (rest.includes('Prompt Engineering')) { under.forEach(t => rest.splice(rest.indexOf(t), 1)); under.forEach((t, k) => rest.splice(Math.min(rest.indexOf('Prompt Engineering') + 4 * (k + 1), rest.length), 0, t)); } FIRST_COL.forEach((t, r) => out.push(t, ...rest.splice(0, 4))); db.topics = out.concat(rest); }
+// built-in topics always follow seed.json order (it is laid out as the 5-column test grid); topics added in this browser come after
+if (seed.topics) db.topics = seed.topics.filter(t => db.topics.includes(t)).concat(db.topics.filter(t => !seed.topics.includes(t)));
 save();
