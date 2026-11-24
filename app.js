@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=199';
-import { ADMIN_HASH } from './admin-hash.js?v=199';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=200';
+import { ADMIN_HASH } from './admin-hash.js?v=200';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -847,7 +847,7 @@ const IV_JOBS = {
   'AI Engineer': { 'RAG and retrieval': 3, 'Agents/MCP/Tool-use': 3, 'System/Product design': 3, 'Automation / AI tools': 2, 'Behavioral and experience': 2, 'ML & DL': 1, 'AI H/W & Semiconductors': 1, 'AI industry and news': 1, 'Evals': 3, 'AI Strategy': 1, 'AI Governance': 1, 'AI Risk Management': 1, 'LLM / VLM / SLM / ALM': 3, 'Model Fine-tuning': 2, 'AI Product management': 1, 'AI Project management': 1, 'Transformers / GANs / VAEs': 1, 'Prompt Engineering': 2, 'Loop Engineering': 2, 'AI Security': 2 },
   'ML Engineer': { 'ML & DL': 3, 'System/Product design': 3, 'Evals': 2, 'Automation / AI tools': 2, 'AI H/W & Semiconductors': 1, 'RAG and retrieval': 1, 'Behavioral and experience': 1, 'LLM / VLM / SLM / ALM': 2, 'Model Fine-tuning': 2, 'Transformers / GANs / VAEs': 2 },
   'Gen. AI Engineer': { 'RAG and retrieval': 3, 'Agents/MCP/Tool-use': 3, 'System/Product design': 2, 'AI H/W & Semiconductors': 2, 'ML & DL': 1, 'Behavioral and experience': 1, 'Automation / AI tools': 1, 'AI industry and news': 1, 'Evals': 3, 'LLM / VLM / SLM / ALM': 3, 'Model Fine-tuning': 3, 'Transformers / GANs / VAEs': 2, 'Prompt Engineering': 2, 'Loop Engineering': 2, 'AI Security': 2 },
-  'AI Infra. Eng.': { 'AI H/W & Semiconductors': 3, 'System/Product design': 3, 'Automation / AI tools': 2, 'Evals': 1, 'Behavioral and experience': 1, 'LLM / VLM / SLM / ALM': 1, 'AI Security': 2 },
+  'AI Infra. Engineer': { 'AI H/W & Semiconductors': 3, 'System/Product design': 3, 'Automation / AI tools': 2, 'Evals': 1, 'Behavioral and experience': 1, 'LLM / VLM / SLM / ALM': 1, 'AI Security': 2 },
   'MLOps Engineer': { 'System/Product design': 3, 'Automation / AI tools': 3, 'Evals': 2, 'ML & DL': 2, 'AI H/W & Semiconductors': 1, 'Behavioral and experience': 1, 'AI Risk Management': 1, 'LLM / VLM / SLM / ALM': 1, 'Model Fine-tuning': 1, 'AI Security': 2 },
   'Data Scientist': { 'ML & DL': 3, 'Evals': 3, 'Decision Models': 3, 'Behavioral and experience': 2, 'AI Strategy': 1, 'LLM / VLM / SLM / ALM': 1, 'Model Fine-tuning': 1, 'AI Product management': 1, 'AI Project management': 1, 'Transformers / GANs / VAEs': 1 },
   'Data Engineer': { 'System/Product design': 3, 'Automation / AI tools': 2, 'RAG and retrieval': 3, 'AI Governance': 2, 'Context Engineering': 2, 'ML & DL': 1, 'Evals': 1, 'AI Risk Management': 1, 'Behavioral and experience': 1, 'AI Security': 1 },
@@ -885,7 +885,7 @@ function ivPick(all, jobs, topics, count, levels = []) {
 }
 console.assert(ivPick([{ topics: ['AI H/W & Semiconductors'] }, { topics: ['RAG and retrieval'] }], ['Gen. AI Engineer'], [], 1)[0].topics[0] === 'RAG and retrieval', 'ivPick ranking');
 console.assert(ivPick([{ topics: ['CLI'] }, { topics: ['RAG and retrieval'] }], ['Gen. AI Engineer'], [], 0, ['Not relevant']).length === 1, 'ivPick levels');
-console.assert(ivPick([{ topics: ['RAG and retrieval'] }, { topics: ['AI H/W & Semiconductors'] }], ['AI Strategy/Consult', 'AI Infra. Eng.'], [], 1)[0].topics[0] === 'AI H/W & Semiconductors', 'ivPick multi-job');
+console.assert(ivPick([{ topics: ['RAG and retrieval'] }, { topics: ['AI H/W & Semiconductors'] }], ['AI Strategy/Consult', 'AI Infra. Engineer'], [], 1)[0].topics[0] === 'AI H/W & Semiconductors', 'ivPick multi-job');
 function renderInterview() {
   const topics = [...ivForm.querySelectorAll('#iv-topics input:checked')].map(c => c.value);
   const jobs = ivJobs(), qs = ivPick(ivAll, jobs, topics, Math.max(0, Math.round(+ivForm.count.value || 0)), ivLevels());
