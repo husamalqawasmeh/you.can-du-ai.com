@@ -315,3 +315,5 @@ header .topbar { display: flex; align-items: center; gap: 8px; }
 /* objectives: bold section titles, sections closer together */
 .objectives-panel fieldset { margin: 0 0 4px; padding: 0 10px 4px; }
 .objectives-panel legend { font-weight: 700; padding: 0 4px; }
+/* course page bars: same slim height as the admin bars */
+#courses .objectives-panel, #gen-box { padding-block: 5px; }
