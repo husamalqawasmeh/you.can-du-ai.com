@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=229';
-import { ADMIN_HASH } from './admin-hash.js?v=229';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=230';
+import { ADMIN_HASH } from './admin-hash.js?v=230';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -367,7 +367,7 @@ $('#q-search').oninput = render;
 document.addEventListener('click', e => {
   const old = e.target.closest('[data-rename-topic]')?.dataset.renameTopic;
   if (!old) return;
-  const name = prompt(`New name for "${old}":`, old)?.trim().replace(/s+/g, ' ').slice(0, 60);
+  const name = prompt(`New name for "${old}":`, old)?.trim().replace(/\s+/g, ' ').slice(0, 60);
   if (!name || name === old) return;
   if (db.topics.some(t => t.toLowerCase() === name.toLowerCase() && t !== old)) return alert('That topic already exists.');
   db.topics = db.topics.map(t => t === old ? name : t);
@@ -1209,6 +1209,19 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=230')).json(); } catch { /* offline: run with what's saved */ }
+// renamed topics: move saved items, courses and test history to the new name
+const TOPIC_RENAMED = { 'AI Hardware': 'AI Hardware/GPUs', OpenClaw: 'OpenClaw/BOTs' };
+const rn = t => TOPIC_RENAMED[t] ?? t;
+if (db.topics) db.topics = [...new Set(db.topics.map(rn))];
+for (const k of ['questions', 'sources', 'notes', 'courses']) for (const x of db[k] ?? []) {
+  if (x.topic) x.topic = rn(x.topic);
+  if (Array.isArray(x.topics)) x.topics = x.topics.map(rn);
+}
+for (const r of db.results ?? []) {
+  if (Array.isArray(r.topics)) r.topics = r.topics.map(rn);
+  if (r.byTopic) r.byTopic = Object.fromEntries(Object.entries(r.byTopic).map(([t, v]) => [rn(t), v]));
+  for (const it of r.items ?? []) if (it.topic) it.topic = rn(it.topic);
+}
 mergeSeed(db, seed);
 save();
