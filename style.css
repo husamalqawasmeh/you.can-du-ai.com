@@ -329,3 +329,10 @@ header .topbar { display: flex; align-items: center; gap: 8px; }
 @media (max-width: 640px) { #chat-form .row { flex-wrap: wrap; } #chat-form .chat-q { flex-basis: 100%; order: -1; } }
 #chat-form .row > label:not(.chat-q) { flex: 0 0 170px; }
 #chat-form .chat-q { flex: 1 1 auto; }
+/* tutor row: one height for all, equal blue buttons, hover highlight */
+#chat-form .row > button, #chat-form .row select, #chat-form .chat-q textarea { height: 52px; box-sizing: border-box; }
+#chat-form .chat-q textarea { resize: none; }
+#chat-form .row > button { width: 96px; flex: 0 0 96px; font-weight: 700; }
+#chat-form .row > button, #chat-form .row select, #chat-form .chat-q textarea { transition: box-shadow .15s, border-color .15s, filter .15s; }
+#chat-form .row > button:hover, #chat-form .row select:hover, #chat-form .chat-q textarea:hover { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 35%, transparent); }
+#chat-form .row > button:hover { filter: brightness(1.12); }
