@@ -359,3 +359,5 @@ header .topbar { display: flex; align-items: center; gap: 8px; }
 #cfg-vendors label { max-width: 142px; }
 /* NVIDIA column: counts a little closer to the names */
 #cfg-vendors label:nth-child(5n) { max-width: 124px; }
+/* Question types: five options spread across the full width on their own */
+#test-config #cfg-types { grid-template-columns: repeat(5, max-content); justify-content: space-between; }
