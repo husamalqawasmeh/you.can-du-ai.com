@@ -357,7 +357,3 @@ header .topbar { display: flex; align-items: center; gap: 8px; }
 #test-config .checks label { white-space: normal; }
 /* vendor counts stay right-aligned, but within the width of the longest vendor name, not the whole column */
 #cfg-vendors label { max-width: 142px; }
-/* a little more room after each option before the next column */
-#test-config .checks { column-gap: 12px; }
-/* last (5th) column of each option grid sits a little further right */
-#test-config .checks label:nth-child(5n) { padding-left: 10px; }

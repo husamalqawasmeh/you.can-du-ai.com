@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=270';
-import { ADMIN_HASH } from './admin-hash.js?v=270';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=271';
+import { ADMIN_HASH } from './admin-hash.js?v=271';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -41,7 +41,7 @@ function alignChecks() {
   const w = [0, 0, 0, 0, 0];
   for (const b of boxes) [...b.children].forEach((l, i) => { w[i % 5] = Math.max(w[i % 5], Math.ceil(l.getBoundingClientRect().width) + 1); });
   // if five natural-width columns would stick out of the box, keep five equal columns and let long names wrap
-  const room = boxes[0].clientWidth - 12 - 4 * 12;
+  const room = boxes[0].clientWidth - 12 - 4 * 6;
   $('#test-config').style.setProperty('--check-cols', w.reduce((s, x) => s + x, 0) > room ? 'repeat(5, minmax(0, 1fr))' : w.map(x => x + 'px').join(' '));
 }
 document.querySelectorAll('nav button[data-tab]').forEach(b => {
@@ -1214,7 +1214,7 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=270')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=271')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Infra./GPUs', 'AI Hardware/GPUs': 'AI Infra./GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents' };
 const rn = t => TOPIC_RENAMED[t] ?? t;
