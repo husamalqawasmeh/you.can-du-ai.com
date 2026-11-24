@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=271';
-import { ADMIN_HASH } from './admin-hash.js?v=271';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=272';
+import { ADMIN_HASH } from './admin-hash.js?v=272';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -485,7 +485,7 @@ cfgForm.onsubmit = e => {
   const cfg = readConfig();
   const qs = pickQuestions(db.questions, cfg);
   if (!qs.length) return alert(cfg.exclude && filterQuestions(db.questions, { ...cfg, exclude: null }).length
-    ? 'You have already answered every matching question correctly. Choose other topics, or tick "Include questions I already answered correctly".'
+    ? 'You have already answered every matching question correctly. Choose other topics, or tick "Include questions I already answered correctly before".'
     : 'No questions match these settings. Widen the filters or add questions.');
   if (qs.length < cfg.count && !confirm(`Only ${qs.length} questions match. Start with ${qs.length}?`)) return;
   startTest(qs, cfg);
@@ -1214,7 +1214,7 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=271')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=272')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Infra./GPUs', 'AI Hardware/GPUs': 'AI Infra./GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents' };
 const rn = t => TOPIC_RENAMED[t] ?? t;
