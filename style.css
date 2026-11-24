@@ -336,3 +336,7 @@ header .topbar { display: flex; align-items: center; gap: 8px; }
 #chat-form .row > button, #chat-form .row select, #chat-form .chat-q textarea { transition: box-shadow .15s, border-color .15s, filter .15s; }
 #chat-form .row > button:hover, #chat-form .row select:hover, #chat-form .chat-q textarea:hover { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 35%, transparent); }
 #chat-form .row > button:hover { filter: brightness(1.12); }
+/* tutor row: New chat, Answer level and Ask share one width; even gaps; taller */
+#chat-form .row { gap: 12px; }
+#chat-form .row > button, #chat-form .row > label:not(.chat-q) { width: 170px; flex: 0 0 170px; }
+#chat-form .row > button, #chat-form .row select, #chat-form .chat-q textarea { height: 64px; }
