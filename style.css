@@ -295,3 +295,8 @@ nav button.soon:hover { border-color: var(--border-strong); color: var(--text); 
 header .topbar { display: flex; align-items: center; gap: 8px; }
 .author-pill { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 14px 0 5px; border-radius: 999px; background: var(--raised); border: 1px solid var(--border-strong); color: var(--text); font-size: .9rem; white-space: nowrap; }
 .author-avatar { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #fff; font-size: .75rem; font-weight: 700; }
+/* opened group in the 4-column view: button stays in its column, highlighted; tools show in the panel below */
+#tools-list.cols > details[open] { background: var(--accent); border-color: var(--accent); }
+#tools-list.cols > details[open] > summary, #tools-list.cols > details[open] > summary h3, #tools-list.cols > details[open] > summary .tag, #tools-list.cols > details[open] > summary::before { color: var(--accent-text); }
+#tools-list.cols > details[open] > summary { margin-bottom: 0; }
+#tools-list.cols > .tool-panel { margin: 0 0 6px; border-color: var(--accent); }

@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=192';
-import { ADMIN_HASH } from './admin-hash.js?v=192';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=193';
+import { ADMIN_HASH } from './admin-hash.js?v=193';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -258,9 +258,12 @@ const TOOL_COLS = [
   ['Image', 'Video', 'Audio / voice', 'Design', 'Presentations', 'Social media'],
   ['Writing', 'Productivity', 'Meetings', 'Automation', 'Legal', 'Careers', 'Utilities'],
 ];
-// Places closed groups in their column, row by row; an opened group gets its own full-width row under its row.
+// Places every group button in its column, row by row. An opened group keeps its (highlighted) button in place
+// and its tools move into a full-width panel under that row; closing it moves the tools back.
 function layoutTools() {
-  const list = $('#tools-list'), items = [...list.children].filter(x => x.matches('details'));
+  const list = $('#tools-list');
+  for (const p of list.querySelectorAll(':scope > .tool-panel')) { p._from.append(p.firstElementChild); p.remove(); }
+  const items = [...list.children].filter(x => x.matches('details'));
   const on = list.classList.contains('cols') && matchMedia('(min-width: 701px)').matches;
   for (const x of items) x.style.gridRow = x.style.gridColumn = '';
   if (!on) return;
@@ -268,10 +271,15 @@ function layoutTools() {
   let row = 1;
   for (let r = 0; r < Math.max(...cols.map(c => c.length)); r++) {
     const cells = cols.map(c => c[r]).filter(Boolean);
-    cells.filter(x => !x.open).forEach(x => { x.style.gridRow = row; x.style.gridColumn = x.dataset.col; });
-    const opened = cells.filter(x => x.open);
-    if (opened.length < cells.length) row++;
-    opened.forEach(x => { x.style.gridRow = row++; x.style.gridColumn = '1 / -1'; });
+    cells.forEach(x => { x.style.gridRow = row; x.style.gridColumn = x.dataset.col; });
+    row++;
+    for (const x of cells.filter(x => x.open)) {
+      const grid = x.querySelector('.tools-grid'); if (!grid) continue;
+      const p = document.createElement('div');
+      p.className = 'card tool-panel'; p._from = x; p.style.gridRow = row++; p.style.gridColumn = '1 / -1';
+      p.setAttribute('aria-label', x.dataset.g + ' tools');
+      p.append(grid); list.append(p);
+    }
   }
 }
 async function loadTools() {
