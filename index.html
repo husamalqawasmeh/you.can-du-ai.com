@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You Can Du AI</title>
 <meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
-<link rel="stylesheet" href="style.css?v=224">
+<link rel="stylesheet" href="style.css?v=225">
 </head>
 <body>
 <header>
@@ -69,11 +69,11 @@
       <p class="muted">Ask anything about artificial intelligence, in English or Arabic. The tutor answers AI learning questions only. You can save any answer to your knowledge library.</p>
       <div id="chat-log" aria-live="polite"></div>
       <form id="chat-form">
-        <label>Your question <textarea id="chat-input" rows="2" required placeholder="e.g. How much GPU memory do I need to serve a 70B model to 50 users?"></textarea></label>
         <div class="row">
-          <button class="primary">Ask</button>
-          <label>Answer level <select id="chat-level"><option>Beginner</option><option selected>Intermediate</option><option>Advanced</option></select></label>
           <button type="button" id="chat-clear">New chat</button>
+          <label class="chat-q">Your question <textarea id="chat-input" rows="2" required placeholder="e.g. How much GPU memory do I need to serve a 70B model to 50 users?"></textarea></label>
+          <label>Answer level <select id="chat-level"><option>Beginner</option><option selected>Intermediate</option><option>Advanced</option></select></label>
+          <button class="primary">Ask</button>
         </div>
       </form>
       <p id="chat-status" class="muted" role="status"></p>
@@ -372,6 +372,6 @@
     </div>
   </section>
 </main>
-<script type="module" src="app.js?v=224"></script>
+<script type="module" src="app.js?v=225"></script>
 </body>
 </html>

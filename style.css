@@ -322,3 +322,10 @@ header .topbar { display: flex; align-items: center; gap: 8px; }
 #chat-form .row { align-items: flex-end; }
 #chat-form .row > *, #chat-form .row select { margin: 0; }
 #chat-form .row > button, #chat-form .row select { height: 38px; box-sizing: border-box; }
+/* tutor: New chat | question | level | Ask on one line */
+#chat-form .row { flex-wrap: nowrap; }
+#chat-form .chat-q { flex: 1; min-width: 0; }
+#chat-form .chat-q textarea { margin: 0; width: 100%; box-sizing: border-box; }
+@media (max-width: 640px) { #chat-form .row { flex-wrap: wrap; } #chat-form .chat-q { flex-basis: 100%; order: -1; } }
+#chat-form .row > label:not(.chat-q) { flex: 0 0 170px; }
+#chat-form .chat-q { flex: 1 1 auto; }
