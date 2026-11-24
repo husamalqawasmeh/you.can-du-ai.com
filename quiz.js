@@ -8,7 +8,7 @@ export const VENDORS = {
   NVIDIA: /nvidia|\bcuda\b|\bh100|\bh200|blackwell|\bdgx\b|nvlink|tensorrt|\bnemo\b|\bnim\b|nemotron|tensor core/i,
   Microsoft: /microsoft|azure|copilot|\bphi\b|\bmai\b|autogen|semantic kernel/i,
   Meta: /\bmeta\b|llama|pytorch|\bfaiss\b/i,
-  'Amazon (AWS)': /amazon|\baws\b|bedrock|sagemaker|trainium|inferentia|\bnova\b/i,
+  AWS: /amazon|\baws\b|bedrock|sagemaker|trainium|inferentia|\bnova\b/i,
   'Red Hat': /red hat|openshift|ansible|\brhel\b/i,
   xAI: /\bxai\b|\bgrok\b|colossus/i,
   AMD: /\bamd\b|\bmi300|\bmi325|\bmi355|\brocm\b|instinct/i,
