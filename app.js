@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=200';
-import { ADMIN_HASH } from './admin-hash.js?v=200';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=201';
+import { ADMIN_HASH } from './admin-hash.js?v=201';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -854,9 +854,9 @@ const IV_JOBS = {
   'AI Solutions Architect': { 'System/Product design': 3, 'RAG and retrieval': 2, 'Agents/MCP/Tool-use': 2, 'AI H/W & Semiconductors': 2, 'Automation / AI tools': 2, 'Behavioral and experience': 1, 'Evals': 1, 'AI Strategy': 2, 'AI Governance': 2, 'AI Risk Management': 2, 'LLM / VLM / SLM / ALM': 2, 'AI Product management': 2, 'AI Project management': 2, 'Transformers / GANs / VAEs': 1, 'Prompt Engineering': 1, 'Loop Engineering': 1, 'AI Security': 2 },
   'AI Project Manager': { 'Behavioral and experience': 3, 'System/Product design': 2, 'Automation / AI tools': 1, 'Agents/MCP/Tool-use': 1, 'AI industry and news': 1, 'Evals': 2, 'AI Strategy': 2, 'AI Governance': 1, 'AI Risk Management': 2, 'LLM / VLM / SLM / ALM': 1, 'AI Product management': 2, 'AI Project management': 3 },
   'AI Product Manager': { 'Behavioral and experience': 3, 'AI industry and news': 2, 'Agents/MCP/Tool-use': 2, 'RAG and retrieval': 1, 'System/Product design': 1, 'Evals': 2, 'AI Strategy': 2, 'AI Governance': 2, 'AI Risk Management': 2, 'LLM / VLM / SLM / ALM': 1, 'AI Product management': 3, 'AI Project management': 2, 'Prompt Engineering': 1, 'AI Security': 1 },
-  'AI Governance': { 'AI industry and news': 2, 'Behavioral and experience': 2, 'Agents/MCP/Tool-use': 1, 'Evals': 3, 'AI Strategy': 2, 'AI Governance': 3, 'AI Risk Management': 3, 'LLM / VLM / SLM / ALM': 1, 'Model Fine-tuning': 1, 'AI Product management': 1, 'AI Project management': 1, 'AI Security': 2 },
-  'AI Risk Management': { 'Agents/MCP/Tool-use': 2, 'Behavioral and experience': 1, 'AI industry and news': 1, 'System/Product design': 1, 'ML & DL': 1, 'Evals': 3, 'AI Strategy': 1, 'AI Governance': 3, 'AI Risk Management': 3, 'Model Fine-tuning': 2, 'AI Product management': 1, 'AI Project management': 1, 'AI Security': 3 },
   'Automation/AI Dev.': { 'Automation / AI tools': 3, 'Agents/MCP/Tool-use': 2, 'System/Product design': 2, 'Behavioral and experience': 2, 'RAG and retrieval': 1, 'LLM / VLM / SLM / ALM': 1, 'Prompt Engineering': 2, 'Loop Engineering': 2, 'AI Security': 1 },
+  'AI Risk Management': { 'Agents/MCP/Tool-use': 2, 'Behavioral and experience': 1, 'AI industry and news': 1, 'System/Product design': 1, 'ML & DL': 1, 'Evals': 3, 'AI Strategy': 1, 'AI Governance': 3, 'AI Risk Management': 3, 'Model Fine-tuning': 2, 'AI Product management': 1, 'AI Project management': 1, 'AI Security': 3 },
+  'AI Governance': { 'AI industry and news': 2, 'Behavioral and experience': 2, 'Agents/MCP/Tool-use': 1, 'Evals': 3, 'AI Strategy': 2, 'AI Governance': 3, 'AI Risk Management': 3, 'LLM / VLM / SLM / ALM': 1, 'Model Fine-tuning': 1, 'AI Product management': 1, 'AI Project management': 1, 'AI Security': 2 },
 };
 let ivAll = [];
 const ivForm = $('#iv-filter');
