@@ -151,6 +151,8 @@ export function mergeSeed(db, seed) {
     for (const x of seed[key] ?? []) if (!have.has(x.id)) db[key].push(x);
     // notes and sources can't be edited by users, so corrected seed text replaces the saved copy
     if (key === 'notes' || key === 'sources') { const byId = new Map((seed[key] ?? []).map(x => [x.id, x])); db[key] = db[key].map(x => byId.get(x.id) ?? x); }
+    // built-in multiple-choice options can't be edited either, so improved wrong answers reach saved copies (topic/difficulty edits are kept)
+    if (key === 'questions') { const byId = new Map((seed.questions ?? []).map(x => [x.id, x])); for (const q of db.questions) { const sq = byId.get(q.id); if (sq?.options && q.type === 'mcq' && sq.answer === q.answer) q.options = sq.options; } }
   }
   db.results ??= [];
   db.courses ??= [];

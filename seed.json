@@ -2844,9 +2844,9 @@
       "prompt": "In generative AI, a 'hallucination' is:",
       "options": [
         "Confident output not grounded in facts or the source",
-        "A GPU memory error",
-        "A data augmentation technique",
-        "A type of loss function"
+        "An answer copied word for word from the training data",
+        "A refusal to answer a harmless question",
+        "Output that is cut off by the token limit"
       ],
       "answer": "Confident output not grounded in facts or the source",
       "explanation": "Models can produce fluent but false content."
@@ -2931,9 +2931,9 @@
       "prompt": "What does RLHF stand for?",
       "options": [
         "Reinforcement Learning from Human Feedback",
-        "Recurrent Layer High-Frequency",
-        "Regularized Linear Hidden Features",
-        "Reward Learning for Hardware Fitting"
+        "Reinforcement Learning from Hierarchical Features",
+        "Recurrent Learning with Human Filtering",
+        "Reward Learning from Heuristic Functions"
       ],
       "answer": "Reinforcement Learning from Human Feedback",
       "explanation": "RLHF aligns a model using a reward model trained on human preferences."
@@ -2976,9 +2976,9 @@
       "prompt": "In AI applications, embeddings are:",
       "options": [
         "Dense vectors that represent meaning",
-        "Compressed model weights",
-        "HTML tags",
-        "GPU drivers"
+        "Compressed copies of the model weights",
+        "Lists of keywords extracted from text",
+        "Token IDs produced by the tokenizer"
       ],
       "answer": "Dense vectors that represent meaning",
       "explanation": "Similar content maps to nearby vectors."
@@ -3192,9 +3192,9 @@
       "difficulty": "hard",
       "prompt": "In data-parallel training, what does ZeRO (as described in the Ultra-Scale Playbook) do?",
       "options": [
-        "Compresses activations to zero bits",
         "Shards optimizer states, gradients and parameters across GPUs",
-        "Removes the need for gradients",
+        "Compresses gradients to 1-bit before sending them",
+        "Offloads all computation to the CPU",
         "Splits each layer across GPUs (tensor parallelism)"
       ],
       "answer": "Shards optimizer states, gradients and parameters across GPUs",
@@ -3286,10 +3286,10 @@
       "difficulty": "medium",
       "prompt": "Why do transformers use multi-head attention instead of a single attention head?",
       "options": [
-        "To remove all parameters",
         "To attend to information from different representation subspaces at once",
+        "To use fewer parameters than a single head",
         "To avoid needing positional information",
-        "To make training sequential"
+        "To let the model process tokens one at a time"
       ],
       "answer": "To attend to information from different representation subspaces at once",
       "explanation": "Each head can learn different relationships, such as syntax or coreference.",
@@ -3380,10 +3380,10 @@
       "difficulty": "medium",
       "prompt": "According to Anthropic's \"Building Effective Agents\", what distinguishes an agent from a workflow?",
       "options": [
-        "An agent always uses multiple models",
         "An agent lets the LLM dynamically direct its own process and tool use",
+        "An agent always uses multiple models",
         "A workflow cannot call tools",
-        "An agent never needs a prompt"
+        "An agent is always fine-tuned for its task"
       ],
       "answer": "An agent lets the LLM dynamically direct its own process and tool use",
       "explanation": "Workflows follow predefined code paths; agents decide their own steps.",
@@ -3396,10 +3396,10 @@
       "difficulty": "medium",
       "prompt": "What problem does vLLM's PagedAttention solve?",
       "options": [
-        "Slow tokenization",
         "Wasted memory and fragmentation in the KV cache",
+        "Slow tokenization",
         "Training instability",
-        "Missing GPU drivers"
+        "Slow loading of weights at startup"
       ],
       "answer": "Wasted memory and fragmentation in the KV cache",
       "explanation": "It allocates the KV cache in blocks like OS memory pages, so more requests fit in memory.",
@@ -3551,7 +3551,7 @@
         "Curating everything the model sees at each step: instructions, tools, data and history",
         "Training a model on longer documents",
         "Increasing the context window size in hardware",
-        "Encrypting prompts"
+        "Writing one perfect system prompt and never changing it"
       ],
       "answer": "Curating everything the model sees at each step: instructions, tools, data and history",
       "explanation": "It goes beyond writing one prompt: it manages the whole context window over a multi-step task.",
@@ -3659,7 +3659,7 @@
       "prompt": "In AI agents, what is the \"harness\"?",
       "options": [
         "The software around the model that runs the loop, tools, context and permissions",
-        "The GPU power cable",
+        "The evaluation benchmark used to score the model",
         "The model's weights",
         "The training dataset"
       ],
@@ -3685,7 +3685,7 @@
       "prompt": "What is the Model Context Protocol (MCP)?",
       "options": [
         "An open protocol for connecting AI applications to tools and data sources",
-        "A GPU interconnect",
+        "A model-training framework",
         "A tokenization format",
         "A fine-tuning method"
       ],
@@ -3717,9 +3717,9 @@
       "prompt": "What does SWE-bench measure?",
       "options": [
         "Whether a system can resolve real GitHub issues so that the tests pass",
-        "GPU training throughput",
-        "Translation quality",
-        "Image generation quality"
+        "Speed of code completion in an IDE",
+        "Performance on competitive programming puzzles",
+        "How well a model explains code in plain English"
       ],
       "answer": "Whether a system can resolve real GitHub issues so that the tests pass",
       "explanation": "Tasks come from real open-source repositories, checked by their unit tests.",
@@ -3812,7 +3812,7 @@
       "options": [
         "An open format file that gives coding agents project instructions",
         "A license file",
-        "A GPU configuration file",
+        "A list of contributors to the project",
         "A Python package manifest"
       ],
       "answer": "An open format file that gives coding agents project instructions",
@@ -3849,7 +3849,7 @@
         "The server",
         "The host",
         "The model",
-        "The browser"
+        "The client"
       ],
       "answer": "The server",
       "explanation": "The host is the AI app; its client connects to servers, which expose capabilities.",
@@ -3863,9 +3863,9 @@
       "prompt": "Which are the three main primitives an MCP server can expose?",
       "options": [
         "Tools, resources and prompts",
-        "Models, datasets and GPUs",
+        "Tools, agents and memories",
         "Agents, chains and vectors",
-        "Users, roles and tokens"
+        "Functions, events and webhooks"
       ],
       "answer": "Tools, resources and prompts",
       "explanation": "Tools are callable functions, resources are readable data, prompts are reusable templates.",
@@ -3889,9 +3889,9 @@
       "prompt": "What does the MCP \"sampling\" feature let a server do?",
       "options": [
         "Ask the client's model to generate a completion",
-        "Download random training data",
-        "Sample GPU temperatures",
-        "Select a random tool"
+        "Run its own copy of the model locally",
+        "Stream logs back to the client",
+        "Choose which tools the client may call"
       ],
       "answer": "Ask the client's model to generate a completion",
       "explanation": "The server requests an LLM completion through the client, which keeps control and can ask the user to approve.",
@@ -3921,9 +3921,9 @@
       "prompt": "In the orchestrator-workers pattern, what does the orchestrator do?",
       "options": [
         "Breaks the task into subtasks and delegates them to worker LLMs",
-        "Trains the worker models",
-        "Only checks spelling",
-        "Serves the model on GPUs"
+        "Trains the worker models on the task",
+        "Runs all subtasks itself in one long context",
+        "Votes on which worker answer is best"
       ],
       "answer": "Breaks the task into subtasks and delegates them to worker LLMs",
       "explanation": "It then combines the workers' results.",
@@ -3947,9 +3947,9 @@
       "prompt": "Which security principle best limits the damage a compromised or manipulated agent can do?",
       "options": [
         "Least privilege: give it only the tools and permissions it needs",
-        "Give it admin rights so it never fails",
-        "Use a bigger model",
-        "Hide its logs"
+        "Use a stronger system prompt telling it to behave",
+        "Use a larger, more capable model",
+        "Turn off logging to protect privacy"
       ],
       "answer": "Least privilege: give it only the tools and permissions it needs",
       "explanation": "Combine with sandboxing and human approval for risky actions.",
@@ -3974,8 +3974,8 @@
       "options": [
         "Representative inputs with expected outputs or grading criteria",
         "The model's training data",
-        "A list of GPU prices",
-        "Logs of user logins"
+        "The results from a public leaderboard",
+        "A random sample of production logs without labels"
       ],
       "answer": "Representative inputs with expected outputs or grading criteria",
       "explanation": "It lets you measure quality consistently before each release.",
@@ -3989,9 +3989,9 @@
       "prompt": "Which is a known bias of LLM-as-a-judge evaluators?",
       "options": [
         "Position bias: favoring the answer shown first",
-        "Always preferring the shortest answer",
-        "Refusing to grade code",
-        "Grading only in French"
+        "Ignoring answer length completely",
+        "Preferring answers from smaller models",
+        "Penalizing any answer that cites sources"
       ],
       "answer": "Position bias: favoring the answer shown first",
       "explanation": "Also verbosity bias (longer answers) and self-enhancement bias (own outputs).",
@@ -4051,9 +4051,9 @@
       "prompt": "Why should you compare an LLM judge's grades with human labels before relying on it?",
       "options": [
         "To confirm the judge agrees with human judgment on your task",
-        "To make the judge faster",
-        "To reduce token costs to zero",
-        "Because judges cannot read text"
+        "To make the judge run faster",
+        "To lower the cost per evaluation",
+        "So the judge can be fine-tuned on the labels"
       ],
       "answer": "To confirm the judge agrees with human judgment on your task",
       "explanation": "A judge that disagrees with experts gives misleading scores.",
@@ -4067,9 +4067,9 @@
       "prompt": "What does pairwise evaluation ask the evaluator to do?",
       "options": [
         "Choose the better of two outputs",
-        "Count the words",
-        "Translate the output",
-        "Delete bad outputs"
+        "Score each output on a 1-10 scale independently",
+        "Compare each output with a reference answer",
+        "Rank all outputs in the dataset at once"
       ],
       "answer": "Choose the better of two outputs",
       "explanation": "Pointwise evaluation scores one output at a time.",
@@ -4083,9 +4083,9 @@
       "prompt": "What does the MMLU benchmark measure?",
       "options": [
         "Knowledge across 57 subjects with multiple-choice questions",
-        "GPU training speed",
-        "Image generation quality",
-        "Speech recognition accuracy"
+        "Coding ability on real GitHub issues",
+        "Multi-turn chat quality judged by humans",
+        "Grade-school math word problems"
       ],
       "answer": "Knowledge across 57 subjects with multiple-choice questions",
       "explanation": "Subjects range from math and law to medicine and history.",
@@ -4109,9 +4109,9 @@
       "prompt": "What is benchmark contamination?",
       "options": [
         "Test questions leaking into a model's training data, inflating its score",
-        "Dust in the data center",
-        "A model refusing to answer",
-        "Using too few GPUs"
+        "Benchmark questions with wrong answer keys",
+        "A model overfitting to its fine-tuning data",
+        "Labs running the benchmark with different prompts"
       ],
       "answer": "Test questions leaking into a model's training data, inflating its score",
       "explanation": "Contaminated results overstate real ability.",
@@ -4126,7 +4126,7 @@
       "options": [
         "Crowdsourced pairwise human votes turned into Elo-style ratings",
         "Counting model parameters",
-        "Measuring GPU power use",
+        "Scores from a panel of expert judges",
         "Exact-match on a fixed test set"
       ],
       "answer": "Crowdsourced pairwise human votes turned into Elo-style ratings",
@@ -4151,9 +4151,9 @@
       "prompt": "What does it mean when a benchmark is \"saturated\"?",
       "options": [
         "Top models score near the maximum, so it no longer separates them",
-        "The dataset is too large to download",
-        "It only runs on one GPU type",
-        "It has no questions left"
+        "The dataset is too large to run cheaply",
+        "It has leaked into models' training data",
+        "Its questions are too hard for any model"
       ],
       "answer": "Top models score near the maximum, so it no longer separates them",
       "explanation": "Harder benchmarks then replace it.",
@@ -4167,9 +4167,9 @@
       "prompt": "What does MLPerf Inference measure?",
       "options": [
         "How fast systems run standard AI workloads (throughput and latency)",
-        "How smart a chatbot is",
-        "How many users a website has",
-        "How accurate a translation is"
+        "How accurate chatbots are on reasoning questions",
+        "How much energy a data center uses per year",
+        "How well models translate between languages"
       ],
       "answer": "How fast systems run standard AI workloads (throughput and latency)",
       "explanation": "It compares hardware and software systems, not model intelligence.",
@@ -4194,8 +4194,8 @@
       "options": [
         "Graphics Processing Unit",
         "General Processing Unit",
-        "Global Power Unit",
-        "Graph Parallel Utility"
+        "Graphics Parallel Unit",
+        "General Purpose Unit"
       ],
       "answer": "Graphics Processing Unit",
       "explanation": "GPUs were built for graphics; their parallel cores suit AI math.",
@@ -4263,7 +4263,7 @@
         "Short, wide connections give very high memory bandwidth",
         "It is cheaper than regular memory",
         "It stores data permanently",
-        "It replaces the need for cooling"
+        "It uses less power than any other memory"
       ],
       "answer": "Short, wide connections give very high memory bandwidth",
       "explanation": "AI workloads are often limited by memory bandwidth.",
@@ -4288,8 +4288,8 @@
       "options": [
         "High-speed, low-latency networking between servers",
         "Storing model weights",
-        "Cooling GPUs",
-        "Power distribution"
+        "Connecting GPUs inside a single chip",
+        "Connecting servers to the public internet"
       ],
       "answer": "High-speed, low-latency networking between servers",
       "explanation": "Multi-node training needs fast inter-server communication.",
@@ -4429,8 +4429,8 @@
       "prompt": "Why should you not size GPU memory at exactly 100% of weights plus KV cache?",
       "options": [
         "Runtime overhead and load spikes need headroom",
-        "GPUs cannot use more than 50%",
-        "Weights shrink during inference",
+        "The GPU driver reserves half of the memory",
+        "Weights take more space as more users connect",
         "It makes the model less accurate"
       ],
       "answer": "Runtime overhead and load spikes need headroom",
@@ -4471,9 +4471,9 @@
       "prompt": "What does it mean to \"ground\" an LLM's answer?",
       "options": [
         "Tie it to verifiable sources or data",
-        "Make it shorter",
-        "Translate it",
-        "Run it on a local GPU"
+        "Make it shorter and simpler",
+        "Lower the temperature so it is consistent",
+        "Fine-tune the model on the topic"
       ],
       "answer": "Tie it to verifiable sources or data",
       "explanation": "Grounding (e.g. with RAG) reduces hallucinations.",
@@ -4488,8 +4488,8 @@
       "options": [
         "Synthetic media that realistically shows a real person saying or doing things they did not",
         "A very deep neural network",
-        "A corrupted dataset",
-        "A fake benchmark score"
+        "A dataset with mislabeled examples",
+        "A chatbot that pretends to be human"
       ],
       "answer": "Synthetic media that realistically shows a real person saying or doing things they did not",
       "explanation": "Deepfakes raise consent, fraud and misinformation concerns.",
@@ -4539,9 +4539,9 @@
       "prompt": "What is a latent space in models like VAEs and latent diffusion?",
       "options": [
         "A compressed representation where similar items lie close together",
-        "Unused GPU memory",
-        "The model's training logs",
-        "A database of prompts"
+        "The final layer that outputs pixels",
+        "The noise added during training",
+        "The set of all training images"
       ],
       "answer": "A compressed representation where similar items lie close together",
       "explanation": "Generation happens in this compact space, then is decoded.",
@@ -4571,9 +4571,9 @@
       "prompt": "What does GPT stand for?",
       "options": [
         "Generative Pre-trained Transformer",
-        "General Purpose Tokenizer",
-        "Graph Processing Technique",
-        "Guided Prompt Template"
+        "General Purpose Transformer",
+        "Generative Pre-trained Tokenizer",
+        "Generalized Probabilistic Transformer"
       ],
       "answer": "Generative Pre-trained Transformer",
       "explanation": "Pre-trained on large text, then adapted.",
@@ -4614,8 +4614,8 @@
       "options": [
         "Only a few, chosen by a router",
         "All of them",
-        "None",
-        "Exactly one hundred"
+        "Half of them",
+        "All of them, but with smaller weights"
       ],
       "answer": "Only a few, chosen by a router",
       "explanation": "This gives large total capacity with lower compute per token.",
@@ -4655,9 +4655,9 @@
       "prompt": "What is a system prompt?",
       "options": [
         "Instructions that set the model's role and behavior for the conversation",
-        "The operating system's login screen",
-        "A list of GPU drivers",
-        "The user's first question"
+        "The user's first question",
+        "A summary of the conversation so far",
+        "The model's hidden reasoning"
       ],
       "answer": "Instructions that set the model's role and behavior for the conversation",
       "explanation": "It frames every later turn.",
@@ -4681,9 +4681,9 @@
       "prompt": "What is an open-weight model?",
       "options": [
         "A model whose trained weights can be downloaded and run",
-        "A model with no weights",
-        "A model that only runs in a browser",
-        "A model trained on open books only"
+        "A model whose full training data and code are published",
+        "A model anyone can use for free in a web app",
+        "A model trained only on public-domain data"
       ],
       "answer": "A model whose trained weights can be downloaded and run",
       "explanation": "Examples include Llama, Qwen, Gemma and Mistral open models.",
@@ -4697,9 +4697,9 @@
       "prompt": "What does cosine similarity measure between two embeddings?",
       "options": [
         "How closely their directions match, as a measure of semantic similarity",
-        "Their file size",
-        "The number of shared letters",
-        "The time to compute them"
+        "The straight-line distance between them",
+        "The number of dimensions they share",
+        "How many words the two texts share"
       ],
       "answer": "How closely their directions match, as a measure of semantic similarity",
       "explanation": "Values near 1 mean very similar meaning.",
@@ -4713,9 +4713,9 @@
       "prompt": "What does hybrid search combine?",
       "options": [
         "Keyword search (like BM25) and vector search",
-        "Two different GPUs",
-        "Images and audio",
-        "Training and inference"
+        "Vector search and a reranker only",
+        "Results from two vector databases",
+        "Text search and image search"
       ],
       "answer": "Keyword search (like BM25) and vector search",
       "explanation": "Keywords catch exact terms; vectors catch meaning.",
@@ -4740,8 +4740,8 @@
       "options": [
         "So the application can reliably parse the model's response",
         "To make answers longer",
-        "To hide the answer from users",
-        "To train the model"
+        "To make the model more accurate",
+        "To reduce token cost"
       ],
       "answer": "So the application can reliably parse the model's response",
       "explanation": "Schema-constrained output avoids fragile text parsing.",
@@ -4765,9 +4765,9 @@
       "prompt": "What is semantic caching in LLM apps?",
       "options": [
         "Reusing earlier answers for questions with similar meaning",
-        "Storing the model on disk",
-        "Caching images in the browser",
-        "Saving GPU drivers"
+        "Caching only exactly identical prompts",
+        "Storing the model's KV cache on disk",
+        "Keeping embeddings of all documents in memory"
       ],
       "answer": "Reusing earlier answers for questions with similar meaning",
       "explanation": "It cuts cost and latency for repeated questions.",
@@ -4808,7 +4808,7 @@
       "options": [
         "Retry with exponential backoff",
         "Retry immediately in a tight loop",
-        "Switch off the app",
+        "Switch to a different API key on each request",
         "Ignore the error"
       ],
       "answer": "Retry with exponential backoff",
@@ -4824,8 +4824,8 @@
       "options": [
         "Labeled examples (inputs with known answers)",
         "Only unlabeled data",
-        "Only rewards",
-        "No data"
+        "Only reward signals from an environment",
+        "Data generated by the model itself"
       ],
       "answer": "Labeled examples (inputs with known answers)",
       "explanation": "Classification and regression are supervised tasks.",
@@ -4907,9 +4907,9 @@
       "prompt": "Why can accuracy be misleading on an imbalanced dataset?",
       "options": [
         "A model can score high by always predicting the majority class",
-        "Accuracy cannot be computed",
-        "It always reports 0%",
-        "It only works for images"
+        "It ignores true positives",
+        "It counts false positives twice",
+        "It is too slow on large datasets"
       ],
       "answer": "A model can score high by always predicting the majority class",
       "explanation": "Use precision, recall, F1 or class weights.",
@@ -4934,8 +4934,8 @@
       "options": [
         "A setting chosen before training, like the learning rate",
         "A weight learned during training",
-        "A type of GPU",
-        "A row in the dataset"
+        "The model's output score",
+        "A feature in the dataset"
       ],
       "answer": "A setting chosen before training, like the learning rate",
       "explanation": "Weights are learned; hyperparameters are set.",
@@ -5072,8 +5072,8 @@
       "options": [
         "As open-weight models anyone can download",
         "Only inside a paid API",
-        "Only on Meta's own phones",
-        "They are not released"
+        "Only to approved research partners",
+        "As fully open source, including all training data"
       ],
       "answer": "As open-weight models anyone can download",
       "explanation": "License terms apply, but weights are downloadable.",
@@ -5087,9 +5087,9 @@
       "prompt": "In an agent harness, what does the stop condition decide?",
       "options": [
         "When the agent loop ends (task done, step limit or error)",
-        "Which GPU to use",
+        "Which model to call",
         "The model's temperature",
-        "The user's password"
+        "Which tools the agent can see"
       ],
       "answer": "When the agent loop ends (task done, step limit or error)",
       "explanation": "Without stop conditions, agents can loop forever.",
@@ -5114,8 +5114,8 @@
       "options": [
         "So a human approves risky actions like deleting files or running commands",
         "To slow the model down on purpose",
-        "To collect user data",
-        "Because models cannot read files"
+        "To log usage for billing",
+        "Because models make fewer errors when interrupted"
       ],
       "answer": "So a human approves risky actions like deleting files or running commands",
       "explanation": "Human-in-the-loop approval limits damage from mistakes.",
@@ -5129,9 +5129,9 @@
       "prompt": "What does Terminal-Bench evaluate?",
       "options": [
         "AI agents completing real tasks in a terminal",
-        "Keyboard typing speed",
-        "GPU temperatures",
-        "Image quality"
+        "How fast a model answers in a chat window",
+        "Shell command autocomplete accuracy",
+        "Linux kernel performance"
       ],
       "answer": "AI agents completing real tasks in a terminal",
       "explanation": "It tests end-to-end agent ability in a shell.",
@@ -5189,7 +5189,7 @@
         "To debug, audit and evaluate what the agent did",
         "To make the model smarter",
         "To save GPU memory",
-        "To hide errors"
+        "To train the next model version automatically"
       ],
       "answer": "To debug, audit and evaluate what the agent did",
       "explanation": "Traces show which tool calls led to an outcome.",
@@ -5204,8 +5204,8 @@
       "options": [
         "Running code or commands in an isolated environment with limited access",
         "Running on the fastest GPU",
-        "Running without any logs",
-        "Running only in the browser"
+        "Running with full admin access for speed",
+        "Running every command twice to check results"
       ],
       "answer": "Running code or commands in an isolated environment with limited access",
       "explanation": "Isolation limits what a wrong action can affect.",
@@ -5235,9 +5235,9 @@
       "prompt": "In AI coding CLIs like Claude Code, what are slash commands?",
       "options": [
         "Shortcuts typed with a leading / to run built-in or custom actions",
-        "Comments in code",
-        "File paths",
-        "Error messages"
+        "Markdown headings in the chat",
+        "Regular expressions for search",
+        "Git branch names"
       ],
       "answer": "Shortcuts typed with a leading / to run built-in or custom actions",
       "explanation": "For example /help or a custom /review command.",
@@ -5303,9 +5303,9 @@
       "prompt": "What are hooks in Claude Code?",
       "options": [
         "Commands that run automatically at events, such as before or after a tool is used",
-        "Fishing tools",
+        "Custom slash commands",
         "Keyboard shortcuts only",
-        "Error codes"
+        "Saved prompt templates"
       ],
       "answer": "Commands that run automatically at events, such as before or after a tool is used",
       "explanation": "Hooks enforce rules like formatting or blocking risky commands.",
@@ -5321,7 +5321,7 @@
         "So you can easily review and undo its changes",
         "Because agents cannot read uncommitted files",
         "To make the agent faster",
-        "To delete old files"
+        "So the agent can deploy to production"
       ],
       "answer": "So you can easily review and undo its changes",
       "explanation": "Version control is your safety net.",
@@ -5335,9 +5335,9 @@
       "prompt": "What do MCP servers add to an AI coding CLI?",
       "options": [
         "New tools and data sources the agent can use",
-        "More GPU memory",
         "A new programming language",
-        "Faster internet"
+        "A larger context window",
+        "Their own built-in model"
       ],
       "answer": "New tools and data sources the agent can use",
       "explanation": "For example browser control, docs search or databases.",
@@ -5351,9 +5351,9 @@
       "prompt": "What is structured note-taking for agents?",
       "options": [
         "The agent writes notes to files outside its context so it can remember later",
-        "Writing prompts in a notebook",
-        "Logging GPU usage",
-        "Highlighting text in PDFs"
+        "Saving the full chat transcript into every new prompt",
+        "Asking the user to write down key facts for the agent",
+        "Storing notes in the model's weights through fine-tuning"
       ],
       "answer": "The agent writes notes to files outside its context so it can remember later",
       "explanation": "Notes persist across context resets.",
@@ -5377,9 +5377,9 @@
       "prompt": "What is \"context distraction\"?",
       "options": [
         "The context grows so long that the model over-focuses on it instead of its training knowledge",
-        "The user changes topic",
-        "The GPU overheats",
-        "The tokenizer fails"
+        "The user switches topic in the middle of a task",
+        "Two tools in the context return conflicting answers",
+        "The model ignores instructions placed in the middle of the context"
       ],
       "answer": "The context grows so long that the model over-focuses on it instead of its training knowledge",
       "explanation": "One of the ways long contexts fail.",
@@ -5393,9 +5393,9 @@
       "prompt": "What is \"context clash\"?",
       "options": [
         "Conflicting information inside the same context",
-        "Two users typing at once",
-        "A network timeout",
-        "Two GPUs disagreeing"
+        "Two users editing the same prompt at once",
+        "The context is so long the model ignores its training knowledge",
+        "A tool returns an error instead of data"
       ],
       "answer": "Conflicting information inside the same context",
       "explanation": "Conflicts confuse the model's answer.",
@@ -5409,9 +5409,9 @@
       "prompt": "Why do tool definitions count against the context budget?",
       "options": [
         "They use tokens, and too many tools make tool selection harder",
-        "They are stored on the GPU",
-        "They are free and unlimited",
-        "They are only read once a day"
+        "They are stored in GPU memory, not in the prompt",
+        "They are cached, so they never count after the first call",
+        "They are only read when a tool is called"
       ],
       "answer": "They use tokens, and too many tools make tool selection harder",
       "explanation": "Load only the tools a task needs.",
@@ -5435,9 +5435,9 @@
       "prompt": "What does isolating context with sub-agents mean?",
       "options": [
         "Each sub-agent works in its own context window on part of the task",
-        "Deleting the context",
-        "Encrypting the prompt",
-        "Running agents offline"
+        "Clearing the context window after every step",
+        "Encrypting the prompt so tools cannot read it",
+        "Running all agents in one shared context to save tokens"
       ],
       "answer": "Each sub-agent works in its own context window on part of the task",
       "explanation": "Isolation prevents one task's details from crowding another.",
@@ -5461,9 +5461,9 @@
       "prompt": "In RAG, why retrieve only the top few relevant chunks rather than the whole knowledge base?",
       "options": [
         "To give the model just enough high-signal context",
-        "Because the database is broken",
-        "To make answers random",
-        "Because models cannot read text"
+        "Because vector databases can only return five results",
+        "To make answers more creative",
+        "Because models can only read one document at a time"
       ],
       "answer": "To give the model just enough high-signal context",
       "explanation": "Less but better context usually wins.",
@@ -5477,9 +5477,9 @@
       "prompt": "Which message format does MCP use?",
       "options": [
         "JSON-RPC 2.0",
-        "SOAP XML",
-        "CSV files",
-        "Plain email"
+        "gRPC with Protocol Buffers",
+        "REST with XML payloads",
+        "GraphQL queries"
       ],
       "answer": "JSON-RPC 2.0",
       "explanation": "Requests, responses and notifications are JSON-RPC messages.",
@@ -5493,9 +5493,9 @@
       "prompt": "Which of these is an example of an MCP host?",
       "options": [
         "An AI app such as Claude Code or an IDE",
-        "A GPU",
-        "A vector embedding",
-        "A DNS record"
+        "A server that exposes GitHub tools",
+        "The language model itself",
+        "A vector database that stores embeddings"
       ],
       "answer": "An AI app such as Claude Code or an IDE",
       "explanation": "Hosts contain clients that connect to servers.",
@@ -5520,8 +5520,8 @@
       "options": [
         "One LLM generates, another evaluates and gives feedback, in a loop",
         "One model trains another from scratch",
-        "A human writes every answer",
-        "The model optimizes GPU clocks"
+        "Several LLMs answer in parallel and the majority wins",
+        "A router sends each input to a specialist model"
       ],
       "answer": "One LLM generates, another evaluates and gives feedback, in a loop",
       "explanation": "Useful when clear evaluation criteria exist.",
@@ -5535,9 +5535,9 @@
       "prompt": "What is the routing pattern?",
       "options": [
         "Classifying an input and sending it to a specialized prompt, tool or model",
-        "Choosing a network cable",
-        "Sending every request to all models",
-        "Rotating API keys"
+        "Sending every request to all models and merging the answers",
+        "Rotating API keys to avoid rate limits",
+        "Running steps one after another, each using the last output"
       ],
       "answer": "Classifying an input and sending it to a specialized prompt, tool or model",
       "explanation": "Example: send billing questions to a billing flow.",
@@ -5561,9 +5561,9 @@
       "prompt": "What is \"tool poisoning\" in MCP?",
       "options": [
         "Malicious instructions hidden in a tool's description or metadata",
-        "A tool that runs slowly",
-        "Deleting a tool by mistake",
-        "A broken network cable"
+        "A tool that returns slow or incomplete results",
+        "Training data manipulated to plant a backdoor",
+        "A server that crashes when called with bad arguments"
       ],
       "answer": "Malicious instructions hidden in a tool's description or metadata",
       "explanation": "Only install trusted servers and review tool descriptions.",
@@ -5587,9 +5587,9 @@
       "prompt": "What is a handoff in a multi-agent system?",
       "options": [
         "Passing control of the task or conversation to another agent",
-        "Shaking hands with the user",
-        "Restarting the server",
-        "Switching GPUs"
+        "Restarting the agent with a fresh context",
+        "Returning the final answer to the user",
+        "Calling a tool and waiting for its result"
       ],
       "answer": "Passing control of the task or conversation to another agent",
       "explanation": "The OpenAI Agents SDK has handoffs as a core concept.",
@@ -5603,9 +5603,9 @@
       "prompt": "What is regression testing for prompts and LLM apps?",
       "options": [
         "Re-running the eval suite after changes to catch quality drops",
-        "Fitting a regression line",
-        "Testing GPU speed",
-        "Deleting old prompts"
+        "Fitting a regression line to model scores",
+        "Testing only the new features after each change",
+        "Lowering the temperature to make outputs repeatable"
       ],
       "answer": "Re-running the eval suite after changes to catch quality drops",
       "explanation": "Run it in CI before every release.",
@@ -5629,9 +5629,9 @@
       "prompt": "In RAG evaluation, what does context precision measure?",
       "options": [
         "Whether the retrieved chunks are relevant, with relevant ones ranked high",
-        "How fast retrieval is",
-        "How long the answer is",
-        "The cost per query"
+        "How fast the retriever returns results",
+        "Whether the answer is supported by the context",
+        "How much of the needed information was retrieved"
       ],
       "answer": "Whether the retrieved chunks are relevant, with relevant ones ranked high",
       "explanation": "Low precision means noisy context.",
@@ -5645,9 +5645,9 @@
       "prompt": "In RAG evaluation, what does context recall measure?",
       "options": [
         "Whether the retrieved context contains all the information needed",
-        "How many users recalled the answer",
-        "The model's memory size",
-        "The number of chunks stored"
+        "Whether retrieved chunks are ranked in the right order",
+        "Whether the answer is supported by the context",
+        "How many chunks are stored in the index"
       ],
       "answer": "Whether the retrieved context contains all the information needed",
       "explanation": "Low recall means missing facts.",
@@ -5671,9 +5671,9 @@
       "prompt": "What is A/B testing of an LLM feature?",
       "options": [
         "Comparing two versions on live users to see which performs better",
-        "Testing on two GPUs",
-        "Grading answers A or B",
-        "Translating between two languages"
+        "Testing the same version on two different GPUs",
+        "Asking a judge model to pick answer A or B",
+        "Running the eval suite before and after a change"
       ],
       "answer": "Comparing two versions on live users to see which performs better",
       "explanation": "An online evaluation method.",
@@ -5687,9 +5687,9 @@
       "prompt": "Why run several samples per eval case for LLMs?",
       "options": [
         "Outputs are non-deterministic, so one sample can mislead",
-        "To use up the budget",
-        "Because the first sample is always wrong",
-        "To train the model"
+        "Because the first sample is always lower quality",
+        "To train the model on its own outputs",
+        "To measure latency more accurately"
       ],
       "answer": "Outputs are non-deterministic, so one sample can mislead",
       "explanation": "Average over samples for stable scores.",
@@ -5713,9 +5713,9 @@
       "prompt": "What does inter-annotator agreement measure?",
       "options": [
         "How consistently different human labelers agree",
-        "How fast annotators work",
-        "The model's accuracy",
-        "The number of labels"
+        "How fast annotators label each item",
+        "How often the model agrees with human labels",
+        "How many labels each item receives"
       ],
       "answer": "How consistently different human labelers agree",
       "explanation": "Low agreement means the task or rubric is unclear.",
@@ -5729,9 +5729,9 @@
       "prompt": "What is SWE-bench Verified?",
       "options": [
         "A human-validated subset of SWE-bench tasks",
-        "A GPU benchmark",
-        "A math benchmark",
-        "An image benchmark"
+        "A benchmark of verified math proofs",
+        "A harder version of SWE-bench with unsolved issues",
+        "A leaderboard run and verified by GitHub"
       ],
       "answer": "A human-validated subset of SWE-bench tasks",
       "explanation": "Verification removed unclear or unfair tasks.",
@@ -5745,9 +5745,9 @@
       "prompt": "What does ARC-AGI test?",
       "options": [
         "Abstract reasoning puzzles that are easy for humans but hard for AI",
-        "Typing speed",
-        "Translation quality",
-        "GPU throughput"
+        "Expert-level knowledge across many subjects",
+        "Coding ability on real software issues",
+        "Grade-school math word problems"
       ],
       "answer": "Abstract reasoning puzzles that are easy for humans but hard for AI",
       "explanation": "It targets generalization to new problems.",
@@ -5761,9 +5761,9 @@
       "prompt": "What is Humanity's Last Exam?",
       "options": [
         "A benchmark of very hard expert-level questions across many subjects",
-        "A school final exam",
-        "A typing test",
-        "A hardware stress test"
+        "A test of whether AI can pass the bar exam",
+        "A benchmark of grade-school science questions",
+        "A safety test that checks for dangerous outputs"
       ],
       "answer": "A benchmark of very hard expert-level questions across many subjects",
       "explanation": "Built to stay hard as models improve.",
@@ -5787,9 +5787,9 @@
       "prompt": "What does MLPerf Training measure?",
       "options": [
         "How long systems take to train models to a target quality",
-        "How smart a chatbot is",
-        "Model file size",
-        "The number of parameters"
+        "How fast systems serve trained models (latency)",
+        "How accurate models are on a fixed test set",
+        "How many parameters a model has"
       ],
       "answer": "How long systems take to train models to a target quality",
       "explanation": "It compares hardware and software systems.",
@@ -5813,9 +5813,9 @@
       "prompt": "Why do benchmark makers keep some test sets private or held out?",
       "options": [
         "To reduce contamination and overfitting to the benchmark",
-        "To save storage",
-        "Because the questions are wrong",
-        "To make scores higher"
+        "To save storage and download costs",
+        "Because some questions have wrong answers",
+        "To keep scores comparable across years"
       ],
       "answer": "To reduce contamination and overfitting to the benchmark",
       "explanation": "Public test sets can leak into training data.",
@@ -5829,9 +5829,9 @@
       "prompt": "What does the GSM8K benchmark test?",
       "options": [
         "Grade-school math word problems",
-        "Image classification",
-        "Speech recognition",
-        "Chip manufacturing"
+        "Competition-level math proofs",
+        "Commonsense sentence completion",
+        "Reading comprehension of news articles"
       ],
       "answer": "Grade-school math word problems",
       "explanation": "It checks multi-step arithmetic reasoning.",
@@ -5855,9 +5855,9 @@
       "prompt": "What is Red Hat OpenShift?",
       "options": [
         "An enterprise Kubernetes platform",
-        "A large language model",
-        "A GPU",
-        "A vector database"
+        "A large language model from IBM",
+        "A Linux distribution for desktops",
+        "A vector database for RAG"
       ],
       "answer": "An enterprise Kubernetes platform",
       "explanation": "OpenShift runs containerized apps on-premises or in any cloud.",
@@ -5955,9 +5955,9 @@
       "prompt": "What does ByteDance's Seedance model generate?",
       "options": [
         "Video from text or images",
-        "Music only",
-        "Source code",
-        "Spreadsheets"
+        "Music and sound effects only",
+        "Source code from screenshots",
+        "3D models for games"
       ],
       "answer": "Video from text or images",
       "explanation": "Seedance is a text-to-video and image-to-video model.",
@@ -5997,9 +5997,9 @@
       "prompt": "What is Hugging Face best known for?",
       "options": [
         "A hub for sharing open models and datasets",
-        "Making GPUs",
-        "A cloud database",
-        "A search engine"
+        "Making AI chips for data centers",
+        "A managed vector database",
+        "A chatbot app for consumers"
       ],
       "answer": "A hub for sharing open models and datasets",
       "explanation": "The Hugging Face Hub hosts over a million models.",
@@ -6013,9 +6013,9 @@
       "prompt": "Which Python library from Hugging Face loads pretrained models with a few lines of code?",
       "options": [
         "transformers",
-        "pandas",
-        "requests",
-        "flask"
+        "scikit-learn",
+        "langchain",
+        "datasets"
       ],
       "answer": "transformers",
       "explanation": "The Hugging Face transformers library supports PyTorch, TensorFlow and JAX.",
@@ -6029,9 +6029,9 @@
       "prompt": "What are Hugging Face Spaces used for?",
       "options": [
         "Hosting AI demo apps (Gradio or Streamlit)",
-        "Storing passwords",
-        "Training GPUs",
-        "Sending email"
+        "Storing model weights and datasets",
+        "Renting GPUs for training jobs",
+        "Hosting private Git repositories for code"
       ],
       "answer": "Hosting AI demo apps (Gradio or Streamlit)",
       "explanation": "Spaces let anyone publish an interactive demo.",
@@ -6045,9 +6045,9 @@
       "prompt": "Which Hugging Face library makes parameter-efficient fine-tuning such as LoRA easy?",
       "options": [
         "PEFT",
-        "NumPy",
-        "Matplotlib",
-        "Scrapy"
+        "Accelerate",
+        "Datasets",
+        "Tokenizers"
       ],
       "answer": "PEFT",
       "explanation": "Hugging Face PEFT implements LoRA, prefix tuning and more.",
@@ -6071,9 +6071,9 @@
       "prompt": "What is IBM watsonx?",
       "options": [
         "IBM's AI and data platform for business",
-        "A smartphone",
-        "A video game",
-        "A web browser"
+        "IBM's quantum computing service",
+        "An IBM mainframe operating system",
+        "IBM's cloud storage service"
       ],
       "answer": "IBM's AI and data platform for business",
       "explanation": "watsonx.ai, watsonx.data and watsonx.governance.",
@@ -6113,9 +6113,9 @@
       "prompt": "Which part of IBM watsonx focuses on AI risk, compliance and model monitoring?",
       "options": [
         "watsonx.governance",
-        "watsonx.games",
-        "watsonx.mail",
-        "watsonx.store"
+        "watsonx.ai",
+        "watsonx.data",
+        "watsonx Orchestrate"
       ],
       "answer": "watsonx.governance",
       "explanation": "It tracks models, bias, drift and regulations.",
@@ -6129,9 +6129,9 @@
       "prompt": "What is Amazon Bedrock?",
       "options": [
         "A managed AWS service for using foundation models through one API",
-        "A GPU chip",
-        "A smart speaker",
-        "A database engine"
+        "A custom AWS chip for training",
+        "A managed vector database",
+        "An AWS service for labeling training data"
       ],
       "answer": "A managed AWS service for using foundation models through one API",
       "explanation": "Bedrock offers Claude, Llama, Mistral, Amazon Nova and more.",
@@ -6145,9 +6145,9 @@
       "prompt": "What are AWS Trainium and Inferentia?",
       "options": [
         "Custom AWS chips for AI training and inference",
-        "AWS regions",
-        "Programming languages",
-        "Storage classes"
+        "AWS regions for AI workloads",
+        "Foundation models made by Amazon",
+        "AWS storage classes for training data"
       ],
       "answer": "Custom AWS chips for AI training and inference",
       "explanation": "Trainium for training, Inferentia for inference.",
@@ -6161,9 +6161,9 @@
       "prompt": "Which AWS service is used to build, train and deploy ML models?",
       "options": [
         "Amazon SageMaker AI",
-        "Amazon S3 Glacier",
-        "Amazon Route 53",
-        "Amazon WorkMail"
+        "Amazon Kendra",
+        "Amazon Comprehend",
+        "Amazon S3"
       ],
       "answer": "Amazon SageMaker AI",
       "explanation": "SageMaker covers the full ML lifecycle.",
@@ -6187,9 +6187,9 @@
       "prompt": "What is GitHub Copilot?",
       "options": [
         "An AI coding assistant from Microsoft's GitHub",
-        "A GPU",
-        "An operating system",
-        "A web host"
+        "A chatbot built into Windows only",
+        "An AI code-review service from OpenAI",
+        "A GitHub tool for hosting AI models"
       ],
       "answer": "An AI coding assistant from Microsoft's GitHub",
       "explanation": "It suggests code and can act as a coding agent.",
@@ -6219,9 +6219,9 @@
       "prompt": "Phi is a family of what kind of models from Microsoft?",
       "options": [
         "Small language models",
-        "Image sensors",
-        "Databases",
-        "Robots"
+        "Image generation models",
+        "Speech recognition models",
+        "Large frontier reasoning models"
       ],
       "answer": "Small language models",
       "explanation": "Phi models are compact open-weight SLMs.",
@@ -6235,9 +6235,9 @@
       "prompt": "What is Microsoft Copilot Studio used for?",
       "options": [
         "Building custom copilots and agents with low code",
-        "Editing video",
-        "Designing chips",
-        "Running SQL Server"
+        "Training foundation models from scratch",
+        "Hosting OpenAI models inside Azure",
+        "Writing code inside Visual Studio"
       ],
       "answer": "Building custom copilots and agents with low code",
       "explanation": "It connects agents to business data and actions.",
@@ -6251,9 +6251,9 @@
       "prompt": "AMD Instinct MI300X is which kind of product?",
       "options": [
         "A data-center AI accelerator (GPU)",
-        "A gaming console",
-        "A language model",
-        "A network switch"
+        "A server CPU",
+        "A consumer gaming GPU",
+        "A network interface card"
       ],
       "answer": "A data-center AI accelerator (GPU)",
       "explanation": "It competes with NVIDIA H100/H200 and has 192 GB of HBM3.",
@@ -6267,9 +6267,9 @@
       "prompt": "What is ROCm?",
       "options": [
         "AMD's open software stack for GPU computing",
-        "An Intel CPU",
-        "A Google TPU",
-        "A database"
+        "AMD's line of server CPUs",
+        "A compiler for Google TPUs",
+        "NVIDIA's deep learning library"
       ],
       "answer": "AMD's open software stack for GPU computing",
       "explanation": "ROCm is AMD's answer to NVIDIA CUDA.",
@@ -6293,9 +6293,9 @@
       "prompt": "What is Intel Gaudi?",
       "options": [
         "An AI accelerator for training and inference",
-        "A web browser",
-        "A chatbot",
-        "A cloud region"
+        "Intel's line of laptop CPUs",
+        "An inference toolkit for Intel chips",
+        "Intel's chip factory in Arizona"
       ],
       "answer": "An AI accelerator for training and inference",
       "explanation": "Gaudi came from Intel's Habana Labs acquisition.",
@@ -6335,9 +6335,9 @@
       "prompt": "What is Apple MLX?",
       "options": [
         "An array framework for machine learning on Apple silicon",
-        "An iPhone model",
-        "A cloud service",
-        "A chatbot"
+        "Apple's on-device language model",
+        "A cloud AI service from Apple",
+        "A file format for Apple Neural Engine models"
       ],
       "answer": "An array framework for machine learning on Apple silicon",
       "explanation": "MLX uses unified memory on M-series chips.",
@@ -6377,9 +6377,9 @@
       "prompt": "Cohere mainly focuses on which market?",
       "options": [
         "Enterprise AI (models for business, RAG, search)",
-        "Video games",
-        "Smartphones",
-        "Social media"
+        "Consumer chatbots for the public",
+        "AI chips for data centers",
+        "Image and video generation"
       ],
       "answer": "Enterprise AI (models for business, RAG, search)",
       "explanation": "Cohere sells Command models and Embed and Rerank for retrieval.",
@@ -6393,9 +6393,9 @@
       "prompt": "Which Cohere model is used to re-score search results in RAG?",
       "options": [
         "Cohere Rerank",
-        "Cohere Paint",
-        "Cohere Drive",
-        "Cohere Voice"
+        "Cohere Embed",
+        "Cohere Command",
+        "Cohere Aya"
       ],
       "answer": "Cohere Rerank",
       "explanation": "Rerank improves the order of retrieved documents.",
@@ -6409,9 +6409,9 @@
       "prompt": "What is xAI's Colossus?",
       "options": [
         "A large GPU supercomputer for training Grok",
-        "A chatbot",
-        "A dataset",
-        "A programming language"
+        "xAI's flagship chatbot",
+        "A dataset of posts from X",
+        "xAI's image generation model"
       ],
       "answer": "A large GPU supercomputer for training Grok",
       "explanation": "Colossus in Memphis uses a very large number of NVIDIA GPUs.",
@@ -6425,9 +6425,9 @@
       "prompt": "Why did DeepSeek-R1 attract so much attention in January 2025?",
       "options": [
         "Strong open-weight reasoning at a reported low training cost",
-        "It was the first chatbot ever",
-        "It needed no GPUs",
-        "It only worked offline"
+        "It was the largest model ever trained",
+        "It was trained without any GPUs",
+        "It was the first model to use Mixture-of-Experts"
       ],
       "answer": "Strong open-weight reasoning at a reported low training cost",
       "explanation": "It matched leading reasoning models on several benchmarks.",
@@ -6493,9 +6493,9 @@
       "prompt": "What are NVIDIA NIM microservices?",
       "options": [
         "Ready-to-run containers for deploying AI models",
-        "GPU cooling systems",
-        "A chatbot app",
-        "A file format"
+        "A GPU rental service in the NVIDIA cloud",
+        "NVIDIA's small language models",
+        "A library of CUDA kernels"
       ],
       "answer": "Ready-to-run containers for deploying AI models",
       "explanation": "NIM packages a model with an optimized inference engine and API.",
@@ -6509,9 +6509,9 @@
       "prompt": "Which Google tool answers questions from your uploaded sources and can create audio overviews?",
       "options": [
         "NotebookLM",
-        "Google Sheets",
-        "Google Maps",
-        "Google Fonts"
+        "Gemini Canvas",
+        "Google AI Studio",
+        "Google Docs"
       ],
       "answer": "NotebookLM",
       "explanation": "NotebookLM grounds its answers in your documents.",
@@ -6573,9 +6573,9 @@
       "prompt": "What is the difference between Git and a GitHub repository?",
       "options": [
         "Git is a version control tool that runs on your computer; a GitHub repository is a Git repository hosted online for sharing and collaboration",
+        "Git is a website; GitHub is the program you install",
         "They are the same thing with two names",
-        "GitHub is a programming language and Git is its compiler",
-        "Git only works on Windows; GitHub only works on Linux"
+        "GitHub is required to use Git at all"
       ],
       "answer": "Git is a version control tool that runs on your computer; a GitHub repository is a Git repository hosted online for sharing and collaboration",
       "explanation": "Git tracks changes locally (commit, branch, merge). GitHub hosts Git repositories in the cloud and adds pull requests, issues, Actions (CI/CD) and Pages.",
@@ -6589,9 +6589,9 @@
       "prompt": "Which sequence correctly describes how to turn an existing web app into a mobile app?",
       "options": [
         "Make the site responsive, wrap it with a tool like Capacitor (or make it a PWA), add icons and native features, build it in Android Studio / Xcode, then publish to the app stores",
-        "Rename the website to .apk and email it to users",
-        "Copy the HTML into a Word document and export it as an app",
-        "Buy a new domain name ending in .app; the site becomes a mobile app automatically"
+        "Build it in Android Studio first, then make the site responsive, then add icons",
+        "Make it a PWA, then submit the website URL to the Apple App Store with no build step",
+        "Wrap it with Capacitor, then publish it to the stores without building it in Android Studio or Xcode"
       ],
       "answer": "Make the site responsive, wrap it with a tool like Capacitor (or make it a PWA), add icons and native features, build it in Android Studio / Xcode, then publish to the app stores",
       "explanation": "Common routes: a PWA (installable from the browser), a wrapper such as Capacitor or Cordova that puts the web app in a native shell, or a rewrite with React Native or Flutter. Store apps need signing, icons, privacy details and review.",
@@ -6937,9 +6937,9 @@
       "prompt": "What is LangChain?",
       "options": [
         "An open-source framework for building LLM apps and agents",
-        "A blockchain for AI models",
-        "A GPU made by NVIDIA",
-        "A vector database"
+        "A vector database for storing embeddings",
+        "A model gateway that routes to many LLM APIs",
+        "A hosted chatbot from OpenAI"
       ],
       "answer": "An open-source framework for building LLM apps and agents",
       "explanation": "LangChain gives building blocks (models, prompts, tools, retrievers) and hundreds of integrations.",
@@ -6969,9 +6969,9 @@
       "prompt": "How does LangGraph model an agent workflow?",
       "options": [
         "As a graph of nodes and edges that share state and can loop",
-        "As one long prompt",
-        "As a SQL query",
-        "As a fixed straight-line chain only"
+        "As one long prompt with all instructions",
+        "As a fixed straight-line chain only",
+        "As a list of independent tools with no shared state"
       ],
       "answer": "As a graph of nodes and edges that share state and can loop",
       "explanation": "Nodes are steps (LLM calls, tools), edges decide what runs next, and cycles allow agent loops.",
@@ -7113,8 +7113,8 @@
       "prompt": "Which measure is commonly used to choose splits in a classification decision tree?",
       "options": [
         "Gini impurity",
-        "Mean squared error of embeddings",
-        "BLEU score",
+        "Cosine similarity",
+        "Mean absolute error",
         "Perplexity"
       ],
       "answer": "Gini impurity",
@@ -7139,9 +7139,9 @@
       "prompt": "How does a random forest differ from gradient boosting?",
       "options": [
         "A forest trains trees independently and averages them; boosting adds trees one after another to fix earlier errors",
-        "A forest uses one tree; boosting uses many",
-        "Boosting only works on images",
-        "There is no difference"
+        "A forest adds trees one by one; boosting trains them independently",
+        "A forest uses one deep tree; boosting uses many shallow ones",
+        "Boosting averages its trees; a forest keeps only the best tree"
       ],
       "answer": "A forest trains trees independently and averages them; boosting adds trees one after another to fix earlier errors",
       "explanation": "Bagging lowers variance; boosting lowers bias step by step.",
@@ -7207,9 +7207,9 @@
       "prompt": "What does a POMDP add to an MDP?",
       "options": [
         "The agent cannot see the true state and must act on observations and a belief",
-        "More than one reward",
-        "No transitions",
-        "A fixed policy"
+        "Several agents acting at once",
+        "Continuous instead of discrete actions",
+        "Rewards that change over time"
       ],
       "answer": "The agent cannot see the true state and must act on observations and a belief",
       "explanation": "Partially observable: the agent keeps a probability distribution (belief) over states.",
@@ -7223,9 +7223,9 @@
       "prompt": "What is DMN?",
       "options": [
         "Decision Model and Notation, an OMG standard for decision tables and decision diagrams",
-        "Deep Memory Network, a neural network type",
-        "Data Mesh Node",
-        "A GPU interconnect"
+        "Data Model Notation, a database schema standard",
+        "Decision Making Network, a neural network type",
+        "Dynamic Model Navigator, a BPMN extension"
       ],
       "answer": "Decision Model and Notation, an OMG standard for decision tables and decision diagrams",
       "explanation": "DMN is supported by engines such as Camunda, Drools and IBM ODM.",
@@ -7239,9 +7239,9 @@
       "prompt": "In a DMN decision table, what does the hit policy define?",
       "options": [
         "What happens when more than one rule matches the inputs",
-        "How fast the table runs",
-        "Who may edit the table",
-        "The number of columns"
+        "Which input columns are required",
+        "The order in which tables are evaluated",
+        "How many rules the table can contain"
       ],
       "answer": "What happens when more than one rule matches the inputs",
       "explanation": "Examples: Unique, First, Priority, Any and Collect.",
@@ -7265,9 +7265,9 @@
       "prompt": "What is a Pareto-optimal option in a multi-criteria decision?",
       "options": [
         "One you cannot improve on one criterion without making another worse",
+        "The option with the highest weighted score",
         "The cheapest option",
-        "The option with the most criteria",
-        "An option picked at random"
+        "The option most stakeholders vote for"
       ],
       "answer": "One you cannot improve on one criterion without making another worse",
       "explanation": "All Pareto-optimal options form the Pareto front; you then choose among them by preference.",
@@ -7292,8 +7292,8 @@
       "options": [
         "When the logic is known, must be auditable and changes by policy",
         "When there are millions of unknown patterns in images",
-        "Never",
-        "Only when there is no data at all"
+        "When the patterns change constantly and are hard to describe",
+        "When you have lots of labeled historical data"
       ],
       "answer": "When the logic is known, must be auditable and changes by policy",
       "explanation": "ML fits complex patterns in data; rules fit clear, regulated logic. Many systems combine both.",
@@ -7356,8 +7356,8 @@
       "options": [
         "They use a non-Transformer, efficiency-focused architecture for on-device and cloud use",
         "They only generate images",
-        "They are the largest models in the world",
-        "They run only on quantum computers"
+        "They are the largest open models available",
+        "They are fine-tuned versions of Llama"
       ],
       "answer": "They use a non-Transformer, efficiency-focused architecture for on-device and cloud use",
       "explanation": "LFM2 mixes short convolution blocks with a few attention layers to save memory and run fast on edge devices.",
@@ -7563,9 +7563,9 @@
       "prompt": "Why should you report p95 latency and not only the average?",
       "options": [
         "Because slow outlier requests that many users feel are hidden by the average",
-        "Because p95 is always lower",
-        "Because averages cannot be calculated for LLMs",
-        "Because p95 measures accuracy"
+        "Because p95 is always lower than the average",
+        "Because p95 measures the fastest requests",
+        "Because providers bill by p95 latency"
       ],
       "answer": "Because slow outlier requests that many users feel are hidden by the average",
       "explanation": "Tail latency (p95/p99) shows the worst common experience.",
@@ -7579,9 +7579,9 @@
       "prompt": "The decode phase of LLM inference (generating tokens one by one) is usually limited by what?",
       "options": [
         "GPU memory bandwidth",
-        "Disk size",
+        "GPU compute (FLOPs)",
         "CPU clock speed",
-        "Network DNS"
+        "PCIe bandwidth to storage"
       ],
       "answer": "GPU memory bandwidth",
       "explanation": "Each token reads all the weights; prefill is compute-bound, decode is bandwidth-bound.",
@@ -7711,9 +7711,9 @@
       "prompt": "Which programming language is most widely used by AI engineers?",
       "options": [
         "Python",
-        "COBOL",
-        "Fortran",
-        "Visual Basic"
+        "JavaScript",
+        "C++",
+        "Java"
       ],
       "answer": "Python",
       "explanation": "Python has PyTorch, scikit-learn, Hugging Face and most AI SDKs.",
@@ -7727,9 +7727,9 @@
       "prompt": "Why do you keep a separate test set when building a model?",
       "options": [
         "To measure performance on data the model never saw during training or tuning",
-        "To make training faster",
-        "To store backups",
-        "To reduce GPU memory"
+        "To tune hyperparameters",
+        "To have extra data to train on later",
+        "To check the training loss each epoch"
       ],
       "answer": "To measure performance on data the model never saw during training or tuning",
       "explanation": "Tuning on the test set gives an over-optimistic score.",
@@ -7744,8 +7744,8 @@
       "options": [
         "Overfitting",
         "Underfitting",
-        "Too much test data",
-        "A slow GPU"
+        "Data leakage into the test set",
+        "A learning rate that is too high"
       ],
       "answer": "Overfitting",
       "explanation": "Use more data, regularization, a simpler model or early stopping.",
@@ -7760,8 +7760,8 @@
       "options": [
         "Recall",
         "Precision",
-        "Training loss",
-        "Latency"
+        "Accuracy",
+        "Specificity"
       ],
       "answer": "Recall",
       "explanation": "Recall = share of real positives the model finds.",
@@ -7785,9 +7785,9 @@
       "prompt": "What is data leakage?",
       "options": [
         "Training with information that would not be available at prediction time",
-        "A data center losing power",
-        "Sharing a model on GitHub",
-        "Using too few GPUs"
+        "Personal data exposed in a security breach",
+        "Training data that is too small",
+        "Test data that is labeled incorrectly"
       ],
       "answer": "Training with information that would not be available at prediction time",
       "explanation": "Leakage gives great offline scores that fail in production.",
@@ -7801,9 +7801,9 @@
       "prompt": "Which tool is mainly used to track ML experiments and register models?",
       "options": [
         "MLflow",
-        "Excel",
-        "Figma",
-        "Slack"
+        "Apache Airflow",
+        "Great Expectations",
+        "Prometheus"
       ],
       "answer": "MLflow",
       "explanation": "Weights & Biases is another popular choice.",
@@ -7827,9 +7827,9 @@
       "prompt": "Which list is the OWASP Top 10 for LLM Applications most concerned with?",
       "options": [
         "Security risks such as prompt injection and insecure output handling",
-        "The 10 fastest GPUs",
-        "The 10 largest models",
-        "The 10 best prompts"
+        "The 10 most common LLM accuracy failures",
+        "The 10 biggest AI companies by revenue",
+        "The 10 most important AI regulations"
       ],
       "answer": "Security risks such as prompt injection and insecure output handling",
       "explanation": "It lists the main security risks of LLM apps.",
@@ -7917,9 +7917,9 @@
       "prompt": "What is a container?",
       "options": [
         "A package of an app with its code, runtime and libraries that runs the same way anywhere",
-        "A physical box for GPUs",
-        "A type of neural network layer",
-        "A vector database"
+        "A full virtual machine with its own operating system",
+        "A compressed archive of source code",
+        "A cloud storage bucket"
       ],
       "answer": "A package of an app with its code, runtime and libraries that runs the same way anywhere",
       "explanation": "Docker is the best-known container tool.",
@@ -7934,7 +7934,7 @@
       "options": [
         "It shares the host OS kernel, so it starts faster and uses less memory",
         "It always needs its own physical server",
-        "It cannot run Python",
+        "It includes its own full operating system kernel",
         "It is slower to start than a VM"
       ],
       "answer": "It shares the host OS kernel, so it starts faster and uses less memory",
@@ -7950,8 +7950,8 @@
       "options": [
         "To freeze exact versions of Python, PyTorch, CUDA and libraries so the app runs the same everywhere",
         "To make models more accurate",
-        "To train without data",
-        "To replace GPUs"
+        "To encrypt the model weights",
+        "To make the GPU run faster"
       ],
       "answer": "To freeze exact versions of Python, PyTorch, CUDA and libraries so the app runs the same everywhere",
       "explanation": "AI stacks break easily when versions differ between machines.",
@@ -7991,9 +7991,9 @@
       "prompt": "Which tool runs and scales many containers across a cluster of machines?",
       "options": [
         "Kubernetes",
-        "Git",
-        "Jupyter",
-        "pip"
+        "Docker Compose",
+        "Terraform",
+        "Ansible"
       ],
       "answer": "Kubernetes",
       "explanation": "Red Hat OpenShift is an enterprise Kubernetes platform.",
@@ -8059,9 +8059,9 @@
       "prompt": "What is quantization of an AI model?",
       "options": [
         "Storing weights with fewer bits to save memory and speed up inference",
-        "Adding more layers",
+        "Removing layers to make the model smaller",
         "Splitting text into tokens",
-        "Training on more data"
+        "Training a smaller model to copy a larger one"
       ],
       "answer": "Storing weights with fewer bits to save memory and speed up inference",
       "explanation": "For example FP16 → INT8 or 4-bit.",
@@ -8092,8 +8092,8 @@
       "options": [
         "Decoding is memory-bandwidth bound, and smaller weights mean fewer bytes to read per token",
         "It removes layers from the model",
-        "It shortens the prompt",
-        "It turns off attention"
+        "It lets the model skip tokens it is confident about",
+        "It uses a smaller vocabulary"
       ],
       "answer": "Decoding is memory-bandwidth bound, and smaller weights mean fewer bytes to read per token",
       "explanation": "Fewer bytes moved means more tokens per second.",
@@ -8108,8 +8108,8 @@
       "options": [
         "PTQ quantizes after training; QAT trains the model while simulating low precision",
         "PTQ is for images, QAT for text",
-        "They are the same",
-        "QAT removes quantization"
+        "QAT quantizes after training; PTQ trains with low precision",
+        "PTQ needs more training data than QAT"
       ],
       "answer": "PTQ quantizes after training; QAT trains the model while simulating low precision",
       "explanation": "QAT usually keeps more quality at very low bits but costs a training run.",
@@ -8123,9 +8123,9 @@
       "prompt": "Which model file format is used by llama.cpp and Ollama for quantized models?",
       "options": [
         "GGUF",
-        "PNG",
-        "ONNX only",
-        "CSV"
+        "safetensors",
+        "ONNX",
+        "PyTorch .pt"
       ],
       "answer": "GGUF",
       "explanation": "GGUF has levels such as Q4_K_M and Q8_0.",
@@ -8193,7 +8193,7 @@
         "A small desktop AI computer for building and running models locally",
         "A cloud-only GPU service",
         "A gaming graphics card",
-        "A programming language"
+        "A rack-scale server for data centers"
       ],
       "answer": "A small desktop AI computer for building and running models locally",
       "explanation": "It uses the GB10 Grace Blackwell Superchip with 128 GB unified memory.",
@@ -8250,8 +8250,8 @@
       "options": [
         "Its memory bandwidth (about 273 GB/s)",
         "Its disk size",
-        "The number of USB ports",
-        "Its CPU clock alone"
+        "Its CPU clock speed",
+        "Its network speed"
       ],
       "answer": "Its memory bandwidth (about 273 GB/s)",
       "explanation": "Decoding reads all active weights per token; tokens/s ≈ bandwidth ÷ bytes of active weights.",
@@ -8407,9 +8407,9 @@
       "prompt": "How much memory does a PlayStation 5 have for games and the system?",
       "options": [
         "16 GB of GDDR6",
-        "16 MB",
-        "128 GB",
-        "4 GB"
+        "8 GB of GDDR5",
+        "32 GB of DDR5",
+        "12 GB of GDDR6"
       ],
       "answer": "16 GB of GDDR6",
       "explanation": "The CPU and GPU share 16 GB, so big open worlds must be streamed.",
@@ -8424,8 +8424,8 @@
       "options": [
         "To load only what is near the player because the whole world cannot fit in memory",
         "To broadcast the game on Twitch",
-        "To make the game run online only",
-        "To replace the GPU"
+        "So the game can only be played online",
+        "To download updates while playing"
       ],
       "answer": "To load only what is near the player because the whole world cannot fit in memory",
       "explanation": "Assets are loaded from the SSD as the player moves and unloaded when far away.",
@@ -8439,9 +8439,9 @@
       "prompt": "What is ray tracing?",
       "options": [
         "Calculating light, shadows and reflections by following rays of light",
-        "Tracking players with GPS",
-        "A way to compress game files",
-        "A type of AI chatbot"
+        "Using AI to upscale frames to a higher resolution",
+        "Pre-drawing all shadows into textures",
+        "Drawing objects as flat triangles without lighting"
       ],
       "answer": "Calculating light, shadows and reflections by following rays of light",
       "explanation": "Modern GPUs, including console GPUs, have hardware to speed it up.",
@@ -8483,9 +8483,9 @@
       "prompt": "Why do AI video generators often break the laws of physics?",
       "options": [
         "They learn how pixels usually look and move, not the physical rules behind them",
-        "They run out of disk space",
         "They are trained only on cartoons",
-        "Physics is turned off to save money"
+        "They run a physics engine at low precision",
+        "Their clips are too short to show physics"
       ],
       "answer": "They learn how pixels usually look and move, not the physical rules behind them",
       "explanation": "They have no built-in model of mass, forces or 3D space.",
@@ -8499,9 +8499,9 @@
       "prompt": "In an AI video, a cup goes behind a person and is gone when the person moves away. Which physics failure is this?",
       "options": [
         "Object permanence",
-        "Ray tracing",
-        "Quantization",
-        "Overfitting"
+        "Gravity",
+        "Collision",
+        "Fluid dynamics"
       ],
       "answer": "Object permanence",
       "explanation": "Objects should keep existing when hidden.",
@@ -8542,8 +8542,8 @@
       "options": [
         "Training on synthetic data from physics simulators and game engines",
         "Lowering the frame rate",
-        "Using a shorter prompt",
-        "Removing the GPU"
+        "Using shorter prompts",
+        "Training on more cartoon videos"
       ],
       "answer": "Training on synthetic data from physics simulators and game engines",
       "explanation": "Simulators produce accurate, labeled examples of collisions, fluids and gravity.",
@@ -8610,8 +8610,8 @@
       "options": [
         "You can run it on your own hardware, so data stays in-house and you control versions and fine-tuning",
         "It is always more accurate than every closed model",
-        "It needs no GPUs at all",
-        "It never needs a license"
+        "It never needs a license",
+        "It is always cheaper to run at any scale"
       ],
       "answer": "You can run it on your own hardware, so data stays in-house and you control versions and fine-tuning",
       "explanation": "Closed models are used only through the vendor's API; open weights can be downloaded, self-hosted and fine-tuned.",
@@ -8699,7 +8699,7 @@
         "The numbers the model learned during training that decide how inputs are turned into outputs",
         "The size of the training data in GB",
         "The prices per token",
-        "The physical weight of the GPU server"
+        "The settings people choose before training"
       ],
       "answer": "The numbers the model learned during training that decide how inputs are turned into outputs",
       "explanation": "Weights (with biases) are the model's parameters.",
@@ -8714,8 +8714,8 @@
       "options": [
         "The model has about 70 billion parameters (weights)",
         "It was trained on 70 billion documents",
-        "It costs $70 billion",
-        "It has a 70-billion-token context window"
+        "It has a 70-billion-token context window",
+        "It needs 70 GB of GPU memory"
       ],
       "answer": "The model has about 70 billion parameters (weights)",
       "explanation": "More parameters usually means more capability and more memory.",
@@ -8729,9 +8729,9 @@
       "prompt": "How are the weights changed during training?",
       "options": [
         "Backpropagation computes gradients and an optimizer such as Adam adjusts the weights to reduce the loss",
-        "People type the values in by hand",
-        "The weights are copied from Wikipedia",
-        "They are chosen at random for each prompt"
+        "Engineers set them by hand",
+        "They change during each conversation with users",
+        "A search tries random values until one works"
       ],
       "answer": "Backpropagation computes gradients and an optimizer such as Adam adjusts the weights to reduce the loss",
       "explanation": "Repeated over trillions of tokens, small updates make the predictions better.",
@@ -8781,9 +8781,9 @@
       "prompt": "What does LoRA do with the original weights during fine-tuning?",
       "options": [
         "Keeps them frozen and trains small extra low-rank matrices",
-        "Deletes half of them",
         "Retrains all of them from scratch",
-        "Converts them to text"
+        "Quantizes them to 4 bits and retrains them",
+        "Replaces the attention layers"
       ],
       "answer": "Keeps them frozen and trains small extra low-rank matrices",
       "explanation": "That makes fine-tuning cheap; the adapter file is tiny.",
@@ -8807,9 +8807,9 @@
       "prompt": "Which file format is commonly used on Hugging Face to store model weights safely?",
       "options": [
         "safetensors",
-        "docx",
-        "mp4",
-        "csv"
+        "GGUF",
+        "pickle (.pkl)",
+        "ONNX"
       ],
       "answer": "safetensors",
       "explanation": "GGUF is used by llama.cpp and Ollama.",
@@ -8887,9 +8887,9 @@
       "prompt": "In a CoWoS package such as the NVIDIA H100, what sits next to the GPU die on the interposer?",
       "options": [
         "Stacks of HBM memory",
-        "An SSD",
-        "A CPU cooler",
-        "GDDR memory chips on the motherboard"
+        "A CPU",
+        "GDDR memory chips",
+        "An SSD controller"
       ],
       "answer": "Stacks of HBM memory",
       "explanation": "HBM placed millimetres from the GPU gives terabytes per second of bandwidth.",
@@ -8913,9 +8913,9 @@
       "prompt": "Why do AI accelerators need advanced packaging like CoWoS?",
       "options": [
         "To connect HBM to the GPU with thousands of short links for very high memory bandwidth",
-        "To make the chip waterproof",
         "To lower the price of consumer GPUs",
-        "To allow the chip to run without power"
+        "To keep the chip cooler",
+        "To let the GPU use DDR5 system memory"
       ],
       "answer": "To connect HBM to the GPU with thousands of short links for very high memory bandwidth",
       "explanation": "LLM inference and training are often memory-bandwidth bound; normal board wiring is far too slow.",
@@ -9013,9 +9013,9 @@
       "prompt": "What is CUDA?",
       "options": [
         "NVIDIA's platform and programming model for running general-purpose code on its GPUs",
-        "An AMD graphics card",
-        "A cloud storage service",
-        "A large language model"
+        "NVIDIA's deep learning library for neural-network layers",
+        "An open GPU standard supported by all vendors",
+        "NVIDIA's GPU-to-GPU interconnect"
       ],
       "answer": "NVIDIA's platform and programming model for running general-purpose code on its GPUs",
       "explanation": "AI frameworks like PyTorch use CUDA libraries under the hood.",
@@ -9065,9 +9065,9 @@
       "prompt": "Why is CUDA often called NVIDIA's \"moat\"?",
       "options": [
         "Its long-built ecosystem of libraries, tools and developers makes switching to other chips hard",
-        "It is the only way to cool GPUs",
-        "It is required by law",
-        "It makes chips physically smaller"
+        "It is the only way to program any GPU",
+        "NVIDIA patents stop others from building GPUs",
+        "It makes NVIDIA chips cheaper to manufacture"
       ],
       "answer": "Its long-built ecosystem of libraries, tools and developers makes switching to other chips hard",
       "explanation": "Many competitors match the hardware, but the software ecosystem keeps customers on NVIDIA.",
@@ -9098,8 +9098,8 @@
       "options": [
         "Very large HBM memory per GPU, so big models fit on fewer GPUs",
         "They run CUDA natively",
-        "They need no power",
-        "They are only for gaming"
+        "They have the highest clock speed",
+        "They are the cheapest GPUs per unit"
       ],
       "answer": "Very large HBM memory per GPU, so big models fit on fewer GPUs",
       "explanation": "MI300X has 192 GB and MI355X 288 GB of HBM.",
@@ -9113,8 +9113,8 @@
       "prompt": "In the chip industry, what is a \"fab\"?",
       "options": [
         "A factory that manufactures chips on silicon wafers",
-        "A chip design software",
-        "A type of GPU",
+        "Chip design software",
+        "A chip packaging plant only",
         "A data centre"
       ],
       "answer": "A factory that manufactures chips on silicon wafers",
@@ -9131,7 +9131,7 @@
         "Fabless",
         "IDM",
         "OSAT",
-        "Open-source"
+        "Foundry"
       ],
       "answer": "Fabless",
       "explanation": "NVIDIA, AMD, Apple and Qualcomm are fabless; TSMC is a foundry.",
@@ -9181,7 +9181,7 @@
       "prompt": "Which new transistor design does TSMC's N2 (2 nm) process introduce?",
       "options": [
         "Gate-all-around (GAA) nanosheet transistors",
-        "Vacuum tubes",
+        "FinFET transistors",
         "Planar transistors",
         "Optical transistors"
       ],
@@ -9357,7 +9357,7 @@
         "The steps it took: tools chosen, arguments, loops and recovery",
         "Only the final answer text",
         "The size of the model",
-        "The colour of the UI"
+        "The tokens generated per second"
       ],
       "answer": "The steps it took: tools chosen, arguments, loops and recovery",
       "explanation": "Outcome metrics check the final result; trajectory metrics check the path.",
@@ -9413,9 +9413,9 @@
       "prompt": "Which tool is a CLI for config-based LLM tests and red teaming?",
       "options": [
         "promptfoo",
-        "Docker",
-        "Kubernetes",
-        "Pandas"
+        "MLflow",
+        "LangSmith",
+        "Ragas"
       ],
       "answer": "promptfoo",
       "explanation": "Ragas focuses on RAG metrics; DeepEval offers pytest-style tests.",
@@ -9504,8 +9504,8 @@
       "options": [
         "Its predicted probabilities match observed frequencies",
         "It has 100% accuracy",
-        "It always predicts 0.5",
-        "It trains quickly"
+        "Its errors are spread evenly across classes",
+        "It gives the same output for the same input"
       ],
       "answer": "Its predicted probabilities match observed frequencies",
       "explanation": "Of cases scored 0.8, about 80% should be positive; needed for expected-cost decisions.",
@@ -9521,7 +9521,7 @@
         "Maximin",
         "Maximax",
         "Expected value",
-        "Random choice"
+        "Minimax regret"
       ],
       "answer": "Maximin",
       "explanation": "Maximax picks the best best case; minimax regret minimises the largest regret.",
@@ -9562,8 +9562,8 @@
       "options": [
         "Thompson sampling",
         "Epsilon-greedy",
-        "Gradient boosting",
-        "K-means"
+        "Upper Confidence Bound (UCB)",
+        "Softmax exploration"
       ],
       "answer": "Thompson sampling",
       "explanation": "UCB picks the highest optimistic estimate; epsilon-greedy explores at random.",
@@ -9589,7 +9589,7 @@
         "Business goals and problems to solve",
         "The newest AI model",
         "The cheapest AI tool",
-        "What competitors post on social media"
+        "A list of available AI tools"
       ],
       "answer": "Business goals and problems to solve",
       "explanation": "Starting from a tool instead of a problem is a common mistake.",
@@ -9629,9 +9629,9 @@
       "prompt": "When prioritising AI use cases, which pair of criteria forms the classic 2×2 matrix?",
       "options": [
         "Business value and feasibility",
-        "Model size and colour",
-        "Number of slides and meetings",
-        "Vendor name and logo"
+        "Cost and number of users",
+        "Model accuracy and latency",
+        "Urgency and team size"
       ],
       "answer": "Business value and feasibility",
       "explanation": "High value plus high feasibility gives quick wins to do first.",
@@ -9657,7 +9657,7 @@
         "When it is core to your competitive advantage and uses proprietary data",
         "When the capability is a common office tool",
         "When you need it working tomorrow with no team",
-        "Always; buying is never wise"
+        "When many vendors already sell it"
       ],
       "answer": "When it is core to your competitive advantage and uses proprietary data",
       "explanation": "Buy common, non-differentiating capabilities; build what makes you different.",
@@ -9672,8 +9672,8 @@
       "options": [
         "Shared platforms, standards, governance and security",
         "Every use case for every department",
-        "Only marketing campaigns",
-        "Nothing; each unit works alone"
+        "Only budget approvals",
+        "Each business unit's own data team"
       ],
       "answer": "Shared platforms, standards, governance and security",
       "explanation": "The spokes are AI teams embedded in business units that own use cases.",
@@ -9715,7 +9715,7 @@
         "ISO/IEC 42001",
         "ISO 9001",
         "PCI DSS",
-        "HTML5"
+        "ISO/IEC 27001"
       ],
       "answer": "ISO/IEC 42001",
       "explanation": "The NIST AI RMF is a voluntary framework, not a certifiable standard.",
@@ -9730,8 +9730,8 @@
       "options": [
         "By risk level, from prohibited to high-risk to limited and minimal risk",
         "By the size of the company only",
-        "By the programming language used",
-        "It bans all AI"
+        "By the amount of compute used to train every model",
+        "By the country where the model was trained"
       ],
       "answer": "By risk level, from prohibited to high-risk to limited and minimal risk",
       "explanation": "Plus separate rules for general-purpose AI models.",
@@ -9745,9 +9745,9 @@
       "prompt": "Why should you record a baseline before deploying an AI use case?",
       "options": [
         "To prove what actually improved after deployment",
-        "To make the model larger",
-        "To avoid paying for tokens",
-        "Baselines are not needed"
+        "To choose which model to use",
+        "To train the model on past results",
+        "Because regulators require it for every AI tool"
       ],
       "answer": "To prove what actually improved after deployment",
       "explanation": "Without a baseline, time or cost savings cannot be shown.",
@@ -9772,8 +9772,8 @@
       "options": [
         "Ongoing evaluation, monitoring, integration and change management",
         "The software licence",
-        "The first demo",
-        "The vendor's logo design"
+        "The initial pilot",
+        "The hardware purchase"
       ],
       "answer": "Ongoing evaluation, monitoring, integration and change management",
       "explanation": "TCO includes tokens, compute, data work, security, training and maintenance, not only licences.",
@@ -9787,9 +9787,9 @@
       "prompt": "In June 2025, what did Gartner predict about agentic AI projects?",
       "options": [
         "Over 40% will be canceled by the end of 2027",
-        "All will succeed by 2026",
-        "They will replace all software by 2026",
-        "They will be banned in the EU"
+        "Over 40% will reach full production by 2026",
+        "Fewer than 10% will be canceled by 2027",
+        "Over 80% will be canceled by the end of 2025"
       ],
       "answer": "Over 40% will be canceled by the end of 2027",
       "explanation": "Reasons: rising costs, unclear business value or weak risk controls.",
@@ -9846,7 +9846,7 @@
       "options": [
         "Roadmap, talent, operating model, technology, data, adoption and scaling",
         "Marketing, sales, finance, legal, HR, IT",
-        "Prompts, models, GPUs, tokens, agents, chatbots",
+        "Strategy, data, models, governance, people, culture",
         "Plan, build, test, release, monitor, retire"
       ],
       "answer": "Roadmap, talent, operating model, technology, data, adoption and scaling",
@@ -9871,9 +9871,9 @@
       "prompt": "Which firm wrote the book \"Rewired\" on digital and AI transformation?",
       "options": [
         "McKinsey",
-        "OpenAI",
-        "Apple",
-        "NVIDIA"
+        "Boston Consulting Group",
+        "Bain & Company",
+        "Deloitte"
       ],
       "answer": "McKinsey",
       "explanation": "First edition 2023; second edition April 2026 (Wiley).",
@@ -10010,7 +10010,7 @@
       "options": [
         "A2A (Agent2Agent)",
         "MCP",
-        "SMTP",
+        "OpenAPI",
         "gRPC"
       ],
       "sourceId": "src-142"
@@ -10052,8 +10052,8 @@
       "options": [
         "System Prompt Leakage and Vector and Embedding Weaknesses",
         "Prompt Injection and Supply Chain",
-        "Overfitting and Underfitting",
-        "SQL Injection and XSS"
+        "Model Theft and Overreliance",
+        "Insecure Plugin Design and Model Denial of Service"
       ],
       "sourceId": "src-143"
     },
@@ -10094,7 +10094,7 @@
       "options": [
         "Access to private data, exposure to untrusted content, and external communication",
         "Long context, tool use, and memory",
-        "High temperature, no system prompt, and streaming",
+        "Autonomy, persistence, and self-improvement",
         "GPU access, internet access, and logging"
       ],
       "sourceId": "src-144"
@@ -10189,7 +10189,7 @@
         "Summarizing the conversation and continuing from the summary",
         "Quantizing the model to 4 bits",
         "Deleting the system prompt",
-        "Raising the temperature"
+        "Moving the oldest messages into a vector database"
       ],
       "sourceId": "src-148"
     },
@@ -10240,7 +10240,7 @@
       "options": [
         "Harness",
         "Dataset",
-        "GPU",
+        "Prompt",
         "Benchmark"
       ],
       "sourceId": "src-149"
@@ -10309,7 +10309,7 @@
         "The length of tasks (in human working time) an AI agent completes with 50% success",
         "How long training takes",
         "Latency to the first token",
-        "How long a model stays online"
+        "How many tokens ahead a model can plan"
       ],
       "sourceId": "src-151"
     },
@@ -10333,9 +10333,9 @@
       "explanation": "ARC-AGI-2 uses static grid puzzles.",
       "options": [
         "Interactive games",
-        "Multiple-choice trivia",
-        "Essay grading",
-        "Speech recognition"
+        "Larger grids of the same puzzles",
+        "Multiple-choice puzzles",
+        "Natural-language riddles"
       ],
       "sourceId": "src-151"
     },
@@ -10382,8 +10382,8 @@
       "options": [
         "The frozen base model is quantized to 4 bits",
         "It trains all weights",
-        "It needs no data",
-        "It only works for images"
+        "It uses a larger rank for the adapters",
+        "It quantizes the adapters, not the base model"
       ],
       "sourceId": "src-153"
     },
@@ -10434,8 +10434,8 @@
       "options": [
         "To separate data from instructions so the model does not confuse them",
         "To make the prompt shorter",
-        "Because models only read XML",
-        "To hide text from the model"
+        "To reduce token cost",
+        "Because the model ignores text outside tags"
       ],
       "sourceId": "src-156"
     },
@@ -10471,7 +10471,7 @@
         "Structured output, such as JSON matching a schema",
         "A friendly paragraph",
         "A longer answer",
-        "An answer in capital letters"
+        "A numbered list in plain text"
       ],
       "sourceId": "src-156"
     },
@@ -10501,9 +10501,9 @@
       "explanation": "They denoise a latent video step by step, guided by the prompt.",
       "options": [
         "Diffusion transformers",
-        "Decision trees",
+        "GANs",
         "Recurrent neural networks only",
-        "Rule-based animation"
+        "Variational autoencoders only"
       ],
       "sourceId": "src-158"
     },
@@ -10545,7 +10545,7 @@
         "Safety testing, risks and mitigations",
         "The price list",
         "The training source code",
-        "The company's revenue"
+        "Benchmark scores only"
       ],
       "sourceId": "src-159"
     },
@@ -10601,9 +10601,9 @@
       "explanation": "Example: curl ... | jq .data",
       "options": [
         "jq",
-        "ping",
-        "ls",
-        "vim"
+        "grep",
+        "sed",
+        "awk"
       ],
       "sourceId": "src-90"
     },
@@ -10628,8 +10628,8 @@
       "options": [
         "Each token is routed to only a few experts",
         "It has no attention layers",
-        "It uses no GPU",
-        "It skips tokenization"
+        "It uses lower-precision weights",
+        "It has fewer layers"
       ],
       "sourceId": "src-160"
     },
@@ -10643,9 +10643,9 @@
       "explanation": "Many also accept video.",
       "options": [
         "Images",
-        "Only numbers",
-        "Only audio files",
-        "Spreadsheets only"
+        "Audio",
+        "Structured database tables",
+        "Sensor time-series data"
       ],
       "sourceId": "src-160"
     },
@@ -10685,9 +10685,9 @@
       "explanation": "Grouped-query attention and paged attention also reduce KV memory.",
       "options": [
         "Storing the KV cache in FP8 instead of FP16",
-        "Raising the temperature",
-        "Using a longer system prompt",
-        "Adding more layers"
+        "Using a larger batch size",
+        "Switching from GQA to full multi-head attention",
+        "Using a longer context window"
       ],
       "sourceId": ""
     },
@@ -10769,9 +10769,9 @@
       "explanation": "You cannot manage risks of systems you do not know about.",
       "options": [
         "Making an inventory of the AI systems in use",
-        "Buying the biggest model",
-        "Deleting all training data",
-        "Turning off logging"
+        "Choosing an AI vendor",
+        "Training staff on prompt writing",
+        "Writing an AI ethics statement"
       ],
       "sourceId": "src-147"
     },
@@ -10827,9 +10827,9 @@
       "explanation": "Others include discrimination and toxicity, privacy and security, and malicious use.",
       "options": [
         "Misinformation",
-        "Server cooling",
-        "Font choice",
-        "Office furniture"
+        "Vendor pricing",
+        "Model size",
+        "Software licensing"
       ],
       "sourceId": "src-161"
     },
@@ -10869,9 +10869,9 @@
       "explanation": "Oversight should be proportional to impact.",
       "options": [
         "Human review with an appeal route",
-        "No logging, for speed",
-        "Higher temperature",
-        "Hiding that AI was used"
+        "Fully automatic decisions to stay consistent",
+        "A disclaimer in the terms of service only",
+        "A monthly report of approval rates"
       ],
       "sourceId": "src-163"
     },
@@ -10885,9 +10885,9 @@
       "explanation": "Error, override, complaint and incident rates are common KRIs.",
       "options": [
         "The rate at which humans override its decisions",
-        "The number of slides in the launch deck",
-        "The model's file name",
-        "The office temperature"
+        "The number of model parameters",
+        "The size of the training dataset",
+        "The number of features in the app"
       ],
       "sourceId": "src-163"
     },
@@ -10921,9 +10921,9 @@
       "explanation": "A named owner must formally accept it.",
       "options": [
         "The risk that remains after controls are applied",
-        "Risk from old servers",
         "The risk before any assessment",
-        "Risk that only affects competitors"
+        "Risk transferred to an insurer",
+        "Risk accepted by the vendor"
       ],
       "sourceId": "src-164"
     },
@@ -10938,8 +10938,8 @@
       "options": [
         "Learning from real-world cases where AI caused or nearly caused harm",
         "Storing model weights",
-        "Training chatbots",
-        "Booking GPU time"
+        "Benchmarking model accuracy",
+        "Reporting software bugs to vendors"
       ],
       "sourceId": "src-164"
     },
@@ -10953,7 +10953,7 @@
       "explanation": "Set by leadership and applied through risk tiers.",
       "options": [
         "It defines which AI uses are prohibited, need extra approval or can proceed quickly",
-        "It is the amount of GPU memory needed",
+        "It is set by the regulator for each industry",
         "It is the same for every company",
         "It replaces testing"
       ],
@@ -11060,8 +11060,8 @@
       "options": [
         "It learned to downgrade CVs that mentioned women's activities",
         "It was too slow",
-        "It hired only remote workers",
-        "It refused to read PDFs"
+        "It favoured candidates from rival companies",
+        "It leaked candidates' personal data"
       ],
       "sourceId": "src-164"
     },
@@ -11318,8 +11318,8 @@
       "options": [
         "Running open-weight AI models locally on your own computer",
         "Training models from scratch in the cloud",
-        "Designing GPU chips",
-        "Hosting websites"
+        "Routing requests to many cloud model APIs",
+        "Fine-tuning closed models such as GPT"
       ],
       "sourceId": "src-170"
     },
@@ -11387,7 +11387,7 @@
         "Your data stays on your own machine and there are no per-token fees",
         "It is always faster than the cloud",
         "It gives access to every closed frontier model",
-        "It needs no hardware at all"
+        "It always gives better answers than cloud models"
       ],
       "sourceId": "src-170"
     },
@@ -11402,8 +11402,8 @@
       "options": [
         "To cut memory use so they fit on a laptop or consumer GPU",
         "To make them more accurate than the original",
-        "To add internet access",
-        "To translate them into other languages"
+        "To let them use a longer context",
+        "To make them follow instructions better"
       ],
       "sourceId": "src-170"
     },
@@ -11418,8 +11418,8 @@
       "options": [
         "Open-source, self-hosted chat apps that can connect to many AI providers and local models",
         "Closed chatbots owned by OpenAI",
-        "GPU drivers",
-        "Benchmark leaderboards"
+        "Model gateways that route API calls",
+        "Tools for training local models"
       ],
       "sourceId": "src-171"
     },
@@ -11454,8 +11454,8 @@
       "options": [
         "The chat client is a user interface; the gateway is an API that routes requests to many models",
         "They are exactly the same thing",
-        "A gateway only works offline",
-        "A chat client trains its own models"
+        "The gateway is the user interface; the chat client routes requests",
+        "A chat client only works with local models"
       ],
       "sourceId": "src-172"
     },
@@ -11470,7 +11470,7 @@
       "options": [
         "An open-source personal AI agent you run yourself, reached through chat apps",
         "Anthropic's official Claude desktop app",
-        "A GPU made by NVIDIA",
+        "A cloud chatbot from OpenAI",
         "A benchmark for coding models"
       ],
       "sourceId": "src-173"
@@ -11487,7 +11487,7 @@
         "A folder with a SKILL.md instruction file (and optional scripts) that adds an ability",
         "A fine-tuned copy of the model",
         "A paid subscription level",
-        "A type of GPU memory"
+        "A plugin that adds a new chat app"
       ],
       "sourceId": "src-173"
     },
@@ -11501,9 +11501,9 @@
       "explanation": "It is what makes OpenClaw proactive rather than only replying.",
       "options": [
         "Wakes the agent on a timer to check its task list and act without being asked",
-        "Measures the health of the GPU",
-        "Encrypts all messages",
-        "Counts how many users are online"
+        "Checks that the model API is online",
+        "Saves memory to disk every few minutes",
+        "Keeps the chat app connection alive"
       ],
       "sourceId": "src-173"
     },
@@ -11537,9 +11537,9 @@
       "explanation": "An Austrian developer; he joined OpenAI in February 2026 while OpenClaw stayed open source.",
       "options": [
         "Peter Steinberger",
-        "Sam Altman",
-        "Dario Amodei",
-        "Linus Torvalds"
+        "Matt Schlicht",
+        "Simon Willison",
+        "Andrej Karpathy"
       ],
       "sourceId": "src-175"
     },
@@ -11553,9 +11553,9 @@
       "explanation": "It was renamed in January 2026 after Anthropic raised a trademark concern about \"Clawd\".",
       "options": [
         "Clawdbot, then Moltbot",
-        "ClawGPT, then LobsterAI",
-        "AutoGPT, then BabyAGI",
-        "Moltbook, then ClawHub"
+        "Moltbot, then Clawdbot",
+        "ClawGPT, then Moltbot",
+        "Clawd, then ClawHub"
       ],
       "sourceId": "src-175"
     },
@@ -11570,7 +11570,7 @@
       "options": [
         "Anthropic raised a trademark concern that \"Clawd\" sounded too much like \"Claude\"",
         "The code was bought by Google",
-        "A court banned AI agents",
+        "Users voted for a new name",
         "It merged with Moltbook"
       ],
       "sourceId": "src-175"
@@ -11586,8 +11586,8 @@
       "options": [
         "A Reddit-style social network where AI agents post and humans mostly watch",
         "OpenClaw's skill marketplace",
-        "A notebook app for students",
-        "A book about lobsters"
+        "An OpenClaw memory file format",
+        "A chat app built by Anthropic"
       ],
       "sourceId": "src-175"
     },
@@ -11601,9 +11601,9 @@
       "explanation": "Koi Security flagged 341 malicious skills in early 2026, most from this campaign.",
       "options": [
         "A coordinated campaign that uploaded malicious skills to ClawHub to steal data",
-        "A popular OpenClaw game",
+        "A security tool that scans OpenClaw skills",
         "The name of OpenClaw 2.0",
-        "A benchmark for agents"
+        "A bug bounty program for OpenClaw"
       ],
       "sourceId": "src-176"
     },
@@ -11617,9 +11617,9 @@
       "explanation": "Tens of thousands of instances were found exposed online in 2026.",
       "options": [
         "Keep its control panel off the public internet, give it least-privilege accounts and require approval for sensitive actions",
-        "Give it your main admin password so it never gets stuck",
-        "Install every skill from the marketplace",
-        "Turn off updates so nothing changes"
+        "Run it on your main laptop with your own accounts so it has full context",
+        "Put the control panel online with a password so you can reach it anywhere",
+        "Install popular marketplace skills without reading them, since they are reviewed"
       ],
       "sourceId": "src-176"
     },
@@ -11633,9 +11633,9 @@
       "explanation": "Together they let prompt injection trick an agent into leaking data.",
       "options": [
         "Access to private data, exposure to untrusted content, and the ability to communicate externally",
-        "A big model, a big GPU and a big budget",
-        "Speed, accuracy and cost",
-        "Voice, video and text input"
+        "Long context, tool use and persistent memory",
+        "Autonomy, internet access and code execution",
+        "Private data, tool use and long-term memory"
       ],
       "sourceId": "src-176"
     },
@@ -11676,8 +11676,8 @@
       "options": [
         "An agent plans steps and uses tools to take actions, not only replies",
         "A chatbot always uses a bigger model",
-        "Agents cannot use text",
-        "There is no difference"
+        "An agent runs only on your own computer",
+        "A chatbot cannot use a language model"
       ],
       "sourceId": "src-177"
     },
