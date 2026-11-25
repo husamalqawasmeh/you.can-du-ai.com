@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=279';
-import { ADMIN_HASH } from './admin-hash.js?v=279';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=280';
+import { ADMIN_HASH } from './admin-hash.js?v=280';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -609,9 +609,9 @@ $('#test-run').onsubmit = e => {
   db.results.push({ id: uid(), date: new Date().toISOString(), topics: cfg.topics, ...g, byTopic: scoreByTopic(qs, answers), items });
   const pTest = proficiency(items), pAll = proficiency(db.results.flatMap(r => r.items ?? []));
   const out = $('#test-result');
-  out.innerHTML = `<div class="card"><h2>Your result</h2><p class="score">${g.pct}%</p><p class="res-line">${g.correct} of ${g.total} correct.</p>
+  out.innerHTML = `<div class="card"><h2>Your result</h2><div class="res-top"><div><p class="score">${g.pct}%</p><p class="res-line">${g.correct} of ${g.total} correct.</p></div><div class="res-side">
     <p class="res-line">Estimated proficiency on this test: <span class="lvl lvl-${pTest.level.toLowerCase()}">${pTest.level}</span> <span class="tag">${pTest.pct}% weighted by difficulty</span></p>
-    <p class="res-line">Overall, from all your tests: <span class="lvl lvl-${pAll.level.toLowerCase()}">${pAll.level}</span> <span class="tag">${pAll.answered} questions answered · confidence ${pAll.confidence} · details in Learning Suggestions</span></p>` +
+    <p class="res-line">Overall, from all your tests: <span class="lvl lvl-${pAll.level.toLowerCase()}">${pAll.level}</span> <span class="tag">${pAll.answered} questions answered · confidence ${pAll.confidence} · details in Learning Suggestions</span></p></div></div>` +
     qs.map((q, i) => {
       const ok = isCorrect(q, answers[i]);
       const shown = q.type === 'match' ? matchAnswerHtml(q, answers[i]) : esc(answers[i]);
@@ -1235,7 +1235,7 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=279')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=280')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Infra./GPUs', 'AI Hardware/GPUs': 'AI Infra./GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents' };
 const rn = t => TOPIC_RENAMED[t] ?? t;
