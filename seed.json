@@ -1799,6 +1799,24 @@
       "url": "https://developers.google.com/search/docs/crawling-indexing/robots/intro",
       "notes": "How websites tell crawler bots which pages they may visit.",
       "lang": "en"
+    },
+    {
+      "id": "src-179",
+      "topic": "Generative AI",
+      "type": "PDF",
+      "title": "NIST AI 600-1: Generative AI Profile (July 2024)",
+      "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf",
+      "notes": "Lists confabulation among the main risks of generative AI, with suggested actions.",
+      "lang": "en"
+    },
+    {
+      "id": "src-180",
+      "topic": "Generative AI",
+      "type": "Website",
+      "title": "OpenAI: Why language models hallucinate (September 2025)",
+      "url": "https://openai.com/index/why-language-models-hallucinate/",
+      "notes": "Explains how training and evaluation that reward guessing lead models to make things up.",
+      "lang": "en"
     }
   ],
   "notes": [
@@ -2620,6 +2638,13 @@
       "title": "Bots: chatbots, agents and web crawlers",
       "body": "A bot is software that performs tasks automatically. Chatbots talk with people: ELIZA (1966, Joseph Weizenbaum at MIT) imitated a psychotherapist using simple pattern matching, yet many users felt it understood them, now called the ELIZA effect. Classic customer-service bots are rule-based (decision trees and keywords) or intent-based (classify the request, then follow a script); modern chatbots use large language models and can hold open-ended conversations. An AI agent goes further than a chatbot: it plans steps and uses tools to act, for example sending emails or booking meetings. Messaging platforms such as Telegram, WhatsApp, Slack and Discord let developers build bots through official bot APIs. Other bots work in the background: web crawlers (such as Googlebot, and AI crawlers that collect training data) read websites, and site owners use a robots.txt file to say which pages crawlers may visit, though obeying it is voluntary. Social bots post automatically on social media and can spread spam or misinformation, which is why sites use CAPTCHAs and bot detection.",
       "sourceId": "src-177"
+    },
+    {
+      "id": "note-118",
+      "topic": "Generative AI",
+      "sourceId": "src-179",
+      "title": "Confabulation: when AI confidently makes things up",
+      "body": "Confabulation is when a generative AI model produces confidently stated content that is false or not supported by facts, such as invented quotes, statistics, court cases, citations or product features. It is the same problem people usually call \"hallucination\", and the NIST Generative AI Profile (NIST AI 600-1, July 2024) uses the word confabulation for it, listing it among the main risks of generative AI. The term comes from psychology and neurology, where it describes patients (for example with Korsakoff syndrome or certain brain injuries) who fill gaps in memory with made-up details while honestly believing them, with no intent to deceive. Many researchers prefer it to \"hallucination\" because the model is not perceiving something that is not there; it is filling gaps with plausible text. Why it happens: a language model predicts likely next words, not checked facts, and training and benchmarks that score only right or wrong answers reward guessing over saying \"I don't know\" (as OpenAI explained in September 2025). Confabulation is most likely for rare facts, recent events, exact numbers, quotes and references. Two kinds are often named: intrinsic (the output contradicts the source it was given) and extrinsic (it adds details that cannot be verified from the source). Real cases include lawyers in Mata v. Avianca (2023) citing court cases ChatGPT invented and the Air Canada chatbot inventing a refund policy (2024). How to reduce it: ground answers in retrieved sources (RAG) and ask for citations you can check; tell the model it may say it does not know; ask for quotes from the provided documents before answering; check important facts, numbers and references yourself; use human review for high-stakes outputs; and measure it with faithfulness or groundedness evaluations. Lowering the temperature makes outputs more consistent but does not stop confabulation, because a model can repeat the same false answer every time."
     }
   ],
   "questions": [
@@ -11700,6 +11725,148 @@
       "answer": "True",
       "explanation": "Modern chatbots use large language models for open-ended conversation.",
       "sourceId": "src-177"
+    },
+    {
+      "id": "q3-384",
+      "topic": "Generative AI",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "In generative AI, what is \"confabulation\"?",
+      "answer": "Confidently stated content that is false or not supported by facts",
+      "explanation": "It is the same problem usually called hallucination.",
+      "options": [
+        "Confidently stated content that is false or not supported by facts",
+        "A model refusing to answer a safe question",
+        "Two models giving different answers to the same prompt",
+        "Output that is cut off by the token limit"
+      ],
+      "sourceId": "src-179"
+    },
+    {
+      "id": "q3-385",
+      "topic": "Generative AI",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which NIST document uses the term \"confabulation\" and lists it among the main risks of generative AI?",
+      "answer": "NIST AI 600-1 (Generative AI Profile)",
+      "explanation": "Published in July 2024 as a companion to the NIST AI RMF.",
+      "options": [
+        "NIST AI 600-1 (Generative AI Profile)",
+        "NIST SP 800-53",
+        "NIST Cybersecurity Framework 2.0",
+        "NIST SP 800-63 (Digital Identity)"
+      ],
+      "sourceId": "src-179"
+    },
+    {
+      "id": "q3-386",
+      "topic": "Generative AI",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Where does the word \"confabulation\" originally come from?",
+      "answer": "Psychology and neurology, describing people who fill memory gaps with false details they believe",
+      "explanation": "For example in Korsakoff syndrome; there is no intent to deceive.",
+      "options": [
+        "Psychology and neurology, describing people who fill memory gaps with false details they believe",
+        "Cybersecurity, describing a type of phishing attack",
+        "Statistics, describing a biased sample",
+        "Linguistics, describing words borrowed from another language"
+      ],
+      "sourceId": "src-179"
+    },
+    {
+      "id": "q3-387",
+      "topic": "Generative AI",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Confabulation means the AI model is deliberately lying to the user.",
+      "answer": "False",
+      "explanation": "Like the human condition it is named after, there is no intent to deceive: the model fills gaps with plausible text.",
+      "sourceId": "src-179"
+    },
+    {
+      "id": "q3-388",
+      "topic": "Generative AI",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Why do language models confabulate?",
+      "answer": "They predict likely next words rather than checked facts, and training often rewards guessing over saying \"I don't know\"",
+      "explanation": "OpenAI explained this link to training and evaluation in September 2025.",
+      "options": [
+        "They predict likely next words rather than checked facts, and training often rewards guessing over saying \"I don't know\"",
+        "Their GPUs make random memory errors during inference",
+        "They are programmed to sound confident to win users",
+        "Their tokenizer drops words from the prompt"
+      ],
+      "sourceId": "src-180"
+    },
+    {
+      "id": "q3-389",
+      "topic": "Generative AI",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which kind of request is most likely to produce a confabulated answer?",
+      "answer": "Exact citations, quotes or numbers about a rare or very recent topic",
+      "explanation": "Models are least reliable on rare facts, recent events and precise references.",
+      "options": [
+        "Exact citations, quotes or numbers about a rare or very recent topic",
+        "Rewriting a paragraph you pasted in more simply",
+        "Translating a short common sentence",
+        "Summarizing a document provided in the prompt"
+      ],
+      "sourceId": "src-179"
+    },
+    {
+      "id": "q3-390",
+      "topic": "Generative AI",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "A summary says a contract runs for 5 years when the provided contract says 3 years. Which type of confabulation is this?",
+      "answer": "Intrinsic: the output contradicts the source",
+      "explanation": "Extrinsic confabulation adds details that cannot be checked against the source.",
+      "options": [
+        "Intrinsic: the output contradicts the source",
+        "Extrinsic: the output adds unverifiable details",
+        "Context poisoning",
+        "Prompt injection"
+      ],
+      "sourceId": "src-179"
+    },
+    {
+      "id": "q3-391",
+      "topic": "Generative AI",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which approach does most to reduce confabulation in a business assistant?",
+      "answer": "Ground answers in retrieved documents, require checkable citations and allow \"I don't know\"",
+      "explanation": "Then verify important facts and use human review for high-stakes outputs.",
+      "options": [
+        "Ground answers in retrieved documents, require checkable citations and allow \"I don't know\"",
+        "Set the temperature to 0 and trust the answer",
+        "Use a longer and more polite system prompt",
+        "Ask the model to sound more confident"
+      ],
+      "sourceId": "src-179"
+    },
+    {
+      "id": "q3-392",
+      "topic": "Generative AI",
+      "type": "tf",
+      "difficulty": "hard",
+      "prompt": "Setting the temperature to 0 stops a model from confabulating.",
+      "answer": "False",
+      "explanation": "It makes outputs more consistent, but a model can repeat the same false answer every time.",
+      "sourceId": "src-179"
+    },
+    {
+      "id": "q3-393",
+      "topic": "Generative AI",
+      "type": "fill",
+      "difficulty": "medium",
+      "prompt": "Lawyers in Mata v. Avianca (2023) were sanctioned for citing court cases that ChatGPT had ___.",
+      "answer": "invented|made up|fabricated|confabulated",
+      "explanation": "A well-known real case of confabulation causing harm.",
+      "sourceId": "src-179"
     }
   ]
 }
