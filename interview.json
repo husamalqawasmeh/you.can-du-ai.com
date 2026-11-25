@@ -2535,6 +2535,17 @@
         "AI industry and news",
         "Frontier Labs"
       ]
+    },
+    {
+      "q": "Pick one AI skill you have used and explain how it works.",
+      "followup": "Why did you use it, what did it automate, and how would you build or improve your own?",
+      "answer": "Choose one real skill, for example an agent skill in Claude Code, Codex or OpenClaw (a folder with a SKILL.md file of instructions, plus optional scripts and templates), a custom GPT or Gem, or an MCP server you rely on.\n\nExplain how it works: what triggers it (the agent reads the short description and loads the full instructions only when the task matches), what steps or scripts it runs, which tools and permissions it needs, and what it returns. Then give the result: the task it handled, the time saved or errors avoided, and a limit you hit (wrong trigger, missing context, security). Mention that you read a skill's instructions and code before installing it, because marketplaces have hosted malicious skills.",
+      "topics": [
+        "Behavioral and experience",
+        "Agents/MCP/Tool-use",
+        "Harnesses Engineering",
+        "Automation / AI tools"
+      ]
     }
   ]
 }

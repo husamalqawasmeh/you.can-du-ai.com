@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=280';
-import { ADMIN_HASH } from './admin-hash.js?v=280';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=281';
+import { ADMIN_HASH } from './admin-hash.js?v=281';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -255,7 +255,7 @@ async function loadCerts() {
       <h4>Modules and topics</h4><ul class="advice">${x.topics.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
       ${x.note ? `<p class="muted"><em>${esc(x.note)}</em></p>` : ''}
       <h4>Vendor courses and free material</h4><ul class="advice">${x.prep.map(p => `<li><a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.title)}</a></li>`).join('')}</ul>
-      ${x.samples?.length ? `<h4>Sample questions</h4><p class="muted">Written in the style of the exam to help you practise; not official exam questions.</p><ol class="cert-samples">${x.samples.map(q => `<li><p>${esc(q.q)}</p><ul>${q.options.map(o => `<li>${esc(o)}</li>`).join('')}</ul><details class="iv-answers"><summary>Show answer</summary><p>${esc(q.answer)}</p></details></li>`).join('')}</ol>` : ''}
+      ${x.samples?.length ? `<h4>Sample questions</h4><p class="muted">Written in the style of the exam to help you practise; not official exam questions.</p><ol class="cert-samples">${x.samples.map(q => `<li><p>${esc(q.q)}</p><ul>${shuffle([...q.options]).map(o => `<li>${esc(o)}</li>`).join('')}</ul><details class="iv-answers"><summary>Show answer</summary><p>${esc(q.answer)}</p></details></li>`).join('')}</ol>` : ''}
       <p><a class="button primary" href="${esc(x.url)}" target="_blank" rel="noopener">Official page: details and registration</a></p></details>`).join('')}</div></section>`).join('') || '<p class="muted">No exams match these filters.</p>';
   };
   $('#cert-vendor').onchange = $('#cert-level').onchange = show;
@@ -517,7 +517,8 @@ function startTest(qs, cfg) {
   current = { cfg, qs };
   const run = $('#test-run');
   run.innerHTML = `<div class="card"><h2>Test: ${qs.length} questions</h2>` + qs.map((q, i) => {
-    const choices = q.type === 'mcq' ? q.options : q.type === 'tf' ? ['True', 'False'] : null;
+    // options are shown in a fresh random order each time, so the right answer isn't always the first one
+    const choices = q.type === 'mcq' ? shuffle([...q.options]) : q.type === 'tf' ? ['True', 'False'] : null;
     const input = q.type === 'match' ? `${matchHtml(q.pairs, i, true)}<input type="hidden" name="a${i}">`
       : q.type === 'fill' ? ''
       : choices
@@ -944,7 +945,7 @@ function updateIvMatch() {
 ivForm.addEventListener('change', updateIvMatch);
 async function loadInterview() {
   let p;
-  try { p = await (await fetch('interview.json?v=61')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
+  try { p = await (await fetch('interview.json?v=62')).json(); } catch { $('#iv-list').innerHTML = '<li class="muted">Could not load the questions.</li>'; return; }
   // admin-added bank questions go after the open questions, before the exercises
   const k = p.questions.findIndex(q => q.match || q.terms || q.companies);
   const onPage = new Set(p.questions.map(q => q.id).filter(Boolean));
@@ -1235,7 +1236,7 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=280')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=281')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Infra./GPUs', 'AI Hardware/GPUs': 'AI Infra./GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents' };
 const rn = t => TOPIC_RENAMED[t] ?? t;
