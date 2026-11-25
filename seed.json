@@ -1745,6 +1745,60 @@
       "url": "https://www.librechat.ai/docs",
       "notes": "Open-source chat app that connects to many AI providers.",
       "lang": "en"
+    },
+    {
+      "id": "src-173",
+      "topic": "OpenClaw/BOTs",
+      "type": "Docs",
+      "title": "OpenClaw on GitHub",
+      "url": "https://github.com/openclaw/openclaw",
+      "notes": "Source code and documentation of the open-source personal AI agent.",
+      "lang": "en"
+    },
+    {
+      "id": "src-174",
+      "topic": "OpenClaw/BOTs",
+      "type": "Website",
+      "title": "freeCodeCamp: How to build and secure a personal AI agent with OpenClaw",
+      "url": "https://www.freecodecamp.org/news/how-to-build-and-secure-a-personal-ai-agent-with-openclaw",
+      "notes": "Step-by-step setup guide with security advice.",
+      "lang": "en"
+    },
+    {
+      "id": "src-175",
+      "topic": "OpenClaw/BOTs",
+      "type": "Website",
+      "title": "TechCrunch: OpenClaw's AI assistants are now building their own social network",
+      "url": "https://techcrunch.com/2026/01/30/openclaws-ai-assistants-are-now-building-their-own-social-network",
+      "notes": "News on the rename to OpenClaw and the launch of Moltbook (January 2026).",
+      "lang": "en"
+    },
+    {
+      "id": "src-176",
+      "topic": "OpenClaw/BOTs",
+      "type": "Website",
+      "title": "The Hacker News: Researchers find 341 malicious ClawHub skills",
+      "url": "https://thehackernews.com/2026/02/researchers-find-341-malicious-clawhub.html",
+      "notes": "The ClawHavoc supply-chain campaign against OpenClaw skill users (February 2026).",
+      "lang": "en"
+    },
+    {
+      "id": "src-177",
+      "topic": "OpenClaw/BOTs",
+      "type": "Website",
+      "title": "ELIZA (Wikipedia)",
+      "url": "https://en.wikipedia.org/wiki/ELIZA",
+      "notes": "History of the first well-known chatbot (1966).",
+      "lang": "en"
+    },
+    {
+      "id": "src-178",
+      "topic": "OpenClaw/BOTs",
+      "type": "Docs",
+      "title": "Google Search Central: Introduction to robots.txt",
+      "url": "https://developers.google.com/search/docs/crawling-indexing/robots/intro",
+      "notes": "How websites tell crawler bots which pages they may visit.",
+      "lang": "en"
     }
   ],
   "notes": [
@@ -2538,6 +2592,34 @@
       "sourceId": "src-170",
       "title": "Running models locally: Ollama and multi-provider chat apps",
       "body": "Ollama is a free, open-source tool that runs open-weight models on your own computer. One command, such as \"ollama run llama3.2\", downloads a model and starts a chat. It can run models from many different makers (Meta Llama, Google Gemma, Alibaba Qwen, Mistral, DeepSeek and others), and it serves them through a local API on port 11434 that also speaks the OpenAI API format, so many apps written for OpenAI can point at your own machine instead. Local models are usually quantized (for example to 4-bit), which shrinks memory use so they fit on a laptop or consumer GPU at a small cost in quality. Benefits of local hosting: your data stays on your machine, it works offline and there are no per-token fees; the trade-offs are that you need capable hardware and the biggest frontier models are not available. On top of Ollama or cloud APIs you can run a self-hosted chat interface: Open WebUI works with Ollama and OpenAI-compatible APIs, and LibreChat connects to OpenAI, Anthropic, Google and others, so one screen can switch between local and cloud models using your own API keys (\"bring your own key\"). A chat client is the user interface; a model gateway such as OpenRouter is an API that routes requests to many models."
+    },
+    {
+      "id": "note-114",
+      "topic": "OpenClaw/BOTs",
+      "title": "OpenClaw: what it is and how it works",
+      "body": "OpenClaw is a free, open-source personal AI agent that you run yourself, on your own computer, a small cloud server or an old desktop. Unlike a chatbot in a browser tab, it is always on and can act for you. A central Gateway process keeps connections to messaging apps such as WhatsApp and Telegram, so you talk to the same assistant from your phone. Each message is passed to an AI model (you choose and pay for the model), which can use tools such as the shell, the browser, files and calendars, and the reply comes back through the same chat app. Its abilities are extended with skills: a skill is a folder with a SKILL.md file of instructions (and optional scripts), loaded only when needed; skills are shared on the ClawHub marketplace. Memory is kept as plain Markdown files on disk rather than in a database, so you can read and edit what it remembers. A heartbeat timer wakes the agent regularly (every 30 minutes by default in common setups) to check a HEARTBEAT.md task list and act without being asked, which makes it proactive.",
+      "sourceId": "src-173"
+    },
+    {
+      "id": "note-115",
+      "topic": "OpenClaw/BOTs",
+      "title": "OpenClaw history: Clawdbot, Moltbot and Moltbook",
+      "body": "OpenClaw was created by the Austrian developer Peter Steinberger, as a quick weekend project to send prompts from his phone (through WhatsApp) to an AI coding agent on his Mac. It was first called Clawdbot, with a lobster mascot. In January 2026 Anthropic raised a trademark concern because \"Clawd\" sounded too much like \"Claude\", so it was renamed Moltbot (lobsters molt, or shed their shell) and, days later, OpenClaw. During the rename, scammers grabbed the abandoned social media handle to promote a fake crypto token, an early sign of how much attention the project drew. It became one of the fastest-growing projects in GitHub history. Also in late January 2026, Matt Schlicht launched Moltbook, a Reddit-style social network where only AI agents (mostly OpenClaw agents) post, comment and vote while humans watch; critics noted that humans still prompt the agents and that many posts could be steered by people. In February 2026 Steinberger announced he was joining OpenAI to work on agents, while OpenClaw stays open source.",
+      "sourceId": "src-175"
+    },
+    {
+      "id": "note-116",
+      "topic": "OpenClaw/BOTs",
+      "title": "OpenClaw security: skills, exposed servers and the lethal trifecta",
+      "body": "Because OpenClaw can read your messages, files and accounts and can run commands, mistakes are costly. Three lessons from 2026: (1) Skill supply-chain attacks: security firm Koi Security audited ClawHub in early February 2026 and flagged 341 malicious skills, most from one coordinated campaign named ClawHavoc; many posed as crypto or productivity tools and tricked users into installing info-stealing malware. ClawHub then added VirusTotal scanning. Treat a skill like any software you install: check the author, read the SKILL.md and scripts, and prefer well-known skills. (2) Exposed instances: researchers found tens of thousands of OpenClaw control panels reachable from the internet, and a one-click remote code execution bug (CVE-2026-25253) was patched in January 2026. Keep the Gateway private (bind to localhost or use a VPN), keep it updated and use strong tokens. (3) The lethal trifecta, a term from Simon Willison: an agent that has access to private data, reads untrusted content (emails, web pages) and can communicate externally can be tricked by prompt injection into leaking your data. Reduce risk with least-privilege accounts, a separate machine or container, human approval for sensitive actions, and spending limits on the model API.",
+      "sourceId": "src-176"
+    },
+    {
+      "id": "note-117",
+      "topic": "OpenClaw/BOTs",
+      "title": "Bots: chatbots, agents and web crawlers",
+      "body": "A bot is software that performs tasks automatically. Chatbots talk with people: ELIZA (1966, Joseph Weizenbaum at MIT) imitated a psychotherapist using simple pattern matching, yet many users felt it understood them, now called the ELIZA effect. Classic customer-service bots are rule-based (decision trees and keywords) or intent-based (classify the request, then follow a script); modern chatbots use large language models and can hold open-ended conversations. An AI agent goes further than a chatbot: it plans steps and uses tools to act, for example sending emails or booking meetings. Messaging platforms such as Telegram, WhatsApp, Slack and Discord let developers build bots through official bot APIs. Other bots work in the background: web crawlers (such as Googlebot, and AI crawlers that collect training data) read websites, and site owners use a robots.txt file to say which pages crawlers may visit, though obeying it is voluntary. Social bots post automatically on social media and can spread spam or misinformation, which is why sites use CAPTCHAs and bot detection.",
+      "sourceId": "src-177"
     }
   ],
   "questions": [
@@ -11376,6 +11458,248 @@
         "A chat client trains its own models"
       ],
       "sourceId": "src-172"
+    },
+    {
+      "id": "q3-367",
+      "topic": "OpenClaw/BOTs",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is OpenClaw?",
+      "answer": "An open-source personal AI agent you run yourself, reached through chat apps",
+      "explanation": "It runs on your own computer or server and can act for you with tools.",
+      "options": [
+        "An open-source personal AI agent you run yourself, reached through chat apps",
+        "Anthropic's official Claude desktop app",
+        "A GPU made by NVIDIA",
+        "A benchmark for coding models"
+      ],
+      "sourceId": "src-173"
+    },
+    {
+      "id": "q3-368",
+      "topic": "OpenClaw/BOTs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "In OpenClaw, what is a \"skill\"?",
+      "answer": "A folder with a SKILL.md instruction file (and optional scripts) that adds an ability",
+      "explanation": "Skills load only when needed and are shared on ClawHub.",
+      "options": [
+        "A folder with a SKILL.md instruction file (and optional scripts) that adds an ability",
+        "A fine-tuned copy of the model",
+        "A paid subscription level",
+        "A type of GPU memory"
+      ],
+      "sourceId": "src-173"
+    },
+    {
+      "id": "q3-369",
+      "topic": "OpenClaw/BOTs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What does the OpenClaw \"heartbeat\" do?",
+      "answer": "Wakes the agent on a timer to check its task list and act without being asked",
+      "explanation": "It is what makes OpenClaw proactive rather than only replying.",
+      "options": [
+        "Wakes the agent on a timer to check its task list and act without being asked",
+        "Measures the health of the GPU",
+        "Encrypts all messages",
+        "Counts how many users are online"
+      ],
+      "sourceId": "src-173"
+    },
+    {
+      "id": "q3-370",
+      "topic": "OpenClaw/BOTs",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "OpenClaw keeps its memory as plain Markdown files on disk that you can read and edit.",
+      "answer": "True",
+      "explanation": "It does not need a database for memory.",
+      "sourceId": "src-173"
+    },
+    {
+      "id": "q3-371",
+      "topic": "OpenClaw/BOTs",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "With OpenClaw you can talk to the same assistant from messaging apps such as WhatsApp or Telegram.",
+      "answer": "True",
+      "explanation": "A Gateway process connects the chat apps to the agent.",
+      "sourceId": "src-173"
+    },
+    {
+      "id": "q3-372",
+      "topic": "OpenClaw/BOTs",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Who created OpenClaw?",
+      "answer": "Peter Steinberger",
+      "explanation": "An Austrian developer; he joined OpenAI in February 2026 while OpenClaw stayed open source.",
+      "options": [
+        "Peter Steinberger",
+        "Sam Altman",
+        "Dario Amodei",
+        "Linus Torvalds"
+      ],
+      "sourceId": "src-175"
+    },
+    {
+      "id": "q3-373",
+      "topic": "OpenClaw/BOTs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What were OpenClaw's earlier names, in order?",
+      "answer": "Clawdbot, then Moltbot",
+      "explanation": "It was renamed in January 2026 after Anthropic raised a trademark concern about \"Clawd\".",
+      "options": [
+        "Clawdbot, then Moltbot",
+        "ClawGPT, then LobsterAI",
+        "AutoGPT, then BabyAGI",
+        "Moltbook, then ClawHub"
+      ],
+      "sourceId": "src-175"
+    },
+    {
+      "id": "q3-374",
+      "topic": "OpenClaw/BOTs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Why was Clawdbot renamed?",
+      "answer": "Anthropic raised a trademark concern that \"Clawd\" sounded too much like \"Claude\"",
+      "explanation": "It became Moltbot and then OpenClaw.",
+      "options": [
+        "Anthropic raised a trademark concern that \"Clawd\" sounded too much like \"Claude\"",
+        "The code was bought by Google",
+        "A court banned AI agents",
+        "It merged with Moltbook"
+      ],
+      "sourceId": "src-175"
+    },
+    {
+      "id": "q3-375",
+      "topic": "OpenClaw/BOTs",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is Moltbook?",
+      "answer": "A Reddit-style social network where AI agents post and humans mostly watch",
+      "explanation": "Launched by Matt Schlicht in January 2026; most agents on it run OpenClaw.",
+      "options": [
+        "A Reddit-style social network where AI agents post and humans mostly watch",
+        "OpenClaw's skill marketplace",
+        "A notebook app for students",
+        "A book about lobsters"
+      ],
+      "sourceId": "src-175"
+    },
+    {
+      "id": "q3-376",
+      "topic": "OpenClaw/BOTs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What was \"ClawHavoc\"?",
+      "answer": "A coordinated campaign that uploaded malicious skills to ClawHub to steal data",
+      "explanation": "Koi Security flagged 341 malicious skills in early 2026, most from this campaign.",
+      "options": [
+        "A coordinated campaign that uploaded malicious skills to ClawHub to steal data",
+        "A popular OpenClaw game",
+        "The name of OpenClaw 2.0",
+        "A benchmark for agents"
+      ],
+      "sourceId": "src-176"
+    },
+    {
+      "id": "q3-377",
+      "topic": "OpenClaw/BOTs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Which is the safest way to run a personal agent like OpenClaw?",
+      "answer": "Keep its control panel off the public internet, give it least-privilege accounts and require approval for sensitive actions",
+      "explanation": "Tens of thousands of instances were found exposed online in 2026.",
+      "options": [
+        "Keep its control panel off the public internet, give it least-privilege accounts and require approval for sensitive actions",
+        "Give it your main admin password so it never gets stuck",
+        "Install every skill from the marketplace",
+        "Turn off updates so nothing changes"
+      ],
+      "sourceId": "src-176"
+    },
+    {
+      "id": "q3-378",
+      "topic": "OpenClaw/BOTs",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Simon Willison's \"lethal trifecta\" for AI agents is the combination of which three things?",
+      "answer": "Access to private data, exposure to untrusted content, and the ability to communicate externally",
+      "explanation": "Together they let prompt injection trick an agent into leaking data.",
+      "options": [
+        "Access to private data, exposure to untrusted content, and the ability to communicate externally",
+        "A big model, a big GPU and a big budget",
+        "Speed, accuracy and cost",
+        "Voice, video and text input"
+      ],
+      "sourceId": "src-176"
+    },
+    {
+      "id": "q3-379",
+      "topic": "OpenClaw/BOTs",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "Skills from an agent marketplace are safe to install without checking, because the marketplace reviews every one.",
+      "answer": "False",
+      "explanation": "Hundreds of malicious skills were found on ClawHub; check the author and the code first.",
+      "sourceId": "src-176"
+    },
+    {
+      "id": "q3-380",
+      "topic": "OpenClaw/BOTs",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "ELIZA (1966), one of the first chatbots, worked mainly by:",
+      "answer": "Simple pattern matching and scripted replies",
+      "explanation": "Yet users felt it understood them: the \"ELIZA effect\".",
+      "options": [
+        "Simple pattern matching and scripted replies",
+        "A large language model",
+        "Searching the internet",
+        "Speech recognition"
+      ],
+      "sourceId": "src-177"
+    },
+    {
+      "id": "q3-381",
+      "topic": "OpenClaw/BOTs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What is the main difference between a chatbot and an AI agent?",
+      "answer": "An agent plans steps and uses tools to take actions, not only replies",
+      "explanation": "For example, sending emails or booking meetings for you.",
+      "options": [
+        "An agent plans steps and uses tools to take actions, not only replies",
+        "A chatbot always uses a bigger model",
+        "Agents cannot use text",
+        "There is no difference"
+      ],
+      "sourceId": "src-177"
+    },
+    {
+      "id": "q3-382",
+      "topic": "OpenClaw/BOTs",
+      "type": "fill",
+      "difficulty": "easy",
+      "prompt": "Websites use a file named ___.txt to tell crawler bots which pages they may visit.",
+      "answer": "robots",
+      "explanation": "Obeying robots.txt is voluntary for crawlers.",
+      "sourceId": "src-178"
+    },
+    {
+      "id": "q3-383",
+      "topic": "OpenClaw/BOTs",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "Older customer-service bots were often rule-based, following decision trees and keywords instead of using an LLM.",
+      "answer": "True",
+      "explanation": "Modern chatbots use large language models for open-ended conversation.",
+      "sourceId": "src-177"
     }
   ]
 }
