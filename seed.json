@@ -1817,6 +1817,15 @@
       "url": "https://openai.com/index/why-language-models-hallucinate/",
       "notes": "Explains how training and evaluation that reward guessing lead models to make things up.",
       "lang": "en"
+    },
+    {
+      "id": "src-181",
+      "topic": "AI Development",
+      "type": "Website",
+      "title": "MDN: Learn web development",
+      "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
+      "notes": "Free guides to frontend (HTML, CSS, JavaScript) and server-side web development.",
+      "lang": "en"
     }
   ],
   "notes": [
@@ -2645,6 +2654,13 @@
       "sourceId": "src-179",
       "title": "Confabulation: when AI confidently makes things up",
       "body": "Confabulation is when a generative AI model produces confidently stated content that is false or not supported by facts, such as invented quotes, statistics, court cases, citations or product features. It is the same problem people usually call \"hallucination\", and the NIST Generative AI Profile (NIST AI 600-1, July 2024) uses the word confabulation for it, listing it among the main risks of generative AI. The term comes from psychology and neurology, where it describes patients (for example with Korsakoff syndrome or certain brain injuries) who fill gaps in memory with made-up details while honestly believing them, with no intent to deceive. Many researchers prefer it to \"hallucination\" because the model is not perceiving something that is not there; it is filling gaps with plausible text. Why it happens: a language model predicts likely next words, not checked facts, and training and benchmarks that score only right or wrong answers reward guessing over saying \"I don't know\" (as OpenAI explained in September 2025). Confabulation is most likely for rare facts, recent events, exact numbers, quotes and references. Two kinds are often named: intrinsic (the output contradicts the source it was given) and extrinsic (it adds details that cannot be verified from the source). Real cases include lawyers in Mata v. Avianca (2023) citing court cases ChatGPT invented and the Air Canada chatbot inventing a refund policy (2024). How to reduce it: ground answers in retrieved sources (RAG) and ask for citations you can check; tell the model it may say it does not know; ask for quotes from the provided documents before answering; check important facts, numbers and references yourself; use human review for high-stakes outputs; and measure it with faithfulness or groundedness evaluations. Lowering the temperature makes outputs more consistent but does not stop confabulation, because a model can repeat the same false answer every time."
+    },
+    {
+      "id": "note-119",
+      "topic": "AI Development",
+      "sourceId": "src-181",
+      "title": "Tech stacks and full-stack development",
+      "body": "A stack (or tech stack) is the set of technologies an app is built with, for example React for the screens, Node.js for the server logic and PostgreSQL for the data. An app usually has three layers. The frontend (client side) is what users see and click in the browser or mobile app, built with HTML, CSS and JavaScript, often with a framework such as React, Vue or Angular. The backend (server side) runs behind it: it holds the business logic, checks who the user is, talks to other services and AI model APIs, and is written with tools such as Node.js, Python (Django, FastAPI), Java (Spring) or C# (.NET). The database stores the data, for example PostgreSQL or MySQL (relational, tables and SQL) or MongoDB (documents). The frontend and backend usually talk through an API over HTTP, often sending JSON. Well-known stacks have short names: LAMP (Linux, Apache, MySQL, PHP), MERN (MongoDB, Express, React, Node.js) and MEAN (the same with Angular). Full stack means working on every layer: the frontend users see, the backend that runs behind it, and the database. A full-stack developer can build a whole feature end to end, while frontend or backend specialists go deeper on one layer. In AI apps, the model is usually called from the backend, so API keys stay secret on the server and never reach the browser; AI coding tools now help one person build a full-stack app much faster."
     }
   ],
   "questions": [
@@ -11867,6 +11883,146 @@
       "answer": "invented|made up|fabricated|confabulated",
       "explanation": "A well-known real case of confabulation causing harm.",
       "sourceId": "src-179"
+    },
+    {
+      "id": "q3-394",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "In software, what is a \"stack\" (tech stack)?",
+      "answer": "The set of technologies an app is built with",
+      "explanation": "For example React for the screens, Node.js for the server logic and PostgreSQL for the data.",
+      "options": [
+        "The set of technologies an app is built with",
+        "The list of bugs waiting to be fixed",
+        "The team members working on an app",
+        "The servers an app is hosted on"
+      ],
+      "sourceId": "src-181"
+    },
+    {
+      "id": "q3-395",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What does \"full stack\" development mean?",
+      "answer": "Working on every layer: the frontend, the backend and the database",
+      "explanation": "A full-stack developer can build a feature end to end.",
+      "options": [
+        "Working on every layer: the frontend, the backend and the database",
+        "Working only on the screens users see",
+        "Working only on servers and networks",
+        "Using every programming language at once"
+      ],
+      "sourceId": "src-181"
+    },
+    {
+      "id": "q3-396",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which part of an app is the \"frontend\"?",
+      "answer": "The screens and buttons users see and use",
+      "explanation": "It runs in the browser or mobile app, built with HTML, CSS and JavaScript.",
+      "options": [
+        "The screens and buttons users see and use",
+        "The logic that runs on the server",
+        "The tables where data is stored",
+        "The network cables between servers"
+      ],
+      "sourceId": "src-181"
+    },
+    {
+      "id": "q3-397",
+      "topic": "AI Development",
+      "type": "match",
+      "difficulty": "medium",
+      "prompt": "Match each technology to its layer in a typical web stack.",
+      "answer": "React → Frontend; Node.js → Backend; PostgreSQL → Database",
+      "explanation": "React builds screens, Node.js runs server logic and PostgreSQL stores data.",
+      "pairs": [
+        [
+          "React",
+          "Frontend"
+        ],
+        [
+          "Node.js",
+          "Backend"
+        ],
+        [
+          "PostgreSQL",
+          "Database"
+        ]
+      ],
+      "sourceId": "src-181"
+    },
+    {
+      "id": "q3-398",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "In the MERN stack, what does the \"R\" stand for?",
+      "answer": "React",
+      "explanation": "MERN is MongoDB, Express, React and Node.js; MEAN uses Angular instead of React.",
+      "options": [
+        "React",
+        "Ruby",
+        "Redis",
+        "Rust"
+      ],
+      "sourceId": "src-181"
+    },
+    {
+      "id": "q3-399",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "How do the frontend and backend of a web app usually talk to each other?",
+      "answer": "Through an API over HTTP, often sending JSON",
+      "explanation": "The frontend sends requests and the backend replies with data.",
+      "options": [
+        "Through an API over HTTP, often sending JSON",
+        "By sharing the same database tables directly in the browser",
+        "By emailing files between them",
+        "They do not communicate; each works alone"
+      ],
+      "sourceId": "src-181"
+    },
+    {
+      "id": "q3-400",
+      "topic": "AI Development",
+      "type": "tf",
+      "difficulty": "medium",
+      "prompt": "In an AI chat app, the AI provider's API key should be kept in the frontend code so the browser can call the model directly.",
+      "answer": "False",
+      "explanation": "The key belongs on the backend; anything in frontend code can be seen by users.",
+      "sourceId": "src-181"
+    },
+    {
+      "id": "q3-401",
+      "topic": "AI Development",
+      "type": "fill",
+      "difficulty": "easy",
+      "prompt": "A developer who works on the frontend, the backend and the database is called a ___ developer.",
+      "answer": "full-stack|full stack|fullstack",
+      "explanation": "Full stack means every layer of the app.",
+      "sourceId": "src-181"
+    },
+    {
+      "id": "q3-402",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Which of these is a database rather than a frontend or backend tool?",
+      "answer": "PostgreSQL",
+      "explanation": "React and Angular build frontends; Express is a Node.js backend framework.",
+      "options": [
+        "PostgreSQL",
+        "React",
+        "Express",
+        "Angular"
+      ],
+      "sourceId": "src-181"
     }
   ]
 }
