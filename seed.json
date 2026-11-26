@@ -24,7 +24,8 @@
     "Harness Engineering",
     "Global AI Incidents",
     "Decision Models",
-    "MCPs"
+    "MCPs",
+    "AI Solutions Architecture"
   ],
   "sources": [
     {
@@ -1988,6 +1989,15 @@
       "url": "https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices",
       "notes": "Confused deputy, token passthrough (forbidden), session hijacking and other MCP risks.",
       "lang": "en"
+    },
+    {
+      "id": "src-200",
+      "topic": "AI Solutions Architecture",
+      "type": "Website",
+      "title": "AWS Well-Architected Framework: Generative AI Lens",
+      "url": "https://docs.aws.amazon.com/wellarchitected/latest/generative-ai-lens/generative-ai-lens.html",
+      "notes": "Best practices for designing secure, reliable, cost-effective generative AI workloads.",
+      "lang": "en"
     }
   ],
   "notes": [
@@ -2872,6 +2882,13 @@
       "sourceId": "src-194",
       "title": "Frontier safety frameworks: RSP, Preparedness and FSF",
       "body": "The leading labs publish frameworks that say which dangerous capabilities they test for and what safeguards they add as models get stronger. Anthropic's Responsible Scaling Policy (RSP) uses AI Safety Levels (ASL-1 to ASL-4 and above), loosely modelled on biosafety levels. In May 2025 Anthropic released Claude Opus 4 with ASL-3 safeguards (stronger security for the model weights and targeted defences against help with chemical, biological, radiological and nuclear weapons) as a precaution, because it could no longer clearly rule out that the model needed them, while Claude Sonnet 4 stayed at ASL-2. OpenAI's Preparedness Framework tracks categories such as biological and chemical, cybersecurity and AI self-improvement, with \"High\" and \"Critical\" capability thresholds that require safeguards before deployment. Google DeepMind's Frontier Safety Framework (May 2024, updated in 2025 and 2026) is built around Critical Capability Levels (CCLs): when evaluations show a model is near a CCL, stronger security and deployment mitigations apply; later versions added a harmful-manipulation CCL and lower \"tracked\" levels for earlier warning. These frameworks are voluntary company policies, but laws such as the EU AI Act's rules for general-purpose AI models increasingly expect similar risk assessments."
+    },
+    {
+      "id": "note-127",
+      "topic": "AI Solutions Architecture",
+      "sourceId": "src-200",
+      "title": "AI solutions architecture: designing AI systems that work in production",
+      "body": "An AI solutions architect designs how models, data, applications, security and operations fit together to solve a business problem. Start from the problem and success metrics (accuracy, cost per request, response time, risk), not from picking a model. Key decisions: (1) How the model gets knowledge: prompting alone, retrieval-augmented generation (RAG: index documents in a search or vector store and retrieve relevant passages per question, best for large or fast-changing content), or fine-tuning (for style, format or narrow skills). (2) Which model and where it runs: a hosted API (fastest to start), a cloud model service such as Bedrock, Azure AI Foundry or Vertex AI (enterprise controls, regional hosting), or self-hosted open-weights models (full control and data residency, but you run the GPUs). (3) An AI gateway between apps and models gives one place for authentication, routing, rate limits, cost tracking, logging, guardrails and fallback when a provider fails. (4) Cost and latency: route easy requests to small, cheap models and escalate hard ones (model routing or cascading), cache repeated prompts and answers, stream responses and set token limits. (5) Security and compliance: keep secrets on the server, least privilege for tools and agents, filter inputs and outputs, protect personal data and meet data-residency rules. (6) Operations (LLMOps): evaluations before every change, monitoring of quality, cost and drift, tracing, versioned prompts, and human review for high-risk outputs. Frameworks such as the AWS Well-Architected Generative AI Lens organize these choices into pillars: operational excellence, security, reliability, performance, cost and sustainability."
     }
   ],
   "questions": [
@@ -13088,6 +13105,96 @@
         "Training memory and fine-tuning memory"
       ],
       "sourceId": "src-191"
+    },
+    {
+      "id": "q3-459",
+      "topic": "AI Solutions Architecture",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What does an AI solutions architect mainly do?",
+      "answer": "Designs how AI models, data, systems and security fit together to solve a business problem",
+      "explanation": "They make the key choices on knowledge (RAG or fine-tuning), hosting, cost, security and operations.",
+      "options": [
+        "Designs how AI models, data, systems and security fit together to solve a business problem",
+        "Trains foundation models from scratch",
+        "Writes marketing copy for AI products",
+        "Repairs GPU servers in the data centre"
+      ],
+      "sourceId": "src-200"
+    },
+    {
+      "id": "q3-460",
+      "topic": "AI Solutions Architecture",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "A good AI architecture starts from the business problem and success metrics, not from picking a model.",
+      "answer": "True",
+      "explanation": "Metrics such as accuracy, cost per request and response time drive the design.",
+      "sourceId": "src-200"
+    },
+    {
+      "id": "q3-461",
+      "topic": "AI Solutions Architecture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "A support assistant must answer from 50,000 internal documents that change daily. Which architecture fits best?",
+      "answer": "RAG: index the documents and retrieve the relevant passages for each question",
+      "explanation": "Updating the index is cheap; retraining or pasting everything into each prompt is not.",
+      "options": [
+        "RAG: index the documents and retrieve the relevant passages for each question",
+        "Fine-tune the model every night on all documents",
+        "Paste all the documents into every prompt",
+        "Train a new model from scratch"
+      ],
+      "sourceId": "src-200"
+    },
+    {
+      "id": "q3-462",
+      "topic": "AI Solutions Architecture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "Why place an AI gateway between your apps and the model providers?",
+      "answer": "One place for authentication, routing, rate limits, cost tracking, logging and fallback",
+      "explanation": "It also lets you switch or add models without changing every app.",
+      "options": [
+        "One place for authentication, routing, rate limits, cost tracking, logging and fallback",
+        "It makes every model more accurate",
+        "It removes the need to write prompts",
+        "It trains models on the gateway traffic"
+      ],
+      "sourceId": "src-200"
+    },
+    {
+      "id": "q3-463",
+      "topic": "AI Solutions Architecture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "You need to cut cost and latency without losing quality on hard requests. Which pattern fits?",
+      "answer": "Model routing (cascading): send easy requests to a small model and escalate hard ones to a larger model",
+      "explanation": "Add caching for repeated prompts, and measure quality with evaluations after the change.",
+      "options": [
+        "Model routing (cascading): send easy requests to a small model and escalate hard ones to a larger model",
+        "Always use the largest available model",
+        "Split traffic randomly across providers",
+        "Lower max tokens to 50 for every request"
+      ],
+      "sourceId": "src-200"
+    },
+    {
+      "id": "q3-464",
+      "topic": "AI Solutions Architecture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "A bank must keep customer data inside the country and cannot send it to public AI APIs. Which deployment fits?",
+      "answer": "Self-host an open-weights model in its own data centre or an in-country private cloud",
+      "explanation": "Data residency needs control over where processing happens, not just a promise not to train on the data.",
+      "options": [
+        "Self-host an open-weights model in its own data centre or an in-country private cloud",
+        "A public consumer chatbot with chat history turned off",
+        "Any foreign API that promises not to train on the data",
+        "Base64-encode the data before sending it"
+      ],
+      "sourceId": "src-200"
     }
   ]
 }
