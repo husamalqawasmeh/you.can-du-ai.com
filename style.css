@@ -373,3 +373,7 @@ header .topbar { display: flex; align-items: center; gap: 8px; }
 /* test result: proficiency lines sit to the right of the score */
 #test-result .res-top { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; margin-bottom: 4px; }
 #test-result .res-side .res-line:last-child { margin-bottom: 0; }
+.q-stats { border-collapse: collapse; margin-top: 8px; font-size: .9rem; }
+.q-stats th, .q-stats td { padding: 3px 12px; border-bottom: 1px solid var(--border); text-align: right; }
+.q-stats th[scope="row"], .q-stats thead th:first-child { text-align: left; font-weight: normal; }
+.q-stats thead th, .q-stats tfoot th, .q-stats tfoot td { font-weight: bold; }

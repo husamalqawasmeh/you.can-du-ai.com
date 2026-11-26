@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=286';
-import { ADMIN_HASH } from './admin-hash.js?v=286';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=287';
+import { ADMIN_HASH } from './admin-hash.js?v=287';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -91,6 +91,12 @@ function render() {
     const n = db.questions.filter(q => q.topic === t).length;
     return `<li><div class="topic-row"><span>${esc(t)}</span><span class="tag">${n} questions</span></div><span class="row"><button type="button" class="mv" data-move-topic="${esc(t)}" data-dir="-1" aria-label="Move ${esc(t)} up" title="Move up">↑</button><button type="button" class="mv" data-move-topic="${esc(t)}" data-dir="1" aria-label="Move ${esc(t)} down" title="Move down">↓</button><select data-topic-level="${esc(t)}" aria-label="Level of ${esc(t)}">${[['', 'Level…'], ['easy', 'Easy'], ['medium', 'Medium'], ['difficult', 'Difficult']].map(([v, l]) => `<option value="${v}" ${(db.topicLevels?.[t] ?? '') === v ? 'selected' : ''}>${l}</option>`).join('')}</select>${seed.topics?.includes(t) ? '' : `<button type="button" data-rename-topic="${esc(t)}">Rename</button>`}<button type="button" class="del" data-del-topic="${esc(t)}">Delete</button></span></li>`;
   }).join('');
+
+  // questions per topic and difficulty
+  const lv = ['easy', 'medium', 'hard'], cnt = t => lv.map(d => db.questions.filter(q => (!t || q.topic === t) && q.difficulty === d).length);
+  const statRow = (name, c) => `<tr><th scope="row">${esc(name)}</th>${[...c, c[0] + c[1] + c[2]].map(n => `<td>${n}</td>`).join('')}</tr>`;
+  $('#q-stats').innerHTML = '<thead><tr><th scope="col">Topic</th><th scope="col">Easy</th><th scope="col">Medium</th><th scope="col">Hard</th><th scope="col">Total</th></tr></thead><tbody>' +
+    db.topics.map(t => statRow(t, cnt(t))).join('') + '</tbody><tfoot>' + statRow('Total', cnt('')) + '</tfoot>';
 
   // library
   const lt = $('#lib-filter-topic').value;
@@ -1247,7 +1253,7 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=286')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=287')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Infra./GPUs', 'AI Hardware/GPUs': 'AI Infra./GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents' };
 const rn = t => TOPIC_RENAMED[t] ?? t;
