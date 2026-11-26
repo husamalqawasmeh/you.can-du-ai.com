@@ -13601,6 +13601,48 @@
         "Zeros cause the model to overfit immediately"
       ],
       "sourceId": "src-34"
+    },
+    {
+      "id": "q3-484",
+      "topic": "AI Solutions Architecture",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "Adding a fallback model from a second provider makes an AI app more reliable when the first provider has an outage.",
+      "answer": "True",
+      "explanation": "An AI gateway can switch to the fallback automatically when calls fail or time out.",
+      "sourceId": "src-200"
+    },
+    {
+      "id": "q3-485",
+      "topic": "AI Solutions Architecture",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "An AI feature must start answering within 1 second, but the large model takes 5 seconds. Which design helps most?",
+      "answer": "Stream the tokens, use a smaller, faster model for this step and cache common answers",
+      "explanation": "Measure time to first token (TTFT); keep the large model for the steps that really need it.",
+      "options": [
+        "Stream the tokens, use a smaller, faster model for this step and cache common answers",
+        "Raise the temperature so the model answers sooner",
+        "Add more examples to the prompt",
+        "Ask users to wait on a loading screen"
+      ],
+      "sourceId": "src-200"
+    },
+    {
+      "id": "q3-486",
+      "topic": "AI Solutions Architecture",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Users ask an AI app to summarize 1,000 documents at once. Why put this work on a message queue processed by background workers?",
+      "answer": "Requests return at once, failed jobs can be retried and workers can scale with the length of the queue",
+      "explanation": "The app returns a job ID and notifies the user when it is done; rate limits to the model API are easier to respect too.",
+      "options": [
+        "Requests return at once, failed jobs can be retried and workers can scale with the length of the queue",
+        "Queues make the model's summaries more accurate",
+        "Queues remove the need for a database",
+        "Workers let the model skip the documents it has seen before"
+      ],
+      "sourceId": "src-200"
     }
   ]
 }
