@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=292';
-import { ADMIN_HASH } from './admin-hash.js?v=292';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=293';
+import { ADMIN_HASH } from './admin-hash.js?v=293';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -88,8 +88,8 @@ function render() {
 
   // topics
   $('#topic-list').innerHTML = db.topics.map(t => {
-    const n = db.questions.filter(q => q.topic === t).length;
-    return `<li><div class="topic-row"><span>${esc(t)}</span><span class="tag">${n} questions</span></div><span class="row"><button type="button" class="mv" data-move-topic="${esc(t)}" data-dir="-1" aria-label="Move ${esc(t)} up" title="Move up">↑</button><button type="button" class="mv" data-move-topic="${esc(t)}" data-dir="1" aria-label="Move ${esc(t)} down" title="Move down">↓</button><select data-topic-level="${esc(t)}" aria-label="Level of ${esc(t)}">${[['', 'Level…'], ['easy', 'Easy'], ['medium', 'Medium'], ['difficult', 'Difficult']].map(([v, l]) => `<option value="${v}" ${(db.topicLevels?.[t] ?? '') === v ? 'selected' : ''}>${l}</option>`).join('')}</select>${seed.topics?.includes(t) ? '' : `<button type="button" data-rename-topic="${esc(t)}">Rename</button>`}<button type="button" class="del" data-del-topic="${esc(t)}">Delete</button></span></li>`;
+    const tq = db.questions.filter(q => q.topic === t), n = tq.length, nd = d => tq.filter(q => q.difficulty === d).length;
+    return `<li><div class="topic-row"><span>${esc(t)}</span><span class="tag">${n} questions (easy ${nd('easy')}, medium ${nd('medium')}, hard ${nd('hard')})</span></div><span class="row"><button type="button" class="mv" data-move-topic="${esc(t)}" data-dir="-1" aria-label="Move ${esc(t)} up" title="Move up">↑</button><button type="button" class="mv" data-move-topic="${esc(t)}" data-dir="1" aria-label="Move ${esc(t)} down" title="Move down">↓</button><select data-topic-level="${esc(t)}" aria-label="Level of ${esc(t)}">${[['', 'Level…'], ['easy', 'Easy'], ['medium', 'Medium'], ['difficult', 'Difficult']].map(([v, l]) => `<option value="${v}" ${(db.topicLevels?.[t] ?? '') === v ? 'selected' : ''}>${l}</option>`).join('')}</select>${seed.topics?.includes(t) ? '' : `<button type="button" data-rename-topic="${esc(t)}">Rename</button>`}<button type="button" class="del" data-del-topic="${esc(t)}">Delete</button></span></li>`;
   }).join('');
 
   // questions per topic and difficulty
@@ -1253,7 +1253,7 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=292')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=293')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Infra./GPUs', 'AI Hardware/GPUs': 'AI Infra./GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents' };
 const rn = t => TOPIC_RENAMED[t] ?? t;
