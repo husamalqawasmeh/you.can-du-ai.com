@@ -97,6 +97,16 @@ export function grade(qs, answers) {
 // Student ID sign-in (no passkey): 4-10 letters or digits, case-insensitive.
 export const normId = s => String(s ?? '').trim().toLowerCase();
 export const validStudentId = s => /^[a-z0-9]{4,10}$/.test(normId(s));
+export const validPin = s => /^\d{4}$/.test(String(s ?? '').trim());
+// first-time sign-in: returns an error message, or '' when the name, mobile and PIN are acceptable
+export function checkRegistration(pin, name, mobile) {
+  const digits = String(mobile ?? '').replace(/[\s()+-]/g, '');
+  if (!validPin(pin)) return 'Your PIN must be exactly 4 digits.';
+  if (!/^\p{L}[\p{L}' -]{0,39}$/u.test(String(name ?? '').trim())) return 'Please enter your first name (letters only).';
+  if (!/^\d{7,15}$/.test(digits)) return 'Please enter a valid mobile number (7 to 15 digits).';
+  if (digits.slice(-4) !== String(pin).trim()) return 'Your PIN must be the last 4 digits of your mobile number.';
+  return '';
+}
 
 // Per-topic [correct, total] for one test.
 export function scoreByTopic(qs, answers) {

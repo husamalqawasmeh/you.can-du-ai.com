@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=283';
-import { ADMIN_HASH } from './admin-hash.js?v=283';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=284';
+import { ADMIN_HASH } from './admin-hash.js?v=284';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -26,8 +26,8 @@ function save() {
 function showTab(name) {
   if (!user && !PUBLIC_TABS.has(name)) {
     name = 'home';
-    $('#signin-msg').textContent = 'Please enter your student ID to use this part of the site.';
-    $('#signin-form').sid.focus();
+    $('#signin-msg').textContent = 'Please enter your PIN to use this part of the site.';
+    $('#signin-form').pin.focus();
   }
   document.querySelectorAll('nav button').forEach(x => x.classList.toggle('active', x.dataset.tab === name));
   document.querySelectorAll('.tab').forEach(t => t.hidden = t.id !== name);
@@ -1200,29 +1200,40 @@ $('#import-file').onchange = async e => {
   alert('Import complete.');
 };
 
-// ---------- student ID sign-in (no passkey): any 4-10 letter/digit ID; progress saved per ID in this browser ----------
+// ---------- PIN sign-in: a 4-digit PIN (the last 4 digits of the student's mobile); first use asks for first name and mobile ----------
+// shortcut: profiles and progress live only in this browser and a 4-digit PIN is not real security; move to a server login if records must be private or shared across devices
+const PROFILES_KEY = 'ycda-profiles';
+const profiles = () => { try { return JSON.parse(localStorage.getItem(PROFILES_KEY)) || {}; } catch { return {}; } };
 function syncUser() {
   $('#signin-form').hidden = !!user;
   $('#user-box').hidden = !user;
-  if (user) $('#user-id').textContent = user.id;
+  if (user) $('#user-id').textContent = profiles()[user.id]?.name || user.id;
   document.querySelectorAll('nav button[data-tab]').forEach(b => b.classList.toggle('locked', !user && !PUBLIC_TABS.has(b.dataset.tab)));
 }
 $('#signin-form').onsubmit = e => {
   e.preventDefault();
-  const f = e.target, msg = $('#signin-msg');
-  if (!validStudentId(f.sid.value)) { msg.textContent = 'Student ID must be 4 to 10 letters or digits only (no spaces or symbols).'; f.sid.select(); return; }
-  try { localStorage.setItem(USER_KEY, JSON.stringify({ id: normId(f.sid.value) })); } catch {}
+  const f = e.target, msg = $('#signin-msg'), pin = f.pin.value.trim(), all = profiles(), extra = $('#signin-new');
+  if (!validPin(pin)) { msg.textContent = 'Your PIN must be exactly 4 digits.'; f.pin.select(); return; }
+  if (!all[pin]) {
+    // first time with this PIN: ask once for first name and mobile number
+    if (extra.hidden) { extra.hidden = false; f.fname.required = f.mobile.required = true; msg.textContent = 'First time with this PIN? Enter your first name and mobile number.'; f.fname.focus(); return; }
+    const err = checkRegistration(pin, f.fname.value, f.mobile.value);
+    if (err) { msg.textContent = err; return; }
+    all[pin] = { name: f.fname.value.trim(), mobile: f.mobile.value.replace(/[\s()+-]/g, ''), created: new Date().toISOString() };
+    try { localStorage.setItem(PROFILES_KEY, JSON.stringify(all)); } catch { msg.textContent = 'Could not save on this browser (storage blocked).'; return; }
+  }
+  try { localStorage.setItem(USER_KEY, JSON.stringify({ id: pin })); } catch {}
   location.reload();
 };
 $('#signout').onclick = () => { try { localStorage.removeItem(USER_KEY); } catch {} location.reload(); };
 const MAIL = {
-  question: ['Question - You Can Du AI', 'Hello,\n\nMy question:\n\n\nStudent ID: {id}\n'],
+  question: ['Question - You Can Du AI', 'Hello,\n\nMy question:\n\n\nName: {id}\n'],
 };
 document.addEventListener('click', e => {
   const a = e.target.closest('[data-mail]'); if (!a) return;
   e.preventDefault();
   const [subject, body] = MAIL[a.dataset.mail];
-  const id = user?.id || $('#signin-form').sid.value.trim() || '';
+  const id = (user && profiles()[user.id]?.name) || '';
   location.href = `mailto:${ADMIN_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body.replace('{id}', id))}`;
 });
 
@@ -1236,7 +1247,7 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=283')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=284')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Infra./GPUs', 'AI Hardware/GPUs': 'AI Infra./GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents' };
 const rn = t => TOPIC_RENAMED[t] ?? t;

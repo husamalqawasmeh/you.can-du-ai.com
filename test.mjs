@@ -1,7 +1,7 @@
 // Self-check: node test.mjs
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, validStudentId, proficiency, resultItems, topicProficiency, masteredIds, vendorsOf } from './quiz.js';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, vendorsOf } from './quiz.js';
 
 const qs = [
   { id: 'a', topic: 'LLMs', type: 'mcq', difficulty: 'easy', answer: 'Transformer' },
@@ -64,6 +64,12 @@ assert.deepEqual(topicProficiency(resultItems(qsP, ['True', 'False'])).map(t => 
 // student ID sign-in: 4-10 letters/digits only, case-insensitive
 for (const ok of ['1234', 'AB12cd', ' s123 ', 'abcdefghij', '0000000000']) assert.ok(validStudentId(ok), `should accept "${ok}"`);
 for (const bad of ['123', 'abcdefghijk', '12-34', '12 34', 'ab_cd', '', 'élève1', '<b>12</b>']) assert.ok(!validStudentId(bad), `should reject "${bad}"`);
+for (const ok of ['1234', '0000', ' 9876 ']) assert.ok(validPin(ok), 'pin ok '+ok);
+for (const bad of ['123', '12345', 'abcd', '12 4', '']) assert.ok(!validPin(bad), 'pin bad '+bad);
+assert.equal(checkRegistration('4567', 'Sara', '+971 50 123 4567'), '');
+assert.match(checkRegistration('1111', 'Sara', '0501234567'), /last 4 digits/);
+assert.match(checkRegistration('4567', '', '0501234567'), /first name/);
+assert.match(checkRegistration('4567', 'Sara', '4567'), /valid mobile/);
 
 // AI-generated question cleanup
 assert.equal(normalizeQuestion({ type: 'tf', difficulty: 'easy', prompt: 'p', answer: 'true' }).answer, 'True');
