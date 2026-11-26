@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=301';
-import { ADMIN_HASH } from './admin-hash.js?v=301';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=302';
+import { ADMIN_HASH } from './admin-hash.js?v=302';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -79,6 +79,28 @@ function padCounts(sel, count) {
   for (const [o, l, c] of opts) o.textContent = l + ' '.repeat(Math.max(1, Math.round((target - w(l) - w(c)) / sp))) + c;
 }
 
+// admin: questions per topic and difficulty, sortable by each count column with ▲/▼ (click the active arrow again for topic order)
+let statSort = null; // [column index, 1 = ascending | -1 = descending]
+function renderStats() {
+  const lv = ['easy', 'medium', 'hard'], all = db.questions.length || 1;
+  const row = (name, qs) => ({ name, c: [...lv.map(d => qs.filter(q => q.difficulty === d).length), qs.length, (100 * qs.length) / all] });
+  const rows = db.topics.map(t => row(t, db.questions.filter(q => q.topic === t)));
+  if (statSort) rows.sort((a, b) => (a.c[statSort[0]] - b.c[statSort[0]]) * statSort[1] || a.name.localeCompare(b.name));
+  const tr = r => `<tr><th scope="row">${esc(r.name)}</th>${r.c.map((n, i) => `<td>${i === 4 ? n.toFixed(1) + '%' : n}</td>`).join('')}</tr>`;
+  const head = ['Easy', 'Medium', 'Hard', 'Total', '%'].map((h, i) => {
+    const on = d => statSort?.[0] === i && statSort[1] === d;
+    const btn = (d, a, w) => `<button type="button" class="srt${on(d) ? ' on' : ''}" data-stat-col="${i}" data-stat-dir="${d}" aria-pressed="${on(d)}" aria-label="Sort by ${h} ${w}" title="Sort ${w}">${a}</button>`;
+    return `<th scope="col" aria-sort="${on(1) ? 'ascending' : on(-1) ? 'descending' : 'none'}">${h} ${btn(1, '▲', 'ascending')}${btn(-1, '▼', 'descending')}</th>`;
+  }).join('');
+  $('#q-stats').innerHTML = `<thead><tr><th scope="col">Topic</th>${head}</tr></thead><tbody>${rows.map(tr).join('')}</tbody><tfoot>${tr(row('Total', db.questions))}</tfoot>`;
+}
+$('#q-stats').addEventListener('click', e => {
+  const b = e.target.closest('[data-stat-col]'); if (!b) return;
+  const s = [+b.dataset.statCol, +b.dataset.statDir];
+  statSort = statSort?.[0] === s[0] && statSort[1] === s[1] ? null : s;
+  renderStats();
+});
+
 function render() {
   const topicOpts = db.topics.map(t => opt(t)).join('');
   document.querySelectorAll('.topic-select').forEach(s => fillSelect(s, topicOpts));
@@ -102,11 +124,7 @@ function render() {
     return `<li><div class="topic-row"><span>${esc(t)}</span><span class="tag">${n} questions (easy ${nd('easy')}, medium ${nd('medium')}, hard ${nd('hard')})</span></div><span class="row"><button type="button" class="mv" data-move-topic="${esc(t)}" data-dir="-1" aria-label="Move ${esc(t)} up" title="Move up">↑</button><button type="button" class="mv" data-move-topic="${esc(t)}" data-dir="1" aria-label="Move ${esc(t)} down" title="Move down">↓</button><select data-topic-level="${esc(t)}" aria-label="Level of ${esc(t)}">${[['', 'Level…'], ['easy', 'Easy'], ['medium', 'Medium'], ['difficult', 'Difficult']].map(([v, l]) => `<option value="${v}" ${(db.topicLevels?.[t] ?? '') === v ? 'selected' : ''}>${l}</option>`).join('')}</select>${seed.topics?.includes(t) ? '' : `<button type="button" data-rename-topic="${esc(t)}">Rename</button>`}<button type="button" class="del" data-del-topic="${esc(t)}">Delete</button></span></li>`;
   }).join('');
 
-  // questions per topic and difficulty
-  const lv = ['easy', 'medium', 'hard'], cnt = t => lv.map(d => db.questions.filter(q => (!t || q.topic === t) && q.difficulty === d).length);
-  const statRow = (name, c) => `<tr><th scope="row">${esc(name)}</th>${[...c, c[0] + c[1] + c[2]].map(n => `<td>${n}</td>`).join('')}</tr>`;
-  $('#q-stats').innerHTML = '<thead><tr><th scope="col">Topic</th><th scope="col">Easy</th><th scope="col">Medium</th><th scope="col">Hard</th><th scope="col">Total</th></tr></thead><tbody>' +
-    db.topics.map(t => statRow(t, cnt(t))).join('') + '</tbody><tfoot>' + statRow('Total', cnt('')) + '</tfoot>';
+  renderStats();
 
   // library
   const lt = $('#lib-filter-topic').value;
@@ -1264,7 +1282,7 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=301')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=302')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Infra./GPUs', 'AI Hardware/GPUs': 'AI Infra./GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents' };
 const rn = t => TOPIC_RENAMED[t] ?? t;
