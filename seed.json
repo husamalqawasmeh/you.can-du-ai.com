@@ -2034,6 +2034,24 @@
       "url": "https://arxiv.org/abs/2305.18290",
       "notes": "DPO trains on chosen/rejected pairs without a separate reward model; beta controls drift from the reference model.",
       "lang": "en"
+    },
+    {
+      "id": "src-205",
+      "topic": "AI Engineering",
+      "type": "Paper",
+      "title": "Reciprocal Rank Fusion outperforms Condorcet and individual rank learning methods (Cormack et al., 2009)",
+      "url": "https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf",
+      "notes": "The original RRF paper: score = sum of 1/(k + rank), with k = 60.",
+      "lang": "en"
+    },
+    {
+      "id": "src-206",
+      "topic": "AI Engineering",
+      "type": "Paper",
+      "title": "DistServe: Disaggregating Prefill and Decoding for Goodput-optimized LLM Serving (Zhong et al., 2024)",
+      "url": "https://arxiv.org/abs/2401.09670",
+      "notes": "Runs prefill and decode on separate GPUs so each can be tuned for its own bottleneck.",
+      "lang": "en"
     }
   ],
   "notes": [
@@ -13339,6 +13357,38 @@
         "It lets the LoRA adapters train in 4-bit too"
       ],
       "sourceId": "src-131"
+    },
+    {
+      "id": "q3-471",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Hybrid search returns a BM25 keyword list and a vector list whose scores are on different scales. How does Reciprocal Rank Fusion (RRF) merge them?",
+      "answer": "It adds 1 / (k + rank) for each document across the lists, using ranks rather than raw scores",
+      "explanation": "k is usually 60. Because only ranks are used, the two scoring scales never need to be made comparable.",
+      "options": [
+        "It adds 1 / (k + rank) for each document across the lists, using ranks rather than raw scores",
+        "It averages the raw BM25 and cosine scores",
+        "It keeps only documents that appear in both lists",
+        "It re-embeds the keyword results and sorts by cosine similarity"
+      ],
+      "sourceId": "src-205"
+    },
+    {
+      "id": "q3-472",
+      "topic": "AI Engineering",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Why do some LLM serving systems run prefill and decode on separate pools of GPUs (disaggregated serving)?",
+      "answer": "Prefill is compute-bound and decode is memory-bandwidth-bound, so separating them lets each be sized and batched for its own bottleneck",
+      "explanation": "It also stops long prompts from stalling other users' token generation; the KV cache is sent from the prefill GPUs to the decode GPUs.",
+      "options": [
+        "Prefill is compute-bound and decode is memory-bandwidth-bound, so separating them lets each be sized and batched for its own bottleneck",
+        "Decode needs more GPUs because it reads the whole prompt again for every token",
+        "Prefill must run on CPUs while decode runs on GPUs",
+        "It lets two different models answer the same request"
+      ],
+      "sourceId": "src-206"
     }
   ]
 }
