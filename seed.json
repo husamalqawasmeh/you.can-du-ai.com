@@ -1835,6 +1835,159 @@
       "url": "https://docs.arduino.cc/learn/starting-guide/getting-started-arduino/",
       "notes": "Official introduction to Arduino boards, microcontrollers and sketches.",
       "lang": "en"
+    },
+    {
+      "id": "src-183",
+      "topic": "Model Fine-tuning",
+      "type": "Paper",
+      "title": "Distilling the Knowledge in a Neural Network (Hinton et al., 2015)",
+      "url": "https://arxiv.org/abs/1503.02531",
+      "notes": "The classic paper on training a small student model from a large teacher.",
+      "lang": "en"
+    },
+    {
+      "id": "src-184",
+      "topic": "AI Governance",
+      "type": "Website",
+      "title": "EU AI Act Service Desk: Article 25, responsibilities along the AI value chain",
+      "url": "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-25",
+      "notes": "When a distributor, importer or deployer becomes the provider of a high-risk AI system.",
+      "lang": "en"
+    },
+    {
+      "id": "src-185",
+      "topic": "AI Governance",
+      "type": "Website",
+      "title": "EU AI Act Article 99: Penalties",
+      "url": "https://artificialintelligenceact.eu/article/99/",
+      "notes": "Fine levels for prohibited practices, other obligations and incorrect information.",
+      "lang": "en"
+    },
+    {
+      "id": "src-186",
+      "topic": "AI Security",
+      "type": "Website",
+      "title": "MITRE ATLAS: Adversarial Threat Landscape for AI Systems",
+      "url": "https://atlas.mitre.org/",
+      "notes": "Knowledge base of real-world attacker tactics and techniques against AI systems.",
+      "lang": "en"
+    },
+    {
+      "id": "src-187",
+      "topic": "AI Security",
+      "type": "Website",
+      "title": "Anthropic: A small number of samples can poison LLMs of any size (October 2025)",
+      "url": "https://www.anthropic.com/research/small-samples-poison",
+      "notes": "Joint study with the UK AI Security Institute and the Alan Turing Institute: about 250 documents backdoored models from 600M to 13B parameters.",
+      "lang": "en"
+    },
+    {
+      "id": "src-188",
+      "topic": "Prompt Engineering",
+      "type": "Paper",
+      "title": "Self-Consistency Improves Chain of Thought Reasoning (Wang et al., 2022)",
+      "url": "https://arxiv.org/abs/2203.11171",
+      "notes": "Sample several reasoning paths and take the majority answer.",
+      "lang": "en"
+    },
+    {
+      "id": "src-189",
+      "topic": "Agents",
+      "type": "Website",
+      "title": "Microsoft: Introducing Microsoft Agent Framework (October 2025)",
+      "url": "https://azure.microsoft.com/en-us/blog/introducing-microsoft-agent-framework/",
+      "notes": "Open-source SDK that unifies AutoGen and Semantic Kernel.",
+      "lang": "en"
+    },
+    {
+      "id": "src-190",
+      "topic": "Agents",
+      "type": "Website",
+      "title": "CrewAI documentation",
+      "url": "https://docs.crewai.com/",
+      "notes": "Framework for teams (crews) of role-based agents with tasks.",
+      "lang": "en"
+    },
+    {
+      "id": "src-191",
+      "topic": "Agents",
+      "type": "Website",
+      "title": "LangGraph documentation",
+      "url": "https://langchain-ai.github.io/langgraph/",
+      "notes": "Build stateful agent workflows as graphs, with checkpoints and human-in-the-loop.",
+      "lang": "en"
+    },
+    {
+      "id": "src-192",
+      "topic": "Transformers",
+      "type": "Paper",
+      "title": "GQA: Training Generalized Multi-Query Transformer Models (Ainslie et al., 2023)",
+      "url": "https://arxiv.org/abs/2305.13245",
+      "notes": "Grouped-query attention: query heads share key/value heads to shrink the KV cache.",
+      "lang": "en"
+    },
+    {
+      "id": "src-193",
+      "topic": "Transformers",
+      "type": "Paper",
+      "title": "RoFormer: Enhanced Transformer with Rotary Position Embedding (Su et al., 2021)",
+      "url": "https://arxiv.org/abs/2104.09864",
+      "notes": "Introduces rotary position embedding (RoPE).",
+      "lang": "en"
+    },
+    {
+      "id": "src-194",
+      "topic": "Frontier Labs",
+      "type": "Website",
+      "title": "Anthropic: Activating AI Safety Level 3 protections (May 2025)",
+      "url": "https://www.anthropic.com/news/activating-asl3-protections",
+      "notes": "Why Claude Opus 4 was deployed with ASL-3 safeguards as a precaution.",
+      "lang": "en"
+    },
+    {
+      "id": "src-195",
+      "topic": "Frontier Labs",
+      "type": "Website",
+      "title": "Google DeepMind: Introducing the Frontier Safety Framework (May 2024)",
+      "url": "https://deepmind.google/discover/blog/introducing-the-frontier-safety-framework/",
+      "notes": "Critical Capability Levels and the mitigations they trigger.",
+      "lang": "en"
+    },
+    {
+      "id": "src-196",
+      "topic": "CLI",
+      "type": "Website",
+      "title": "Claude Code: Hooks reference",
+      "url": "https://code.claude.com/docs/en/hooks",
+      "notes": "Hook events such as PreToolUse and what each exit code does.",
+      "lang": "en"
+    },
+    {
+      "id": "src-197",
+      "topic": "OpenClaw/BOTs",
+      "type": "Website",
+      "title": "Google Search Central: Verifying Googlebot and other Google crawlers",
+      "url": "https://developers.google.com/search/docs/crawling-indexing/verifying-googlebot",
+      "notes": "How to confirm a crawler is really Google with reverse and forward DNS lookups.",
+      "lang": "en"
+    },
+    {
+      "id": "src-198",
+      "topic": "Global AI Incidents",
+      "type": "Website",
+      "title": "Euronews: Italy's privacy watchdog fines OpenAI €15 million (December 2024)",
+      "url": "https://www.euronews.com/2024/12/20/italys-privacy-watchdog-fines-openai-15-million-after-probe-into-chatgpt-data-collection",
+      "notes": "The Garante decision on ChatGPT's legal basis for training and an unreported 2023 breach.",
+      "lang": "en"
+    },
+    {
+      "id": "src-199",
+      "topic": "MCPs",
+      "type": "Website",
+      "title": "MCP specification: Security best practices",
+      "url": "https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices",
+      "notes": "Confused deputy, token passthrough (forbidden), session hijacking and other MCP risks.",
+      "lang": "en"
     }
   ],
   "notes": [
@@ -2677,6 +2830,48 @@
       "sourceId": "src-182",
       "title": "Arduino vs Raspberry Pi",
       "body": "Arduino is a small, cheap microcontroller board you program in C/C++ to control electronics directly, such as reading sensors, turning on LEDs or driving motors. Unlike a Raspberry Pi, it has no operating system: it runs one program in a loop, starts instantly and uses very little power. An Arduino program is called a sketch: setup() runs once at power-on and loop() then repeats forever. A Raspberry Pi is a small single-board computer: it runs a full operating system (usually Linux), has far more memory and processing power, and can run many programs at once, connect a screen, keyboard and network, and run Python or even small AI models. In short: use an Arduino for simple, reliable, low-power control of hardware in real time; use a Raspberry Pi when you need a real computer, such as running a web server, a camera with image recognition or a local AI model. Many projects use both, with the Pi doing the thinking and the Arduino handling the sensors and motors."
+    },
+    {
+      "id": "note-121",
+      "topic": "Model Fine-tuning",
+      "sourceId": "src-3",
+      "title": "When to fine-tune, and what can go wrong",
+      "body": "Fine-tuning means further training a pre-trained model on your own examples so it adapts to a task. Try the cheaper options first: a better prompt, then retrieval-augmented generation (RAG) for knowledge, and fine-tune only when those fall short. Rule of thumb: RAG is better for facts that change (policies, prices, product data) because you just update the documents; fine-tuning is better for a consistent style, tone, output format or a narrow skill, and for making a small model do one job as well as a big one. Main options: full fine-tuning updates every weight (best quality, most memory); parameter-efficient fine-tuning (PEFT) such as LoRA freezes the base model and trains small adapter matrices, where the rank r sets their size (higher r means more trainable parameters and capacity, but more memory); QLoRA does the same on a 4-bit quantized base model. A trained LoRA adapter can be kept separate (so one base model serves many adapters) or merged into the base weights, which removes the extra adapter step so inference is as fast as the base model. Knowledge distillation trains a smaller student model to copy a larger teacher model's outputs, a common way to make cheap, fast models. Risks: catastrophic forgetting (the model loses skills it had before, reduced by mixing in general data and using LoRA), overfitting on a small dataset, copying errors or bias from bad training examples, and weakening the model's safety behaviour. Always keep a held-out test set and compare against the base model before and after."
+    },
+    {
+      "id": "note-122",
+      "topic": "AI Governance",
+      "sourceId": "src-184",
+      "title": "EU AI Act roles, human oversight and fines",
+      "body": "The EU AI Act gives different duties to different roles. The provider develops an AI system (or has it developed) and places it on the market under its own name; it carries most obligations for high-risk systems, such as risk management, data quality, technical documentation, logging, conformity assessment and CE marking. The deployer is any organization using an AI system under its authority, for example a bank using a credit-scoring tool; deployers must use the system as instructed, assign trained people for human oversight, monitor it and keep logs, and some (such as public bodies) must do a fundamental rights impact assessment. Under Article 25 a deployer, importer or distributor becomes the provider if it puts its own name or trademark on a high-risk system, makes a substantial modification to it, or changes a system's intended purpose so that it becomes high-risk. Human oversight means trained people can understand the system's limits, monitor it, interpret its output, and override or stop it. Fines (Article 99) go up to €35 million or 7% of worldwide annual turnover (whichever is higher) for prohibited practices, up to €15 million or 3% for most other obligations, and up to €7.5 million or 1% for giving incorrect information to authorities. In practice, good governance starts with an AI inventory (every AI system in use with its owner, purpose, data and risk level), clear accountability, policies for acceptable use, and regular review."
+    },
+    {
+      "id": "note-123",
+      "topic": "AI Security",
+      "sourceId": "src-186",
+      "title": "Attacks on AI models: poisoning, extraction and inference",
+      "body": "Beyond prompt injection, AI systems face attacks on the model and its data. Jailbreaks are prompts crafted to make a model ignore its safety rules (role-play, \"ignore previous instructions\", encoding tricks); prompt injection instead smuggles instructions into the app, often indirectly through web pages, emails or documents the AI reads. Data poisoning plants harmful examples in training or fine-tuning data to change behaviour or add a hidden backdoor triggered by a keyword. In October 2025 Anthropic, the UK AI Security Institute and the Alan Turing Institute showed that about 250 poisoned documents were enough to backdoor models from 600M to 13B parameters, regardless of model size: what mattered was the number of documents, not their share of the data (the test backdoor only produced gibberish, and it is unclear whether this holds for much larger models). Model extraction (model stealing) sends many queries to a model API and trains a copy from the answers. Membership inference tries to learn whether a specific record, such as a patient file, was in the training data, a privacy risk. Model inversion tries to reconstruct training data from outputs. MITRE ATLAS is a public knowledge base of real attacker tactics and techniques against AI systems, modelled on MITRE ATT&CK, used for threat modelling and red teaming. Defences: vet and track training data sources, rate-limit and monitor APIs, filter inputs and outputs, give agents least privilege, and red-team before release."
+    },
+    {
+      "id": "note-124",
+      "topic": "Prompt Engineering",
+      "sourceId": "src-188",
+      "title": "More prompting techniques: templates, chaining, self-consistency and caching",
+      "body": "Zero-shot prompting asks for a task with no examples; few-shot adds a few examples. Role prompting (\"You are an experienced tax accountant\") shapes tone and focus. A prompt template is a reusable prompt with placeholders such as {customer_name} filled in for each request, so prompts stay consistent and testable. Prompt chaining splits a big task into steps where each prompt's output feeds the next (for example extract facts, then draft, then check), which is easier to debug than one giant prompt. Self-consistency (Wang et al., 2022) samples several chain-of-thought answers at a non-zero temperature and picks the most common final answer, improving accuracy on maths and logic at higher cost. Prompt caching lets a provider reuse the processed start (prefix) of a prompt, cutting cost and latency, but only if that prefix is identical: put stable content such as instructions, tool definitions, examples and long documents first, and the changing user question last. Other habits that work: be specific about the goal, audience and format; give the model permission to say it does not know; ask for structured output such as JSON when code will read it; and test prompts against a fixed set of examples whenever you change them."
+    },
+    {
+      "id": "note-125",
+      "topic": "Agents",
+      "sourceId": "src-189",
+      "title": "Agent frameworks compared",
+      "body": "An agent framework gives developers ready-made building blocks for tool calling, memory, multi-step loops, multi-agent coordination, tracing and human approval, so they do not have to write the agent loop from scratch. Popular options: LangGraph (from LangChain) models a workflow as a graph of nodes and edges passing shared state, supports loops, and saves checkpoints so a run can pause for human approval and resume. CrewAI organizes a \"crew\" of role-based agents (such as researcher, writer and reviewer) that work through tasks. The OpenAI Agents SDK (March 2025) is a lightweight successor to OpenAI's experimental Swarm project, built on agents, tools, handoffs (one agent passing control to another) and guardrails. Microsoft Agent Framework (announced October 2025, 1.0 in April 2026) unifies AutoGen and Semantic Kernel into one open-source SDK for .NET and Python; the older two are now in maintenance mode. Google's Agent Development Kit (ADK, April 2025) is an open-source framework for multi-agent systems. The Claude Agent SDK exposes the harness behind Claude Code. Agents connect to tools through MCP and to other agents through A2A. Choosing: start simple (one agent, a few tools), add human-in-the-loop checkpoints for risky actions such as payments or deleting data, and pick the framework that fits your language and cloud."
+    },
+    {
+      "id": "note-126",
+      "topic": "Frontier Labs",
+      "sourceId": "src-194",
+      "title": "Frontier safety frameworks: RSP, Preparedness and FSF",
+      "body": "The leading labs publish frameworks that say which dangerous capabilities they test for and what safeguards they add as models get stronger. Anthropic's Responsible Scaling Policy (RSP) uses AI Safety Levels (ASL-1 to ASL-4 and above), loosely modelled on biosafety levels. In May 2025 Anthropic released Claude Opus 4 with ASL-3 safeguards (stronger security for the model weights and targeted defences against help with chemical, biological, radiological and nuclear weapons) as a precaution, because it could no longer clearly rule out that the model needed them, while Claude Sonnet 4 stayed at ASL-2. OpenAI's Preparedness Framework tracks categories such as biological and chemical, cybersecurity and AI self-improvement, with \"High\" and \"Critical\" capability thresholds that require safeguards before deployment. Google DeepMind's Frontier Safety Framework (May 2024, updated in 2025 and 2026) is built around Critical Capability Levels (CCLs): when evaluations show a model is near a CCL, stronger security and deployment mitigations apply; later versions added a harmful-manipulation CCL and lower \"tracked\" levels for earlier warning. These frameworks are voluntary company policies, but laws such as the EU AI Act's rules for general-purpose AI models increasingly expect similar risk assessments."
     }
   ],
   "questions": [
@@ -12097,6 +12292,802 @@
         "A laptop"
       ],
       "sourceId": "src-182"
+    },
+    {
+      "id": "q3-407",
+      "topic": "Model Fine-tuning",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "What does fine-tuning a model mean?",
+      "answer": "Further training a pre-trained model on your own examples to adapt it",
+      "explanation": "It changes the model's weights, unlike prompting or RAG.",
+      "options": [
+        "Further training a pre-trained model on your own examples to adapt it",
+        "Writing a longer system prompt for the model",
+        "Searching your documents at question time",
+        "Lowering the temperature setting"
+      ],
+      "sourceId": "src-154"
+    },
+    {
+      "id": "q3-408",
+      "topic": "Model Fine-tuning",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "An assistant must answer from policy documents that change every week. What usually works better than fine-tuning?",
+      "answer": "Retrieval-augmented generation (RAG)",
+      "explanation": "With RAG you just update the documents; fine-tuning would need retraining every week.",
+      "options": [
+        "Retrieval-augmented generation (RAG)",
+        "Pre-training a new model from scratch",
+        "Full fine-tuning every week",
+        "Quantizing the model to 4-bit"
+      ],
+      "sourceId": "src-154"
+    },
+    {
+      "id": "q3-409",
+      "topic": "Model Fine-tuning",
+      "difficulty": "easy",
+      "type": "tf",
+      "prompt": "Fine-tuning is usually better for teaching a consistent style, tone or output format than for adding fast-changing facts.",
+      "answer": "True",
+      "explanation": "Use RAG for changing knowledge and fine-tuning for behaviour, style and format.",
+      "sourceId": "src-154"
+    },
+    {
+      "id": "q3-410",
+      "topic": "Model Fine-tuning",
+      "difficulty": "easy",
+      "type": "fill",
+      "prompt": "When fine-tuning makes a model lose skills it had before, this is called catastrophic ___.",
+      "answer": "forgetting",
+      "explanation": "Mixing in general data and using LoRA reduce it.",
+      "sourceId": "src-154"
+    },
+    {
+      "id": "q3-411",
+      "topic": "AI Governance",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "What is AI governance?",
+      "answer": "The policies, roles and controls that make sure AI is used responsibly and lawfully",
+      "explanation": "It covers accountability, risk, compliance and oversight across the AI lifecycle.",
+      "options": [
+        "The policies, roles and controls that make sure AI is used responsibly and lawfully",
+        "The hardware that runs AI models",
+        "A technique that makes models answer faster",
+        "A government agency that builds AI models"
+      ],
+      "sourceId": "src-147"
+    },
+    {
+      "id": "q3-412",
+      "topic": "AI Governance",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "Under the EU AI Act, what is a \"deployer\"?",
+      "answer": "An organization that uses an AI system under its authority",
+      "explanation": "The provider develops the system and places it on the market; the deployer uses it.",
+      "options": [
+        "An organization that uses an AI system under its authority",
+        "The company that develops and sells the AI system",
+        "The cloud company hosting the model",
+        "The regulator that audits AI systems"
+      ],
+      "sourceId": "src-184"
+    },
+    {
+      "id": "q3-413",
+      "topic": "AI Governance",
+      "difficulty": "easy",
+      "type": "tf",
+      "prompt": "The EU AI Act sorts AI systems by risk level, from banned practices down to minimal risk.",
+      "answer": "True",
+      "explanation": "The tiers are unacceptable (banned), high, limited (transparency duties) and minimal risk.",
+      "sourceId": "src-147"
+    },
+    {
+      "id": "q3-414",
+      "topic": "AI Security",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "What is a \"jailbreak\" in AI security?",
+      "answer": "A prompt crafted to make a model ignore its safety rules",
+      "explanation": "Common tricks include role-play, \"ignore previous instructions\" and encoded text.",
+      "options": [
+        "A prompt crafted to make a model ignore its safety rules",
+        "Rooting a phone to install AI apps",
+        "Copying a model's weights off a server",
+        "Running a model without an internet connection"
+      ],
+      "sourceId": "src-143"
+    },
+    {
+      "id": "q3-415",
+      "topic": "AI Security",
+      "difficulty": "easy",
+      "type": "tf",
+      "prompt": "Indirect prompt injection hides malicious instructions in content the AI reads, such as a web page or email, rather than in the user's own message.",
+      "answer": "True",
+      "explanation": "That is why agents that read untrusted content need least privilege and human approval for risky actions.",
+      "sourceId": "src-143"
+    },
+    {
+      "id": "q3-416",
+      "topic": "AI Security",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "What is \"data poisoning\"?",
+      "answer": "Planting harmful examples in training data to change a model's behaviour",
+      "explanation": "It can add a hidden backdoor that a trigger word activates.",
+      "options": [
+        "Planting harmful examples in training data to change a model's behaviour",
+        "Deleting a model's training data after release",
+        "Sending too many requests to slow a model down",
+        "Leaking user chats to the public"
+      ],
+      "sourceId": "src-187"
+    },
+    {
+      "id": "q3-417",
+      "topic": "Prompt Engineering",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "What is a prompt template?",
+      "answer": "A reusable prompt with placeholders filled in for each request",
+      "explanation": "For example \"Summarize this ticket from {customer_name}: {ticket}\". It keeps prompts consistent and testable.",
+      "options": [
+        "A reusable prompt with placeholders filled in for each request",
+        "A prompt the model writes for itself",
+        "A list of banned words for the model",
+        "The model's default answer when it fails"
+      ],
+      "sourceId": "src-156"
+    },
+    {
+      "id": "q3-418",
+      "topic": "Prompt Engineering",
+      "difficulty": "easy",
+      "type": "tf",
+      "prompt": "Giving the model a role, such as \"You are an experienced tax accountant\", can shape its tone and focus.",
+      "answer": "True",
+      "explanation": "This is called role prompting.",
+      "sourceId": "src-156"
+    },
+    {
+      "id": "q3-419",
+      "topic": "Prompt Engineering",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "What is \"zero-shot\" prompting?",
+      "answer": "Asking the model to do a task without giving any examples",
+      "explanation": "Few-shot prompting adds a few worked examples.",
+      "options": [
+        "Asking the model to do a task without giving any examples",
+        "Giving the model exactly one example",
+        "Running the prompt with temperature 0",
+        "A prompt the model refuses to answer"
+      ],
+      "sourceId": "src-156"
+    },
+    {
+      "id": "q3-420",
+      "topic": "Agents",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "What does an agent framework such as LangGraph or CrewAI mainly give developers?",
+      "answer": "Ready-made building blocks for tools, memory, multi-step loops and multi-agent setups",
+      "explanation": "So developers do not have to write the agent loop from scratch.",
+      "options": [
+        "Ready-made building blocks for tools, memory, multi-step loops and multi-agent setups",
+        "A new foundation model trained from scratch",
+        "Cheaper GPU hosting for models",
+        "A finished chat app for end users"
+      ],
+      "sourceId": "src-191"
+    },
+    {
+      "id": "q3-421",
+      "topic": "Agents",
+      "difficulty": "easy",
+      "type": "mcq",
+      "prompt": "Which agent framework organizes work as a \"crew\" of role-based agents, such as a researcher and a writer?",
+      "answer": "CrewAI",
+      "explanation": "LangGraph uses graphs of nodes and shared state instead.",
+      "options": [
+        "CrewAI",
+        "LangGraph",
+        "PyTorch",
+        "Ollama"
+      ],
+      "sourceId": "src-190"
+    },
+    {
+      "id": "q3-422",
+      "topic": "Agents",
+      "difficulty": "easy",
+      "type": "tf",
+      "prompt": "Tools let an AI agent take actions such as searching the web, reading files or calling APIs.",
+      "answer": "True",
+      "explanation": "The model decides which tool to call; the harness runs it and returns the result.",
+      "sourceId": "src-191"
+    },
+    {
+      "id": "q3-423",
+      "topic": "Model Fine-tuning",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "In LoRA, what does the rank (r) control?",
+      "answer": "The size of the adapter matrices, and so how many parameters are trained",
+      "explanation": "Higher r adds capacity but uses more memory.",
+      "options": [
+        "The size of the adapter matrices, and so how many parameters are trained",
+        "The number of training epochs",
+        "The learning-rate schedule",
+        "How many GPUs are used"
+      ],
+      "sourceId": "src-3"
+    },
+    {
+      "id": "q3-424",
+      "topic": "Model Fine-tuning",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "What is knowledge distillation?",
+      "answer": "Training a smaller student model to copy a larger teacher model's outputs",
+      "explanation": "A common way to make cheaper, faster models.",
+      "options": [
+        "Training a smaller student model to copy a larger teacher model's outputs",
+        "Removing low-value weights from a model",
+        "Storing the weights in fewer bits",
+        "Merging two models by averaging their weights"
+      ],
+      "sourceId": "src-183"
+    },
+    {
+      "id": "q3-425",
+      "topic": "AI Governance",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "What is an AI inventory (register) used for in AI governance?",
+      "answer": "Listing every AI system in use with its owner, purpose and risk level",
+      "explanation": "You cannot govern AI systems you do not know about.",
+      "options": [
+        "Listing every AI system in use with its owner, purpose and risk level",
+        "Tracking GPU stock in the data centre",
+        "Backing up model weights",
+        "Listing staff who finished AI training"
+      ],
+      "sourceId": "src-147"
+    },
+    {
+      "id": "q3-426",
+      "topic": "AI Governance",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "What does \"human oversight\" require for a high-risk AI system?",
+      "answer": "Trained people can understand, monitor and override or stop the system",
+      "explanation": "It is a core EU AI Act requirement for high-risk systems.",
+      "options": [
+        "Trained people can understand, monitor and override or stop the system",
+        "A human must type every output by hand",
+        "Only humans may write the system's code",
+        "Users must approve each training example"
+      ],
+      "sourceId": "src-184"
+    },
+    {
+      "id": "q3-427",
+      "topic": "AI Security",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "An attacker sends thousands of queries to a paid model API and trains a copy from the answers. What is this called?",
+      "answer": "Model extraction (model stealing)",
+      "explanation": "Rate limits and monitoring for unusual query patterns help.",
+      "options": [
+        "Model extraction (model stealing)",
+        "Membership inference",
+        "System prompt leakage",
+        "Data poisoning"
+      ],
+      "sourceId": "src-186"
+    },
+    {
+      "id": "q3-428",
+      "topic": "AI Security",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "What is MITRE ATLAS?",
+      "answer": "A knowledge base of real attacker tactics and techniques against AI systems",
+      "explanation": "It is modelled on MITRE ATT&CK and used for threat modelling and red teaming.",
+      "options": [
+        "A knowledge base of real attacker tactics and techniques against AI systems",
+        "A benchmark of map-reading tasks for AI",
+        "An open-source LLM released by MITRE",
+        "A US federal law on AI security"
+      ],
+      "sourceId": "src-186"
+    },
+    {
+      "id": "q3-429",
+      "topic": "Prompt Engineering",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "What is prompt chaining?",
+      "answer": "Splitting a task into steps where each prompt's output feeds the next",
+      "explanation": "For example extract facts, then draft, then check: easier to debug than one giant prompt.",
+      "options": [
+        "Splitting a task into steps where each prompt's output feeds the next",
+        "Repeating a prompt until the answer changes",
+        "Linking several chat accounts together",
+        "Putting many examples into one prompt"
+      ],
+      "sourceId": "src-156"
+    },
+    {
+      "id": "q3-430",
+      "topic": "Agents",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "Why add a human-in-the-loop checkpoint to an agent?",
+      "answer": "So a person approves risky actions, such as payments or deleting data, before they run",
+      "explanation": "It limits the damage from mistakes or prompt injection.",
+      "options": [
+        "So a person approves risky actions, such as payments or deleting data, before they run",
+        "To make the agent respond faster",
+        "To cut the token cost of each step",
+        "Because models cannot call tools without one"
+      ],
+      "sourceId": "src-191"
+    },
+    {
+      "id": "q3-431",
+      "topic": "Model Fine-tuning",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Why might you merge a trained LoRA adapter into the base model's weights for deployment?",
+      "answer": "It removes the extra adapter step, so inference is as fast as the base model",
+      "explanation": "Keeping adapters separate instead lets one base model serve many adapters.",
+      "options": [
+        "It removes the extra adapter step, so inference is as fast as the base model",
+        "It makes the model smaller than the base model",
+        "It is required before the model can be quantized",
+        "It lets the model keep learning from user chats"
+      ],
+      "sourceId": "src-3"
+    },
+    {
+      "id": "q3-432",
+      "topic": "AI Governance",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Under the EU AI Act, what is the maximum fine for using a prohibited AI practice?",
+      "answer": "Up to €35 million or 7% of worldwide annual turnover, whichever is higher",
+      "explanation": "Most other breaches: up to €15 million or 3%; incorrect information to authorities: up to €7.5 million or 1%.",
+      "options": [
+        "Up to €35 million or 7% of worldwide annual turnover, whichever is higher",
+        "Up to €20 million or 4%, as under the GDPR",
+        "Up to €15 million or 3%",
+        "Up to €7.5 million or 1%"
+      ],
+      "sourceId": "src-185"
+    },
+    {
+      "id": "q3-433",
+      "topic": "AI Governance",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "A company puts its own brand on a high-risk AI system bought from a vendor and sells it. Under EU AI Act Article 25, what happens?",
+      "answer": "The company is treated as the provider and takes on the provider's obligations",
+      "explanation": "The same applies after a substantial modification or a change of intended purpose that makes a system high-risk.",
+      "options": [
+        "The company is treated as the provider and takes on the provider's obligations",
+        "Only the original vendor stays responsible",
+        "The company is exempt because it did not build the model",
+        "Responsibility passes to the national regulator"
+      ],
+      "sourceId": "src-184"
+    },
+    {
+      "id": "q3-434",
+      "topic": "AI Security",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "What did the October 2025 study by Anthropic, the UK AI Security Institute and the Alan Turing Institute find about poisoning pretraining data?",
+      "answer": "About 250 poisoned documents backdoored models from 600M to 13B parameters, regardless of size",
+      "explanation": "Success depended on the number of documents, not their share of the data. The test backdoor only produced gibberish.",
+      "options": [
+        "About 250 poisoned documents backdoored models from 600M to 13B parameters, regardless of size",
+        "Poisoning needs at least 1% of the training data to work",
+        "Larger models were immune to poisoning",
+        "Only fine-tuning data, not pretraining data, can be poisoned"
+      ],
+      "sourceId": "src-187"
+    },
+    {
+      "id": "q3-435",
+      "topic": "AI Security",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "What does a \"membership inference\" attack try to learn?",
+      "answer": "Whether a specific record was part of the model's training data",
+      "explanation": "For example whether a patient's file was used, which is a privacy risk.",
+      "options": [
+        "Whether a specific record was part of the model's training data",
+        "Which user account sent a prompt",
+        "The exact parameter count of the model",
+        "Which GPU type served the request"
+      ],
+      "sourceId": "src-186"
+    },
+    {
+      "id": "q3-436",
+      "topic": "Prompt Engineering",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "What is \"self-consistency\" prompting (Wang et al., 2022)?",
+      "answer": "Sampling several reasoning paths and choosing the most common final answer",
+      "explanation": "It improves maths and logic accuracy at the cost of more tokens.",
+      "options": [
+        "Sampling several reasoning paths and choosing the most common final answer",
+        "Asking the model to check its answer once against the prompt",
+        "Using temperature 0 so every run gives the same answer",
+        "Repeating the system prompt at the end of the context"
+      ],
+      "sourceId": "src-188"
+    },
+    {
+      "id": "q3-437",
+      "topic": "Prompt Engineering",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "To get the most from prompt caching, how should you order a long prompt?",
+      "answer": "Stable content (instructions, tools, documents) first and the changing question last",
+      "explanation": "The cache only reuses an identical prefix, so anything that changes early breaks it.",
+      "options": [
+        "Stable content (instructions, tools, documents) first and the changing question last",
+        "The user question first, then the instructions",
+        "Shuffle the sections so the cache sees variety",
+        "Put the examples last so they stay fresh"
+      ],
+      "sourceId": "src-156"
+    },
+    {
+      "id": "q3-438",
+      "topic": "Agents",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "In October 2025 Microsoft announced Microsoft Agent Framework. Which two projects did it unify?",
+      "answer": "AutoGen and Semantic Kernel",
+      "explanation": "Both older projects moved to maintenance mode; the framework reached 1.0 in April 2026.",
+      "options": [
+        "AutoGen and Semantic Kernel",
+        "LangChain and LlamaIndex",
+        "Copilot Studio and Power Automate",
+        "CrewAI and AutoGen"
+      ],
+      "sourceId": "src-189"
+    },
+    {
+      "id": "q3-439",
+      "topic": "Agents",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "The OpenAI Agents SDK (March 2025) is the production successor to which experimental OpenAI project?",
+      "answer": "Swarm",
+      "explanation": "It is built on agents, tools, handoffs and guardrails.",
+      "options": [
+        "Swarm",
+        "Gym",
+        "Codex",
+        "Operator"
+      ],
+      "sourceId": "src-96"
+    },
+    {
+      "id": "q3-440",
+      "topic": "Transformers",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "What does grouped-query attention (GQA) change compared with standard multi-head attention?",
+      "answer": "Several query heads share one key/value head, shrinking the KV cache",
+      "explanation": "It keeps quality close to multi-head attention while using far less memory during generation.",
+      "options": [
+        "Several query heads share one key/value head, shrinking the KV cache",
+        "Each token attends only to nearby tokens in its group",
+        "Queries from different users are batched together",
+        "It removes the softmax step from attention"
+      ],
+      "sourceId": "src-192"
+    },
+    {
+      "id": "q3-441",
+      "topic": "Transformers",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "How does rotary position embedding (RoPE) add word-order information?",
+      "answer": "It rotates query and key vectors by position-based angles, so attention depends on relative distance",
+      "explanation": "RoPE is used by many modern LLMs such as Llama.",
+      "options": [
+        "It rotates query and key vectors by position-based angles, so attention depends on relative distance",
+        "It adds a learned position vector at the output layer",
+        "It sorts tokens alphabetically before attention",
+        "It gives each sentence a separate segment ID"
+      ],
+      "sourceId": "src-193"
+    },
+    {
+      "id": "q3-442",
+      "topic": "Frontier Labs",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "When Anthropic released Claude Opus 4 in May 2025, what did it do under its Responsible Scaling Policy?",
+      "answer": "Activated ASL-3 safeguards as a precaution, without confirming the model needed them",
+      "explanation": "Claude Sonnet 4 stayed at ASL-2.",
+      "options": [
+        "Activated ASL-3 safeguards as a precaution, without confirming the model needed them",
+        "Kept it at ASL-2 like earlier models",
+        "Activated ASL-4 safeguards",
+        "Paused the release for a government review"
+      ],
+      "sourceId": "src-194"
+    },
+    {
+      "id": "q3-443",
+      "topic": "Frontier Labs",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Google DeepMind's Frontier Safety Framework is built around which concept?",
+      "answer": "Critical Capability Levels (CCLs) that trigger stronger mitigations",
+      "explanation": "ASLs are Anthropic's levels; \"High\" and \"Critical\" thresholds come from OpenAI's Preparedness Framework.",
+      "options": [
+        "Critical Capability Levels (CCLs) that trigger stronger mitigations",
+        "AI Safety Levels (ASLs)",
+        "\"High\" and \"Critical\" Preparedness thresholds",
+        "EU AI Act risk tiers"
+      ],
+      "sourceId": "src-195"
+    },
+    {
+      "id": "q3-444",
+      "topic": "CLI",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "In Claude Code, what happens when a PreToolUse hook exits with code 2?",
+      "answer": "The tool call is blocked and the hook's error message is sent to Claude",
+      "explanation": "Exit code 0 lets the call go ahead; other codes show an error but do not block.",
+      "options": [
+        "The tool call is blocked and the hook's error message is sent to Claude",
+        "The tool call runs and the hook is ignored",
+        "Claude Code shuts down",
+        "The hook runs again before the tool"
+      ],
+      "sourceId": "src-196"
+    },
+    {
+      "id": "q3-445",
+      "topic": "CLI",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Why do developers use git worktree when running several AI coding agents at once?",
+      "answer": "Each agent gets its own folder and branch from the same repository, so edits do not clash",
+      "explanation": "You review and merge each branch when its agent is done.",
+      "options": [
+        "Each agent gets its own folder and branch from the same repository, so edits do not clash",
+        "It merges all the agents' edits automatically",
+        "It speeds up the model's responses",
+        "It locks the repository so only one agent can write"
+      ],
+      "sourceId": "src-88"
+    },
+    {
+      "id": "q3-446",
+      "topic": "Benchmarking",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Model A beats model B by 1 point on a 200-question benchmark. Why should you be careful about calling A better?",
+      "answer": "With few questions and random sampling, a 1-point gap can be noise; check confidence intervals",
+      "explanation": "Report error bars and repeat runs before claiming a winner.",
+      "options": [
+        "With few questions and random sampling, a 1-point gap can be noise; check confidence intervals",
+        "Benchmarks always favour the newer model",
+        "Scores under 90% are not meaningful",
+        "Only human evaluations can be compared"
+      ],
+      "sourceId": "src-109"
+    },
+    {
+      "id": "q3-447",
+      "topic": "Benchmarking",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "One lab reports a score using majority voting over 64 samples (maj@64); another uses a single attempt. Why can't you compare them directly?",
+      "answer": "Sampling many answers and voting raises scores, so the setups are not equivalent",
+      "explanation": "Always compare models under the same prompting, sampling and scoring setup.",
+      "options": [
+        "Sampling many answers and voting raises scores, so the setups are not equivalent",
+        "maj@64 uses a harder version of the test",
+        "Single attempts are scored more generously",
+        "Voting only works on open-weights models"
+      ],
+      "sourceId": "src-109"
+    },
+    {
+      "id": "q3-448",
+      "topic": "AI Risk Management",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "How does ISO/IEC 23894 differ from ISO/IEC 42001?",
+      "answer": "23894 is guidance on managing AI risk; 42001 is a management-system standard you can be certified against",
+      "explanation": "They are often used together: 23894 for the risk process, 42001 for the overall AI management system.",
+      "options": [
+        "23894 is guidance on managing AI risk; 42001 is a management-system standard you can be certified against",
+        "23894 is certifiable; 42001 is only guidance",
+        "Both are EU laws with fines",
+        "23894 covers only privacy and 42001 only cybersecurity"
+      ],
+      "sourceId": "src-162"
+    },
+    {
+      "id": "q3-449",
+      "topic": "AI Risk Management",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "In the \"three lines of defence\" model applied to AI risk, who is the third line?",
+      "answer": "Internal audit, which independently checks the first two lines",
+      "explanation": "First line: business owners who run the AI and manage its risk. Second line: risk and compliance, who set rules and oversee.",
+      "options": [
+        "Internal audit, which independently checks the first two lines",
+        "The AI vendor's support team",
+        "The national AI regulator",
+        "The end users of the AI system"
+      ],
+      "sourceId": "src-162"
+    },
+    {
+      "id": "q3-450",
+      "topic": "OpenClaw/BOTs",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "A request claims to be Googlebot in its User-Agent. How can a website check it is genuine?",
+      "answer": "Reverse-DNS the IP, check it ends in googlebot.com or google.com, then forward-DNS it back to the same IP",
+      "explanation": "The User-Agent header is easy to fake; Google also publishes its crawler IP ranges.",
+      "options": [
+        "Reverse-DNS the IP, check it ends in googlebot.com or google.com, then forward-DNS it back to the same IP",
+        "Trust the User-Agent header",
+        "Check that it requested robots.txt first",
+        "Make it solve a CAPTCHA"
+      ],
+      "sourceId": "src-197"
+    },
+    {
+      "id": "q3-451",
+      "topic": "OpenClaw/BOTs",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Which combination best limits the damage if a personal agent like OpenClaw is tricked by prompt injection?",
+      "answer": "Least-privilege accounts, a separate machine or container, and human approval for sensitive actions",
+      "explanation": "Also keep the Gateway private, keep it updated and set spending limits on the model API.",
+      "options": [
+        "Least-privilege accounts, a separate machine or container, and human approval for sensitive actions",
+        "A longer system prompt telling it to ignore attacks",
+        "Running it on the fastest available model",
+        "Installing more skills so it can detect attacks"
+      ],
+      "sourceId": "src-174"
+    },
+    {
+      "id": "q3-452",
+      "topic": "Harness Engineering",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Why do agent harnesses keep the early context stable and append-only instead of editing earlier messages?",
+      "answer": "Changing earlier tokens breaks the prompt cache, raising cost and latency",
+      "explanation": "Large tool outputs can be saved to files and referenced instead of rewritten.",
+      "options": [
+        "Changing earlier tokens breaks the prompt cache, raising cost and latency",
+        "Models cannot read edited messages",
+        "APIs forbid editing conversation history",
+        "Append-only context stops hallucinations"
+      ],
+      "sourceId": "src-81"
+    },
+    {
+      "id": "q3-453",
+      "topic": "Harness Engineering",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "In a generator-evaluator loop, why give the evaluator a separate context or model?",
+      "answer": "A model judging its own work in the same context tends to approve it; a fresh reviewer catches more",
+      "explanation": "Clear pass/fail checks such as tests make the evaluator even more reliable.",
+      "options": [
+        "A model judging its own work in the same context tends to approve it; a fresh reviewer catches more",
+        "It halves the token cost",
+        "The generator cannot read test results",
+        "Evaluators must run on a separate GPU"
+      ],
+      "sourceId": "src-81"
+    },
+    {
+      "id": "q3-454",
+      "topic": "Global AI Incidents",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "In December 2024, Italy's data protection authority (Garante) fined OpenAI €15 million. Which were among the grounds?",
+      "answer": "Training ChatGPT on personal data without an adequate legal basis and not reporting a March 2023 breach",
+      "explanation": "OpenAI called it disproportionate and appealed; in March 2026 a Rome court accepted its challenge.",
+      "options": [
+        "Training ChatGPT on personal data without an adequate legal basis and not reporting a March 2023 breach",
+        "Selling user data to advertisers",
+        "Running ChatGPT without an EU AI Act licence",
+        "Using pirated books to train its models"
+      ],
+      "sourceId": "src-198"
+    },
+    {
+      "id": "q3-455",
+      "topic": "Global AI Incidents",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "In December 2023 a Chevrolet dealer's ChatGPT-powered chatbot \"agreed\" to sell a Tahoe for $1. How did the user do it?",
+      "answer": "Told it to agree with anything the customer says and call it a legally binding offer",
+      "explanation": "A simple prompt injection; the dealer did not honour the \"deal\" but the case showed the need for guardrails.",
+      "options": [
+        "Told it to agree with anything the customer says and call it a legally binding offer",
+        "Hacked the dealer's payment system",
+        "Used a deepfake voice of the sales manager",
+        "Exploited a pricing bug in the website database"
+      ],
+      "sourceId": "src-165"
+    },
+    {
+      "id": "q3-456",
+      "topic": "MCPs",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "Why must an MCP server not pass the client's access token straight through to an upstream API?",
+      "answer": "Token passthrough is forbidden: a server accepts only tokens issued for itself and gets its own token upstream",
+      "explanation": "Servers must check the token's audience; clients name the server with the RFC 8707 resource parameter. This prevents confused-deputy attacks.",
+      "options": [
+        "Token passthrough is forbidden: a server accepts only tokens issued for itself and gets its own token upstream",
+        "Upstream APIs reject all OAuth tokens",
+        "Tokens are too large to forward",
+        "MCP has no authentication at all"
+      ],
+      "sourceId": "src-199"
+    },
+    {
+      "id": "q3-457",
+      "topic": "MCPs",
+      "difficulty": "hard",
+      "type": "mcq",
+      "prompt": "What is an MCP \"rug pull\" attack?",
+      "answer": "A server changes a tool's description or behaviour after the user has approved it",
+      "explanation": "Clients can pin or hash tool definitions and alert the user when they change.",
+      "options": [
+        "A server changes a tool's description or behaviour after the user has approved it",
+        "A server deletes the user's files on install",
+        "A client refuses to pay for API usage",
+        "An MCP server is removed from a registry"
+      ],
+      "sourceId": "src-199"
+    },
+    {
+      "id": "q3-458",
+      "topic": "Agents",
+      "difficulty": "medium",
+      "type": "mcq",
+      "prompt": "How is an AI agent's memory usually split?",
+      "answer": "Short-term memory in the current context, and long-term memory stored outside the model, such as a database or files",
+      "explanation": "Long-term memory is retrieved back into the context when needed.",
+      "options": [
+        "Short-term memory in the current context, and long-term memory stored outside the model, such as a database or files",
+        "Memory inside the GPU and memory inside the CPU",
+        "User memory and admin memory",
+        "Training memory and fine-tuning memory"
+      ],
+      "sourceId": "src-191"
     }
   ]
 }
