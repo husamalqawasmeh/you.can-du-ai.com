@@ -2052,6 +2052,42 @@
       "url": "https://arxiv.org/abs/2401.09670",
       "notes": "Runs prefill and decode on separate GPUs so each can be tuned for its own bottleneck.",
       "lang": "en"
+    },
+    {
+      "id": "src-207",
+      "topic": "AI Development",
+      "type": "Paper",
+      "title": "Deep Residual Learning for Image Recognition (He et al., 2015)",
+      "url": "https://arxiv.org/abs/1512.03385",
+      "notes": "Introduced residual (skip) connections that make very deep networks trainable.",
+      "lang": "en"
+    },
+    {
+      "id": "src-208",
+      "topic": "AI Development",
+      "type": "Paper",
+      "title": "Decoupled Weight Decay Regularization (Loshchilov & Hutter, 2017)",
+      "url": "https://arxiv.org/abs/1711.05101",
+      "notes": "The AdamW paper: weight decay applied separately from the adaptive gradient step.",
+      "lang": "en"
+    },
+    {
+      "id": "src-209",
+      "topic": "AI Development",
+      "type": "Paper",
+      "title": "ZeRO: Memory Optimizations Toward Training Trillion Parameter Models (Rajbhandari et al., 2019)",
+      "url": "https://arxiv.org/abs/1910.02054",
+      "notes": "Shards optimizer states, gradients and parameters across data-parallel GPUs.",
+      "lang": "en"
+    },
+    {
+      "id": "src-210",
+      "topic": "AI Development",
+      "type": "Paper",
+      "title": "Accurate, Large Minibatch SGD: Training ImageNet in 1 Hour (Goyal et al., 2017)",
+      "url": "https://arxiv.org/abs/1706.02677",
+      "notes": "The linear learning-rate scaling rule with gradual warmup.",
+      "lang": "en"
     }
   ],
   "notes": [
@@ -13389,6 +13425,182 @@
         "It lets two different models answer the same request"
       ],
       "sourceId": "src-206"
+    },
+    {
+      "id": "q3-473",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Why do residual (skip) connections make very deep networks trainable?",
+      "answer": "They give gradients a direct path backward through the network, reducing vanishing gradients",
+      "explanation": "Each block learns a change added to its input (x + F(x)), so signals and gradients pass through easily.",
+      "options": [
+        "They give gradients a direct path backward through the network, reducing vanishing gradients",
+        "They remove the need for an activation function",
+        "They halve the number of parameters in each layer",
+        "They stop the network from overfitting"
+      ],
+      "sourceId": "src-207"
+    },
+    {
+      "id": "q3-474",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Why do transformers use layer normalization rather than batch normalization?",
+      "answer": "LayerNorm normalizes each token's features on its own, so it does not depend on batch size or padded sequences",
+      "explanation": "BatchNorm statistics are unstable with small batches and variable-length sequences, and behave differently at inference.",
+      "options": [
+        "LayerNorm normalizes each token's features on its own, so it does not depend on batch size or padded sequences",
+        "LayerNorm has no learnable parameters",
+        "BatchNorm cannot run on GPUs",
+        "LayerNorm removes the need for residual connections"
+      ],
+      "sourceId": "src-34"
+    },
+    {
+      "id": "q3-475",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "During training, the loss suddenly jumps to NaN because of exploding gradients. Which fix is standard?",
+      "answer": "Clip the gradient norm (for example to 1.0) before each optimizer step",
+      "explanation": "A lower learning rate and warmup also help; checking for bad data in that batch is wise too.",
+      "options": [
+        "Clip the gradient norm (for example to 1.0) before each optimizer step",
+        "Raise the learning rate to escape the spike",
+        "Remove the optimizer's momentum entirely",
+        "Add more dropout to the last layer"
+      ],
+      "sourceId": "src-33"
+    },
+    {
+      "id": "q3-476",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "What does AdamW change compared with Adam plus an L2 penalty in the loss?",
+      "answer": "It applies weight decay directly to the weights, separate from the adaptive gradient update",
+      "explanation": "With L2 inside Adam, the decay gets scaled by the adaptive learning rates and regularizes unevenly.",
+      "options": [
+        "It applies weight decay directly to the weights, separate from the adaptive gradient update",
+        "It removes the second-moment (variance) estimate",
+        "It uses a fixed learning rate for every parameter",
+        "It adds weight decay only to bias terms"
+      ],
+      "sourceId": "src-208"
+    },
+    {
+      "id": "q3-477",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "What do ZeRO (DeepSpeed) and PyTorch FSDP split across GPUs to save memory?",
+      "answer": "Optimizer states, gradients and parameters, instead of a full copy on every GPU",
+      "explanation": "Plain data parallelism keeps a full replica per GPU; sharding lets much larger models fit.",
+      "options": [
+        "Optimizer states, gradients and parameters, instead of a full copy on every GPU",
+        "Only the training data, while each GPU keeps a full model",
+        "The layers of the model, one layer per GPU",
+        "The vocabulary, one slice per GPU"
+      ],
+      "sourceId": "src-209"
+    },
+    {
+      "id": "q3-478",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Why is random k-fold cross-validation a bad choice for a time-series forecasting model?",
+      "answer": "Random folds let the model train on the future and test on the past, leaking information; use time-ordered splits",
+      "explanation": "Walk-forward (rolling) validation trains on earlier periods and tests on later ones.",
+      "options": [
+        "Random folds let the model train on the future and test on the past, leaking information; use time-ordered splits",
+        "It needs too many GPUs",
+        "Time series cannot be split into folds at all",
+        "It always gives lower scores than a single split"
+      ],
+      "sourceId": "src-34"
+    },
+    {
+      "id": "q3-479",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "On a dataset where only 0.5% of cases are positive, which metric usually tells you more than ROC-AUC?",
+      "answer": "Precision-recall AUC (average precision)",
+      "explanation": "ROC-AUC can look high because there are so many true negatives; PR-AUC focuses on the rare positive class.",
+      "options": [
+        "Precision-recall AUC (average precision)",
+        "Accuracy",
+        "Mean squared error",
+        "Training loss"
+      ],
+      "sourceId": "src-34"
+    },
+    {
+      "id": "q3-480",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "In PyTorch, what happens to dropout after you call model.eval()?",
+      "answer": "It is switched off and every unit is used; no rescaling is needed because it was done during training",
+      "explanation": "PyTorch uses \"inverted dropout\": surviving activations are scaled up during training. Forgetting eval() makes predictions random.",
+      "options": [
+        "It is switched off and every unit is used; no rescaling is needed because it was done during training",
+        "It keeps dropping the same units as in training",
+        "It doubles the dropout rate for safety",
+        "It drops whole layers instead of units"
+      ],
+      "sourceId": "src-33"
+    },
+    {
+      "id": "q3-481",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Why do implementations subtract the largest logit before computing softmax?",
+      "answer": "To stop exp() from overflowing, without changing the result",
+      "explanation": "Softmax is unchanged when the same constant is subtracted from every logit.",
+      "options": [
+        "To stop exp() from overflowing, without changing the result",
+        "To make the probabilities sum to more than 1",
+        "To make the largest class less likely",
+        "To turn softmax into a sigmoid"
+      ],
+      "sourceId": "src-33"
+    },
+    {
+      "id": "q3-482",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "You multiply the batch size by 8 when training with SGD. What does the \"linear scaling rule\" suggest for the learning rate?",
+      "answer": "Multiply it by about 8, with a short warmup at the start",
+      "explanation": "From Goyal et al. (2017); it can break down at very large batch sizes.",
+      "options": [
+        "Multiply it by about 8, with a short warmup at the start",
+        "Divide it by 8",
+        "Keep it exactly the same",
+        "Multiply it by 64 (the square of 8)"
+      ],
+      "sourceId": "src-210"
+    },
+    {
+      "id": "q3-483",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Why are neural network weights initialized with scaled random values (such as Xavier or He) instead of all zeros?",
+      "answer": "Zeros make every neuron in a layer learn the same thing; scaled random values break symmetry and keep signals stable",
+      "explanation": "He initialization suits ReLU layers; Xavier suits tanh or sigmoid.",
+      "options": [
+        "Zeros make every neuron in a layer learn the same thing; scaled random values break symmetry and keep signals stable",
+        "Zero weights use more memory",
+        "Random weights make training deterministic",
+        "Zeros cause the model to overfit immediately"
+      ],
+      "sourceId": "src-34"
     }
   ]
 }
