@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=309';
-import { ADMIN_HASH } from './admin-hash.js?v=309';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=310';
+import { ADMIN_HASH } from './admin-hash.js?v=310';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -345,7 +345,7 @@ function layoutTools() {
 }
 async function loadTools() {
   let d;
-  try { d = await (await fetch('tools.json?v=12')).json(); } catch { $('#tools-list').innerHTML = '<p class="muted">Could not load the tools.</p>'; return; }
+  try { d = await (await fetch('tools.json?v=13')).json(); } catch { $('#tools-list').innerHTML = '<p class="muted">Could not load the tools.</p>'; return; }
   $('#tools-checked').textContent = `Last checked: ${d.checked}.`;
   $('#tool-cat').innerHTML += [...new Set(d.tools.map(t => t.category))].sort().map(c => opt(c)).join('');
   const costKind = c => { c = c.toLowerCase(); return { free: /free|open/.test(c) && !/freemium/.test(c), freemium: /freemium|free tier|free app|free to try/.test(c), paid: /subscription|paid|licen|included/.test(c), usage: /pay-per-use|api/.test(c) }; };
@@ -1300,7 +1300,7 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=309')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=310')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Infra./GPUs', 'AI Hardware/GPUs': 'AI Infra./GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents' };
 const rn = t => TOPIC_RENAMED[t] ?? t;

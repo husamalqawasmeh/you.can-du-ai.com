@@ -580,6 +580,23 @@
       "released": 2024
     },
     {
+      "name": "HitPaw FotorPea",
+      "company": "HitPaw",
+      "category": "Video",
+      "does": "HitPaw’s AI photo app (desktop and online). It turns photos into short animated videos with AI effects (image-to-video), and also enhances and upscales photos, removes backgrounds and generates images from text.",
+      "cost": "Freemium",
+      "pros": [
+        "Simple photo-to-video effects",
+        "Photo enhancer and generator in the same app"
+      ],
+      "cons": [
+        "Short clips and fixed effect templates, less control than Runway or Kling",
+        "Best results on paid plans"
+      ],
+      "url": "https://www.hitpaw.com/fotorpea.html",
+      "released": 2023
+    },
+    {
       "name": "Synthesia",
       "company": "Synthesia",
       "category": "Video",
