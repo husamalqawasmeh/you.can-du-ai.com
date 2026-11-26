@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=308';
-import { ADMIN_HASH } from './admin-hash.js?v=308';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=309';
+import { ADMIN_HASH } from './admin-hash.js?v=309';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -1252,11 +1252,15 @@ $('#import-file').onchange = async e => {
 // ---------- PIN sign-in: a 4-digit PIN (the last 4 digits of the student's mobile); first use asks for first name and mobile ----------
 // shortcut: profiles and progress live only in this browser and a 4-digit PIN is not real security; move to a server login if records must be private or shared across devices
 const PROFILES_KEY = 'ycda-profiles';
+// fixed welcome names for known PINs: shown instead of whatever first name was typed at registration
+// shortcut: this list ships in the public site code, so anyone can read these PINs; move to a server login if that matters
+const NAMED_PINS = { '6360': 'AAA', '0808': 'Israr', '5548': 'Ali-M', '4567': 'MoustafaB', '2561': 'Firas', '0120': 'Dr. Hamzawi' };
+const displayName = id => NAMED_PINS[id] || profiles()[id]?.name || id;
 const profiles = () => { try { return JSON.parse(localStorage.getItem(PROFILES_KEY)) || {}; } catch { return {}; } };
 function syncUser() {
   $('#signin-form').hidden = !!user;
   $('#user-box').hidden = !user;
-  if (user) $('#user-id').textContent = profiles()[user.id]?.name || user.id;
+  if (user) $('#user-id').textContent = displayName(user.id);
   document.querySelectorAll('nav button[data-tab]').forEach(b => b.classList.toggle('locked', !user && !PUBLIC_TABS.has(b.dataset.tab)));
 }
 $('#signin-form').onsubmit = e => {
@@ -1282,7 +1286,7 @@ document.addEventListener('click', e => {
   const a = e.target.closest('[data-mail]'); if (!a) return;
   e.preventDefault();
   const [subject, body] = MAIL[a.dataset.mail];
-  const id = (user && profiles()[user.id]?.name) || '';
+  const id = user ? displayName(user.id) : '';
   location.href = `mailto:${ADMIN_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body.replace('{id}', id))}`;
 });
 
@@ -1296,7 +1300,7 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=308')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=309')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Infra./GPUs', 'AI Hardware/GPUs': 'AI Infra./GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents' };
 const rn = t => TOPIC_RENAMED[t] ?? t;
