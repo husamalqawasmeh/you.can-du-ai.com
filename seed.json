@@ -13871,6 +13871,120 @@
       "answer": "True",
       "explanation": "This parallelism is a big reason Transformers train so well on GPUs.",
       "sourceId": "src-192"
+    },
+    {
+      "id": "q3-499",
+      "topic": "AI Strategy",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "An AI pilot is a small, limited trial of a use case before rolling it out more widely.",
+      "answer": "True",
+      "explanation": "Set success measures before the pilot so you can decide to scale, change or stop it.",
+      "sourceId": "src-132"
+    },
+    {
+      "id": "q3-500",
+      "topic": "AI Governance",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which US organization published the AI Risk Management Framework (AI RMF) in January 2023?",
+      "answer": "NIST",
+      "explanation": "Its four functions are Govern, Map, Measure and Manage.",
+      "options": [
+        "NIST",
+        "FTC",
+        "FDA",
+        "NSA"
+      ],
+      "sourceId": "src-135"
+    },
+    {
+      "id": "q3-501",
+      "topic": "Transformers",
+      "type": "fill",
+      "difficulty": "easy",
+      "prompt": "Before a Transformer can process text, each token is turned into a list of numbers called an ___.",
+      "answer": "embedding|embeddings|embedding vector",
+      "explanation": "Similar meanings end up with similar embeddings.",
+      "sourceId": "src-192"
+    },
+    {
+      "id": "q3-502",
+      "topic": "Evals",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "Running an AI app on a fixed set of test cases before each release helps catch quality drops (regressions).",
+      "answer": "True",
+      "explanation": "This is regression testing for prompts and LLM apps.",
+      "sourceId": "src-101"
+    },
+    {
+      "id": "q3-503",
+      "topic": "Game Engines",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Unity and Unreal Engine are examples of what?",
+      "answer": "Game engines",
+      "explanation": "They provide graphics, physics, audio and tools for building games.",
+      "options": [
+        "Game engines",
+        "Large language models",
+        "Graphics cards",
+        "Operating systems"
+      ],
+      "sourceId": "src-155"
+    },
+    {
+      "id": "q3-504",
+      "topic": "Decision Models",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What is a decision table?",
+      "answer": "A table of rules where each row maps a set of conditions to an outcome",
+      "explanation": "Easy to read and audit, so it suits clear business rules.",
+      "options": [
+        "A table of rules where each row maps a set of conditions to an outcome",
+        "A chart of a model's training loss",
+        "A list of AI vendors to choose from",
+        "A spreadsheet of customer names"
+      ],
+      "sourceId": "src-117"
+    },
+    {
+      "id": "q3-505",
+      "topic": "MCPs",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "An MCP \"tool\" is a function the AI model can ask to run, such as searching files or sending a message.",
+      "answer": "True",
+      "explanation": "Servers also expose resources (data) and prompts (templates).",
+      "sourceId": "src-93"
+    },
+    {
+      "id": "q3-506",
+      "topic": "AI Solutions Architecture",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "In software architecture, what is an API?",
+      "answer": "A defined way for one software system to request data or actions from another",
+      "explanation": "AI apps call model providers and internal systems through APIs.",
+      "options": [
+        "A defined way for one software system to request data or actions from another",
+        "A type of AI model",
+        "A database table",
+        "A computer screen layout"
+      ],
+      "sourceId": "src-200"
+    },
+    {
+      "id": "q3-507",
+      "topic": "AI Solutions Architecture",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "Logging each AI request and response (with personal data protected) helps teams debug problems and track cost.",
+      "answer": "True",
+      "explanation": "Logs and traces also support audits and quality monitoring.",
+      "sourceId": "src-200"
     }
   ]
 }
