@@ -2106,6 +2106,42 @@
       "url": "https://arxiv.org/abs/2503.18813",
       "notes": "A privileged LLM plans from the trusted request; untrusted data is handled by a quarantined LLM and cannot change the plan.",
       "lang": "en"
+    },
+    {
+      "id": "src-213",
+      "topic": "LLMs",
+      "type": "Paper",
+      "title": "Constitutional AI: Harmlessness from AI Feedback (Bai et al., Anthropic, 2022)",
+      "url": "https://arxiv.org/abs/2212.08073",
+      "notes": "Trains a harmless assistant using AI feedback guided by a written list of principles (RLAIF).",
+      "lang": "en"
+    },
+    {
+      "id": "src-214",
+      "topic": "LLMs",
+      "type": "Paper",
+      "title": "Towards Understanding Sycophancy in Language Models (Sharma et al., Anthropic, 2023)",
+      "url": "https://arxiv.org/abs/2310.13548",
+      "notes": "Shows human preference data rewards agreeing answers, pushing RLHF models toward sycophancy.",
+      "lang": "en"
+    },
+    {
+      "id": "src-215",
+      "topic": "LLMs",
+      "type": "Paper",
+      "title": "The Reversal Curse: LLMs trained on \"A is B\" fail to learn \"B is A\" (Berglund et al., 2023)",
+      "url": "https://arxiv.org/abs/2309.12288",
+      "notes": "Facts learned in one direction are often not recalled in the other.",
+      "lang": "en"
+    },
+    {
+      "id": "src-216",
+      "topic": "LLMs",
+      "type": "Paper",
+      "title": "Speech and Language Processing, chapter on N-gram language models and perplexity (Jurafsky & Martin)",
+      "url": "https://web.stanford.edu/~jurafsky/slp3/",
+      "notes": "Standard textbook definition of perplexity for language models.",
+      "lang": "en"
     }
   ],
   "notes": [
@@ -13693,6 +13729,70 @@
         "The agent runs twice and compares the outputs for differences"
       ],
       "sourceId": "src-212"
+    },
+    {
+      "id": "q3-489",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "What does a language model's perplexity on a test set measure?",
+      "answer": "The exponential of the average negative log-likelihood per token: lower means the model is less \"surprised\"",
+      "explanation": "It compares models only when they use the same tokenizer and test data, and it does not directly measure helpfulness.",
+      "options": [
+        "The exponential of the average negative log-likelihood per token: lower means the model is less \"surprised\"",
+        "The share of test answers that are factually correct",
+        "How many tokens per second the model generates",
+        "How often the model refuses a prompt"
+      ],
+      "sourceId": "src-216"
+    },
+    {
+      "id": "q3-490",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Why can RLHF make a model sycophantic (telling users what they want to hear)?",
+      "answer": "Human raters tend to prefer answers that agree with them, so the reward model learns to reward agreement over accuracy",
+      "explanation": "Anthropic's 2023 study found this pattern across several assistants trained with human feedback.",
+      "options": [
+        "Human raters tend to prefer answers that agree with them, so the reward model learns to reward agreement over accuracy",
+        "RLHF removes the model's factual knowledge",
+        "Sycophancy comes from the tokenizer, not training",
+        "The reward model only scores answer length"
+      ],
+      "sourceId": "src-214"
+    },
+    {
+      "id": "q3-491",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "In Anthropic's Constitutional AI (2022), what replaces most human labels for harmlessness?",
+      "answer": "AI feedback guided by a written list of principles (a \"constitution\"), known as RLAIF",
+      "explanation": "The model critiques and revises its own answers against the principles, then AI preference labels train the reward model.",
+      "options": [
+        "AI feedback guided by a written list of principles (a \"constitution\"), known as RLAIF",
+        "A larger team of human raters",
+        "Keyword filters on the training data",
+        "Fine-tuning only on refusals"
+      ],
+      "sourceId": "src-213"
+    },
+    {
+      "id": "q3-492",
+      "topic": "LLMs",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "A model trained on \"Olaf Scholz was the ninth Chancellor of Germany\" can answer \"Who is Olaf Scholz?\" but not \"Who was the ninth Chancellor of Germany?\". What is this called?",
+      "answer": "The reversal curse",
+      "explanation": "Berglund et al. (2023) showed facts learned as \"A is B\" are often not recalled as \"B is A\".",
+      "options": [
+        "The reversal curse",
+        "Context rot",
+        "Catastrophic forgetting",
+        "Lost in the middle"
+      ],
+      "sourceId": "src-215"
     }
   ]
 }
