@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=293';
-import { ADMIN_HASH } from './admin-hash.js?v=293';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=294';
+import { ADMIN_HASH } from './admin-hash.js?v=294';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -69,6 +69,16 @@ function fillSelect(sel, html) {
   if ([...sel.options].some(o => o.value === keep)) sel.value = keep;
 }
 
+// native <option> text can't be right-aligned, so pad "Label" with no-break spaces (measured in the select's font) so "(n)" lines up on the right
+const measureCtx = document.createElement('canvas').getContext('2d');
+function padCounts(sel, count) {
+  measureCtx.font = getComputedStyle(sel).font;
+  const w = s => measureCtx.measureText(s).width, sp = w(' ') || 4;
+  const opts = [...sel.options].map(o => [o, (o.dataset.label ??= o.textContent), `(${count(o.value)})`]);
+  const target = Math.max(...opts.map(([, l, c]) => w(l) + w(c))) + 3 * sp;
+  for (const [o, l, c] of opts) o.textContent = l + ' '.repeat(Math.max(1, Math.round((target - w(l) - w(c)) / sp))) + c;
+}
+
 function render() {
   const topicOpts = db.topics.map(t => opt(t)).join('');
   document.querySelectorAll('.topic-select').forEach(s => fillSelect(s, topicOpts));
@@ -108,6 +118,7 @@ function render() {
 
   // questions
   const qt = $('#q-filter-topic').value, qd = $('#q-filter-diff').value, qy = $('#q-filter-type').value, term = $('#q-search').value.toLowerCase();
+  padCounts($('#q-filter-diff'), v => db.questions.filter(q => !v || q.difficulty === v).length);
   const qs = db.questions.filter(q => (!qt || q.topic === qt) && (!qd || q.difficulty === qd) && (!qy || q.type === qy) && (!term || q.prompt.toLowerCase().includes(term)));
   $('#q-total').textContent = `(${qs.length === db.questions.length ? '' : qs.length + ' shown of '}${db.questions.length} total)`;
   $('#q-list').innerHTML = qs.map(q => `<li><div>${esc(q.prompt)}<div class="tag q-class"><select data-q-set="topic" data-id="${esc(q.id)}" aria-label="Topic">${db.topics.map(t => `<option ${t === q.topic ? 'selected' : ''}>${esc(t)}</option>`).join('')}</select> <select data-q-set="difficulty" data-id="${esc(q.id)}" aria-label="Difficulty">${['easy', 'medium', 'hard'].map(x => `<option ${x === q.difficulty ? 'selected' : ''}>${x}</option>`).join('')}</select> · ${TYPE[q.type]} · Answer: ${esc(q.answer)}</div></div><button class="del" data-del="questions" data-id="${esc(q.id)}">Delete</button></li>`).join('') || '<li class="muted">No questions match.</li>';
@@ -1253,7 +1264,7 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=293')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=294')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Infra./GPUs', 'AI Hardware/GPUs': 'AI Infra./GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents' };
 const rn = t => TOPIC_RENAMED[t] ?? t;
