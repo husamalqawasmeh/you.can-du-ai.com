@@ -1826,6 +1826,15 @@
       "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development",
       "notes": "Free guides to frontend (HTML, CSS, JavaScript) and server-side web development.",
       "lang": "en"
+    },
+    {
+      "id": "src-182",
+      "topic": "AI Infra./GPUs",
+      "type": "Website",
+      "title": "Arduino: Getting started with Arduino",
+      "url": "https://docs.arduino.cc/learn/starting-guide/getting-started-arduino/",
+      "notes": "Official introduction to Arduino boards, microcontrollers and sketches.",
+      "lang": "en"
     }
   ],
   "notes": [
@@ -2661,6 +2670,13 @@
       "sourceId": "src-181",
       "title": "Tech stacks and full-stack development",
       "body": "A stack (or tech stack) is the set of technologies an app is built with, for example React for the screens, Node.js for the server logic and PostgreSQL for the data. An app usually has three layers. The frontend (client side) is what users see and click in the browser or mobile app, built with HTML, CSS and JavaScript, often with a framework such as React, Vue or Angular. The backend (server side) runs behind it: it holds the business logic, checks who the user is, talks to other services and AI model APIs, and is written with tools such as Node.js, Python (Django, FastAPI), Java (Spring) or C# (.NET). The database stores the data, for example PostgreSQL or MySQL (relational, tables and SQL) or MongoDB (documents). The frontend and backend usually talk through an API over HTTP, often sending JSON. Well-known stacks have short names: LAMP (Linux, Apache, MySQL, PHP), MERN (MongoDB, Express, React, Node.js) and MEAN (the same with Angular). Full stack means working on every layer: the frontend users see, the backend that runs behind it, and the database. A full-stack developer can build a whole feature end to end, while frontend or backend specialists go deeper on one layer. In AI apps, the model is usually called from the backend, so API keys stay secret on the server and never reach the browser; AI coding tools now help one person build a full-stack app much faster."
+    },
+    {
+      "id": "note-120",
+      "topic": "AI Infra./GPUs",
+      "sourceId": "src-182",
+      "title": "Arduino vs Raspberry Pi",
+      "body": "Arduino is a small, cheap microcontroller board you program in C/C++ to control electronics directly, such as reading sensors, turning on LEDs or driving motors. Unlike a Raspberry Pi, it has no operating system: it runs one program in a loop, starts instantly and uses very little power. An Arduino program is called a sketch: setup() runs once at power-on and loop() then repeats forever. A Raspberry Pi is a small single-board computer: it runs a full operating system (usually Linux), has far more memory and processing power, and can run many programs at once, connect a screen, keyboard and network, and run Python or even small AI models. In short: use an Arduino for simple, reliable, low-power control of hardware in real time; use a Raspberry Pi when you need a real computer, such as running a web server, a camera with image recognition or a local AI model. Many projects use both, with the Pi doing the thinking and the Arduino handling the sensors and motors."
     }
   ],
   "questions": [
@@ -12023,6 +12039,64 @@
         "Angular"
       ],
       "sourceId": "src-181"
+    },
+    {
+      "id": "q3-403",
+      "topic": "AI Infra./GPUs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "What's the difference between a Raspberry Pi and an Arduino?",
+      "answer": "A Raspberry Pi is a small computer running an operating system; an Arduino is a microcontroller running one program in a loop",
+      "explanation": "The Arduino starts instantly and uses very little power; the Pi can run many programs, Python and even small AI models.",
+      "options": [
+        "A Raspberry Pi is a small computer running an operating system; an Arduino is a microcontroller running one program in a loop",
+        "An Arduino is a small computer running Linux; a Raspberry Pi is a microcontroller with no operating system",
+        "They are the same kind of board made by different companies",
+        "A Raspberry Pi is only for displays; an Arduino is only for networking"
+      ],
+      "sourceId": "src-182"
+    },
+    {
+      "id": "q3-404",
+      "topic": "AI Infra./GPUs",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "An Arduino runs a full operating system such as Linux.",
+      "answer": "False",
+      "explanation": "It has no operating system: it runs one program in a loop. A Raspberry Pi runs Linux.",
+      "sourceId": "src-182"
+    },
+    {
+      "id": "q3-405",
+      "topic": "AI Infra./GPUs",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which language is an Arduino usually programmed in?",
+      "answer": "C/C++",
+      "explanation": "Arduino sketches are written in C/C++.",
+      "options": [
+        "C/C++",
+        "SQL",
+        "HTML",
+        "Swift"
+      ],
+      "sourceId": "src-182"
+    },
+    {
+      "id": "q3-406",
+      "topic": "AI Infra./GPUs",
+      "type": "mcq",
+      "difficulty": "medium",
+      "prompt": "You need a battery-powered board that reads a temperature sensor and switches a fan on instantly at power-on. Which fits best?",
+      "answer": "An Arduino",
+      "explanation": "It has no OS to boot, starts instantly and uses very little power.",
+      "options": [
+        "An Arduino",
+        "A Raspberry Pi running a desktop",
+        "A GPU server",
+        "A laptop"
+      ],
+      "sourceId": "src-182"
     }
   ]
 }
