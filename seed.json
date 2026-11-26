@@ -2088,6 +2088,24 @@
       "url": "https://arxiv.org/abs/1706.02677",
       "notes": "The linear learning-rate scaling rule with gradual warmup.",
       "lang": "en"
+    },
+    {
+      "id": "src-211",
+      "topic": "AI Security",
+      "type": "Website",
+      "title": "Anthropic: Many-shot jailbreaking (April 2024)",
+      "url": "https://www.anthropic.com/research/many-shot-jailbreaking",
+      "notes": "Long-context attack that fills the prompt with many fake dialogues of an assistant complying with harmful requests.",
+      "lang": "en"
+    },
+    {
+      "id": "src-212",
+      "topic": "AI Security",
+      "type": "Paper",
+      "title": "Defeating Prompt Injections by Design (CaMeL, Google DeepMind, 2025)",
+      "url": "https://arxiv.org/abs/2503.18813",
+      "notes": "A privileged LLM plans from the trusted request; untrusted data is handled by a quarantined LLM and cannot change the plan.",
+      "lang": "en"
     }
   ],
   "notes": [
@@ -13643,6 +13661,38 @@
         "Workers let the model skip the documents it has seen before"
       ],
       "sourceId": "src-200"
+    },
+    {
+      "id": "q3-487",
+      "topic": "AI Security",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "What is \"many-shot jailbreaking\", described by Anthropic in 2024?",
+      "answer": "Filling a long context window with many fake dialogues where an assistant complies, so the model follows the pattern",
+      "explanation": "It exploits in-context learning; its success grows with the number of fake examples, so longer context windows made it more effective.",
+      "options": [
+        "Filling a long context window with many fake dialogues where an assistant complies, so the model follows the pattern",
+        "Sending the same harmful prompt from many accounts at once",
+        "Asking many different models and picking the one that answers",
+        "Splitting a harmful request across many short chat sessions"
+      ],
+      "sourceId": "src-211"
+    },
+    {
+      "id": "q3-488",
+      "topic": "AI Security",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "How do \"dual LLM\" designs such as Google DeepMind's CaMeL (2025) defend agents against prompt injection?",
+      "answer": "A privileged model plans from the user's trusted request, while untrusted content is handled by a quarantined model that cannot change the plan or call tools",
+      "explanation": "Injected text can still affect the data it returns, so the system also tracks where each value came from and checks policies before tools use it.",
+      "options": [
+        "A privileged model plans from the user's trusted request, while untrusted content is handled by a quarantined model that cannot change the plan or call tools",
+        "A second model rewrites every prompt to remove harmful words",
+        "Two models vote, and an action runs only if both agree",
+        "The agent runs twice and compares the outputs for differences"
+      ],
+      "sourceId": "src-212"
     }
   ]
 }
