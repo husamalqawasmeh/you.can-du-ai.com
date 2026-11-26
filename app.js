@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=306';
-import { ADMIN_HASH } from './admin-hash.js?v=306';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=307';
+import { ADMIN_HASH } from './admin-hash.js?v=307';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -86,18 +86,29 @@ function renderStats() {
   const row = (name, qs) => ({ name, c: [...lv.map(d => qs.filter(q => q.difficulty === d).length), qs.length, (100 * qs.length) / all] });
   const rows = db.topics.map(t => row(t, db.questions.filter(q => q.topic === t)));
   if (statSort) rows.sort((a, b) => (a.c[statSort[0]] - b.c[statSort[0]]) * statSort[1] || a.name.localeCompare(b.name));
-  const tr = r => `<tr><th scope="row">${esc(r.name)}</th>${r.c.map((n, i) => `<td>${i === 4 ? n.toFixed(1) + '%' : n}</td>`).join('')}</tr>`;
+  const maxCell = r => r.name === 'Total' ? `<td>${Object.values(db.topicMaxAdd ?? {}).reduce((a, b) => a + b, 0) || ''}</td>`
+    : `<td><input type="number" min="0" max="9999" step="1" class="max-add" data-max-add="${esc(r.name)}" value="${db.topicMaxAdd?.[r.name] ?? ''}" aria-label="Maximum number of questions to be added later in ${esc(r.name)}"></td>`;
+  const tr = r => `<tr><th scope="row">${esc(r.name)}</th>${r.c.map((n, i) => `<td>${i === 4 ? n.toFixed(1) + '%' : n}</td>`).join('')}${maxCell(r)}</tr>`;
   const head = ['Easy', 'Medium', 'Hard', 'Total', '%'].map((h, i) => {
     const on = d => statSort?.[0] === i && statSort[1] === d;
     const btn = (d, a, w) => `<button type="button" class="srt${on(d) ? ' on' : ''}" data-stat-col="${i}" data-stat-dir="${d}" aria-pressed="${on(d)}" aria-label="Sort by ${h} ${w}" title="Sort ${w}">${a}</button>`;
     return `<th scope="col" aria-sort="${on(1) ? 'ascending' : on(-1) ? 'descending' : 'none'}">${h} ${btn(1, '▲', 'ascending')}${btn(-1, '▼', 'descending')}</th>`;
   }).join('');
-  $('#q-stats').innerHTML = `<thead><tr><th scope="col">Topic</th>${head}</tr></thead><tbody>${rows.map(tr).join('')}</tbody><tfoot>${tr(row('Total', db.questions))}</tfoot>`;
+  $('#q-stats').innerHTML = `<thead><tr><th scope="col">Topic</th>${head}<th scope="col" class="max-h">Maximum number of questions to be added later in this topic</th></tr></thead><tbody>${rows.map(tr).join('')}</tbody><tfoot>${tr(row('Total', db.questions))}</tfoot>`;
 }
 $('#q-stats').addEventListener('click', e => {
   const b = e.target.closest('[data-stat-col]'); if (!b) return;
   const s = [+b.dataset.statCol, +b.dataset.statDir];
   statSort = statSort?.[0] === s[0] && statSort[1] === s[1] ? null : s;
+  renderStats();
+});
+// admin's planned cap per topic (saved in this browser like topic levels)
+$('#q-stats').addEventListener('change', e => {
+  const t = e.target.dataset.maxAdd; if (t === undefined) return;
+  const v = Math.floor(Number(e.target.value));
+  db.topicMaxAdd ??= {};
+  if (e.target.value !== '' && v >= 0 && v <= 9999) db.topicMaxAdd[t] = v; else { delete db.topicMaxAdd[t]; e.target.value = ''; }
+  save();
   renderStats();
 });
 
@@ -432,6 +443,7 @@ document.addEventListener('click', e => {
   db.topics = db.topics.map(t => t === old ? name : t);
   if (db.topicOrder) db.topicOrder = db.topicOrder.map(t => t === old ? name : t);
   if (db.topicLevels?.[old]) { db.topicLevels[name] = db.topicLevels[old]; delete db.topicLevels[old]; }
+  if (db.topicMaxAdd?.[old] !== undefined) { db.topicMaxAdd[name] = db.topicMaxAdd[old]; delete db.topicMaxAdd[old]; }
   for (const k of ['questions', 'sources', 'notes', 'courses']) for (const x of db[k] ?? []) {
     if (x.topic === old) x.topic = name;
     if (Array.isArray(x.topics)) x.topics = x.topics.map(t => t === old ? name : t);
@@ -1282,7 +1294,7 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=306')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=307')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Infra./GPUs', 'AI Hardware/GPUs': 'AI Infra./GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents' };
 const rn = t => TOPIC_RENAMED[t] ?? t;

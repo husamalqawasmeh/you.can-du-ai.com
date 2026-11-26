@@ -383,3 +383,5 @@ header .topbar { display: flex; align-items: center; gap: 8px; }
 .q-stats .srt:hover, .q-stats .srt.on { border-color: var(--accent, #3b82f6); color: var(--accent, #3b82f6); }
 .q-stats thead th { white-space: nowrap; }
 .q-stats tbody tr:nth-child(even) { background: color-mix(in srgb, var(--text) 7%, transparent); }
+.q-stats thead th.max-h { white-space: normal; max-width: 170px; font-size: .8rem; line-height: 1.25; text-align: center; }
+.q-stats .max-add { width: 76px; padding: 2px 6px; text-align: right; }
