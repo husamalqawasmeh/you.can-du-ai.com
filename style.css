@@ -377,7 +377,7 @@ header .topbar { display: flex; align-items: center; gap: 8px; }
 .q-stats th, .q-stats td { padding: 3px 12px; border-bottom: 1px solid var(--border); text-align: right; }
 .q-stats th[scope="row"] { text-align: left; font-weight: normal; }
 .q-stats thead th:first-child { text-align: left; }
-.q-stats thead th { color: var(--accent); }
+.q-stats thead th, .q-stats tfoot th, .q-stats tfoot td { color: var(--accent); }
 .q-stats thead th, .q-stats tfoot th, .q-stats tfoot td { font-weight: bold; }
 .q-stats .srt { padding: 0 3px; margin-left: 2px; font-size: .7rem; line-height: 1.4; min-width: 0; background: transparent; border: 1px solid var(--border); color: var(--muted, inherit); cursor: pointer; }
 .q-stats .srt:hover, .q-stats .srt.on { border-color: var(--accent, #3b82f6); color: var(--accent, #3b82f6); }
