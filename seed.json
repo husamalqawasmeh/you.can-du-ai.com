@@ -1998,6 +1998,33 @@
       "url": "https://docs.aws.amazon.com/wellarchitected/latest/generative-ai-lens/generative-ai-lens.html",
       "notes": "Best practices for designing secure, reliable, cost-effective generative AI workloads.",
       "lang": "en"
+    },
+    {
+      "id": "src-201",
+      "topic": "AI Security",
+      "type": "Website",
+      "title": "OWASP LLM06:2025 Excessive Agency",
+      "url": "https://genai.owasp.org/llmrisk/llm06/",
+      "notes": "Risk from too much functionality, permission or autonomy given to an LLM app or agent.",
+      "lang": "en"
+    },
+    {
+      "id": "src-202",
+      "topic": "MCPs",
+      "type": "Website",
+      "title": "Linux Foundation: Formation of the Agentic AI Foundation (December 2025)",
+      "url": "https://www.linuxfoundation.org/press/linux-foundation-announces-the-formation-of-the-agentic-ai-foundation",
+      "notes": "MCP, goose and AGENTS.md as founding projects of the Agentic AI Foundation.",
+      "lang": "en"
+    },
+    {
+      "id": "src-203",
+      "topic": "Agents",
+      "type": "Website",
+      "title": "Google Developers Blog: Agent Development Kit (April 2025)",
+      "url": "https://developers.googleblog.com/agent-development-kit-easy-to-build-multi-agent-applications/",
+      "notes": "Announcement of Google's open-source framework for multi-agent applications.",
+      "lang": "en"
     }
   ],
   "notes": [
@@ -13194,6 +13221,34 @@
         "Any foreign API that promises not to train on the data",
         "Base64-encode the data before sending it"
       ],
+      "sourceId": "src-200"
+    },
+    {
+      "id": "q3-465",
+      "topic": "AI Solutions Architecture",
+      "type": "match",
+      "difficulty": "medium",
+      "prompt": "Match each software architecture quality to its meaning.",
+      "pairs": [
+        [
+          "Scalability",
+          "Handles more users or data by adding resources"
+        ],
+        [
+          "Maintainability",
+          "Easy to understand, fix and change"
+        ],
+        [
+          "Extensibility",
+          "New features can be added with little change to existing code"
+        ],
+        [
+          "Reliability",
+          "Keeps working correctly, even when parts fail"
+        ]
+      ],
+      "answer": "Scalability → Handles more users or data by adding resources; Maintainability → Easy to understand, fix and change; Extensibility → New features can be added with little change to existing code; Reliability → Keeps working correctly, even when parts fail",
+      "explanation": "These quality attributes (non-functional requirements) shape design choices such as stateless services, modular code, plug-in points and redundancy.",
       "sourceId": "src-200"
     }
   ]
