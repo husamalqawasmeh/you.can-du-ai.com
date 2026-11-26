@@ -13793,6 +13793,84 @@
         "Lost in the middle"
       ],
       "sourceId": "src-215"
+    },
+    {
+      "id": "q3-493",
+      "topic": "AI Strategy",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "In AI strategy, what is a \"use case\"?",
+      "answer": "A specific business task where AI can add value, such as drafting replies to customers",
+      "explanation": "Strategies list and rank use cases by business value and feasibility.",
+      "options": [
+        "A specific business task where AI can add value, such as drafting replies to customers",
+        "A legal contract with an AI vendor",
+        "The hardware needed to run a model",
+        "A list of every AI tool on the market"
+      ],
+      "sourceId": "src-132"
+    },
+    {
+      "id": "q3-494",
+      "topic": "AI Strategy",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "Training staff to use AI tools well is part of an AI strategy, not just buying the tools.",
+      "answer": "True",
+      "explanation": "Adoption, skills and changed workflows usually decide whether AI delivers value.",
+      "sourceId": "src-132"
+    },
+    {
+      "id": "q3-495",
+      "topic": "MCPs",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "Which company first introduced the Model Context Protocol (MCP), in November 2024?",
+      "answer": "Anthropic",
+      "explanation": "It was later donated to the Agentic AI Foundation under the Linux Foundation (December 2025).",
+      "options": [
+        "Anthropic",
+        "OpenAI",
+        "Google",
+        "Microsoft"
+      ],
+      "sourceId": "src-94"
+    },
+    {
+      "id": "q3-496",
+      "topic": "MCPs",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "MCP is often described as a \"USB-C port for AI apps\": one standard way to plug tools and data into them.",
+      "answer": "True",
+      "explanation": "Build an MCP server once and many AI apps (hosts) can use it.",
+      "sourceId": "src-94"
+    },
+    {
+      "id": "q3-497",
+      "topic": "Transformers",
+      "type": "mcq",
+      "difficulty": "easy",
+      "prompt": "What does \"attention\" let a Transformer do?",
+      "answer": "Weigh how much each word should focus on every other word in the text",
+      "explanation": "For example linking \"it\" to the right noun earlier in a sentence.",
+      "options": [
+        "Weigh how much each word should focus on every other word in the text",
+        "Store the whole internet inside the model",
+        "Run the model without a GPU",
+        "Translate text without any training"
+      ],
+      "sourceId": "src-192"
+    },
+    {
+      "id": "q3-498",
+      "topic": "Transformers",
+      "type": "tf",
+      "difficulty": "easy",
+      "prompt": "Transformers process all the words of the input in parallel, rather than one at a time like older recurrent networks (RNNs).",
+      "answer": "True",
+      "explanation": "This parallelism is a big reason Transformers train so well on GPUs.",
+      "sourceId": "src-192"
     }
   ]
 }
