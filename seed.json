@@ -2025,6 +2025,15 @@
       "url": "https://developers.googleblog.com/agent-development-kit-easy-to-build-multi-agent-applications/",
       "notes": "Announcement of Google's open-source framework for multi-agent applications.",
       "lang": "en"
+    },
+    {
+      "id": "src-204",
+      "topic": "Model Fine-tuning",
+      "type": "Paper",
+      "title": "Direct Preference Optimization (Rafailov et al., 2023)",
+      "url": "https://arxiv.org/abs/2305.18290",
+      "notes": "DPO trains on chosen/rejected pairs without a separate reward model; beta controls drift from the reference model.",
+      "lang": "en"
     }
   ],
   "notes": [
@@ -13250,6 +13259,86 @@
       "answer": "Scalability → Handles more users or data by adding resources; Maintainability → Easy to understand, fix and change; Extensibility → New features can be added with little change to existing code; Reliability → Keeps working correctly, even when parts fail",
       "explanation": "These quality attributes (non-functional requirements) shape design choices such as stateless services, modular code, plug-in points and redundancy.",
       "sourceId": "src-200"
+    },
+    {
+      "id": "q3-466",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Why is bf16 often preferred over fp16 for mixed-precision training?",
+      "answer": "bf16 has the same exponent range as fp32, so values rarely overflow and loss scaling is usually not needed",
+      "explanation": "fp16 has more precision bits but a much smaller range, so it often needs loss scaling to avoid overflow and underflow.",
+      "options": [
+        "bf16 has the same exponent range as fp32, so values rarely overflow and loss scaling is usually not needed",
+        "bf16 has more precision bits than fp16",
+        "bf16 uses half the memory of fp16",
+        "Only bf16 runs on GPUs"
+      ],
+      "sourceId": "src-33"
+    },
+    {
+      "id": "q3-467",
+      "topic": "AI Development",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "Your GPU fits a batch of 8, but you want the training effect of a batch of 64. What is the usual fix?",
+      "answer": "Gradient accumulation: add up gradients over 8 mini-batches, then take one optimizer step",
+      "explanation": "It trades time for memory: same effective batch size, more forward and backward passes per step.",
+      "options": [
+        "Gradient accumulation: add up gradients over 8 mini-batches, then take one optimizer step",
+        "Raise the learning rate 8 times and keep batch 8",
+        "Run 8 epochs instead of 1",
+        "Turn off the optimizer for 7 of every 8 steps"
+      ],
+      "sourceId": "src-33"
+    },
+    {
+      "id": "q3-468",
+      "topic": "Model Fine-tuning",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "In DPO (Direct Preference Optimization), what does the beta parameter control?",
+      "answer": "How far the trained model may drift from the reference model while following the preferences",
+      "explanation": "Low beta lets it move further from the reference; high beta keeps it closer.",
+      "options": [
+        "How far the trained model may drift from the reference model while following the preferences",
+        "The share of rejected answers in the data",
+        "The LoRA rank used for the adapters",
+        "How many epochs the training runs"
+      ],
+      "sourceId": "src-204"
+    },
+    {
+      "id": "q3-469",
+      "topic": "Model Fine-tuning",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "In supervised fine-tuning of a chat model, why is the loss often computed only on the assistant's reply tokens?",
+      "answer": "So the model learns to write the answers, not to predict the user's prompts",
+      "explanation": "This is called completion-only or masked loss training; the prompt tokens are still read but not scored.",
+      "options": [
+        "So the model learns to write the answers, not to predict the user's prompts",
+        "To make the training data smaller on disk",
+        "Because prompt tokens cannot be tokenized",
+        "So the model forgets the system prompt"
+      ],
+      "sourceId": "src-204"
+    },
+    {
+      "id": "q3-470",
+      "topic": "Model Fine-tuning",
+      "type": "mcq",
+      "difficulty": "hard",
+      "prompt": "QLoRA stores the frozen base model in \"NF4\" (4-bit NormalFloat). Why that format?",
+      "answer": "Its 4-bit levels are spread for normally distributed weights, keeping more precision than plain 4-bit integers",
+      "explanation": "QLoRA also uses double quantization and paged optimizers to save memory.",
+      "options": [
+        "Its 4-bit levels are spread for normally distributed weights, keeping more precision than plain 4-bit integers",
+        "It is the format GPUs use for training by default",
+        "It stores each weight in 4 bytes for better accuracy",
+        "It lets the LoRA adapters train in 4-bit too"
+      ],
+      "sourceId": "src-131"
     }
   ]
 }
