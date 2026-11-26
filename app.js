@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=291';
-import { ADMIN_HASH } from './admin-hash.js?v=291';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=292';
+import { ADMIN_HASH } from './admin-hash.js?v=292';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -1253,7 +1253,7 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=291')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=292')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Infra./GPUs', 'AI Hardware/GPUs': 'AI Infra./GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents' };
 const rn = t => TOPIC_RENAMED[t] ?? t;
@@ -1275,6 +1275,12 @@ if (!db.migrations.includes('mcps')) {
   const ids = new Set(["q-mcp-1","q-mcp-2","q-mcp-3","q-mcp-4","q2-91","q2-92","q2-93","q2-97","q3-59","q3-69","q3-260","q3-261","q3-262"]);
   for (const q of db.questions ?? []) if (ids.has(q.id) && q.topic === 'Agents') q.topic = 'MCPs';
   db.migrations.push('mcps');
+}
+// one-time: re-graded built-in questions (easy→medium, medium→hard); only moved if still at the old level
+if (!db.migrations.includes('regrade1')) {
+  const moves = { 'q-llm-11': ['easy', 'medium'], 'q3-190': ['easy', 'medium'], 'q3-261': ['medium', 'hard'], 'q3-320': ['medium', 'hard'], 'q-hw-5': ['medium', 'hard'], 'q-sz-7': ['medium', 'hard'], 'q3-153': ['medium', 'hard'] };
+  for (const q of db.questions ?? []) { const m = moves[q.id]; if (m && q.difficulty === m[0]) q.difficulty = m[1]; }
+  db.migrations.push('regrade1');
 }
 mergeSeed(db, seed);
 // topics follow the order set with the admin arrows in this browser, else seed.json order (laid out as the 5-column test grid); any others come after
