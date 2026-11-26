@@ -382,3 +382,4 @@ header .topbar { display: flex; align-items: center; gap: 8px; }
 .q-stats .srt { padding: 0 3px; margin-left: 2px; font-size: .7rem; line-height: 1.4; min-width: 0; background: transparent; border: 1px solid var(--border); color: var(--muted, inherit); cursor: pointer; }
 .q-stats .srt:hover, .q-stats .srt.on { border-color: var(--accent, #3b82f6); color: var(--accent, #3b82f6); }
 .q-stats thead th { white-space: nowrap; }
+.q-stats tbody tr:nth-child(even) { background: color-mix(in srgb, var(--text) 7%, transparent); }
