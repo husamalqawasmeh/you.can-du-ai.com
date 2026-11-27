@@ -14093,6 +14093,42 @@
       "answer": "Tune vLLM batching and KV-cache settings to cut GPU cost per token → AI Infrastructure Engineer; Set up a model registry, CI/CD and canary rollouts for new model versions → MLOps Engineer; Build an eval suite with LLM-as-judge and red-team sets as release gates → AI QA Engineer; Build a multi-step agent with tool calling, memory and fallbacks → AI Engineer; Build a streaming change-data-capture pipeline into a lakehouse with data contracts → Data Engineer; Choose RAG vs fine-tuning, then run LoRA and DPO training on a base model → Generative AI Engineer; Use causal inference to measure the true uplift of an AI feature → Data Scientist",
       "explanation": "Serving efficiency is infrastructure work; release pipelines are MLOps; eval gates are AI QA; agent design is AI engineering; streaming data and contracts are data engineering; model adaptation (LoRA, DPO) is generative AI engineering; causal measurement is data science.",
       "sourceId": ""
+    },
+    {
+      "id": "q3-511",
+      "topic": "Decision Models",
+      "type": "match",
+      "difficulty": "medium",
+      "prompt": "Connect each type of method or system to its meaning.",
+      "pairs": [
+        [
+          "Deterministic",
+          "Same input always gives the same output"
+        ],
+        [
+          "Stochastic",
+          "Uses randomness, so the same input can give different outputs"
+        ],
+        [
+          "Heuristic",
+          "A rule of thumb that finds a good-enough answer quickly, with no guarantee it is the best"
+        ],
+        [
+          "Rule-based",
+          "Follows explicit if-then rules written by people"
+        ],
+        [
+          "Greedy",
+          "Picks the best-looking option at each step without looking ahead"
+        ],
+        [
+          "Optimal (exact)",
+          "Guaranteed to find the best possible answer, but can be slow"
+        ]
+      ],
+      "answer": "Deterministic → Same input always gives the same output; Stochastic → Uses randomness, so the same input can give different outputs; Heuristic → A rule of thumb that finds a good-enough answer quickly, with no guarantee it is the best; Rule-based → Follows explicit if-then rules written by people; Greedy → Picks the best-looking option at each step without looking ahead; Optimal (exact) → Guaranteed to find the best possible answer, but can be slow",
+      "explanation": "LLMs are stochastic when they sample tokens (higher temperature means more randomness); temperature 0 makes them close to deterministic, though not always exactly. Heuristics and greedy methods trade a guaranteed best answer for speed; exact optimal methods guarantee the best answer at higher cost.",
+      "sourceId": ""
     }
   ]
 }
