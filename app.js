@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=310';
-import { ADMIN_HASH } from './admin-hash.js?v=310';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=311';
+import { ADMIN_HASH } from './admin-hash.js?v=311';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -31,6 +31,7 @@ function showTab(name) {
   }
   document.querySelectorAll('nav button').forEach(x => x.classList.toggle('active', x.dataset.tab === name));
   document.querySelectorAll('.tab').forEach(t => t.hidden = t.id !== name);
+  if (db) drawTab(name);
   if (name === 'test') alignChecks();
   // tools dictionary always opens with every group collapsed (toggle events re-run layoutTools)
   if (name === 'tools') document.querySelectorAll('#tools-list details[open]').forEach(x => x.open = false);
@@ -114,14 +115,20 @@ $('#q-stats').addEventListener('change', e => {
   renderStats();
 });
 
+// Only the open tab is redrawn; the other tabs are marked stale and drawn when opened (keeps typing and saving fast).
+const DRAW = { test: drawTest, data: drawData, library: drawLibrary, courses: drawCourses, suggestions: drawSuggestions, interview: () => renderIvTopics() };
+let stale = new Set();
+function drawTab(name) { if (stale.delete(name)) DRAW[name](); }
 function render() {
   const topicOpts = db.topics.map(t => opt(t)).join('');
   document.querySelectorAll('.topic-select').forEach(s => fillSelect(s, topicOpts));
-  renderIvTopics();
   document.querySelectorAll('.source-select').forEach(s => fillSelect(s, opt('', '— none —') + db.sources.map(x => opt(x.id, x.title)).join('')));
   fillSelect($('#q-filter-topic'), opt('', 'All topics') + topicOpts);
   fillSelect($('#lib-filter-topic'), opt('', 'All topics') + topicOpts);
-
+  stale = new Set(Object.keys(DRAW));
+  drawTab(document.querySelector('.tab:not([hidden])')?.id);
+}
+function drawTest() {
   const checked = new Set([...document.querySelectorAll('#cfg-topics input:checked')].map(i => i.value));
   $('#cfg-topics').innerHTML = db.topics.map(t =>
     `<label><input type="checkbox" name="topic" value="${esc(t)}" ${checked.has(t) ? 'checked' : ''}> ${esc(t)}</label>`).join('');
@@ -130,31 +137,47 @@ function render() {
     .map(([v, n]) => `<label><input type="checkbox" name="vendor" value="${esc(v)}" ${vChecked.has(v) ? 'checked' : ''}> ${esc(v)} <span class="cnt">(${n})</span></label>`).join('');
   alignChecks();
   updateMatchCount();
+  // history (keep these boxes open across re-renders)
+  const tsOpen = $('#topic-success details')?.open, sbOpen = $('#study-box details')?.open ?? false;
+  $('#topic-success').innerHTML = topicSuccessHtml();
+  if (tsOpen) $('#topic-success details').open = true;
+  $('#study-box').innerHTML = studyBoxHtml();
+  $('#study-box details').open = sbOpen;
+  $('#history-list').innerHTML = db.results.slice().reverse().map(r => `<li><div><strong>${r.pct}%</strong> (${r.correct}/${r.total}) <span class="tag">${new Date(r.date).toLocaleString()} · ${esc(r.topics.join(', ') || 'All topics')}</span></div></li>`).join('') || '<li class="muted">No tests taken yet.</li>';
+}
 
-  // topics
+let qLimit = 50; // question bank shows this many rows; "Show more" adds 50
+function drawData() {
+  // topics: count once per topic and difficulty instead of re-filtering per row
+  const cnt = {};
+  for (const q of db.questions) { const c = cnt[q.topic] ??= { n: 0, easy: 0, medium: 0, hard: 0 }; c.n++; c[q.difficulty]++; }
   $('#topic-list').innerHTML = db.topics.map(t => {
-    const tq = db.questions.filter(q => q.topic === t), n = tq.length, nd = d => tq.filter(q => q.difficulty === d).length;
+    const c = cnt[t] ?? { n: 0, easy: 0, medium: 0, hard: 0 }, n = c.n, nd = d => c[d];
     return `<li><div class="topic-row"><span>${esc(t)}</span><span class="tag">${n} questions (easy ${nd('easy')}, medium ${nd('medium')}, hard ${nd('hard')})</span></div><span class="row"><button type="button" class="mv" data-move-topic="${esc(t)}" data-dir="-1" aria-label="Move ${esc(t)} up" title="Move up">↑</button><button type="button" class="mv" data-move-topic="${esc(t)}" data-dir="1" aria-label="Move ${esc(t)} down" title="Move down">↓</button><select data-topic-level="${esc(t)}" aria-label="Level of ${esc(t)}">${[['', 'Level…'], ['easy', 'Easy'], ['medium', 'Medium'], ['difficult', 'Difficult']].map(([v, l]) => `<option value="${v}" ${(db.topicLevels?.[t] ?? '') === v ? 'selected' : ''}>${l}</option>`).join('')}</select>${seed.topics?.includes(t) ? '' : `<button type="button" data-rename-topic="${esc(t)}">Rename</button>`}<button type="button" class="del" data-del-topic="${esc(t)}">Delete</button></span></li>`;
   }).join('');
 
   renderStats();
 
-  // library
+  // questions
+  const qt = $('#q-filter-topic').value, qd = $('#q-filter-diff').value, qy = $('#q-filter-type').value, term = $('#q-search').value.toLowerCase();
+  padCounts($('#q-filter-diff'), v => db.questions.filter(q => !v || q.difficulty === v).length);
+  const qs = db.questions.filter(q => (!qt || q.topic === qt) && (!qd || q.difficulty === qd) && (!qy || q.type === qy) && (!term || q.prompt.toLowerCase().includes(term)));
+  $('#q-total').textContent = `(${qs.length === db.questions.length ? '' : qs.length + ' match of '}${db.questions.length} total)`;
+  const shown = qs.slice(0, qLimit); // dropdowns are made only when a row's topic/difficulty button is clicked
+  $('#q-list').innerHTML = shown.map(q => `<li><div>${esc(q.prompt)}<div class="tag q-class"><button type="button" class="q-edit" data-q-edit="${esc(q.id)}" title="Change topic or difficulty">${esc(q.topic)} · ${esc(q.difficulty)}</button> · ${TYPE[q.type]} · Answer: ${esc(q.answer)}</div></div><button class="del" data-del="questions" data-id="${esc(q.id)}">Delete</button></li>`).join('')
+    + (qs.length > qLimit ? `<li><button type="button" id="q-more">Show more (${qs.length - qLimit} more)</button></li>` : '') || '<li class="muted">No questions match.</li>';
+  $('#data-stats').textContent =`${db.topics.length} topics · ${db.sources.length} sources · ${db.notes.length} knowledge entries · ${db.questions.length} questions · ${db.results.length} test results`;
+}
+function drawLibrary() {
   const lt = $('#lib-filter-topic').value;
   const byTopic = x => !lt || x.topic === lt;
   $('#note-list').innerHTML = db.notes.filter(byTopic).map(n => `<li dir="auto"><div><strong>${esc(n.title)}</strong> <span class="tag">${esc(n.topic)}${sourceTitle(n.sourceId) ? ' · ' + esc(sourceTitle(n.sourceId)) : ''}</span><div>${esc(n.body)}</div></div><button class="del" data-del="notes" data-id="${esc(n.id)}">Delete</button></li>`).join('') || '<li class="muted">Nothing yet.</li>';
   const st = $('#lib-filter-type').value, sl = $('#lib-filter-lang').value;
   const srcs = db.sources.filter(s => byTopic(s) && (!st || s.type === st) && (!sl || (s.lang || 'en') === sl));
   $('#source-list').innerHTML = srcs.map(s => `<li dir="auto"><div>${/^(https?:\/\/|files\/)/i.test(s.url) ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>` : esc(s.title)} <span class="tag">${esc(s.type)} · ${esc(s.topic)}${s.lang === 'ar' ? ' · العربية' : ''}</span>${s.notes ? `<div class="muted">${esc(s.notes)}</div>` : ''}</div><button class="del" data-del="sources" data-id="${esc(s.id)}">Delete</button></li>`).join('') || '<li class="muted">Nothing yet.</li>';
-
-  // questions
-  const qt = $('#q-filter-topic').value, qd = $('#q-filter-diff').value, qy = $('#q-filter-type').value, term = $('#q-search').value.toLowerCase();
-  padCounts($('#q-filter-diff'), v => db.questions.filter(q => !v || q.difficulty === v).length);
-  const qs = db.questions.filter(q => (!qt || q.topic === qt) && (!qd || q.difficulty === qd) && (!qy || q.type === qy) && (!term || q.prompt.toLowerCase().includes(term)));
-  $('#q-total').textContent = `(${qs.length === db.questions.length ? '' : qs.length + ' shown of '}${db.questions.length} total)`;
-  $('#q-list').innerHTML = qs.map(q => `<li><div>${esc(q.prompt)}<div class="tag q-class"><select data-q-set="topic" data-id="${esc(q.id)}" aria-label="Topic">${db.topics.map(t => `<option ${t === q.topic ? 'selected' : ''}>${esc(t)}</option>`).join('')}</select> <select data-q-set="difficulty" data-id="${esc(q.id)}" aria-label="Difficulty">${['easy', 'medium', 'hard'].map(x => `<option ${x === q.difficulty ? 'selected' : ''}>${x}</option>`).join('')}</select> · ${TYPE[q.type]} · Answer: ${esc(q.answer)}</div></div><button class="del" data-del="questions" data-id="${esc(q.id)}">Delete</button></li>`).join('') || '<li class="muted">No questions match.</li>';
-
-  // courses
+  $('#course-list').innerHTML = db.sources.filter(s => s.type === 'Course').map(s => `<li dir="auto"><div>${/^https?:\/\//i.test(s.url) ? `<a href="${esc(s.url)}" target="_blank" rel="noopener"><strong>${esc(s.title)}</strong></a>` : `<strong>${esc(s.title)}</strong>`} <span class="tag">${esc(s.topic)}${s.lang === 'ar' ? ' · العربية' : ''}</span>${s.notes ? `<div class="muted">${esc(s.notes)}</div>` : ''}</div><button class="del" data-del="sources" data-id="${esc(s.id)}">Delete</button></li>`).join('') || '<li class="muted">No courses yet.</li>';
+}
+function drawCourses() {
   const gChecked = new Set([...document.querySelectorAll('#gen-topics input:checked')].map(i => i.value));
   $('#gen-topics').innerHTML = db.topics.map(t => `<label><input type="checkbox" value="${esc(t)}" ${gChecked.has(t) ? 'checked' : ''}> ${esc(t)}</label>`).join('');
   genTopicSummary();
@@ -168,21 +191,9 @@ function render() {
       <button type="button" data-course-test="${esc(c.id)}" ${n ? '' : 'disabled'}>Take the course test</button>
       <button type="button" class="del" data-del="courses" data-id="${esc(c.id)}">Delete course</button></div></details>`;
   }).join('') || '<p class="muted">No courses created yet.</p>';
-  $('#course-list').innerHTML = db.sources.filter(s => s.type === 'Course').map(s => `<li dir="auto"><div>${/^https?:\/\//i.test(s.url) ? `<a href="${esc(s.url)}" target="_blank" rel="noopener"><strong>${esc(s.title)}</strong></a>` : `<strong>${esc(s.title)}</strong>`} <span class="tag">${esc(s.topic)}${s.lang === 'ar' ? ' · العربية' : ''}</span>${s.notes ? `<div class="muted">${esc(s.notes)}</div>` : ''}</div><button class="del" data-del="sources" data-id="${esc(s.id)}">Delete</button></li>`).join('') || '<li class="muted">No courses yet.</li>';
-
-  renderSuggestions();
   renderObjectives();
-
-  // history (keep these boxes open across re-renders)
-  const tsOpen = $('#topic-success details')?.open, sbOpen = $('#study-box details')?.open ?? false;
-  $('#topic-success').innerHTML = topicSuccessHtml();
-  if (tsOpen) $('#topic-success details').open = true;
-  $('#study-box').innerHTML = studyBoxHtml();
-  $('#study-box details').open = sbOpen;
-  $('#history-list').innerHTML = db.results.slice().reverse().map(r => `<li><div><strong>${r.pct}%</strong> (${r.correct}/${r.total}) <span class="tag">${new Date(r.date).toLocaleString()} · ${esc(r.topics.join(', ') || 'All topics')}</span></div></li>`).join('') || '<li class="muted">No tests taken yet.</li>';
-
-  $('#data-stats').textContent =`${db.topics.length} topics · ${db.sources.length} sources · ${db.notes.length} knowledge entries · ${db.questions.length} questions · ${db.results.length} test results`;
 }
+function drawSuggestions() { renderSuggestions(); renderObjectives(); }
 
 // ---------- learning suggestions ----------
 const link = s => /^https?:\/\//i.test(s.url) ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>` : esc(s.title);
@@ -410,8 +421,17 @@ async function loadTools() {
 loadTools();
 
 $('#lib-filter-topic').onchange =$('#lib-filter-type').onchange = $('#lib-filter-lang').onchange = render;
-$('#q-filter-topic').onchange = $('#q-filter-diff').onchange = $('#q-filter-type').onchange = render;
-$('#q-search').oninput = render;
+const qRefilter = () => { qLimit = 50; drawData(); };
+$('#q-filter-topic').onchange = $('#q-filter-diff').onchange = $('#q-filter-type').onchange = qRefilter;
+let qSearchT; // search once typing pauses, not on every key
+$('#q-search').oninput = () => { clearTimeout(qSearchT); qSearchT = setTimeout(qRefilter, 200); };
+$('#q-list').addEventListener('click', e => {
+  if (e.target.id === 'q-more') { qLimit += 50; return drawData(); }
+  const b = e.target.closest('[data-q-edit]'), q = b && db.questions.find(x => x.id === b.dataset.qEdit); if (!q) return;
+  const span = document.createElement('span');
+  span.innerHTML = `<select data-q-set="topic" data-id="${esc(q.id)}" aria-label="Topic">${db.topics.map(t => `<option ${t === q.topic ? 'selected' : ''}>${esc(t)}</option>`).join('')}</select> <select data-q-set="difficulty" data-id="${esc(q.id)}" aria-label="Difficulty">${['easy', 'medium', 'hard'].map(x => `<option ${x === q.difficulty ? 'selected' : ''}>${x}</option>`).join('')}</select>`;
+  b.replaceWith(span); span.querySelector('select').focus();
+});
 // admin: change a question's topic or difficulty right in the list
 $('#q-list').addEventListener('change', e => { const f = e.target.dataset.qSet, q = f && db.questions.find(x => x.id === e.target.dataset.id); if (q) { q[f] = e.target.value; save(); } });
 
@@ -1300,7 +1320,7 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=310')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=311')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Infra./GPUs', 'AI Hardware/GPUs': 'AI Infra./GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents' };
 const rn = t => TOPIC_RENAMED[t] ?? t;

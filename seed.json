@@ -13985,6 +13985,114 @@
       "answer": "True",
       "explanation": "Logs and traces also support audits and quality monitoring.",
       "sourceId": "src-200"
+    },
+    {
+      "id": "q3-508",
+      "topic": "AI Development",
+      "type": "match",
+      "difficulty": "easy",
+      "prompt": "Connect each task to the role that usually does it (easy).",
+      "pairs": [
+        [
+          "Build pipelines that collect, clean and load data",
+          "Data Engineer"
+        ],
+        [
+          "Train a model to predict which customers will leave",
+          "Data Scientist"
+        ],
+        [
+          "Build the web app screens and the server behind them",
+          "Full Stack Engineer"
+        ],
+        [
+          "Test AI features for wrong or unsafe answers before release",
+          "AI QA Engineer"
+        ],
+        [
+          "Deploy models and keep them running in production",
+          "MLOps Engineer"
+        ]
+      ],
+      "answer": "Build pipelines that collect, clean and load data → Data Engineer; Train a model to predict which customers will leave → Data Scientist; Build the web app screens and the server behind them → Full Stack Engineer; Test AI features for wrong or unsafe answers before release → AI QA Engineer; Deploy models and keep them running in production → MLOps Engineer",
+      "explanation": "Data engineers move and prepare data, data scientists build models from it, full stack engineers build the app, AI QA engineers test AI behavior, and MLOps engineers run models in production. Titles overlap in real companies.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-509",
+      "topic": "AI Development",
+      "type": "match",
+      "difficulty": "medium",
+      "prompt": "Connect each task to the role that usually does it (medium).",
+      "pairs": [
+        [
+          "Detect model drift and trigger automatic retraining",
+          "MLOps Engineer"
+        ],
+        [
+          "Add an LLM to a product using RAG, tools and guardrails",
+          "AI Engineer"
+        ],
+        [
+          "Fine-tune an LLM and craft prompts for a text or image generator",
+          "Generative AI Engineer"
+        ],
+        [
+          "Set up GPU clusters and Kubernetes for training and serving",
+          "AI Infrastructure Engineer"
+        ],
+        [
+          "Design the overall solution: components, data flow, cloud and security",
+          "AI Solutions Architect"
+        ],
+        [
+          "Run A/B tests and analyze whether a change really helped",
+          "Data Scientist"
+        ]
+      ],
+      "answer": "Detect model drift and trigger automatic retraining → MLOps Engineer; Add an LLM to a product using RAG, tools and guardrails → AI Engineer; Fine-tune an LLM and craft prompts for a text or image generator → Generative AI Engineer; Set up GPU clusters and Kubernetes for training and serving → AI Infrastructure Engineer; Design the overall solution: components, data flow, cloud and security → AI Solutions Architect; Run A/B tests and analyze whether a change really helped → Data Scientist",
+      "explanation": "MLOps owns the model lifecycle (monitoring, drift, retraining); AI engineers build products on top of models; generative AI engineers specialize in adapting generative models; AI infra engineers own compute; architects design the end-to-end solution; data scientists own experiments and statistics.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-510",
+      "topic": "AI Development",
+      "type": "match",
+      "difficulty": "hard",
+      "prompt": "Connect each task to the role that usually does it (hard).",
+      "pairs": [
+        [
+          "Tune vLLM batching and KV-cache settings to cut GPU cost per token",
+          "AI Infrastructure Engineer"
+        ],
+        [
+          "Set up a model registry, CI/CD and canary rollouts for new model versions",
+          "MLOps Engineer"
+        ],
+        [
+          "Build an eval suite with LLM-as-judge and red-team sets as release gates",
+          "AI QA Engineer"
+        ],
+        [
+          "Build a multi-step agent with tool calling, memory and fallbacks",
+          "AI Engineer"
+        ],
+        [
+          "Build a streaming change-data-capture pipeline into a lakehouse with data contracts",
+          "Data Engineer"
+        ],
+        [
+          "Choose RAG vs fine-tuning, then run LoRA and DPO training on a base model",
+          "Generative AI Engineer"
+        ],
+        [
+          "Use causal inference to measure the true uplift of an AI feature",
+          "Data Scientist"
+        ]
+      ],
+      "answer": "Tune vLLM batching and KV-cache settings to cut GPU cost per token → AI Infrastructure Engineer; Set up a model registry, CI/CD and canary rollouts for new model versions → MLOps Engineer; Build an eval suite with LLM-as-judge and red-team sets as release gates → AI QA Engineer; Build a multi-step agent with tool calling, memory and fallbacks → AI Engineer; Build a streaming change-data-capture pipeline into a lakehouse with data contracts → Data Engineer; Choose RAG vs fine-tuning, then run LoRA and DPO training on a base model → Generative AI Engineer; Use causal inference to measure the true uplift of an AI feature → Data Scientist",
+      "explanation": "Serving efficiency is infrastructure work; release pipelines are MLOps; eval gates are AI QA; agent design is AI engineering; streaming data and contracts are data engineering; model adaptation (LoRA, DPO) is generative AI engineering; causal measurement is data science.",
+      "sourceId": ""
     }
   ]
 }

@@ -385,3 +385,5 @@ header .topbar { display: flex; align-items: center; gap: 8px; }
 .q-stats tbody tr:nth-child(even) { background: color-mix(in srgb, var(--text) 7%, transparent); }
 .q-stats thead th.max-h { white-space: normal; max-width: 170px; font-size: .8rem; line-height: 1.25; text-align: center; }
 .q-stats .max-add { width: 76px; padding: 2px 6px; text-align: right; }
+.q-edit { font: inherit; padding: 1px 8px; border: 1px solid var(--border); border-radius: 6px; background: var(--raised); color: var(--text); cursor: pointer; }
+.q-edit:hover, .q-edit:focus-visible { border-color: var(--accent); color: var(--accent); }
