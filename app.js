@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=312';
-import { ADMIN_HASH } from './admin-hash.js?v=312';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=313';
+import { ADMIN_HASH } from './admin-hash.js?v=313';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -309,13 +309,13 @@ async function loadCerts() {
     const list = c.certs.filter(x => (!v || x.vendor === v) && (!l || x.level === l));
     const by = {};
     for (const x of list) (by[x.vendor] ??= []).push(x);
-    $('#certs-list').innerHTML = Object.entries(by).map(([vendor, xs]) => `<section class="cert-group"><h3 class="cert-vendor">${esc(vendor)} <span class="tag">${xs.length} exam${xs.length === 1 ? '' : 's'}</span><span class="cert-levels">${LEVELS.filter(l => xs.some(x => x.level === l)).map(l => `<span>${esc(l)}: ${xs.filter(x => x.level === l).length}</span>`).join('')}</span></h3><div>${xs.map(x => `<details class="card cert"><summary><strong>${esc(x.name)}</strong> <span class="tag">${esc(x.level)} · ${esc(x.cost)}</span><span class="cert-more" aria-hidden="true"></span></summary>
+    $('#certs-list').innerHTML = Object.entries(by).map(([vendor, xs]) => `<details class="cert-group fold"><summary><h3 class="cert-vendor">${esc(vendor)} <span class="tag">${xs.length} exam${xs.length === 1 ? '' : 's'}</span><span class="cert-levels">${LEVELS.filter(l => xs.some(x => x.level === l)).map(l => `<span>${esc(l)}: ${xs.filter(x => x.level === l).length}</span>`).join('')}</span></h3></summary><div>${xs.map(x => `<details class="card cert"><summary><strong>${esc(x.name)}</strong> <span class="tag">${esc(x.level)} · ${esc(x.cost)}</span><span class="cert-more" aria-hidden="true"></span></summary>
       <table class="cert-facts">${row('Exam code', x.code)}${row('Level', x.level)}${row('Cost', x.cost)}${row('Duration', x.duration)}${row('Questions', x.questions)}${row('Prerequisites', x.prerequisites)}</table>
       <h4>Modules and topics</h4><ul class="advice">${x.topics.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
       ${x.note ? `<p class="muted"><em>${esc(x.note)}</em></p>` : ''}
       <h4>Vendor courses and free material</h4><ul class="advice">${x.prep.map(p => `<li><a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.title)}</a></li>`).join('')}</ul>
       ${x.samples?.length ? `<h4>Sample questions</h4><p class="muted">Written in the style of the exam to help you practise; not official exam questions.</p><ol class="cert-samples">${x.samples.map(q => `<li><p>${esc(q.q)}</p><ul>${shuffle([...q.options]).map(o => `<li>${esc(o)}</li>`).join('')}</ul><details class="iv-answers"><summary>Show answer</summary><p>${esc(q.answer)}</p></details></li>`).join('')}</ol>` : ''}
-      <p><a class="button primary" href="${esc(x.url)}" target="_blank" rel="noopener">Official page: details and registration</a></p></details>`).join('')}</div></section>`).join('') || '<p class="muted">No exams match these filters.</p>';
+      <p><a class="button primary" href="${esc(x.url)}" target="_blank" rel="noopener">Official page: details and registration</a></p></details>`).join('')}</div></details>`).join('') || '<p class="muted">No exams match these filters.</p>';
   };
   $('#cert-vendor').onchange = $('#cert-level').onchange = show;
   show();
@@ -1320,7 +1320,7 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=312')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=313')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Infra./GPUs', 'AI Hardware/GPUs': 'AI Infra./GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents' };
 const rn = t => TOPIC_RENAMED[t] ?? t;

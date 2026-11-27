@@ -133,12 +133,15 @@ table.cert-facts th { width: 9em; color: var(--muted); font-weight: 500; }
 .obj-add { margin-top: 6px; } .obj-add input { flex: 1 1 240px; }
 .cert summary { cursor: pointer; }
 /* Certifications: vendor box on the left (as tall as its exams), exam boxes stacked on the right. */
-.cert-group { display: grid; grid-template-columns: 200px 1fr; gap: 10px; margin-bottom: 14px; }
+.cert-group { margin-bottom: 10px; } /* vendor boxes start collapsed; open = name on the left, exams on the right */
+.cert-group[open] { display: grid; grid-template-columns: 200px 1fr; gap: 10px; align-items: start; margin-bottom: 14px; }
+.cert-group > summary > .cert-vendor { flex: 1; }
+.cert-group:not([open]) .cert-vendor .tag, .cert-group:not([open]) .cert-levels, .cert-group:not([open]) .cert-levels span { display: inline; margin: 0 0 0 12px; }
 .cert-vendor { margin: 0; padding: 12px; background: var(--raised); border: 1px solid var(--border-strong); border-radius: 8px; font-size: 1.05rem; }
 .cert-vendor .tag { display: block; margin-top: 4px; font-weight: 400; }
 .cert-group .cert { margin: 0 0 8px; }
 .cert-group .cert:last-child { margin-bottom: 0; }
-@media (max-width: 560px) { .cert-group { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .cert-group[open] { grid-template-columns: 1fr; } }
 .cert h4 { margin: 10px 0 4px; }
 a.button { text-decoration: none; }
 .brand { color: var(--accent); }
