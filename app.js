@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=313';
-import { ADMIN_HASH } from './admin-hash.js?v=313';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=314';
+import { ADMIN_HASH } from './admin-hash.js?v=314';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -133,7 +133,7 @@ function drawTest() {
   $('#cfg-topics').innerHTML = db.topics.map(t =>
     `<label><input type="checkbox" name="topic" value="${esc(t)}" ${checked.has(t) ? 'checked' : ''}> ${esc(t)}</label>`).join('');
   const vChecked = new Set([...document.querySelectorAll('#cfg-vendors input:checked')].map(i => i.value));
-  $('#cfg-vendors').innerHTML = `<label><input type="checkbox" name="vendorAll" ${vChecked.size && !vChecked.has('') ? '' : 'checked'} value=""> <strong>All / Any</strong></label>` + Object.keys(VENDORS).map(v => [v, filterQuestions(db.questions, { vendors: [v] }).length]).filter(([, n]) => n)
+  $('#cfg-vendors').innerHTML = `<label><input type="checkbox" name="vendorAll" ${vChecked.size && !vChecked.has('') ? '' : 'checked'} value=""> <strong>All / Any</strong></label>` + Object.keys(VENDORS).sort((a, b) => a.localeCompare(b)).map(v => [v, filterQuestions(db.questions, { vendors: [v] }).length]).filter(([, n]) => n)
     .map(([v, n]) => `<label><input type="checkbox" name="vendor" value="${esc(v)}" ${vChecked.has(v) ? 'checked' : ''}> ${esc(v)} <span class="cnt">(${n})</span></label>`).join('');
   alignChecks();
   updateMatchCount();
@@ -1320,7 +1320,7 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=313')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=314')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Infra./GPUs', 'AI Hardware/GPUs': 'AI Infra./GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents' };
 const rn = t => TOPIC_RENAMED[t] ?? t;
