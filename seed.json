@@ -25,7 +25,7 @@
     "Global AI Incidents",
     "Decision Models",
     "MCPs",
-    "AI Solutions Architecture"
+    "AI Sol. Architecture"
   ],
   "sources": [
     {
@@ -1992,7 +1992,7 @@
     },
     {
       "id": "src-200",
-      "topic": "AI Solutions Architecture",
+      "topic": "AI Sol. Architecture",
       "type": "Website",
       "title": "AWS Well-Architected Framework: Generative AI Lens",
       "url": "https://docs.aws.amazon.com/wellarchitected/latest/generative-ai-lens/generative-ai-lens.html",
@@ -3029,7 +3029,7 @@
     },
     {
       "id": "note-127",
-      "topic": "AI Solutions Architecture",
+      "topic": "AI Sol. Architecture",
       "sourceId": "src-200",
       "title": "AI solutions architecture: designing AI systems that work in production",
       "body": "An AI solutions architect designs how models, data, applications, security and operations fit together to solve a business problem. Start from the problem and success metrics (accuracy, cost per request, response time, risk), not from picking a model. Key decisions: (1) How the model gets knowledge: prompting alone, retrieval-augmented generation (RAG: index documents in a search or vector store and retrieve relevant passages per question, best for large or fast-changing content), or fine-tuning (for style, format or narrow skills). (2) Which model and where it runs: a hosted API (fastest to start), a cloud model service such as Bedrock, Azure AI Foundry or Vertex AI (enterprise controls, regional hosting), or self-hosted open-weights models (full control and data residency, but you run the GPUs). (3) An AI gateway between apps and models gives one place for authentication, routing, rate limits, cost tracking, logging, guardrails and fallback when a provider fails. (4) Cost and latency: route easy requests to small, cheap models and escalate hard ones (model routing or cascading), cache repeated prompts and answers, stream responses and set token limits. (5) Security and compliance: keep secrets on the server, least privilege for tools and agents, filter inputs and outputs, protect personal data and meet data-residency rules. (6) Operations (LLMOps): evaluations before every change, monitoring of quality, cost and drift, tracing, versioned prompts, and human review for high-risk outputs. Frameworks such as the AWS Well-Architected Generative AI Lens organize these choices into pillars: operational excellence, security, reliability, performance, cost and sustainability."
@@ -13252,7 +13252,7 @@
     },
     {
       "id": "q3-459",
-      "topic": "AI Solutions Architecture",
+      "topic": "AI Sol. Architecture",
       "type": "mcq",
       "difficulty": "easy",
       "prompt": "What does an AI solutions architect mainly do?",
@@ -13268,7 +13268,7 @@
     },
     {
       "id": "q3-460",
-      "topic": "AI Solutions Architecture",
+      "topic": "AI Sol. Architecture",
       "type": "tf",
       "difficulty": "easy",
       "prompt": "A good AI architecture starts from the business problem and success metrics, not from picking a model.",
@@ -13278,7 +13278,7 @@
     },
     {
       "id": "q3-461",
-      "topic": "AI Solutions Architecture",
+      "topic": "AI Sol. Architecture",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "A support assistant must answer from 50,000 internal documents that change daily. Which architecture fits best?",
@@ -13294,7 +13294,7 @@
     },
     {
       "id": "q3-462",
-      "topic": "AI Solutions Architecture",
+      "topic": "AI Sol. Architecture",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "Why place an AI gateway between your apps and the model providers?",
@@ -13310,7 +13310,7 @@
     },
     {
       "id": "q3-463",
-      "topic": "AI Solutions Architecture",
+      "topic": "AI Sol. Architecture",
       "type": "mcq",
       "difficulty": "hard",
       "prompt": "You need to cut cost and latency without losing quality on hard requests. Which pattern fits?",
@@ -13326,7 +13326,7 @@
     },
     {
       "id": "q3-464",
-      "topic": "AI Solutions Architecture",
+      "topic": "AI Sol. Architecture",
       "type": "mcq",
       "difficulty": "hard",
       "prompt": "A bank must keep customer data inside the country and cannot send it to public AI APIs. Which deployment fits?",
@@ -13342,7 +13342,7 @@
     },
     {
       "id": "q3-465",
-      "topic": "AI Solutions Architecture",
+      "topic": "AI Sol. Architecture",
       "type": "match",
       "difficulty": "medium",
       "prompt": "Match each software architecture quality to its meaning.",
@@ -13658,7 +13658,7 @@
     },
     {
       "id": "q3-484",
-      "topic": "AI Solutions Architecture",
+      "topic": "AI Sol. Architecture",
       "type": "tf",
       "difficulty": "easy",
       "prompt": "Adding a fallback model from a second provider makes an AI app more reliable when the first provider has an outage.",
@@ -13668,7 +13668,7 @@
     },
     {
       "id": "q3-485",
-      "topic": "AI Solutions Architecture",
+      "topic": "AI Sol. Architecture",
       "type": "mcq",
       "difficulty": "medium",
       "prompt": "An AI feature must start answering within 1 second, but the large model takes 5 seconds. Which design helps most?",
@@ -13684,7 +13684,7 @@
     },
     {
       "id": "q3-486",
-      "topic": "AI Solutions Architecture",
+      "topic": "AI Sol. Architecture",
       "type": "mcq",
       "difficulty": "hard",
       "prompt": "Users ask an AI app to summarize 1,000 documents at once. Why put this work on a message queue processed by background workers?",
@@ -13962,7 +13962,7 @@
     },
     {
       "id": "q3-506",
-      "topic": "AI Solutions Architecture",
+      "topic": "AI Sol. Architecture",
       "type": "mcq",
       "difficulty": "easy",
       "prompt": "In software architecture, what is an API?",
@@ -13978,7 +13978,7 @@
     },
     {
       "id": "q3-507",
-      "topic": "AI Solutions Architecture",
+      "topic": "AI Sol. Architecture",
       "type": "tf",
       "difficulty": "easy",
       "prompt": "Logging each AI request and response (with personal data protected) helps teams debug problems and track cost.",
