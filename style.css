@@ -49,7 +49,6 @@ fieldset { border: 1px solid var(--border); border-radius: 6px; margin: 0 0 12px
 #test-config .checks { display: grid; grid-template-columns: var(--check-cols, repeat(5, max-content)); justify-content: space-between; gap: 0 12px; padding: 4px 8px; line-height: 1.25; align-content: center; font-size: .88rem; }
 #test-config .checks label { display: flex; gap: 5px; margin: 0; padding: 1px 0; align-items: baseline; white-space: nowrap; min-width: 0; }
 @media (max-width: 1000px) { #test-config .checks { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); } }
-@media (max-width: 1000px) { #test-config #cfg-topics { grid-template-columns: repeat(auto-fill, minmax(185px, 1fr)); } } /* wide enough for "AI Solutions Architecture" on one line */
 @media (max-width: 560px) {
   #test-config fieldset { grid-template-columns: 1fr; }
   #test-config legend { border-right: 0; border-bottom: 1px solid var(--border-strong); }
