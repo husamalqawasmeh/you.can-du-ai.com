@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=344';
-import { ADMIN_HASH } from './admin-hash.js?v=344';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=345';
+import { ADMIN_HASH } from './admin-hash.js?v=345';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -1408,6 +1408,54 @@ $('#signin-form').onsubmit = e => {
   try { localStorage.setItem(USER_KEY, JSON.stringify({ id: pin })); } catch {}
   location.reload();
 };
+// ---------- account setup (Profile Management): PIN change, forgot PIN, email and mobile ----------
+// shortcut: everything is per browser; a new PIN or email does not follow the student to other devices
+const acctMsg = (t, ok) => { const m = $('#acct-msg'); m.textContent = t; m.className = ok ? 'good' : 'bad'; };
+function fillAccount() {
+  document.querySelectorAll('.acct-signed').forEach(f => f.querySelectorAll('input, button').forEach(x => { x.disabled = !user; }));
+  if (!user) { acctMsg('Sign in to change your PIN, email or mobile number.'); return; }
+  const p = profiles()[user.id] ?? {};
+  $('#contact-form').email.value = p.email ?? '';
+  $('#contact-form').mobile.value = p.mobile ?? '';
+}
+$('#pin-form').onsubmit = e => {
+  e.preventDefault();
+  const f = e.target, all = profiles(), pin = f.pin.value.trim();
+  if (f.old.value.trim() !== user.id) return acctMsg('Your current PIN is not correct.');
+  if (!validPin(pin)) return acctMsg('Your new PIN must be exactly 4 digits.');
+  if (pin !== f.pin2.value.trim()) return acctMsg('The two new PINs do not match.');
+  if (pin === user.id) return acctMsg('The new PIN is the same as the current one.');
+  const newKey = 'ycda-db-v1:id:' + pin;
+  if (all[pin] || NAMED_PINS[pin] || localStorage.getItem(newKey)) return acctMsg('That PIN is already used on this device. Please choose another.');
+  try {
+    localStorage.setItem(newKey, JSON.stringify(db)); // copy first, then remove the old copy, so nothing is lost if storage fails
+    all[pin] = { ...(all[user.id] ?? {}), pinChanged: new Date().toISOString() };
+    delete all[user.id];
+    localStorage.setItem(PROFILES_KEY, JSON.stringify(all));
+    localStorage.setItem(USER_KEY, JSON.stringify({ id: pin }));
+    localStorage.removeItem(KEY);
+  } catch { return acctMsg('Could not save on this browser (storage blocked or full).'); }
+  alert('Your PIN has been changed. Use the new PIN next time you sign in.');
+  location.reload();
+};
+$('#forgot-form').onsubmit = e => {
+  e.preventDefault();
+  const f = e.target, digits = f.mobile.value.replace(/[\s()+-]/g, '');
+  if (!/^\d{7,15}$/.test(digits)) return acctMsg('Please enter a valid mobile number (7 to 15 digits).');
+  const body = `Hello,\n\nI forgot my PIN for You Can Du AI. Please help me get back into my account.\n\nFirst name: ${f.fname.value.trim()}\nMobile: ${digits}\nEmail: ${f.email.value.trim()}\n`;
+  location.href = `mailto:${ADMIN_EMAIL}?subject=${encodeURIComponent('Forgot PIN - You Can Du AI')}&body=${encodeURIComponent(body)}`;
+  acctMsg('Your email app should open with the request ready to send.', true);
+};
+$('#contact-form').onsubmit = e => {
+  e.preventDefault();
+  const f = e.target, all = profiles(), email = f.email.value.trim(), digits = f.mobile.value.replace(/[\s()+-]/g, '');
+  if (email && !f.email.checkValidity()) return acctMsg('Please enter a valid email address.');
+  if (digits && !/^\d{7,15}$/.test(digits)) return acctMsg('Please enter a valid mobile number (7 to 15 digits).');
+  all[user.id] = { ...(all[user.id] ?? {}), email, mobile: digits };
+  try { localStorage.setItem(PROFILES_KEY, JSON.stringify(all)); } catch { return acctMsg('Could not save on this browser (storage blocked or full).'); }
+  acctMsg('Saved.', true);
+};
+$('#settings').onclick = e => { const b = e.target.closest('[data-goto]'); if (b) showTab(b.dataset.goto); };
 $('#signout').onclick = () => { try { localStorage.removeItem(USER_KEY); } catch {} location.reload(); };
 const MAIL = {
   question: ['Question - You Can Du AI', 'Hello,\n\nMy question:\n\n\nName: {id}\n'],
@@ -1428,10 +1476,11 @@ if (user) {
   try { if (!localStorage.getItem(KEY) && localStorage.getItem('ycda-db-v1')) { localStorage.setItem(KEY, localStorage.getItem('ycda-db-v1')); localStorage.removeItem('ycda-db-v1'); } } catch {}
 }
 syncUser();
+fillAccount();
 db = load();
 planHomeSum();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=344')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=345')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Infra./GPUs', 'AI Hardware/GPUs': 'AI Infra./GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents', 'AI Solutions Architecture': 'AI Sol. Architecture' };
 const rn = t => TOPIC_RENAMED[t] ?? t;
