@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=320';
-import { ADMIN_HASH } from './admin-hash.js?v=320';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=321';
+import { ADMIN_HASH } from './admin-hash.js?v=321';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -54,7 +54,7 @@ document.querySelectorAll('nav button[data-tab]').forEach(b => {
   b.addEventListener('mouseenter', () => hl(true)); b.addEventListener('mouseleave', () => hl(false));
   b.addEventListener('focus', () => hl(true)); b.addEventListener('blur', () => hl(false));
 });
-$('#home').onclick = e => { const b = e.target.closest('[data-goto]'); if (b) showTab(b.dataset.goto); };
+$('#home').onclick = e => { const b = e.target.closest('[data-goto]'); if (!b) return; showTab(b.dataset.goto); if (b.dataset.openPlan !== undefined && user) { const f = $('#certs .plan-fold'); if (f) { f.open = true; f.scrollIntoView({ block: 'start' }); } } };
 // and the reverse: hovering (or tabbing to) a home card highlights its icon in the top bar
 document.querySelectorAll('.home-card').forEach(c => {
   const hl = on => document.querySelector(`nav button[data-tab="${c.dataset.goto}"]`)?.classList.toggle('hl', on);
@@ -125,6 +125,7 @@ function render() {
   document.querySelectorAll('.source-select').forEach(s => fillSelect(s, opt('', '— none —') + db.sources.map(x => opt(x.id, x.title)).join('')));
   fillSelect($('#q-filter-topic'), opt('', 'All topics') + topicOpts);
   fillSelect($('#lib-filter-topic'), opt('', 'All topics') + topicOpts);
+  renderPlan();
   stale = new Set(Object.keys(DRAW));
   drawTab(document.querySelector('.tab:not([hidden])')?.id);
 }
@@ -297,6 +298,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.cl
 async function loadCerts() {
   let c;
   try { c = await (await fetch('certs.json?v=4')).json(); } catch { $('#certs-list').innerHTML = '<p class="muted">Could not load certifications.</p>'; return; }
+  CERTS = c.certs; renderPlan();
   $('#certs-checked').textContent = `Last checked: ${c.checked}.`;
   $('#certs-register').innerHTML = c.howToRegister.map(s => `<li>${esc(s)}</li>`).join('');
   $('#certs-buy').innerHTML = c.whatToBuy.map(s => `<li>${esc(s)}</li>`).join('');
@@ -315,12 +317,87 @@ async function loadCerts() {
       ${x.note ? `<p class="muted"><em>${esc(x.note)}</em></p>` : ''}
       <h4>Vendor courses and free material</h4><ul class="advice">${x.prep.map(p => `<li><a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.title)}</a></li>`).join('')}</ul>
       ${x.samples?.length ? `<h4>Sample questions</h4><p class="muted">Written in the style of the exam to help you practise; not official exam questions.</p><ol class="cert-samples">${x.samples.map(q => `<li><p>${esc(q.q)}</p><ul>${shuffle([...q.options]).map(o => `<li>${esc(o)}</li>`).join('')}</ul><details class="iv-answers"><summary>Show answer</summary><p>${esc(q.answer)}</p></details></li>`).join('')}</ol>` : ''}
-      <p><a class="button primary" href="${esc(x.url)}" target="_blank" rel="noopener">Official page: details and registration</a></p></details>`).join('')}</div></details>`).join('') || '<p class="muted">No exams match these filters.</p>';
+      <p class="row"><a class="button primary" href="${esc(x.url)}" target="_blank" rel="noopener">Official page: details and registration</a> <button type="button" data-plan-add-cert="${esc(certKey(x))}">Add to my plan</button></p></details>`).join('')}</div></details>`).join('') || '<p class="muted">No exams match these filters.</p>';
   };
   $('#cert-vendor').onchange = $('#cert-level').onchange = show;
   show();
 }
 loadCerts();
+
+// ---------- my learning and certification plan (saved per student; shown on Certifications, Knowledge library and home) ----------
+let CERTS = [];
+const certKey = x => x.code || x.name;
+const certTitle = x => `${x.vendor}: ${x.name}`;
+const isoDay = (d = new Date()) => new Date(d - d.getTimezoneOffset() * 6e4).toISOString().slice(0, 10); // local date, not UTC
+const addDays = n => isoDay(new Date(Date.now() + n * 864e5));
+const daysTo = d => Math.round((Date.parse(d) - Date.parse(isoDay())) / 864e5);
+const planCourses = () => [...db.sources.filter(s => s.type === 'Course').map(s => ['src:' + s.id, s.title]), ...db.courses.map(c => ['gen:' + c.id, c.title + ' (my course)'])];
+function planHtml(open) {
+  const plan = db.plan.slice().sort((x, y) => x.end.localeCompare(y.end) || x.start.localeCompare(y.start));
+  const status = p => {
+    if (p.done) return '<span class="good">Done</span>';
+    const d = daysTo(p.end);
+    return d < 0 ? `<span class="bad">${-d} day${d === -1 ? '' : 's'} overdue</span>` : d === 0 ? '<span class="bad">Due today</span>' : `<span class="muted">${d} day${d === 1 ? '' : 's'} left</span>`;
+  };
+  const certOpts = CERTS.map(x => opt('cert:' + certKey(x), certTitle(x))).join('');
+  const courseOpts = planCourses().map(([v, t]) => opt(v, t)).join('');
+  const items = plan.map(p => `<li class="plan-item${p.done ? ' done' : p.end < isoDay() ? ' late' : ''}">
+      <label class="plan-title"><input type="checkbox" data-plan-done="${esc(p.id)}" ${p.done ? 'checked' : ''} aria-label="Done"> <span class="tag">${p.kind === 'cert' ? 'Certification' : 'Course'}</span> <strong>${esc(p.title)}</strong></label>
+      <span class="plan-dates"><label>Start <input type="date" data-plan-set="start" data-id="${esc(p.id)}" value="${esc(p.start)}"></label><label>Target <input type="date" data-plan-set="end" data-id="${esc(p.id)}" value="${esc(p.end)}"></label>${status(p)}<button type="button" class="del" data-plan-del="${esc(p.id)}" aria-label="Remove ${esc(p.title)}">✕</button></span></li>`).join('');
+  return `<details class="card fold plan-fold"${open ? ' open' : ''}><summary><h2>Create my learning and certification path <span class="tag">${plan.length} item${plan.length === 1 ? '' : 's'} · saved to your PIN</span></h2></summary>
+    <p class="muted">Pick certifications and courses, give each a start and target date, and tick them off when done. The same plan shows on the Certifications and Knowledge library pages.</p>
+    <div class="row plan-add">
+      <label class="plan-pick-l">Certification or course <select class="plan-pick"><option value="">Choose…</option><optgroup label="Certifications">${certOpts}</optgroup><optgroup label="Courses">${courseOpts}</optgroup></select></label>
+      <label>Start <input type="date" class="plan-start" value="${isoDay()}"></label>
+      <label>Target date <input type="date" class="plan-end" value="${addDays(60)}"></label>
+      <button type="button" class="primary" data-plan-add>Add to plan</button>
+    </div>
+    ${plan.length ? `<ol class="plan-line">${items}</ol>` : '<p class="muted">Nothing in your plan yet.</p>'}</details>`;
+}
+function renderPlan() {
+  if (!db) return;
+  db.plan ??= [];
+  document.querySelectorAll('.plan-panel').forEach(p => { p.innerHTML = planHtml(p.querySelector('.plan-fold')?.open); }); // keep a box open while editing
+  const left = db.plan.filter(p => !p.done).sort((x, y) => x.end.localeCompare(y.end)), done = db.plan.length - left.length;
+  $('#plan-home-sum').textContent = !user ? 'Sign in, then pick certifications and courses and set dates for each.'
+    : !db.plan.length ? 'Pick certifications and courses and set a timeline for each.'
+    : `${db.plan.length} item${db.plan.length === 1 ? '' : 's'}, ${done} done.` + (left.length ? ` Next: ${left[0].title}, target ${left[0].end}.` : ' All done!');
+}
+function planAdd(kind, ref, title, start, end) {
+  if (db.plan.some(p => p.ref === ref)) { alert(`"${title}" is already in your plan.`); return false; }
+  if (!start || !end) { alert('Please choose a start date and a target date.'); return false; }
+  if (end < start) { alert('The target date must be on or after the start date.'); return false; }
+  db.plan.push({ id: uid(), kind, ref, title, start, end, done: false });
+  save();
+  return true;
+}
+document.addEventListener('click', e => {
+  const add = e.target.closest('[data-plan-add]'), del = e.target.closest('[data-plan-del]'), cert = e.target.closest('[data-plan-add-cert]');
+  if (add) {
+    const box = add.closest('.plan-add'), v = box.querySelector('.plan-pick').value;
+    if (!v) return alert('Choose a certification or course first.');
+    const kind = v.startsWith('cert:') ? 'cert' : 'course';
+    const c = kind === 'cert' && CERTS.find(x => 'cert:' + certKey(x) === v);
+    const title = c ? certTitle(c) : planCourses().find(([k]) => k === v)?.[1];
+    if (title) planAdd(kind, v, title, box.querySelector('.plan-start').value, box.querySelector('.plan-end').value);
+  }
+  if (del) { db.plan = db.plan.filter(p => p.id !== del.dataset.planDel); save(); }
+  if (cert) {
+    const x = CERTS.find(c => certKey(c) === cert.dataset.planAddCert);
+    if (x && planAdd('cert', 'cert:' + certKey(x), certTitle(x), isoDay(), addDays(60))) { cert.textContent = 'Added to my plan ✓ (set dates in the plan above)'; cert.disabled = true; }
+  }
+});
+document.addEventListener('change', e => {
+  const t = e.target, p = db?.plan?.find(x => x.id === (t.dataset.planDone ?? t.dataset.id));
+  if (!p) return;
+  if (t.dataset.planDone !== undefined) p.done = t.checked;
+  else if (t.dataset.planSet) {
+    const f = t.dataset.planSet, v = t.value, start = f === 'start' ? v : p.start, end = f === 'end' ? v : p.end;
+    if (!v || end < start) { alert(!v ? 'Please choose a date.' : 'The target date must be on or after the start date.'); t.value = p[f]; return; }
+    p[f] = v;
+  } else return;
+  save();
+});
 
 // ---------- AI tools dictionary (tools.json) ----------
 // tool groups by theme for the 4-column view (unknown categories go to the last column)
@@ -1320,7 +1397,7 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=320')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=321')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Infra./GPUs', 'AI Hardware/GPUs': 'AI Infra./GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents', 'AI Solutions Architecture': 'AI Sol. Architecture' };
 const rn = t => TOPIC_RENAMED[t] ?? t;

@@ -400,3 +400,19 @@ header .topbar { display: flex; align-items: center; gap: 8px; }
 #certs .cert-group .cert:last-child { margin-bottom: 0; }
 #certs .cert-more { padding: 1px 8px; }
 #certs .grid { align-items: start; } /* opening one info box does not stretch the other */
+/* collapsible boxes and bars: a little less tall */
+details.card.fold { padding-top: 7px; padding-bottom: 7px; margin-bottom: 8px; }
+details.card.fold[open] { padding-bottom: 10px; }
+/* my learning and certification plan */
+.plan-add { align-items: end; }
+.plan-add .plan-pick-l { flex: 3 1 280px; }
+.plan-line { list-style: none; margin: 10px 0 0; padding: 0 0 0 18px; border-left: 2px solid var(--border-strong); }
+.plan-item { position: relative; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 4px 12px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+.plan-item::before { content: ''; position: absolute; left: -25px; top: 13px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+.plan-item.done::before { background: var(--good); }
+.plan-item.late::before { background: var(--bad); }
+.plan-item.done strong { text-decoration: line-through; color: var(--muted); }
+.plan-title { display: flex; align-items: center; gap: 6px; margin: 0; flex: 1 1 260px; }
+.plan-dates { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; font-size: .88rem; }
+.plan-dates label { display: flex; align-items: center; gap: 4px; margin: 0; }
+.plan-dates input[type=date] { width: auto; padding: 2px 6px; }
