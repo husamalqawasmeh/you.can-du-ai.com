@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=322';
-import { ADMIN_HASH } from './admin-hash.js?v=322';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=323';
+import { ADMIN_HASH } from './admin-hash.js?v=323';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -331,9 +331,24 @@ const certTitle = x => `${x.vendor}: ${x.name}`;
 const isoDay = (d = new Date()) => new Date(d - d.getTimezoneOffset() * 6e4).toISOString().slice(0, 10); // local date, not UTC
 const addDays = n => isoDay(new Date(Date.now() + n * 864e5));
 const daysTo = d => Math.round((Date.parse(d) - Date.parse(isoDay())) / 864e5);
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+// date as two pulldowns: month name + year, and day; read back with dpVal
+function dp(value, attrs) {
+  const [vy, vm, vd] = value.split('-').map(Number), now = new Date();
+  const from = Math.min((now.getFullYear() - 1) * 12 + now.getMonth(), vy * 12 + vm - 1), to = Math.max(from + 48, vy * 12 + vm - 1);
+  let months = '';
+  for (let i = from; i <= to; i++) { const v = `${Math.floor(i / 12)}-${String(i % 12 + 1).padStart(2, '0')}`; months += `<option value="${v}"${v === value.slice(0, 7) ? ' selected' : ''}>${MONTHS[i % 12]} ${Math.floor(i / 12)}</option>`; }
+  let days = '';
+  for (let d = 1; d <= 31; d++) days += `<option${d === vd ? ' selected' : ''}>${d}</option>`;
+  return `<span class="dp" ${attrs}><select class="dp-m" aria-label="Month">${months}</select><select class="dp-d" aria-label="Day">${days}</select></span>`;
+}
+const dpVal = el => { const [y, m] = el.querySelector('.dp-m').value.split('-').map(Number); const d = Math.min(+el.querySelector('.dp-d').value, new Date(y, m, 0).getDate()); return `${y}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`; };
+// a course gets one month: the 1st to the last day of the month after the latest item in the plan
+const nextCourseSlot = () => { const [y, m] = (db.plan.map(p => p.end).sort().pop() ?? isoDay()).split('-').map(Number); return [isoDay(new Date(y, m, 1)), isoDay(new Date(y, m + 1, 0))]; };
+const planSorted = () => db.plan.slice().sort((x, y) => x.end.localeCompare(y.end) || x.start.localeCompare(y.start));
 const planCourses = () => [...db.sources.filter(s => s.type === 'Course').map(s => ['src:' + s.id, s.title]), ...db.courses.map(c => ['gen:' + c.id, c.title + ' (my course)'])];
 function planHtml(open) {
-  const plan = db.plan.slice().sort((x, y) => x.end.localeCompare(y.end) || x.start.localeCompare(y.start));
+  const plan = planSorted();
   const status = p => {
     if (p.done) return '<span class="good">Done</span>';
     const d = daysTo(p.end);
@@ -341,15 +356,15 @@ function planHtml(open) {
   };
   const certOpts = CERTS.map(x => opt('cert:' + certKey(x), certTitle(x))).join('');
   const courseOpts = planCourses().map(([v, t]) => opt(v, t)).join('');
-  const items = plan.map(p => `<li class="plan-item${p.done ? ' done' : p.end < isoDay() ? ' late' : ''}">
+  const items = plan.map((p, i) => `<li class="plan-item${p.done ? ' done' : p.end < isoDay() ? ' late' : ''}">
       <label class="plan-title"><input type="checkbox" data-plan-done="${esc(p.id)}" ${p.done ? 'checked' : ''} aria-label="Done"> <span class="tag">${p.kind === 'cert' ? 'Certification' : 'Course'}</span> <strong>${esc(p.title)}</strong></label>
-      <span class="plan-dates"><label>Start <input type="date" data-plan-set="start" data-id="${esc(p.id)}" value="${esc(p.start)}"></label><label>Target <input type="date" data-plan-set="end" data-id="${esc(p.id)}" value="${esc(p.end)}"></label>${status(p)}<button type="button" class="del" data-plan-del="${esc(p.id)}" aria-label="Remove ${esc(p.title)}">✕</button></span></li>`).join('');
+      <span class="plan-dates"><label>Start ${dp(p.start, `data-plan-set="start" data-id="${esc(p.id)}"`)}</label><label>Target ${dp(p.end, `data-plan-set="end" data-id="${esc(p.id)}"`)}</label>${status(p)}<button type="button" class="plan-mv" data-plan-move="-1" data-id="${esc(p.id)}" aria-label="Move ${esc(p.title)} up"${i ? '' : ' disabled'}>▲</button><button type="button" class="plan-mv" data-plan-move="1" data-id="${esc(p.id)}" aria-label="Move ${esc(p.title)} down"${i < plan.length - 1 ? '' : ' disabled'}>▼</button><button type="button" class="del" data-plan-del="${esc(p.id)}" aria-label="Remove ${esc(p.title)}">✕</button></span></li>`).join('');
   return `<details class="card fold plan-fold"${open ? ' open' : ''}><summary><h2>Create my learning and certification path <span class="tag">${plan.length} item${plan.length === 1 ? '' : 's'} · saved to your PIN</span></h2></summary>
     <p class="muted">Pick certifications and courses, give each a start and target date, and tick them off when done. The same plan shows on the Certifications and Knowledge library pages.</p>
     <div class="row plan-add">
       <label class="plan-pick-l">Certification or course <select class="plan-pick"><option value="">Choose…</option><optgroup label="Certifications">${certOpts}</optgroup><optgroup label="Courses">${courseOpts}</optgroup></select></label>
-      <label>Start <input type="date" class="plan-start" value="${isoDay()}"></label>
-      <label>Target date <input type="date" class="plan-end" value="${addDays(60)}"></label>
+      <label>Start ${dp(isoDay(), 'data-plan-new="start"')}</label>
+      <label>Target date ${dp(addDays(60), 'data-plan-new="end"')}</label>
       <button type="button" class="primary" data-plan-add>Add to plan</button>
     </div>
     ${plan.length ? `<ol class="plan-line">${items}</ol>` : '<p class="muted">Nothing in your plan yet.</p>'}</details>`;
@@ -379,7 +394,12 @@ document.addEventListener('click', e => {
     const kind = v.startsWith('cert:') ? 'cert' : 'course';
     const c = kind === 'cert' && CERTS.find(x => 'cert:' + certKey(x) === v);
     const title = c ? certTitle(c) : planCourses().find(([k]) => k === v)?.[1];
-    if (title) planAdd(kind, v, title, box.querySelector('.plan-start').value, box.querySelector('.plan-end').value);
+    if (title) planAdd(kind, v, title, dpVal(box.querySelector('[data-plan-new=start]')), dpVal(box.querySelector('[data-plan-new=end]')));
+  }
+  const mv = e.target.closest('[data-plan-move]');
+  if (mv) { // moving swaps dates with the neighbour, so the timeline stays in date order
+    const list = planSorted(), i = list.findIndex(p => p.id === mv.dataset.id), o = list[i + +mv.dataset.planMove];
+    if (o) { const p = list[i]; [p.start, p.end, o.start, o.end] = [o.start, o.end, p.start, p.end]; save(); }
   }
   if (del) { db.plan = db.plan.filter(p => p.id !== del.dataset.planDel); save(); }
   if (cert) {
@@ -388,14 +408,20 @@ document.addEventListener('click', e => {
   }
 });
 document.addEventListener('change', e => {
-  const t = e.target, p = db?.plan?.find(x => x.id === (t.dataset.planDone ?? t.dataset.id));
+  if (e.target.matches('.plan-pick')) { // propose dates: a course gets the month after the last item; a certification today + 60 days
+    const box = e.target.closest('.plan-add'), [s, en] = e.target.value.startsWith('cert:') || !e.target.value ? [isoDay(), addDays(60)] : nextCourseSlot();
+    box.querySelector('[data-plan-new=start]').outerHTML = dp(s, 'data-plan-new="start"');
+    box.querySelector('[data-plan-new=end]').outerHTML = dp(en, 'data-plan-new="end"');
+    return;
+  }
+  const t = e.target.closest('[data-plan-done],[data-plan-set]'), p = t && db?.plan?.find(x => x.id === (t.dataset.planDone ?? t.dataset.id));
   if (!p) return;
   if (t.dataset.planDone !== undefined) p.done = t.checked;
-  else if (t.dataset.planSet) {
-    const f = t.dataset.planSet, v = t.value, start = f === 'start' ? v : p.start, end = f === 'end' ? v : p.end;
-    if (!v || end < start) { alert(!v ? 'Please choose a date.' : 'The target date must be on or after the start date.'); t.value = p[f]; return; }
+  else {
+    const f = t.dataset.planSet, v = dpVal(t), start = f === 'start' ? v : p.start, end = f === 'end' ? v : p.end;
+    if (end < start) { alert('The target date must be on or after the start date.'); renderPlan(); return; }
     p[f] = v;
-  } else return;
+  }
   save();
 });
 
@@ -1397,7 +1423,7 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=322')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=323')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Infra./GPUs', 'AI Hardware/GPUs': 'AI Infra./GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents', 'AI Solutions Architecture': 'AI Sol. Architecture' };
 const rn = t => TOPIC_RENAMED[t] ?? t;

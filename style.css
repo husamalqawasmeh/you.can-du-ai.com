@@ -415,4 +415,7 @@ details.card.fold[open] { padding-bottom: 10px; }
 .plan-title { display: flex; align-items: center; gap: 6px; margin: 0; flex: 1 1 260px; }
 .plan-dates { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; font-size: .88rem; }
 .plan-dates label { display: flex; align-items: center; gap: 4px; margin: 0; }
-.plan-dates input[type=date] { width: auto; padding: 2px 6px; }
+.dp { display: inline-flex; gap: 3px; }
+.dp select { width: auto; padding: 2px 4px; }
+.plan-mv { padding: 1px 7px; font-size: .75rem; }
+.plan-mv:disabled { opacity: .35; }
