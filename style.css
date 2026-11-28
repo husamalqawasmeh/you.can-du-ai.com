@@ -439,3 +439,6 @@ details.card.fold[open] { padding-bottom: 10px; }
 #certs .cert-group .cert-vendor { padding-left: 28px; }
 #plan-home-sum { white-space: pre-line; } /* "Next" on its own line */
 .cert-group[open] .cert-levels .lv-gap { display: none; } /* empty level slots only matter in the closed, column view */
+.home-sub { margin-top: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); } /* subscription row: its own line under the main cards */
+.home-benefits { cursor: default; border-top-color: var(--good); }
+.home-benefits:hover { transform: none; }
