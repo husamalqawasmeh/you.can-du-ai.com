@@ -400,6 +400,13 @@ header .topbar { display: flex; align-items: center; gap: 8px; }
 #certs .cert-group .cert:last-child { margin-bottom: 0; }
 #certs .cert-more { padding: 1px 8px; }
 #certs .grid { align-items: start; } /* opening one info box does not stretch the other */
+/* tighter certs page: header boxes, vendor bars and exam rows */
+#certs details.card.fold { padding-block: 3px; margin-bottom: 5px; }
+#certs details.card.fold > summary h2 { font-size: 1rem; margin: 0; }
+#certs .cert-vendor { padding: 2px 10px; font-size: .95rem; }
+#certs .cert-group { margin-bottom: 4px; }
+#certs .cert-group .cert { padding-block: 3px; margin-bottom: 4px; }
+#certs .cert > summary strong { font-size: .92rem; }
 /* collapsible boxes and bars: a little less tall */
 details.card.fold { padding-top: 7px; padding-bottom: 7px; margin-bottom: 8px; }
 details.card.fold[open] { padding-bottom: 10px; }
