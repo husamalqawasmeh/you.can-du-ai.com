@@ -432,3 +432,8 @@ details.card.fold[open] { padding-bottom: 10px; }
 .cert-group:not([open]) .cert-levels span { display: inline-block; width: 9.5em; margin: 0; }
 .cert-levels .lv { display: inline-block; width: 6.9em; font-style: normal; }
 #certs .plan-panel { margin-bottom: 14px; } /* gap between the plan box and the vendor list */
+/* vendor bars: the open/close arrow sits inside the bar */
+.cert-group > summary { position: relative; }
+.cert-group > summary::before { position: absolute; left: 10px; top: 50%; margin-top: -.5em; z-index: 1; }
+.cert-group[open] > summary::before { top: 14px; margin-top: 0; }
+#certs .cert-group .cert-vendor { padding-left: 28px; }
