@@ -995,6 +995,15 @@
       ]
     },
     {
+      "q": "When would you choose a TPU, NPU or LPU instead of a GPU or CPU for an AI workload?",
+      "followup": "What trade-offs (cost, flexibility, latency, software ecosystem) drive that choice?",
+      "answer": "Start from the workload. A CPU handles general logic, data preparation and very small models. A GPU is the default for most training and inference because it is flexible and has the widest software support (CUDA, PyTorch, vLLM).\n\nChoose a TPU for large-scale training or serving when you are on Google Cloud and can use JAX or PyTorch/XLA: it can be cheaper per unit of work at scale, but it ties you to one cloud. Choose an NPU when the model must run on a phone or laptop: low power, works offline and keeps data on the device, but only small models fit. Choose an LPU (Groq) when very fast, predictable LLM responses matter most, such as voice agents: excellent tokens per second, but inference only and fewer model choices.\n\nTrade-offs to weigh: cost per token or per training run, latency, model size and memory, software and team skills, vendor lock-in and availability.",
+      "topics": [
+        "AI H/W & Semiconductors",
+        "AI Sizing"
+      ]
+    },
+    {
       "q": "How would you evaluate an AI agent, and how do you make sure an LLM-as-a-judge can be trusted?",
       "followup": "Your eval score went from 80% to 84% after a prompt change. Would you ship it? What would you check first?",
       "answer": "Evaluate the outcome and the path. Outcome: task success measured by checking the final state (tests pass, record updated). Trajectory: right tools, correct arguments, number of steps, loops, recovery from errors. Also cost, latency and safety (forbidden actions, data leaks, prompt injection). Agents are non-deterministic, so run each task several times and report pass rates, including reliability across runs. Build a task suite from real user requests and add every production failure.\n\nFor an LLM judge: give a clear rubric, prefer binary or pairwise verdicts, ask for reasoning before the verdict, one criterion per call, and swap answer order to cancel position bias. Calibrate it on a hand-labelled sample and measure agreement (accuracy, Cohen's kappa) before trusting it, and re-check when the judge model changes. For 80% to 84%: check the sample size and confidence interval, compare paired results case by case, look at what broke as well as what improved, and check cost and latency before shipping.",

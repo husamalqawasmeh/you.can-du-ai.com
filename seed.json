@@ -3033,6 +3033,13 @@
       "sourceId": "src-200",
       "title": "AI solutions architecture: designing AI systems that work in production",
       "body": "An AI solutions architect designs how models, data, applications, security and operations fit together to solve a business problem. Start from the problem and success metrics (accuracy, cost per request, response time, risk), not from picking a model. Key decisions: (1) How the model gets knowledge: prompting alone, retrieval-augmented generation (RAG: index documents in a search or vector store and retrieve relevant passages per question, best for large or fast-changing content), or fine-tuning (for style, format or narrow skills). (2) Which model and where it runs: a hosted API (fastest to start), a cloud model service such as Bedrock, Azure AI Foundry or Vertex AI (enterprise controls, regional hosting), or self-hosted open-weights models (full control and data residency, but you run the GPUs). (3) An AI gateway between apps and models gives one place for authentication, routing, rate limits, cost tracking, logging, guardrails and fallback when a provider fails. (4) Cost and latency: route easy requests to small, cheap models and escalate hard ones (model routing or cascading), cache repeated prompts and answers, stream responses and set token limits. (5) Security and compliance: keep secrets on the server, least privilege for tools and agents, filter inputs and outputs, protect personal data and meet data-residency rules. (6) Operations (LLMOps): evaluations before every change, monitoring of quality, cost and drift, tracing, versioned prompts, and human review for high-risk outputs. Frameworks such as the AWS Well-Architected Generative AI Lens organize these choices into pillars: operational excellence, security, reliability, performance, cost and sustainability."
+    },
+    {
+      "id": "note-128",
+      "topic": "AI Infra./GPUs",
+      "title": "CPU vs GPU vs TPU vs NPU vs LPU: which chip does what",
+      "sourceId": "src-16",
+      "body": "CPU (Central Processing Unit): a few powerful, general-purpose cores that are good at branching logic and running many different tasks. In AI it runs the operating system, data loading and preparation, orchestration and APIs, and it can run small models (for example with llama.cpp), but it is slow for large matrix math. GPU (Graphics Processing Unit): thousands of simpler cores doing the same math in parallel, plus fast HBM memory. It is the workhorse for both training and inference. NVIDIA leads (H100, H200, Blackwell) thanks to its CUDA software ecosystem; AMD Instinct with ROCm is the main alternative. Flexible: it runs almost any model or framework. TPU (Tensor Processing Unit): Google's custom accelerator (an ASIC) built around large matrix-multiply units (systolic arrays). Google uses TPUs to train and serve Gemini, and rents them on Google Cloud. Recent generations include Trillium (v6e) and Ironwood (v7), linked in \"pods\" of thousands of chips. Very efficient for large-scale training and inference, but available only through Google Cloud and best used with JAX or PyTorch/XLA. NPU (Neural Processing Unit): a small, low-power AI block inside phones and laptops, such as the Apple Neural Engine, Qualcomm Hexagon, Intel Core Ultra NPU and AMD Ryzen AI. It runs on-device inference (camera effects, speech, live captions, small language models) to save battery and keep data private. Microsoft Copilot+ PCs require an NPU with 40+ TOPS. Not used for training large models. LPU (Language Processing Unit): Groq's inference chip designed for very fast LLM token generation. It keeps model weights in on-chip SRAM instead of external HBM and uses a compiler that schedules every step in advance (deterministic execution), giving low and predictable latency. Trade-off: SRAM per chip is small, so large models must be spread across many chips; it is for inference, not training. Other accelerators: AWS Trainium (training) and Inferentia (inference), Cerebras wafer-scale engines, and Microsoft Maia and Meta MTIA in-house chips. Rule of thumb: CPU for general logic and light work, GPU for flexible training and inference, TPU for large-scale work on Google Cloud, NPU for AI on the device, LPU for ultra-fast LLM inference. Units: TOPS (trillions of operations per second) is used for NPUs; FLOPS and memory bandwidth for data-centre chips."
     }
   ],
   "questions": [
@@ -14128,6 +14135,38 @@
       ],
       "answer": "Deterministic → Same input always gives the same output; Stochastic → Uses randomness, so the same input can give different outputs; Heuristic → A rule of thumb that finds a good-enough answer quickly, with no guarantee it is the best; Rule-based → Follows explicit if-then rules written by people; Greedy → Picks the best-looking option at each step without looking ahead; Optimal (exact) → Guaranteed to find the best possible answer, but can be slow",
       "explanation": "LLMs are stochastic when they sample tokens (higher temperature means more randomness); temperature 0 makes them close to deterministic, though not always exactly. Heuristics and greedy methods trade a guaranteed best answer for speed; exact optimal methods guarantee the best answer at higher cost.",
+      "sourceId": ""
+    },
+    {
+      "id": "q3-512",
+      "topic": "AI Infra./GPUs",
+      "type": "match",
+      "difficulty": "medium",
+      "prompt": "Connect each type of processor to what it is best known for.",
+      "pairs": [
+        [
+          "CPU",
+          "General-purpose cores for logic, the operating system and data preparation"
+        ],
+        [
+          "GPU",
+          "Thousands of parallel cores: the flexible workhorse for training and inference"
+        ],
+        [
+          "TPU",
+          "Google's custom matrix-math chip for training and serving models on Google Cloud"
+        ],
+        [
+          "NPU",
+          "Low-power AI block in phones and laptops for on-device inference"
+        ],
+        [
+          "LPU",
+          "Groq's inference chip that uses on-chip SRAM for very fast LLM token generation"
+        ]
+      ],
+      "answer": "CPU → General-purpose cores for logic, the operating system and data preparation; GPU → Thousands of parallel cores: the flexible workhorse for training and inference; TPU → Google's custom matrix-math chip for training and serving models on Google Cloud; NPU → Low-power AI block in phones and laptops for on-device inference; LPU → Groq's inference chip that uses on-chip SRAM for very fast LLM token generation",
+      "explanation": "CPUs handle general logic; GPUs are flexible parallel engines; TPUs are Google's matrix-math ASICs; NPUs run small models on devices to save power; LPUs (Groq) trade large external memory for on-chip SRAM to generate tokens very fast.",
       "sourceId": ""
     }
   ]
