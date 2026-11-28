@@ -1,13 +1,13 @@
 :root {
   --bg: #f6f7fb; --card: #fff; --text: #1b1e28; --muted: #626a7d; --border: #dde1ea;
   --accent: #1a73e8; --accent-text: #fff; --good: #15803d; --bad: #c15f3c;
-  --raised: #eef0f8; --border-strong: #b9bfd0;
+  --raised: #eef0f8; --border-strong: #b9bfd0; --special: #7c3aed;
 }
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #11131a; --card: #1b1e28; --text: #e8eaf0; --muted: #9aa1b3; --border: #2e3342;
     --accent: #4285f4; --accent-text: #fff; --good: #4ade80; --bad: #d97757;
-    --raised: #262b3b; --border-strong: #464d66;
+    --raised: #262b3b; --border-strong: #464d66; --special: #a78bfa;
   }
 }
 * { box-sizing: border-box; }
@@ -452,3 +452,7 @@ details.card.fold[open] { padding-bottom: 10px; }
 .ans-pairs > .ans-r.bad { border-color: var(--bad); border-style: dashed; }
 .ans-arrow { color: var(--accent); font-weight: 700; }
 @media (max-width: 560px) { .ans-pairs { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); } }
+/* "Take a test" stands out in its own colour */
+.home-card[data-goto="test"] { border-color: var(--special); border-top-color: var(--special); background: color-mix(in srgb, var(--special) 14%, var(--raised)); }
+.home-card[data-goto="test"] strong { color: var(--special); }
+.home-card[data-goto="test"]:hover, .home-card[data-goto="test"].hl { border-color: var(--special); box-shadow: 0 0 0 2px var(--special); }
