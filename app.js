@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=340';
-import { ADMIN_HASH } from './admin-hash.js?v=340';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=341';
+import { ADMIN_HASH } from './admin-hash.js?v=341';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -216,17 +216,18 @@ function renderSuggestions() {
   const practice = (t, label = 'Practice this topic', diff = '') => `<button type="button" class="primary" data-practice="${esc(t)}" data-diff="${diff}">${label}</button>`;
   const weak = stats.filter(s => s.pct < 70), strong = stats.filter(s => s.pct >= 70);
   let html = '';
+  const was = k => $(`#suggest-body [data-fold=${k}]`)?.open ? ' open' : ''; // collapsed by default; stay open across re-renders
   const items = db.results.flatMap(r => r.items ?? []);
   const prof = proficiency(items);
-  if (prof) html += `<div class="card"><h2>Your estimated proficiency: <span class="lvl lvl-${prof.level.toLowerCase()}">${prof.level}</span></h2>
+  if (prof) html += `<details class="card fold" data-fold="prof"${was('prof')}><summary><h2>Your estimated proficiency: <span class="lvl lvl-${prof.level.toLowerCase()}">${prof.level}</span></h2></summary>
     <p class="muted">${prof.pct}% score weighted by difficulty, from ${prof.answered} answered questions (confidence: ${prof.confidence}). Levels: Beginner &lt;40%, Intermediate &lt;65%, Advanced &lt;85%, Expert 85%+ with strong results on hard questions.</p>
     <table class="prof"><thead><tr><th>Topic</th><th>Level</th><th>Weighted score</th><th>Answered</th></tr></thead><tbody>${topicProficiency(items).map(t =>
-      `<tr><td>${esc(t.topic)}</td><td><span class="lvl lvl-${t.level.toLowerCase()}">${t.level}</span></td><td>${t.pct}%</td><td>${t.answered}</td></tr>`).join('')}</tbody></table></div>`;
+      `<tr><td>${esc(t.topic)}</td><td><span class="lvl lvl-${t.level.toLowerCase()}">${t.level}</span></td><td>${t.pct}%</td><td>${t.answered}</td></tr>`).join('')}</tbody></table></details>`;
   if (!stats.length) html += `<div class="card"><h2>Start here</h2><p>Take a test and your personal study plan will appear here, based on your results.</p><button type="button" class="primary" data-goto="test">Take a test</button></div>`;
-  if (weak.length) html += `<div class="card"><h2>Focus on these topics</h2>` + weak.map(s =>
-    `<div class="sugg"><h3>${esc(s.topic)} <span class="bad">${s.pct}%</span> <span class="tag">${s.correct}/${s.total} correct so far</span></h3>${topicAdvice(s.topic)}${practice(s.topic)}</div>`).join('') + '</div>';
-  if (strong.length) html += `<div class="card"><h2>Doing well — level up</h2>` + strong.map(s =>
-    `<div class="sugg"><h3>${esc(s.topic)} <span class="good">${s.pct}%</span> <span class="tag">${s.correct}/${s.total}</span></h3>${practice(s.topic, 'Try hard questions', 'hard')}</div>`).join('') + '</div>';
+  if (weak.length) html += `<details class="card fold" data-fold="weak"${was('weak')}><summary><h2>Focus on these topics</h2></summary>` + weak.map(s =>
+    `<div class="sugg"><h3>${esc(s.topic)} <span class="bad">${s.pct}%</span> <span class="tag">${s.correct}/${s.total} correct so far</span></h3>${topicAdvice(s.topic)}${practice(s.topic)}</div>`).join('') + '</details>';
+  if (strong.length) html += `<details class="card fold" data-fold="strong"${was('strong')}><summary><h2>Doing well — level up</h2></summary>` + strong.map(s =>
+    `<div class="sugg"><h3>${esc(s.topic)} <span class="good">${s.pct}%</span> <span class="tag">${s.correct}/${s.total}</span></h3>${practice(s.topic, 'Try hard questions', 'hard')}</div>`).join('') + '</details>';
   if (untested.length) html += `<div class="card"><h2>Not tried yet</h2><div class="row">` + untested.map(t => practice(t, `Try ${t}`)).join('') + '</div></div>';
   $('#suggest-body').innerHTML = html;
 }
@@ -1429,7 +1430,7 @@ syncUser();
 db = load();
 planHomeSum();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=340')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=341')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Infra./GPUs', 'AI Hardware/GPUs': 'AI Infra./GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents', 'AI Solutions Architecture': 'AI Sol. Architecture' };
 const rn = t => TOPIC_RENAMED[t] ?? t;
