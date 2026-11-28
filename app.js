@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=346';
-import { ADMIN_HASH } from './admin-hash.js?v=346';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=347';
+import { ADMIN_HASH } from './admin-hash.js?v=347';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -29,7 +29,7 @@ function showTab(name) {
     $('#signin-msg').textContent = 'Please enter your PIN to use this part of the site.';
     $('#signin-form').pin.focus();
   }
-  document.querySelectorAll('nav button').forEach(x => x.classList.toggle('active', x.dataset.tab === name));
+  document.querySelectorAll('nav button').forEach(x => x.classList.toggle('active', x.dataset.tab === name && x.dataset.navPlan === undefined));
   document.querySelectorAll('.tab').forEach(t => t.hidden = t.id !== name);
   if (db) drawTab(name);
   if (name === 'test') alignChecks();
@@ -48,16 +48,17 @@ function alignChecks() {
   $('#test-config').style.setProperty('--check-cols', w.reduce((s, x) => s + x, 0) > room ? 'repeat(5, minmax(0, 1fr))' : w.map(x => x + 'px').join(' '));
 }
 document.querySelectorAll('nav button[data-tab]').forEach(b => {
-  b.onclick = () => showTab(b.dataset.tab);
+  b.onclick = () => { showTab(b.dataset.tab); if (b.dataset.navPlan !== undefined && user) { openPlan(); document.querySelectorAll('nav button').forEach(x => x.classList.toggle('active', x === b)); } };
   // on the home page, hovering (or tabbing to) a menu button highlights its matching card below
-  const hl = on => document.querySelectorAll(`.home-card[data-goto="${b.dataset.tab}"]`).forEach(c => c.classList.toggle('hl', on));
+  const hl = on => document.querySelectorAll(b.dataset.navPlan !== undefined ? '.home-card[data-open-plan]' : `.home-card[data-goto="${b.dataset.tab}"]:not([data-open-plan])`).forEach(c => c.classList.toggle('hl', on));
   b.addEventListener('mouseenter', () => hl(true)); b.addEventListener('mouseleave', () => hl(false));
   b.addEventListener('focus', () => hl(true)); b.addEventListener('blur', () => hl(false));
 });
-$('#home').onclick = e => { const b = e.target.closest('[data-goto]'); if (!b) return; showTab(b.dataset.goto); if (b.dataset.openPlan !== undefined && user) { const f = $('#certs .plan-fold'); if (f) { f.open = true; f.scrollIntoView({ block: 'start' }); } } };
+const openPlan = () => { const f = $('#certs .plan-fold'); if (f) { f.open = true; f.scrollIntoView({ block: 'start' }); } };
+$('#home').onclick = e => { const b = e.target.closest('[data-goto]'); if (!b) return; if (b.dataset.openPlan !== undefined) return $('nav [data-nav-plan]').click(); showTab(b.dataset.goto); };
 // and the reverse: hovering (or tabbing to) a home card highlights its icon in the top bar
 document.querySelectorAll('.home-card').forEach(c => {
-  const hl = on => document.querySelector(`nav button[data-tab="${c.dataset.goto}"]`)?.classList.toggle('hl', on);
+  const hl = on => document.querySelector(c.dataset.openPlan !== undefined ? 'nav button[data-nav-plan]' : `nav button[data-tab="${c.dataset.goto}"]:not([data-nav-plan])`)?.classList.toggle('hl', on);
   c.addEventListener('mouseenter', () => hl(true)); c.addEventListener('mouseleave', () => hl(false));
   c.addEventListener('focus', () => hl(true)); c.addEventListener('blur', () => hl(false));
 });
@@ -1480,7 +1481,7 @@ fillAccount();
 db = load();
 planHomeSum();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=346')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=347')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Infra./GPUs', 'AI Hardware/GPUs': 'AI Infra./GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents', 'AI Solutions Architecture': 'AI Sol. Architecture' };
 const rn = t => TOPIC_RENAMED[t] ?? t;
