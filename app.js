@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=324';
-import { ADMIN_HASH } from './admin-hash.js?v=324';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=325';
+import { ADMIN_HASH } from './admin-hash.js?v=325';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -307,11 +307,11 @@ async function loadCerts() {
   $('#cert-level').innerHTML += [...new Set(c.certs.map(x => x.level))].sort((a, b) => (LEVELS.indexOf(a) + 1 || 99) - (LEVELS.indexOf(b) + 1 || 99)).map(l => opt(l)).join('');
   const row = (k, v) => v ? `<tr><th>${k}</th><td>${esc(v)}</td></tr>` : '';
   const show = () => {
-    const v = $('#cert-vendor').value, l = $('#cert-level').value;
-    const list = c.certs.filter(x => (!v || x.vendor === v) && (!l || x.level === l));
+    const v = $('#cert-vendor').value, l = $('#cert-level').value, s = $('#cert-search').value.trim().toLowerCase();
+    const list = c.certs.filter(x => (!v || x.vendor === v) && (!l || x.level === l) && (!s || JSON.stringify(x).toLowerCase().includes(s)));
     const by = {};
     for (const x of list) (by[x.vendor] ??= []).push(x);
-    $('#certs-list').innerHTML = Object.entries(by).map(([vendor, xs]) => `<details class="cert-group fold"><summary><h3 class="cert-vendor">${esc(vendor)} <span class="tag">${xs.length} exam${xs.length === 1 ? '' : 's'}</span><span class="cert-levels">${LEVELS.filter(l => xs.some(x => x.level === l)).map(l => `<span>${esc(l)}: ${xs.filter(x => x.level === l).length}</span>`).join('')}</span></h3></summary><div>${xs.map(x => `<details class="card cert"><summary><strong>${esc(x.name)}</strong> <span class="tag">${esc(x.level)} · ${esc(x.cost)}</span><span class="cert-more" aria-hidden="true"></span></summary>
+    $('#certs-list').innerHTML = Object.entries(by).map(([vendor, xs]) => `<details class="cert-group fold"${s ? ' open' : ''}><summary><h3 class="cert-vendor">${esc(vendor)} <span class="tag">${xs.length} exam${xs.length === 1 ? '' : 's'}</span><span class="cert-levels">${LEVELS.filter(l => xs.some(x => x.level === l)).map(l => `<span>${esc(l)}: ${xs.filter(x => x.level === l).length}</span>`).join('')}</span></h3></summary><div>${xs.map(x => `<details class="card cert"><summary><strong>${esc(x.name)}</strong> <span class="tag">${esc(x.level)} · ${esc(x.cost)}</span><span class="cert-more" aria-hidden="true"></span></summary>
       <table class="cert-facts">${row('Exam code', x.code)}${row('Level', x.level)}${row('Cost', x.cost)}${row('Duration', x.duration)}${row('Questions', x.questions)}${row('Prerequisites', x.prerequisites)}</table>
       <h4>Modules and topics</h4><ul class="advice">${x.topics.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
       ${x.note ? `<p class="muted"><em>${esc(x.note)}</em></p>` : ''}
@@ -320,6 +320,7 @@ async function loadCerts() {
       <p class="row"><a class="button primary" href="${esc(x.url)}" target="_blank" rel="noopener">Official page: details and registration</a> <button type="button" data-plan-add-cert="${esc(certKey(x))}">Add to my plan</button></p></details>`).join('')}</div></details>`).join('') || '<p class="muted">No exams match these filters.</p>';
   };
   $('#cert-vendor').onchange = $('#cert-level').onchange = show;
+  let certT; $('#cert-search').oninput = () => { clearTimeout(certT); certT = setTimeout(show, 200); }; // search all exam text; matching groups open
   show();
 }
 loadCerts();
@@ -1423,7 +1424,7 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=324')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=325')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Infra./GPUs', 'AI Hardware/GPUs': 'AI Infra./GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents', 'AI Solutions Architecture': 'AI Sol. Architecture' };
 const rn = t => TOPIC_RENAMED[t] ?? t;

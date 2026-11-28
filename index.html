@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>You Can Du AI</title>
 <meta name="description" content="Build a knowledge base on AI hardware, sizing, generative AI, LLMs and AI engineering, then test yourself.">
-<link rel="stylesheet" href="style.css?v=324">
+<link rel="stylesheet" href="style.css?v=325">
 </head>
 <body>
 <header>
@@ -218,13 +218,14 @@
 
   <!-- CERTIFICATIONS -->
   <section id="certs" class="tab" hidden>
-    <div class="card"><h2>AI exams and certifications</h2>
+    <details class="card fold"><summary><h2>AI Exams and Certifications Search</h2></summary>
       <p class="muted">Prices, prerequisites and topics change often: always confirm on the official page before you pay. <span id="certs-checked"></span></p>
       <div class="row">
         <label>Vendor <select id="cert-vendor"><option value="">All vendors</option></select></label>
         <label>Level (difficulty) <select id="cert-level"><option value="">All levels</option></select></label>
+        <label>Search <input type="search" id="cert-search" placeholder="Exam name, code, topic…"></label>
       </div>
-    </div>
+    </details>
     <div class="grid">
       <details class="card fold"><summary><h2>How to register</h2></summary><ol id="certs-register" class="advice"></ol></details>
       <details class="card fold"><summary><h2>What to buy</h2></summary><ul id="certs-buy" class="advice"></ul></details>
@@ -380,6 +381,6 @@
     </div>
   </section>
 </main>
-<script type="module" src="app.js?v=324"></script>
+<script type="module" src="app.js?v=325"></script>
 </body>
 </html>
