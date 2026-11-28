@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=327';
-import { ADMIN_HASH } from './admin-hash.js?v=327';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=328';
+import { ADMIN_HASH } from './admin-hash.js?v=328';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -377,7 +377,7 @@ function renderPlan() {
   const left = db.plan.filter(p => !p.done).sort((x, y) => x.end.localeCompare(y.end)), done = db.plan.length - left.length;
   $('#plan-home-sum').textContent = !user ? 'Sign in, then pick certifications and courses and set dates for each.'
     : !db.plan.length ? 'Pick certifications and courses and set a timeline for each.'
-    : `${db.plan.length} item${db.plan.length === 1 ? '' : 's'}, ${done} done.` + (left.length ? ` Next: ${left[0].title.replace(/Microsoft/g, 'MS')}, ${MONTHS[+left[0].end.slice(5, 7) - 1].slice(0, 3).toUpperCase()}.` : ' All done!');
+    : `${db.plan.length} item${db.plan.length === 1 ? '' : 's'}, ${done} done.` + (left.length ? ` Next: ${(left[0].kind === 'cert' ? left[0].title.replace(/^[^:]*: /, '') : left[0].title).replace(/Microsoft/g, 'MS')}, ${MONTHS[+left[0].end.slice(5, 7) - 1].slice(0, 3).toUpperCase()}.` : ' All done!');
 }
 function planAdd(kind, ref, title, start, end) {
   if (db.plan.some(p => p.ref === ref)) { alert(`"${title}" is already in your plan.`); return false; }
@@ -1424,7 +1424,7 @@ if (user) {
 syncUser();
 db = load();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=327')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=328')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Infra./GPUs', 'AI Hardware/GPUs': 'AI Infra./GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents', 'AI Solutions Architecture': 'AI Sol. Architecture' };
 const rn = t => TOPIC_RENAMED[t] ?? t;
