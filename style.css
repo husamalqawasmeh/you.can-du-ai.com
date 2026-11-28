@@ -437,3 +437,4 @@ details.card.fold[open] { padding-bottom: 10px; }
 .cert-group > summary::before { position: absolute; left: 10px; top: 50%; margin-top: -.5em; z-index: 1; }
 .cert-group[open] > summary::before { top: 14px; margin-top: 0; }
 #certs .cert-group .cert-vendor { padding-left: 28px; }
+#plan-home-sum { white-space: pre-line; } /* "Next" on its own line */
