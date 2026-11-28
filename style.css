@@ -429,8 +429,8 @@ details.card.fold[open] { padding-bottom: 10px; }
 /* closed vendor bars line up in columns: name, exam count, then each level with its colon aligned */
 .cert-group:not([open]) .cert-name { display: inline-block; width: 8em; }
 #certs .cert-group:not([open]) .cert-vendor .tag { display: inline-block; width: 5.5em; margin: 0; }
-.cert-group:not([open]) .cert-levels span { display: inline-block; width: 9.5em; margin: 0; }
-.cert-levels .lv { display: inline-block; width: 6.9em; font-style: normal; }
+.cert-group:not([open]) .cert-levels span { display: inline-block; width: 12em; margin: 0; }
+.cert-levels .lv { font-style: normal; } /* "Level: n", colon right after the word */
 #certs .plan-panel { margin-bottom: 14px; } /* gap between the plan box and the vendor list */
 /* vendor bars: the open/close arrow sits inside the bar */
 .cert-group > summary { position: relative; }
