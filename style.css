@@ -399,3 +399,4 @@ header .topbar { display: flex; align-items: center; gap: 8px; }
 #certs .cert-group .cert { margin-bottom: 6px; }
 #certs .cert-group .cert:last-child { margin-bottom: 0; }
 #certs .cert-more { padding: 1px 8px; }
+#certs .grid { align-items: start; } /* opening one info box does not stretch the other */
