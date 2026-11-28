@@ -426,3 +426,8 @@ details.card.fold[open] { padding-bottom: 10px; }
 .dp select { width: auto; padding: 2px 4px; }
 .plan-mv { padding: 1px 7px; font-size: .75rem; }
 .plan-mv:disabled { opacity: .35; }
+/* closed vendor bars line up in columns: name, exam count, then each level with its colon aligned */
+.cert-group:not([open]) .cert-name { display: inline-block; width: 8em; }
+#certs .cert-group:not([open]) .cert-vendor .tag { display: inline-block; width: 5.5em; margin: 0; }
+.cert-group:not([open]) .cert-levels span { display: inline-block; width: 9.5em; margin: 0; }
+.cert-levels .lv { display: inline-block; width: 6.9em; font-style: normal; }
