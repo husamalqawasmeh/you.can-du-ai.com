@@ -445,3 +445,10 @@ details.card.fold[open] { padding-bottom: 10px; }
 .home-benefits:hover { transform: none; }
 .home-wide { grid-column: span 2; } /* Suggestion / Complaint: double width */
 @media (max-width: 500px) { .home-wide { grid-column: auto; } }
+/* matching answers in results: boxed pairs, one per line */
+.ans-pairs { display: grid; grid-template-columns: max-content auto 1fr; gap: 4px 8px; align-items: center; margin: 4px 0 8px; }
+.ans-pairs > .ans-l, .ans-pairs > .ans-r { padding: 3px 10px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--raised); color: var(--text); }
+.ans-pairs > .ans-r.good { border-color: var(--good); }
+.ans-pairs > .ans-r.bad { border-color: var(--bad); border-style: dashed; }
+.ans-arrow { color: var(--accent); font-weight: 700; }
+@media (max-width: 560px) { .ans-pairs { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); } }

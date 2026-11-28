@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=353';
-import { ADMIN_HASH } from './admin-hash.js?v=353';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=354';
+import { ADMIN_HASH } from './admin-hash.js?v=354';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -799,7 +799,7 @@ $('#test-run').onsubmit = e => {
       const src = sourceTitle(q.sourceId);
       return `<div class="question"><p>${i + 1}. ${esc(q.prompt)}</p><div class="tag">${esc(q.topic)} ${studyBtn(q.topic)}</div>
         <div class="${ok ? 'good' : 'bad'}">${ok ? '✓ Correct' : '✗ Incorrect'} — your answer: ${shown || '(blank)'}</div>
-        ${ok ? '' : `<div>Correct answer: <strong>${esc(q.answer.split('|')[0])}</strong></div>`}
+        ${ok ? '' : q.type === 'match' ? `<div>Correct answer:</div>${pairsHtml(q.pairs)}` : `<div>Correct answer: <strong>${esc(q.answer.split('|')[0])}</strong></div>`}
         ${q.explanation ? `<div class="muted">${esc(q.explanation)}</div>` : ''}
         ${src ? `<div class="tag">Source: ${esc(src)}</div>` : ''}</div>`;
     }).join('') + `<button type="button" class="primary" id="new-test">New test</button></div>`;
@@ -1268,8 +1268,10 @@ function matchHtml(pairs, qi, test = false) {
 // Escaped HTML: each connected pair in green when right, red when wrong.
 function matchAnswerHtml(q, given) {
   let g = []; try { g = JSON.parse(given || '[]'); } catch {}
-  return g.some(Boolean) ? q.pairs.map((p, k) => `<span class="${g[k] === p[1] ? 'good' : 'bad'}">${esc(p[0])} → ${esc(g[k] || '(not connected)')}</span>`).join('; ') : '';
+  return g.some(Boolean) ? pairsHtml(q.pairs.map((p, k) => [p[0], g[k] || '(not connected)', g[k] === p[1] ? 'good' : 'bad'])) : '';
 }
+// matching answers as boxed pairs, one pair per line: left → right
+const pairsHtml = rows => `<div class="ans-pairs">${rows.map(([l, rt, c = '']) => `<span class="ans-l">${esc(l)}</span><span class="ans-arrow" aria-hidden="true">→</span><span class="ans-r ${c}">${esc(rt)}</span>`).join('')}</div>`;
 function setupMatch(el, pairs, onChange) {
   const links = new Map(); // model index -> vendor
   let sel = null, marks = null; // marks: Map index -> 'ok' | 'bad' after Check
@@ -1481,7 +1483,7 @@ fillAccount();
 db = load();
 planHomeSum();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=353')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=354')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Infra./GPUs', 'AI Hardware/GPUs': 'AI Infra./GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents', 'AI Solutions Architecture': 'AI Sol. Architecture' };
 const rn = t => TOPIC_RENAMED[t] ?? t;
