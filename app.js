@@ -1,5 +1,5 @@
-import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=341';
-import { ADMIN_HASH } from './admin-hash.js?v=341';
+import { filterQuestions, pickQuestions, isCorrect, grade, mergeSeed, normalizeQuestion, scoreByTopic, topicStats, normId, validStudentId, validPin, checkRegistration, proficiency, resultItems, topicProficiency, masteredIds, VENDORS } from './quiz.js?v=342';
+import { ADMIN_HASH } from './admin-hash.js?v=342';
 
 const ADMIN_EMAIL = 'admin@can-du-ai.com';
 const PUBLIC_TABS = new Set(['home', 'interview', 'improve', 'settings']); // open without signing in
@@ -305,6 +305,7 @@ async function loadCerts() {
   $('#certs-buy').innerHTML = c.whatToBuy.map(s => `<li>${esc(s)}</li>`).join('');
   $('#cert-vendor').innerHTML += [...new Set(c.certs.map(x => x.vendor))].map(v => opt(v)).join('');
   const LEVELS = ['Foundational', 'Fundamentals', 'Associate', 'Professional', 'Advanced'];
+  const LEVEL_COLS = [['Foundational', 'Fundamentals'], ['Associate'], ['Professional'], ['Advanced']]; // fixed columns so the same level lines up across vendors
   $('#cert-level').innerHTML += [...new Set(c.certs.map(x => x.level))].sort((a, b) => (LEVELS.indexOf(a) + 1 || 99) - (LEVELS.indexOf(b) + 1 || 99)).map(l => opt(l)).join('');
   const row = (k, v) => v ? `<tr><th>${k}</th><td>${esc(v)}</td></tr>` : '';
   const show = () => {
@@ -312,7 +313,7 @@ async function loadCerts() {
     const list = c.certs.filter(x => (!v || x.vendor === v) && (!l || x.level === l) && (!s || JSON.stringify(x).toLowerCase().includes(s)));
     const by = {};
     for (const x of list) (by[x.vendor] ??= []).push(x);
-    $('#certs-list').innerHTML = Object.entries(by).map(([vendor, xs]) => `<details class="cert-group fold"${s ? ' open' : ''}><summary><h3 class="cert-vendor"><span class="cert-name">${esc(vendor)}</span> <span class="tag">${xs.length} exam${xs.length === 1 ? '' : 's'}</span><span class="cert-levels">${LEVELS.filter(l => xs.some(x => x.level === l)).map(l => `<span><em class="lv">${esc(l)}</em>: ${xs.filter(x => x.level === l).length}</span>`).join('')}</span></h3></summary><div>${xs.map(x => `<details class="card cert"><summary><strong>${esc(x.name)}</strong> <span class="tag">${esc(x.level)} · ${esc(x.cost)}</span><span class="cert-more" aria-hidden="true"></span></summary>
+    $('#certs-list').innerHTML = Object.entries(by).map(([vendor, xs]) => `<details class="cert-group fold"${s ? ' open' : ''}><summary><h3 class="cert-vendor"><span class="cert-name">${esc(vendor)}</span> <span class="tag">${xs.length} exam${xs.length === 1 ? '' : 's'}</span><span class="cert-levels">${LEVEL_COLS.map(c => { const l = c.find(l => xs.some(x => x.level === l)); return l ? `<span><em class="lv">${esc(l)}</em>: ${xs.filter(x => x.level === l).length}</span>` : '<span class="lv-gap"></span>'; }).join('')}</span></h3></summary><div>${xs.map(x => `<details class="card cert"><summary><strong>${esc(x.name)}</strong> <span class="tag">${esc(x.level)} · ${esc(x.cost)}</span><span class="cert-more" aria-hidden="true"></span></summary>
       <table class="cert-facts">${row('Exam code', x.code)}${row('Level', x.level)}${row('Cost', x.cost)}${row('Duration', x.duration)}${row('Questions', x.questions)}${row('Prerequisites', x.prerequisites)}</table>
       <h4>Modules and topics</h4><ul class="advice">${x.topics.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
       ${x.note ? `<p class="muted"><em>${esc(x.note)}</em></p>` : ''}
@@ -1430,7 +1431,7 @@ syncUser();
 db = load();
 planHomeSum();
 let seed = {};
-try { seed = await (await fetch('seed.json?v=341')).json(); } catch { /* offline: run with what's saved */ }
+try { seed = await (await fetch('seed.json?v=342')).json(); } catch { /* offline: run with what's saved */ }
 // renamed topics: move saved items, courses and test history to the new name
 const TOPIC_RENAMED = { 'AI Hardware': 'AI Infra./GPUs', 'AI Hardware/GPUs': 'AI Infra./GPUs', OpenClaw: 'OpenClaw/BOTs', Harnesses: 'Harness Engineering', 'AI Incidents': 'Global AI Incidents', 'Transformers / Attention': 'Transformers', 'Transformers/Attention': 'Transformers', 'Agents & MCP': 'Agents', 'AI Solutions Architecture': 'AI Sol. Architecture' };
 const rn = t => TOPIC_RENAMED[t] ?? t;
