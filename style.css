@@ -443,3 +443,5 @@ details.card.fold[open] { padding-bottom: 10px; }
 .home-sub .home-card { border-top-color: var(--good); } /* green top line for the whole subscription row */
 .home-benefits { cursor: default; }
 .home-benefits:hover { transform: none; }
+.home-wide { grid-column: span 2; } /* Suggestion / Complaint: double width */
+@media (max-width: 500px) { .home-wide { grid-column: auto; } }
